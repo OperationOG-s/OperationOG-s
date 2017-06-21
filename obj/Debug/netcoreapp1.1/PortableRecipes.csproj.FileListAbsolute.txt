@@ -1,0 +1,9 @@
+C:\Users\mabba\Documents\GitHub\Coolpeople_G1\bin\Debug\netcoreapp1.1\PortableRecipes.deps.json
+C:\Users\mabba\Documents\GitHub\Coolpeople_G1\bin\Debug\netcoreapp1.1\PortableRecipes.runtimeconfig.json
+C:\Users\mabba\Documents\GitHub\Coolpeople_G1\bin\Debug\netcoreapp1.1\PortableRecipes.runtimeconfig.dev.json
+C:\Users\mabba\Documents\GitHub\Coolpeople_G1\obj\Debug\netcoreapp1.1\UserSecretsAssemblyInfo.cs
+C:\Users\mabba\Documents\GitHub\Coolpeople_G1\obj\Debug\netcoreapp1.1\PortableRecipes.AssemblyInfo.cs
+C:\Users\mabba\Documents\GitHub\Coolpeople_G1\bin\Debug\netcoreapp1.1\PortableRecipes.dll
+C:\Users\mabba\Documents\GitHub\Coolpeople_G1\bin\Debug\netcoreapp1.1\PortableRecipes.pdb
+C:\Users\mabba\Documents\GitHub\Coolpeople_G1\obj\Debug\netcoreapp1.1\PortableRecipes.dll
+C:\Users\mabba\Documents\GitHub\Coolpeople_G1\obj\Debug\netcoreapp1.1\PortableRecipes.pdb

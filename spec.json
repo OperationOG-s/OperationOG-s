@@ -1,0 +1,343 @@
+{
+"namespace": "PortableRecipes",
+"context_name": "PortableRecipesContext",
+"api_version": "v1",
+"database_provider": "sqlite",
+"custom_view_imports": "",
+"custom_restriction_imports": "",
+"models": [
+    {
+        "name": "HomePage",
+        "allow_maximisation": true,
+        "type": "homepage",
+        "attributes": [],
+        "permissions": {
+            "view": ["*"],
+            "edit": ["*"],
+            "delete": [],
+            "create": []
+        }
+    },
+    {
+            "name": "User",
+            "can_login": true,
+            "can_register": true,
+            "allow_fullscreen": true,
+            "attributes": [
+                { "type": "string", "name": "Username" },
+                { "type": "string", "name": "Language" },
+                { "type": "email", "name": "Email", "hidden_when_minimised": true }
+            ],
+            "permissions": {
+                "view": ["Admin", "User"],
+                "edit": ["Admin", "User"],
+                "delete": ["Admin"],
+                "create": ["Admin"]
+            },
+            "permission_filters": {
+                "edit": [["User"]]
+            },
+            "seeds": [
+              { "Id": 1, "Username": "\"user1\"", "Language":"\"en\"", "Email": "\"user1@us.er\"", "Password":"\"test1234\"" },
+              { "Id": 2, "Username": "\"user2\"", "Language":"\"en\"", "Email": "\"user2@us.er\"", "Password":"\"test1234\"" },
+              { "Id": 3, "Username": "\"user3\"", "Language":"\"en\"", "Email": "\"user3@us.er\"", "Password":"\"test1234\"" }
+            ]
+        },
+        {
+            "name": "Admin",
+            "can_login": true,
+            "allow_fullscreen": true,
+            "attributes": [
+                { "type": "string", "name": "Username" },
+                { "type": "string", "name": "Language" },
+                { "type": "email", "name": "Email", "hidden_when_minimised": true }
+            ],
+            "permissions": {
+                "view": ["Admin"],
+                "edit": ["Admin"],
+                "delete": ["Admin"],
+                "create": ["Admin"]
+            },
+            "seeds": [
+              { "Id": 1, "Username": "\"admin\"", "Language":"\"en\"", "Email": "\"admin@ad.min\"", "Password":"\"test1234\"" }
+            ]
+        },
+    {
+
+            "name": "Recommended_Recipes",
+            "allow_maximisation": true,
+            "attributes": [],
+            "permissions": {
+                "view": ["*"],
+                "edit": ["*"],
+                "delete": ["*"],
+                "create": ["*"]
+            }
+    },
+    {
+        "name": "Categories",
+        "abstract" : true,
+
+        "allow_maximisation": true,
+        "allow_fullscreen": true,
+        "attributes": [ ],
+            "permissions": {
+            "view": ["*"],
+            "edit": ["*"],
+            "delete": ["*"],
+            "create": ["*"] 
+        }
+
+    },
+    {
+        "name":"Asian",
+        "inherits": "Categories",
+        "attributes": [{"type": "string", "name": "Description"}],
+        "permissions": {
+            "view": ["*"],
+            "edit": ["*"],
+            "delete": ["*"],
+            "create": ["*"] 
+        },
+        "seeds": [{"Id":1, "Description": "Asian"}]
+        
+    },
+    {
+        "name":"American",
+        "inherits": "Categories",
+        "attributes": [{"type": "string", "name": "Description"}],
+        "permissions": {
+            "view": ["*"],
+            "edit": ["*"],
+            "delete": ["*"],
+            "create": ["*"] 
+        },
+        "seeds": [{"Id":2, "Description": "American"}]
+        
+    },
+    {
+        "name":"Mediterranean",
+        "inherits": "Categories",
+        "attributes": [{"type": "string", "name": "Description"}],
+        "permissions": { "view": ["*"], "edit": ["*"], "delete": ["*"], "create": ["*"]  },
+        "seeds": [{"Id":3, "Description": "Mediterranean"}]
+        
+    },
+
+
+
+    {
+        "name": "Meal",
+        "allow_maximisation": true,
+        "allow_fullscreen": true,
+        "abstract": true,
+        "attributes": [],
+        "permissions": { "view": ["*"], "edit": ["*"], "delete": ["*"], "create": ["*"]  }
+
+    },
+
+    {
+        "name": "Breakfast",
+        "inherits": "Meal",
+        "attributes": [{"type": "string", "name": "Description"}],
+        "seeds": [{"Id":1, "Description": "Breakfast"}],
+        "permissions": { "view": ["*"], "edit": ["*"], "delete": ["*"], "create": ["*"]  }
+    },
+     {
+        "name": "Lunch",
+        "inherits": "Meal",
+        "attributes": [{"type": "string", "name": "Description"}],
+        "seeds": [{"Id":2, "Description": "Lunch"}],
+        "permissions": { "view": ["*"], "edit": ["*"], "delete": ["*"], "create": ["*"]  }
+    },
+     {
+        "name": "Dinner",
+        "inherits": "Meal",
+        "attributes": [{"type": "string", "name": "Description"}],
+        "seeds": [{"Id":3, "Description": "Dinner"}],
+        "permissions": { "view": ["*"], "edit": ["*"], "delete": ["*"], "create": ["*"]  }
+    },    
+    {
+        "name": "Recipes",
+        "allow_maximisation": true,
+        "allow_fullscreen": true,
+        "attributes": [
+            { "type": "image", "name" : "Picture"},
+            {
+                "type": "string",
+                "name": "Name"
+            },
+            {
+                "type": "string",
+                "name": "Ingredients"
+            },
+            {
+                "type": "string",
+                "name": "Description"
+            },
+            {
+                "type": "int",
+                "name": "Rating"
+            },
+            {
+                "type": "int",
+                "name": "PreparationTime"
+            }],
+            
+        "seeds":[
+            {
+                "Id":4,
+                "Name":"\"Sizzling steak stir-fry/",
+                "Ingredients":"\"320 g tenderstem broccoli, 2 x 250 g lean flank steak, 2 teaspoons coriander seeds, 250 g medium free-range egg noodles, 3 teaspoons sesame oil, 1 red onion, 2 cloves of garlic, 6 cm piece of fresh ginger, olive oil, 3 tablespoons soy sauce, 1 lime, 1 fresh red chilli/",
+                "Description":"\"1. Trim the broccoli, cutting any larger broccoli stems in half lengthways, then place in a heatproof bowl and cover with boiling water. Add a good pinch of sea salt and leave for 10 minutes, then drain and put to one side. Half-fill a pan with water and bring to the boil. 2. Slice the steaks against the grain into finger-sized strips and season with sea salt and black pepper. 3. Pound the coriander seeds in a pestle and mortar, or bash with the base of a pan, until fine. Sprinkle over the steak so they stick to it and give it a lovely, fragrant flavour. 4. Drop the noodles into the pan of boiling salted water and cook until just tender. Drain, then toss with 2 teaspoons of sesame oil and return to the pan. Cover to keep warm. 5. Peel and finely slice the onion and garlic, then peel and finely chop the ginger. 6. Heat a splash of olive oil in a wok or large frying pan over a high heat, then add the onions, garlic and ginger. Fry for a couple of minutes, or until the onions have softened slightly. 7. Add the seasoned pieces of steak and stir-fry for 1 to 2 minutes, then add the broccoli and fry for a further 2 minutes, stirring constantly. 8. Pour in the soy sauce and 1 teaspoon of sesame oil, toss in the pan until everything is well coated, then serve with the egg noodles. 9. Cut the lime into wedges for squeezing over, and finely slice the chilli (deseed if you like), then sprinkle over the top./",
+                "Rating":1,
+                 "Picture" : "\"\"",
+                "PreparationTime":25
+            },
+            {
+                "Id":5,
+                "Name":"\"Sweet and Spicy Asian Meatball and Broccoli Noodles/",
+                "Ingredients":"\"1/2 lb ground turkey, 1 egg, 1/2 up Progresso™ plain panko crispy bread crumbs, 1/2 cup finely chopped onion (1 medium), 2 teaspoons grated gingerroot, 1/2 teaspoon salt, 1/4 teaspoon pepper, 4 green onions, thinly sliced (1/4 cup), 1 two 2 cloves garlic, finely chopped, 3 cups fresh broccoli florets, Canola oil, 1/4 cup reduced-sodium soy sauce, 2 tablespoons sambal oelek or Sriracha, 2 tablespoons real maple syrup, 2 teaspoons fish sauce, 2 teaspoons lime juice, 1 teaspoon grated gingerroot, 1 clove garlic finely chopped, 8 oz uncooked capellini or angel hair pasta/",
+                "Description": "\"1. Heat oven to 425°F. Line cookie sheet with sides or shallow baking pan with cooking parchment paper. 2. In large bowl, mix all Meatball ingredients except broccoli and oil until well combined. Shape meatballs using 1 heaping teaspoonful mixture for each; place in cookie sheet. Arrange broccoli in cookie sheet. Drizzle broccoli with oil. 3. Bake 25 to 30 minutes or until meatballs are thoroughly cooked and no longer pink in center, and broccoli is browned around edges. 4. While meatballs and broccoli are baking, mix Sauce ingredients. 5. Cook and drain capellini as directed on package. Toss capellini with sauce, meatballs and broccoli. /",
+                "Rating":1,
+                "Picture" : "\"\"",
+                "PreparationTime":35
+            },
+            {
+                "Id":6,
+                "Name":"\"Blackened Grouper Sandwiches with Rémoulade/",
+                "Ingredients": "\"1 teaspoon paprika, 3/4 teaspoon black pepper, 1/4 teaspoon kosher salt, 4 (6-oz.) grouper fillets, 2 tablespoons canola oil, 1/4 cup canola mayonnaise, 1 1/2 tablespoons sweet pickle relish, 1 tablespoon grainy mustard, 1 tablespoon unsalted ketchup, 4 (2-oz.) whole-wheat hoagie rolls, split, 4 romaine lettuce leaves, 8 plum tomato slices/",
+                "Description":"\" 1. Preheat broiler to high with oven rack 8 inches from the heat. 2. Combine paprika, pepper, and salt in a small bowl. Rub spice mixture evenly over fillets. 3. Heat oil in a large nonstick skillet over medium-high. Add fillets to pan; cook 3 to 4 minutes on each side. 4. Combine mayonnaise, relish, mustard, and ketchup in a bowl. Arrange rolls, cut sides up, on a baking sheet; broil 1 minute or until toasted. Spread mayonnaise mixture over cut sides of rolls. Top bottom halves of rolls with lettuce, tomato, fillets, and top halves of rolls./",
+                "Rating":1,
+                "Picture" : "\"\"",
+                "PreparationTime":30
+            },
+            {
+                "Id":7,
+                "Name":"Classic American Cheeseburger",
+                "Ingredients": "2pounds    freshly ground chuck,1    tablespoon    onion powder,1    teaspoon    salt,1    teaspoon    freshly ground black pepper,12    slices    deli-counter American cheese,6    large    burger buns, preferably homemade, toasted if desired",
+                "Description": "In a large bowl, mix ground beef, onion powder, salt and pepper until just combined. Do not overmix, or your patties will be tough. Divide into six portions and form patties, without pressing too hard. They should be uniform in thickness. Smooth out any cracks using your fingers. Make these right before you grill them, so they stay at room temperature. Preheat your grill, grill pan or cast-iron skillet to high heat and add burger patties. If using a grill, cover with the lid.Cook until the crust that forms on the bottom of the burger releases it from the pan or grate — about 2 minutes. Gently test, but don't flip it until it gets to this point. When burgers lift up easily, flip, add two slices of cheese to each, close lid if using a grill, and cook on the other side for another 2-3 minutes for medium to medium rare. Remove burgers with a sturdy metal spatula and transfer to a plate. Allow to rest for several minutes, then transfer to buns.Garnish as desired and serve immediately. ",
+                "Rating": 2,
+                "Picture" : "\"\"",
+                "PreparationTime": 60
+
+            },
+            {
+                "Id": 8,
+                "Name": "American Manchego Cheese Omelette",
+                "Ingredients":"8 large eggs, 1/4 cup milk. cooking oil as needed,1 avocado - sliced,1/4 cup yellow bell pepper - diced,1/4 cup red and green bell pepper - diced,1 Jalapeno pepper - seeded and finely diced,1/4 cup onion - diced,1 Tablespoon fresh cilantro - minced, 2 teaspoons fresh parsley - chopped,salt - to taste,ground black pepper - to taste,1 1/4 cup Spanish Manchego cheese - shredded",
+                "Description":" Saute peppers and onions in a small amount of oil. Add cilantro and parsley, season with salt and pepper. Cook until tender. Reserve. Combine eggs and milk. Mix well and reserve. Heat a non-stick omelette or egg pan over medium heat. Portion beaten egg into pan. Stir in sauteed pepper and onion. Cook until set. Flip omelette and cook until done. Add sliced avocado and top with cheese. Fold omelette and turn out onto warm serving plates. Top with additional cheese and garnish with fresh cilantro sprigs. Repeat process to create 4 servings",
+                "Rating": 4,
+                "Picture" : "\"\"",
+                "PreparationTime":20
+            },
+            {
+                "Id": 9,
+                "Name":"Applesauce Pancakes", 
+                "Ingredients":"1 and 1/4 cups applesauce,1 cup all-purpose flour,1/2 cup milk,1 large egg - lightly beaten,1 Tablespoon butter - melted,1 and 1/2 teaspoons baking powder,1/2 teaspoon vanilla,1/4 teaspoon salt",
+                "Description":"These pancakes tend to be way more moist than your average pancakes. Some people like that because you get a real sense of the applesauce in the recipe. Other say it's too 'gooey'. Personally, I like it for a change of pace from normal pancakes",
+                "Rating": 1,
+                "Picture" : "\"\"",
+                "PreparationTime":60
+            },
+            {
+                
+                "Id": 10,
+                "Name": "\"Stuffed peppersz\"",
+                "Ingredients": "\"4 red peppers, 2 x 250g pouches cooked tomato rice (we used Tilda Rizazz Mediterranean Tomato), 2 tbsp pesto, handful pitted black olives (chopped), 200g goat's cheese (sliced)\"",
+                "Description": "\"1. Use a small knife to cut the top out of the peppers, then scoop out the seeds. Sit the peppers on a plate, cut-side up, and cook in the microwave on High for 5-6 mins until they have wilted and softened. 2. While the peppers are cooking, mix the rice together with the pesto and olives and two-thirds of the cheese. Scoop the rice into the peppers, top with the remaining goat’s cheese and continue to cook for 8-10 mins\"",
+                "Rating": 1,
+                "Picture" : "\"\"",
+                "PreparationTime": 15
+            },
+            {
+                    "Id": 11,
+                "Name": "\"Chili con Carne\"",
+                "Ingredients": "\"2 tablespoons of Olive oil, 2 onions, 2 garlics. , 2 carrots, 2 celeries, 2 Bell peppers, 1 teaspoon chilipowder, 1 teaspoon of grinded cumin, 1 teaspoon of cinnamon, Salt and pepper, 400 grams of chickpeas, 400 grams of red kidney beans, 800 grams of finely sliced tomatoes, 500 grams of high quality beef, 1 handful of coriander, 2 tablespoons of balsamic vinegar, 400 grams of basmati rice, A big pot, A frying pan.\"",
+                "Description": "\"1. Put your frying pan on medium to high heat. Put the 2 tablespoons of olive oil and the diced vegetables in the frying pan. 2. Add the chillipowder, the grinded cumin, the cinnamon and a little salt and pepper. Cook for 7 minutes and stir the dish every 30 seconds until the vegetables are soft. 3. Add the chickpeas, kidneybeans, the finely sliced tomatoes and the high quality beef. Add about 600-800ml of water in the frying pan. 4. Add the finely diced coriander to the dish and add the 2 tablespoons balsamic vinegar.  After that cook the dish for an hour on low heat, while stirring it once 15-30 minutes. In the meanwhile cook the basmati rice with saltwater. 5. Share the dish with your family, friends or colleagues! \"",
+                "Rating": 4,
+                "Picture" : "\"\"",
+                "PreparationTime": 70
+            },
+            {
+                "Id": 12,
+                "Name": "\"Chicken French\"",
+                "Ingredients": "\"1/4 cup all-purpose flour, or as needed salt and black pepper to taste , 2 eggs beaten, 1 tablespoon white sugar , 1 tablespoon grated Parmesan cheese, 2 tablespoons olive oil, 4 skinless, boneless chicken breast halves, 1/4 cup butter, 2 teaspoons minced garlic, 1/4 cup dry sherry, 1/4 cup lemon juice, 2 teaspoons low-sodium chicken base\"",
+                "Description": "\"1. Mix together the flour, salt, and pepper in a shallow bowl. 2. In another bowl, whisk beaten eggs, sugar, and Parmesan cheese until the mixture is thoroughly blended and the sugar has dissolved. 3. Heat olive oil in a large skillet over medium heat until the oil shimmers. 4. Dip the chicken breasts into the flour mixture, then into the egg mixture, and gently lay them into the skillet. 5. Pan-fry the chicken breasts until golden brown and no longer pink in the middle, about 6 minutes on each side. 6. Remove from the skillet and set aside. 7. In the same skillet over medium-low heat, melt the butter, and stir in garlic, sherry, lemon juice, and chicken base. 8. Bring the sauce to a simmer, and stir until smooth and slightly thickened, about 5 minutes. 9. Be sure to dissolve any brown flavor bits from the bottom of the skillet as you stir. 10. Return the chicken breasts to the sauce, and gently simmer until no longer pink in the center, about 15 minutes. 11. To serve, place a chicken breast on a plate, and top with sauce.\"",
+                "Rating": 4,
+                "Picture" : "\"\"",
+                "PreparationTime": 30
+            },
+            {
+                "Id": 13,
+                "Name": "\"Baked Eggs\"",
+                "Ingredients": "\"4 rashers of streaky bacon, 1 tbsp oil, 4 eggs, 4 tbsp, cream, 4 tbsp grated cheese of your choice, 4 slices of bread, toasted, buttered and cut into dippers to eat with them\"",
+                "Description": "\"1. Turn oven to 180°C and boil the kettle 2. Fry bacon rashers until really crispy, allow to cool and then break into pieces 3. Put 4 ramekins in front of you. Divide the eggs, bacon, cream, cheese, chives and seasoning into each. 4. Place ramekins into a roasting tray and quarter to half fill with water. Place in oven for 10-15 min until baked through.\"",
+                "Rating": 1,
+                "Picture" : "\"\"",
+                "PreparationTime": 15
+            },
+            {   "Id": 14,
+                "Name": "\"Asian Oatmeal Breakfast Bowl\"",
+                "Ingredients": "\" 1/2 teaspoon sesame seeds, 1 ounce low-fat cream cheese, at room temperature, 1 tablespoon hot-pepper paste, such as gochujang, 1 cup low-sodium chicken broth, 1/3 cup old-fashioned rolled oats, Salt, optional, Cooking spray, 1 large egg, 1 spring onion, sliced, 1 sheet nori, cut into thin ribbons with kitchen shears\"",
+                "Description": "\" Swirl the sesame seeds in a small nonstick skillet over medium heat until they begin to brown and toast, 3 to 4 minutes. Transfer to a small bowl; set aside. Stir together the cream cheese, hot-pepper paste and 1 tablespoon water with a rubber spatula in another small bowl until combined. Refrigerate until ready to use. Bring the chicken broth, oats, 1 cup water and a pinch of salt, if using, to a simmer in a small saucepan over medium-high heat and cook, stirring frequently, until the oats soften and breakdown and the mixture is the consistency of a loose porridge, 15 to 20 minutes. Pour into a cereal bowl, cover and keep warm. Generously spray the skillet with cooking spray, and set over medium-high heat. Crack the egg into a mug or small bowl, and carefully slide it into the hot skillet. Cook until the white is set and brown and crispy on the bottom and edges and the yolk is still runny, 2 to 3 minutes. Use a spatula to help slide the egg on top of the oatmeal. Then arrange neat piles of the cream cheese-pepper sauce, spring onions and nori on top of the oatmeal. Sprinkle with the toasted sesame seeds. Then take a photo!\"",
+                "Rating": 1,   
+                "Picture" : "\"\"",             
+                "PreparationTime": 30
+            },
+
+                {"Id": 15,
+                "Name": "\"Mediterranean Breakfast Couscous\"",
+                "Ingredients": "\" 3 cups 1 percent low-fat milk, 1 (2-inch) cinnamon stick, 1 cup uncooked whole-wheat couscous, ½ cup chopped dried apricots, ¼ cup dried currants,6 teaspoons dark brown sugar, divided,¼ teaspoon salt, 4 teaspoons butter, melted and divided\"",
+                "Description": "\" Combine milk and cinnamon stick in a large saucepan over medium-high heat; heat 3 minutes or until small bubbles form around inner edge of pot (about 180 degrees Fahrenheit.) Do not boil. Remove from heat; stir in couscous, apricots, currants, 4 teaspoons brown sugar, and salt. Cover the mixture, and let it stand 15 minutes. Remove and discard cinnamon stick. Divide couscous among each of 4 bowls, and top each with 1 teaspoon melted butter and ½ teaspoon brown sugar. Serve immediately.\"",
+                "Rating": 1,   
+                "Picture" : "\"\"",             
+                "PreparationTime": 20
+                },
+
+                {"Id": 16,
+                "Name": "\" Chickpea and Potato Hash\"",
+                "Ingredients": "\" 4 cups frozen shredded hash brown potatoes, 2 cups finely chopped baby spinach, ½ cup finely chopped onion, 1 tablespoon minced fresh ginger, 1 tablespoon curry powder, ½ teaspoon salt, ¼ cup extra-virgin olive oil, 1 (15-ounce) can chickpeas, rinsed, 1 cup chopped zucchini, 4 large eggs\"",
+                "Description": "\"  Combine potatoes, spinach, onion, ginger, curry powder, and salt in a large bowl. Heat oil in a large nonstick skillet over medium-high heat. Add the potato mixture and press into a layer. Cook, without stirring, until crispy and golden brown on the bottom, 3 to 5 minutes. Reduce heat to medium-low. Fold in chickpeas and zucchini, breaking up chunks of potato, until just combined. Press back into an even layer. Carve out 4 “wells” in the mixture. Break eggs, one at a time, into a cup and slip one into each indentation. Cover and continue cooking until the eggs are set, 4 to 5 minutes for soft-set yolks.\"",
+                "Rating": 1,  
+                "Picture" : "\"\"",              
+                "PreparationTime": 45
+                },
+                
+                {"Id": 17,
+                "Name": "\" Quick and Easy Kimchi Salad\"",
+                "Ingredients": "\" 1 small head cabbage, shredded 1/4 cup rock salt 1 small carrot, cut into thin strips 3 tablespoons vinegar 2 tablespoons vegetable oil 1 tablespoon white sugar, or to taste 1 teaspoon sesame oil 1 teaspoon toasted sesame seeds, ground 1/2 teaspoon cayenne pepper, or to taste 1/4 teaspoon sal\"",
+                "Description": "\"  Combine cabbage and rock salt together in a bowl. Let stand 15 minutes, stirring often. Rinse lightly and drain. Mix cabbage, carrot, vinegar, vegetable oil, sugar, sesame oil, sesame seeds, cayenne pepper, and salt together in a bowl. Refrigerate until chilled, at least 30 minutes.\"",
+                "Rating": 1,  
+                "Picture" : "\"\"",              
+                "PreparationTime": 65
+                
+                }
+
+    
+            
+                    
+            
+        ],
+
+        "permissions": {
+            "view": ["*"],
+            "edit": ["*"],
+            "delete": ["*"],
+            "create": ["*"]
+        }
+            
+    },
+    
+    {
+        "name": "BookmarkedRecipes",
+        "allow_maximisation": true,
+        "allow_fullscreen": true,
+        "attributes": [ { "type": "string", "name": "Title" } ],
+        "permissions": { "view": ["*"], "edit": ["*"], "delete": ["*"], "create": ["*"] }   
+    }
+],
+"relations": []
+}
+      
+
