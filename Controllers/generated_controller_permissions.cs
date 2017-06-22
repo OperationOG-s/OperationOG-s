@@ -31,17 +31,6 @@ namespace PortableRecipes.Models
     
 
     
-static public bool can_view_Recommended_Recipes(User current_User, Admin current_Admin) { return true; }
-
-    static public bool can_create_Recommended_Recipes(User current_User, Admin current_Admin) { return true; }
-
-    static public bool can_edit_Recommended_Recipes(User current_User, Admin current_Admin) { return true; }
-
-    static public bool can_delete_Recommended_Recipes(User current_User, Admin current_Admin) { return true; }
-      
-  
-
-    
 static public bool can_view_Meal(User current_User, Admin current_Admin) { return true; }
 
     static public bool can_create_Meal(User current_User, Admin current_Admin) { return true; }
@@ -90,10 +79,6 @@ static public bool can_view_Recipes(User current_User, Admin current_Admin) { re
   static public bool can_view_Recipes_Description(User current_User, Admin current_Admin) { return true; }
 
     static public bool can_edit_Recipes_Description(User current_User, Admin current_Admin) { return true; }
-    
-  static public bool can_view_Recipes_Rating(User current_User, Admin current_Admin) { return true; }
-
-    static public bool can_edit_Recipes_Rating(User current_User, Admin current_Admin) { return true; }
     
   static public bool can_view_Recipes_PreparationTime(User current_User, Admin current_Admin) { return true; }
 
@@ -170,20 +155,6 @@ static public bool can_view_Admin(User current_User, Admin current_Admin) { retu
     
 
     
-static public bool can_view_BookmarkedRecipes(User current_User, Admin current_Admin) { return true; }
-
-    static public bool can_create_BookmarkedRecipes(User current_User, Admin current_Admin) { return true; }
-
-    static public bool can_edit_BookmarkedRecipes(User current_User, Admin current_Admin) { return true; }
-
-    static public bool can_delete_BookmarkedRecipes(User current_User, Admin current_Admin) { return true; }
-      
-    static public bool can_view_BookmarkedRecipes_Title(User current_User, Admin current_Admin) { return true; }
-
-    static public bool can_edit_BookmarkedRecipes_Title(User current_User, Admin current_Admin) { return true; }
-    
-
-    
 static public bool can_view_Dinner(User current_User, Admin current_Admin) { return true; }
 
     static public bool can_create_Dinner(User current_User, Admin current_Admin) { return true; }
@@ -237,7 +208,62 @@ static public bool can_view_Categories(User current_User, Admin current_Admin) {
   
 
     
+static public bool can_view_Rating(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_create_Rating(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_edit_Rating(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_delete_Rating(User current_User, Admin current_Admin) { return true; }
+      
+    static public bool can_view_Rating_rating(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_edit_Rating_rating(User current_User, Admin current_Admin) { return true; }
+    
 
     
+
+    static public bool can_view_Categories_Meal(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_create_Categories_Meal(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_edit_Categories_Meal(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_delete_Categories_Meal(User current_User, Admin current_Admin) { return true; }
+static public bool can_view_User_Recipes(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_create_User_Recipes(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_edit_User_Recipes(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_delete_User_Recipes(User current_User, Admin current_Admin) { return true; }
+static public bool can_view_Dinner_Recipes(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_create_Dinner_Recipes(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_edit_Dinner_Recipes(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_delete_Dinner_Recipes(User current_User, Admin current_Admin) { return true; }
+static public bool can_view_Breakfast_Recipes(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_create_Breakfast_Recipes(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_edit_Breakfast_Recipes(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_delete_Breakfast_Recipes(User current_User, Admin current_Admin) { return true; }
+static public bool can_view_Lunch_Recipes(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_create_Lunch_Recipes(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_edit_Lunch_Recipes(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_delete_Lunch_Recipes(User current_User, Admin current_Admin) { return true; }
+static public bool can_view_HomePage_Categories(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_create_HomePage_Categories(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_edit_HomePage_Categories(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_delete_HomePage_Categories(User current_User, Admin current_Admin) { return true; }
   }
 }

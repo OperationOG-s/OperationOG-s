@@ -8,13 +8,6 @@ export type American = {
     Kind:"American"
   }
   
-export type Recommended_Recipes = {
-    Id : number
-    CreatedDate:Moment.Moment
-    
-    
-  }
-  
 export type Meal = {
     Id : number
     CreatedDate:Moment.Moment
@@ -36,7 +29,6 @@ export type Recipes = {
   Name : string
   Ingredients : string
   Description : string
-  Rating : number
   PreparationTime : number
     
   }
@@ -75,13 +67,6 @@ HasPassword:boolean
     
   }
   
-export type BookmarkedRecipes = {
-    Id : number
-    CreatedDate:Moment.Moment
-    Title : string
-    
-  }
-  
 export type Dinner = {
     Id : number
     CreatedDate:Moment.Moment
@@ -109,5 +94,65 @@ export type Categories = {
     
     
   } & (American | Asian | Mediterranean)
+  
+export type Rating = {
+    Id : number
+    CreatedDate:Moment.Moment
+    rating : number
+    
+  }
+  
+export type Categories_Meal = {
+    Id : number
+    CreatedDate:Moment.Moment
+    CategoriesId : number
+  MealId : number
+    
+  }
+  
+
+export type User_Recipes = {
+    Id : number
+    CreatedDate:Moment.Moment
+    UserId : number
+  RecipesId : number
+    
+  }
+  
+
+export type Dinner_Recipes = {
+    Id : number
+    CreatedDate:Moment.Moment
+    DinnerId : number
+  RecipesId : number
+    
+  }
+  
+
+export type Breakfast_Recipes = {
+    Id : number
+    CreatedDate:Moment.Moment
+    BreakfastId : number
+  RecipesId : number
+    
+  }
+  
+
+export type Lunch_Recipes = {
+    Id : number
+    CreatedDate:Moment.Moment
+    LunchId : number
+  RecipesId : number
+    
+  }
+  
+
+export type HomePage_Categories = {
+    Id : number
+    CreatedDate:Moment.Moment
+    HomePageId : number
+  CategoriesId : number
+    
+  }
   
 

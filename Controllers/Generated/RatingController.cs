@@ -15,12 +15,12 @@ using PortableRecipes.Filters;
 
 
 [Route("/[controller]")]
-  public class BookmarkedRecipessController : Controller
+  public class RatingsController : Controller
   {
     private readonly MailOptions _mailOptions;
     public readonly PortableRecipesContext _context;
 
-    public BookmarkedRecipessController(PortableRecipesContext context, IOptions<MailOptions> mailOptionsAccessor)
+    public RatingsController(PortableRecipesContext context, IOptions<MailOptions> mailOptionsAccessor)
     {
       _context = context;
       _mailOptions = mailOptionsAccessor.Value;
@@ -37,7 +37,7 @@ using PortableRecipes.Filters;
       ViewData["CurrentUser"] = session == null ? null : session.User;
       ViewData["CurrentAdmin"] = session == null ? null : session.Admin;
       ViewData["id"] = id;
-      ViewData["Page"] = "BookmarkedRecipess/View";
+      ViewData["Page"] = "Ratings/View";
       return View();
     }
   }

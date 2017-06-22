@@ -12,18 +12,48 @@ import * as Utils from './view_utils'
 import * as Draft from 'draft-js'
 import * as i18next from 'i18next'
 import * as Moment from 'moment'
+import * as CategoriesViews from './Categories'
 
 
+export function HomePage_HomePage_Categories_can_create(self:HomePageContext) {
+  let state = self.state()
+  return state.Categories == "loading" ? false : state.Categories.CanCreate
+}
+export function HomePage_HomePage_Categories_can_delete(self:HomePageContext) {
+  let state = self.state()
+  return state.Categories == "loading" ? false : state.Categories.CanDelete
+}
+export function HomePage_HomePage_Categories_page_index(self:HomePageContext) {
+  let state = self.state()
+  return state.Categories == "loading" ? 0 : state.Categories.PageIndex
+}
+export function HomePage_HomePage_Categories_page_size(self:HomePageContext) {
+  let state = self.state()
+  return state.Categories == "loading" ? 25 : state.Categories.PageSize
+}
+export function HomePage_HomePage_Categories_num_pages(self:HomePageContext) {
+  let state = self.state()
+  return state.Categories == "loading" ? 1 : state.Categories.NumPages
+}
 
-
-
-
-
-
-
+export function load_relation_HomePage_HomePage_Categories(self:HomePageContext, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
+  Permissions.can_view_Categories(current_User, current_Admin) ?
+    Api.get_HomePage_HomePage_Categoriess(self.props.entity, HomePage_HomePage_Categories_page_index(self), HomePage_HomePage_Categories_page_size(self)).then(Categoriess =>
+      self.setState({...self.state(), update_count:self.state().update_count+1,
+          Categories:Utils.raw_page_to_paginated_items<Models.Categories, Utils.EntityAndSize<Models.Categories> & { shown_relation:string }>(i => {
+            let state = self.state()
+            return {
+              element:i,
+              size: state.Categories != "loading" && state.Categories.Items.has(i.Id) ? state.Categories.Items.get(i.Id).size : "preview",
+              shown_relation:"all"}}, Categoriess)
+          }, callback))
+  :
+    callback && callback()
+}
 
 export function load_relations_HomePage(self, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
-  callback && callback()
+  load_relation_HomePage_HomePage_Categories(self, self.props.current_User, self.props.current_Admin, 
+        () => callback && callback())
 }
 
 export function set_size_HomePage(self:HomePageContext, new_size:Utils.EntitySize) {
@@ -72,7 +102,16 @@ export function render_menu_HomePage(self:HomePageContext) {
             }
           <div className="menu_entries">
           
-            
+            {!Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin) ? null :
+                  <div className={`menu_entry${self.props.shown_relation == "HomePage_Categories" ? " active" : ""}`}>
+                    <a onClick={() =>
+                        {self.props.set_shown_relation("HomePage_Categories")
+                        }
+                      }>
+                      {i18next.t('HomePage_Categoriess')}
+                    </a>
+                  </div>
+                }
                 <div className="menu_entry menu_entry--with-sub">
                 
                 </div>  
@@ -173,34 +212,216 @@ export function render_large_HomePage(self:HomePageContext) {
 }
 
 
+export function render_HomePage_HomePage_Categories(self:HomePageContext, context:"presentation_structure"|"default") {
+  if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "HomePage_Categories") || !Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin))
+    return null
+  let state = self.state()
+  return <div>
+    { List.render_relation("homepage_homepage_categories",
+   "HomePage",
+   "Categories",
+   "Categoriess",
+   self.props.nesting_depth > 0,
+   false,
+   false,
+   false)
+  (
+      state.Categories != "loading" ? state.Categories.Items : state.Categories,
+      HomePage_HomePage_Categories_page_index(self),
+      HomePage_HomePage_Categories_num_pages(self),
+      new_page_index => {
+          let state = self.state()
+          state.Categories != "loading" &&
+          self.setState({...self.state(),
+            update_count:self.state().update_count+1,
+            Categories: {
+              ...state.Categories,
+              PageIndex:new_page_index
+            }
+          }, () =>  load_relation_HomePage_HomePage_Categories(self, self.props.current_User, self.props.current_Admin))
+        },
+      (i,i_id) => {
+          let state = self.state()
+          return <div key={i_id}
+            className={`model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""} ` }
+          
+            >
+            <div key={i_id}>
+              {
+                CategoriesViews.Categories({
+                  ...self.props,
+                  entity:i.element,
+                  inline:false,
+                  nesting_depth:self.props.nesting_depth+1,
+                  size: i.size,
+                  allow_maximisation:true,
+                  allow_fullscreen:true,
+                  mode:self.props.mode == "edit" && (Permissions.can_edit_HomePage_Categories(self.props.current_User, self.props.current_Admin)
+                        || Permissions.can_create_HomePage_Categories(self.props.current_User, self.props.current_Admin)
+                        || Permissions.can_delete_HomePage_Categories(self.props.current_User, self.props.current_Admin)) ?
+                    self.props.mode : "view",
+                  is_editable:state.Categories != "loading" && state.Categories.Editable.get(i_id),
+                  shown_relation:i.shown_relation,
+                  set_shown_relation:(new_shown_relation:string, callback) => {
+                    let state = self.state()
+                    state.Categories != "loading" &&
+                    self.setState({...self.state(),
+                      Categories:
+                        {
+                          ...state.Categories,
+                          Items:state.Categories.Items.set(i_id,{...state.Categories.Items.get(i_id), shown_relation:new_shown_relation})
+                        }
+                    }, callback)
+                  },
+                  nested_entity_names: self.props.nested_entity_names.push("Categories"),
+                  
+                  set_size:(new_size:Utils.EntitySize, callback) => {
+                    let new_shown_relation = new_size == "large" ? "all" : i.shown_relation
+                    let state = self.state()
+                    state.Categories != "loading" &&
+                    self.setState({...self.state(),
+                      Categories:
+                        {
+                          ...state.Categories,
+                          Items:state.Categories.Items.set(i_id,
+                            {...state.Categories.Items.get(i_id),
+                              size:new_size, shown_relation:new_shown_relation})
+                        }
+                    }, callback)
+                  },
+                    
+                  toggle_button:undefined,
+                  set_mode:undefined,
+                  set_entity:(new_entity:Models.Categories, callback?:()=>void, force_update_count_increment?:boolean) => {
+                    let state = self.state()
+                    state.Categories != "loading" &&
+                    self.setState({...self.state(),
+                      dirty_Categories:state.dirty_Categories.set(i_id, new_entity),
+                      update_count:force_update_count_increment ? self.state().update_count+1 : state.update_count,
+                      Categories:
+                        {
+                          ...state.Categories,
+                          Items:state.Categories.Items.set(i_id,{...state.Categories.Items.get(i_id), element:new_entity})
+                        }
+                    }, callback)
+                  },
+                  unlink: undefined,
+                    delete: !Permissions.can_delete_Categories(self.props.current_User, self.props.current_Admin) || !HomePage_HomePage_Categories_can_delete(self) ?
+                    null
+                    :
+                    () => confirm(i18next.t('Are you sure?')) && Api.delete_Categories(i.element).then(() =>
+                      load_relation_HomePage_HomePage_Categories(self, self.props.current_User, self.props.current_Admin))
+                })
+              }
+            </div>
+          </div>
+        },
+      () =>
+        <div>
+          {Permissions.can_create_Categories(self.props.current_User, self.props.current_Admin) && Permissions.can_create_HomePage_Categories(self.props.current_User, self.props.current_Admin) && HomePage_HomePage_Categories_can_create(self) ? render_new_HomePage_HomePage_Categories(self) : null}
+          
+        </div>)
+    }
+    
+    </div>
+}
+
 
 
 export function render_relations_HomePage(self:HomePageContext) {
   return <div className="relations">
-      
+      { render_HomePage_HomePage_Categories(self, "default") }
       
     </div>
 }
 
 
 
-
+export function render_new_HomePage_HomePage_Categories(self:HomePageContext) {
+    let state = self.state()
+    return  self.props.mode == "edit" ?
+      <div className="button__actions">
+        <Buttons.Create target_name={"Categories"} onClick={() => self.setState({...self.state(), add_step_Categories:"creating"})}  />
+            {
+            state.add_step_Categories != "creating" ?
+            null
+            :
+            <div className="overlay__item overlay__item--new">
+              <div className="new-american">
+              <button 
+                      className="new-american button button--new"
+                      onClick={() =>
+                          Api.create_American().then(e => {
+                              Api.update_Categories(
+                                ({ ...e, Kind:"American", Description:"" } as Models.American)).then(() =>
+                                load_relation_HomePage_HomePage_Categories(self, self.props.current_User, self.props.current_Admin, () =>
+                                    self.setState({...self.state(), add_step_Categories:"closed"})
+                                  )
+                                )
+                          })
+                      }>
+                  {i18next.t('Create new American')}
+              </button>
+            </div>
+            <div className="new-asian">
+              <button 
+                      className="new-asian button button--new"
+                      onClick={() =>
+                          Api.create_Asian().then(e => {
+                              Api.update_Categories(
+                                ({ ...e, Kind:"Asian", Description:"" } as Models.Asian)).then(() =>
+                                load_relation_HomePage_HomePage_Categories(self, self.props.current_User, self.props.current_Admin, () =>
+                                    self.setState({...self.state(), add_step_Categories:"closed"})
+                                  )
+                                )
+                          })
+                      }>
+                  {i18next.t('Create new Asian')}
+              </button>
+            </div>
+            <div className="new-mediterranean">
+              <button 
+                      className="new-mediterranean button button--new"
+                      onClick={() =>
+                          Api.create_Mediterranean().then(e => {
+                              Api.update_Categories(
+                                ({ ...e, Kind:"Mediterranean", Description:"" } as Models.Mediterranean)).then(() =>
+                                load_relation_HomePage_HomePage_Categories(self, self.props.current_User, self.props.current_Admin, () =>
+                                    self.setState({...self.state(), add_step_Categories:"closed"})
+                                  )
+                                )
+                          })
+                      }>
+                  {i18next.t('Create new Mediterranean')}
+              </button>
+            </div>
+              <Buttons.Cancel onClick={() => self.setState({...self.state(), add_step_Categories:"closed"})} />
+            </div>
+            }
+        </div>
+      :
+      null
+    }
+  
 
 export function render_saving_animations_HomePage(self:HomePageContext) {
-  return 
-    
+  return self.state().dirty_Categories.count() > 0 ?
+    <div style={{position:"fixed", zIndex:10000, top:0, left:0, width:"20px", height:"20px", backgroundColor:"red"}} className="saving"/>
+    : <div style={{position:"fixed", zIndex:10000, top:0, left:0, width:"20px", height:"20px", backgroundColor:"cornflowerblue"}} className="saved"/>
 }
 
 export type HomePageContext = {state:()=>HomePageState, props:Utils.EntityComponentProps<Models.HomePage>, setState:(new_state:HomePageState, callback?:()=>void) => void}
 
 export type HomePageState = {
     update_count:number
-    
+    add_step_Categories:"closed"|"open"|"saving"|"adding"|"creating",
+      dirty_Categories:Immutable.Map<number,Models.Categories>,
+      Categories:Utils.PaginatedItems<{ shown_relation: string } & Utils.EntityAndSize<Models.Categories>>|"loading"
   }
 export class HomePageComponent extends React.Component<Utils.EntityComponentProps<Models.HomePage>, HomePageState> {
   constructor(props:Utils.EntityComponentProps<Models.HomePage>, context:any) {
     super(props, context)
-    this.state = { update_count:0,  }
+    this.state = { update_count:0, add_step_Categories:"closed", dirty_Categories:Immutable.Map<number,Models.Categories>(), Categories:"loading" }
   }
 
   get_self() {
@@ -227,7 +448,12 @@ export class HomePageComponent extends React.Component<Utils.EntityComponentProp
       load_relations_HomePage(this.get_self(), this.props.current_User, this.props.current_Admin)
 
     this.thread = setInterval(() => {
-      
+      if (this.state.dirty_Categories.count() > 0) {
+         let first = this.state.dirty_Categories.first()
+         this.setState({...this.state, dirty_Categories: this.state.dirty_Categories.remove(first.Id)}, () =>
+           Api.update_Categories(first)
+         )
+       }
 
     }, 500)
   }
@@ -272,7 +498,7 @@ export let HomePage = (props:Utils.EntityComponentProps<Models.HomePage>) : JSX.
   <HomePageComponent {...props} />
 
 export let HomePage_to_page = (id:number) => {
-  let can_edit = Utils.any_of([Permissions.can_edit_HomePage])
+  let can_edit = Utils.any_of([Permissions.can_edit_HomePage, Permissions.can_edit_HomePage_Categories, Permissions.can_edit_Categories])
   return Utils.scene_to_page<Models.HomePage>(can_edit, HomePage, Api.get_HomePage(id), Api.update_HomePage, "HomePage", "HomePage", `/HomePages/${id}`)
 }
 

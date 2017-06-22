@@ -19,17 +19,6 @@ export let can_edit_American_Description = (current_User:Models.User, current_Ad
 
 
 
-export let can_view_Recommended_Recipes = (current_User:Models.User, current_Admin:Models.Admin) => true
-
-export let can_create_Recommended_Recipes = (current_User:Models.User, current_Admin:Models.Admin) => true
-
-export let can_edit_Recommended_Recipes = (current_User:Models.User, current_Admin:Models.Admin) => true
-
-export let can_delete_Recommended_Recipes = (current_User:Models.User, current_Admin:Models.Admin) => true
-  
-
-
-
 export let can_view_Meal = (current_User:Models.User, current_Admin:Models.Admin) => true
 
 export let can_create_Meal = (current_User:Models.User, current_Admin:Models.Admin) => true
@@ -78,10 +67,6 @@ export let can_edit_Recipes_Ingredients = (current_User:Models.User, current_Adm
 export let can_view_Recipes_Description = (current_User:Models.User, current_Admin:Models.Admin) => true
 
 export let can_edit_Recipes_Description = (current_User:Models.User, current_Admin:Models.Admin) => true
-
-export let can_view_Recipes_Rating = (current_User:Models.User, current_Admin:Models.Admin) => true
-
-export let can_edit_Recipes_Rating = (current_User:Models.User, current_Admin:Models.Admin) => true
 
 export let can_view_Recipes_PreparationTime = (current_User:Models.User, current_Admin:Models.Admin) => true
 
@@ -158,20 +143,6 @@ export let can_edit_Admin_Email = (current_User:Models.User, current_Admin:Model
 
 
 
-export let can_view_BookmarkedRecipes = (current_User:Models.User, current_Admin:Models.Admin) => true
-
-export let can_create_BookmarkedRecipes = (current_User:Models.User, current_Admin:Models.Admin) => true
-
-export let can_edit_BookmarkedRecipes = (current_User:Models.User, current_Admin:Models.Admin) => true
-
-export let can_delete_BookmarkedRecipes = (current_User:Models.User, current_Admin:Models.Admin) => true
-  
-export let can_view_BookmarkedRecipes_Title = (current_User:Models.User, current_Admin:Models.Admin) => true
-
-export let can_edit_BookmarkedRecipes_Title = (current_User:Models.User, current_Admin:Models.Admin) => true
-
-
-
 export let can_view_Dinner = (current_User:Models.User, current_Admin:Models.Admin) => true
 
 export let can_create_Dinner = (current_User:Models.User, current_Admin:Models.Admin) => true
@@ -225,6 +196,73 @@ export let can_delete_Categories = (current_User:Models.User, current_Admin:Mode
 
 
 
+export let can_view_Rating = (current_User:Models.User, current_Admin:Models.Admin) => true
 
+export let can_create_Rating = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_edit_Rating = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_delete_Rating = (current_User:Models.User, current_Admin:Models.Admin) => true
+  
+export let can_view_Rating_rating = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_edit_Rating_rating = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+
+
+
+export let can_view_Categories_Meal = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_create_Categories_Meal = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_edit_Categories_Meal = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_delete_Categories_Meal = (current_User:Models.User, current_Admin:Models.Admin) => true
+  
+
+export let can_view_User_Recipes = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_create_User_Recipes = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_edit_User_Recipes = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_delete_User_Recipes = (current_User:Models.User, current_Admin:Models.Admin) => true
+  
+
+export let can_view_Dinner_Recipes = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_create_Dinner_Recipes = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_edit_Dinner_Recipes = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_delete_Dinner_Recipes = (current_User:Models.User, current_Admin:Models.Admin) => true
+  
+
+export let can_view_Breakfast_Recipes = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_create_Breakfast_Recipes = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_edit_Breakfast_Recipes = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_delete_Breakfast_Recipes = (current_User:Models.User, current_Admin:Models.Admin) => true
+  
+
+export let can_view_Lunch_Recipes = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_create_Lunch_Recipes = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_edit_Lunch_Recipes = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_delete_Lunch_Recipes = (current_User:Models.User, current_Admin:Models.Admin) => true
+  
+
+export let can_view_HomePage_Categories = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_create_HomePage_Categories = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_edit_HomePage_Categories = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_delete_HomePage_Categories = (current_User:Models.User, current_Admin:Models.Admin) => true
+  
 
 

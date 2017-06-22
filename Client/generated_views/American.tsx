@@ -13,17 +13,84 @@ import * as Draft from 'draft-js'
 import * as i18next from 'i18next'
 import * as Moment from 'moment'
 import * as HomePageViews from './HomePage'
+import * as MealViews from './Meal'
 
 
+export function American_Categories_Meal_can_create(self:AmericanContext) {
+  let state = self.state()
+  return state.Meal == "loading" ? false : state.Meal.CanCreate
+}
+export function American_HomePage_Categories_can_create(self:AmericanContext) {
+  let state = self.state()
+  return state.HomePage == "loading" ? false : state.HomePage.CanCreate
+}
+export function American_Categories_Meal_can_delete(self:AmericanContext) {
+  let state = self.state()
+  return state.Meal == "loading" ? false : state.Meal.CanDelete
+}
+export function American_HomePage_Categories_can_delete(self:AmericanContext) {
+  let state = self.state()
+  return state.HomePage == "loading" ? false : state.HomePage.CanDelete
+}
+export function American_Categories_Meal_page_index(self:AmericanContext) {
+  let state = self.state()
+  return state.Meal == "loading" ? 0 : state.Meal.PageIndex
+}
+export function American_HomePage_Categories_page_index(self:AmericanContext) {
+  let state = self.state()
+  return state.HomePage == "loading" ? 0 : state.HomePage.PageIndex
+}
+export function American_Categories_Meal_page_size(self:AmericanContext) {
+  let state = self.state()
+  return state.Meal == "loading" ? 25 : state.Meal.PageSize
+}
+export function American_HomePage_Categories_page_size(self:AmericanContext) {
+  let state = self.state()
+  return state.HomePage == "loading" ? 25 : state.HomePage.PageSize
+}
+export function American_Categories_Meal_num_pages(self:AmericanContext) {
+  let state = self.state()
+  return state.Meal == "loading" ? 1 : state.Meal.NumPages
+}
+export function American_HomePage_Categories_num_pages(self:AmericanContext) {
+  let state = self.state()
+  return state.HomePage == "loading" ? 1 : state.HomePage.NumPages
+}
 
+export function load_relation_American_Categories_Meal(self:AmericanContext, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
+  Permissions.can_view_Meal(current_User, current_Admin) ?
+    Api.get_Categories_Categories_Meals(self.props.entity, American_Categories_Meal_page_index(self), American_Categories_Meal_page_size(self)).then(Meals =>
+      self.setState({...self.state(), update_count:self.state().update_count+1,
+          Meal:Utils.raw_page_to_paginated_items<Models.Meal, Utils.EntityAndSize<Models.Meal> & { shown_relation:string }>(i => {
+            let state = self.state()
+            return {
+              element:i,
+              size: state.Meal != "loading" && state.Meal.Items.has(i.Id) ? state.Meal.Items.get(i.Id).size : "preview",
+              shown_relation:"all"}}, Meals)
+          }, callback))
+  :
+    callback && callback()
+}
 
-
-
-
-
+export function load_relation_American_HomePage_Categories(self:AmericanContext, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
+  Permissions.can_view_HomePage(current_User, current_Admin) ?
+    Api.get_Categories_HomePage_Categoriess(self.props.entity, American_HomePage_Categories_page_index(self), American_HomePage_Categories_page_size(self)).then(HomePages =>
+      self.setState({...self.state(), update_count:self.state().update_count+1,
+          HomePage:Utils.raw_page_to_paginated_items<Models.HomePage, Utils.EntityAndSize<Models.HomePage> & { shown_relation:string }>(i => {
+            let state = self.state()
+            return {
+              element:i,
+              size: state.HomePage != "loading" && state.HomePage.Items.has(i.Id) ? state.HomePage.Items.get(i.Id).size : "preview",
+              shown_relation:"all"}}, HomePages)
+          }, callback))
+  :
+    callback && callback()
+}
 
 export function load_relations_American(self, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
-  callback && callback()
+  load_relation_American_HomePage_Categories(self, self.props.current_User, self.props.current_Admin, 
+        () => load_relation_American_Categories_Meal(self, self.props.current_User, self.props.current_Admin, 
+        () => callback && callback()))
 }
 
 export function set_size_American(self:AmericanContext, new_size:Utils.EntitySize) {
@@ -103,7 +170,20 @@ export function render_menu_American(self:AmericanContext) {
             }
           <div className="menu_entries">
           
-            
+            {!Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin) ? null :
+                  <div className={`menu_entry${self.props.shown_relation == "HomePage_Categories" ? " active" : ""}`}>
+                    <a onClick={() =>
+                        {
+                            Api.get_HomePages(0, 1).then(e =>
+                              e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id),
+                                () => self.props.set_shown_relation("HomePage_Categories"))
+                            )
+                        }
+                      }>
+                      {i18next.t('HomePage_Categoriess')}
+                    </a>
+                  </div>
+                }
                 <div className="menu_entry menu_entry--with-sub">
                 
                 </div>  
@@ -124,13 +204,31 @@ export function render_local_menu_American(self:AmericanContext) {
               </a>
             </div>
           
-              
+            {!Permissions.can_view_Meal(self.props.current_User, self.props.current_Admin) ? null :
+                  <div key={"Categories_Meal"} className={`local_menu_entry${self.props.shown_relation == "Categories_Meal" ? " local_menu_entry--active" : ""}`}>
+                    <a onClick={() =>
+                      load_relation_American_Categories_Meal(self,
+                        self.props.current_User, self.props.current_Admin, 
+                        () => self.props.set_shown_relation("Categories_Meal"))
+                    }>
+                      {i18next.t('Categories_Meals')}
+                    </a>
+                  </div>
+                }  
           </div>
         </div>
 }
 
 export function render_controls_American(self:AmericanContext) {
   return <div className="control">
+    {self.props.allow_maximisation && self.props.set_size ? <a className={`"american button button--toggle ${self.props.size != 'preview' ? 'button--toggle--open' : ''}`}
+          onClick={() => {
+            set_size_American(self, self.props.size == "preview" ? "large" : "preview")}
+          }>
+      </a> : null}
+    {self.props.allow_fullscreen && self.props.set_size ? <a className="american button button--fullscreen"
+        onClick={() => set_size_American(self, self.props.size == "fullscreen" ? "large" : "fullscreen")}>
+      </a> : null}
     {Permissions.can_delete_American(self.props.current_User, self.props.current_Admin) && self.props.size == "fullscreen" ? <a className="button button--delete"
       onClick={() => confirm(i18next.t('Are you sure?')) &&
         Api.delete_American(self.props.entity).then(() => self.props.force_reload(() => self.props.pop()))
@@ -226,34 +324,401 @@ export function render_large_American(self:AmericanContext) {
 }
 
 
+export function render_American_Categories_Meal(self:AmericanContext, context:"presentation_structure"|"default") {
+  if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Categories_Meal") || !Permissions.can_view_Meal(self.props.current_User, self.props.current_Admin))
+    return null
+  let state = self.state()
+  return <div>
+    { List.render_relation("american_categories_meal",
+   "Categories",
+   "Meal",
+   "Meals",
+   self.props.nesting_depth > 0,
+   false,
+   false,
+   false)
+  (
+      state.Meal != "loading" ? state.Meal.Items : state.Meal,
+      American_Categories_Meal_page_index(self),
+      American_Categories_Meal_num_pages(self),
+      new_page_index => {
+          let state = self.state()
+          state.Meal != "loading" &&
+          self.setState({...self.state(),
+            update_count:self.state().update_count+1,
+            Meal: {
+              ...state.Meal,
+              PageIndex:new_page_index
+            }
+          }, () =>  load_relation_American_Categories_Meal(self, self.props.current_User, self.props.current_Admin))
+        },
+      (i,i_id) => {
+          let state = self.state()
+          return <div key={i_id}
+            className={`model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""} ` }
+          
+            >
+            <div key={i_id}>
+              {
+                MealViews.Meal({
+                  ...self.props,
+                  entity:i.element,
+                  inline:false,
+                  nesting_depth:self.props.nesting_depth+1,
+                  size: i.size,
+                  allow_maximisation:true,
+                  allow_fullscreen:true,
+                  mode:self.props.mode == "edit" && (Permissions.can_edit_Categories_Meal(self.props.current_User, self.props.current_Admin)
+                        || Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin)
+                        || Permissions.can_delete_Categories_Meal(self.props.current_User, self.props.current_Admin)) ?
+                    self.props.mode : "view",
+                  is_editable:state.Meal != "loading" && state.Meal.Editable.get(i_id),
+                  shown_relation:i.shown_relation,
+                  set_shown_relation:(new_shown_relation:string, callback) => {
+                    let state = self.state()
+                    state.Meal != "loading" &&
+                    self.setState({...self.state(),
+                      Meal:
+                        {
+                          ...state.Meal,
+                          Items:state.Meal.Items.set(i_id,{...state.Meal.Items.get(i_id), shown_relation:new_shown_relation})
+                        }
+                    }, callback)
+                  },
+                  nested_entity_names: self.props.nested_entity_names.push("Meal"),
+                  
+                  set_size:(new_size:Utils.EntitySize, callback) => {
+                    let new_shown_relation = new_size == "large" ? "all" : i.shown_relation
+                    let state = self.state()
+                    state.Meal != "loading" &&
+                    self.setState({...self.state(),
+                      Meal:
+                        {
+                          ...state.Meal,
+                          Items:state.Meal.Items.set(i_id,
+                            {...state.Meal.Items.get(i_id),
+                              size:new_size, shown_relation:new_shown_relation})
+                        }
+                    }, callback)
+                  },
+                    
+                  toggle_button:undefined,
+                  set_mode:undefined,
+                  set_entity:(new_entity:Models.Meal, callback?:()=>void, force_update_count_increment?:boolean) => {
+                    let state = self.state()
+                    state.Meal != "loading" &&
+                    self.setState({...self.state(),
+                      dirty_Meal:state.dirty_Meal.set(i_id, new_entity),
+                      update_count:force_update_count_increment ? self.state().update_count+1 : state.update_count,
+                      Meal:
+                        {
+                          ...state.Meal,
+                          Items:state.Meal.Items.set(i_id,{...state.Meal.Items.get(i_id), element:new_entity})
+                        }
+                    }, callback)
+                  },
+                  delete: undefined,
+                  unlink: !Permissions.can_delete_Categories_Meal(self.props.current_User, self.props.current_Admin) ?
+                    null
+                    :
+                    () => confirm(i18next.t('Are you sure?')) && Api.unlink_Categories_Categories_Meals(self.props.entity, i.element).then(() =>
+                      load_relation_American_Categories_Meal(self, self.props.current_User, self.props.current_Admin))
+                })
+              }
+            </div>
+          </div>
+        },
+      () =>
+        <div>
+          {Permissions.can_create_Meal(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin) && American_Categories_Meal_can_create(self) ? render_new_American_Categories_Meal(self) : null}
+          {Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin) ? render_add_existing_American_Categories_Meal(self) : null}
+        </div>)
+    }
+    
+    </div>
+}
 
 
-export function render_relations_American(self:AmericanContext) {
-  return <div className="relations">
-      
-      
+export function render_American_HomePage_Categories(self:AmericanContext, context:"presentation_structure"|"default") {
+  if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "HomePage_Categories") || !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin))
+    return null
+  let state = self.state()
+  return <div>
+    { List.render_relation("american_homepage_categories",
+   "Categories",
+   "HomePage",
+   "HomePages",
+   self.props.nesting_depth > 0,
+   false,
+   false,
+   false)
+  (
+      state.HomePage != "loading" ? state.HomePage.Items : state.HomePage,
+      American_HomePage_Categories_page_index(self),
+      American_HomePage_Categories_num_pages(self),
+      new_page_index => {
+          let state = self.state()
+          state.HomePage != "loading" &&
+          self.setState({...self.state(),
+            update_count:self.state().update_count+1,
+            HomePage: {
+              ...state.HomePage,
+              PageIndex:new_page_index
+            }
+          }, () =>  load_relation_American_HomePage_Categories(self, self.props.current_User, self.props.current_Admin))
+        },
+      (i,i_id) => {
+          let state = self.state()
+          return <div key={i_id}
+            className={`model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""} ` }
+          
+            >
+            <div key={i_id}>
+              {
+                HomePageViews.HomePage({
+                  ...self.props,
+                  entity:i.element,
+                  inline:false,
+                  nesting_depth:self.props.nesting_depth+1,
+                  size: i.size,
+                  allow_maximisation:true,
+                  allow_fullscreen:true,
+                  mode:self.props.mode == "edit" && (Permissions.can_edit_HomePage_Categories(self.props.current_User, self.props.current_Admin)
+                        || Permissions.can_create_HomePage_Categories(self.props.current_User, self.props.current_Admin)
+                        || Permissions.can_delete_HomePage_Categories(self.props.current_User, self.props.current_Admin)) ?
+                    self.props.mode : "view",
+                  is_editable:state.HomePage != "loading" && state.HomePage.Editable.get(i_id),
+                  shown_relation:i.shown_relation,
+                  set_shown_relation:(new_shown_relation:string, callback) => {
+                    let state = self.state()
+                    state.HomePage != "loading" &&
+                    self.setState({...self.state(),
+                      HomePage:
+                        {
+                          ...state.HomePage,
+                          Items:state.HomePage.Items.set(i_id,{...state.HomePage.Items.get(i_id), shown_relation:new_shown_relation})
+                        }
+                    }, callback)
+                  },
+                  nested_entity_names: self.props.nested_entity_names.push("HomePage"),
+                  
+                  set_size:(new_size:Utils.EntitySize, callback) => {
+                    let new_shown_relation = new_size == "large" ? "all" : i.shown_relation
+                    let state = self.state()
+                    state.HomePage != "loading" &&
+                    self.setState({...self.state(),
+                      HomePage:
+                        {
+                          ...state.HomePage,
+                          Items:state.HomePage.Items.set(i_id,
+                            {...state.HomePage.Items.get(i_id),
+                              size:new_size, shown_relation:new_shown_relation})
+                        }
+                    }, callback)
+                  },
+                    
+                  toggle_button:undefined,
+                  set_mode:undefined,
+                  set_entity:(new_entity:Models.HomePage, callback?:()=>void, force_update_count_increment?:boolean) => {
+                    let state = self.state()
+                    state.HomePage != "loading" &&
+                    self.setState({...self.state(),
+                      dirty_HomePage:state.dirty_HomePage.set(i_id, new_entity),
+                      update_count:force_update_count_increment ? self.state().update_count+1 : state.update_count,
+                      HomePage:
+                        {
+                          ...state.HomePage,
+                          Items:state.HomePage.Items.set(i_id,{...state.HomePage.Items.get(i_id), element:new_entity})
+                        }
+                    }, callback)
+                  },
+                  unlink: undefined,
+                    delete: !Permissions.can_delete_HomePage(self.props.current_User, self.props.current_Admin) || !American_HomePage_Categories_can_delete(self) ?
+                    null
+                    :
+                    () => confirm(i18next.t('Are you sure?')) && Api.delete_HomePage(i.element).then(() =>
+                      load_relation_American_HomePage_Categories(self, self.props.current_User, self.props.current_Admin))
+                })
+              }
+            </div>
+          </div>
+        },
+      () =>
+        <div>
+          
+          
+        </div>)
+    }
+    
     </div>
 }
 
 
 
+export function render_relations_American(self:AmericanContext) {
+  return <div className="relations">
+      { render_American_Categories_Meal(self, "default") }
+      
+    </div>
+}
 
+export function render_add_existing_American_Categories_Meal(self:AmericanContext) {
+    
+    let state = self.state()
+    return self.props.mode == "edit" ?
+      <div className="button__actions">
+        {
+          state.add_step_Meal != "open" ?
+            <Buttons.Add 
+              onClick={() =>
+                self.setState({...self.state(), add_step_Meal:"open"}) }
+                  target_name={"Meal"} />
+          :
+          React.createElement(List.AddToRelation,
+            {
+              relation_name:"american_categories_meal",
+              source_name:"Categories",
+              target_name:"Meal",
+              target_plural:"Meals",
+              page_size:10,
+              render_target:(i,i_id) =>
+                <div key={i_id} className="group__item">
+                  <a className="group__button button button--existing"
+                    onClick={() =>
+                        self.setState({...self.state(), add_step_Meal:"saving"}, () =>
+                          Api.link_Categories_Categories_Meals(self.props.entity, i).then(() =>
+                            self.setState({...self.state(), add_step_Meal:"closed"}, () =>
+                              load_relation_American_Categories_Meal(self, self.props.current_User, self.props.current_Admin))))
+                      }>
+                      Add existing
+                  </a>
+                  <div className="group__title" disabled={true}>
+                    {
+                      MealViews.Meal({
+                        ...self.props,
+                        entity:i,
+                        nesting_depth:self.props.nesting_depth+1,
+                        size:"preview",
+                        mode:"view",
+                        is_editable:false,
+                        nested_entity_names: self.props.nested_entity_names.push("Meal"),
+                        set_size:undefined,
+                        toggle_button:undefined,
+                        set_mode:undefined,
+                        set_entity:(new_entity:Models.Meal, callback?:()=>void) => {},
+                        unlink: undefined,
+                        delete: undefined
+                      })
+                    }
+                  </div>
+                </div>,
+              cancel:() => self.setState({...self.state(), add_step_Meal:"closed"}),
+              get_items:[
+                { name: "Lunch", get: async(i,s) => Api.get_unlinked_Categories_Categories_Meals_Lunch(self.props.entity, i, s) }, 
+                { name: "Dinner", get: async(i,s) => Api.get_unlinked_Categories_Categories_Meals_Dinner(self.props.entity, i, s) }, 
+                { name: "Breakfast", get: async(i,s) => Api.get_unlinked_Categories_Categories_Meals_Breakfast(self.props.entity, i, s) }
+              ]
+            })
+        }
+      </div>
+    :
+      null
+    }
+  
+
+export function render_new_American_Categories_Meal(self:AmericanContext) {
+    let state = self.state()
+    return  self.props.mode == "edit" ?
+      <div className="button__actions">
+        <Buttons.Create target_name={"Meal"} onClick={() => self.setState({...self.state(), add_step_Meal:"creating"})}  />
+            {
+            state.add_step_Meal != "creating" ?
+            null
+            :
+            <div className="overlay__item overlay__item--new">
+              <div className="new-lunch">
+              <button 
+                      className="new-lunch button button--new"
+                      onClick={() =>
+                          Api.create_linked_Categories_Categories_Meals_Lunch(self.props.entity).then(e => {
+                              e.length > 0 &&
+                              Api.update_Lunch(
+                                ({ ...e[0], Kind:"Lunch", Description:"" } as Models.Lunch)).then(() =>
+                                load_relation_American_Categories_Meal(self, self.props.current_User, self.props.current_Admin, () =>
+                                    self.setState({...self.state(), add_step_Meal:"closed"})
+                                  )
+                                )
+                          })
+                      }>
+                  {i18next.t('Create new Lunch')}
+              </button>
+            </div>
+            <div className="new-dinner">
+              <button 
+                      className="new-dinner button button--new"
+                      onClick={() =>
+                          Api.create_linked_Categories_Categories_Meals_Dinner(self.props.entity).then(e => {
+                              e.length > 0 &&
+                              Api.update_Dinner(
+                                ({ ...e[0], Kind:"Dinner", Description:"" } as Models.Dinner)).then(() =>
+                                load_relation_American_Categories_Meal(self, self.props.current_User, self.props.current_Admin, () =>
+                                    self.setState({...self.state(), add_step_Meal:"closed"})
+                                  )
+                                )
+                          })
+                      }>
+                  {i18next.t('Create new Dinner')}
+              </button>
+            </div>
+            <div className="new-breakfast">
+              <button 
+                      className="new-breakfast button button--new"
+                      onClick={() =>
+                          Api.create_linked_Categories_Categories_Meals_Breakfast(self.props.entity).then(e => {
+                              e.length > 0 &&
+                              Api.update_Breakfast(
+                                ({ ...e[0], Kind:"Breakfast", Description:"" } as Models.Breakfast)).then(() =>
+                                load_relation_American_Categories_Meal(self, self.props.current_User, self.props.current_Admin, () =>
+                                    self.setState({...self.state(), add_step_Meal:"closed"})
+                                  )
+                                )
+                          })
+                      }>
+                  {i18next.t('Create new Breakfast')}
+              </button>
+            </div>
+              <Buttons.Cancel onClick={() => self.setState({...self.state(), add_step_Meal:"closed"})} />
+            </div>
+            }
+        </div>
+      :
+      null
+    }
+  
 
 export function render_saving_animations_American(self:AmericanContext) {
-  return 
-    
+  return self.state().dirty_Meal.count() > 0 ?
+    <div style={{position:"fixed", zIndex:10000, top:0, left:0, width:"20px", height:"20px", backgroundColor:"red"}} className="saving"/> : 
+    self.state().dirty_HomePage.count() > 0 ?
+    <div style={{position:"fixed", zIndex:10000, top:0, left:0, width:"20px", height:"20px", backgroundColor:"red"}} className="saving"/>
+    : <div style={{position:"fixed", zIndex:10000, top:0, left:0, width:"20px", height:"20px", backgroundColor:"cornflowerblue"}} className="saved"/>
 }
 
 export type AmericanContext = {state:()=>AmericanState, props:Utils.EntityComponentProps<Models.American>, setState:(new_state:AmericanState, callback?:()=>void) => void}
 
 export type AmericanState = {
     update_count:number
-    
+    add_step_Meal:"closed"|"open"|"saving"|"adding"|"creating",
+      dirty_Meal:Immutable.Map<number,Models.Meal>,
+      Meal:Utils.PaginatedItems<{ shown_relation: string } & Utils.EntityAndSize<Models.Meal>>|"loading"
+  add_step_HomePage:"closed"|"open"|"saving",
+      dirty_HomePage:Immutable.Map<number,Models.HomePage>,
+      HomePage:Utils.PaginatedItems<{ shown_relation: string } & Utils.EntityAndSize<Models.HomePage>>|"loading"
   }
 export class AmericanComponent extends React.Component<Utils.EntityComponentProps<Models.American>, AmericanState> {
   constructor(props:Utils.EntityComponentProps<Models.American>, context:any) {
     super(props, context)
-    this.state = { update_count:0,  }
+    this.state = { update_count:0, add_step_Meal:"closed", dirty_Meal:Immutable.Map<number,Models.Meal>(), Meal:"loading", add_step_HomePage:"closed", dirty_HomePage:Immutable.Map<number,Models.HomePage>(), HomePage:"loading" }
   }
 
   get_self() {
@@ -280,7 +745,17 @@ export class AmericanComponent extends React.Component<Utils.EntityComponentProp
       load_relations_American(this.get_self(), this.props.current_User, this.props.current_Admin)
 
     this.thread = setInterval(() => {
-      
+      if (this.state.dirty_Meal.count() > 0) {
+         let first = this.state.dirty_Meal.first()
+         this.setState({...this.state, dirty_Meal: this.state.dirty_Meal.remove(first.Id)}, () =>
+           Api.update_Meal(first)
+         )
+       } else if (this.state.dirty_HomePage.count() > 0) {
+         let first = this.state.dirty_HomePage.first()
+         this.setState({...this.state, dirty_HomePage: this.state.dirty_HomePage.remove(first.Id)}, () =>
+           Api.update_HomePage(first)
+         )
+       }
 
     }, 500)
   }
@@ -325,7 +800,7 @@ export let American = (props:Utils.EntityComponentProps<Models.American>) : JSX.
   <AmericanComponent {...props} />
 
 export let American_to_page = (id:number) => {
-  let can_edit = Utils.any_of([Permissions.can_edit_American])
+  let can_edit = Utils.any_of([Permissions.can_edit_American, Permissions.can_edit_Categories_Meal, Permissions.can_edit_HomePage_Categories, Permissions.can_edit_Meal, Permissions.can_edit_HomePage])
   return Utils.scene_to_page<Models.American>(can_edit, American, Api.get_American(id), Api.update_American, "American", "American", `/Americans/${id}`)
 }
 

@@ -81,6 +81,8 @@
     {
         "name":"Asian",
         "inherits": "Categories",
+        "allow_maximisation": true,
+        "allow_fullscreen": true,
         "attributes": [{"type": "string", "name": "Description"}],
         "permissions": {
             "view": ["*"],
@@ -94,6 +96,8 @@
     {
         "name":"American",
         "inherits": "Categories",
+        "allow_maximisation": true,
+        "allow_fullscreen": true,
         "attributes": [{"type": "string", "name": "Description"}],
         "permissions": {
             "view": ["*"],
@@ -107,6 +111,8 @@
     {
         "name":"Mediterranean",
         "inherits": "Categories",
+        "allow_maximisation": true,
+        "allow_fullscreen": true,
         "attributes": [{"type": "string", "name": "Description"}],
         "permissions": { "view": ["*"], "edit": ["*"], "delete": ["*"], "create": ["*"]  },
         "seeds": [{"Id":3, "Description": "Mediterranean"}]
@@ -128,6 +134,8 @@
     {
         "name": "Breakfast",
         "inherits": "Meal",
+        "allow_maximisation": true,
+        "allow_fullscreen": true,
         "attributes": [{"type": "string", "name": "Description"}],
         "seeds": [{"Id":1, "Description": "Breakfast"}],
         "permissions": { "view": ["*"], "edit": ["*"], "delete": ["*"], "create": ["*"]  }
@@ -135,6 +143,8 @@
      {
         "name": "Lunch",
         "inherits": "Meal",
+        "allow_maximisation": true,
+        "allow_fullscreen": true,
         "attributes": [{"type": "string", "name": "Description"}],
         "seeds": [{"Id":2, "Description": "Lunch"}],
         "permissions": { "view": ["*"], "edit": ["*"], "delete": ["*"], "create": ["*"]  }
@@ -142,6 +152,8 @@
      {
         "name": "Dinner",
         "inherits": "Meal",
+        "allow_maximisation": true,
+        "allow_fullscreen": true,
         "attributes": [{"type": "string", "name": "Description"}],
         "seeds": [{"Id":3, "Description": "Dinner"}],
         "permissions": { "view": ["*"], "edit": ["*"], "delete": ["*"], "create": ["*"]  }
@@ -303,8 +315,9 @@
         "name":"Rating",
         "allow_maximisation":true,
         "allow_fullscreen":true,
-        "attributes":[{"type":"int", "name": "Rating"}],
-        "seeds":[{}]
+        "attributes":[{"type":"int", "name": "rating"}],
+        "seeds":[],
+        "permissions": { "view": ["*"], "edit": ["*"], "delete": ["*"], "create": ["*"]  }
     }
     
 ],
@@ -314,15 +327,15 @@
         "target": "Meal", 
         "sort": "1-N",
         "seeds": [
-        { "CategorieId": 3, "MealId": 1 },
-        { "CategorieId": 3, "MealId": 2 },
-        { "CategorieId": 3, "MealId": 3 },
-        { "CategorieId": 2, "MealId": 1 },
-        { "CategorieId": 2, "MealId": 2 },
-        { "CategorieId": 2, "MealId": 3 },
-        { "CategorieId": 1, "MealId": 1 },
-        { "CategorieId": 1, "MealId": 2 },
-        { "CategorieId": 1, "MealId": 3 }
+        { "CategoriesId": 3, "MealId": 1 },
+        { "CategoriesId": 3, "MealId": 2 },
+        { "CategoriesId": 3, "MealId": 3 },
+        { "CategoriesId": 2, "MealId": 1 },
+        { "CategoriesId": 2, "MealId": 2 },
+        { "CategoriesId": 2, "MealId": 3 },
+        { "CategoriesId": 1, "MealId": 1 },
+        { "CategoriesId": 1, "MealId": 2 },
+        { "CategoriesId": 1, "MealId": 3 }
       ]},
       {
         "source": "User",
@@ -333,74 +346,57 @@
       },
       {
         "source": "Dinner",
-        "target": "Recipe",
+        "target": "Recipes",
         "sort": "N-N",
-        "style": {
-            "menu": "always-open",
-            "items": "list",
-            "allow_maximisation": true,
-            "allow_fullscreen": true,
-            "seeds": [
-            { "MealId": 3, "RecipeId": 4 },
-            { "MealId": 3, "RecipeId": 11 },
-            { "MealId": 3, "RecipeId": 12 },
-            { "MealId": 3, "RecipeId": 15 },
-            { "MealId": 3, "RecipeId": 10 },
-            { "MealId": 3, "RecipeId": 9 },
-            { "MealId": 3, "RecipeId": 7 },
-            { "MealId": 3, "RecipeId": 5 }  
-            ]}
-       },
+        
+        "seeds": [
+            { "DinnerId": 3, "RecipesId": 4 },
+            { "DinnerId": 3, "RecipesId": 11 },
+            { "DinnerId": 3, "RecipesId": 12 },
+            { "DinnerId": 3, "RecipesId": 15 },
+            { "DinnerId": 3, "RecipesId": 10 },
+            { "DinnerId": 3, "RecipesId": 9 },
+            { "DinnerId": 3, "RecipesId": 7 },
+            { "DinnerId": 3, "RecipesId": 5 }  
+            ]},
     {
         "source": "Breakfast",
-        "target": "Recipe",
+        "target": "Recipes",
         "sort": "N-N",
-        "style": {
-            "menu": "always-open",
-            "items": "list",
-            "allow_maximisation": true,
-            "allow_fullscreen": true,
-            "seeds": [
-            { "MealId": 1, "RecipeId": 8 },
-            { "MealId": 1, "RecipeId": 11 },
-            { "MealId": 1, "RecipeId": 13 },
-            { "MealId": 1, "RecipeId": 14 },
-            { "MealId": 1, "RecipeId": 15 },
-            { "MealId": 1, "RecipeId": 9 }
+        
+        
+        "seeds": [
+            { "BreakfastId": 1, "RecipesId": 8 },
+            { "BreakfastId": 1, "RecipesId": 11 },
+            { "BreakfastId": 1, "RecipesId": 13 },
+            { "BreakfastId": 1, "RecipesId": 14 },
+            { "BreakfastId": 1, "RecipesId": 15 },
+            { "BreakfastId": 1, "RecipesId": 9 }
              
-            ]}
-      
-        },
-      
+            ]},
       {
         "source": "Lunch",
-        "target": "Recipe",
+        "target": "Recipes",
         "sort": "N-N",
-        "style": {
-            "menu": "always-open",
-            "items": "list",
-            "allow_maximisation": true,
-            "allow_fullscreen": true,
-            "seeds": [
-            { "MealId": 2, "RecipeId": 6 },
-            { "MealId": 2, "RecipeId": 16 },
-            { "MealId": 2, "RecipeId": 17 }
+        
+        "seeds": [
+            { "LunchId": 2, "RecipesId": 6 },
+            { "LunchId": 2, "RecipesId": 16 },
+            { "LunchId": 2, "RecipesId": 17 }
           
-            ]}
-      
-        },
-
+            ]},
         
 
 
         {
-            "source": "Homepage",
+            "source": "HomePage",
             "target":"Categories",
             "sort":"1-N",
+            
             "seeds": [
-            { "HomepageId1": 1, "CategoriesId": 1 },
-            { "HomepageId1": 1, "CategoriesId": 2 },
-            { "HomepageId1": 1, "CategoriesId": 3 }]
+            { "HomePageId": 1, "CategoriesId": 1 },
+            { "HomePageId": 1, "CategoriesId": 2 },
+            { "HomePageId": 1, "CategoriesId": 3 }]
              
             }
         

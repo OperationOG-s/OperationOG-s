@@ -13,6 +13,7 @@ import * as Draft from 'draft-js'
 import * as i18next from 'i18next'
 import * as Moment from 'moment'
 import * as HomePageViews from './HomePage'
+import * as MealViews from './Meal'
 import * as AmericanViews from './American'
 import * as AsianViews from './Asian'
 import * as MediterraneanViews from './Mediterranean'
@@ -33,7 +34,7 @@ export let Categories = (props:Utils.EntityComponentProps<Models.Categories>) : 
        : null
 
 export let Categories_to_page = (id:number) => {
-  let can_edit = Utils.any_of([Permissions.can_edit_Categories])
+  let can_edit = Utils.any_of([Permissions.can_edit_Categories, Permissions.can_edit_Categories_Meal, Permissions.can_edit_HomePage_Categories, Permissions.can_edit_Meal, Permissions.can_edit_HomePage])
   return Utils.scene_to_page<Models.Categories>(can_edit, Categories, Api.get_Categories(id), Api.update_Categories, "Categories", "Categories", `/Categoriess/${id}`)
 }
 

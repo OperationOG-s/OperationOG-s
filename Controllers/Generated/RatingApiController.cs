@@ -15,13 +15,13 @@ using PortableRecipes.Filters;
 using System.IO;
 
 
-  [Route("api/v1/Recommended_Recipes")]
-  public class Recommended_RecipesApiController : Controller
+  [Route("api/v1/Rating")]
+  public class RatingApiController : Controller
   {
     private readonly MailOptions _mailOptions;
     public readonly PortableRecipesContext _context;
 
-    public Recommended_RecipesApiController(PortableRecipesContext context, IOptions<MailOptions> mailOptionsAccessor)
+    public RatingApiController(PortableRecipesContext context, IOptions<MailOptions> mailOptionsAccessor)
     {
       _context = context;
       _mailOptions = mailOptionsAccessor.Value;
@@ -34,16 +34,16 @@ using System.IO;
     [RestrictToUserType(new string[] {"*"})]
     [HttpGet("{id}")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
-    public ItemWithEditable<Recommended_Recipes> GetById(int id)
+    public ItemWithEditable<Rating> GetById(int id)
     {
       var session = HttpContext.Get<LoggableEntities>(_context);
       var current_User = session == null ? null : session.User;
       var current_Admin = session == null ? null : session.Admin;
-      var allowed_items = ApiTokenValid ? _context.Recommended_Recipes : _context.Recommended_Recipes;
-      var editable_items = ApiTokenValid ? _context.Recommended_Recipes : _context.Recommended_Recipes;
-      var item = PortableRecipes.Models.Recommended_Recipes.FilterViewableAttributesLocal(current_User, current_Admin)(allowed_items.FirstOrDefault(e => e.Id == id));
-      item = PortableRecipes.Models.Recommended_Recipes.WithoutImages(item);
-      return new ItemWithEditable<Recommended_Recipes>() {
+      var allowed_items = ApiTokenValid ? _context.Rating : _context.Rating;
+      var editable_items = ApiTokenValid ? _context.Rating : _context.Rating;
+      var item = PortableRecipes.Models.Rating.FilterViewableAttributesLocal(current_User, current_Admin)(allowed_items.FirstOrDefault(e => e.Id == id));
+      item = PortableRecipes.Models.Rating.WithoutImages(item);
+      return new ItemWithEditable<Rating>() {
         Item = item,
         Editable = editable_items.Any(e => e.Id == item.Id) };
     }
@@ -52,7 +52,7 @@ using System.IO;
     [RestrictToUserType(new string[] {"*"})]
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public Recommended_Recipes Create()
+    public Rating Create()
     {
       var session = HttpContext.Get<LoggableEntities>(_context);
       var current_User = session == null ? null : session.User;
@@ -60,22 +60,22 @@ using System.IO;
       var can_create_by_token = ApiTokenValid || true;
       if (!can_create_by_token)
         throw new Exception("Unauthorized create attempt");
-      var item = new Recommended_Recipes() { CreatedDate = DateTime.Now, Id = _context.Recommended_Recipes.Max(i => i.Id) + 1 };
-      _context.Recommended_Recipes.Add(PortableRecipes.Models.Recommended_Recipes.FilterViewableAttributesLocal(current_User, current_Admin)(item));
+      var item = new Rating() { CreatedDate = DateTime.Now, Id = _context.Rating.Max(i => i.Id) + 1 };
+      _context.Rating.Add(PortableRecipes.Models.Rating.FilterViewableAttributesLocal(current_User, current_Admin)(item));
       _context.SaveChanges();
-      item = PortableRecipes.Models.Recommended_Recipes.WithoutImages(item);
+      item = PortableRecipes.Models.Rating.WithoutImages(item);
       return item;
     }
 
     [RestrictToUserType(new string[] {"*"})]
     [HttpPut]
     [ValidateAntiForgeryToken]
-    public void Update([FromBody] Recommended_Recipes item)
+    public void Update([FromBody] Rating item)
     {
       var session = HttpContext.Get<LoggableEntities>(_context);
       var current_User = session == null ? null : session.User;
       var current_Admin = session == null ? null : session.Admin;
-      var allowed_items = ApiTokenValid ? _context.Recommended_Recipes : _context.Recommended_Recipes;
+      var allowed_items = ApiTokenValid ? _context.Rating : _context.Rating;
       if (!allowed_items.Any(i => i.Id == item.Id)) return;
       var new_item = item;
       
@@ -95,35 +95,35 @@ using System.IO;
       var session = HttpContext.Get<LoggableEntities>(_context);
       var current_User = session == null ? null : session.User;
       var current_Admin = session == null ? null : session.Admin;
-      var allowed_items = ApiTokenValid ? _context.Recommended_Recipes : _context.Recommended_Recipes;
-      var item = _context.Recommended_Recipes.FirstOrDefault(e => e.Id == id);
+      var allowed_items = ApiTokenValid ? _context.Rating : _context.Rating;
+      var item = _context.Rating.FirstOrDefault(e => e.Id == id);
       var can_delete_by_token = ApiTokenValid || true;
       if (item == null || !can_delete_by_token)
         throw new Exception("Unauthorized delete attempt");
       
       if (!allowed_items.Any(a => a.Id == item.Id)) throw new Exception("Unauthorized delete attempt");
       
-      _context.Recommended_Recipes.Remove(item);
+      _context.Rating.Remove(item);
       _context.SaveChanges();
     }
 
     [RestrictToUserType(new string[] {"*"})]
     [HttpGet]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
-    public Page<Recommended_Recipes> GetAll([FromQuery] int page_index, [FromQuery] int page_size = 25)
+    public Page<Rating> GetAll([FromQuery] int page_index, [FromQuery] int page_size = 25)
     {
       var session = HttpContext.Get<LoggableEntities>(_context);
       var current_User = session == null ? null : session.User;
       var current_Admin = session == null ? null : session.Admin;
-      var allowed_items = ApiTokenValid ? _context.Recommended_Recipes : _context.Recommended_Recipes;
-      var editable_items = ApiTokenValid ? _context.Recommended_Recipes : _context.Recommended_Recipes;
+      var allowed_items = ApiTokenValid ? _context.Rating : _context.Rating;
+      var editable_items = ApiTokenValid ? _context.Rating : _context.Rating;
       var can_edit_by_token = ApiTokenValid || true;
       var can_create_by_token = ApiTokenValid || true;
       var can_delete_by_token = ApiTokenValid || true;
       return allowed_items
-        .Select(PortableRecipes.Models.Recommended_Recipes.FilterViewableAttributes(current_User, current_Admin))
+        .Select(PortableRecipes.Models.Rating.FilterViewableAttributes(current_User, current_Admin))
         .Select(s => Tuple.Create(s, can_edit_by_token && editable_items.Any(es => es.Id == s.Id)))
-        .Paginate(can_create_by_token, can_delete_by_token, false, page_index, page_size, PortableRecipes.Models.Recommended_Recipes.WithoutImages, item => item);
+        .Paginate(can_create_by_token, can_delete_by_token, false, page_index, page_size, PortableRecipes.Models.Rating.WithoutImages, item => item);
     }
 
     
