@@ -71,10 +71,10 @@
         "allow_fullscreen": true,
         "attributes": [ ],
             "permissions": {
-            "view": ["*"],
-            "edit": ["*"],
-            "delete": ["*"],
-            "create": ["*"] 
+            "view": ["User", "Admin"],
+            "edit": ["Admin"],
+            "delete": ["Admin"],
+            "create": ["Admin"] 
         }
 
     },
@@ -85,10 +85,10 @@
         "allow_fullscreen": true,
         "attributes": [{"type": "string", "name": "Description"}],
         "permissions": {
-            "view": ["*"],
-            "edit": ["*"],
-            "delete": ["*"],
-            "create": ["*"] 
+            "view": ["User", "Admin"],
+            "edit": ["Admin"],
+            "delete": ["Admin"],
+            "create": ["Admin"] 
         },
         "seeds": [{"Id":1, "Description": "Asian"}]
         
@@ -100,10 +100,10 @@
         "allow_fullscreen": true,
         "attributes": [{"type": "string", "name": "Description"}],
         "permissions": {
-            "view": ["*"],
-            "edit": ["*"],
-            "delete": ["*"],
-            "create": ["*"] 
+            "view": ["User", "Admin"],
+            "edit": ["Admin"],
+            "delete": ["Admin"],
+            "create": ["Admin"] 
         },
         "seeds": [{"Id":2, "Description": "American"}]
         
@@ -114,7 +114,7 @@
         "allow_maximisation": true,
         "allow_fullscreen": true,
         "attributes": [{"type": "string", "name": "Description"}],
-        "permissions": { "view": ["*"], "edit": ["*"], "delete": ["*"], "create": ["*"]  },
+        "permissions": { "view": ["User", "Admin"], "edit": ["Admin"], "delete": ["Admin"], "create": ["Admin"]  },
         "seeds": [{"Id":3, "Description": "Mediterranean"}]
         
     },
@@ -127,7 +127,7 @@
         "allow_fullscreen": true,
         "abstract": true,
         "attributes": [],
-        "permissions": { "view": ["*"], "edit": ["*"], "delete": ["*"], "create": ["*"]  }
+        "permissions": { "view": ["User", "Admin"], "edit": ["Admin"], "delete": ["Admin"], "create": ["Admin"]  }
 
     },
 
@@ -138,7 +138,7 @@
         "allow_fullscreen": true,
         "attributes": [{"type": "string", "name": "Description"}],
         "seeds": [{"Id":1, "Description": "Breakfast"}],
-        "permissions": { "view": ["*"], "edit": ["*"], "delete": ["*"], "create": ["*"]  }
+        "permissions": { "view": ["User", "Admin"], "edit": ["Admin"], "delete": ["Admin"], "create": ["Admin"]  }
     },
      {
         "name": "Lunch",
@@ -147,7 +147,7 @@
         "allow_fullscreen": true,
         "attributes": [{"type": "string", "name": "Description"}],
         "seeds": [{"Id":2, "Description": "Lunch"}],
-        "permissions": { "view": ["*"], "edit": ["*"], "delete": ["*"], "create": ["*"]  }
+        "permissions": { "view": ["User", "Admin"], "edit": ["Admin"], "delete": ["Admin"], "create": ["Admin"]  }
     },
      {
         "name": "Dinner",
@@ -156,7 +156,7 @@
         "allow_fullscreen": true,
         "attributes": [{"type": "string", "name": "Description"}],
         "seeds": [{"Id":3, "Description": "Dinner"}],
-        "permissions": { "view": ["*"], "edit": ["*"], "delete": ["*"], "create": ["*"]  }
+        "permissions": { "view": ["User", "Admin"], "edit": ["Admin"], "delete": ["Admin"], "create": ["Admin"]  }
     },    
     {
         "name": "Recipes",
@@ -304,10 +304,10 @@
         ],
 
         "permissions": {
-            "view": ["*"],
-            "edit": ["*"],
-            "delete": ["*"],
-            "create": ["*"]
+            "view": ["User", "Admin"],
+            "edit": ["Admin"],
+            "delete": ["Admin"],
+            "create": ["Admin"]
         }
             
     },
@@ -317,7 +317,7 @@
         "allow_fullscreen":true,
         "attributes":[{"type":"int", "name": "rating"}],
         "seeds":[],
-        "permissions": { "view": ["*"], "edit": ["*"], "delete": ["*"], "create": ["*"]  }
+        "permissions": { "view": ["User", "Admin"], "edit": ["Admin"], "delete": ["Admin"], "create": ["Admin"]  }
     }
     
 ],
