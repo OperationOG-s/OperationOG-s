@@ -48,6 +48,14 @@ export function Mediterranean_HomePage_Categories_page_size(self:MediterraneanCo
   let state = self.state()
   return state.HomePage == "loading" ? 25 : state.HomePage.PageSize
 }
+export function Mediterranean_Categories_Meal_search_query(self:MediterraneanContext) {
+  let state = self.state()
+  return state.Meal == "loading" ? null : state.Meal.SearchQuery
+}
+export function Mediterranean_HomePage_Categories_search_query(self:MediterraneanContext) {
+  let state = self.state()
+  return state.HomePage == "loading" ? null : state.HomePage.SearchQuery
+}
 export function Mediterranean_Categories_Meal_num_pages(self:MediterraneanContext) {
   let state = self.state()
   return state.Meal == "loading" ? 1 : state.Meal.NumPages
@@ -57,39 +65,69 @@ export function Mediterranean_HomePage_Categories_num_pages(self:MediterraneanCo
   return state.HomePage == "loading" ? 1 : state.HomePage.NumPages
 }
 
-export function load_relation_Mediterranean_Categories_Meal(self:MediterraneanContext, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
+export function load_relation_Mediterranean_Categories_Meal(self:MediterraneanContext, force_first_page:boolean, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
+  let state = self.state()
+  let prelude = force_first_page && state.Meal != "loading" ?
+    (c:() => void) => state.Meal != "loading" && self.setState({
+      ...state,
+      Meal: {...state.Meal, PageIndex:0 }
+    }, c)
+    :
+    (c:() => void) => c()
   Permissions.can_view_Meal(current_User, current_Admin) ?
-    Api.get_Categories_Categories_Meals(self.props.entity, Mediterranean_Categories_Meal_page_index(self), Mediterranean_Categories_Meal_page_size(self)).then(Meals =>
-      self.setState({...self.state(), update_count:self.state().update_count+1,
-          Meal:Utils.raw_page_to_paginated_items<Models.Meal, Utils.EntityAndSize<Models.Meal> & { shown_relation:string }>(i => {
-            let state = self.state()
-            return {
-              element:i,
-              size: state.Meal != "loading" && state.Meal.Items.has(i.Id) ? state.Meal.Items.get(i.Id).size : "preview",
-              shown_relation:"all"}}, Meals)
-          }, callback))
-  :
-    callback && callback()
+    prelude(() =>
+      Api.get_Categories_Categories_Meals(self.props.entity, Mediterranean_Categories_Meal_page_index(self), Mediterranean_Categories_Meal_page_size(self), Mediterranean_Categories_Meal_search_query(self)).then(Meals =>
+        self.setState({...self.state(), update_count:self.state().update_count+1,
+            Meal:Utils.raw_page_to_paginated_items<Models.Meal, Utils.EntityAndSize<Models.Meal> & { shown_relation:string }>((i, i_just_created) => {
+              let state = self.state()
+              return {
+                element:i,
+                size: state.Meal != "loading" ?
+                  (state.Meal.Items.has(i.Id) ?
+                    state.Meal.Items.get(i.Id).size
+                  :
+                    "preview" /* i_just_created ? "large" : "preview" */)
+                  :
+                    "preview" /* i_just_created ? "large" : "preview" */,
+                shown_relation:"all"}}, Meals)
+            }, callback)))
+    :
+      prelude(() => callback && callback())
 }
 
-export function load_relation_Mediterranean_HomePage_Categories(self:MediterraneanContext, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
+export function load_relation_Mediterranean_HomePage_Categories(self:MediterraneanContext, force_first_page:boolean, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
+  let state = self.state()
+  let prelude = force_first_page && state.HomePage != "loading" ?
+    (c:() => void) => state.HomePage != "loading" && self.setState({
+      ...state,
+      HomePage: {...state.HomePage, PageIndex:0 }
+    }, c)
+    :
+    (c:() => void) => c()
   Permissions.can_view_HomePage(current_User, current_Admin) ?
-    Api.get_Categories_HomePage_Categoriess(self.props.entity, Mediterranean_HomePage_Categories_page_index(self), Mediterranean_HomePage_Categories_page_size(self)).then(HomePages =>
-      self.setState({...self.state(), update_count:self.state().update_count+1,
-          HomePage:Utils.raw_page_to_paginated_items<Models.HomePage, Utils.EntityAndSize<Models.HomePage> & { shown_relation:string }>(i => {
-            let state = self.state()
-            return {
-              element:i,
-              size: state.HomePage != "loading" && state.HomePage.Items.has(i.Id) ? state.HomePage.Items.get(i.Id).size : "preview",
-              shown_relation:"all"}}, HomePages)
-          }, callback))
-  :
-    callback && callback()
+    prelude(() =>
+      Api.get_Categories_HomePage_Categoriess(self.props.entity, Mediterranean_HomePage_Categories_page_index(self), Mediterranean_HomePage_Categories_page_size(self), Mediterranean_HomePage_Categories_search_query(self)).then(HomePages =>
+        self.setState({...self.state(), update_count:self.state().update_count+1,
+            HomePage:Utils.raw_page_to_paginated_items<Models.HomePage, Utils.EntityAndSize<Models.HomePage> & { shown_relation:string }>((i, i_just_created) => {
+              let state = self.state()
+              return {
+                element:i,
+                size: state.HomePage != "loading" ?
+                  (state.HomePage.Items.has(i.Id) ?
+                    state.HomePage.Items.get(i.Id).size
+                  :
+                    "preview" /* i_just_created ? "large" : "preview" */)
+                  :
+                    "preview" /* i_just_created ? "large" : "preview" */,
+                shown_relation:"all"}}, HomePages)
+            }, callback)))
+    :
+      prelude(() => callback && callback())
 }
 
 export function load_relations_Mediterranean(self, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
-  load_relation_Mediterranean_HomePage_Categories(self, self.props.current_User, self.props.current_Admin, 
-        () => load_relation_Mediterranean_Categories_Meal(self, self.props.current_User, self.props.current_Admin, 
+  load_relation_Mediterranean_HomePage_Categories(self, false, self.props.current_User, self.props.current_Admin, 
+        () => load_relation_Mediterranean_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin, 
         () => callback && callback()))
 }
 
@@ -142,8 +180,12 @@ export function render_editable_attributes_minimised_Mediterranean(self:Mediterr
 }
 
 export function render_editable_attributes_maximised_Mediterranean(self:MediterraneanContext) {
+    let state = self.state()
     let attributes = (<div>
         {render_Mediterranean_Description_editable_maximised(self)}
+        
+        
+        
       </div>)
     return attributes
   }
@@ -170,7 +212,21 @@ export function render_menu_Mediterranean(self:MediterraneanContext) {
             }
           <div className="menu_entries">
           
-            {!Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin) ? null :
+            {!Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ? null :
+                  <div className={`menu_entry${self.props.shown_relation == "HomePage_Recipes" ? " active" : ""}`}>
+                    <a onClick={() =>
+                        {
+                            Api.get_HomePages(0, 1).then(e =>
+                              e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id),
+                                () => self.props.set_shown_relation("HomePage_Recipes"))
+                            )
+                        }
+                      }>
+                      {i18next.t('HomePage_Recipess')}
+                    </a>
+                  </div>
+                }
+        {!Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin) ? null :
                   <div className={`menu_entry${self.props.shown_relation == "HomePage_Categories" ? " active" : ""}`}>
                     <a onClick={() =>
                         {
@@ -208,6 +264,7 @@ export function render_local_menu_Mediterranean(self:MediterraneanContext) {
                   <div key={"Categories_Meal"} className={`local_menu_entry${self.props.shown_relation == "Categories_Meal" ? " local_menu_entry--active" : ""}`}>
                     <a onClick={() =>
                       load_relation_Mediterranean_Categories_Meal(self,
+                        false,
                         self.props.current_User, self.props.current_Admin, 
                         () => self.props.set_shown_relation("Categories_Meal"))
                     }>
@@ -255,8 +312,18 @@ export function render_controls_Mediterranean(self:MediterraneanContext) {
 }
 
 export function render_content_Mediterranean(self:MediterraneanContext) {
-  return <div className={`${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}`}>
-    {Permissions.can_view_Mediterranean(self.props.current_User, self.props.current_Admin) ?
+  let actions:Array<()=>void> =
+    [
+      self.props.allow_maximisation && self.props.set_size && self.props.size == "preview" ?
+        () => set_size_Mediterranean(self, self.props.size == "preview" ? "large" : "preview")
+      :
+        null,self.props.allow_fullscreen && self.props.set_size && self.props.size == "preview" ?
+        () => set_size_Mediterranean(self, self.props.size == "fullscreen" ? "large" : "fullscreen")
+      :
+        null,
+    ].filter(a => a != null)
+  let content =
+    Permissions.can_view_Mediterranean(self.props.current_User, self.props.current_Admin) ?
       self.props.size == "preview" ?
         render_preview_Mediterranean(self)
       : self.props.size == "large" ?
@@ -265,8 +332,16 @@ export function render_content_Mediterranean(self:MediterraneanContext) {
         render_large_Mediterranean(self)
       : "Error: unauthorised access to entity."
     : "Error: unauthorised access to entity."
-    }
-  </div>
+  if (self.props.mode == "view" && actions.length == 1 && !false)
+    return <a onClick={() => actions[0]()}>
+      <div className={`${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}`}>
+        {content}
+      </div>
+    </a>
+  else
+    return <div className={`${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}`}>
+      {content}
+    </div>
 }
 
 export function render_Mediterranean_Description_minimised(self:MediterraneanContext) : JSX.Element {
@@ -310,10 +385,12 @@ export function render_preview_Mediterranean(self:MediterraneanContext) {
 }
 
 export function render_large_Mediterranean(self:MediterraneanContext) {
+  let state = self.state()
   let attributes:JSX.Element = null
   if (self.props.mode == "view" || !Permissions.can_edit_Mediterranean(self.props.current_User, self.props.current_Admin))
     attributes = (<div className="model__attributes">
       { render_Mediterranean_Description_maximised(self) }
+        
     </div>)
   else
     attributes = render_editable_attributes_maximised_Mediterranean(self)
@@ -329,6 +406,7 @@ export function render_Mediterranean_Categories_Meal(self:MediterraneanContext, 
     return null
   let state = self.state()
   return <div>
+    
     { List.render_relation("mediterranean_categories_meal",
    "Categories",
    "Meal",
@@ -338,7 +416,9 @@ export function render_Mediterranean_Categories_Meal(self:MediterraneanContext, 
    false,
    false)
   (
-      state.Meal != "loading" ? state.Meal.Items : state.Meal,
+      state.Meal != "loading" ?
+        state.Meal.IdsInServerOrder.map(id => state.Meal != "loading" && state.Meal.Items.get(id)):
+        state.Meal,
       Mediterranean_Categories_Meal_page_index(self),
       Mediterranean_Categories_Meal_num_pages(self),
       new_page_index => {
@@ -350,12 +430,14 @@ export function render_Mediterranean_Categories_Meal(self:MediterraneanContext, 
               ...state.Meal,
               PageIndex:new_page_index
             }
-          }, () =>  load_relation_Mediterranean_Categories_Meal(self, self.props.current_User, self.props.current_Admin))
+          }, () =>  load_relation_Mediterranean_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin))
         },
-      (i,i_id) => {
+      (i,_) => {
+          let i_id = i.element.Id
           let state = self.state()
           return <div key={i_id}
-            className={`model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""} ` }
+            className={`model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
+                        ${state.Meal != "loading" && state.Meal.JustCreated.has(i_id) && state.Meal.JustCreated.get(i_id) ? "newly-created" : ""}` }
           
             >
             <div key={i_id}>
@@ -422,7 +504,7 @@ export function render_Mediterranean_Categories_Meal(self:MediterraneanContext, 
                     null
                     :
                     () => confirm(i18next.t('Are you sure?')) && Api.unlink_Categories_Categories_Meals(self.props.entity, i.element).then(() =>
-                      load_relation_Mediterranean_Categories_Meal(self, self.props.current_User, self.props.current_Admin))
+                      load_relation_Mediterranean_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin))
                 })
               }
             </div>
@@ -444,6 +526,7 @@ export function render_Mediterranean_HomePage_Categories(self:MediterraneanConte
     return null
   let state = self.state()
   return <div>
+    
     { List.render_relation("mediterranean_homepage_categories",
    "Categories",
    "HomePage",
@@ -453,7 +536,9 @@ export function render_Mediterranean_HomePage_Categories(self:MediterraneanConte
    false,
    false)
   (
-      state.HomePage != "loading" ? state.HomePage.Items : state.HomePage,
+      state.HomePage != "loading" ?
+        state.HomePage.IdsInServerOrder.map(id => state.HomePage != "loading" && state.HomePage.Items.get(id)):
+        state.HomePage,
       Mediterranean_HomePage_Categories_page_index(self),
       Mediterranean_HomePage_Categories_num_pages(self),
       new_page_index => {
@@ -465,12 +550,14 @@ export function render_Mediterranean_HomePage_Categories(self:MediterraneanConte
               ...state.HomePage,
               PageIndex:new_page_index
             }
-          }, () =>  load_relation_Mediterranean_HomePage_Categories(self, self.props.current_User, self.props.current_Admin))
+          }, () =>  load_relation_Mediterranean_HomePage_Categories(self, false, self.props.current_User, self.props.current_Admin))
         },
-      (i,i_id) => {
+      (i,_) => {
+          let i_id = i.element.Id
           let state = self.state()
           return <div key={i_id}
-            className={`model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""} ` }
+            className={`model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
+                        ${state.HomePage != "loading" && state.HomePage.JustCreated.has(i_id) && state.HomePage.JustCreated.get(i_id) ? "newly-created" : ""}` }
           
             >
             <div key={i_id}>
@@ -537,7 +624,7 @@ export function render_Mediterranean_HomePage_Categories(self:MediterraneanConte
                     null
                     :
                     () => confirm(i18next.t('Are you sure?')) && Api.delete_HomePage(i.element).then(() =>
-                      load_relation_Mediterranean_HomePage_Categories(self, self.props.current_User, self.props.current_Admin))
+                      load_relation_Mediterranean_HomePage_Categories(self, false, self.props.current_User, self.props.current_Admin))
                 })
               }
             </div>
@@ -580,7 +667,7 @@ export function render_add_existing_Mediterranean_Categories_Meal(self:Mediterra
               source_name:"Categories",
               target_name:"Meal",
               target_plural:"Meals",
-              page_size:10,
+              page_size:25,
               render_target:(i,i_id) =>
                 <div key={i_id} className="group__item">
                   <a className="group__button button button--existing"
@@ -588,7 +675,7 @@ export function render_add_existing_Mediterranean_Categories_Meal(self:Mediterra
                         self.setState({...self.state(), add_step_Meal:"saving"}, () =>
                           Api.link_Categories_Categories_Meals(self.props.entity, i).then(() =>
                             self.setState({...self.state(), add_step_Meal:"closed"}, () =>
-                              load_relation_Mediterranean_Categories_Meal(self, self.props.current_User, self.props.current_Admin))))
+                              load_relation_Mediterranean_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin))))
                       }>
                       Add existing
                   </a>
@@ -644,7 +731,7 @@ export function render_new_Mediterranean_Categories_Meal(self:MediterraneanConte
                               e.length > 0 &&
                               Api.update_Lunch(
                                 ({ ...e[0], Kind:"Lunch", Description:"" } as Models.Lunch)).then(() =>
-                                load_relation_Mediterranean_Categories_Meal(self, self.props.current_User, self.props.current_Admin, () =>
+                                load_relation_Mediterranean_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () =>
                                     self.setState({...self.state(), add_step_Meal:"closed"})
                                   )
                                 )
@@ -661,7 +748,7 @@ export function render_new_Mediterranean_Categories_Meal(self:MediterraneanConte
                               e.length > 0 &&
                               Api.update_Dinner(
                                 ({ ...e[0], Kind:"Dinner", Description:"" } as Models.Dinner)).then(() =>
-                                load_relation_Mediterranean_Categories_Meal(self, self.props.current_User, self.props.current_Admin, () =>
+                                load_relation_Mediterranean_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () =>
                                     self.setState({...self.state(), add_step_Meal:"closed"})
                                   )
                                 )
@@ -678,7 +765,7 @@ export function render_new_Mediterranean_Categories_Meal(self:MediterraneanConte
                               e.length > 0 &&
                               Api.update_Breakfast(
                                 ({ ...e[0], Kind:"Breakfast", Description:"" } as Models.Breakfast)).then(() =>
-                                load_relation_Mediterranean_Categories_Meal(self, self.props.current_User, self.props.current_Admin, () =>
+                                load_relation_Mediterranean_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () =>
                                     self.setState({...self.state(), add_step_Meal:"closed"})
                                   )
                                 )
@@ -718,7 +805,7 @@ export type MediterraneanState = {
 export class MediterraneanComponent extends React.Component<Utils.EntityComponentProps<Models.Mediterranean>, MediterraneanState> {
   constructor(props:Utils.EntityComponentProps<Models.Mediterranean>, context:any) {
     super(props, context)
-    this.state = { update_count:0, add_step_Meal:"closed", dirty_Meal:Immutable.Map<number,Models.Meal>(), Meal:"loading", add_step_HomePage:"closed", dirty_HomePage:Immutable.Map<number,Models.HomePage>(), HomePage:"loading" }
+    this.state = { update_count:0,add_step_Meal:"closed", dirty_Meal:Immutable.Map<number,Models.Meal>(), Meal:"loading", add_step_HomePage:"closed", dirty_HomePage:Immutable.Map<number,Models.HomePage>(), HomePage:"loading" }
   }
 
   get_self() {
@@ -734,15 +821,17 @@ export class MediterraneanComponent extends React.Component<Utils.EntityComponen
         (current_logged_in_entity && !new_logged_in_entity) ||
         (!current_logged_in_entity && new_logged_in_entity) ||
         (current_logged_in_entity && new_logged_in_entity && current_logged_in_entity.Id != new_logged_in_entity.Id)) {
-      load_relations_Mediterranean(this.get_self(), new_props.current_User, new_props.current_Admin)
+      load_relations_Mediterranean(this.get_self(),  new_props.current_User, new_props.current_Admin)
     }
   }
 
   thread:number = null
   componentWillMount() {
     if (this.props.size == "breadcrumb") return
-    if (this.props.size != "preview")
+    if (this.props.size != "preview") {
+      
       load_relations_Mediterranean(this.get_self(), this.props.current_User, this.props.current_Admin)
+    }
 
     this.thread = setInterval(() => {
       if (this.state.dirty_Meal.count() > 0) {

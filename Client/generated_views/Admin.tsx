@@ -22,6 +22,7 @@ import * as HomePageViews from './HomePage'
 
 
 
+
 export function load_relations_Admin(self, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
   callback && callback()
 }
@@ -41,7 +42,7 @@ export function render_Admin_Username_editable_minimised(self:AdminContext) : JS
   <label className="attribute-label attribute-label-username">{i18next.t(`Admin:Username`, {context: self.props.inline ? "inline" : ""})}</label>
   <div className="model__attribute-content">
     { Components.String(
-        false,
+        false /* because username and email cannot be edited */,
         self.props.mode,
         () => self.props.entity.Username,
         v => self.props.set_entity({...self.props.entity, Username:v})) } 
@@ -82,7 +83,7 @@ export function render_Admin_Username_editable_maximised(self:AdminContext) : JS
   <label className="attribute-label attribute-label-username">{i18next.t(`Admin:Username`, {context: self.props.inline ? "inline" : ""})}</label>
   <div className="model__attribute-content">
     { Components.String(
-        false,
+        false /* because username and email cannot be edited */,
         self.props.mode,
         () => self.props.entity.Username,
         v => self.props.set_entity({...self.props.entity, Username:v})) } 
@@ -125,7 +126,7 @@ export function render_Admin_Email_editable_maximised(self:AdminContext) : JSX.E
 
 
 export function render_editable_attributes_minimised_Admin(self:AdminContext) {
-  let attributes = (<div><button onClick={() => Api.reset_Admin_password(self.props.entity.Username, self.props.entity.Email)}>{self.props.entity.HasPassword ? i18next.t('common:Reset password') : i18next.t('common:Create password')}</button>
+  let attributes = (<div>
       {render_Admin_Username_editable_minimised(self)}
         {render_Admin_Language_editable_minimised(self)}
     </div>)
@@ -133,10 +134,22 @@ export function render_editable_attributes_minimised_Admin(self:AdminContext) {
 }
 
 export function render_editable_attributes_maximised_Admin(self:AdminContext) {
-    let attributes = (<div><button onClick={() => Api.reset_Admin_password(self.props.entity.Username, self.props.entity.Email)}>{self.props.entity.HasPassword ? i18next.t('common:Reset password') : i18next.t('common:Create password')}</button>
+    let state = self.state()
+    let attributes = (<div>
         {render_Admin_Username_editable_maximised(self)}
         {render_Admin_Language_editable_maximised(self)}
         {render_Admin_Email_editable_maximised(self)}
+        <button onClick={() => Api.reset_Admin_password(self.props.entity.Username, self.props.entity.Email).then(() => location.reload())}>{self.props.entity.HasPassword ? i18next.t('common:Reset password') : i18next.t('common:Create password')}</button>
+        <button onClick={() => Api.delete_Admin_sessions().then(() => location.reload())}>{i18next.t('common:Delete sessions')}</button>
+        {state.active_sessions != "loading" ?
+            <div className="active-user-sessions">
+              <label className="attribute-label attribute-label-active_sessions">{i18next.t("Active sessions")}</label>
+              {
+                state.active_sessions.map(s => <div>{s.Item1} - {Moment(s.Item2).format("DD/MM/YYYY")}</div>)
+              }
+            </div>
+          :
+            <div className="loading">{i18next.t("loading")}</div>}
       </div>)
     return attributes
   }
@@ -163,7 +176,21 @@ export function render_menu_Admin(self:AdminContext) {
             }
           <div className="menu_entries">
           
-            {!Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin) ? null :
+            {!Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ? null :
+                  <div className={`menu_entry${self.props.shown_relation == "HomePage_Recipes" ? " active" : ""}`}>
+                    <a onClick={() =>
+                        {
+                            Api.get_HomePages(0, 1).then(e =>
+                              e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id),
+                                () => self.props.set_shown_relation("HomePage_Recipes"))
+                            )
+                        }
+                      }>
+                      {i18next.t('HomePage_Recipess')}
+                    </a>
+                  </div>
+                }
+        {!Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin) ? null :
                   <div className={`menu_entry${self.props.shown_relation == "HomePage_Categories" ? " active" : ""}`}>
                     <a onClick={() =>
                         {
@@ -233,8 +260,15 @@ export function render_controls_Admin(self:AdminContext) {
 }
 
 export function render_content_Admin(self:AdminContext) {
-  return <div className={`${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}`}>
-    {Permissions.can_view_Admin(self.props.current_User, self.props.current_Admin) ?
+  let actions:Array<()=>void> =
+    [
+      self.props.allow_fullscreen && self.props.set_size && self.props.size == "preview" ?
+        () => set_size_Admin(self, self.props.size == "fullscreen" ? "large" : "fullscreen")
+      :
+        null,
+    ].filter(a => a != null)
+  let content =
+    Permissions.can_view_Admin(self.props.current_User, self.props.current_Admin) ?
       self.props.size == "preview" ?
         render_preview_Admin(self)
       : self.props.size == "large" ?
@@ -243,8 +277,16 @@ export function render_content_Admin(self:AdminContext) {
         render_large_Admin(self)
       : "Error: unauthorised access to entity."
     : "Error: unauthorised access to entity."
-    }
-  </div>
+  if (self.props.mode == "view" && actions.length == 1 && !false)
+    return <a onClick={() => actions[0]()}>
+      <div className={`${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}`}>
+        {content}
+      </div>
+    </a>
+  else
+    return <div className={`${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}`}>
+      {content}
+    </div>
 }
 
 export function render_Admin_Username_minimised(self:AdminContext) : JSX.Element {
@@ -252,7 +294,7 @@ export function render_Admin_Username_minimised(self:AdminContext) : JSX.Element
   <label className="attribute-label attribute-label-username">{i18next.t(`Admin:Username`, {context: self.props.inline ? "inline" : ""})}</label>
   <div className="model__attribute-content">
     { Components.String(
-        false,
+        false /* because username and email cannot be edited */,
         self.props.mode,
         () => self.props.entity.Username,
         v => self.props.set_entity({...self.props.entity, Username:v})) } 
@@ -283,7 +325,7 @@ export function render_Admin_Username_maximised(self:AdminContext) : JSX.Element
   <label className="attribute-label attribute-label-username">{i18next.t(`Admin:Username`, {context: self.props.inline ? "inline" : ""})}</label>
   <div className="model__attribute-content">
     { Components.String(
-        false,
+        false /* because username and email cannot be edited */,
         self.props.mode,
         () => self.props.entity.Username,
         v => self.props.set_entity({...self.props.entity, Username:v})) } 
@@ -332,12 +374,22 @@ export function render_preview_Admin(self:AdminContext) {
 }
 
 export function render_large_Admin(self:AdminContext) {
+  let state = self.state()
   let attributes:JSX.Element = null
   if (self.props.mode == "view" || !Permissions.can_edit_Admin(self.props.current_User, self.props.current_Admin))
     attributes = (<div className="model__attributes">
       { render_Admin_Username_maximised(self) }
         { render_Admin_Language_maximised(self) }
         { render_Admin_Email_maximised(self) }
+        {state.active_sessions != "loading" ?
+            <div className="active-user-sessions">
+              <label className="attribute-label attribute-label-active_sessions">{i18next.t("Active sessions")}</label>
+              {
+                state.active_sessions.map(s => <div>{s.Item1} - {Moment(s.Item2).format("DD/MM/YYYY")}</div>)
+              }
+            </div>
+          :
+            <div className="loading">{i18next.t("loading")}</div>}
     </div>)
   else
     attributes = render_editable_attributes_maximised_Admin(self)
@@ -370,12 +422,13 @@ export type AdminContext = {state:()=>AdminState, props:Utils.EntityComponentPro
 
 export type AdminState = {
     update_count:number
+    active_sessions:"loading"|Array<{Item1:string, Item2:Date}>,
     
   }
 export class AdminComponent extends React.Component<Utils.EntityComponentProps<Models.Admin>, AdminState> {
   constructor(props:Utils.EntityComponentProps<Models.Admin>, context:any) {
     super(props, context)
-    this.state = { update_count:0,  }
+    this.state = { update_count:0,active_sessions:"loading",  }
   }
 
   get_self() {
@@ -391,15 +444,17 @@ export class AdminComponent extends React.Component<Utils.EntityComponentProps<M
         (current_logged_in_entity && !new_logged_in_entity) ||
         (!current_logged_in_entity && new_logged_in_entity) ||
         (current_logged_in_entity && new_logged_in_entity && current_logged_in_entity.Id != new_logged_in_entity.Id)) {
-      load_relations_Admin(this.get_self(), new_props.current_User, new_props.current_Admin)
+      load_relations_Admin(this.get_self(),  new_props.current_User, new_props.current_Admin)
     }
   }
 
   thread:number = null
   componentWillMount() {
     if (this.props.size == "breadcrumb") return
-    if (this.props.size != "preview")
+    if (this.props.size != "preview") {
+      Api.active_Admin_sessions().then(active_sessions => this.setState({...this.state, active_sessions:active_sessions}))
       load_relations_Admin(this.get_self(), this.props.current_User, this.props.current_Admin)
+    }
 
     this.thread = setInterval(() => {
       

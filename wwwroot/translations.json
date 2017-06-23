@@ -3,14 +3,16 @@
     "translation": {
       "Change language": "Change language",
       "HomePage": "Home",
-      "WelcomeMessage": "Welcome message"
+      "WelcomeMessage": "Welcome message",
+      "HomePage_Recipess": "Favorite recipes"
     }
   },
   "nl": {
     "translation": {
       "Change language": "Kies taal",
       "HomePage": "Home",
-      "WelcomeMessage": "Welkom bericht"
+      "WelcomeMessage": "Welkom bericht",
+      "HomePage_Recipess": "Favorite recipes"      
     }
   }
 }

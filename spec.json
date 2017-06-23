@@ -345,6 +345,13 @@
         
       },
       {
+        "source": "Recipes",
+        "target": "Rating",
+        "sort": "1-N",
+        "seeds":[]
+        
+      },
+      {
         "source": "Meal",
         "target": "Recipes",
         "sort": "N-N",
@@ -371,17 +378,21 @@
             ]},
         
 
-
-        {
-            "source": "HomePage",
-            "target":"Categories",
-            "sort":"1-N",
-            
-            "seeds": [
-            { "HomePageId": 1, "CategoriesId": 1 },
-            { "HomePageId": 1, "CategoriesId": 2 },
-            { "HomePageId": 1, "CategoriesId": 3 }]
-             
+            {
+                "source": "HomePage",
+                "target":"Recipes",
+                "sort":"1-N"
+            },
+            {
+                "source": "HomePage",
+                "target":"Categories",
+                "sort":"1-N",
+                
+                "seeds": [
+                { "HomePageId": 1, "CategoriesId": 1 },
+                { "HomePageId": 1, "CategoriesId": 2 },
+                { "HomePageId": 1, "CategoriesId": 3 }]
+                
             }
         
 

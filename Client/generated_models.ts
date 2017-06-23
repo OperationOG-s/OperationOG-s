@@ -120,28 +120,28 @@ export type User_Recipes = {
   }
   
 
-export type Dinner_Recipes = {
+export type Recipes_Rating = {
     Id : number
     CreatedDate:Moment.Moment
-    DinnerId : number
+    RecipesId : number
+  RatingId : number
+    
+  }
+  
+
+export type Meal_Recipes = {
+    Id : number
+    CreatedDate:Moment.Moment
+    MealId : number
   RecipesId : number
     
   }
   
 
-export type Breakfast_Recipes = {
+export type HomePage_Recipes = {
     Id : number
     CreatedDate:Moment.Moment
-    BreakfastId : number
-  RecipesId : number
-    
-  }
-  
-
-export type Lunch_Recipes = {
-    Id : number
-    CreatedDate:Moment.Moment
-    LunchId : number
+    HomePageId : number
   RecipesId : number
     
   }

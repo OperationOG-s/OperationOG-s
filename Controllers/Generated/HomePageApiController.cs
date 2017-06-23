@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using SendGrid;
@@ -20,11 +21,13 @@ using System.IO;
   {
     private readonly MailOptions _mailOptions;
     public readonly PortableRecipesContext _context;
+    private IHostingEnvironment env;
 
-    public HomePageApiController(PortableRecipesContext context, IOptions<MailOptions> mailOptionsAccessor)
+    public HomePageApiController(PortableRecipesContext context, IHostingEnvironment env, IOptions<MailOptions> mailOptionsAccessor)
     {
       _context = context;
       _mailOptions = mailOptionsAccessor.Value;
+      this.env = env;
     }
 
     public bool ApiTokenValid => RestrictToUserTypeAttribute.ApiToken != null &&
@@ -32,9 +35,64 @@ using System.IO;
 
     
     [RestrictToUserType(new string[] {"*"})]
+    [HttpGet("{HomePage_id}/HomePage_Recipess")]
+    [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
+    public Page<Recipes> GetHomePage_Recipess(int HomePage_id, [FromQuery] int page_index, [FromQuery] int page_size = 25 )
+    {
+      var session = HttpContext.Get<LoggableEntities>(_context);
+      var current_User = session == null ? null : session.User;
+      var current_Admin = session == null ? null : session.Admin;
+      var allowed_sources = ApiTokenValid ? _context.HomePage : _context.HomePage;
+      var source = allowed_sources.FirstOrDefault(s => s.Id == HomePage_id);
+      var can_create_by_token = ApiTokenValid || true;
+      var can_delete_by_token = ApiTokenValid || true || true;
+      var can_link_by_token = ApiTokenValid || true;
+      var can_view_by_token = ApiTokenValid || true;
+      if (source == null || !can_view_by_token) // test
+        return Enumerable.Empty<PortableRecipes.Models.Recipes>() // B
+              .AsQueryable()
+              .Select(PortableRecipes.Models.Recipes.FilterViewableAttributes(current_User, current_Admin))
+              .Select(t => Tuple.Create(t, false))
+              .Paginate(can_create_by_token, can_delete_by_token, can_link_by_token, page_index, page_size, PortableRecipes.Models.Recipes.WithoutImages, item => item , null);
+      var allowed_targets = ApiTokenValid ? _context.Recipes : _context.Recipes;
+      var editable_targets = ApiTokenValid ? _context.Recipes : (_context.Recipes);
+      var can_edit_by_token = ApiTokenValid || true;
+      var items = (from target in allowed_targets
+              select target).OrderBy(i => i.CreatedDate).AsQueryable();
+      
+      return items
+              .Select(PortableRecipes.Models.Recipes.FilterViewableAttributes(current_User, current_Admin))
+              .Select(t => Tuple.Create(t, can_edit_by_token && editable_targets.Any(et => et.Id == t.Id)))
+              .Paginate(can_create_by_token, can_delete_by_token, can_link_by_token, page_index, page_size, PortableRecipes.Models.Recipes.WithoutImages, item => item , null);
+    }
+
+    [HttpGet("{HomePage_id}/HomePage_Recipess/{Recipes_id}")]
+    [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
+    public IActionResult /*Recipes*/ GetHomePage_RecipesById(int HomePage_id, int Recipes_id)
+    {
+      var session = HttpContext.Get<LoggableEntities>(_context);
+      var current_User = session == null ? null : session.User;
+      var current_Admin = session == null ? null : session.Admin;
+      var allowed_sources = ApiTokenValid ? _context.HomePage : _context.HomePage;
+      var source = allowed_sources.FirstOrDefault(s => s.Id == HomePage_id);
+      var can_view_by_token = ApiTokenValid || true;
+      if (source == null || !can_view_by_token)
+        return NotFound();
+      var allowed_targets = ApiTokenValid ? _context.Recipes : _context.Recipes;
+      var item = (from target in allowed_targets
+              select target).OrderBy(i => i.CreatedDate)
+              .Select(PortableRecipes.Models.Recipes.FilterViewableAttributes(current_User, current_Admin))
+              .FirstOrDefault(t => t.Id == Recipes_id);
+      if (item == null) return NotFound();
+      item = PortableRecipes.Models.Recipes.WithoutImages(item);
+      return Ok(item);
+    }
+
+    
+    [RestrictToUserType(new string[] {"*"})]
     [HttpGet("{HomePage_id}/HomePage_Categoriess")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
-    public Page<Categories> GetHomePage_Categoriess(int HomePage_id, [FromQuery] int page_index, [FromQuery] int page_size = 25)
+    public Page<Categories> GetHomePage_Categoriess(int HomePage_id, [FromQuery] int page_index, [FromQuery] int page_size = 25 )
     {
       var session = HttpContext.Get<LoggableEntities>(_context);
       var current_User = session == null ? null : session.User;
@@ -50,20 +108,22 @@ using System.IO;
               .AsQueryable()
               .Select(PortableRecipes.Models.Categories.FilterViewableAttributes(current_User, current_Admin))
               .Select(t => Tuple.Create(t, false))
-              .Paginate(can_create_by_token, can_delete_by_token, can_link_by_token, page_index, page_size, PortableRecipes.Models.Categories.WithoutImages, item => item);
+              .Paginate(can_create_by_token, can_delete_by_token, can_link_by_token, page_index, page_size, PortableRecipes.Models.Categories.WithoutImages, item => item , null);
       var allowed_targets = ApiTokenValid ? _context.Categories : _context.Categories;
       var editable_targets = ApiTokenValid ? _context.Categories : (_context.Categories);
       var can_edit_by_token = ApiTokenValid || true;
-      return (from target in allowed_targets
-              select target)
+      var items = (from target in allowed_targets
+              select target).OrderBy(i => i.CreatedDate).AsQueryable();
+      
+      return items
               .Select(PortableRecipes.Models.Categories.FilterViewableAttributes(current_User, current_Admin))
               .Select(t => Tuple.Create(t, can_edit_by_token && editable_targets.Any(et => et.Id == t.Id)))
-              .Paginate(can_create_by_token, can_delete_by_token, can_link_by_token, page_index, page_size, PortableRecipes.Models.Categories.WithoutImages, item => item);
+              .Paginate(can_create_by_token, can_delete_by_token, can_link_by_token, page_index, page_size, PortableRecipes.Models.Categories.WithoutImages, item => item , null);
     }
 
     [HttpGet("{HomePage_id}/HomePage_Categoriess/{Categories_id}")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
-    public Categories GetHomePage_CategoriesById(int HomePage_id, int Categories_id)
+    public IActionResult /*Categories*/ GetHomePage_CategoriesById(int HomePage_id, int Categories_id)
     {
       var session = HttpContext.Get<LoggableEntities>(_context);
       var current_User = session == null ? null : session.User;
@@ -72,78 +132,83 @@ using System.IO;
       var source = allowed_sources.FirstOrDefault(s => s.Id == HomePage_id);
       var can_view_by_token = ApiTokenValid || true;
       if (source == null || !can_view_by_token)
-        return null;
+        return NotFound();
       var allowed_targets = ApiTokenValid ? _context.Categories : _context.Categories;
       var item = (from target in allowed_targets
-              select target)
+              select target).OrderBy(i => i.CreatedDate)
               .Select(PortableRecipes.Models.Categories.FilterViewableAttributes(current_User, current_Admin))
               .FirstOrDefault(t => t.Id == Categories_id);
-
+      if (item == null) return NotFound();
       item = PortableRecipes.Models.Categories.WithoutImages(item);
-      return item;
+      return Ok(item);
     }
 
     
     [RestrictToUserType(new string[] {"*"})]
     [HttpGet("{id}")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
-    public ItemWithEditable<HomePage> GetById(int id)
+    public IActionResult /*ItemWithEditable<HomePage>*/ GetById(int id)
     {
       var session = HttpContext.Get<LoggableEntities>(_context);
       var current_User = session == null ? null : session.User;
       var current_Admin = session == null ? null : session.Admin;
       var allowed_items = ApiTokenValid ? _context.HomePage : _context.HomePage;
       var editable_items = ApiTokenValid ? _context.HomePage : _context.HomePage;
-      var item = PortableRecipes.Models.HomePage.FilterViewableAttributesLocal(current_User, current_Admin)(allowed_items.FirstOrDefault(e => e.Id == id));
+      var item_full = allowed_items.FirstOrDefault(e => e.Id == id);
+      if (item_full == null) return NotFound();
+      var item = PortableRecipes.Models.HomePage.FilterViewableAttributesLocal(current_User, current_Admin)(item_full);
       item = PortableRecipes.Models.HomePage.WithoutImages(item);
-      return new ItemWithEditable<HomePage>() {
+      return Ok(new ItemWithEditable<HomePage>() {
         Item = item,
-        Editable = editable_items.Any(e => e.Id == item.Id) };
+        Editable = editable_items.Any(e => e.Id == item.Id) });
     }
     
 
     [RestrictToUserType(new string[] {})]
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public HomePage Create()
+    public IActionResult /*HomePage*/ Create()
     {
       var session = HttpContext.Get<LoggableEntities>(_context);
       var current_User = session == null ? null : session.User;
       var current_Admin = session == null ? null : session.Admin;
       var can_create_by_token = ApiTokenValid || true;
       if (!can_create_by_token)
-        throw new Exception("Unauthorized create attempt");
+        return Unauthorized();
+        // throw new Exception("Unauthorized create attempt");
       var item = new HomePage() { CreatedDate = DateTime.Now, Id = _context.HomePage.Max(i => i.Id) + 1 };
       _context.HomePage.Add(PortableRecipes.Models.HomePage.FilterViewableAttributesLocal(current_User, current_Admin)(item));
       _context.SaveChanges();
       item = PortableRecipes.Models.HomePage.WithoutImages(item);
-      return item;
+      return Ok(item);
     }
 
     [RestrictToUserType(new string[] {"*"})]
     [HttpPut]
     [ValidateAntiForgeryToken]
-    public void Update([FromBody] HomePage item)
+    public IActionResult Update([FromBody] HomePage item)
     {
       var session = HttpContext.Get<LoggableEntities>(_context);
       var current_User = session == null ? null : session.User;
       var current_Admin = session == null ? null : session.Admin;
       var allowed_items = ApiTokenValid ? _context.HomePage : _context.HomePage;
-      if (!allowed_items.Any(i => i.Id == item.Id)) return;
+      if (!allowed_items.Any(i => i.Id == item.Id)) return Unauthorized();
       var new_item = item;
       
       var can_edit_by_token = ApiTokenValid || true;
       if (item == null || !can_edit_by_token)
-        throw new Exception("Unauthorized edit attempt");
+        return Unauthorized();
+        // throw new Exception("Unauthorized edit attempt");
       _context.Update(new_item);
       _context.Entry(new_item).Property(x => x.CreatedDate).IsModified = false;
       _context.SaveChanges();
+      return Ok();
     }
 
     [RestrictToUserType(new string[] {})]
     [HttpDelete("{id}")]
     [ValidateAntiForgeryToken]
-    public void Delete(int id)
+    public IActionResult Delete(int id)
     {
       var session = HttpContext.Get<LoggableEntities>(_context);
       var current_User = session == null ? null : session.User;
@@ -152,18 +217,23 @@ using System.IO;
       var item = _context.HomePage.FirstOrDefault(e => e.Id == id);
       var can_delete_by_token = ApiTokenValid || true;
       if (item == null || !can_delete_by_token)
-        throw new Exception("Unauthorized delete attempt");
+        return Unauthorized();
+        // throw new Exception("Unauthorized delete attempt");
       
-      if (!allowed_items.Any(a => a.Id == item.Id)) throw new Exception("Unauthorized delete attempt");
+      if (!allowed_items.Any(a => a.Id == item.Id)) return Unauthorized(); // throw new Exception("Unauthorized delete attempt");
       
+      
+
       _context.HomePage.Remove(item);
       _context.SaveChanges();
+      return Ok();
     }
+
 
     [RestrictToUserType(new string[] {"*"})]
     [HttpGet]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
-    public Page<HomePage> GetAll([FromQuery] int page_index, [FromQuery] int page_size = 25)
+    public Page<HomePage> GetAll([FromQuery] int page_index, [FromQuery] int page_size = 25 )
     {
       var session = HttpContext.Get<LoggableEntities>(_context);
       var current_User = session == null ? null : session.User;
@@ -173,10 +243,12 @@ using System.IO;
       var can_edit_by_token = ApiTokenValid || true;
       var can_create_by_token = ApiTokenValid || true;
       var can_delete_by_token = ApiTokenValid || true;
-      return allowed_items
+      var items = allowed_items.OrderBy(i => i.CreatedDate).AsQueryable();
+      
+      return items
         .Select(PortableRecipes.Models.HomePage.FilterViewableAttributes(current_User, current_Admin))
         .Select(s => Tuple.Create(s, can_edit_by_token && editable_items.Any(es => es.Id == s.Id)))
-        .Paginate(can_create_by_token, can_delete_by_token, false, page_index, page_size, PortableRecipes.Models.HomePage.WithoutImages, item => item);
+        .Paginate(can_create_by_token, can_delete_by_token, false, page_index, page_size, PortableRecipes.Models.HomePage.WithoutImages, item => item , null );
     }
 
     
@@ -217,51 +289,35 @@ using System.IO;
       _context.SaveChanges();
     
 
-      _context.Dinner_Recipes.RemoveRange(_context.Dinner_Recipes.Where(l =>
-        l.DinnerId == null ||
+      _context.Recipes_Rating.RemoveRange(_context.Recipes_Rating.Where(l =>
         l.RecipesId == null ||
-        !_context.Dinner.Any(s => s.Id == l.DinnerId) ||
+        l.RatingId == null ||
+        !_context.Recipes.Any(s => s.Id == l.RecipesId) ||
+        !_context.Rating.Any(s => s.Id == l.RatingId)));
+      _context.SaveChanges();
+    
+
+      _context.Recipes_Rating.RemoveRange(_context.Recipes_Rating.Where(l =>
+        l.RatingId == null ||
+        l.RecipesId == null ||
+        !_context.Rating.Any(s => s.Id == l.RatingId) ||
         !_context.Recipes.Any(s => s.Id == l.RecipesId)));
       _context.SaveChanges();
     
 
-      _context.Dinner_Recipes.RemoveRange(_context.Dinner_Recipes.Where(l =>
+      _context.Meal_Recipes.RemoveRange(_context.Meal_Recipes.Where(l =>
+        l.MealId == null ||
         l.RecipesId == null ||
-        l.DinnerId == null ||
-        !_context.Recipes.Any(s => s.Id == l.RecipesId) ||
-        !_context.Dinner.Any(s => s.Id == l.DinnerId)));
-      _context.SaveChanges();
-    
-
-      _context.Breakfast_Recipes.RemoveRange(_context.Breakfast_Recipes.Where(l =>
-        l.BreakfastId == null ||
-        l.RecipesId == null ||
-        !_context.Breakfast.Any(s => s.Id == l.BreakfastId) ||
+        !_context.Meal.Any(s => s.Id == l.MealId) ||
         !_context.Recipes.Any(s => s.Id == l.RecipesId)));
       _context.SaveChanges();
     
 
-      _context.Breakfast_Recipes.RemoveRange(_context.Breakfast_Recipes.Where(l =>
+      _context.Meal_Recipes.RemoveRange(_context.Meal_Recipes.Where(l =>
         l.RecipesId == null ||
-        l.BreakfastId == null ||
+        l.MealId == null ||
         !_context.Recipes.Any(s => s.Id == l.RecipesId) ||
-        !_context.Breakfast.Any(s => s.Id == l.BreakfastId)));
-      _context.SaveChanges();
-    
-
-      _context.Lunch_Recipes.RemoveRange(_context.Lunch_Recipes.Where(l =>
-        l.LunchId == null ||
-        l.RecipesId == null ||
-        !_context.Lunch.Any(s => s.Id == l.LunchId) ||
-        !_context.Recipes.Any(s => s.Id == l.RecipesId)));
-      _context.SaveChanges();
-    
-
-      _context.Lunch_Recipes.RemoveRange(_context.Lunch_Recipes.Where(l =>
-        l.RecipesId == null ||
-        l.LunchId == null ||
-        !_context.Recipes.Any(s => s.Id == l.RecipesId) ||
-        !_context.Lunch.Any(s => s.Id == l.LunchId)));
+        !_context.Meal.Any(s => s.Id == l.MealId)));
       _context.SaveChanges();
     
     }

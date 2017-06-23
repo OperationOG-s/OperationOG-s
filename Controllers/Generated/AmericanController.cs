@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Hosting;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 using PortableRecipes;
@@ -19,11 +20,13 @@ using PortableRecipes.Filters;
   {
     private readonly MailOptions _mailOptions;
     public readonly PortableRecipesContext _context;
+    public IHostingEnvironment env;
 
-    public AmericansController(PortableRecipesContext context, IOptions<MailOptions> mailOptionsAccessor)
+    public AmericansController(PortableRecipesContext context, IHostingEnvironment env, IOptions<MailOptions> mailOptionsAccessor)
     {
       _context = context;
       _mailOptions = mailOptionsAccessor.Value;
+      this.env = env;
     }
 
     [RestrictToUserType(new string[] {"*"})]

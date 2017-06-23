@@ -14,157 +14,232 @@ import * as i18next from 'i18next'
 import * as Moment from 'moment'
 import * as HomePageViews from './HomePage'
 import * as UserViews from './User'
-import * as DinnerViews from './Dinner'
-import * as BreakfastViews from './Breakfast'
-import * as LunchViews from './Lunch'
+import * as RatingViews from './Rating'
+import * as MealViews from './Meal'
 
 
 export function Recipes_User_Recipes_can_create(self:RecipesContext) {
   let state = self.state()
   return state.User == "loading" ? false : state.User.CanCreate
 }
-export function Recipes_Dinner_Recipes_can_create(self:RecipesContext) {
+export function Recipes_Recipes_Rating_can_create(self:RecipesContext) {
   let state = self.state()
-  return state.Dinner == "loading" ? false : state.Dinner.CanCreate
+  return state.Rating == "loading" ? false : state.Rating.CanCreate
 }
-export function Recipes_Breakfast_Recipes_can_create(self:RecipesContext) {
+export function Recipes_Meal_Recipes_can_create(self:RecipesContext) {
   let state = self.state()
-  return state.Breakfast == "loading" ? false : state.Breakfast.CanCreate
+  return state.Meal == "loading" ? false : state.Meal.CanCreate
 }
-export function Recipes_Lunch_Recipes_can_create(self:RecipesContext) {
+export function Recipes_HomePage_Recipes_can_create(self:RecipesContext) {
   let state = self.state()
-  return state.Lunch == "loading" ? false : state.Lunch.CanCreate
+  return state.HomePage == "loading" ? false : state.HomePage.CanCreate
 }
 export function Recipes_User_Recipes_can_delete(self:RecipesContext) {
   let state = self.state()
   return state.User == "loading" ? false : state.User.CanDelete
 }
-export function Recipes_Dinner_Recipes_can_delete(self:RecipesContext) {
+export function Recipes_Recipes_Rating_can_delete(self:RecipesContext) {
   let state = self.state()
-  return state.Dinner == "loading" ? false : state.Dinner.CanDelete
+  return state.Rating == "loading" ? false : state.Rating.CanDelete
 }
-export function Recipes_Breakfast_Recipes_can_delete(self:RecipesContext) {
+export function Recipes_Meal_Recipes_can_delete(self:RecipesContext) {
   let state = self.state()
-  return state.Breakfast == "loading" ? false : state.Breakfast.CanDelete
+  return state.Meal == "loading" ? false : state.Meal.CanDelete
 }
-export function Recipes_Lunch_Recipes_can_delete(self:RecipesContext) {
+export function Recipes_HomePage_Recipes_can_delete(self:RecipesContext) {
   let state = self.state()
-  return state.Lunch == "loading" ? false : state.Lunch.CanDelete
+  return state.HomePage == "loading" ? false : state.HomePage.CanDelete
 }
 export function Recipes_User_Recipes_page_index(self:RecipesContext) {
   let state = self.state()
   return state.User == "loading" ? 0 : state.User.PageIndex
 }
-export function Recipes_Dinner_Recipes_page_index(self:RecipesContext) {
+export function Recipes_Recipes_Rating_page_index(self:RecipesContext) {
   let state = self.state()
-  return state.Dinner == "loading" ? 0 : state.Dinner.PageIndex
+  return state.Rating == "loading" ? 0 : state.Rating.PageIndex
 }
-export function Recipes_Breakfast_Recipes_page_index(self:RecipesContext) {
+export function Recipes_Meal_Recipes_page_index(self:RecipesContext) {
   let state = self.state()
-  return state.Breakfast == "loading" ? 0 : state.Breakfast.PageIndex
+  return state.Meal == "loading" ? 0 : state.Meal.PageIndex
 }
-export function Recipes_Lunch_Recipes_page_index(self:RecipesContext) {
+export function Recipes_HomePage_Recipes_page_index(self:RecipesContext) {
   let state = self.state()
-  return state.Lunch == "loading" ? 0 : state.Lunch.PageIndex
+  return state.HomePage == "loading" ? 0 : state.HomePage.PageIndex
 }
 export function Recipes_User_Recipes_page_size(self:RecipesContext) {
   let state = self.state()
   return state.User == "loading" ? 25 : state.User.PageSize
 }
-export function Recipes_Dinner_Recipes_page_size(self:RecipesContext) {
+export function Recipes_Recipes_Rating_page_size(self:RecipesContext) {
   let state = self.state()
-  return state.Dinner == "loading" ? 25 : state.Dinner.PageSize
+  return state.Rating == "loading" ? 25 : state.Rating.PageSize
 }
-export function Recipes_Breakfast_Recipes_page_size(self:RecipesContext) {
+export function Recipes_Meal_Recipes_page_size(self:RecipesContext) {
   let state = self.state()
-  return state.Breakfast == "loading" ? 25 : state.Breakfast.PageSize
+  return state.Meal == "loading" ? 25 : state.Meal.PageSize
 }
-export function Recipes_Lunch_Recipes_page_size(self:RecipesContext) {
+export function Recipes_HomePage_Recipes_page_size(self:RecipesContext) {
   let state = self.state()
-  return state.Lunch == "loading" ? 25 : state.Lunch.PageSize
+  return state.HomePage == "loading" ? 25 : state.HomePage.PageSize
+}
+export function Recipes_User_Recipes_search_query(self:RecipesContext) {
+  let state = self.state()
+  return state.User == "loading" ? null : state.User.SearchQuery
+}
+export function Recipes_Recipes_Rating_search_query(self:RecipesContext) {
+  let state = self.state()
+  return state.Rating == "loading" ? null : state.Rating.SearchQuery
+}
+export function Recipes_Meal_Recipes_search_query(self:RecipesContext) {
+  let state = self.state()
+  return state.Meal == "loading" ? null : state.Meal.SearchQuery
+}
+export function Recipes_HomePage_Recipes_search_query(self:RecipesContext) {
+  let state = self.state()
+  return state.HomePage == "loading" ? null : state.HomePage.SearchQuery
 }
 export function Recipes_User_Recipes_num_pages(self:RecipesContext) {
   let state = self.state()
   return state.User == "loading" ? 1 : state.User.NumPages
 }
-export function Recipes_Dinner_Recipes_num_pages(self:RecipesContext) {
+export function Recipes_Recipes_Rating_num_pages(self:RecipesContext) {
   let state = self.state()
-  return state.Dinner == "loading" ? 1 : state.Dinner.NumPages
+  return state.Rating == "loading" ? 1 : state.Rating.NumPages
 }
-export function Recipes_Breakfast_Recipes_num_pages(self:RecipesContext) {
+export function Recipes_Meal_Recipes_num_pages(self:RecipesContext) {
   let state = self.state()
-  return state.Breakfast == "loading" ? 1 : state.Breakfast.NumPages
+  return state.Meal == "loading" ? 1 : state.Meal.NumPages
 }
-export function Recipes_Lunch_Recipes_num_pages(self:RecipesContext) {
+export function Recipes_HomePage_Recipes_num_pages(self:RecipesContext) {
   let state = self.state()
-  return state.Lunch == "loading" ? 1 : state.Lunch.NumPages
+  return state.HomePage == "loading" ? 1 : state.HomePage.NumPages
 }
 
-export function load_relation_Recipes_User_Recipes(self:RecipesContext, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
+export function load_relation_Recipes_User_Recipes(self:RecipesContext, force_first_page:boolean, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
+  let state = self.state()
+  let prelude = force_first_page && state.User != "loading" ?
+    (c:() => void) => state.User != "loading" && self.setState({
+      ...state,
+      User: {...state.User, PageIndex:0 }
+    }, c)
+    :
+    (c:() => void) => c()
   Permissions.can_view_User(current_User, current_Admin) ?
-    Api.get_Recipes_User_Recipess(self.props.entity, Recipes_User_Recipes_page_index(self), Recipes_User_Recipes_page_size(self)).then(Users =>
-      self.setState({...self.state(), update_count:self.state().update_count+1,
-          User:Utils.raw_page_to_paginated_items<Models.User, Utils.EntityAndSize<Models.User> & { shown_relation:string }>(i => {
-            let state = self.state()
-            return {
-              element:i,
-              size: state.User != "loading" && state.User.Items.has(i.Id) ? state.User.Items.get(i.Id).size : "preview",
-              shown_relation:"all"}}, Users)
-          }, callback))
-  :
-    callback && callback()
+    prelude(() =>
+      Api.get_Recipes_User_Recipess(self.props.entity, Recipes_User_Recipes_page_index(self), Recipes_User_Recipes_page_size(self), Recipes_User_Recipes_search_query(self)).then(Users =>
+        self.setState({...self.state(), update_count:self.state().update_count+1,
+            User:Utils.raw_page_to_paginated_items<Models.User, Utils.EntityAndSize<Models.User> & { shown_relation:string }>((i, i_just_created) => {
+              let state = self.state()
+              return {
+                element:i,
+                size: state.User != "loading" ?
+                  (state.User.Items.has(i.Id) ?
+                    state.User.Items.get(i.Id).size
+                  :
+                    "preview" /* i_just_created ? "large" : "preview" */)
+                  :
+                    "preview" /* i_just_created ? "large" : "preview" */,
+                shown_relation:"all"}}, Users)
+            }, callback)))
+    :
+      prelude(() => callback && callback())
 }
 
-export function load_relation_Recipes_Dinner_Recipes(self:RecipesContext, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
-  Permissions.can_view_Dinner(current_User, current_Admin) ?
-    Api.get_Recipes_Dinner_Recipess(self.props.entity, Recipes_Dinner_Recipes_page_index(self), Recipes_Dinner_Recipes_page_size(self)).then(Dinners =>
-      self.setState({...self.state(), update_count:self.state().update_count+1,
-          Dinner:Utils.raw_page_to_paginated_items<Models.Dinner, Utils.EntityAndSize<Models.Dinner> & { shown_relation:string }>(i => {
-            let state = self.state()
-            return {
-              element:i,
-              size: state.Dinner != "loading" && state.Dinner.Items.has(i.Id) ? state.Dinner.Items.get(i.Id).size : "preview",
-              shown_relation:"all"}}, Dinners)
-          }, callback))
-  :
-    callback && callback()
+export function load_relation_Recipes_Recipes_Rating(self:RecipesContext, force_first_page:boolean, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
+  let state = self.state()
+  let prelude = force_first_page && state.Rating != "loading" ?
+    (c:() => void) => state.Rating != "loading" && self.setState({
+      ...state,
+      Rating: {...state.Rating, PageIndex:0 }
+    }, c)
+    :
+    (c:() => void) => c()
+  Permissions.can_view_Rating(current_User, current_Admin) ?
+    prelude(() =>
+      Api.get_Recipes_Recipes_Ratings(self.props.entity, Recipes_Recipes_Rating_page_index(self), Recipes_Recipes_Rating_page_size(self), Recipes_Recipes_Rating_search_query(self)).then(Ratings =>
+        self.setState({...self.state(), update_count:self.state().update_count+1,
+            Rating:Utils.raw_page_to_paginated_items<Models.Rating, Utils.EntityAndSize<Models.Rating> & { shown_relation:string }>((i, i_just_created) => {
+              let state = self.state()
+              return {
+                element:i,
+                size: state.Rating != "loading" ?
+                  (state.Rating.Items.has(i.Id) ?
+                    state.Rating.Items.get(i.Id).size
+                  :
+                    "preview" /* i_just_created ? "large" : "preview" */)
+                  :
+                    "preview" /* i_just_created ? "large" : "preview" */,
+                shown_relation:"all"}}, Ratings)
+            }, callback)))
+    :
+      prelude(() => callback && callback())
 }
 
-export function load_relation_Recipes_Breakfast_Recipes(self:RecipesContext, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
-  Permissions.can_view_Breakfast(current_User, current_Admin) ?
-    Api.get_Recipes_Breakfast_Recipess(self.props.entity, Recipes_Breakfast_Recipes_page_index(self), Recipes_Breakfast_Recipes_page_size(self)).then(Breakfasts =>
-      self.setState({...self.state(), update_count:self.state().update_count+1,
-          Breakfast:Utils.raw_page_to_paginated_items<Models.Breakfast, Utils.EntityAndSize<Models.Breakfast> & { shown_relation:string }>(i => {
-            let state = self.state()
-            return {
-              element:i,
-              size: state.Breakfast != "loading" && state.Breakfast.Items.has(i.Id) ? state.Breakfast.Items.get(i.Id).size : "preview",
-              shown_relation:"all"}}, Breakfasts)
-          }, callback))
-  :
-    callback && callback()
+export function load_relation_Recipes_Meal_Recipes(self:RecipesContext, force_first_page:boolean, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
+  let state = self.state()
+  let prelude = force_first_page && state.Meal != "loading" ?
+    (c:() => void) => state.Meal != "loading" && self.setState({
+      ...state,
+      Meal: {...state.Meal, PageIndex:0 }
+    }, c)
+    :
+    (c:() => void) => c()
+  Permissions.can_view_Meal(current_User, current_Admin) ?
+    prelude(() =>
+      Api.get_Recipes_Meal_Recipess(self.props.entity, Recipes_Meal_Recipes_page_index(self), Recipes_Meal_Recipes_page_size(self), Recipes_Meal_Recipes_search_query(self)).then(Meals =>
+        self.setState({...self.state(), update_count:self.state().update_count+1,
+            Meal:Utils.raw_page_to_paginated_items<Models.Meal, Utils.EntityAndSize<Models.Meal> & { shown_relation:string }>((i, i_just_created) => {
+              let state = self.state()
+              return {
+                element:i,
+                size: state.Meal != "loading" ?
+                  (state.Meal.Items.has(i.Id) ?
+                    state.Meal.Items.get(i.Id).size
+                  :
+                    "preview" /* i_just_created ? "large" : "preview" */)
+                  :
+                    "preview" /* i_just_created ? "large" : "preview" */,
+                shown_relation:"all"}}, Meals)
+            }, callback)))
+    :
+      prelude(() => callback && callback())
 }
 
-export function load_relation_Recipes_Lunch_Recipes(self:RecipesContext, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
-  Permissions.can_view_Lunch(current_User, current_Admin) ?
-    Api.get_Recipes_Lunch_Recipess(self.props.entity, Recipes_Lunch_Recipes_page_index(self), Recipes_Lunch_Recipes_page_size(self)).then(Lunches =>
-      self.setState({...self.state(), update_count:self.state().update_count+1,
-          Lunch:Utils.raw_page_to_paginated_items<Models.Lunch, Utils.EntityAndSize<Models.Lunch> & { shown_relation:string }>(i => {
-            let state = self.state()
-            return {
-              element:i,
-              size: state.Lunch != "loading" && state.Lunch.Items.has(i.Id) ? state.Lunch.Items.get(i.Id).size : "preview",
-              shown_relation:"all"}}, Lunches)
-          }, callback))
-  :
-    callback && callback()
+export function load_relation_Recipes_HomePage_Recipes(self:RecipesContext, force_first_page:boolean, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
+  let state = self.state()
+  let prelude = force_first_page && state.HomePage != "loading" ?
+    (c:() => void) => state.HomePage != "loading" && self.setState({
+      ...state,
+      HomePage: {...state.HomePage, PageIndex:0 }
+    }, c)
+    :
+    (c:() => void) => c()
+  Permissions.can_view_HomePage(current_User, current_Admin) ?
+    prelude(() =>
+      Api.get_Recipes_HomePage_Recipess(self.props.entity, Recipes_HomePage_Recipes_page_index(self), Recipes_HomePage_Recipes_page_size(self), Recipes_HomePage_Recipes_search_query(self)).then(HomePages =>
+        self.setState({...self.state(), update_count:self.state().update_count+1,
+            HomePage:Utils.raw_page_to_paginated_items<Models.HomePage, Utils.EntityAndSize<Models.HomePage> & { shown_relation:string }>((i, i_just_created) => {
+              let state = self.state()
+              return {
+                element:i,
+                size: state.HomePage != "loading" ?
+                  (state.HomePage.Items.has(i.Id) ?
+                    state.HomePage.Items.get(i.Id).size
+                  :
+                    "preview" /* i_just_created ? "large" : "preview" */)
+                  :
+                    "preview" /* i_just_created ? "large" : "preview" */,
+                shown_relation:"all"}}, HomePages)
+            }, callback)))
+    :
+      prelude(() => callback && callback())
 }
 
 export function load_relations_Recipes(self, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
-  load_relation_Recipes_Lunch_Recipes(self, self.props.current_User, self.props.current_Admin, 
-        () => load_relation_Recipes_Breakfast_Recipes(self, self.props.current_User, self.props.current_Admin, 
-        () => load_relation_Recipes_Dinner_Recipes(self, self.props.current_User, self.props.current_Admin, 
-        () => load_relation_Recipes_User_Recipes(self, self.props.current_User, self.props.current_Admin, 
+  load_relation_Recipes_HomePage_Recipes(self, false, self.props.current_User, self.props.current_Admin, 
+        () => load_relation_Recipes_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin, 
+        () => load_relation_Recipes_Recipes_Rating(self, false, self.props.current_User, self.props.current_Admin, 
+        () => load_relation_Recipes_User_Recipes(self, false, self.props.current_User, self.props.current_Admin, 
         () => callback && callback()))))
 }
 
@@ -349,12 +424,16 @@ export function render_editable_attributes_minimised_Recipes(self:RecipesContext
 }
 
 export function render_editable_attributes_maximised_Recipes(self:RecipesContext) {
+    let state = self.state()
     let attributes = (<div>
         {render_Recipes_Picture_editable_maximised(self)}
         {render_Recipes_Name_editable_maximised(self)}
         {render_Recipes_Ingredients_editable_maximised(self)}
         {render_Recipes_Description_editable_maximised(self)}
         {render_Recipes_PreparationTime_editable_maximised(self)}
+        
+        
+        
       </div>)
     return attributes
   }
@@ -381,7 +460,21 @@ export function render_menu_Recipes(self:RecipesContext) {
             }
           <div className="menu_entries">
           
-            {!Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin) ? null :
+            {!Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ? null :
+                  <div className={`menu_entry active`}>
+                    <a onClick={() =>
+                        {
+                            Api.get_HomePages(0, 1).then(e =>
+                              e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id),
+                                () => self.props.set_shown_relation("HomePage_Recipes"))
+                            )
+                        }
+                      }>
+                      {i18next.t('HomePage_Recipess')}
+                    </a>
+                  </div>
+                }
+        {!Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin) ? null :
                   <div className={`menu_entry${self.props.shown_relation == "HomePage_Categories" ? " active" : ""}`}>
                     <a onClick={() =>
                         {
@@ -415,7 +508,18 @@ export function render_local_menu_Recipes(self:RecipesContext) {
               </a>
             </div>
           
-              
+            {!Permissions.can_view_Rating(self.props.current_User, self.props.current_Admin) ? null :
+                  <div key={"Recipes_Rating"} className={`local_menu_entry${self.props.shown_relation == "Recipes_Rating" ? " local_menu_entry--active" : ""}`}>
+                    <a onClick={() =>
+                      load_relation_Recipes_Recipes_Rating(self,
+                        false,
+                        self.props.current_User, self.props.current_Admin, 
+                        () => self.props.set_shown_relation("Recipes_Rating"))
+                    }>
+                      {i18next.t('Recipes_Ratings')}
+                    </a>
+                  </div>
+                }  
           </div>
         </div>
 }
@@ -456,8 +560,18 @@ export function render_controls_Recipes(self:RecipesContext) {
 }
 
 export function render_content_Recipes(self:RecipesContext) {
-  return <div className={`${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}`}>
-    {Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ?
+  let actions:Array<()=>void> =
+    [
+      self.props.allow_maximisation && self.props.set_size && self.props.size == "preview" ?
+        () => set_size_Recipes(self, self.props.size == "preview" ? "large" : "preview")
+      :
+        null,self.props.allow_fullscreen && self.props.set_size && self.props.size == "preview" ?
+        () => set_size_Recipes(self, self.props.size == "fullscreen" ? "large" : "fullscreen")
+      :
+        null,
+    ].filter(a => a != null)
+  let content =
+    Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ?
       self.props.size == "preview" ?
         render_preview_Recipes(self)
       : self.props.size == "large" ?
@@ -466,8 +580,16 @@ export function render_content_Recipes(self:RecipesContext) {
         render_large_Recipes(self)
       : "Error: unauthorised access to entity."
     : "Error: unauthorised access to entity."
-    }
-  </div>
+  if (self.props.mode == "view" && actions.length == 1 && !false)
+    return <a onClick={() => actions[0]()}>
+      <div className={`${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}`}>
+        {content}
+      </div>
+    </a>
+  else
+    return <div className={`${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}`}>
+      {content}
+    </div>
 }
 
 export function render_Recipes_Picture_minimised(self:RecipesContext) : JSX.Element {
@@ -615,6 +737,7 @@ export function render_preview_Recipes(self:RecipesContext) {
 }
 
 export function render_large_Recipes(self:RecipesContext) {
+  let state = self.state()
   let attributes:JSX.Element = null
   if (self.props.mode == "view" || !Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin))
     attributes = (<div className="model__attributes">
@@ -623,6 +746,7 @@ export function render_large_Recipes(self:RecipesContext) {
         { render_Recipes_Ingredients_maximised(self) }
         { render_Recipes_Description_maximised(self) }
         { render_Recipes_PreparationTime_maximised(self) }
+        
     </div>)
   else
     attributes = render_editable_attributes_maximised_Recipes(self)
@@ -638,6 +762,7 @@ export function render_Recipes_User_Recipes(self:RecipesContext, context:"presen
     return null
   let state = self.state()
   return <div>
+    
     { List.render_relation("recipes_user_recipes",
    "Recipes",
    "User",
@@ -647,7 +772,9 @@ export function render_Recipes_User_Recipes(self:RecipesContext, context:"presen
    false,
    false)
   (
-      state.User != "loading" ? state.User.Items : state.User,
+      state.User != "loading" ?
+        state.User.IdsInServerOrder.map(id => state.User != "loading" && state.User.Items.get(id)):
+        state.User,
       Recipes_User_Recipes_page_index(self),
       Recipes_User_Recipes_num_pages(self),
       new_page_index => {
@@ -659,12 +786,14 @@ export function render_Recipes_User_Recipes(self:RecipesContext, context:"presen
               ...state.User,
               PageIndex:new_page_index
             }
-          }, () =>  load_relation_Recipes_User_Recipes(self, self.props.current_User, self.props.current_Admin))
+          }, () =>  load_relation_Recipes_User_Recipes(self, false, self.props.current_User, self.props.current_Admin))
         },
-      (i,i_id) => {
+      (i,_) => {
+          let i_id = i.element.Id
           let state = self.state()
           return <div key={i_id}
-            className={`model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""} ` }
+            className={`model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
+                        ${state.User != "loading" && state.User.JustCreated.has(i_id) && state.User.JustCreated.get(i_id) ? "newly-created" : ""}` }
           
             >
             <div key={i_id}>
@@ -731,7 +860,7 @@ export function render_Recipes_User_Recipes(self:RecipesContext, context:"presen
                     null
                     :
                     () => confirm(i18next.t('Are you sure?')) && Api.unlink_User_User_Recipess(i.element, self.props.entity).then(() =>
-                      load_relation_Recipes_User_Recipes(self, self.props.current_User, self.props.current_Admin))
+                      load_relation_Recipes_User_Recipes(self, false, self.props.current_User, self.props.current_Admin))
                 })
               }
             </div>
@@ -748,43 +877,48 @@ export function render_Recipes_User_Recipes(self:RecipesContext, context:"presen
 }
 
 
-export function render_Recipes_Dinner_Recipes(self:RecipesContext, context:"presentation_structure"|"default") {
-  if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Dinner_Recipes") || !Permissions.can_view_Dinner(self.props.current_User, self.props.current_Admin))
+export function render_Recipes_Recipes_Rating(self:RecipesContext, context:"presentation_structure"|"default") {
+  if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Recipes_Rating") || !Permissions.can_view_Rating(self.props.current_User, self.props.current_Admin))
     return null
   let state = self.state()
   return <div>
-    { List.render_relation("recipes_dinner_recipes",
+    
+    { List.render_relation("recipes_recipes_rating",
    "Recipes",
-   "Dinner",
-   "Dinners",
+   "Rating",
+   "Ratings",
    self.props.nesting_depth > 0,
    false,
    false,
    false)
   (
-      state.Dinner != "loading" ? state.Dinner.Items : state.Dinner,
-      Recipes_Dinner_Recipes_page_index(self),
-      Recipes_Dinner_Recipes_num_pages(self),
+      state.Rating != "loading" ?
+        state.Rating.IdsInServerOrder.map(id => state.Rating != "loading" && state.Rating.Items.get(id)):
+        state.Rating,
+      Recipes_Recipes_Rating_page_index(self),
+      Recipes_Recipes_Rating_num_pages(self),
       new_page_index => {
           let state = self.state()
-          state.Dinner != "loading" &&
+          state.Rating != "loading" &&
           self.setState({...self.state(),
             update_count:self.state().update_count+1,
-            Dinner: {
-              ...state.Dinner,
+            Rating: {
+              ...state.Rating,
               PageIndex:new_page_index
             }
-          }, () =>  load_relation_Recipes_Dinner_Recipes(self, self.props.current_User, self.props.current_Admin))
+          }, () =>  load_relation_Recipes_Recipes_Rating(self, false, self.props.current_User, self.props.current_Admin))
         },
-      (i,i_id) => {
+      (i,_) => {
+          let i_id = i.element.Id
           let state = self.state()
           return <div key={i_id}
-            className={`model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""} ` }
+            className={`model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
+                        ${state.Rating != "loading" && state.Rating.JustCreated.has(i_id) && state.Rating.JustCreated.get(i_id) ? "newly-created" : ""}` }
           
             >
             <div key={i_id}>
               {
-                DinnerViews.Dinner({
+                RatingViews.Rating({
                   ...self.props,
                   entity:i.element,
                   inline:false,
@@ -792,35 +926,35 @@ export function render_Recipes_Dinner_Recipes(self:RecipesContext, context:"pres
                   size: i.size,
                   allow_maximisation:true,
                   allow_fullscreen:true,
-                  mode:self.props.mode == "edit" && (Permissions.can_edit_Dinner_Recipes(self.props.current_User, self.props.current_Admin)
-                        || Permissions.can_create_Dinner_Recipes(self.props.current_User, self.props.current_Admin)
-                        || Permissions.can_delete_Dinner_Recipes(self.props.current_User, self.props.current_Admin)) ?
+                  mode:self.props.mode == "edit" && (Permissions.can_edit_Recipes_Rating(self.props.current_User, self.props.current_Admin)
+                        || Permissions.can_create_Recipes_Rating(self.props.current_User, self.props.current_Admin)
+                        || Permissions.can_delete_Recipes_Rating(self.props.current_User, self.props.current_Admin)) ?
                     self.props.mode : "view",
-                  is_editable:state.Dinner != "loading" && state.Dinner.Editable.get(i_id),
+                  is_editable:state.Rating != "loading" && state.Rating.Editable.get(i_id),
                   shown_relation:i.shown_relation,
                   set_shown_relation:(new_shown_relation:string, callback) => {
                     let state = self.state()
-                    state.Dinner != "loading" &&
+                    state.Rating != "loading" &&
                     self.setState({...self.state(),
-                      Dinner:
+                      Rating:
                         {
-                          ...state.Dinner,
-                          Items:state.Dinner.Items.set(i_id,{...state.Dinner.Items.get(i_id), shown_relation:new_shown_relation})
+                          ...state.Rating,
+                          Items:state.Rating.Items.set(i_id,{...state.Rating.Items.get(i_id), shown_relation:new_shown_relation})
                         }
                     }, callback)
                   },
-                  nested_entity_names: self.props.nested_entity_names.push("Dinner"),
+                  nested_entity_names: self.props.nested_entity_names.push("Rating"),
                   
                   set_size:(new_size:Utils.EntitySize, callback) => {
                     let new_shown_relation = new_size == "large" ? "all" : i.shown_relation
                     let state = self.state()
-                    state.Dinner != "loading" &&
+                    state.Rating != "loading" &&
                     self.setState({...self.state(),
-                      Dinner:
+                      Rating:
                         {
-                          ...state.Dinner,
-                          Items:state.Dinner.Items.set(i_id,
-                            {...state.Dinner.Items.get(i_id),
+                          ...state.Rating,
+                          Items:state.Rating.Items.set(i_id,
+                            {...state.Rating.Items.get(i_id),
                               size:new_size, shown_relation:new_shown_relation})
                         }
                     }, callback)
@@ -828,25 +962,25 @@ export function render_Recipes_Dinner_Recipes(self:RecipesContext, context:"pres
                     
                   toggle_button:undefined,
                   set_mode:undefined,
-                  set_entity:(new_entity:Models.Dinner, callback?:()=>void, force_update_count_increment?:boolean) => {
+                  set_entity:(new_entity:Models.Rating, callback?:()=>void, force_update_count_increment?:boolean) => {
                     let state = self.state()
-                    state.Dinner != "loading" &&
+                    state.Rating != "loading" &&
                     self.setState({...self.state(),
-                      dirty_Dinner:state.dirty_Dinner.set(i_id, new_entity),
+                      dirty_Rating:state.dirty_Rating.set(i_id, new_entity),
                       update_count:force_update_count_increment ? self.state().update_count+1 : state.update_count,
-                      Dinner:
+                      Rating:
                         {
-                          ...state.Dinner,
-                          Items:state.Dinner.Items.set(i_id,{...state.Dinner.Items.get(i_id), element:new_entity})
+                          ...state.Rating,
+                          Items:state.Rating.Items.set(i_id,{...state.Rating.Items.get(i_id), element:new_entity})
                         }
                     }, callback)
                   },
                   delete: undefined,
-                  unlink: !Permissions.can_delete_Dinner_Recipes(self.props.current_User, self.props.current_Admin) ?
+                  unlink: !Permissions.can_delete_Recipes_Rating(self.props.current_User, self.props.current_Admin) ?
                     null
                     :
-                    () => confirm(i18next.t('Are you sure?')) && Api.unlink_Dinner_Dinner_Recipess(i.element, self.props.entity).then(() =>
-                      load_relation_Recipes_Dinner_Recipes(self, self.props.current_User, self.props.current_Admin))
+                    () => confirm(i18next.t('Are you sure?')) && Api.unlink_Recipes_Recipes_Ratings(self.props.entity, i.element).then(() =>
+                      load_relation_Recipes_Recipes_Rating(self, false, self.props.current_User, self.props.current_Admin))
                 })
               }
             </div>
@@ -854,8 +988,8 @@ export function render_Recipes_Dinner_Recipes(self:RecipesContext, context:"pres
         },
       () =>
         <div>
-          {Permissions.can_create_Dinner(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Dinner_Recipes(self.props.current_User, self.props.current_Admin) && Recipes_Dinner_Recipes_can_create(self) ? render_new_Recipes_Dinner_Recipes(self) : null}
-          {Permissions.can_create_Dinner_Recipes(self.props.current_User, self.props.current_Admin) ? render_add_existing_Recipes_Dinner_Recipes(self) : null}
+          {Permissions.can_create_Rating(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Recipes_Rating(self.props.current_User, self.props.current_Admin) && Recipes_Recipes_Rating_can_create(self) ? render_new_Recipes_Recipes_Rating(self) : null}
+          {Permissions.can_create_Recipes_Rating(self.props.current_User, self.props.current_Admin) ? render_add_existing_Recipes_Recipes_Rating(self) : null}
         </div>)
     }
     
@@ -863,43 +997,48 @@ export function render_Recipes_Dinner_Recipes(self:RecipesContext, context:"pres
 }
 
 
-export function render_Recipes_Breakfast_Recipes(self:RecipesContext, context:"presentation_structure"|"default") {
-  if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Breakfast_Recipes") || !Permissions.can_view_Breakfast(self.props.current_User, self.props.current_Admin))
+export function render_Recipes_Meal_Recipes(self:RecipesContext, context:"presentation_structure"|"default") {
+  if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Meal_Recipes") || !Permissions.can_view_Meal(self.props.current_User, self.props.current_Admin))
     return null
   let state = self.state()
   return <div>
-    { List.render_relation("recipes_breakfast_recipes",
+    
+    { List.render_relation("recipes_meal_recipes",
    "Recipes",
-   "Breakfast",
-   "Breakfasts",
+   "Meal",
+   "Meals",
    self.props.nesting_depth > 0,
    false,
    false,
    false)
   (
-      state.Breakfast != "loading" ? state.Breakfast.Items : state.Breakfast,
-      Recipes_Breakfast_Recipes_page_index(self),
-      Recipes_Breakfast_Recipes_num_pages(self),
+      state.Meal != "loading" ?
+        state.Meal.IdsInServerOrder.map(id => state.Meal != "loading" && state.Meal.Items.get(id)):
+        state.Meal,
+      Recipes_Meal_Recipes_page_index(self),
+      Recipes_Meal_Recipes_num_pages(self),
       new_page_index => {
           let state = self.state()
-          state.Breakfast != "loading" &&
+          state.Meal != "loading" &&
           self.setState({...self.state(),
             update_count:self.state().update_count+1,
-            Breakfast: {
-              ...state.Breakfast,
+            Meal: {
+              ...state.Meal,
               PageIndex:new_page_index
             }
-          }, () =>  load_relation_Recipes_Breakfast_Recipes(self, self.props.current_User, self.props.current_Admin))
+          }, () =>  load_relation_Recipes_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin))
         },
-      (i,i_id) => {
+      (i,_) => {
+          let i_id = i.element.Id
           let state = self.state()
           return <div key={i_id}
-            className={`model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""} ` }
+            className={`model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
+                        ${state.Meal != "loading" && state.Meal.JustCreated.has(i_id) && state.Meal.JustCreated.get(i_id) ? "newly-created" : ""}` }
           
             >
             <div key={i_id}>
               {
-                BreakfastViews.Breakfast({
+                MealViews.Meal({
                   ...self.props,
                   entity:i.element,
                   inline:false,
@@ -907,35 +1046,35 @@ export function render_Recipes_Breakfast_Recipes(self:RecipesContext, context:"p
                   size: i.size,
                   allow_maximisation:true,
                   allow_fullscreen:true,
-                  mode:self.props.mode == "edit" && (Permissions.can_edit_Breakfast_Recipes(self.props.current_User, self.props.current_Admin)
-                        || Permissions.can_create_Breakfast_Recipes(self.props.current_User, self.props.current_Admin)
-                        || Permissions.can_delete_Breakfast_Recipes(self.props.current_User, self.props.current_Admin)) ?
+                  mode:self.props.mode == "edit" && (Permissions.can_edit_Meal_Recipes(self.props.current_User, self.props.current_Admin)
+                        || Permissions.can_create_Meal_Recipes(self.props.current_User, self.props.current_Admin)
+                        || Permissions.can_delete_Meal_Recipes(self.props.current_User, self.props.current_Admin)) ?
                     self.props.mode : "view",
-                  is_editable:state.Breakfast != "loading" && state.Breakfast.Editable.get(i_id),
+                  is_editable:state.Meal != "loading" && state.Meal.Editable.get(i_id),
                   shown_relation:i.shown_relation,
                   set_shown_relation:(new_shown_relation:string, callback) => {
                     let state = self.state()
-                    state.Breakfast != "loading" &&
+                    state.Meal != "loading" &&
                     self.setState({...self.state(),
-                      Breakfast:
+                      Meal:
                         {
-                          ...state.Breakfast,
-                          Items:state.Breakfast.Items.set(i_id,{...state.Breakfast.Items.get(i_id), shown_relation:new_shown_relation})
+                          ...state.Meal,
+                          Items:state.Meal.Items.set(i_id,{...state.Meal.Items.get(i_id), shown_relation:new_shown_relation})
                         }
                     }, callback)
                   },
-                  nested_entity_names: self.props.nested_entity_names.push("Breakfast"),
+                  nested_entity_names: self.props.nested_entity_names.push("Meal"),
                   
                   set_size:(new_size:Utils.EntitySize, callback) => {
                     let new_shown_relation = new_size == "large" ? "all" : i.shown_relation
                     let state = self.state()
-                    state.Breakfast != "loading" &&
+                    state.Meal != "loading" &&
                     self.setState({...self.state(),
-                      Breakfast:
+                      Meal:
                         {
-                          ...state.Breakfast,
-                          Items:state.Breakfast.Items.set(i_id,
-                            {...state.Breakfast.Items.get(i_id),
+                          ...state.Meal,
+                          Items:state.Meal.Items.set(i_id,
+                            {...state.Meal.Items.get(i_id),
                               size:new_size, shown_relation:new_shown_relation})
                         }
                     }, callback)
@@ -943,25 +1082,25 @@ export function render_Recipes_Breakfast_Recipes(self:RecipesContext, context:"p
                     
                   toggle_button:undefined,
                   set_mode:undefined,
-                  set_entity:(new_entity:Models.Breakfast, callback?:()=>void, force_update_count_increment?:boolean) => {
+                  set_entity:(new_entity:Models.Meal, callback?:()=>void, force_update_count_increment?:boolean) => {
                     let state = self.state()
-                    state.Breakfast != "loading" &&
+                    state.Meal != "loading" &&
                     self.setState({...self.state(),
-                      dirty_Breakfast:state.dirty_Breakfast.set(i_id, new_entity),
+                      dirty_Meal:state.dirty_Meal.set(i_id, new_entity),
                       update_count:force_update_count_increment ? self.state().update_count+1 : state.update_count,
-                      Breakfast:
+                      Meal:
                         {
-                          ...state.Breakfast,
-                          Items:state.Breakfast.Items.set(i_id,{...state.Breakfast.Items.get(i_id), element:new_entity})
+                          ...state.Meal,
+                          Items:state.Meal.Items.set(i_id,{...state.Meal.Items.get(i_id), element:new_entity})
                         }
                     }, callback)
                   },
                   delete: undefined,
-                  unlink: !Permissions.can_delete_Breakfast_Recipes(self.props.current_User, self.props.current_Admin) ?
+                  unlink: !Permissions.can_delete_Meal_Recipes(self.props.current_User, self.props.current_Admin) ?
                     null
                     :
-                    () => confirm(i18next.t('Are you sure?')) && Api.unlink_Breakfast_Breakfast_Recipess(i.element, self.props.entity).then(() =>
-                      load_relation_Recipes_Breakfast_Recipes(self, self.props.current_User, self.props.current_Admin))
+                    () => confirm(i18next.t('Are you sure?')) && Api.unlink_Meal_Meal_Recipess(i.element, self.props.entity).then(() =>
+                      load_relation_Recipes_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin))
                 })
               }
             </div>
@@ -969,8 +1108,8 @@ export function render_Recipes_Breakfast_Recipes(self:RecipesContext, context:"p
         },
       () =>
         <div>
-          {Permissions.can_create_Breakfast(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Breakfast_Recipes(self.props.current_User, self.props.current_Admin) && Recipes_Breakfast_Recipes_can_create(self) ? render_new_Recipes_Breakfast_Recipes(self) : null}
-          {Permissions.can_create_Breakfast_Recipes(self.props.current_User, self.props.current_Admin) ? render_add_existing_Recipes_Breakfast_Recipes(self) : null}
+          {Permissions.can_create_Meal(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Meal_Recipes(self.props.current_User, self.props.current_Admin) && Recipes_Meal_Recipes_can_create(self) ? render_new_Recipes_Meal_Recipes(self) : null}
+          {Permissions.can_create_Meal_Recipes(self.props.current_User, self.props.current_Admin) ? render_add_existing_Recipes_Meal_Recipes(self) : null}
         </div>)
     }
     
@@ -978,43 +1117,48 @@ export function render_Recipes_Breakfast_Recipes(self:RecipesContext, context:"p
 }
 
 
-export function render_Recipes_Lunch_Recipes(self:RecipesContext, context:"presentation_structure"|"default") {
-  if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Lunch_Recipes") || !Permissions.can_view_Lunch(self.props.current_User, self.props.current_Admin))
+export function render_Recipes_HomePage_Recipes(self:RecipesContext, context:"presentation_structure"|"default") {
+  if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "HomePage_Recipes") || !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin))
     return null
   let state = self.state()
   return <div>
-    { List.render_relation("recipes_lunch_recipes",
+    
+    { List.render_relation("recipes_homepage_recipes",
    "Recipes",
-   "Lunch",
-   "Lunches",
+   "HomePage",
+   "HomePages",
    self.props.nesting_depth > 0,
    false,
    false,
    false)
   (
-      state.Lunch != "loading" ? state.Lunch.Items : state.Lunch,
-      Recipes_Lunch_Recipes_page_index(self),
-      Recipes_Lunch_Recipes_num_pages(self),
+      state.HomePage != "loading" ?
+        state.HomePage.IdsInServerOrder.map(id => state.HomePage != "loading" && state.HomePage.Items.get(id)):
+        state.HomePage,
+      Recipes_HomePage_Recipes_page_index(self),
+      Recipes_HomePage_Recipes_num_pages(self),
       new_page_index => {
           let state = self.state()
-          state.Lunch != "loading" &&
+          state.HomePage != "loading" &&
           self.setState({...self.state(),
             update_count:self.state().update_count+1,
-            Lunch: {
-              ...state.Lunch,
+            HomePage: {
+              ...state.HomePage,
               PageIndex:new_page_index
             }
-          }, () =>  load_relation_Recipes_Lunch_Recipes(self, self.props.current_User, self.props.current_Admin))
+          }, () =>  load_relation_Recipes_HomePage_Recipes(self, false, self.props.current_User, self.props.current_Admin))
         },
-      (i,i_id) => {
+      (i,_) => {
+          let i_id = i.element.Id
           let state = self.state()
           return <div key={i_id}
-            className={`model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""} ` }
+            className={`model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
+                        ${state.HomePage != "loading" && state.HomePage.JustCreated.has(i_id) && state.HomePage.JustCreated.get(i_id) ? "newly-created" : ""}` }
           
             >
             <div key={i_id}>
               {
-                LunchViews.Lunch({
+                HomePageViews.HomePage({
                   ...self.props,
                   entity:i.element,
                   inline:false,
@@ -1022,35 +1166,35 @@ export function render_Recipes_Lunch_Recipes(self:RecipesContext, context:"prese
                   size: i.size,
                   allow_maximisation:true,
                   allow_fullscreen:true,
-                  mode:self.props.mode == "edit" && (Permissions.can_edit_Lunch_Recipes(self.props.current_User, self.props.current_Admin)
-                        || Permissions.can_create_Lunch_Recipes(self.props.current_User, self.props.current_Admin)
-                        || Permissions.can_delete_Lunch_Recipes(self.props.current_User, self.props.current_Admin)) ?
+                  mode:self.props.mode == "edit" && (Permissions.can_edit_HomePage_Recipes(self.props.current_User, self.props.current_Admin)
+                        || Permissions.can_create_HomePage_Recipes(self.props.current_User, self.props.current_Admin)
+                        || Permissions.can_delete_HomePage_Recipes(self.props.current_User, self.props.current_Admin)) ?
                     self.props.mode : "view",
-                  is_editable:state.Lunch != "loading" && state.Lunch.Editable.get(i_id),
+                  is_editable:state.HomePage != "loading" && state.HomePage.Editable.get(i_id),
                   shown_relation:i.shown_relation,
                   set_shown_relation:(new_shown_relation:string, callback) => {
                     let state = self.state()
-                    state.Lunch != "loading" &&
+                    state.HomePage != "loading" &&
                     self.setState({...self.state(),
-                      Lunch:
+                      HomePage:
                         {
-                          ...state.Lunch,
-                          Items:state.Lunch.Items.set(i_id,{...state.Lunch.Items.get(i_id), shown_relation:new_shown_relation})
+                          ...state.HomePage,
+                          Items:state.HomePage.Items.set(i_id,{...state.HomePage.Items.get(i_id), shown_relation:new_shown_relation})
                         }
                     }, callback)
                   },
-                  nested_entity_names: self.props.nested_entity_names.push("Lunch"),
+                  nested_entity_names: self.props.nested_entity_names.push("HomePage"),
                   
                   set_size:(new_size:Utils.EntitySize, callback) => {
                     let new_shown_relation = new_size == "large" ? "all" : i.shown_relation
                     let state = self.state()
-                    state.Lunch != "loading" &&
+                    state.HomePage != "loading" &&
                     self.setState({...self.state(),
-                      Lunch:
+                      HomePage:
                         {
-                          ...state.Lunch,
-                          Items:state.Lunch.Items.set(i_id,
-                            {...state.Lunch.Items.get(i_id),
+                          ...state.HomePage,
+                          Items:state.HomePage.Items.set(i_id,
+                            {...state.HomePage.Items.get(i_id),
                               size:new_size, shown_relation:new_shown_relation})
                         }
                     }, callback)
@@ -1058,25 +1202,25 @@ export function render_Recipes_Lunch_Recipes(self:RecipesContext, context:"prese
                     
                   toggle_button:undefined,
                   set_mode:undefined,
-                  set_entity:(new_entity:Models.Lunch, callback?:()=>void, force_update_count_increment?:boolean) => {
+                  set_entity:(new_entity:Models.HomePage, callback?:()=>void, force_update_count_increment?:boolean) => {
                     let state = self.state()
-                    state.Lunch != "loading" &&
+                    state.HomePage != "loading" &&
                     self.setState({...self.state(),
-                      dirty_Lunch:state.dirty_Lunch.set(i_id, new_entity),
+                      dirty_HomePage:state.dirty_HomePage.set(i_id, new_entity),
                       update_count:force_update_count_increment ? self.state().update_count+1 : state.update_count,
-                      Lunch:
+                      HomePage:
                         {
-                          ...state.Lunch,
-                          Items:state.Lunch.Items.set(i_id,{...state.Lunch.Items.get(i_id), element:new_entity})
+                          ...state.HomePage,
+                          Items:state.HomePage.Items.set(i_id,{...state.HomePage.Items.get(i_id), element:new_entity})
                         }
                     }, callback)
                   },
-                  delete: undefined,
-                  unlink: !Permissions.can_delete_Lunch_Recipes(self.props.current_User, self.props.current_Admin) ?
+                  unlink: undefined,
+                    delete: !Permissions.can_delete_HomePage(self.props.current_User, self.props.current_Admin) || !Recipes_HomePage_Recipes_can_delete(self) ?
                     null
                     :
-                    () => confirm(i18next.t('Are you sure?')) && Api.unlink_Lunch_Lunch_Recipess(i.element, self.props.entity).then(() =>
-                      load_relation_Recipes_Lunch_Recipes(self, self.props.current_User, self.props.current_Admin))
+                    () => confirm(i18next.t('Are you sure?')) && Api.delete_HomePage(i.element).then(() =>
+                      load_relation_Recipes_HomePage_Recipes(self, false, self.props.current_User, self.props.current_Admin))
                 })
               }
             </div>
@@ -1084,8 +1228,8 @@ export function render_Recipes_Lunch_Recipes(self:RecipesContext, context:"prese
         },
       () =>
         <div>
-          {Permissions.can_create_Lunch(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Lunch_Recipes(self.props.current_User, self.props.current_Admin) && Recipes_Lunch_Recipes_can_create(self) ? render_new_Recipes_Lunch_Recipes(self) : null}
-          {Permissions.can_create_Lunch_Recipes(self.props.current_User, self.props.current_Admin) ? render_add_existing_Recipes_Lunch_Recipes(self) : null}
+          
+          
         </div>)
     }
     
@@ -1096,7 +1240,7 @@ export function render_Recipes_Lunch_Recipes(self:RecipesContext, context:"prese
 
 export function render_relations_Recipes(self:RecipesContext) {
   return <div className="relations">
-      
+      { render_Recipes_Recipes_Rating(self, "default") }
       
     </div>
 }
@@ -1119,7 +1263,7 @@ export function render_add_existing_Recipes_User_Recipes(self:RecipesContext) {
               source_name:"Recipes",
               target_name:"User",
               target_plural:"Users",
-              page_size:10,
+              page_size:25,
               render_target:(i,i_id) =>
                 <div key={i_id} className="group__item">
                   <a className="group__button button button--existing"
@@ -1127,7 +1271,7 @@ export function render_add_existing_Recipes_User_Recipes(self:RecipesContext) {
                         self.setState({...self.state(), add_step_User:"saving"}, () =>
                           Api.link_Recipes_User_Recipess(self.props.entity, i).then(() =>
                             self.setState({...self.state(), add_step_User:"closed"}, () =>
-                              load_relation_Recipes_User_Recipes(self, self.props.current_User, self.props.current_Admin))))
+                              load_relation_Recipes_User_Recipes(self, false, self.props.current_User, self.props.current_Admin))))
                       }>
                       Add existing
                   </a>
@@ -1162,59 +1306,59 @@ export function render_add_existing_Recipes_User_Recipes(self:RecipesContext) {
       null
     }
   
-export function render_add_existing_Recipes_Dinner_Recipes(self:RecipesContext) {
+export function render_add_existing_Recipes_Recipes_Rating(self:RecipesContext) {
     
     let state = self.state()
     return self.props.mode == "edit" ?
       <div className="button__actions">
         {
-          state.add_step_Dinner != "open" ?
+          state.add_step_Rating != "open" ?
             <Buttons.Add 
               onClick={() =>
-                self.setState({...self.state(), add_step_Dinner:"open"}) }
-                  target_name={"Dinner"} />
+                self.setState({...self.state(), add_step_Rating:"open"}) }
+                  target_name={"Rating"} />
           :
           React.createElement(List.AddToRelation,
             {
-              relation_name:"recipes_dinner_recipes",
+              relation_name:"recipes_recipes_rating",
               source_name:"Recipes",
-              target_name:"Dinner",
-              target_plural:"Dinners",
-              page_size:10,
+              target_name:"Rating",
+              target_plural:"Ratings",
+              page_size:25,
               render_target:(i,i_id) =>
                 <div key={i_id} className="group__item">
                   <a className="group__button button button--existing"
                     onClick={() =>
-                        self.setState({...self.state(), add_step_Dinner:"saving"}, () =>
-                          Api.link_Recipes_Dinner_Recipess(self.props.entity, i).then(() =>
-                            self.setState({...self.state(), add_step_Dinner:"closed"}, () =>
-                              load_relation_Recipes_Dinner_Recipes(self, self.props.current_User, self.props.current_Admin))))
+                        self.setState({...self.state(), add_step_Rating:"saving"}, () =>
+                          Api.link_Recipes_Recipes_Ratings(self.props.entity, i).then(() =>
+                            self.setState({...self.state(), add_step_Rating:"closed"}, () =>
+                              load_relation_Recipes_Recipes_Rating(self, false, self.props.current_User, self.props.current_Admin))))
                       }>
                       Add existing
                   </a>
                   <div className="group__title" disabled={true}>
                     {
-                      DinnerViews.Dinner({
+                      RatingViews.Rating({
                         ...self.props,
                         entity:i,
                         nesting_depth:self.props.nesting_depth+1,
                         size:"preview",
                         mode:"view",
                         is_editable:false,
-                        nested_entity_names: self.props.nested_entity_names.push("Dinner"),
+                        nested_entity_names: self.props.nested_entity_names.push("Rating"),
                         set_size:undefined,
                         toggle_button:undefined,
                         set_mode:undefined,
-                        set_entity:(new_entity:Models.Dinner, callback?:()=>void) => {},
+                        set_entity:(new_entity:Models.Rating, callback?:()=>void) => {},
                         unlink: undefined,
                         delete: undefined
                       })
                     }
                   </div>
                 </div>,
-              cancel:() => self.setState({...self.state(), add_step_Dinner:"closed"}),
+              cancel:() => self.setState({...self.state(), add_step_Rating:"closed"}),
               get_items:[
-                { name: "Dinner", get: async(i,s) => Api.get_unlinked_Recipes_Dinner_Recipess(self.props.entity, i, s) },
+                { name: "Rating", get: async(i,s) => Api.get_unlinked_Recipes_Recipes_Ratings(self.props.entity, i, s) },
               ]
             })
         }
@@ -1223,120 +1367,61 @@ export function render_add_existing_Recipes_Dinner_Recipes(self:RecipesContext) 
       null
     }
   
-export function render_add_existing_Recipes_Breakfast_Recipes(self:RecipesContext) {
+export function render_add_existing_Recipes_Meal_Recipes(self:RecipesContext) {
     
     let state = self.state()
     return self.props.mode == "edit" ?
       <div className="button__actions">
         {
-          state.add_step_Breakfast != "open" ?
+          state.add_step_Meal != "open" ?
             <Buttons.Add 
               onClick={() =>
-                self.setState({...self.state(), add_step_Breakfast:"open"}) }
-                  target_name={"Breakfast"} />
+                self.setState({...self.state(), add_step_Meal:"open"}) }
+                  target_name={"Meal"} />
           :
           React.createElement(List.AddToRelation,
             {
-              relation_name:"recipes_breakfast_recipes",
+              relation_name:"recipes_meal_recipes",
               source_name:"Recipes",
-              target_name:"Breakfast",
-              target_plural:"Breakfasts",
-              page_size:10,
+              target_name:"Meal",
+              target_plural:"Meals",
+              page_size:25,
               render_target:(i,i_id) =>
                 <div key={i_id} className="group__item">
                   <a className="group__button button button--existing"
                     onClick={() =>
-                        self.setState({...self.state(), add_step_Breakfast:"saving"}, () =>
-                          Api.link_Recipes_Breakfast_Recipess(self.props.entity, i).then(() =>
-                            self.setState({...self.state(), add_step_Breakfast:"closed"}, () =>
-                              load_relation_Recipes_Breakfast_Recipes(self, self.props.current_User, self.props.current_Admin))))
+                        self.setState({...self.state(), add_step_Meal:"saving"}, () =>
+                          Api.link_Recipes_Meal_Recipess(self.props.entity, i).then(() =>
+                            self.setState({...self.state(), add_step_Meal:"closed"}, () =>
+                              load_relation_Recipes_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin))))
                       }>
                       Add existing
                   </a>
                   <div className="group__title" disabled={true}>
                     {
-                      BreakfastViews.Breakfast({
+                      MealViews.Meal({
                         ...self.props,
                         entity:i,
                         nesting_depth:self.props.nesting_depth+1,
                         size:"preview",
                         mode:"view",
                         is_editable:false,
-                        nested_entity_names: self.props.nested_entity_names.push("Breakfast"),
+                        nested_entity_names: self.props.nested_entity_names.push("Meal"),
                         set_size:undefined,
                         toggle_button:undefined,
                         set_mode:undefined,
-                        set_entity:(new_entity:Models.Breakfast, callback?:()=>void) => {},
+                        set_entity:(new_entity:Models.Meal, callback?:()=>void) => {},
                         unlink: undefined,
                         delete: undefined
                       })
                     }
                   </div>
                 </div>,
-              cancel:() => self.setState({...self.state(), add_step_Breakfast:"closed"}),
+              cancel:() => self.setState({...self.state(), add_step_Meal:"closed"}),
               get_items:[
-                { name: "Breakfast", get: async(i,s) => Api.get_unlinked_Recipes_Breakfast_Recipess(self.props.entity, i, s) },
-              ]
-            })
-        }
-      </div>
-    :
-      null
-    }
-  
-export function render_add_existing_Recipes_Lunch_Recipes(self:RecipesContext) {
-    
-    let state = self.state()
-    return self.props.mode == "edit" ?
-      <div className="button__actions">
-        {
-          state.add_step_Lunch != "open" ?
-            <Buttons.Add 
-              onClick={() =>
-                self.setState({...self.state(), add_step_Lunch:"open"}) }
-                  target_name={"Lunch"} />
-          :
-          React.createElement(List.AddToRelation,
-            {
-              relation_name:"recipes_lunch_recipes",
-              source_name:"Recipes",
-              target_name:"Lunch",
-              target_plural:"Lunches",
-              page_size:10,
-              render_target:(i,i_id) =>
-                <div key={i_id} className="group__item">
-                  <a className="group__button button button--existing"
-                    onClick={() =>
-                        self.setState({...self.state(), add_step_Lunch:"saving"}, () =>
-                          Api.link_Recipes_Lunch_Recipess(self.props.entity, i).then(() =>
-                            self.setState({...self.state(), add_step_Lunch:"closed"}, () =>
-                              load_relation_Recipes_Lunch_Recipes(self, self.props.current_User, self.props.current_Admin))))
-                      }>
-                      Add existing
-                  </a>
-                  <div className="group__title" disabled={true}>
-                    {
-                      LunchViews.Lunch({
-                        ...self.props,
-                        entity:i,
-                        nesting_depth:self.props.nesting_depth+1,
-                        size:"preview",
-                        mode:"view",
-                        is_editable:false,
-                        nested_entity_names: self.props.nested_entity_names.push("Lunch"),
-                        set_size:undefined,
-                        toggle_button:undefined,
-                        set_mode:undefined,
-                        set_entity:(new_entity:Models.Lunch, callback?:()=>void) => {},
-                        unlink: undefined,
-                        delete: undefined
-                      })
-                    }
-                  </div>
-                </div>,
-              cancel:() => self.setState({...self.state(), add_step_Lunch:"closed"}),
-              get_items:[
-                { name: "Lunch", get: async(i,s) => Api.get_unlinked_Recipes_Lunch_Recipess(self.props.entity, i, s) },
+                { name: "Lunch", get: async(i,s) => Api.get_unlinked_Recipes_Meal_Recipess_Lunch(self.props.entity, i, s) }, 
+                { name: "Dinner", get: async(i,s) => Api.get_unlinked_Recipes_Meal_Recipess_Dinner(self.props.entity, i, s) }, 
+                { name: "Breakfast", get: async(i,s) => Api.get_unlinked_Recipes_Meal_Recipess_Breakfast(self.props.entity, i, s) }
               ]
             })
         }
@@ -1392,7 +1477,7 @@ export function render_new_Recipes_User_Recipes(self:RecipesContext) {
                     {
                       if (state.create_step_User != "none" && is_valid) {
                         Api.register_User(state.create_step_User.username, state.create_step_User.email, state.create_step_User.email_confirmation).then(() =>
-                          load_relation_Recipes_User_Recipes(self, self.props.current_User, self.props.current_Admin, () =>
+                          load_relation_Recipes_User_Recipes(self, false, self.props.current_User, self.props.current_Admin, () =>
                             self.setState({...self.state(), create_step_User:"none"})
                           )
                         )
@@ -1429,25 +1514,25 @@ export function render_new_Recipes_User_Recipes(self:RecipesContext) {
       null
     }
   
-export function render_new_Recipes_Dinner_Recipes(self:RecipesContext) {
+export function render_new_Recipes_Recipes_Rating(self:RecipesContext) {
     let state = self.state()
     return  self.props.mode == "edit" ?
       <div className="button__actions">
-        <div className="new-dinner">
+        <div className="new-rating">
               <button 
-                      className="new-dinner button button--new"
+                      className="new-rating button button--new"
                       onClick={() =>
-                          Api.create_linked_Recipes_Dinner_Recipess_Dinner(self.props.entity).then(e => {
+                          Api.create_linked_Recipes_Recipes_Ratings_Rating(self.props.entity).then(e => {
                               e.length > 0 &&
-                              Api.update_Dinner(
-                                ({ ...e[0], Kind:"Dinner", Description:"" } as Models.Dinner)).then(() =>
-                                load_relation_Recipes_Dinner_Recipes(self, self.props.current_User, self.props.current_Admin, () =>
-                                    self.setState({...self.state(), add_step_Dinner:"closed"})
+                              Api.update_Rating(
+                                ({ ...e[0], rating:0 } as Models.Rating)).then(() =>
+                                load_relation_Recipes_Recipes_Rating(self, true, self.props.current_User, self.props.current_Admin, () =>
+                                    self.setState({...self.state(), add_step_Rating:"closed"})
                                   )
                                 )
                           })
                       }>
-                  {i18next.t('Create new Dinner')}
+                  {i18next.t('Create new Rating')}
               </button>
             </div>
         </div>
@@ -1455,46 +1540,26 @@ export function render_new_Recipes_Dinner_Recipes(self:RecipesContext) {
       null
     }
   
-export function render_new_Recipes_Breakfast_Recipes(self:RecipesContext) {
+export function render_new_Recipes_Meal_Recipes(self:RecipesContext) {
     let state = self.state()
     return  self.props.mode == "edit" ?
       <div className="button__actions">
-        <div className="new-breakfast">
-              <button 
-                      className="new-breakfast button button--new"
-                      onClick={() =>
-                          Api.create_linked_Recipes_Breakfast_Recipess_Breakfast(self.props.entity).then(e => {
-                              e.length > 0 &&
-                              Api.update_Breakfast(
-                                ({ ...e[0], Kind:"Breakfast", Description:"" } as Models.Breakfast)).then(() =>
-                                load_relation_Recipes_Breakfast_Recipes(self, self.props.current_User, self.props.current_Admin, () =>
-                                    self.setState({...self.state(), add_step_Breakfast:"closed"})
-                                  )
-                                )
-                          })
-                      }>
-                  {i18next.t('Create new Breakfast')}
-              </button>
-            </div>
-        </div>
-      :
-      null
-    }
-  
-export function render_new_Recipes_Lunch_Recipes(self:RecipesContext) {
-    let state = self.state()
-    return  self.props.mode == "edit" ?
-      <div className="button__actions">
-        <div className="new-lunch">
+        <Buttons.Create target_name={"Meal"} onClick={() => self.setState({...self.state(), add_step_Meal:"creating"})}  />
+            {
+            state.add_step_Meal != "creating" ?
+            null
+            :
+            <div className="overlay__item overlay__item--new">
+              <div className="new-lunch">
               <button 
                       className="new-lunch button button--new"
                       onClick={() =>
-                          Api.create_linked_Recipes_Lunch_Recipess_Lunch(self.props.entity).then(e => {
+                          Api.create_linked_Recipes_Meal_Recipess_Lunch(self.props.entity).then(e => {
                               e.length > 0 &&
                               Api.update_Lunch(
                                 ({ ...e[0], Kind:"Lunch", Description:"" } as Models.Lunch)).then(() =>
-                                load_relation_Recipes_Lunch_Recipes(self, self.props.current_User, self.props.current_Admin, () =>
-                                    self.setState({...self.state(), add_step_Lunch:"closed"})
+                                load_relation_Recipes_Meal_Recipes(self, true, self.props.current_User, self.props.current_Admin, () =>
+                                    self.setState({...self.state(), add_step_Meal:"closed"})
                                   )
                                 )
                           })
@@ -1502,6 +1567,43 @@ export function render_new_Recipes_Lunch_Recipes(self:RecipesContext) {
                   {i18next.t('Create new Lunch')}
               </button>
             </div>
+            <div className="new-dinner">
+              <button 
+                      className="new-dinner button button--new"
+                      onClick={() =>
+                          Api.create_linked_Recipes_Meal_Recipess_Dinner(self.props.entity).then(e => {
+                              e.length > 0 &&
+                              Api.update_Dinner(
+                                ({ ...e[0], Kind:"Dinner", Description:"" } as Models.Dinner)).then(() =>
+                                load_relation_Recipes_Meal_Recipes(self, true, self.props.current_User, self.props.current_Admin, () =>
+                                    self.setState({...self.state(), add_step_Meal:"closed"})
+                                  )
+                                )
+                          })
+                      }>
+                  {i18next.t('Create new Dinner')}
+              </button>
+            </div>
+            <div className="new-breakfast">
+              <button 
+                      className="new-breakfast button button--new"
+                      onClick={() =>
+                          Api.create_linked_Recipes_Meal_Recipess_Breakfast(self.props.entity).then(e => {
+                              e.length > 0 &&
+                              Api.update_Breakfast(
+                                ({ ...e[0], Kind:"Breakfast", Description:"" } as Models.Breakfast)).then(() =>
+                                load_relation_Recipes_Meal_Recipes(self, true, self.props.current_User, self.props.current_Admin, () =>
+                                    self.setState({...self.state(), add_step_Meal:"closed"})
+                                  )
+                                )
+                          })
+                      }>
+                  {i18next.t('Create new Breakfast')}
+              </button>
+            </div>
+              <Buttons.Cancel onClick={() => self.setState({...self.state(), add_step_Meal:"closed"})} />
+            </div>
+            }
         </div>
       :
       null
@@ -1511,11 +1613,11 @@ export function render_new_Recipes_Lunch_Recipes(self:RecipesContext) {
 export function render_saving_animations_Recipes(self:RecipesContext) {
   return self.state().dirty_User.count() > 0 ?
     <div style={{position:"fixed", zIndex:10000, top:0, left:0, width:"20px", height:"20px", backgroundColor:"red"}} className="saving"/> : 
-    self.state().dirty_Dinner.count() > 0 ?
+    self.state().dirty_Rating.count() > 0 ?
     <div style={{position:"fixed", zIndex:10000, top:0, left:0, width:"20px", height:"20px", backgroundColor:"red"}} className="saving"/> : 
-    self.state().dirty_Breakfast.count() > 0 ?
+    self.state().dirty_Meal.count() > 0 ?
     <div style={{position:"fixed", zIndex:10000, top:0, left:0, width:"20px", height:"20px", backgroundColor:"red"}} className="saving"/> : 
-    self.state().dirty_Lunch.count() > 0 ?
+    self.state().dirty_HomePage.count() > 0 ?
     <div style={{position:"fixed", zIndex:10000, top:0, left:0, width:"20px", height:"20px", backgroundColor:"red"}} className="saving"/>
     : <div style={{position:"fixed", zIndex:10000, top:0, left:0, width:"20px", height:"20px", backgroundColor:"cornflowerblue"}} className="saved"/>
 }
@@ -1527,20 +1629,20 @@ export type RecipesState = {
     add_step_User:"closed"|"open"|"saving",
       create_step_User:{ validation:"valid"|"validating"|"invalid", username:string, email:string, email_confirmation:string }|"none",dirty_User:Immutable.Map<number,Models.User>,
       User:Utils.PaginatedItems<{ shown_relation: string } & Utils.EntityAndSize<Models.User>>|"loading"
-  add_step_Dinner:"closed"|"open"|"saving",
-      dirty_Dinner:Immutable.Map<number,Models.Dinner>,
-      Dinner:Utils.PaginatedItems<{ shown_relation: string } & Utils.EntityAndSize<Models.Dinner>>|"loading"
-  add_step_Breakfast:"closed"|"open"|"saving",
-      dirty_Breakfast:Immutable.Map<number,Models.Breakfast>,
-      Breakfast:Utils.PaginatedItems<{ shown_relation: string } & Utils.EntityAndSize<Models.Breakfast>>|"loading"
-  add_step_Lunch:"closed"|"open"|"saving",
-      dirty_Lunch:Immutable.Map<number,Models.Lunch>,
-      Lunch:Utils.PaginatedItems<{ shown_relation: string } & Utils.EntityAndSize<Models.Lunch>>|"loading"
+  add_step_Rating:"closed"|"open"|"saving",
+      dirty_Rating:Immutable.Map<number,Models.Rating>,
+      Rating:Utils.PaginatedItems<{ shown_relation: string } & Utils.EntityAndSize<Models.Rating>>|"loading"
+  add_step_Meal:"closed"|"open"|"saving"|"adding"|"creating",
+      dirty_Meal:Immutable.Map<number,Models.Meal>,
+      Meal:Utils.PaginatedItems<{ shown_relation: string } & Utils.EntityAndSize<Models.Meal>>|"loading"
+  add_step_HomePage:"closed"|"open"|"saving",
+      dirty_HomePage:Immutable.Map<number,Models.HomePage>,
+      HomePage:Utils.PaginatedItems<{ shown_relation: string } & Utils.EntityAndSize<Models.HomePage>>|"loading"
   }
 export class RecipesComponent extends React.Component<Utils.EntityComponentProps<Models.Recipes>, RecipesState> {
   constructor(props:Utils.EntityComponentProps<Models.Recipes>, context:any) {
     super(props, context)
-    this.state = { update_count:0, add_step_User:"closed", create_step_User:"none",dirty_User:Immutable.Map<number,Models.User>(), User:"loading", add_step_Dinner:"closed", dirty_Dinner:Immutable.Map<number,Models.Dinner>(), Dinner:"loading", add_step_Breakfast:"closed", dirty_Breakfast:Immutable.Map<number,Models.Breakfast>(), Breakfast:"loading", add_step_Lunch:"closed", dirty_Lunch:Immutable.Map<number,Models.Lunch>(), Lunch:"loading" }
+    this.state = { update_count:0,add_step_User:"closed", create_step_User:"none",dirty_User:Immutable.Map<number,Models.User>(), User:"loading", add_step_Rating:"closed", dirty_Rating:Immutable.Map<number,Models.Rating>(), Rating:"loading", add_step_Meal:"closed", dirty_Meal:Immutable.Map<number,Models.Meal>(), Meal:"loading", add_step_HomePage:"closed", dirty_HomePage:Immutable.Map<number,Models.HomePage>(), HomePage:"loading" }
   }
 
   get_self() {
@@ -1556,15 +1658,17 @@ export class RecipesComponent extends React.Component<Utils.EntityComponentProps
         (current_logged_in_entity && !new_logged_in_entity) ||
         (!current_logged_in_entity && new_logged_in_entity) ||
         (current_logged_in_entity && new_logged_in_entity && current_logged_in_entity.Id != new_logged_in_entity.Id)) {
-      load_relations_Recipes(this.get_self(), new_props.current_User, new_props.current_Admin)
+      load_relations_Recipes(this.get_self(),  new_props.current_User, new_props.current_Admin)
     }
   }
 
   thread:number = null
   componentWillMount() {
     if (this.props.size == "breadcrumb") return
-    if (this.props.size != "preview")
+    if (this.props.size != "preview") {
+      
       load_relations_Recipes(this.get_self(), this.props.current_User, this.props.current_Admin)
+    }
 
     this.thread = setInterval(() => {
       if (this.state.dirty_User.count() > 0) {
@@ -1572,20 +1676,20 @@ export class RecipesComponent extends React.Component<Utils.EntityComponentProps
          this.setState({...this.state, dirty_User: this.state.dirty_User.remove(first.Id)}, () =>
            Api.update_User(first)
          )
-       } else if (this.state.dirty_Dinner.count() > 0) {
-         let first = this.state.dirty_Dinner.first()
-         this.setState({...this.state, dirty_Dinner: this.state.dirty_Dinner.remove(first.Id)}, () =>
-           Api.update_Dinner(first)
+       } else if (this.state.dirty_Rating.count() > 0) {
+         let first = this.state.dirty_Rating.first()
+         this.setState({...this.state, dirty_Rating: this.state.dirty_Rating.remove(first.Id)}, () =>
+           Api.update_Rating(first)
          )
-       } else if (this.state.dirty_Breakfast.count() > 0) {
-         let first = this.state.dirty_Breakfast.first()
-         this.setState({...this.state, dirty_Breakfast: this.state.dirty_Breakfast.remove(first.Id)}, () =>
-           Api.update_Breakfast(first)
+       } else if (this.state.dirty_Meal.count() > 0) {
+         let first = this.state.dirty_Meal.first()
+         this.setState({...this.state, dirty_Meal: this.state.dirty_Meal.remove(first.Id)}, () =>
+           Api.update_Meal(first)
          )
-       } else if (this.state.dirty_Lunch.count() > 0) {
-         let first = this.state.dirty_Lunch.first()
-         this.setState({...this.state, dirty_Lunch: this.state.dirty_Lunch.remove(first.Id)}, () =>
-           Api.update_Lunch(first)
+       } else if (this.state.dirty_HomePage.count() > 0) {
+         let first = this.state.dirty_HomePage.first()
+         this.setState({...this.state, dirty_HomePage: this.state.dirty_HomePage.remove(first.Id)}, () =>
+           Api.update_HomePage(first)
          )
        }
 
@@ -1632,7 +1736,7 @@ export let Recipes = (props:Utils.EntityComponentProps<Models.Recipes>) : JSX.El
   <RecipesComponent {...props} />
 
 export let Recipes_to_page = (id:number) => {
-  let can_edit = Utils.any_of([Permissions.can_edit_Recipes, Permissions.can_edit_User_Recipes, Permissions.can_edit_Dinner_Recipes, Permissions.can_edit_Breakfast_Recipes, Permissions.can_edit_Lunch_Recipes, Permissions.can_edit_User, Permissions.can_edit_Dinner, Permissions.can_edit_Breakfast, Permissions.can_edit_Lunch])
+  let can_edit = Utils.any_of([Permissions.can_edit_Recipes, Permissions.can_edit_User_Recipes, Permissions.can_edit_Recipes_Rating, Permissions.can_edit_Meal_Recipes, Permissions.can_edit_HomePage_Recipes, Permissions.can_edit_User, Permissions.can_edit_Rating, Permissions.can_edit_Meal, Permissions.can_edit_HomePage])
   return Utils.scene_to_page<Models.Recipes>(can_edit, Recipes, Api.get_Recipes(id), Api.update_Recipes, "Recipes", "Recipes", `/Recipess/${id}`)
 }
 

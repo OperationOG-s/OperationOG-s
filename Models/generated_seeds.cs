@@ -394,79 +394,66 @@ namespace PortableRecipes.Data
         context.SaveChanges();
       }
       var User_Recipes = context.User_Recipes.ToArray();
-      if (!context.Dinner_Recipes.Any())
+      if (!context.Recipes_Rating.Any())
       {
-        var _Dinner_Recipes = new Dinner_Recipes[]
+        var _Recipes_Rating = new Recipes_Rating[]
         {
             
-            new Dinner_Recipes { DinnerId = 3, RecipesId = 4 },
-
-            new Dinner_Recipes { DinnerId = 3, RecipesId = 11 },
-
-            new Dinner_Recipes { DinnerId = 3, RecipesId = 12 },
-
-            new Dinner_Recipes { DinnerId = 3, RecipesId = 15 },
-
-            new Dinner_Recipes { DinnerId = 3, RecipesId = 10 },
-
-            new Dinner_Recipes { DinnerId = 3, RecipesId = 9 },
-
-            new Dinner_Recipes { DinnerId = 3, RecipesId = 7 },
-
-            new Dinner_Recipes { DinnerId = 3, RecipesId = 5 },
-
         };
-        foreach (var x in _Dinner_Recipes)
+        foreach (var x in _Recipes_Rating)
         {
-          context.Dinner_Recipes.Add(x);
+          context.Recipes_Rating.Add(x);
         }
         context.SaveChanges();
       }
-      var Dinner_Recipes = context.Dinner_Recipes.ToArray();
-      if (!context.Breakfast_Recipes.Any())
+      var Recipes_Rating = context.Recipes_Rating.ToArray();
+      if (!context.Meal_Recipes.Any())
       {
-        var _Breakfast_Recipes = new Breakfast_Recipes[]
+        var _Meal_Recipes = new Meal_Recipes[]
         {
             
-            new Breakfast_Recipes { BreakfastId = 1, RecipesId = 8 },
+            new Meal_Recipes { MealId = 3, RecipesId = 4 },
 
-            new Breakfast_Recipes { BreakfastId = 1, RecipesId = 11 },
+            new Meal_Recipes { MealId = 3, RecipesId = 11 },
 
-            new Breakfast_Recipes { BreakfastId = 1, RecipesId = 13 },
+            new Meal_Recipes { MealId = 3, RecipesId = 12 },
 
-            new Breakfast_Recipes { BreakfastId = 1, RecipesId = 14 },
+            new Meal_Recipes { MealId = 3, RecipesId = 15 },
 
-            new Breakfast_Recipes { BreakfastId = 1, RecipesId = 15 },
+            new Meal_Recipes { MealId = 3, RecipesId = 10 },
 
-            new Breakfast_Recipes { BreakfastId = 1, RecipesId = 9 },
+            new Meal_Recipes { MealId = 3, RecipesId = 9 },
+
+            new Meal_Recipes { MealId = 3, RecipesId = 7 },
+
+            new Meal_Recipes { MealId = 3, RecipesId = 5 },
+
+            new Meal_Recipes { MealId = 1, RecipesId = 8 },
+
+            new Meal_Recipes { MealId = 1, RecipesId = 11 },
+
+            new Meal_Recipes { MealId = 1, RecipesId = 13 },
+
+            new Meal_Recipes { MealId = 1, RecipesId = 14 },
+
+            new Meal_Recipes { MealId = 1, RecipesId = 15 },
+
+            new Meal_Recipes { MealId = 1, RecipesId = 9 },
+
+            new Meal_Recipes { MealId = 2, RecipesId = 6 },
+
+            new Meal_Recipes { MealId = 2, RecipesId = 16 },
+
+            new Meal_Recipes { MealId = 2, RecipesId = 17 },
 
         };
-        foreach (var x in _Breakfast_Recipes)
+        foreach (var x in _Meal_Recipes)
         {
-          context.Breakfast_Recipes.Add(x);
+          context.Meal_Recipes.Add(x);
         }
         context.SaveChanges();
       }
-      var Breakfast_Recipes = context.Breakfast_Recipes.ToArray();
-      if (!context.Lunch_Recipes.Any())
-      {
-        var _Lunch_Recipes = new Lunch_Recipes[]
-        {
-            
-            new Lunch_Recipes { LunchId = 2, RecipesId = 6 },
-
-            new Lunch_Recipes { LunchId = 2, RecipesId = 16 },
-
-            new Lunch_Recipes { LunchId = 2, RecipesId = 17 },
-
-        };
-        foreach (var x in _Lunch_Recipes)
-        {
-          context.Lunch_Recipes.Add(x);
-        }
-        context.SaveChanges();
-      }
-      var Lunch_Recipes = context.Lunch_Recipes.ToArray();
+      var Meal_Recipes = context.Meal_Recipes.ToArray();
 
       InitializePagesAndSingletons(context);
     }

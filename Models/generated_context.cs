@@ -32,9 +32,8 @@ namespace PortableRecipes.Models{
     
     public DbSet<Categories_Meal> Categories_Meal { get; set; }
     public DbSet<User_Recipes> User_Recipes { get; set; }
-    public DbSet<Dinner_Recipes> Dinner_Recipes { get; set; }
-    public DbSet<Breakfast_Recipes> Breakfast_Recipes { get; set; }
-    public DbSet<Lunch_Recipes> Lunch_Recipes { get; set; }
+    public DbSet<Recipes_Rating> Recipes_Rating { get; set; }
+    public DbSet<Meal_Recipes> Meal_Recipes { get; set; }
     public DbSet<Session> Session { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
@@ -71,7 +70,13 @@ namespace PortableRecipes.Models{
 
   
       modelBuilder.Entity<Session>()
-              .HasIndex(b => b.CookieName);
+        .HasIndex(b => b.CookieName);
+      modelBuilder.Entity<Session>()
+        .HasIndex(b => b.LoggedEntityName);
+      modelBuilder.Entity<Session>()
+        .HasIndex(b => b.LoggedEntityId);
+      modelBuilder.Entity<Session>()
+        .HasIndex(b => b.CreatedAt);
     }
   }
 }

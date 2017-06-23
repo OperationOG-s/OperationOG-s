@@ -4,8 +4,9 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Cryptography;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+using System.Security.Cryptography;
 using PortableRecipes;
 using PortableRecipes.Models;
 
@@ -74,15 +75,50 @@ namespace PortableRecipes
       }
       _context.SaveChanges();
     }
-    public static void Login<T>(this HttpContext HttpContext, PortableRecipesContext _context, T payload) {
+    public static void ChangedPassword<U>(this HttpContext HttpContext, PortableRecipesContext _context, string entity_name, U entity) where U : IEntity {
+      var now = DateTime.Now;
+      _context.Session.RemoveRange(
+        from s in _context.Session
+        where (s.LoggedEntityId == entity.Id && s.LoggedEntityName == entity_name) ||
+              (s.LoggedEntityId == null || s.LoggedEntityName == null) ||
+              (now - s.CreatedAt).TotalDays >= 30
+        select s);
+      _context.SaveChanges();
+    }
+    public static void Deleted<U>(this HttpContext HttpContext, PortableRecipesContext _context, string entity_name, U entity) where U : IEntity {
+      var now = DateTime.Now;
+      _context.Session.RemoveRange(
+        from s in _context.Session
+        where (s.LoggedEntityId == entity.Id && s.LoggedEntityName == entity_name) ||
+              (s.LoggedEntityId == null || s.LoggedEntityName == null) ||
+              (now - s.CreatedAt).TotalDays >= 30
+        select s);
+      _context.SaveChanges();
+    }
+    public static void Login<T, U>(this HttpContext HttpContext, Microsoft.AspNetCore.Hosting.IHostingEnvironment env, PortableRecipesContext _context, string entity_name, U entity, T payload) where U : IEntity {
       HttpContext.Logout(_context);
-      var random_id = PasswordHasher.RandomPassword;
+      var now = DateTime.Now;
+      _context.Session.RemoveRange(
+        from s in _context.Session
+        where (s.LoggedEntityId == entity.Id && s.LoggedEntityName == entity_name) ||
+              (s.LoggedEntityId == null || s.LoggedEntityName == null) ||
+              (now - s.CreatedAt).TotalDays >= 30
+        select s);
+      _context.SaveChanges();
+      var random_id = PasswordHasher.RandomString;
       HttpContext.Response.Cookies.Append("PortableRecipesContext", random_id,
         new Microsoft.AspNetCore.Http.CookieOptions()
         {
-          Expires = DateTimeOffset.Now.AddYears(1)
+          Expires = DateTimeOffset.Now.AddDays(30),
+          HttpOnly = true,
+          Secure = !env.IsDevelopment()
         });
-      var new_session = new Session() { CookieName = random_id, Content = JsonConvert.SerializeObject(payload), CreatedAt = DateTime.Now };
+      var new_session = new Session() { CookieName = random_id,
+        LoggedEntityId = entity.Id,
+        LoggedEntityName = entity_name,
+        AdditionalInfo = HttpContext.Connection.RemoteIpAddress.ToString(),
+        Content = JsonConvert.SerializeObject(payload),
+        CreatedAt = DateTime.Now };
       _context.Session.Add(new_session);
       _context.SaveChanges();
     }
@@ -146,6 +182,17 @@ namespace PortableRecipes.Models
   }
 
   public static class PasswordHasher {
+    static public string RandomString {
+      get {
+        byte[] salt = new byte[512 / 8];
+        using (var rng = RandomNumberGenerator.Create())
+        {
+          rng.GetBytes(salt);
+        }
+        return Convert.ToBase64String(salt);
+      }
+    }
+
     static public string RandomPassword {
       get {
         byte[] salt = new byte[64 / 8];

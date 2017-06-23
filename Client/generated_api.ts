@@ -3,11 +3,12 @@ import * as Immutable from 'immutable'
 import * as Moment from 'moment'
 import 'whatwg-fetch'
 
-export type ItemWithEditable<T> = {Item:T, Editable:boolean}
+export type ItemWithEditable<T> = {Item:T, Editable:boolean, JustCreated:boolean}
 
 export type RawPage<T> = {
   Items:ItemWithEditable<T>[]
   PageIndex:number
+  SearchQuery:string
   NumPages:number
   PageSize:number
   TotalCount:number
@@ -20,6 +21,7 @@ export let parse_date = <T>(e:any) : T&{CreatedDate:Moment.Moment} => { return {
 export let make_page = <T>(res:any, parse_other_args:(e:any) => T) : RawPage<T> => { return {
   Items: res.Items.map((i:any) => { return{ ...i, Item:parse_date(i.Item)} }).map((i:any) => { return{ ...i, Item:parse_other_args(i.Item)} }),
   PageIndex: res.PageIndex,
+  SearchQuery:res.SearchQuery,
   NumPages: res.NumPages,
   PageSize: res.PageSize,
   TotalCount: res.TotalCount,
@@ -54,11 +56,12 @@ export async function get_American(id:number) : Promise<ItemWithEditable<Models.
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return { Item: {...json.Item, CreatedDate: Moment.utc(json.Item.CreatedDate),  } as Models.American,
-           Editable: !!json.Editable }
+           Editable: !!json.Editable, JustCreated:false }
 }
 
-export async function get_Americans(page_index:number, page_size:number) : Promise<RawPage<Models.American>> {
-  let res = await fetch(`/api/v1/American?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_Americans(page_index:number, page_size:number, search_query:string = null) : Promise<RawPage<Models.American>> {
+  let res = await fetch(`/api/v1/American?page_index=${page_index}&page_size=${page_size}${(search_query != null ? "&page_size=" + search_query : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return make_page<Models.American>(json, e => { return {...e, }})
@@ -72,8 +75,8 @@ export async function get_Americans(page_index:number, page_size:number) : Promi
 
   
   
-export async function get_Meal_Categories_Meals(source:Models.Meal, page_index:number, page_size:number) : Promise<RawPage<Models.Categories>> {
-  let res = await fetch(`/api/v1/Meal/${source.Id}/Categories_Meals?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_Meal_Categories_Meals(source:Models.Meal, page_index:number, page_size:number, query_string:string = null) : Promise<RawPage<Models.Categories>> {
+  let res = await fetch(`/api/v1/Meal/${source.Id}/Categories_Meals?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return make_page<Models.Categories>(json, e => { return {...e, }})
@@ -156,6 +159,56 @@ export async function unlink_Meal_Categories_Meals(source:Models.Meal, target:Mo
 }
 
 
+export async function get_Meal_Meal_Recipess(source:Models.Meal, page_index:number, page_size:number, query_string:string = null) : Promise<RawPage<Models.Recipes>> {
+  let res = await fetch(`/api/v1/Meal/${source.Id}/Meal_Recipess?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return make_page<Models.Recipes>(json, e => { return {...e, }})
+}
+
+export async function get_Meal_Meal_Recipess_Recipes(source:Models.Meal, page_index:number, page_size:number, id:number) : Promise<Models.Recipes> {
+  let res = await fetch(`/api/v1/Meal/${source.Id}/Meal_Recipess/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Recipes
+}
+
+export async function get_Meal_Meal_Recipess_Recipes_by_id(source:Models.Meal, id:number) : Promise<Models.Recipes> {
+  let res = await fetch(`/api/v1/Meal/${source.Id}/Meal_Recipess/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Recipes
+}
+
+
+export async function get_unlinked_Meal_Meal_Recipess(source:Models.Meal, page_index:number, page_size:number) : Promise<RawPage<Models.Recipes>> {
+  let res = await fetch(`/api/v1/Meal/${source.Id}/unlinked/Meal_Recipess?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return make_page<Models.Recipes>(json, e => { return {...e, }})
+}
+
+    
+export async function create_linked_Meal_Meal_Recipess_Recipes(source:Models.Meal) : Promise<Models.Recipes[]> {
+  let res = await fetch(`/api/v1/Meal/${source.Id}/Meal_Recipess_Recipes`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return json.map(e => { return {...e, CreatedDate: Moment.utc(e.CreatedDate),  }}) as Models.Recipes[]
+}
+
+export async function link_Meal_Meal_Recipess(source:Models.Meal, target:Models.Recipes) : Promise<void> {
+  let res = await fetch(`/api/v1/Meal/${source.Id}/Meal_Recipess/${target.Id}`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  return
+}
+
+export async function unlink_Meal_Meal_Recipess(source:Models.Meal, target:Models.Recipes) : Promise<void> {
+  let res = await fetch(`/api/v1/Meal/${source.Id}/Meal_Recipess/${target.Id}`, { method: 'delete', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  return
+}
+
+
 export async function create_Meal() : Promise<Models.Meal> {
   let res = await fetch(`/api/v1/Meal/`,
     { method: 'post', credentials: 'include', headers:{'content-type': 'application/json',
@@ -182,11 +235,12 @@ export async function get_Meal(id:number) : Promise<ItemWithEditable<Models.Meal
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return { Item: {...json.Item, CreatedDate: Moment.utc(json.Item.CreatedDate),  } as Models.Meal,
-           Editable: !!json.Editable }
+           Editable: !!json.Editable, JustCreated:false }
 }
 
-export async function get_Meals(page_index:number, page_size:number) : Promise<RawPage<Models.Meal>> {
-  let res = await fetch(`/api/v1/Meal?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_Meals(page_index:number, page_size:number, search_query:string = null) : Promise<RawPage<Models.Meal>> {
+  let res = await fetch(`/api/v1/Meal?page_index=${page_index}&page_size=${page_size}${(search_query != null ? "&page_size=" + search_query : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return make_page<Models.Meal>(json, e => { return {...e, }})
@@ -227,11 +281,12 @@ export async function get_Asian(id:number) : Promise<ItemWithEditable<Models.Asi
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return { Item: {...json.Item, CreatedDate: Moment.utc(json.Item.CreatedDate),  } as Models.Asian,
-           Editable: !!json.Editable }
+           Editable: !!json.Editable, JustCreated:false }
 }
 
-export async function get_Asians(page_index:number, page_size:number) : Promise<RawPage<Models.Asian>> {
-  let res = await fetch(`/api/v1/Asian?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_Asians(page_index:number, page_size:number, search_query:string = null) : Promise<RawPage<Models.Asian>> {
+  let res = await fetch(`/api/v1/Asian?page_index=${page_index}&page_size=${page_size}${(search_query != null ? "&page_size=" + search_query : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return make_page<Models.Asian>(json, e => { return {...e, }})
@@ -245,8 +300,8 @@ export async function get_Asians(page_index:number, page_size:number) : Promise<
 
   
   
-export async function get_Recipes_User_Recipess(source:Models.Recipes, page_index:number, page_size:number) : Promise<RawPage<Models.User>> {
-  let res = await fetch(`/api/v1/Recipes/${source.Id}/User_Recipess?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_Recipes_User_Recipess(source:Models.Recipes, page_index:number, page_size:number, query_string:string = null) : Promise<RawPage<Models.User>> {
+  let res = await fetch(`/api/v1/Recipes/${source.Id}/User_Recipess?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return make_page<Models.User>(json, e => { return {...e, }})
@@ -295,154 +350,162 @@ export async function unlink_Recipes_User_Recipess(source:Models.Recipes, target
 }
 
 
-export async function get_Recipes_Dinner_Recipess(source:Models.Recipes, page_index:number, page_size:number) : Promise<RawPage<Models.Dinner>> {
-  let res = await fetch(`/api/v1/Recipes/${source.Id}/Dinner_Recipess?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_Recipes_Recipes_Ratings(source:Models.Recipes, page_index:number, page_size:number, query_string:string = null) : Promise<RawPage<Models.Rating>> {
+  let res = await fetch(`/api/v1/Recipes/${source.Id}/Recipes_Ratings?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
-  return make_page<Models.Dinner>(json, e => { return {...e, }})
+  return make_page<Models.Rating>(json, e => { return {...e, }})
 }
 
-export async function get_Recipes_Dinner_Recipess_Dinner(source:Models.Recipes, page_index:number, page_size:number, id:number) : Promise<Models.Dinner> {
-  let res = await fetch(`/api/v1/Recipes/${source.Id}/Dinner_Recipess/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_Recipes_Recipes_Ratings_Rating(source:Models.Recipes, page_index:number, page_size:number, id:number) : Promise<Models.Rating> {
+  let res = await fetch(`/api/v1/Recipes/${source.Id}/Recipes_Ratings/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
-  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Dinner
+  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Rating
 }
 
-export async function get_Recipes_Dinner_Recipess_Dinner_by_id(source:Models.Recipes, id:number) : Promise<Models.Dinner> {
-  let res = await fetch(`/api/v1/Recipes/${source.Id}/Dinner_Recipess/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_Recipes_Recipes_Ratings_Rating_by_id(source:Models.Recipes, id:number) : Promise<Models.Rating> {
+  let res = await fetch(`/api/v1/Recipes/${source.Id}/Recipes_Ratings/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
-  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Dinner
+  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Rating
 }
 
 
-export async function get_unlinked_Recipes_Dinner_Recipess(source:Models.Recipes, page_index:number, page_size:number) : Promise<RawPage<Models.Dinner>> {
-  let res = await fetch(`/api/v1/Recipes/${source.Id}/unlinked/Dinner_Recipess?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_unlinked_Recipes_Recipes_Ratings(source:Models.Recipes, page_index:number, page_size:number) : Promise<RawPage<Models.Rating>> {
+  let res = await fetch(`/api/v1/Recipes/${source.Id}/unlinked/Recipes_Ratings?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
-  return make_page<Models.Dinner>(json, e => { return {...e, }})
+  return make_page<Models.Rating>(json, e => { return {...e, }})
 }
 
     
-export async function create_linked_Recipes_Dinner_Recipess_Dinner(source:Models.Recipes) : Promise<Models.Dinner[]> {
-  let res = await fetch(`/api/v1/Recipes/${source.Id}/Dinner_Recipess_Dinner`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function create_linked_Recipes_Recipes_Ratings_Rating(source:Models.Recipes) : Promise<Models.Rating[]> {
+  let res = await fetch(`/api/v1/Recipes/${source.Id}/Recipes_Ratings_Rating`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
-  return json.map(e => { return {...e, CreatedDate: Moment.utc(e.CreatedDate),  }}) as Models.Dinner[]
+  return json.map(e => { return {...e, CreatedDate: Moment.utc(e.CreatedDate),  }}) as Models.Rating[]
 }
 
-export async function link_Recipes_Dinner_Recipess(source:Models.Recipes, target:Models.Dinner) : Promise<void> {
-  let res = await fetch(`/api/v1/Recipes/${source.Id}/Dinner_Recipess/${target.Id}`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function link_Recipes_Recipes_Ratings(source:Models.Recipes, target:Models.Rating) : Promise<void> {
+  let res = await fetch(`/api/v1/Recipes/${source.Id}/Recipes_Ratings/${target.Id}`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
   if (!res.ok) throw Error(res.statusText)
   return
 }
 
-export async function unlink_Recipes_Dinner_Recipess(source:Models.Recipes, target:Models.Dinner) : Promise<void> {
-  let res = await fetch(`/api/v1/Recipes/${source.Id}/Dinner_Recipess/${target.Id}`, { method: 'delete', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  return
-}
-
-
-export async function get_Recipes_Breakfast_Recipess(source:Models.Recipes, page_index:number, page_size:number) : Promise<RawPage<Models.Breakfast>> {
-  let res = await fetch(`/api/v1/Recipes/${source.Id}/Breakfast_Recipess?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return make_page<Models.Breakfast>(json, e => { return {...e, }})
-}
-
-export async function get_Recipes_Breakfast_Recipess_Breakfast(source:Models.Recipes, page_index:number, page_size:number, id:number) : Promise<Models.Breakfast> {
-  let res = await fetch(`/api/v1/Recipes/${source.Id}/Breakfast_Recipess/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Breakfast
-}
-
-export async function get_Recipes_Breakfast_Recipess_Breakfast_by_id(source:Models.Recipes, id:number) : Promise<Models.Breakfast> {
-  let res = await fetch(`/api/v1/Recipes/${source.Id}/Breakfast_Recipess/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Breakfast
-}
-
-
-export async function get_unlinked_Recipes_Breakfast_Recipess(source:Models.Recipes, page_index:number, page_size:number) : Promise<RawPage<Models.Breakfast>> {
-  let res = await fetch(`/api/v1/Recipes/${source.Id}/unlinked/Breakfast_Recipess?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return make_page<Models.Breakfast>(json, e => { return {...e, }})
-}
-
-    
-export async function create_linked_Recipes_Breakfast_Recipess_Breakfast(source:Models.Recipes) : Promise<Models.Breakfast[]> {
-  let res = await fetch(`/api/v1/Recipes/${source.Id}/Breakfast_Recipess_Breakfast`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return json.map(e => { return {...e, CreatedDate: Moment.utc(e.CreatedDate),  }}) as Models.Breakfast[]
-}
-
-export async function link_Recipes_Breakfast_Recipess(source:Models.Recipes, target:Models.Breakfast) : Promise<void> {
-  let res = await fetch(`/api/v1/Recipes/${source.Id}/Breakfast_Recipess/${target.Id}`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  return
-}
-
-export async function unlink_Recipes_Breakfast_Recipess(source:Models.Recipes, target:Models.Breakfast) : Promise<void> {
-  let res = await fetch(`/api/v1/Recipes/${source.Id}/Breakfast_Recipess/${target.Id}`, { method: 'delete', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function unlink_Recipes_Recipes_Ratings(source:Models.Recipes, target:Models.Rating) : Promise<void> {
+  let res = await fetch(`/api/v1/Recipes/${source.Id}/Recipes_Ratings/${target.Id}`, { method: 'delete', credentials: 'include', headers:{'content-type': 'application/json'} })
   if (!res.ok) throw Error(res.statusText)
   return
 }
 
 
-export async function get_Recipes_Lunch_Recipess(source:Models.Recipes, page_index:number, page_size:number) : Promise<RawPage<Models.Lunch>> {
-  let res = await fetch(`/api/v1/Recipes/${source.Id}/Lunch_Recipess?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_Recipes_Meal_Recipess(source:Models.Recipes, page_index:number, page_size:number, query_string:string = null) : Promise<RawPage<Models.Meal>> {
+  let res = await fetch(`/api/v1/Recipes/${source.Id}/Meal_Recipess?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return make_page<Models.Meal>(json, e => { return {...e, }})
+}
+
+export async function get_Recipes_Meal_Recipess_Meal(source:Models.Recipes, page_index:number, page_size:number, id:number) : Promise<Models.Meal> {
+  let res = await fetch(`/api/v1/Recipes/${source.Id}/Meal_Recipess/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Meal
+}
+
+export async function get_Recipes_Meal_Recipess_Meal_by_id(source:Models.Recipes, id:number) : Promise<Models.Meal> {
+  let res = await fetch(`/api/v1/Recipes/${source.Id}/Meal_Recipess/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Meal
+}
+
+
+export async function get_unlinked_Recipes_Meal_Recipess(source:Models.Recipes, page_index:number, page_size:number) : Promise<RawPage<Models.Meal>> {
+  let res = await fetch(`/api/v1/Recipes/${source.Id}/unlinked/Meal_Recipess?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return make_page<Models.Meal>(json, e => { return {...e, }})
+}
+export async function get_unlinked_Recipes_Meal_Recipess_Lunch(source:Models.Recipes, page_index:number, page_size:number) : Promise<RawPage<Models.Lunch>> {
+  let res = await fetch(`/api/v1/Recipes/${source.Id}/unlinked/Meal_Recipess/Lunch?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return make_page<Models.Lunch>(json, e => { return {...e, }})
 }
 
-export async function get_Recipes_Lunch_Recipess_Lunch(source:Models.Recipes, page_index:number, page_size:number, id:number) : Promise<Models.Lunch> {
-  let res = await fetch(`/api/v1/Recipes/${source.Id}/Lunch_Recipess/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_unlinked_Recipes_Meal_Recipess_Dinner(source:Models.Recipes, page_index:number, page_size:number) : Promise<RawPage<Models.Dinner>> {
+  let res = await fetch(`/api/v1/Recipes/${source.Id}/unlinked/Meal_Recipess/Dinner?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
-  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Lunch
+  return make_page<Models.Dinner>(json, e => { return {...e, }})
 }
 
-export async function get_Recipes_Lunch_Recipess_Lunch_by_id(source:Models.Recipes, id:number) : Promise<Models.Lunch> {
-  let res = await fetch(`/api/v1/Recipes/${source.Id}/Lunch_Recipess/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_unlinked_Recipes_Meal_Recipess_Breakfast(source:Models.Recipes, page_index:number, page_size:number) : Promise<RawPage<Models.Breakfast>> {
+  let res = await fetch(`/api/v1/Recipes/${source.Id}/unlinked/Meal_Recipess/Breakfast?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
-  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Lunch
-}
-
-
-export async function get_unlinked_Recipes_Lunch_Recipess(source:Models.Recipes, page_index:number, page_size:number) : Promise<RawPage<Models.Lunch>> {
-  let res = await fetch(`/api/v1/Recipes/${source.Id}/unlinked/Lunch_Recipess?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return make_page<Models.Lunch>(json, e => { return {...e, }})
+  return make_page<Models.Breakfast>(json, e => { return {...e, }})
 }
 
     
-export async function create_linked_Recipes_Lunch_Recipess_Lunch(source:Models.Recipes) : Promise<Models.Lunch[]> {
-  let res = await fetch(`/api/v1/Recipes/${source.Id}/Lunch_Recipess_Lunch`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function create_linked_Recipes_Meal_Recipess_Lunch(source:Models.Recipes) : Promise<Models.Lunch[]> {
+  let res = await fetch(`/api/v1/Recipes/${source.Id}/Meal_Recipess_Lunch`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return json.map(e => { return {...e, CreatedDate: Moment.utc(e.CreatedDate),  }}) as Models.Lunch[]
 }
 
-export async function link_Recipes_Lunch_Recipess(source:Models.Recipes, target:Models.Lunch) : Promise<void> {
-  let res = await fetch(`/api/v1/Recipes/${source.Id}/Lunch_Recipess/${target.Id}`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function create_linked_Recipes_Meal_Recipess_Dinner(source:Models.Recipes) : Promise<Models.Dinner[]> {
+  let res = await fetch(`/api/v1/Recipes/${source.Id}/Meal_Recipess_Dinner`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return json.map(e => { return {...e, CreatedDate: Moment.utc(e.CreatedDate),  }}) as Models.Dinner[]
+}
+
+export async function create_linked_Recipes_Meal_Recipess_Breakfast(source:Models.Recipes) : Promise<Models.Breakfast[]> {
+  let res = await fetch(`/api/v1/Recipes/${source.Id}/Meal_Recipess_Breakfast`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return json.map(e => { return {...e, CreatedDate: Moment.utc(e.CreatedDate),  }}) as Models.Breakfast[]
+}
+
+export async function link_Recipes_Meal_Recipess(source:Models.Recipes, target:Models.Meal) : Promise<void> {
+  let res = await fetch(`/api/v1/Recipes/${source.Id}/Meal_Recipess/${target.Id}`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
   if (!res.ok) throw Error(res.statusText)
   return
 }
 
-export async function unlink_Recipes_Lunch_Recipess(source:Models.Recipes, target:Models.Lunch) : Promise<void> {
-  let res = await fetch(`/api/v1/Recipes/${source.Id}/Lunch_Recipess/${target.Id}`, { method: 'delete', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function unlink_Recipes_Meal_Recipess(source:Models.Recipes, target:Models.Meal) : Promise<void> {
+  let res = await fetch(`/api/v1/Recipes/${source.Id}/Meal_Recipess/${target.Id}`, { method: 'delete', credentials: 'include', headers:{'content-type': 'application/json'} })
   if (!res.ok) throw Error(res.statusText)
   return
 }
+
+
+export async function get_Recipes_HomePage_Recipess(source:Models.Recipes, page_index:number, page_size:number, query_string:string = null) : Promise<RawPage<Models.HomePage>> {
+  let res = await fetch(`/api/v1/Recipes/${source.Id}/HomePage_Recipess?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return make_page<Models.HomePage>(json, e => { return {...e, }})
+}
+
+export async function get_Recipes_HomePage_Recipess_HomePage(source:Models.Recipes, page_index:number, page_size:number, id:number) : Promise<Models.HomePage> {
+  let res = await fetch(`/api/v1/Recipes/${source.Id}/HomePage_Recipess/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.HomePage
+}
+
+export async function get_Recipes_HomePage_Recipess_HomePage_by_id(source:Models.Recipes, id:number) : Promise<Models.HomePage> {
+  let res = await fetch(`/api/v1/Recipes/${source.Id}/HomePage_Recipess/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.HomePage
+}
+
+
 
 
 export async function create_Recipes() : Promise<Models.Recipes> {
@@ -472,11 +535,12 @@ export async function get_Recipes(id:number) : Promise<ItemWithEditable<Models.R
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return { Item: {...json.Item, CreatedDate: Moment.utc(json.Item.CreatedDate),  } as Models.Recipes,
-           Editable: !!json.Editable }
+           Editable: !!json.Editable, JustCreated:false }
 }
 
-export async function get_Recipess(page_index:number, page_size:number) : Promise<RawPage<Models.Recipes>> {
-  let res = await fetch(`/api/v1/Recipes?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_Recipess(page_index:number, page_size:number, search_query:string = null) : Promise<RawPage<Models.Recipes>> {
+  let res = await fetch(`/api/v1/Recipes?page_index=${page_index}&page_size=${page_size}${(search_query != null ? "&page_size=" + search_query : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return make_page<Models.Recipes>(json, e => { return {...e, }})
@@ -502,56 +566,6 @@ export async function update_Recipes_Picture(item:Models.Recipes, new_src:string
 
   
   
-export async function get_Lunch_Lunch_Recipess(source:Models.Lunch, page_index:number, page_size:number) : Promise<RawPage<Models.Recipes>> {
-  let res = await fetch(`/api/v1/Lunch/${source.Id}/Lunch_Recipess?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return make_page<Models.Recipes>(json, e => { return {...e, }})
-}
-
-export async function get_Lunch_Lunch_Recipess_Recipes(source:Models.Lunch, page_index:number, page_size:number, id:number) : Promise<Models.Recipes> {
-  let res = await fetch(`/api/v1/Lunch/${source.Id}/Lunch_Recipess/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Recipes
-}
-
-export async function get_Lunch_Lunch_Recipess_Recipes_by_id(source:Models.Lunch, id:number) : Promise<Models.Recipes> {
-  let res = await fetch(`/api/v1/Lunch/${source.Id}/Lunch_Recipess/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Recipes
-}
-
-
-export async function get_unlinked_Lunch_Lunch_Recipess(source:Models.Lunch, page_index:number, page_size:number) : Promise<RawPage<Models.Recipes>> {
-  let res = await fetch(`/api/v1/Lunch/${source.Id}/unlinked/Lunch_Recipess?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return make_page<Models.Recipes>(json, e => { return {...e, }})
-}
-
-    
-export async function create_linked_Lunch_Lunch_Recipess_Recipes(source:Models.Lunch) : Promise<Models.Recipes[]> {
-  let res = await fetch(`/api/v1/Lunch/${source.Id}/Lunch_Recipess_Recipes`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return json.map(e => { return {...e, CreatedDate: Moment.utc(e.CreatedDate),  }}) as Models.Recipes[]
-}
-
-export async function link_Lunch_Lunch_Recipess(source:Models.Lunch, target:Models.Recipes) : Promise<void> {
-  let res = await fetch(`/api/v1/Lunch/${source.Id}/Lunch_Recipess/${target.Id}`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  return
-}
-
-export async function unlink_Lunch_Lunch_Recipess(source:Models.Lunch, target:Models.Recipes) : Promise<void> {
-  let res = await fetch(`/api/v1/Lunch/${source.Id}/Lunch_Recipess/${target.Id}`, { method: 'delete', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  return
-}
-
-
 export async function create_Lunch() : Promise<Models.Lunch> {
   let res = await fetch(`/api/v1/Lunch/`,
     { method: 'post', credentials: 'include', headers:{'content-type': 'application/json',
@@ -579,11 +593,12 @@ export async function get_Lunch(id:number) : Promise<ItemWithEditable<Models.Lun
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return { Item: {...json.Item, CreatedDate: Moment.utc(json.Item.CreatedDate),  } as Models.Lunch,
-           Editable: !!json.Editable }
+           Editable: !!json.Editable, JustCreated:false }
 }
 
-export async function get_Lunches(page_index:number, page_size:number) : Promise<RawPage<Models.Lunch>> {
-  let res = await fetch(`/api/v1/Lunch?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_Lunches(page_index:number, page_size:number, search_query:string = null) : Promise<RawPage<Models.Lunch>> {
+  let res = await fetch(`/api/v1/Lunch?page_index=${page_index}&page_size=${page_size}${(search_query != null ? "&page_size=" + search_query : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return make_page<Models.Lunch>(json, e => { return {...e, }})
@@ -597,8 +612,8 @@ export async function get_Lunches(page_index:number, page_size:number) : Promise
 
   
   
-export async function get_User_User_Recipess(source:Models.User, page_index:number, page_size:number) : Promise<RawPage<Models.Recipes>> {
-  let res = await fetch(`/api/v1/User/${source.Id}/User_Recipess?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_User_User_Recipess(source:Models.User, page_index:number, page_size:number, query_string:string = null) : Promise<RawPage<Models.Recipes>> {
+  let res = await fetch(`/api/v1/User/${source.Id}/User_Recipess?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return make_page<Models.Recipes>(json, e => { return {...e, }})
@@ -674,11 +689,12 @@ export async function get_User(id:number) : Promise<ItemWithEditable<Models.User
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return { Item: {...json.Item, CreatedDate: Moment.utc(json.Item.CreatedDate),  } as Models.User,
-           Editable: !!json.Editable }
+           Editable: !!json.Editable, JustCreated:false }
 }
 
-export async function get_Users(page_index:number, page_size:number) : Promise<RawPage<Models.User>> {
-  let res = await fetch(`/api/v1/User?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_Users(page_index:number, page_size:number, search_query:string = null) : Promise<RawPage<Models.User>> {
+  let res = await fetch(`/api/v1/User?page_index=${page_index}&page_size=${page_size}${(search_query != null ? "&page_size=" + search_query : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return make_page<Models.User>(json, e => { return {...e, }})
@@ -690,7 +706,23 @@ export async function get_Users(page_index:number, page_size:number) : Promise<R
 
 
 
+export async function delete_User_sessions() : Promise<void> {
+  let res = await fetch(`/api/v1/User/DeleteSessions`,
+    { method: 'post', credentials: 'include',
+      headers:{'content-type': 'application/json',
+      'X-XSRF-TOKEN': (document.getElementsByName("__RequestVerificationToken")[0] as any).value } })
+  return
+}
 
+export async function active_User_sessions() : Promise<Array<{Item1: string, Item2: Date}>> {
+  let res = await fetch(`/api/v1/User/ActiveSessions`,
+    { method: 'post', credentials: 'include',
+      headers:{'content-type': 'application/json',
+      'X-XSRF-TOKEN': (document.getElementsByName("__RequestVerificationToken")[0] as any).value } })
+  if (!res.ok) return []
+  let json = await res.json()
+  return json as Array<{Item1: string, Item2: Date}>
+}
 
 export async function validate_User(username:string, email:string, email_confirmation:string) : Promise<boolean> {
   let res = await fetch(`/api/v1/User/Validate`,
@@ -759,8 +791,32 @@ export async function reset_User_password(username:string, email:string) : Promi
     
   
   
-export async function get_HomePage_HomePage_Categoriess(source:Models.HomePage, page_index:number, page_size:number) : Promise<RawPage<Models.Categories>> {
-  let res = await fetch(`/api/v1/HomePage/${source.Id}/HomePage_Categoriess?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_HomePage_HomePage_Recipess(source:Models.HomePage, page_index:number, page_size:number, query_string:string = null) : Promise<RawPage<Models.Recipes>> {
+  let res = await fetch(`/api/v1/HomePage/${source.Id}/HomePage_Recipess?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return make_page<Models.Recipes>(json, e => { return {...e, }})
+}
+
+export async function get_HomePage_HomePage_Recipess_Recipes(source:Models.HomePage, page_index:number, page_size:number, id:number) : Promise<Models.Recipes> {
+  let res = await fetch(`/api/v1/HomePage/${source.Id}/HomePage_Recipess/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Recipes
+}
+
+export async function get_HomePage_HomePage_Recipess_Recipes_by_id(source:Models.HomePage, id:number) : Promise<Models.Recipes> {
+  let res = await fetch(`/api/v1/HomePage/${source.Id}/HomePage_Recipess/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Recipes
+}
+
+
+
+
+export async function get_HomePage_HomePage_Categoriess(source:Models.HomePage, page_index:number, page_size:number, query_string:string = null) : Promise<RawPage<Models.Categories>> {
+  let res = await fetch(`/api/v1/HomePage/${source.Id}/HomePage_Categoriess?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return make_page<Models.Categories>(json, e => { return {...e, }})
@@ -810,11 +866,12 @@ export async function get_HomePage(id:number) : Promise<ItemWithEditable<Models.
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return { Item: {...json.Item, CreatedDate: Moment.utc(json.Item.CreatedDate),  } as Models.HomePage,
-           Editable: !!json.Editable }
+           Editable: !!json.Editable, JustCreated:false }
 }
 
-export async function get_HomePages(page_index:number, page_size:number) : Promise<RawPage<Models.HomePage>> {
-  let res = await fetch(`/api/v1/HomePage?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_HomePages(page_index:number, page_size:number, search_query:string = null) : Promise<RawPage<Models.HomePage>> {
+  let res = await fetch(`/api/v1/HomePage?page_index=${page_index}&page_size=${page_size}${(search_query != null ? "&page_size=" + search_query : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return make_page<Models.HomePage>(json, e => { return {...e, }})
@@ -855,11 +912,12 @@ export async function get_Admin(id:number) : Promise<ItemWithEditable<Models.Adm
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return { Item: {...json.Item, CreatedDate: Moment.utc(json.Item.CreatedDate),  } as Models.Admin,
-           Editable: !!json.Editable }
+           Editable: !!json.Editable, JustCreated:false }
 }
 
-export async function get_Admins(page_index:number, page_size:number) : Promise<RawPage<Models.Admin>> {
-  let res = await fetch(`/api/v1/Admin?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_Admins(page_index:number, page_size:number, search_query:string = null) : Promise<RawPage<Models.Admin>> {
+  let res = await fetch(`/api/v1/Admin?page_index=${page_index}&page_size=${page_size}${(search_query != null ? "&page_size=" + search_query : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return make_page<Models.Admin>(json, e => { return {...e, }})
@@ -871,7 +929,23 @@ export async function get_Admins(page_index:number, page_size:number) : Promise<
 
 
 
+export async function delete_Admin_sessions() : Promise<void> {
+  let res = await fetch(`/api/v1/Admin/DeleteSessions`,
+    { method: 'post', credentials: 'include',
+      headers:{'content-type': 'application/json',
+      'X-XSRF-TOKEN': (document.getElementsByName("__RequestVerificationToken")[0] as any).value } })
+  return
+}
 
+export async function active_Admin_sessions() : Promise<Array<{Item1: string, Item2: Date}>> {
+  let res = await fetch(`/api/v1/Admin/ActiveSessions`,
+    { method: 'post', credentials: 'include',
+      headers:{'content-type': 'application/json',
+      'X-XSRF-TOKEN': (document.getElementsByName("__RequestVerificationToken")[0] as any).value } })
+  if (!res.ok) return []
+  let json = await res.json()
+  return json as Array<{Item1: string, Item2: Date}>
+}
 
 export async function validate_Admin(username:string, email:string, email_confirmation:string) : Promise<boolean> {
   let res = await fetch(`/api/v1/Admin/Validate`,
@@ -940,56 +1014,6 @@ export async function reset_Admin_password(username:string, email:string) : Prom
     
   
   
-export async function get_Dinner_Dinner_Recipess(source:Models.Dinner, page_index:number, page_size:number) : Promise<RawPage<Models.Recipes>> {
-  let res = await fetch(`/api/v1/Dinner/${source.Id}/Dinner_Recipess?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return make_page<Models.Recipes>(json, e => { return {...e, }})
-}
-
-export async function get_Dinner_Dinner_Recipess_Recipes(source:Models.Dinner, page_index:number, page_size:number, id:number) : Promise<Models.Recipes> {
-  let res = await fetch(`/api/v1/Dinner/${source.Id}/Dinner_Recipess/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Recipes
-}
-
-export async function get_Dinner_Dinner_Recipess_Recipes_by_id(source:Models.Dinner, id:number) : Promise<Models.Recipes> {
-  let res = await fetch(`/api/v1/Dinner/${source.Id}/Dinner_Recipess/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Recipes
-}
-
-
-export async function get_unlinked_Dinner_Dinner_Recipess(source:Models.Dinner, page_index:number, page_size:number) : Promise<RawPage<Models.Recipes>> {
-  let res = await fetch(`/api/v1/Dinner/${source.Id}/unlinked/Dinner_Recipess?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return make_page<Models.Recipes>(json, e => { return {...e, }})
-}
-
-    
-export async function create_linked_Dinner_Dinner_Recipess_Recipes(source:Models.Dinner) : Promise<Models.Recipes[]> {
-  let res = await fetch(`/api/v1/Dinner/${source.Id}/Dinner_Recipess_Recipes`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return json.map(e => { return {...e, CreatedDate: Moment.utc(e.CreatedDate),  }}) as Models.Recipes[]
-}
-
-export async function link_Dinner_Dinner_Recipess(source:Models.Dinner, target:Models.Recipes) : Promise<void> {
-  let res = await fetch(`/api/v1/Dinner/${source.Id}/Dinner_Recipess/${target.Id}`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  return
-}
-
-export async function unlink_Dinner_Dinner_Recipess(source:Models.Dinner, target:Models.Recipes) : Promise<void> {
-  let res = await fetch(`/api/v1/Dinner/${source.Id}/Dinner_Recipess/${target.Id}`, { method: 'delete', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  return
-}
-
-
 export async function create_Dinner() : Promise<Models.Dinner> {
   let res = await fetch(`/api/v1/Dinner/`,
     { method: 'post', credentials: 'include', headers:{'content-type': 'application/json',
@@ -1017,11 +1041,12 @@ export async function get_Dinner(id:number) : Promise<ItemWithEditable<Models.Di
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return { Item: {...json.Item, CreatedDate: Moment.utc(json.Item.CreatedDate),  } as Models.Dinner,
-           Editable: !!json.Editable }
+           Editable: !!json.Editable, JustCreated:false }
 }
 
-export async function get_Dinners(page_index:number, page_size:number) : Promise<RawPage<Models.Dinner>> {
-  let res = await fetch(`/api/v1/Dinner?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_Dinners(page_index:number, page_size:number, search_query:string = null) : Promise<RawPage<Models.Dinner>> {
+  let res = await fetch(`/api/v1/Dinner?page_index=${page_index}&page_size=${page_size}${(search_query != null ? "&page_size=" + search_query : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return make_page<Models.Dinner>(json, e => { return {...e, }})
@@ -1062,11 +1087,12 @@ export async function get_Mediterranean(id:number) : Promise<ItemWithEditable<Mo
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return { Item: {...json.Item, CreatedDate: Moment.utc(json.Item.CreatedDate),  } as Models.Mediterranean,
-           Editable: !!json.Editable }
+           Editable: !!json.Editable, JustCreated:false }
 }
 
-export async function get_Mediterraneans(page_index:number, page_size:number) : Promise<RawPage<Models.Mediterranean>> {
-  let res = await fetch(`/api/v1/Mediterranean?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_Mediterraneans(page_index:number, page_size:number, search_query:string = null) : Promise<RawPage<Models.Mediterranean>> {
+  let res = await fetch(`/api/v1/Mediterranean?page_index=${page_index}&page_size=${page_size}${(search_query != null ? "&page_size=" + search_query : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return make_page<Models.Mediterranean>(json, e => { return {...e, }})
@@ -1080,56 +1106,6 @@ export async function get_Mediterraneans(page_index:number, page_size:number) : 
 
   
   
-export async function get_Breakfast_Breakfast_Recipess(source:Models.Breakfast, page_index:number, page_size:number) : Promise<RawPage<Models.Recipes>> {
-  let res = await fetch(`/api/v1/Breakfast/${source.Id}/Breakfast_Recipess?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return make_page<Models.Recipes>(json, e => { return {...e, }})
-}
-
-export async function get_Breakfast_Breakfast_Recipess_Recipes(source:Models.Breakfast, page_index:number, page_size:number, id:number) : Promise<Models.Recipes> {
-  let res = await fetch(`/api/v1/Breakfast/${source.Id}/Breakfast_Recipess/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Recipes
-}
-
-export async function get_Breakfast_Breakfast_Recipess_Recipes_by_id(source:Models.Breakfast, id:number) : Promise<Models.Recipes> {
-  let res = await fetch(`/api/v1/Breakfast/${source.Id}/Breakfast_Recipess/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Recipes
-}
-
-
-export async function get_unlinked_Breakfast_Breakfast_Recipess(source:Models.Breakfast, page_index:number, page_size:number) : Promise<RawPage<Models.Recipes>> {
-  let res = await fetch(`/api/v1/Breakfast/${source.Id}/unlinked/Breakfast_Recipess?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return make_page<Models.Recipes>(json, e => { return {...e, }})
-}
-
-    
-export async function create_linked_Breakfast_Breakfast_Recipess_Recipes(source:Models.Breakfast) : Promise<Models.Recipes[]> {
-  let res = await fetch(`/api/v1/Breakfast/${source.Id}/Breakfast_Recipess_Recipes`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return json.map(e => { return {...e, CreatedDate: Moment.utc(e.CreatedDate),  }}) as Models.Recipes[]
-}
-
-export async function link_Breakfast_Breakfast_Recipess(source:Models.Breakfast, target:Models.Recipes) : Promise<void> {
-  let res = await fetch(`/api/v1/Breakfast/${source.Id}/Breakfast_Recipess/${target.Id}`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  return
-}
-
-export async function unlink_Breakfast_Breakfast_Recipess(source:Models.Breakfast, target:Models.Recipes) : Promise<void> {
-  let res = await fetch(`/api/v1/Breakfast/${source.Id}/Breakfast_Recipess/${target.Id}`, { method: 'delete', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  return
-}
-
-
 export async function create_Breakfast() : Promise<Models.Breakfast> {
   let res = await fetch(`/api/v1/Breakfast/`,
     { method: 'post', credentials: 'include', headers:{'content-type': 'application/json',
@@ -1157,11 +1133,12 @@ export async function get_Breakfast(id:number) : Promise<ItemWithEditable<Models
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return { Item: {...json.Item, CreatedDate: Moment.utc(json.Item.CreatedDate),  } as Models.Breakfast,
-           Editable: !!json.Editable }
+           Editable: !!json.Editable, JustCreated:false }
 }
 
-export async function get_Breakfasts(page_index:number, page_size:number) : Promise<RawPage<Models.Breakfast>> {
-  let res = await fetch(`/api/v1/Breakfast?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_Breakfasts(page_index:number, page_size:number, search_query:string = null) : Promise<RawPage<Models.Breakfast>> {
+  let res = await fetch(`/api/v1/Breakfast?page_index=${page_index}&page_size=${page_size}${(search_query != null ? "&page_size=" + search_query : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return make_page<Models.Breakfast>(json, e => { return {...e, }})
@@ -1175,8 +1152,8 @@ export async function get_Breakfasts(page_index:number, page_size:number) : Prom
 
   
   
-export async function get_Categories_Categories_Meals(source:Models.Categories, page_index:number, page_size:number) : Promise<RawPage<Models.Meal>> {
-  let res = await fetch(`/api/v1/Categories/${source.Id}/Categories_Meals?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_Categories_Categories_Meals(source:Models.Categories, page_index:number, page_size:number, query_string:string = null) : Promise<RawPage<Models.Meal>> {
+  let res = await fetch(`/api/v1/Categories/${source.Id}/Categories_Meals?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return make_page<Models.Meal>(json, e => { return {...e, }})
@@ -1259,8 +1236,8 @@ export async function unlink_Categories_Categories_Meals(source:Models.Categorie
 }
 
 
-export async function get_Categories_HomePage_Categoriess(source:Models.Categories, page_index:number, page_size:number) : Promise<RawPage<Models.HomePage>> {
-  let res = await fetch(`/api/v1/Categories/${source.Id}/HomePage_Categoriess?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_Categories_HomePage_Categoriess(source:Models.Categories, page_index:number, page_size:number, query_string:string = null) : Promise<RawPage<Models.HomePage>> {
+  let res = await fetch(`/api/v1/Categories/${source.Id}/HomePage_Categoriess?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return make_page<Models.HomePage>(json, e => { return {...e, }})
@@ -1309,11 +1286,12 @@ export async function get_Categories(id:number) : Promise<ItemWithEditable<Model
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return { Item: {...json.Item, CreatedDate: Moment.utc(json.Item.CreatedDate),  } as Models.Categories,
-           Editable: !!json.Editable }
+           Editable: !!json.Editable, JustCreated:false }
 }
 
-export async function get_Categoriess(page_index:number, page_size:number) : Promise<RawPage<Models.Categories>> {
-  let res = await fetch(`/api/v1/Categories?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_Categoriess(page_index:number, page_size:number, search_query:string = null) : Promise<RawPage<Models.Categories>> {
+  let res = await fetch(`/api/v1/Categories?page_index=${page_index}&page_size=${page_size}${(search_query != null ? "&page_size=" + search_query : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return make_page<Models.Categories>(json, e => { return {...e, }})
@@ -1327,6 +1305,56 @@ export async function get_Categoriess(page_index:number, page_size:number) : Pro
 
   
   
+export async function get_Rating_Recipes_Ratings(source:Models.Rating, page_index:number, page_size:number, query_string:string = null) : Promise<RawPage<Models.Recipes>> {
+  let res = await fetch(`/api/v1/Rating/${source.Id}/Recipes_Ratings?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return make_page<Models.Recipes>(json, e => { return {...e, }})
+}
+
+export async function get_Rating_Recipes_Ratings_Recipes(source:Models.Rating, page_index:number, page_size:number, id:number) : Promise<Models.Recipes> {
+  let res = await fetch(`/api/v1/Rating/${source.Id}/Recipes_Ratings/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Recipes
+}
+
+export async function get_Rating_Recipes_Ratings_Recipes_by_id(source:Models.Rating, id:number) : Promise<Models.Recipes> {
+  let res = await fetch(`/api/v1/Rating/${source.Id}/Recipes_Ratings/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Recipes
+}
+
+
+export async function get_unlinked_Rating_Recipes_Ratings(source:Models.Rating, page_index:number, page_size:number) : Promise<RawPage<Models.Recipes>> {
+  let res = await fetch(`/api/v1/Rating/${source.Id}/unlinked/Recipes_Ratings?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return make_page<Models.Recipes>(json, e => { return {...e, }})
+}
+
+    
+export async function create_linked_Rating_Recipes_Ratings_Recipes(source:Models.Rating) : Promise<Models.Recipes[]> {
+  let res = await fetch(`/api/v1/Rating/${source.Id}/Recipes_Ratings_Recipes`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return json.map(e => { return {...e, CreatedDate: Moment.utc(e.CreatedDate),  }}) as Models.Recipes[]
+}
+
+export async function link_Rating_Recipes_Ratings(source:Models.Rating, target:Models.Recipes) : Promise<void> {
+  let res = await fetch(`/api/v1/Rating/${source.Id}/Recipes_Ratings/${target.Id}`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  return
+}
+
+export async function unlink_Rating_Recipes_Ratings(source:Models.Rating, target:Models.Recipes) : Promise<void> {
+  let res = await fetch(`/api/v1/Rating/${source.Id}/Recipes_Ratings/${target.Id}`, { method: 'delete', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  return
+}
+
+
 export async function create_Rating() : Promise<Models.Rating> {
   let res = await fetch(`/api/v1/Rating/`,
     { method: 'post', credentials: 'include', headers:{'content-type': 'application/json',
@@ -1354,11 +1382,12 @@ export async function get_Rating(id:number) : Promise<ItemWithEditable<Models.Ra
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return { Item: {...json.Item, CreatedDate: Moment.utc(json.Item.CreatedDate),  } as Models.Rating,
-           Editable: !!json.Editable }
+           Editable: !!json.Editable, JustCreated:false }
 }
 
-export async function get_Ratings(page_index:number, page_size:number) : Promise<RawPage<Models.Rating>> {
-  let res = await fetch(`/api/v1/Rating?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+export async function get_Ratings(page_index:number, page_size:number, search_query:string = null) : Promise<RawPage<Models.Rating>> {
+  let res = await fetch(`/api/v1/Rating?page_index=${page_index}&page_size=${page_size}${(search_query != null ? "&page_size=" + search_query : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return make_page<Models.Rating>(json, e => { return {...e, }})

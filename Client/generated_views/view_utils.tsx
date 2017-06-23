@@ -76,7 +76,7 @@ export class AuthenticationMenu extends React.Component<AuthenticationMenuProps,
                                 this.props.set_User(e))
                             ).catch(error("Login error. Please check your username or email.")),
                           reset_action:(username:string) =>
-                            Api.reset_User_password(username, username).then(() => this.setState({...this.state, kind:"menu"})).catch(error("Error: please check your username or email."))
+                            Api.reset_User_password(username, username).then(() => location.reload() || this.setState({...this.state, kind:"menu"})).catch(error("Error: please check your username or email."))
                         })
                       }
                       }>
@@ -91,7 +91,7 @@ export class AuthenticationMenu extends React.Component<AuthenticationMenuProps,
                                 this.props.set_Admin(e))
                             ).catch(error("Login error. Please check your username or email.")),
                           reset_action:(username:string) =>
-                            Api.reset_Admin_password(username, username).then(() => this.setState({...this.state, kind:"menu"})).catch(error("Error: please check your username or email."))
+                            Api.reset_Admin_password(username, username).then(() => location.reload() || this.setState({...this.state, kind:"menu"})).catch(error("Error: please check your username or email."))
                         })
                       }
                       }>
@@ -197,11 +197,12 @@ export class AuthenticationMenu extends React.Component<AuthenticationMenuProps,
             </button>
             <a className="authentication-menu__forgot-password"
                       onClick={() => {
-                        this.state.kind == "logging-in" &&
-                        this.setState({...this.state,
+                        if (this.state.kind != "logging-in") return
+                        let new_state:AuthenticationMenuState={...this.state,
                           kind:"resetting-password",
                           action:this.state.reset_action
-                        })
+                        }
+                        this.setState(new_state)
                       }
                       }>
               {i18next.t('Forgotten password')}
@@ -386,8 +387,11 @@ export type EntityComponentProps<T> = {
 }
 
 export type PaginatedItems<T> = {
+  IdsInServerOrder:Immutable.List<number>
   Items:Immutable.Map<number,T>
   Editable:Immutable.Map<number,boolean>
+  JustCreated:Immutable.Map<number,boolean>
+  SearchQuery:string
   PageIndex:number
   PageSize:number
   NumPages:number
@@ -396,10 +400,13 @@ export type PaginatedItems<T> = {
   CanDelete:boolean
 }
 
-export function raw_page_to_paginated_items<T,U>(f:(x:T)=>U,x:{Items:Array<{Item:T&{Id:number}, Editable:boolean}>,PageIndex:number,PageSize:number,NumPages:number,TotalCount:number,CanCreate:boolean,CanDelete:boolean}) : PaginatedItems<U&{Id:number}> {
+export function raw_page_to_paginated_items<T,U>(f:(x:T, just_created:boolean)=>U,x:{Items:Array<{Item:T&{Id:number}, Editable:boolean, JustCreated:boolean}>,SearchQuery:string,PageIndex:number,PageSize:number,NumPages:number,TotalCount:number,CanCreate:boolean,CanDelete:boolean}) : PaginatedItems<U&{Id:number}> {
   return {
-    Items:Immutable.Map<number,U&{Id:number}>(x.Items.map(e => [e.Item.Id, f(e.Item)])),
+    IdsInServerOrder:Immutable.List<number>(x.Items.map(e => e.Item.Id)),
+    Items:Immutable.Map<number,U&{Id:number}>(x.Items.map(e => [e.Item.Id, f(e.Item, e.JustCreated)])),
     Editable:Immutable.Map<number,boolean>(x.Items.map(e => [e.Item.Id, e.Editable])),
+    JustCreated:Immutable.Map<number,boolean>(x.Items.map(e => [e.Item.Id, e.JustCreated])),
+    SearchQuery:x.SearchQuery,
     PageIndex:x.PageIndex,
     PageSize:x.PageSize,
     NumPages:x.NumPages,
@@ -591,7 +598,7 @@ export class PageManager extends React.Component<PageManagerProps, PageManagerSt
     this.keep_alive_thread = setInterval(() => {
       if (this.props.current_User)
         KeepAliveApi.ping_as_User().then(() =>
-          this.setState({...this.state, connection:"connected" })
+          this.state.connection != "connected" && this.setState({...this.state, connection:"connected" })
         ).catch(() => {
           if (this.state.connection == "maybe-disconnected1")
             this.setState({...this.state, connection:"maybe-disconnected2" })
@@ -606,7 +613,7 @@ export class PageManager extends React.Component<PageManagerProps, PageManagerSt
       
       if (this.props.current_Admin)
         KeepAliveApi.ping_as_Admin().then(() =>
-          this.setState({...this.state, connection:"connected" })
+          this.state.connection != "connected" && this.setState({...this.state, connection:"connected" })
         ).catch(() => {
           if (this.state.connection == "maybe-disconnected1")
             this.setState({...this.state, connection:"maybe-disconnected2" })
