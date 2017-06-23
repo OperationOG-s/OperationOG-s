@@ -345,44 +345,28 @@
         
       },
       {
-        "source": "Dinner",
+        "source": "Meal",
         "target": "Recipes",
         "sort": "N-N",
         
         "seeds": [
-            { "DinnerId": 3, "RecipesId": 4 },
-            { "DinnerId": 3, "RecipesId": 11 },
-            { "DinnerId": 3, "RecipesId": 12 },
-            { "DinnerId": 3, "RecipesId": 15 },
-            { "DinnerId": 3, "RecipesId": 10 },
-            { "DinnerId": 3, "RecipesId": 9 },
-            { "DinnerId": 3, "RecipesId": 7 },
-            { "DinnerId": 3, "RecipesId": 5 }  
-            ]},
-    {
-        "source": "Breakfast",
-        "target": "Recipes",
-        "sort": "N-N",
-        
-        
-        "seeds": [
-            { "BreakfastId": 1, "RecipesId": 8 },
-            { "BreakfastId": 1, "RecipesId": 11 },
-            { "BreakfastId": 1, "RecipesId": 13 },
-            { "BreakfastId": 1, "RecipesId": 14 },
-            { "BreakfastId": 1, "RecipesId": 15 },
-            { "BreakfastId": 1, "RecipesId": 9 }
-             
-            ]},
-      {
-        "source": "Lunch",
-        "target": "Recipes",
-        "sort": "N-N",
-        
-        "seeds": [
-            { "LunchId": 2, "RecipesId": 6 },
-            { "LunchId": 2, "RecipesId": 16 },
-            { "LunchId": 2, "RecipesId": 17 }
+            { "MealId": 3, "RecipesId": 4 },
+            { "MealId": 3, "RecipesId": 11 },
+            { "MealId": 3, "RecipesId": 12 },
+            { "MealId": 3, "RecipesId": 15 },
+            { "MealId": 3, "RecipesId": 10 },
+            { "MealId": 3, "RecipesId": 9 },
+            { "MealId": 3, "RecipesId": 7 },
+            { "MealId": 3, "RecipesId": 5 } , 
+            { "MealId": 1, "RecipesId": 8 },
+            { "MealId": 1, "RecipesId": 11 },
+            { "MealId": 1, "RecipesId": 13 },
+            { "MealId": 1, "RecipesId": 14 },
+            { "MealId": 1, "RecipesId": 15 },
+            { "MealId": 1, "RecipesId": 9 },
+            { "MealId": 2, "RecipesId": 6 },
+            { "MealId": 2, "RecipesId": 16 },
+            { "MealId": 2, "RecipesId": 17 }
           
             ]},
         
