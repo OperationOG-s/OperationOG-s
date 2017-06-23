@@ -383,7 +383,7 @@
                 "target":"Recipes",
                 "sort":"1-N"
             },
-            {
+            { 
                 "source": "HomePage",
                 "target":"Categories",
                 "sort":"1-N",
