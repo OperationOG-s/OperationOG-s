@@ -14,58 +14,58 @@ import * as i18next from 'i18next'
 import * as Moment from 'moment'
 import * as HomePageViews from './HomePage'
 import * as MealViews from './Meal'
+import * as CustomViews from '../custom_views'
 
-
-export function Asian_Categories_Meal_can_create(self:AsianContext) {
+export function Asian_Categorie_Meal_can_create(self:AsianContext) {
   let state = self.state()
   return state.Meal == "loading" ? false : state.Meal.CanCreate
 }
-export function Asian_HomePage_Categories_can_create(self:AsianContext) {
+export function Asian_HomePage_Categorie_can_create(self:AsianContext) {
   let state = self.state()
   return state.HomePage == "loading" ? false : state.HomePage.CanCreate
 }
-export function Asian_Categories_Meal_can_delete(self:AsianContext) {
+export function Asian_Categorie_Meal_can_delete(self:AsianContext) {
   let state = self.state()
   return state.Meal == "loading" ? false : state.Meal.CanDelete
 }
-export function Asian_HomePage_Categories_can_delete(self:AsianContext) {
+export function Asian_HomePage_Categorie_can_delete(self:AsianContext) {
   let state = self.state()
   return state.HomePage == "loading" ? false : state.HomePage.CanDelete
 }
-export function Asian_Categories_Meal_page_index(self:AsianContext) {
+export function Asian_Categorie_Meal_page_index(self:AsianContext) {
   let state = self.state()
   return state.Meal == "loading" ? 0 : state.Meal.PageIndex
 }
-export function Asian_HomePage_Categories_page_index(self:AsianContext) {
+export function Asian_HomePage_Categorie_page_index(self:AsianContext) {
   let state = self.state()
   return state.HomePage == "loading" ? 0 : state.HomePage.PageIndex
 }
-export function Asian_Categories_Meal_page_size(self:AsianContext) {
+export function Asian_Categorie_Meal_page_size(self:AsianContext) {
   let state = self.state()
   return state.Meal == "loading" ? 25 : state.Meal.PageSize
 }
-export function Asian_HomePage_Categories_page_size(self:AsianContext) {
+export function Asian_HomePage_Categorie_page_size(self:AsianContext) {
   let state = self.state()
   return state.HomePage == "loading" ? 25 : state.HomePage.PageSize
 }
-export function Asian_Categories_Meal_search_query(self:AsianContext) {
+export function Asian_Categorie_Meal_search_query(self:AsianContext) {
   let state = self.state()
   return state.Meal == "loading" ? null : state.Meal.SearchQuery
 }
-export function Asian_HomePage_Categories_search_query(self:AsianContext) {
+export function Asian_HomePage_Categorie_search_query(self:AsianContext) {
   let state = self.state()
   return state.HomePage == "loading" ? null : state.HomePage.SearchQuery
 }
-export function Asian_Categories_Meal_num_pages(self:AsianContext) {
+export function Asian_Categorie_Meal_num_pages(self:AsianContext) {
   let state = self.state()
   return state.Meal == "loading" ? 1 : state.Meal.NumPages
 }
-export function Asian_HomePage_Categories_num_pages(self:AsianContext) {
+export function Asian_HomePage_Categorie_num_pages(self:AsianContext) {
   let state = self.state()
   return state.HomePage == "loading" ? 1 : state.HomePage.NumPages
 }
 
-export function load_relation_Asian_Categories_Meal(self:AsianContext, force_first_page:boolean, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
+export function load_relation_Asian_Categorie_Meal(self:AsianContext, force_first_page:boolean, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
   let state = self.state()
   let prelude = force_first_page && state.Meal != "loading" ?
     (c:() => void) => state.Meal != "loading" && self.setState({
@@ -76,7 +76,7 @@ export function load_relation_Asian_Categories_Meal(self:AsianContext, force_fir
     (c:() => void) => c()
   Permissions.can_view_Meal(current_User, current_Admin) ?
     prelude(() =>
-      Api.get_Categories_Categories_Meals(self.props.entity, Asian_Categories_Meal_page_index(self), Asian_Categories_Meal_page_size(self), Asian_Categories_Meal_search_query(self)).then(Meals =>
+      Api.get_Categorie_Categorie_Meals(self.props.entity, Asian_Categorie_Meal_page_index(self), Asian_Categorie_Meal_page_size(self), Asian_Categorie_Meal_search_query(self)).then(Meals =>
         self.setState({...self.state(), update_count:self.state().update_count+1,
             Meal:Utils.raw_page_to_paginated_items<Models.Meal, Utils.EntityAndSize<Models.Meal> & { shown_relation:string }>((i, i_just_created) => {
               let state = self.state()
@@ -95,7 +95,7 @@ export function load_relation_Asian_Categories_Meal(self:AsianContext, force_fir
       prelude(() => callback && callback())
 }
 
-export function load_relation_Asian_HomePage_Categories(self:AsianContext, force_first_page:boolean, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
+export function load_relation_Asian_HomePage_Categorie(self:AsianContext, force_first_page:boolean, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
   let state = self.state()
   let prelude = force_first_page && state.HomePage != "loading" ?
     (c:() => void) => state.HomePage != "loading" && self.setState({
@@ -106,7 +106,7 @@ export function load_relation_Asian_HomePage_Categories(self:AsianContext, force
     (c:() => void) => c()
   Permissions.can_view_HomePage(current_User, current_Admin) ?
     prelude(() =>
-      Api.get_Categories_HomePage_Categoriess(self.props.entity, Asian_HomePage_Categories_page_index(self), Asian_HomePage_Categories_page_size(self), Asian_HomePage_Categories_search_query(self)).then(HomePages =>
+      Api.get_Categorie_HomePage_Categories(self.props.entity, Asian_HomePage_Categorie_page_index(self), Asian_HomePage_Categorie_page_size(self), Asian_HomePage_Categorie_search_query(self)).then(HomePages =>
         self.setState({...self.state(), update_count:self.state().update_count+1,
             HomePage:Utils.raw_page_to_paginated_items<Models.HomePage, Utils.EntityAndSize<Models.HomePage> & { shown_relation:string }>((i, i_just_created) => {
               let state = self.state()
@@ -126,8 +126,8 @@ export function load_relation_Asian_HomePage_Categories(self:AsianContext, force
 }
 
 export function load_relations_Asian(self, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
-  load_relation_Asian_HomePage_Categories(self, false, self.props.current_User, self.props.current_Admin, 
-        () => load_relation_Asian_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin, 
+  load_relation_Asian_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin, 
+        () => load_relation_Asian_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin, 
         () => callback && callback()))
 }
 
@@ -212,31 +212,31 @@ export function render_menu_Asian(self:AsianContext) {
             }
           <div className="menu_entries">
           
-            {!Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ? null :
-                  <div className={`menu_entry${self.props.shown_relation == "HomePage_Recipes" ? " active" : ""}`}>
+            {!Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
+                  <div className={`menu_entry${self.props.shown_relation == "HomePage_Recipe" ? " active" : ""}`}>
                     <a onClick={() =>
                         {
                             Api.get_HomePages(0, 1).then(e =>
                               e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id),
-                                () => self.props.set_shown_relation("HomePage_Recipes"))
+                                () => self.props.set_shown_relation("HomePage_Recipe"))
                             )
                         }
                       }>
-                      {i18next.t('HomePage_Recipess')}
+                      {i18next.t('HomePage_Recipes')}
                     </a>
                   </div>
                 }
-        {!Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin) ? null :
-                  <div className={`menu_entry${self.props.shown_relation == "HomePage_Categories" ? " active" : ""}`}>
+        {!Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
+                  <div className={`menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}`}>
                     <a onClick={() =>
                         {
                             Api.get_HomePages(0, 1).then(e =>
                               e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id),
-                                () => self.props.set_shown_relation("HomePage_Categories"))
+                                () => self.props.set_shown_relation("HomePage_Categorie"))
                             )
                         }
                       }>
-                      {i18next.t('HomePage_Categoriess')}
+                      {i18next.t('HomePage_Categories')}
                     </a>
                   </div>
                 }
@@ -261,14 +261,14 @@ export function render_local_menu_Asian(self:AsianContext) {
             </div>
           
             {!Permissions.can_view_Meal(self.props.current_User, self.props.current_Admin) ? null :
-                  <div key={"Categories_Meal"} className={`local_menu_entry${self.props.shown_relation == "Categories_Meal" ? " local_menu_entry--active" : ""}`}>
+                  <div key={"Categorie_Meal"} className={`local_menu_entry${self.props.shown_relation == "Categorie_Meal" ? " local_menu_entry--active" : ""}`}>
                     <a onClick={() =>
-                      load_relation_Asian_Categories_Meal(self,
+                      load_relation_Asian_Categorie_Meal(self,
                         false,
                         self.props.current_User, self.props.current_Admin, 
-                        () => self.props.set_shown_relation("Categories_Meal"))
+                        () => self.props.set_shown_relation("Categorie_Meal"))
                     }>
-                      {i18next.t('Categories_Meals')}
+                      {i18next.t('Categorie_Meals')}
                     </a>
                   </div>
                 }  
@@ -401,14 +401,14 @@ export function render_large_Asian(self:AsianContext) {
 }
 
 
-export function render_Asian_Categories_Meal(self:AsianContext, context:"presentation_structure"|"default") {
-  if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Categories_Meal") || !Permissions.can_view_Meal(self.props.current_User, self.props.current_Admin))
+export function render_Asian_Categorie_Meal(self:AsianContext, context:"presentation_structure"|"default") {
+  if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Categorie_Meal") || !Permissions.can_view_Meal(self.props.current_User, self.props.current_Admin))
     return null
   let state = self.state()
   return <div>
     
-    { List.render_relation("asian_categories_meal",
-   "Categories",
+    { List.render_relation("asian_categorie_meal",
+   "Categorie",
    "Meal",
    "Meals",
    self.props.nesting_depth > 0,
@@ -419,8 +419,8 @@ export function render_Asian_Categories_Meal(self:AsianContext, context:"present
       state.Meal != "loading" ?
         state.Meal.IdsInServerOrder.map(id => state.Meal != "loading" && state.Meal.Items.get(id)):
         state.Meal,
-      Asian_Categories_Meal_page_index(self),
-      Asian_Categories_Meal_num_pages(self),
+      Asian_Categorie_Meal_page_index(self),
+      Asian_Categorie_Meal_num_pages(self),
       new_page_index => {
           let state = self.state()
           state.Meal != "loading" &&
@@ -430,7 +430,7 @@ export function render_Asian_Categories_Meal(self:AsianContext, context:"present
               ...state.Meal,
               PageIndex:new_page_index
             }
-          }, () =>  load_relation_Asian_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin))
+          }, () =>  load_relation_Asian_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin))
         },
       (i,_) => {
           let i_id = i.element.Id
@@ -450,9 +450,9 @@ export function render_Asian_Categories_Meal(self:AsianContext, context:"present
                   size: i.size,
                   allow_maximisation:true,
                   allow_fullscreen:true,
-                  mode:self.props.mode == "edit" && (Permissions.can_edit_Categories_Meal(self.props.current_User, self.props.current_Admin)
-                        || Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin)
-                        || Permissions.can_delete_Categories_Meal(self.props.current_User, self.props.current_Admin)) ?
+                  mode:self.props.mode == "edit" && (Permissions.can_edit_Categorie_Meal(self.props.current_User, self.props.current_Admin)
+                        || Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin)
+                        || Permissions.can_delete_Categorie_Meal(self.props.current_User, self.props.current_Admin)) ?
                     self.props.mode : "view",
                   is_editable:state.Meal != "loading" && state.Meal.Editable.get(i_id),
                   shown_relation:i.shown_relation,
@@ -500,11 +500,11 @@ export function render_Asian_Categories_Meal(self:AsianContext, context:"present
                     }, callback)
                   },
                   delete: undefined,
-                  unlink: !Permissions.can_delete_Categories_Meal(self.props.current_User, self.props.current_Admin) ?
+                  unlink: !Permissions.can_delete_Categorie_Meal(self.props.current_User, self.props.current_Admin) ?
                     null
                     :
-                    () => confirm(i18next.t('Are you sure?')) && Api.unlink_Categories_Categories_Meals(self.props.entity, i.element).then(() =>
-                      load_relation_Asian_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin))
+                    () => confirm(i18next.t('Are you sure?')) && Api.unlink_Categorie_Categorie_Meals(self.props.entity, i.element).then(() =>
+                      load_relation_Asian_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin))
                 })
               }
             </div>
@@ -512,8 +512,8 @@ export function render_Asian_Categories_Meal(self:AsianContext, context:"present
         },
       () =>
         <div>
-          {Permissions.can_create_Meal(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin) && Asian_Categories_Meal_can_create(self) ? render_new_Asian_Categories_Meal(self) : null}
-          {Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin) ? render_add_existing_Asian_Categories_Meal(self) : null}
+          {Permissions.can_create_Meal(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin) && Asian_Categorie_Meal_can_create(self) ? render_new_Asian_Categorie_Meal(self) : null}
+          {Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin) ? render_add_existing_Asian_Categorie_Meal(self) : null}
         </div>)
     }
     
@@ -521,14 +521,14 @@ export function render_Asian_Categories_Meal(self:AsianContext, context:"present
 }
 
 
-export function render_Asian_HomePage_Categories(self:AsianContext, context:"presentation_structure"|"default") {
-  if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "HomePage_Categories") || !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin))
+export function render_Asian_HomePage_Categorie(self:AsianContext, context:"presentation_structure"|"default") {
+  if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "HomePage_Categorie") || !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin))
     return null
   let state = self.state()
   return <div>
     
-    { List.render_relation("asian_homepage_categories",
-   "Categories",
+    { List.render_relation("asian_homepage_categorie",
+   "Categorie",
    "HomePage",
    "HomePages",
    self.props.nesting_depth > 0,
@@ -539,8 +539,8 @@ export function render_Asian_HomePage_Categories(self:AsianContext, context:"pre
       state.HomePage != "loading" ?
         state.HomePage.IdsInServerOrder.map(id => state.HomePage != "loading" && state.HomePage.Items.get(id)):
         state.HomePage,
-      Asian_HomePage_Categories_page_index(self),
-      Asian_HomePage_Categories_num_pages(self),
+      Asian_HomePage_Categorie_page_index(self),
+      Asian_HomePage_Categorie_num_pages(self),
       new_page_index => {
           let state = self.state()
           state.HomePage != "loading" &&
@@ -550,7 +550,7 @@ export function render_Asian_HomePage_Categories(self:AsianContext, context:"pre
               ...state.HomePage,
               PageIndex:new_page_index
             }
-          }, () =>  load_relation_Asian_HomePage_Categories(self, false, self.props.current_User, self.props.current_Admin))
+          }, () =>  load_relation_Asian_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin))
         },
       (i,_) => {
           let i_id = i.element.Id
@@ -570,9 +570,9 @@ export function render_Asian_HomePage_Categories(self:AsianContext, context:"pre
                   size: i.size,
                   allow_maximisation:true,
                   allow_fullscreen:true,
-                  mode:self.props.mode == "edit" && (Permissions.can_edit_HomePage_Categories(self.props.current_User, self.props.current_Admin)
-                        || Permissions.can_create_HomePage_Categories(self.props.current_User, self.props.current_Admin)
-                        || Permissions.can_delete_HomePage_Categories(self.props.current_User, self.props.current_Admin)) ?
+                  mode:self.props.mode == "edit" && (Permissions.can_edit_HomePage_Categorie(self.props.current_User, self.props.current_Admin)
+                        || Permissions.can_create_HomePage_Categorie(self.props.current_User, self.props.current_Admin)
+                        || Permissions.can_delete_HomePage_Categorie(self.props.current_User, self.props.current_Admin)) ?
                     self.props.mode : "view",
                   is_editable:state.HomePage != "loading" && state.HomePage.Editable.get(i_id),
                   shown_relation:i.shown_relation,
@@ -620,11 +620,11 @@ export function render_Asian_HomePage_Categories(self:AsianContext, context:"pre
                     }, callback)
                   },
                   unlink: undefined,
-                    delete: !Permissions.can_delete_HomePage(self.props.current_User, self.props.current_Admin) || !Asian_HomePage_Categories_can_delete(self) ?
+                    delete: !Permissions.can_delete_HomePage(self.props.current_User, self.props.current_Admin) || !Asian_HomePage_Categorie_can_delete(self) ?
                     null
                     :
                     () => confirm(i18next.t('Are you sure?')) && Api.delete_HomePage(i.element).then(() =>
-                      load_relation_Asian_HomePage_Categories(self, false, self.props.current_User, self.props.current_Admin))
+                      load_relation_Asian_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin))
                 })
               }
             </div>
@@ -644,12 +644,12 @@ export function render_Asian_HomePage_Categories(self:AsianContext, context:"pre
 
 export function render_relations_Asian(self:AsianContext) {
   return <div className="relations">
-      { render_Asian_Categories_Meal(self, "default") }
+      { render_Asian_Categorie_Meal(self, "default") }
       
     </div>
 }
 
-export function render_add_existing_Asian_Categories_Meal(self:AsianContext) {
+export function render_add_existing_Asian_Categorie_Meal(self:AsianContext) {
     
     let state = self.state()
     return self.props.mode == "edit" ?
@@ -663,8 +663,8 @@ export function render_add_existing_Asian_Categories_Meal(self:AsianContext) {
           :
           React.createElement(List.AddToRelation,
             {
-              relation_name:"asian_categories_meal",
-              source_name:"Categories",
+              relation_name:"asian_categorie_meal",
+              source_name:"Categorie",
               target_name:"Meal",
               target_plural:"Meals",
               page_size:25,
@@ -673,9 +673,9 @@ export function render_add_existing_Asian_Categories_Meal(self:AsianContext) {
                   <a className="group__button button button--existing"
                     onClick={() =>
                         self.setState({...self.state(), add_step_Meal:"saving"}, () =>
-                          Api.link_Categories_Categories_Meals(self.props.entity, i).then(() =>
+                          Api.link_Categorie_Categorie_Meals(self.props.entity, i).then(() =>
                             self.setState({...self.state(), add_step_Meal:"closed"}, () =>
-                              load_relation_Asian_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin))))
+                              load_relation_Asian_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin))))
                       }>
                       Add existing
                   </a>
@@ -701,9 +701,9 @@ export function render_add_existing_Asian_Categories_Meal(self:AsianContext) {
                 </div>,
               cancel:() => self.setState({...self.state(), add_step_Meal:"closed"}),
               get_items:[
-                { name: "Lunch", get: async(i,s) => Api.get_unlinked_Categories_Categories_Meals_Lunch(self.props.entity, i, s) }, 
-                { name: "Dinner", get: async(i,s) => Api.get_unlinked_Categories_Categories_Meals_Dinner(self.props.entity, i, s) }, 
-                { name: "Breakfast", get: async(i,s) => Api.get_unlinked_Categories_Categories_Meals_Breakfast(self.props.entity, i, s) }
+                { name: "Lunch", get: async(i,s) => Api.get_unlinked_Categorie_Categorie_Meals_Lunch(self.props.entity, i, s) }, 
+                { name: "Dinner", get: async(i,s) => Api.get_unlinked_Categorie_Categorie_Meals_Dinner(self.props.entity, i, s) }, 
+                { name: "Breakfast", get: async(i,s) => Api.get_unlinked_Categorie_Categorie_Meals_Breakfast(self.props.entity, i, s) }
               ]
             })
         }
@@ -713,7 +713,7 @@ export function render_add_existing_Asian_Categories_Meal(self:AsianContext) {
     }
   
 
-export function render_new_Asian_Categories_Meal(self:AsianContext) {
+export function render_new_Asian_Categorie_Meal(self:AsianContext) {
     let state = self.state()
     return  self.props.mode == "edit" ?
       <div className="button__actions">
@@ -727,11 +727,11 @@ export function render_new_Asian_Categories_Meal(self:AsianContext) {
               <button 
                       className="new-lunch button button--new"
                       onClick={() =>
-                          Api.create_linked_Categories_Categories_Meals_Lunch(self.props.entity).then(e => {
+                          Api.create_linked_Categorie_Categorie_Meals_Lunch(self.props.entity).then(e => {
                               e.length > 0 &&
                               Api.update_Lunch(
                                 ({ ...e[0], Kind:"Lunch", Description:"" } as Models.Lunch)).then(() =>
-                                load_relation_Asian_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () =>
+                                load_relation_Asian_Categorie_Meal(self, true, self.props.current_User, self.props.current_Admin, () =>
                                     self.setState({...self.state(), add_step_Meal:"closed"})
                                   )
                                 )
@@ -744,11 +744,11 @@ export function render_new_Asian_Categories_Meal(self:AsianContext) {
               <button 
                       className="new-dinner button button--new"
                       onClick={() =>
-                          Api.create_linked_Categories_Categories_Meals_Dinner(self.props.entity).then(e => {
+                          Api.create_linked_Categorie_Categorie_Meals_Dinner(self.props.entity).then(e => {
                               e.length > 0 &&
                               Api.update_Dinner(
                                 ({ ...e[0], Kind:"Dinner", Description:"" } as Models.Dinner)).then(() =>
-                                load_relation_Asian_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () =>
+                                load_relation_Asian_Categorie_Meal(self, true, self.props.current_User, self.props.current_Admin, () =>
                                     self.setState({...self.state(), add_step_Meal:"closed"})
                                   )
                                 )
@@ -761,11 +761,11 @@ export function render_new_Asian_Categories_Meal(self:AsianContext) {
               <button 
                       className="new-breakfast button button--new"
                       onClick={() =>
-                          Api.create_linked_Categories_Categories_Meals_Breakfast(self.props.entity).then(e => {
+                          Api.create_linked_Categorie_Categorie_Meals_Breakfast(self.props.entity).then(e => {
                               e.length > 0 &&
                               Api.update_Breakfast(
                                 ({ ...e[0], Kind:"Breakfast", Description:"" } as Models.Breakfast)).then(() =>
-                                load_relation_Asian_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () =>
+                                load_relation_Asian_Categorie_Meal(self, true, self.props.current_User, self.props.current_Admin, () =>
                                     self.setState({...self.state(), add_step_Meal:"closed"})
                                   )
                                 )
@@ -889,7 +889,7 @@ export let Asian = (props:Utils.EntityComponentProps<Models.Asian>) : JSX.Elemen
   <AsianComponent {...props} />
 
 export let Asian_to_page = (id:number) => {
-  let can_edit = Utils.any_of([Permissions.can_edit_Asian, Permissions.can_edit_Categories_Meal, Permissions.can_edit_HomePage_Categories, Permissions.can_edit_Meal, Permissions.can_edit_HomePage])
+  let can_edit = Utils.any_of([Permissions.can_edit_Asian, Permissions.can_edit_Categorie_Meal, Permissions.can_edit_HomePage_Categorie, Permissions.can_edit_Meal, Permissions.can_edit_HomePage])
   return Utils.scene_to_page<Models.Asian>(can_edit, Asian, Api.get_Asian(id), Api.update_Asian, "Asian", "Asian", `/Asians/${id}`)
 }
 

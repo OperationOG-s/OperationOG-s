@@ -13,122 +13,122 @@ import * as Draft from 'draft-js'
 import * as i18next from 'i18next'
 import * as Moment from 'moment'
 import * as HomePageViews from './HomePage'
-import * as CategoriesViews from './Categories'
-import * as RecipesViews from './Recipes'
+import * as CategorieViews from './Categorie'
+import * as RecipeViews from './Recipe'
+import * as CustomViews from '../custom_views'
 
+export function Lunch_Categorie_Meal_can_create(self:LunchContext) {
+  let state = self.state()
+  return state.Categorie == "loading" ? false : state.Categorie.CanCreate
+}
+export function Lunch_Meal_Recipe_can_create(self:LunchContext) {
+  let state = self.state()
+  return state.Recipe == "loading" ? false : state.Recipe.CanCreate
+}
+export function Lunch_Categorie_Meal_can_delete(self:LunchContext) {
+  let state = self.state()
+  return state.Categorie == "loading" ? false : state.Categorie.CanDelete
+}
+export function Lunch_Meal_Recipe_can_delete(self:LunchContext) {
+  let state = self.state()
+  return state.Recipe == "loading" ? false : state.Recipe.CanDelete
+}
+export function Lunch_Categorie_Meal_page_index(self:LunchContext) {
+  let state = self.state()
+  return state.Categorie == "loading" ? 0 : state.Categorie.PageIndex
+}
+export function Lunch_Meal_Recipe_page_index(self:LunchContext) {
+  let state = self.state()
+  return state.Recipe == "loading" ? 0 : state.Recipe.PageIndex
+}
+export function Lunch_Categorie_Meal_page_size(self:LunchContext) {
+  let state = self.state()
+  return state.Categorie == "loading" ? 25 : state.Categorie.PageSize
+}
+export function Lunch_Meal_Recipe_page_size(self:LunchContext) {
+  let state = self.state()
+  return state.Recipe == "loading" ? 25 : state.Recipe.PageSize
+}
+export function Lunch_Categorie_Meal_search_query(self:LunchContext) {
+  let state = self.state()
+  return state.Categorie == "loading" ? null : state.Categorie.SearchQuery
+}
+export function Lunch_Meal_Recipe_search_query(self:LunchContext) {
+  let state = self.state()
+  return state.Recipe == "loading" ? null : state.Recipe.SearchQuery
+}
+export function Lunch_Categorie_Meal_num_pages(self:LunchContext) {
+  let state = self.state()
+  return state.Categorie == "loading" ? 1 : state.Categorie.NumPages
+}
+export function Lunch_Meal_Recipe_num_pages(self:LunchContext) {
+  let state = self.state()
+  return state.Recipe == "loading" ? 1 : state.Recipe.NumPages
+}
 
-export function Lunch_Categories_Meal_can_create(self:LunchContext) {
+export function load_relation_Lunch_Categorie_Meal(self:LunchContext, force_first_page:boolean, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
   let state = self.state()
-  return state.Categories == "loading" ? false : state.Categories.CanCreate
-}
-export function Lunch_Meal_Recipes_can_create(self:LunchContext) {
-  let state = self.state()
-  return state.Recipes == "loading" ? false : state.Recipes.CanCreate
-}
-export function Lunch_Categories_Meal_can_delete(self:LunchContext) {
-  let state = self.state()
-  return state.Categories == "loading" ? false : state.Categories.CanDelete
-}
-export function Lunch_Meal_Recipes_can_delete(self:LunchContext) {
-  let state = self.state()
-  return state.Recipes == "loading" ? false : state.Recipes.CanDelete
-}
-export function Lunch_Categories_Meal_page_index(self:LunchContext) {
-  let state = self.state()
-  return state.Categories == "loading" ? 0 : state.Categories.PageIndex
-}
-export function Lunch_Meal_Recipes_page_index(self:LunchContext) {
-  let state = self.state()
-  return state.Recipes == "loading" ? 0 : state.Recipes.PageIndex
-}
-export function Lunch_Categories_Meal_page_size(self:LunchContext) {
-  let state = self.state()
-  return state.Categories == "loading" ? 25 : state.Categories.PageSize
-}
-export function Lunch_Meal_Recipes_page_size(self:LunchContext) {
-  let state = self.state()
-  return state.Recipes == "loading" ? 25 : state.Recipes.PageSize
-}
-export function Lunch_Categories_Meal_search_query(self:LunchContext) {
-  let state = self.state()
-  return state.Categories == "loading" ? null : state.Categories.SearchQuery
-}
-export function Lunch_Meal_Recipes_search_query(self:LunchContext) {
-  let state = self.state()
-  return state.Recipes == "loading" ? null : state.Recipes.SearchQuery
-}
-export function Lunch_Categories_Meal_num_pages(self:LunchContext) {
-  let state = self.state()
-  return state.Categories == "loading" ? 1 : state.Categories.NumPages
-}
-export function Lunch_Meal_Recipes_num_pages(self:LunchContext) {
-  let state = self.state()
-  return state.Recipes == "loading" ? 1 : state.Recipes.NumPages
-}
-
-export function load_relation_Lunch_Categories_Meal(self:LunchContext, force_first_page:boolean, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
-  let state = self.state()
-  let prelude = force_first_page && state.Categories != "loading" ?
-    (c:() => void) => state.Categories != "loading" && self.setState({
+  let prelude = force_first_page && state.Categorie != "loading" ?
+    (c:() => void) => state.Categorie != "loading" && self.setState({
       ...state,
-      Categories: {...state.Categories, PageIndex:0 }
+      Categorie: {...state.Categorie, PageIndex:0 }
     }, c)
     :
     (c:() => void) => c()
-  Permissions.can_view_Categories(current_User, current_Admin) ?
+  Permissions.can_view_Categorie(current_User, current_Admin) ?
     prelude(() =>
-      Api.get_Meal_Categories_Meals(self.props.entity, Lunch_Categories_Meal_page_index(self), Lunch_Categories_Meal_page_size(self), Lunch_Categories_Meal_search_query(self)).then(Categoriess =>
+      Api.get_Meal_Categorie_Meals(self.props.entity, Lunch_Categorie_Meal_page_index(self), Lunch_Categorie_Meal_page_size(self), Lunch_Categorie_Meal_search_query(self)).then(Categories =>
         self.setState({...self.state(), update_count:self.state().update_count+1,
-            Categories:Utils.raw_page_to_paginated_items<Models.Categories, Utils.EntityAndSize<Models.Categories> & { shown_relation:string }>((i, i_just_created) => {
+            Categorie:Utils.raw_page_to_paginated_items<Models.Categorie, Utils.EntityAndSize<Models.Categorie> & { shown_relation:string }>((i, i_just_created) => {
               let state = self.state()
               return {
                 element:i,
-                size: state.Categories != "loading" ?
-                  (state.Categories.Items.has(i.Id) ?
-                    state.Categories.Items.get(i.Id).size
+                size: state.Categorie != "loading" ?
+                  (state.Categorie.Items.has(i.Id) ?
+                    state.Categorie.Items.get(i.Id).size
                   :
                     "preview" /* i_just_created ? "large" : "preview" */)
                   :
                     "preview" /* i_just_created ? "large" : "preview" */,
-                shown_relation:"all"}}, Categoriess)
+                shown_relation:"all"}}, Categories)
             }, callback)))
     :
       prelude(() => callback && callback())
 }
 
-export function load_relation_Lunch_Meal_Recipes(self:LunchContext, force_first_page:boolean, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
+export function load_relation_Lunch_Meal_Recipe(self:LunchContext, force_first_page:boolean, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
   let state = self.state()
-  let prelude = force_first_page && state.Recipes != "loading" ?
-    (c:() => void) => state.Recipes != "loading" && self.setState({
+  let prelude = force_first_page && state.Recipe != "loading" ?
+    (c:() => void) => state.Recipe != "loading" && self.setState({
       ...state,
-      Recipes: {...state.Recipes, PageIndex:0 }
+      Recipe: {...state.Recipe, PageIndex:0 }
     }, c)
     :
     (c:() => void) => c()
-  Permissions.can_view_Recipes(current_User, current_Admin) ?
+  Permissions.can_view_Recipe(current_User, current_Admin) ?
     prelude(() =>
-      Api.get_Meal_Meal_Recipess(self.props.entity, Lunch_Meal_Recipes_page_index(self), Lunch_Meal_Recipes_page_size(self), Lunch_Meal_Recipes_search_query(self)).then(Recipess =>
+      Api.get_Meal_Meal_Recipes(self.props.entity, Lunch_Meal_Recipe_page_index(self), Lunch_Meal_Recipe_page_size(self), Lunch_Meal_Recipe_search_query(self)).then(Recipes =>
         self.setState({...self.state(), update_count:self.state().update_count+1,
-            Recipes:Utils.raw_page_to_paginated_items<Models.Recipes, Utils.EntityAndSize<Models.Recipes> & { shown_relation:string }>((i, i_just_created) => {
+            Recipe:Utils.raw_page_to_paginated_items<Models.Recipe, Utils.EntityAndSize<Models.Recipe> & { shown_relation:string }>((i, i_just_created) => {
               let state = self.state()
               return {
                 element:i,
-                size: state.Recipes != "loading" ?
-                  (state.Recipes.Items.has(i.Id) ?
-                    state.Recipes.Items.get(i.Id).size
+                size: state.Recipe != "loading" ?
+                  (state.Recipe.Items.has(i.Id) ?
+                    state.Recipe.Items.get(i.Id).size
                   :
                     "preview" /* i_just_created ? "large" : "preview" */)
                   :
                     "preview" /* i_just_created ? "large" : "preview" */,
-                shown_relation:"all"}}, Recipess)
+                shown_relation:"all"}}, Recipes)
             }, callback)))
     :
       prelude(() => callback && callback())
 }
 
 export function load_relations_Lunch(self, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
-  load_relation_Lunch_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin, 
-        () => load_relation_Lunch_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin, 
+  load_relation_Lunch_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin, 
+        () => load_relation_Lunch_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin, 
         () => callback && callback()))
 }
 
@@ -213,31 +213,31 @@ export function render_menu_Lunch(self:LunchContext) {
             }
           <div className="menu_entries">
           
-            {!Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ? null :
-                  <div className={`menu_entry${self.props.shown_relation == "HomePage_Recipes" ? " active" : ""}`}>
+            {!Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
+                  <div className={`menu_entry${self.props.shown_relation == "HomePage_Recipe" ? " active" : ""}`}>
                     <a onClick={() =>
                         {
                             Api.get_HomePages(0, 1).then(e =>
                               e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id),
-                                () => self.props.set_shown_relation("HomePage_Recipes"))
+                                () => self.props.set_shown_relation("HomePage_Recipe"))
                             )
                         }
                       }>
-                      {i18next.t('HomePage_Recipess')}
+                      {i18next.t('HomePage_Recipes')}
                     </a>
                   </div>
                 }
-        {!Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin) ? null :
-                  <div className={`menu_entry${self.props.shown_relation == "HomePage_Categories" ? " active" : ""}`}>
+        {!Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
+                  <div className={`menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}`}>
                     <a onClick={() =>
                         {
                             Api.get_HomePages(0, 1).then(e =>
                               e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id),
-                                () => self.props.set_shown_relation("HomePage_Categories"))
+                                () => self.props.set_shown_relation("HomePage_Categorie"))
                             )
                         }
                       }>
-                      {i18next.t('HomePage_Categoriess')}
+                      {i18next.t('HomePage_Categories')}
                     </a>
                   </div>
                 }
@@ -261,15 +261,15 @@ export function render_local_menu_Lunch(self:LunchContext) {
               </a>
             </div>
           
-            {!Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ? null :
-                  <div key={"Meal_Recipes"} className={`local_menu_entry${self.props.shown_relation == "Meal_Recipes" ? " local_menu_entry--active" : ""}`}>
+            {!Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
+                  <div key={"Meal_Recipe"} className={`local_menu_entry${self.props.shown_relation == "Meal_Recipe" ? " local_menu_entry--active" : ""}`}>
                     <a onClick={() =>
-                      load_relation_Lunch_Meal_Recipes(self,
+                      load_relation_Lunch_Meal_Recipe(self,
                         false,
                         self.props.current_User, self.props.current_Admin, 
-                        () => self.props.set_shown_relation("Meal_Recipes"))
+                        () => self.props.set_shown_relation("Meal_Recipe"))
                     }>
-                      {i18next.t('Meal_Recipess')}
+                      {i18next.t('Meal_Recipes')}
                     </a>
                   </div>
                 }  
@@ -402,48 +402,48 @@ export function render_large_Lunch(self:LunchContext) {
 }
 
 
-export function render_Lunch_Categories_Meal(self:LunchContext, context:"presentation_structure"|"default") {
-  if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Categories_Meal") || !Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin))
+export function render_Lunch_Categorie_Meal(self:LunchContext, context:"presentation_structure"|"default") {
+  if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Categorie_Meal") || !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin))
     return null
   let state = self.state()
   return <div>
     
-    { List.render_relation("lunch_categories_meal",
+    { List.render_relation("lunch_categorie_meal",
    "Meal",
+   "Categorie",
    "Categories",
-   "Categoriess",
    self.props.nesting_depth > 0,
    false,
    false,
    false)
   (
-      state.Categories != "loading" ?
-        state.Categories.IdsInServerOrder.map(id => state.Categories != "loading" && state.Categories.Items.get(id)):
-        state.Categories,
-      Lunch_Categories_Meal_page_index(self),
-      Lunch_Categories_Meal_num_pages(self),
+      state.Categorie != "loading" ?
+        state.Categorie.IdsInServerOrder.map(id => state.Categorie != "loading" && state.Categorie.Items.get(id)):
+        state.Categorie,
+      Lunch_Categorie_Meal_page_index(self),
+      Lunch_Categorie_Meal_num_pages(self),
       new_page_index => {
           let state = self.state()
-          state.Categories != "loading" &&
+          state.Categorie != "loading" &&
           self.setState({...self.state(),
             update_count:self.state().update_count+1,
-            Categories: {
-              ...state.Categories,
+            Categorie: {
+              ...state.Categorie,
               PageIndex:new_page_index
             }
-          }, () =>  load_relation_Lunch_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin))
+          }, () =>  load_relation_Lunch_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin))
         },
       (i,_) => {
           let i_id = i.element.Id
           let state = self.state()
           return <div key={i_id}
             className={`model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
-                        ${state.Categories != "loading" && state.Categories.JustCreated.has(i_id) && state.Categories.JustCreated.get(i_id) ? "newly-created" : ""}` }
+                        ${state.Categorie != "loading" && state.Categorie.JustCreated.has(i_id) && state.Categorie.JustCreated.get(i_id) ? "newly-created" : ""}` }
           
             >
             <div key={i_id}>
               {
-                CategoriesViews.Categories({
+                CategorieViews.Categorie({
                   ...self.props,
                   entity:i.element,
                   inline:false,
@@ -451,35 +451,35 @@ export function render_Lunch_Categories_Meal(self:LunchContext, context:"present
                   size: i.size,
                   allow_maximisation:true,
                   allow_fullscreen:true,
-                  mode:self.props.mode == "edit" && (Permissions.can_edit_Categories_Meal(self.props.current_User, self.props.current_Admin)
-                        || Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin)
-                        || Permissions.can_delete_Categories_Meal(self.props.current_User, self.props.current_Admin)) ?
+                  mode:self.props.mode == "edit" && (Permissions.can_edit_Categorie_Meal(self.props.current_User, self.props.current_Admin)
+                        || Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin)
+                        || Permissions.can_delete_Categorie_Meal(self.props.current_User, self.props.current_Admin)) ?
                     self.props.mode : "view",
-                  is_editable:state.Categories != "loading" && state.Categories.Editable.get(i_id),
+                  is_editable:state.Categorie != "loading" && state.Categorie.Editable.get(i_id),
                   shown_relation:i.shown_relation,
                   set_shown_relation:(new_shown_relation:string, callback) => {
                     let state = self.state()
-                    state.Categories != "loading" &&
+                    state.Categorie != "loading" &&
                     self.setState({...self.state(),
-                      Categories:
+                      Categorie:
                         {
-                          ...state.Categories,
-                          Items:state.Categories.Items.set(i_id,{...state.Categories.Items.get(i_id), shown_relation:new_shown_relation})
+                          ...state.Categorie,
+                          Items:state.Categorie.Items.set(i_id,{...state.Categorie.Items.get(i_id), shown_relation:new_shown_relation})
                         }
                     }, callback)
                   },
-                  nested_entity_names: self.props.nested_entity_names.push("Categories"),
+                  nested_entity_names: self.props.nested_entity_names.push("Categorie"),
                   
                   set_size:(new_size:Utils.EntitySize, callback) => {
                     let new_shown_relation = new_size == "large" ? "all" : i.shown_relation
                     let state = self.state()
-                    state.Categories != "loading" &&
+                    state.Categorie != "loading" &&
                     self.setState({...self.state(),
-                      Categories:
+                      Categorie:
                         {
-                          ...state.Categories,
-                          Items:state.Categories.Items.set(i_id,
-                            {...state.Categories.Items.get(i_id),
+                          ...state.Categorie,
+                          Items:state.Categorie.Items.set(i_id,
+                            {...state.Categorie.Items.get(i_id),
                               size:new_size, shown_relation:new_shown_relation})
                         }
                     }, callback)
@@ -487,25 +487,25 @@ export function render_Lunch_Categories_Meal(self:LunchContext, context:"present
                     
                   toggle_button:undefined,
                   set_mode:undefined,
-                  set_entity:(new_entity:Models.Categories, callback?:()=>void, force_update_count_increment?:boolean) => {
+                  set_entity:(new_entity:Models.Categorie, callback?:()=>void, force_update_count_increment?:boolean) => {
                     let state = self.state()
-                    state.Categories != "loading" &&
+                    state.Categorie != "loading" &&
                     self.setState({...self.state(),
-                      dirty_Categories:state.dirty_Categories.set(i_id, new_entity),
+                      dirty_Categorie:state.dirty_Categorie.set(i_id, new_entity),
                       update_count:force_update_count_increment ? self.state().update_count+1 : state.update_count,
-                      Categories:
+                      Categorie:
                         {
-                          ...state.Categories,
-                          Items:state.Categories.Items.set(i_id,{...state.Categories.Items.get(i_id), element:new_entity})
+                          ...state.Categorie,
+                          Items:state.Categorie.Items.set(i_id,{...state.Categorie.Items.get(i_id), element:new_entity})
                         }
                     }, callback)
                   },
                   delete: undefined,
-                  unlink: !Permissions.can_delete_Categories_Meal(self.props.current_User, self.props.current_Admin) ?
+                  unlink: !Permissions.can_delete_Categorie_Meal(self.props.current_User, self.props.current_Admin) ?
                     null
                     :
-                    () => confirm(i18next.t('Are you sure?')) && Api.unlink_Categories_Categories_Meals(i.element, self.props.entity).then(() =>
-                      load_relation_Lunch_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin))
+                    () => confirm(i18next.t('Are you sure?')) && Api.unlink_Categorie_Categorie_Meals(i.element, self.props.entity).then(() =>
+                      load_relation_Lunch_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin))
                 })
               }
             </div>
@@ -513,8 +513,8 @@ export function render_Lunch_Categories_Meal(self:LunchContext, context:"present
         },
       () =>
         <div>
-          {Permissions.can_create_Categories(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin) && Lunch_Categories_Meal_can_create(self) ? render_new_Lunch_Categories_Meal(self) : null}
-          {Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin) ? render_add_existing_Lunch_Categories_Meal(self) : null}
+          {Permissions.can_create_Categorie(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin) && Lunch_Categorie_Meal_can_create(self) ? render_new_Lunch_Categorie_Meal(self) : null}
+          {Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin) ? render_add_existing_Lunch_Categorie_Meal(self) : null}
         </div>)
     }
     
@@ -522,48 +522,48 @@ export function render_Lunch_Categories_Meal(self:LunchContext, context:"present
 }
 
 
-export function render_Lunch_Meal_Recipes(self:LunchContext, context:"presentation_structure"|"default") {
-  if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Meal_Recipes") || !Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin))
+export function render_Lunch_Meal_Recipe(self:LunchContext, context:"presentation_structure"|"default") {
+  if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Meal_Recipe") || !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin))
     return null
   let state = self.state()
   return <div>
     
-    { List.render_relation("lunch_meal_recipes",
+    { List.render_relation("lunch_meal_recipe",
    "Meal",
+   "Recipe",
    "Recipes",
-   "Recipess",
    self.props.nesting_depth > 0,
    false,
    false,
    false)
   (
-      state.Recipes != "loading" ?
-        state.Recipes.IdsInServerOrder.map(id => state.Recipes != "loading" && state.Recipes.Items.get(id)):
-        state.Recipes,
-      Lunch_Meal_Recipes_page_index(self),
-      Lunch_Meal_Recipes_num_pages(self),
+      state.Recipe != "loading" ?
+        state.Recipe.IdsInServerOrder.map(id => state.Recipe != "loading" && state.Recipe.Items.get(id)):
+        state.Recipe,
+      Lunch_Meal_Recipe_page_index(self),
+      Lunch_Meal_Recipe_num_pages(self),
       new_page_index => {
           let state = self.state()
-          state.Recipes != "loading" &&
+          state.Recipe != "loading" &&
           self.setState({...self.state(),
             update_count:self.state().update_count+1,
-            Recipes: {
-              ...state.Recipes,
+            Recipe: {
+              ...state.Recipe,
               PageIndex:new_page_index
             }
-          }, () =>  load_relation_Lunch_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin))
+          }, () =>  load_relation_Lunch_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin))
         },
       (i,_) => {
           let i_id = i.element.Id
           let state = self.state()
           return <div key={i_id}
             className={`model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
-                        ${state.Recipes != "loading" && state.Recipes.JustCreated.has(i_id) && state.Recipes.JustCreated.get(i_id) ? "newly-created" : ""}` }
+                        ${state.Recipe != "loading" && state.Recipe.JustCreated.has(i_id) && state.Recipe.JustCreated.get(i_id) ? "newly-created" : ""}` }
           
             >
             <div key={i_id}>
               {
-                RecipesViews.Recipes({
+                RecipeViews.Recipe({
                   ...self.props,
                   entity:i.element,
                   inline:false,
@@ -571,35 +571,35 @@ export function render_Lunch_Meal_Recipes(self:LunchContext, context:"presentati
                   size: i.size,
                   allow_maximisation:true,
                   allow_fullscreen:true,
-                  mode:self.props.mode == "edit" && (Permissions.can_edit_Meal_Recipes(self.props.current_User, self.props.current_Admin)
-                        || Permissions.can_create_Meal_Recipes(self.props.current_User, self.props.current_Admin)
-                        || Permissions.can_delete_Meal_Recipes(self.props.current_User, self.props.current_Admin)) ?
+                  mode:self.props.mode == "edit" && (Permissions.can_edit_Meal_Recipe(self.props.current_User, self.props.current_Admin)
+                        || Permissions.can_create_Meal_Recipe(self.props.current_User, self.props.current_Admin)
+                        || Permissions.can_delete_Meal_Recipe(self.props.current_User, self.props.current_Admin)) ?
                     self.props.mode : "view",
-                  is_editable:state.Recipes != "loading" && state.Recipes.Editable.get(i_id),
+                  is_editable:state.Recipe != "loading" && state.Recipe.Editable.get(i_id),
                   shown_relation:i.shown_relation,
                   set_shown_relation:(new_shown_relation:string, callback) => {
                     let state = self.state()
-                    state.Recipes != "loading" &&
+                    state.Recipe != "loading" &&
                     self.setState({...self.state(),
-                      Recipes:
+                      Recipe:
                         {
-                          ...state.Recipes,
-                          Items:state.Recipes.Items.set(i_id,{...state.Recipes.Items.get(i_id), shown_relation:new_shown_relation})
+                          ...state.Recipe,
+                          Items:state.Recipe.Items.set(i_id,{...state.Recipe.Items.get(i_id), shown_relation:new_shown_relation})
                         }
                     }, callback)
                   },
-                  nested_entity_names: self.props.nested_entity_names.push("Recipes"),
+                  nested_entity_names: self.props.nested_entity_names.push("Recipe"),
                   
                   set_size:(new_size:Utils.EntitySize, callback) => {
                     let new_shown_relation = new_size == "large" ? "all" : i.shown_relation
                     let state = self.state()
-                    state.Recipes != "loading" &&
+                    state.Recipe != "loading" &&
                     self.setState({...self.state(),
-                      Recipes:
+                      Recipe:
                         {
-                          ...state.Recipes,
-                          Items:state.Recipes.Items.set(i_id,
-                            {...state.Recipes.Items.get(i_id),
+                          ...state.Recipe,
+                          Items:state.Recipe.Items.set(i_id,
+                            {...state.Recipe.Items.get(i_id),
                               size:new_size, shown_relation:new_shown_relation})
                         }
                     }, callback)
@@ -607,25 +607,25 @@ export function render_Lunch_Meal_Recipes(self:LunchContext, context:"presentati
                     
                   toggle_button:undefined,
                   set_mode:undefined,
-                  set_entity:(new_entity:Models.Recipes, callback?:()=>void, force_update_count_increment?:boolean) => {
+                  set_entity:(new_entity:Models.Recipe, callback?:()=>void, force_update_count_increment?:boolean) => {
                     let state = self.state()
-                    state.Recipes != "loading" &&
+                    state.Recipe != "loading" &&
                     self.setState({...self.state(),
-                      dirty_Recipes:state.dirty_Recipes.set(i_id, new_entity),
+                      dirty_Recipe:state.dirty_Recipe.set(i_id, new_entity),
                       update_count:force_update_count_increment ? self.state().update_count+1 : state.update_count,
-                      Recipes:
+                      Recipe:
                         {
-                          ...state.Recipes,
-                          Items:state.Recipes.Items.set(i_id,{...state.Recipes.Items.get(i_id), element:new_entity})
+                          ...state.Recipe,
+                          Items:state.Recipe.Items.set(i_id,{...state.Recipe.Items.get(i_id), element:new_entity})
                         }
                     }, callback)
                   },
                   delete: undefined,
-                  unlink: !Permissions.can_delete_Meal_Recipes(self.props.current_User, self.props.current_Admin) ?
+                  unlink: !Permissions.can_delete_Meal_Recipe(self.props.current_User, self.props.current_Admin) ?
                     null
                     :
-                    () => confirm(i18next.t('Are you sure?')) && Api.unlink_Meal_Meal_Recipess(self.props.entity, i.element).then(() =>
-                      load_relation_Lunch_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin))
+                    () => confirm(i18next.t('Are you sure?')) && Api.unlink_Meal_Meal_Recipes(self.props.entity, i.element).then(() =>
+                      load_relation_Lunch_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin))
                 })
               }
             </div>
@@ -633,8 +633,8 @@ export function render_Lunch_Meal_Recipes(self:LunchContext, context:"presentati
         },
       () =>
         <div>
-          {Permissions.can_create_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Meal_Recipes(self.props.current_User, self.props.current_Admin) && Lunch_Meal_Recipes_can_create(self) ? render_new_Lunch_Meal_Recipes(self) : null}
-          {Permissions.can_create_Meal_Recipes(self.props.current_User, self.props.current_Admin) ? render_add_existing_Lunch_Meal_Recipes(self) : null}
+          {Permissions.can_create_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Meal_Recipe(self.props.current_User, self.props.current_Admin) && Lunch_Meal_Recipe_can_create(self) ? render_new_Lunch_Meal_Recipe(self) : null}
+          {Permissions.can_create_Meal_Recipe(self.props.current_User, self.props.current_Admin) ? render_add_existing_Lunch_Meal_Recipe(self) : null}
         </div>)
     }
     
@@ -645,66 +645,66 @@ export function render_Lunch_Meal_Recipes(self:LunchContext, context:"presentati
 
 export function render_relations_Lunch(self:LunchContext) {
   return <div className="relations">
-      { render_Lunch_Meal_Recipes(self, "default") }
+      { render_Lunch_Meal_Recipe(self, "default") }
       
     </div>
 }
 
-export function render_add_existing_Lunch_Categories_Meal(self:LunchContext) {
+export function render_add_existing_Lunch_Categorie_Meal(self:LunchContext) {
     
     let state = self.state()
     return self.props.mode == "edit" ?
       <div className="button__actions">
         {
-          state.add_step_Categories != "open" ?
-            <Buttons.Add disabled={state.Categories == "loading" ? true : state.Categories.TotalCount >= 1} 
+          state.add_step_Categorie != "open" ?
+            <Buttons.Add disabled={state.Categorie == "loading" ? true : state.Categorie.TotalCount >= 1} 
               onClick={() =>
-                self.setState({...self.state(), add_step_Categories:"open"}) }
-                  target_name={"Categories"} />
+                self.setState({...self.state(), add_step_Categorie:"open"}) }
+                  target_name={"Categorie"} />
           :
           React.createElement(List.AddToRelation,
             {
-              relation_name:"lunch_categories_meal",
+              relation_name:"lunch_categorie_meal",
               source_name:"Meal",
-              target_name:"Categories",
-              target_plural:"Categoriess",
+              target_name:"Categorie",
+              target_plural:"Categories",
               page_size:25,
               render_target:(i,i_id) =>
                 <div key={i_id} className="group__item">
                   <a className="group__button button button--existing"
                     onClick={() =>
-                        self.setState({...self.state(), add_step_Categories:"saving"}, () =>
-                          Api.link_Meal_Categories_Meals(self.props.entity, i).then(() =>
-                            self.setState({...self.state(), add_step_Categories:"closed"}, () =>
-                              load_relation_Lunch_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin))))
+                        self.setState({...self.state(), add_step_Categorie:"saving"}, () =>
+                          Api.link_Meal_Categorie_Meals(self.props.entity, i).then(() =>
+                            self.setState({...self.state(), add_step_Categorie:"closed"}, () =>
+                              load_relation_Lunch_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin))))
                       }>
                       Add existing
                   </a>
                   <div className="group__title" disabled={true}>
                     {
-                      CategoriesViews.Categories({
+                      CategorieViews.Categorie({
                         ...self.props,
                         entity:i,
                         nesting_depth:self.props.nesting_depth+1,
                         size:"preview",
                         mode:"view",
                         is_editable:false,
-                        nested_entity_names: self.props.nested_entity_names.push("Categories"),
+                        nested_entity_names: self.props.nested_entity_names.push("Categorie"),
                         set_size:undefined,
                         toggle_button:undefined,
                         set_mode:undefined,
-                        set_entity:(new_entity:Models.Categories, callback?:()=>void) => {},
+                        set_entity:(new_entity:Models.Categorie, callback?:()=>void) => {},
                         unlink: undefined,
                         delete: undefined
                       })
                     }
                   </div>
                 </div>,
-              cancel:() => self.setState({...self.state(), add_step_Categories:"closed"}),
+              cancel:() => self.setState({...self.state(), add_step_Categorie:"closed"}),
               get_items:[
-                { name: "American", get: async(i,s) => Api.get_unlinked_Meal_Categories_Meals_American(self.props.entity, i, s) }, 
-                { name: "Asian", get: async(i,s) => Api.get_unlinked_Meal_Categories_Meals_Asian(self.props.entity, i, s) }, 
-                { name: "Mediterranean", get: async(i,s) => Api.get_unlinked_Meal_Categories_Meals_Mediterranean(self.props.entity, i, s) }
+                { name: "American", get: async(i,s) => Api.get_unlinked_Meal_Categorie_Meals_American(self.props.entity, i, s) }, 
+                { name: "Asian", get: async(i,s) => Api.get_unlinked_Meal_Categorie_Meals_Asian(self.props.entity, i, s) }, 
+                { name: "Mediterranean", get: async(i,s) => Api.get_unlinked_Meal_Categorie_Meals_Mediterranean(self.props.entity, i, s) }
               ]
             })
         }
@@ -713,59 +713,59 @@ export function render_add_existing_Lunch_Categories_Meal(self:LunchContext) {
       null
     }
   
-export function render_add_existing_Lunch_Meal_Recipes(self:LunchContext) {
+export function render_add_existing_Lunch_Meal_Recipe(self:LunchContext) {
     
     let state = self.state()
     return self.props.mode == "edit" ?
       <div className="button__actions">
         {
-          state.add_step_Recipes != "open" ?
+          state.add_step_Recipe != "open" ?
             <Buttons.Add 
               onClick={() =>
-                self.setState({...self.state(), add_step_Recipes:"open"}) }
-                  target_name={"Recipes"} />
+                self.setState({...self.state(), add_step_Recipe:"open"}) }
+                  target_name={"Recipe"} />
           :
           React.createElement(List.AddToRelation,
             {
-              relation_name:"lunch_meal_recipes",
+              relation_name:"lunch_meal_recipe",
               source_name:"Meal",
-              target_name:"Recipes",
-              target_plural:"Recipess",
+              target_name:"Recipe",
+              target_plural:"Recipes",
               page_size:25,
               render_target:(i,i_id) =>
                 <div key={i_id} className="group__item">
                   <a className="group__button button button--existing"
                     onClick={() =>
-                        self.setState({...self.state(), add_step_Recipes:"saving"}, () =>
-                          Api.link_Meal_Meal_Recipess(self.props.entity, i).then(() =>
-                            self.setState({...self.state(), add_step_Recipes:"closed"}, () =>
-                              load_relation_Lunch_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin))))
+                        self.setState({...self.state(), add_step_Recipe:"saving"}, () =>
+                          Api.link_Meal_Meal_Recipes(self.props.entity, i).then(() =>
+                            self.setState({...self.state(), add_step_Recipe:"closed"}, () =>
+                              load_relation_Lunch_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin))))
                       }>
                       Add existing
                   </a>
                   <div className="group__title" disabled={true}>
                     {
-                      RecipesViews.Recipes({
+                      RecipeViews.Recipe({
                         ...self.props,
                         entity:i,
                         nesting_depth:self.props.nesting_depth+1,
                         size:"preview",
                         mode:"view",
                         is_editable:false,
-                        nested_entity_names: self.props.nested_entity_names.push("Recipes"),
+                        nested_entity_names: self.props.nested_entity_names.push("Recipe"),
                         set_size:undefined,
                         toggle_button:undefined,
                         set_mode:undefined,
-                        set_entity:(new_entity:Models.Recipes, callback?:()=>void) => {},
+                        set_entity:(new_entity:Models.Recipe, callback?:()=>void) => {},
                         unlink: undefined,
                         delete: undefined
                       })
                     }
                   </div>
                 </div>,
-              cancel:() => self.setState({...self.state(), add_step_Recipes:"closed"}),
+              cancel:() => self.setState({...self.state(), add_step_Recipe:"closed"}),
               get_items:[
-                { name: "Recipes", get: async(i,s) => Api.get_unlinked_Meal_Meal_Recipess(self.props.entity, i, s) },
+                { name: "Recipe", get: async(i,s) => Api.get_unlinked_Meal_Meal_Recipes(self.props.entity, i, s) },
               ]
             })
         }
@@ -775,26 +775,26 @@ export function render_add_existing_Lunch_Meal_Recipes(self:LunchContext) {
     }
   
 
-export function render_new_Lunch_Categories_Meal(self:LunchContext) {
+export function render_new_Lunch_Categorie_Meal(self:LunchContext) {
     let state = self.state()
     return  self.props.mode == "edit" ?
       <div className="button__actions">
-        <Buttons.Create target_name={"Categories"} onClick={() => self.setState({...self.state(), add_step_Categories:"creating"})}  />
+        <Buttons.Create target_name={"Categorie"} onClick={() => self.setState({...self.state(), add_step_Categorie:"creating"})}  />
             {
-            state.add_step_Categories != "creating" ?
+            state.add_step_Categorie != "creating" ?
             null
             :
             <div className="overlay__item overlay__item--new">
               <div className="new-american">
-              <button disabled={state.Categories == "loading" ? true : state.Categories.TotalCount >= 1} 
+              <button disabled={state.Categorie == "loading" ? true : state.Categorie.TotalCount >= 1} 
                       className="new-american button button--new"
                       onClick={() =>
-                          Api.create_linked_Meal_Categories_Meals_American(self.props.entity).then(e => {
+                          Api.create_linked_Meal_Categorie_Meals_American(self.props.entity).then(e => {
                               e.length > 0 &&
                               Api.update_American(
                                 ({ ...e[0], Kind:"American", Description:"" } as Models.American)).then(() =>
-                                load_relation_Lunch_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () =>
-                                    self.setState({...self.state(), add_step_Categories:"closed"})
+                                load_relation_Lunch_Categorie_Meal(self, true, self.props.current_User, self.props.current_Admin, () =>
+                                    self.setState({...self.state(), add_step_Categorie:"closed"})
                                   )
                                 )
                           })
@@ -803,15 +803,15 @@ export function render_new_Lunch_Categories_Meal(self:LunchContext) {
               </button>
             </div>
             <div className="new-asian">
-              <button disabled={state.Categories == "loading" ? true : state.Categories.TotalCount >= 1} 
+              <button disabled={state.Categorie == "loading" ? true : state.Categorie.TotalCount >= 1} 
                       className="new-asian button button--new"
                       onClick={() =>
-                          Api.create_linked_Meal_Categories_Meals_Asian(self.props.entity).then(e => {
+                          Api.create_linked_Meal_Categorie_Meals_Asian(self.props.entity).then(e => {
                               e.length > 0 &&
                               Api.update_Asian(
                                 ({ ...e[0], Kind:"Asian", Description:"" } as Models.Asian)).then(() =>
-                                load_relation_Lunch_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () =>
-                                    self.setState({...self.state(), add_step_Categories:"closed"})
+                                load_relation_Lunch_Categorie_Meal(self, true, self.props.current_User, self.props.current_Admin, () =>
+                                    self.setState({...self.state(), add_step_Categorie:"closed"})
                                   )
                                 )
                           })
@@ -820,15 +820,15 @@ export function render_new_Lunch_Categories_Meal(self:LunchContext) {
               </button>
             </div>
             <div className="new-mediterranean">
-              <button disabled={state.Categories == "loading" ? true : state.Categories.TotalCount >= 1} 
+              <button disabled={state.Categorie == "loading" ? true : state.Categorie.TotalCount >= 1} 
                       className="new-mediterranean button button--new"
                       onClick={() =>
-                          Api.create_linked_Meal_Categories_Meals_Mediterranean(self.props.entity).then(e => {
+                          Api.create_linked_Meal_Categorie_Meals_Mediterranean(self.props.entity).then(e => {
                               e.length > 0 &&
                               Api.update_Mediterranean(
                                 ({ ...e[0], Kind:"Mediterranean", Description:"" } as Models.Mediterranean)).then(() =>
-                                load_relation_Lunch_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () =>
-                                    self.setState({...self.state(), add_step_Categories:"closed"})
+                                load_relation_Lunch_Categorie_Meal(self, true, self.props.current_User, self.props.current_Admin, () =>
+                                    self.setState({...self.state(), add_step_Categorie:"closed"})
                                   )
                                 )
                           })
@@ -836,7 +836,7 @@ export function render_new_Lunch_Categories_Meal(self:LunchContext) {
                   {i18next.t('Create new Mediterranean')}
               </button>
             </div>
-              <Buttons.Cancel onClick={() => self.setState({...self.state(), add_step_Categories:"closed"})} />
+              <Buttons.Cancel onClick={() => self.setState({...self.state(), add_step_Categorie:"closed"})} />
             </div>
             }
         </div>
@@ -844,25 +844,25 @@ export function render_new_Lunch_Categories_Meal(self:LunchContext) {
       null
     }
   
-export function render_new_Lunch_Meal_Recipes(self:LunchContext) {
+export function render_new_Lunch_Meal_Recipe(self:LunchContext) {
     let state = self.state()
     return  self.props.mode == "edit" ?
       <div className="button__actions">
-        <div className="new-recipes">
+        <div className="new-recipe">
               <button 
-                      className="new-recipes button button--new"
+                      className="new-recipe button button--new"
                       onClick={() =>
-                          Api.create_linked_Meal_Meal_Recipess_Recipes(self.props.entity).then(e => {
+                          Api.create_linked_Meal_Meal_Recipes_Recipe(self.props.entity).then(e => {
                               e.length > 0 &&
-                              Api.update_Recipes(
-                                ({ ...e[0], Picture:"", Name:"", Ingredients:"", Description:"", PreparationTime:0 } as Models.Recipes)).then(() =>
-                                load_relation_Lunch_Meal_Recipes(self, true, self.props.current_User, self.props.current_Admin, () =>
-                                    self.setState({...self.state(), add_step_Recipes:"closed"})
+                              Api.update_Recipe(
+                                ({ ...e[0], Picture:"", Name:"", Ingredients:"", Description:"", PreparationTime:0 } as Models.Recipe)).then(() =>
+                                load_relation_Lunch_Meal_Recipe(self, true, self.props.current_User, self.props.current_Admin, () =>
+                                    self.setState({...self.state(), add_step_Recipe:"closed"})
                                   )
                                 )
                           })
                       }>
-                  {i18next.t('Create new Recipes')}
+                  {i18next.t('Create new Recipe')}
               </button>
             </div>
         </div>
@@ -872,9 +872,9 @@ export function render_new_Lunch_Meal_Recipes(self:LunchContext) {
   
 
 export function render_saving_animations_Lunch(self:LunchContext) {
-  return self.state().dirty_Categories.count() > 0 ?
+  return self.state().dirty_Categorie.count() > 0 ?
     <div style={{position:"fixed", zIndex:10000, top:0, left:0, width:"20px", height:"20px", backgroundColor:"red"}} className="saving"/> : 
-    self.state().dirty_Recipes.count() > 0 ?
+    self.state().dirty_Recipe.count() > 0 ?
     <div style={{position:"fixed", zIndex:10000, top:0, left:0, width:"20px", height:"20px", backgroundColor:"red"}} className="saving"/>
     : <div style={{position:"fixed", zIndex:10000, top:0, left:0, width:"20px", height:"20px", backgroundColor:"cornflowerblue"}} className="saved"/>
 }
@@ -883,17 +883,17 @@ export type LunchContext = {state:()=>LunchState, props:Utils.EntityComponentPro
 
 export type LunchState = {
     update_count:number
-    add_step_Categories:"closed"|"open"|"saving"|"adding"|"creating",
-      dirty_Categories:Immutable.Map<number,Models.Categories>,
-      Categories:Utils.PaginatedItems<{ shown_relation: string } & Utils.EntityAndSize<Models.Categories>>|"loading"
-  add_step_Recipes:"closed"|"open"|"saving",
-      dirty_Recipes:Immutable.Map<number,Models.Recipes>,
-      Recipes:Utils.PaginatedItems<{ shown_relation: string } & Utils.EntityAndSize<Models.Recipes>>|"loading"
+    add_step_Categorie:"closed"|"open"|"saving"|"adding"|"creating",
+      dirty_Categorie:Immutable.Map<number,Models.Categorie>,
+      Categorie:Utils.PaginatedItems<{ shown_relation: string } & Utils.EntityAndSize<Models.Categorie>>|"loading"
+  add_step_Recipe:"closed"|"open"|"saving",
+      dirty_Recipe:Immutable.Map<number,Models.Recipe>,
+      Recipe:Utils.PaginatedItems<{ shown_relation: string } & Utils.EntityAndSize<Models.Recipe>>|"loading"
   }
 export class LunchComponent extends React.Component<Utils.EntityComponentProps<Models.Lunch>, LunchState> {
   constructor(props:Utils.EntityComponentProps<Models.Lunch>, context:any) {
     super(props, context)
-    this.state = { update_count:0,add_step_Categories:"closed", dirty_Categories:Immutable.Map<number,Models.Categories>(), Categories:"loading", add_step_Recipes:"closed", dirty_Recipes:Immutable.Map<number,Models.Recipes>(), Recipes:"loading" }
+    this.state = { update_count:0,add_step_Categorie:"closed", dirty_Categorie:Immutable.Map<number,Models.Categorie>(), Categorie:"loading", add_step_Recipe:"closed", dirty_Recipe:Immutable.Map<number,Models.Recipe>(), Recipe:"loading" }
   }
 
   get_self() {
@@ -922,15 +922,15 @@ export class LunchComponent extends React.Component<Utils.EntityComponentProps<M
     }
 
     this.thread = setInterval(() => {
-      if (this.state.dirty_Categories.count() > 0) {
-         let first = this.state.dirty_Categories.first()
-         this.setState({...this.state, dirty_Categories: this.state.dirty_Categories.remove(first.Id)}, () =>
-           Api.update_Categories(first)
+      if (this.state.dirty_Categorie.count() > 0) {
+         let first = this.state.dirty_Categorie.first()
+         this.setState({...this.state, dirty_Categorie: this.state.dirty_Categorie.remove(first.Id)}, () =>
+           Api.update_Categorie(first)
          )
-       } else if (this.state.dirty_Recipes.count() > 0) {
-         let first = this.state.dirty_Recipes.first()
-         this.setState({...this.state, dirty_Recipes: this.state.dirty_Recipes.remove(first.Id)}, () =>
-           Api.update_Recipes(first)
+       } else if (this.state.dirty_Recipe.count() > 0) {
+         let first = this.state.dirty_Recipe.first()
+         this.setState({...this.state, dirty_Recipe: this.state.dirty_Recipe.remove(first.Id)}, () =>
+           Api.update_Recipe(first)
          )
        }
 
@@ -977,7 +977,7 @@ export let Lunch = (props:Utils.EntityComponentProps<Models.Lunch>) : JSX.Elemen
   <LunchComponent {...props} />
 
 export let Lunch_to_page = (id:number) => {
-  let can_edit = Utils.any_of([Permissions.can_edit_Lunch, Permissions.can_edit_Categories_Meal, Permissions.can_edit_Meal_Recipes, Permissions.can_edit_Categories, Permissions.can_edit_Recipes])
+  let can_edit = Utils.any_of([Permissions.can_edit_Lunch, Permissions.can_edit_Categorie_Meal, Permissions.can_edit_Meal_Recipe, Permissions.can_edit_Categorie, Permissions.can_edit_Recipe])
   return Utils.scene_to_page<Models.Lunch>(can_edit, Lunch, Api.get_Lunch(id), Api.update_Lunch, "Lunch", "Lunch", `/Lunches/${id}`)
 }
 

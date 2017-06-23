@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PortableRecipes.Models
 {
-    public partial class American: Categories {
+    public partial class American: Categorie {
     public American() {
       
     }
@@ -31,12 +31,12 @@ namespace PortableRecipes.Models
   
   public partial class Meal: IEntity {
     public Meal() {
-      Categories_Meals = new HashSet<Categories_Meal>();
-      Meal_Recipess = new HashSet<Meal_Recipes>();
+      Categorie_Meals = new HashSet<Categorie_Meal>();
+      Meal_Recipes = new HashSet<Meal_Recipe>();
     }
     public int Id {get;set;}
-    [Newtonsoft.Json.JsonIgnore] public virtual ICollection<Categories_Meal> Categories_Meals {get;set;}
-    [Newtonsoft.Json.JsonIgnore] public virtual ICollection<Meal_Recipes> Meal_Recipess {get;set;}
+    [Newtonsoft.Json.JsonIgnore] public virtual ICollection<Categorie_Meal> Categorie_Meals {get;set;}
+    [Newtonsoft.Json.JsonIgnore] public virtual ICollection<Meal_Recipe> Meal_Recipes {get;set;}
     [Newtonsoft.Json.JsonProperty(ItemConverterType = typeof(Newtonsoft.Json.Converters.JavaScriptDateTimeConverter))] public DateTime CreatedDate{ get; set; }
     public string Kind {get { return this is Lunch ? "Lunch": this is Dinner ? "Dinner": this is Breakfast ? "Breakfast" : null; } }
     
@@ -55,7 +55,7 @@ namespace PortableRecipes.Models
 
   
   
-  public partial class Asian: Categories {
+  public partial class Asian: Categorie {
     public Asian() {
       
     }
@@ -71,37 +71,6 @@ namespace PortableRecipes.Models
     }
     static public Asian WithoutImages(Asian self) {
       
-      return self;
-    }
-  }
-
-  
-  
-  public partial class Recipes: IEntity {
-    public Recipes() {
-      User_Recipess = new HashSet<User_Recipes>();
-      Recipes_Ratings = new HashSet<Recipes_Rating>();
-      Meal_Recipess = new HashSet<Meal_Recipes>();
-    }
-    public int Id {get;set;}
-    [Newtonsoft.Json.JsonIgnore] public virtual ICollection<User_Recipes> User_Recipess {get;set;}
-    [Newtonsoft.Json.JsonIgnore] public virtual ICollection<Recipes_Rating> Recipes_Ratings {get;set;}
-    [Newtonsoft.Json.JsonIgnore] public virtual ICollection<Meal_Recipes> Meal_Recipess {get;set;}
-    [Newtonsoft.Json.JsonProperty(ItemConverterType = typeof(Newtonsoft.Json.Converters.JavaScriptDateTimeConverter))] public DateTime CreatedDate{ get; set; }
-        public string Picture {get;set;}
-    public string Name {get;set;}
-    public string Ingredients {get;set;}
-    public string Description {get;set;}
-    public int PreparationTime {get;set;}
-    
-    static public Expression<Func<Recipes,Recipes>> FilterViewableAttributes(User current_User, Admin current_Admin) {
-      return self => self;
-    }
-    static public Func<Recipes,Recipes> FilterViewableAttributesLocal(User current_User, Admin current_Admin) {
-      return self => self;
-    }
-    static public Recipes WithoutImages(Recipes self) {
-      self.Picture = null;
       return self;
     }
   }
@@ -132,10 +101,10 @@ namespace PortableRecipes.Models
   
   public partial class User: IEntity {
     public User() {
-      User_Recipess = new HashSet<User_Recipes>();
+      User_Recipes = new HashSet<User_Recipe>();
     }
     public int Id {get;set;}
-    [Newtonsoft.Json.JsonIgnore] public virtual ICollection<User_Recipes> User_Recipess {get;set;}
+    [Newtonsoft.Json.JsonIgnore] public virtual ICollection<User_Recipe> User_Recipes {get;set;}
     [Newtonsoft.Json.JsonProperty(ItemConverterType = typeof(Newtonsoft.Json.Converters.JavaScriptDateTimeConverter))] public DateTime CreatedDate{ get; set; }
         public string Username {get;set;}
     public string Language {get;set;}
@@ -185,7 +154,7 @@ namespace PortableRecipes.Models
     public int Id {get;set;}
     
     [Newtonsoft.Json.JsonProperty(ItemConverterType = typeof(Newtonsoft.Json.Converters.JavaScriptDateTimeConverter))] public DateTime CreatedDate{ get; set; }
-        
+        public string Test {get;set;}
     
     static public Expression<Func<HomePage,HomePage>> FilterViewableAttributes(User current_User, Admin current_Admin) {
       return self => self;
@@ -195,6 +164,37 @@ namespace PortableRecipes.Models
     }
     static public HomePage WithoutImages(HomePage self) {
       
+      return self;
+    }
+  }
+
+  
+  
+  public partial class Recipe: IEntity {
+    public Recipe() {
+      User_Recipes = new HashSet<User_Recipe>();
+      Recipe_Ratings = new HashSet<Recipe_Rating>();
+      Meal_Recipes = new HashSet<Meal_Recipe>();
+    }
+    public int Id {get;set;}
+    [Newtonsoft.Json.JsonIgnore] public virtual ICollection<User_Recipe> User_Recipes {get;set;}
+    [Newtonsoft.Json.JsonIgnore] public virtual ICollection<Recipe_Rating> Recipe_Ratings {get;set;}
+    [Newtonsoft.Json.JsonIgnore] public virtual ICollection<Meal_Recipe> Meal_Recipes {get;set;}
+    [Newtonsoft.Json.JsonProperty(ItemConverterType = typeof(Newtonsoft.Json.Converters.JavaScriptDateTimeConverter))] public DateTime CreatedDate{ get; set; }
+        public string Picture {get;set;}
+    public string Name {get;set;}
+    public string Ingredients {get;set;}
+    public string Description {get;set;}
+    public int PreparationTime {get;set;}
+    
+    static public Expression<Func<Recipe,Recipe>> FilterViewableAttributes(User current_User, Admin current_Admin) {
+      return self => self;
+    }
+    static public Func<Recipe,Recipe> FilterViewableAttributesLocal(User current_User, Admin current_Admin) {
+      return self => self;
+    }
+    static public Recipe WithoutImages(Recipe self) {
+      self.Picture = null;
       return self;
     }
   }
@@ -271,7 +271,31 @@ namespace PortableRecipes.Models
 
   
   
-  public partial class Mediterranean: Categories {
+  public partial class Categorie: IEntity {
+    public Categorie() {
+      Categorie_Meals = new HashSet<Categorie_Meal>();
+    }
+    public int Id {get;set;}
+    [Newtonsoft.Json.JsonIgnore] public virtual ICollection<Categorie_Meal> Categorie_Meals {get;set;}
+    [Newtonsoft.Json.JsonProperty(ItemConverterType = typeof(Newtonsoft.Json.Converters.JavaScriptDateTimeConverter))] public DateTime CreatedDate{ get; set; }
+    public string Kind {get { return this is American ? "American": this is Asian ? "Asian": this is Mediterranean ? "Mediterranean" : null; } }
+    
+    
+    static public Expression<Func<Categorie,Categorie>> FilterViewableAttributes(User current_User, Admin current_Admin) {
+      return self => self;
+    }
+    static public Func<Categorie,Categorie> FilterViewableAttributesLocal(User current_User, Admin current_Admin) {
+      return self => self;
+    }
+    static public Categorie WithoutImages(Categorie self) {
+      
+      return self;
+    }
+  }
+
+  
+  
+  public partial class Mediterranean: Categorie {
     public Mediterranean() {
       
     }
@@ -315,36 +339,12 @@ namespace PortableRecipes.Models
 
   
   
-  public partial class Categories: IEntity {
-    public Categories() {
-      Categories_Meals = new HashSet<Categories_Meal>();
-    }
-    public int Id {get;set;}
-    [Newtonsoft.Json.JsonIgnore] public virtual ICollection<Categories_Meal> Categories_Meals {get;set;}
-    [Newtonsoft.Json.JsonProperty(ItemConverterType = typeof(Newtonsoft.Json.Converters.JavaScriptDateTimeConverter))] public DateTime CreatedDate{ get; set; }
-    public string Kind {get { return this is American ? "American": this is Asian ? "Asian": this is Mediterranean ? "Mediterranean" : null; } }
-    
-    
-    static public Expression<Func<Categories,Categories>> FilterViewableAttributes(User current_User, Admin current_Admin) {
-      return self => self;
-    }
-    static public Func<Categories,Categories> FilterViewableAttributesLocal(User current_User, Admin current_Admin) {
-      return self => self;
-    }
-    static public Categories WithoutImages(Categories self) {
-      
-      return self;
-    }
-  }
-
-  
-  
   public partial class Rating: IEntity {
     public Rating() {
-      Recipes_Ratings = new HashSet<Recipes_Rating>();
+      Recipe_Ratings = new HashSet<Recipe_Rating>();
     }
     public int Id {get;set;}
-    [Newtonsoft.Json.JsonIgnore] public virtual ICollection<Recipes_Rating> Recipes_Ratings {get;set;}
+    [Newtonsoft.Json.JsonIgnore] public virtual ICollection<Recipe_Rating> Recipe_Ratings {get;set;}
     [Newtonsoft.Json.JsonProperty(ItemConverterType = typeof(Newtonsoft.Json.Converters.JavaScriptDateTimeConverter))] public DateTime CreatedDate{ get; set; }
         public int rating {get;set;}
     
@@ -362,22 +362,22 @@ namespace PortableRecipes.Models
 
   
   
-    public partial class Categories_Meal {
-    public Categories_Meal() {
+    public partial class Categorie_Meal {
+    public Categorie_Meal() {
       
     }
     public int Id {get;set;}
     
     
-        [Newtonsoft.Json.JsonIgnore] public virtual Categories Categories {get;set;}
-    public int CategoriesId {get;set;}
+        [Newtonsoft.Json.JsonIgnore] public virtual Categorie Categorie {get;set;}
+    public int CategorieId {get;set;}
     [Newtonsoft.Json.JsonIgnore] public virtual Meal Meal {get;set;}
     public int MealId {get;set;}
     
-    static public Expression<Func<Categories_Meal,Categories_Meal>> FilterViewableAttributes(User current_User, Admin current_Admin) {
+    static public Expression<Func<Categorie_Meal,Categorie_Meal>> FilterViewableAttributes(User current_User, Admin current_Admin) {
       return self => self;
     }
-    static public Func<Categories_Meal,Categories_Meal> FilterViewableAttributesLocal(User current_User, Admin current_Admin) {
+    static public Func<Categorie_Meal,Categorie_Meal> FilterViewableAttributesLocal(User current_User, Admin current_Admin) {
       return self => self;
     }
     
@@ -386,8 +386,8 @@ namespace PortableRecipes.Models
   
   
 
-  public partial class User_Recipes {
-    public User_Recipes() {
+  public partial class User_Recipe {
+    public User_Recipe() {
       
     }
     public int Id {get;set;}
@@ -395,13 +395,13 @@ namespace PortableRecipes.Models
     
         [Newtonsoft.Json.JsonIgnore] public virtual User User {get;set;}
     public int UserId {get;set;}
-    [Newtonsoft.Json.JsonIgnore] public virtual Recipes Recipes {get;set;}
-    public int RecipesId {get;set;}
+    [Newtonsoft.Json.JsonIgnore] public virtual Recipe Recipe {get;set;}
+    public int RecipeId {get;set;}
     
-    static public Expression<Func<User_Recipes,User_Recipes>> FilterViewableAttributes(User current_User, Admin current_Admin) {
+    static public Expression<Func<User_Recipe,User_Recipe>> FilterViewableAttributes(User current_User, Admin current_Admin) {
       return self => self;
     }
-    static public Func<User_Recipes,User_Recipes> FilterViewableAttributesLocal(User current_User, Admin current_Admin) {
+    static public Func<User_Recipe,User_Recipe> FilterViewableAttributesLocal(User current_User, Admin current_Admin) {
       return self => self;
     }
     
@@ -410,22 +410,22 @@ namespace PortableRecipes.Models
   
   
 
-  public partial class Recipes_Rating {
-    public Recipes_Rating() {
+  public partial class Recipe_Rating {
+    public Recipe_Rating() {
       
     }
     public int Id {get;set;}
     
     
-        [Newtonsoft.Json.JsonIgnore] public virtual Recipes Recipes {get;set;}
-    public int RecipesId {get;set;}
+        [Newtonsoft.Json.JsonIgnore] public virtual Recipe Recipe {get;set;}
+    public int RecipeId {get;set;}
     [Newtonsoft.Json.JsonIgnore] public virtual Rating Rating {get;set;}
     public int RatingId {get;set;}
     
-    static public Expression<Func<Recipes_Rating,Recipes_Rating>> FilterViewableAttributes(User current_User, Admin current_Admin) {
+    static public Expression<Func<Recipe_Rating,Recipe_Rating>> FilterViewableAttributes(User current_User, Admin current_Admin) {
       return self => self;
     }
-    static public Func<Recipes_Rating,Recipes_Rating> FilterViewableAttributesLocal(User current_User, Admin current_Admin) {
+    static public Func<Recipe_Rating,Recipe_Rating> FilterViewableAttributesLocal(User current_User, Admin current_Admin) {
       return self => self;
     }
     
@@ -434,8 +434,8 @@ namespace PortableRecipes.Models
   
   
 
-  public partial class Meal_Recipes {
-    public Meal_Recipes() {
+  public partial class Meal_Recipe {
+    public Meal_Recipe() {
       
     }
     public int Id {get;set;}
@@ -443,13 +443,13 @@ namespace PortableRecipes.Models
     
         [Newtonsoft.Json.JsonIgnore] public virtual Meal Meal {get;set;}
     public int MealId {get;set;}
-    [Newtonsoft.Json.JsonIgnore] public virtual Recipes Recipes {get;set;}
-    public int RecipesId {get;set;}
+    [Newtonsoft.Json.JsonIgnore] public virtual Recipe Recipe {get;set;}
+    public int RecipeId {get;set;}
     
-    static public Expression<Func<Meal_Recipes,Meal_Recipes>> FilterViewableAttributes(User current_User, Admin current_Admin) {
+    static public Expression<Func<Meal_Recipe,Meal_Recipe>> FilterViewableAttributes(User current_User, Admin current_Admin) {
       return self => self;
     }
-    static public Func<Meal_Recipes,Meal_Recipes> FilterViewableAttributesLocal(User current_User, Admin current_Admin) {
+    static public Func<Meal_Recipe,Meal_Recipe> FilterViewableAttributesLocal(User current_User, Admin current_Admin) {
       return self => self;
     }
     

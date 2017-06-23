@@ -16,20 +16,20 @@ using PortableRecipes.Filters;
 
 
 [Route("/[controller]")]
-  public class CategoriessController : Controller
+  public class CategoriesController : Controller
   {
     private readonly MailOptions _mailOptions;
     public readonly PortableRecipesContext _context;
     public IHostingEnvironment env;
 
-    public CategoriessController(PortableRecipesContext context, IHostingEnvironment env, IOptions<MailOptions> mailOptionsAccessor)
+    public CategoriesController(PortableRecipesContext context, IHostingEnvironment env, IOptions<MailOptions> mailOptionsAccessor)
     {
       _context = context;
       _mailOptions = mailOptionsAccessor.Value;
       this.env = env;
     }
 
-    [RestrictToUserType(new string[] {"*"})]
+    [RestrictToUserType(new string[] {"User", "Admin"})]
     [HttpGet("{id}")]
     public IActionResult View(int id)
     {
@@ -40,7 +40,7 @@ using PortableRecipes.Filters;
       ViewData["CurrentUser"] = session == null ? null : session.User;
       ViewData["CurrentAdmin"] = session == null ? null : session.Admin;
       ViewData["id"] = id;
-      ViewData["Page"] = "Categoriess/View";
+      ViewData["Page"] = "Categories/View";
       return View();
     }
   }

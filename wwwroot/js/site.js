@@ -10961,7 +10961,7 @@ module.exports = ExecutionEnvironment;
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.13 ToObject(argument)
-var defined = __webpack_require__(42);
+var defined = __webpack_require__(43);
 module.exports = function(it){
   return Object(defined(it));
 };
@@ -11089,192 +11089,192 @@ function get_Americans(page_index, page_size, search_query = null) {
     });
 }
 exports.get_Americans = get_Americans;
-function get_Meal_Categories_Meals(source, page_index, page_size, query_string = null) {
+function get_Meal_Categorie_Meals(source, page_index, page_size, query_string = null) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Meal/${source.Id}/Categories_Meals?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Meal/${source.Id}/Categorie_Meals?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return exports.make_page(json, e => { return Object.assign({}, e); });
     });
 }
-exports.get_Meal_Categories_Meals = get_Meal_Categories_Meals;
-function get_Meal_Categories_Meals_Categories(source, page_index, page_size, id) {
+exports.get_Meal_Categorie_Meals = get_Meal_Categorie_Meals;
+function get_Meal_Categorie_Meals_Categorie(source, page_index, page_size, id) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Meal/${source.Id}/Categories_Meals/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Meal/${source.Id}/Categorie_Meals/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
     });
 }
-exports.get_Meal_Categories_Meals_Categories = get_Meal_Categories_Meals_Categories;
-function get_Meal_Categories_Meals_Categories_by_id(source, id) {
+exports.get_Meal_Categorie_Meals_Categorie = get_Meal_Categorie_Meals_Categorie;
+function get_Meal_Categorie_Meals_Categorie_by_id(source, id) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Meal/${source.Id}/Categories_Meals/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Meal/${source.Id}/Categorie_Meals/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
     });
 }
-exports.get_Meal_Categories_Meals_Categories_by_id = get_Meal_Categories_Meals_Categories_by_id;
-function get_unlinked_Meal_Categories_Meals(source, page_index, page_size) {
+exports.get_Meal_Categorie_Meals_Categorie_by_id = get_Meal_Categorie_Meals_Categorie_by_id;
+function get_unlinked_Meal_Categorie_Meals(source, page_index, page_size) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Meal/${source.Id}/unlinked/Categories_Meals?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Meal/${source.Id}/unlinked/Categorie_Meals?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return exports.make_page(json, e => { return Object.assign({}, e); });
     });
 }
-exports.get_unlinked_Meal_Categories_Meals = get_unlinked_Meal_Categories_Meals;
-function get_unlinked_Meal_Categories_Meals_American(source, page_index, page_size) {
+exports.get_unlinked_Meal_Categorie_Meals = get_unlinked_Meal_Categorie_Meals;
+function get_unlinked_Meal_Categorie_Meals_American(source, page_index, page_size) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Meal/${source.Id}/unlinked/Categories_Meals/American?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Meal/${source.Id}/unlinked/Categorie_Meals/American?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return exports.make_page(json, e => { return Object.assign({}, e); });
     });
 }
-exports.get_unlinked_Meal_Categories_Meals_American = get_unlinked_Meal_Categories_Meals_American;
-function get_unlinked_Meal_Categories_Meals_Asian(source, page_index, page_size) {
+exports.get_unlinked_Meal_Categorie_Meals_American = get_unlinked_Meal_Categorie_Meals_American;
+function get_unlinked_Meal_Categorie_Meals_Asian(source, page_index, page_size) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Meal/${source.Id}/unlinked/Categories_Meals/Asian?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Meal/${source.Id}/unlinked/Categorie_Meals/Asian?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return exports.make_page(json, e => { return Object.assign({}, e); });
     });
 }
-exports.get_unlinked_Meal_Categories_Meals_Asian = get_unlinked_Meal_Categories_Meals_Asian;
-function get_unlinked_Meal_Categories_Meals_Mediterranean(source, page_index, page_size) {
+exports.get_unlinked_Meal_Categorie_Meals_Asian = get_unlinked_Meal_Categorie_Meals_Asian;
+function get_unlinked_Meal_Categorie_Meals_Mediterranean(source, page_index, page_size) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Meal/${source.Id}/unlinked/Categories_Meals/Mediterranean?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Meal/${source.Id}/unlinked/Categorie_Meals/Mediterranean?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return exports.make_page(json, e => { return Object.assign({}, e); });
     });
 }
-exports.get_unlinked_Meal_Categories_Meals_Mediterranean = get_unlinked_Meal_Categories_Meals_Mediterranean;
-function create_linked_Meal_Categories_Meals_American(source) {
+exports.get_unlinked_Meal_Categorie_Meals_Mediterranean = get_unlinked_Meal_Categorie_Meals_Mediterranean;
+function create_linked_Meal_Categorie_Meals_American(source) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Meal/${source.Id}/Categories_Meals_American`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Meal/${source.Id}/Categorie_Meals_American`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return json.map(e => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); });
     });
 }
-exports.create_linked_Meal_Categories_Meals_American = create_linked_Meal_Categories_Meals_American;
-function create_linked_Meal_Categories_Meals_Asian(source) {
+exports.create_linked_Meal_Categorie_Meals_American = create_linked_Meal_Categorie_Meals_American;
+function create_linked_Meal_Categorie_Meals_Asian(source) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Meal/${source.Id}/Categories_Meals_Asian`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Meal/${source.Id}/Categorie_Meals_Asian`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return json.map(e => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); });
     });
 }
-exports.create_linked_Meal_Categories_Meals_Asian = create_linked_Meal_Categories_Meals_Asian;
-function create_linked_Meal_Categories_Meals_Mediterranean(source) {
+exports.create_linked_Meal_Categorie_Meals_Asian = create_linked_Meal_Categorie_Meals_Asian;
+function create_linked_Meal_Categorie_Meals_Mediterranean(source) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Meal/${source.Id}/Categories_Meals_Mediterranean`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Meal/${source.Id}/Categorie_Meals_Mediterranean`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return json.map(e => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); });
     });
 }
-exports.create_linked_Meal_Categories_Meals_Mediterranean = create_linked_Meal_Categories_Meals_Mediterranean;
-function link_Meal_Categories_Meals(source, target) {
+exports.create_linked_Meal_Categorie_Meals_Mediterranean = create_linked_Meal_Categorie_Meals_Mediterranean;
+function link_Meal_Categorie_Meals(source, target) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Meal/${source.Id}/Categories_Meals/${target.Id}`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Meal/${source.Id}/Categorie_Meals/${target.Id}`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         return;
     });
 }
-exports.link_Meal_Categories_Meals = link_Meal_Categories_Meals;
-function unlink_Meal_Categories_Meals(source, target) {
+exports.link_Meal_Categorie_Meals = link_Meal_Categorie_Meals;
+function unlink_Meal_Categorie_Meals(source, target) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Meal/${source.Id}/Categories_Meals/${target.Id}`, { method: 'delete', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Meal/${source.Id}/Categorie_Meals/${target.Id}`, { method: 'delete', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         return;
     });
 }
-exports.unlink_Meal_Categories_Meals = unlink_Meal_Categories_Meals;
-function get_Meal_Meal_Recipess(source, page_index, page_size, query_string = null) {
+exports.unlink_Meal_Categorie_Meals = unlink_Meal_Categorie_Meals;
+function get_Meal_Meal_Recipes(source, page_index, page_size, query_string = null) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Meal/${source.Id}/Meal_Recipess?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Meal/${source.Id}/Meal_Recipes?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return exports.make_page(json, e => { return Object.assign({}, e); });
     });
 }
-exports.get_Meal_Meal_Recipess = get_Meal_Meal_Recipess;
-function get_Meal_Meal_Recipess_Recipes(source, page_index, page_size, id) {
+exports.get_Meal_Meal_Recipes = get_Meal_Meal_Recipes;
+function get_Meal_Meal_Recipes_Recipe(source, page_index, page_size, id) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Meal/${source.Id}/Meal_Recipess/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Meal/${source.Id}/Meal_Recipes/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
     });
 }
-exports.get_Meal_Meal_Recipess_Recipes = get_Meal_Meal_Recipess_Recipes;
-function get_Meal_Meal_Recipess_Recipes_by_id(source, id) {
+exports.get_Meal_Meal_Recipes_Recipe = get_Meal_Meal_Recipes_Recipe;
+function get_Meal_Meal_Recipes_Recipe_by_id(source, id) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Meal/${source.Id}/Meal_Recipess/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Meal/${source.Id}/Meal_Recipes/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
     });
 }
-exports.get_Meal_Meal_Recipess_Recipes_by_id = get_Meal_Meal_Recipess_Recipes_by_id;
-function get_unlinked_Meal_Meal_Recipess(source, page_index, page_size) {
+exports.get_Meal_Meal_Recipes_Recipe_by_id = get_Meal_Meal_Recipes_Recipe_by_id;
+function get_unlinked_Meal_Meal_Recipes(source, page_index, page_size) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Meal/${source.Id}/unlinked/Meal_Recipess?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Meal/${source.Id}/unlinked/Meal_Recipes?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return exports.make_page(json, e => { return Object.assign({}, e); });
     });
 }
-exports.get_unlinked_Meal_Meal_Recipess = get_unlinked_Meal_Meal_Recipess;
-function create_linked_Meal_Meal_Recipess_Recipes(source) {
+exports.get_unlinked_Meal_Meal_Recipes = get_unlinked_Meal_Meal_Recipes;
+function create_linked_Meal_Meal_Recipes_Recipe(source) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Meal/${source.Id}/Meal_Recipess_Recipes`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Meal/${source.Id}/Meal_Recipes_Recipe`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return json.map(e => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); });
     });
 }
-exports.create_linked_Meal_Meal_Recipess_Recipes = create_linked_Meal_Meal_Recipess_Recipes;
-function link_Meal_Meal_Recipess(source, target) {
+exports.create_linked_Meal_Meal_Recipes_Recipe = create_linked_Meal_Meal_Recipes_Recipe;
+function link_Meal_Meal_Recipes(source, target) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Meal/${source.Id}/Meal_Recipess/${target.Id}`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Meal/${source.Id}/Meal_Recipes/${target.Id}`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         return;
     });
 }
-exports.link_Meal_Meal_Recipess = link_Meal_Meal_Recipess;
-function unlink_Meal_Meal_Recipess(source, target) {
+exports.link_Meal_Meal_Recipes = link_Meal_Meal_Recipes;
+function unlink_Meal_Meal_Recipes(source, target) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Meal/${source.Id}/Meal_Recipess/${target.Id}`, { method: 'delete', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Meal/${source.Id}/Meal_Recipes/${target.Id}`, { method: 'delete', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         return;
     });
 }
-exports.unlink_Meal_Meal_Recipess = unlink_Meal_Meal_Recipess;
+exports.unlink_Meal_Meal_Recipes = unlink_Meal_Meal_Recipes;
 function create_Meal() {
     return __awaiter(this, void 0, void 0, function* () {
         let res = yield fetch(`/api/v1/Meal/`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json',
@@ -11374,360 +11374,6 @@ function get_Asians(page_index, page_size, search_query = null) {
     });
 }
 exports.get_Asians = get_Asians;
-function get_Recipes_User_Recipess(source, page_index, page_size, query_string = null) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/User_Recipess?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return exports.make_page(json, e => { return Object.assign({}, e); });
-    });
-}
-exports.get_Recipes_User_Recipess = get_Recipes_User_Recipess;
-function get_Recipes_User_Recipess_User(source, page_index, page_size, id) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/User_Recipess/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
-    });
-}
-exports.get_Recipes_User_Recipess_User = get_Recipes_User_Recipess_User;
-function get_Recipes_User_Recipess_User_by_id(source, id) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/User_Recipess/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
-    });
-}
-exports.get_Recipes_User_Recipess_User_by_id = get_Recipes_User_Recipess_User_by_id;
-function get_unlinked_Recipes_User_Recipess(source, page_index, page_size) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/unlinked/User_Recipess?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return exports.make_page(json, e => { return Object.assign({}, e); });
-    });
-}
-exports.get_unlinked_Recipes_User_Recipess = get_unlinked_Recipes_User_Recipess;
-function create_linked_Recipes_User_Recipess_User(source) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/User_Recipess_User`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return json.map(e => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); });
-    });
-}
-exports.create_linked_Recipes_User_Recipess_User = create_linked_Recipes_User_Recipess_User;
-function link_Recipes_User_Recipess(source, target) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/User_Recipess/${target.Id}`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        return;
-    });
-}
-exports.link_Recipes_User_Recipess = link_Recipes_User_Recipess;
-function unlink_Recipes_User_Recipess(source, target) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/User_Recipess/${target.Id}`, { method: 'delete', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        return;
-    });
-}
-exports.unlink_Recipes_User_Recipess = unlink_Recipes_User_Recipess;
-function get_Recipes_Recipes_Ratings(source, page_index, page_size, query_string = null) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/Recipes_Ratings?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return exports.make_page(json, e => { return Object.assign({}, e); });
-    });
-}
-exports.get_Recipes_Recipes_Ratings = get_Recipes_Recipes_Ratings;
-function get_Recipes_Recipes_Ratings_Rating(source, page_index, page_size, id) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/Recipes_Ratings/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
-    });
-}
-exports.get_Recipes_Recipes_Ratings_Rating = get_Recipes_Recipes_Ratings_Rating;
-function get_Recipes_Recipes_Ratings_Rating_by_id(source, id) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/Recipes_Ratings/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
-    });
-}
-exports.get_Recipes_Recipes_Ratings_Rating_by_id = get_Recipes_Recipes_Ratings_Rating_by_id;
-function get_unlinked_Recipes_Recipes_Ratings(source, page_index, page_size) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/unlinked/Recipes_Ratings?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return exports.make_page(json, e => { return Object.assign({}, e); });
-    });
-}
-exports.get_unlinked_Recipes_Recipes_Ratings = get_unlinked_Recipes_Recipes_Ratings;
-function create_linked_Recipes_Recipes_Ratings_Rating(source) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/Recipes_Ratings_Rating`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return json.map(e => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); });
-    });
-}
-exports.create_linked_Recipes_Recipes_Ratings_Rating = create_linked_Recipes_Recipes_Ratings_Rating;
-function link_Recipes_Recipes_Ratings(source, target) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/Recipes_Ratings/${target.Id}`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        return;
-    });
-}
-exports.link_Recipes_Recipes_Ratings = link_Recipes_Recipes_Ratings;
-function unlink_Recipes_Recipes_Ratings(source, target) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/Recipes_Ratings/${target.Id}`, { method: 'delete', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        return;
-    });
-}
-exports.unlink_Recipes_Recipes_Ratings = unlink_Recipes_Recipes_Ratings;
-function get_Recipes_Meal_Recipess(source, page_index, page_size, query_string = null) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/Meal_Recipess?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return exports.make_page(json, e => { return Object.assign({}, e); });
-    });
-}
-exports.get_Recipes_Meal_Recipess = get_Recipes_Meal_Recipess;
-function get_Recipes_Meal_Recipess_Meal(source, page_index, page_size, id) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/Meal_Recipess/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
-    });
-}
-exports.get_Recipes_Meal_Recipess_Meal = get_Recipes_Meal_Recipess_Meal;
-function get_Recipes_Meal_Recipess_Meal_by_id(source, id) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/Meal_Recipess/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
-    });
-}
-exports.get_Recipes_Meal_Recipess_Meal_by_id = get_Recipes_Meal_Recipess_Meal_by_id;
-function get_unlinked_Recipes_Meal_Recipess(source, page_index, page_size) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/unlinked/Meal_Recipess?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return exports.make_page(json, e => { return Object.assign({}, e); });
-    });
-}
-exports.get_unlinked_Recipes_Meal_Recipess = get_unlinked_Recipes_Meal_Recipess;
-function get_unlinked_Recipes_Meal_Recipess_Lunch(source, page_index, page_size) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/unlinked/Meal_Recipess/Lunch?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return exports.make_page(json, e => { return Object.assign({}, e); });
-    });
-}
-exports.get_unlinked_Recipes_Meal_Recipess_Lunch = get_unlinked_Recipes_Meal_Recipess_Lunch;
-function get_unlinked_Recipes_Meal_Recipess_Dinner(source, page_index, page_size) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/unlinked/Meal_Recipess/Dinner?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return exports.make_page(json, e => { return Object.assign({}, e); });
-    });
-}
-exports.get_unlinked_Recipes_Meal_Recipess_Dinner = get_unlinked_Recipes_Meal_Recipess_Dinner;
-function get_unlinked_Recipes_Meal_Recipess_Breakfast(source, page_index, page_size) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/unlinked/Meal_Recipess/Breakfast?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return exports.make_page(json, e => { return Object.assign({}, e); });
-    });
-}
-exports.get_unlinked_Recipes_Meal_Recipess_Breakfast = get_unlinked_Recipes_Meal_Recipess_Breakfast;
-function create_linked_Recipes_Meal_Recipess_Lunch(source) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/Meal_Recipess_Lunch`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return json.map(e => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); });
-    });
-}
-exports.create_linked_Recipes_Meal_Recipess_Lunch = create_linked_Recipes_Meal_Recipess_Lunch;
-function create_linked_Recipes_Meal_Recipess_Dinner(source) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/Meal_Recipess_Dinner`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return json.map(e => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); });
-    });
-}
-exports.create_linked_Recipes_Meal_Recipess_Dinner = create_linked_Recipes_Meal_Recipess_Dinner;
-function create_linked_Recipes_Meal_Recipess_Breakfast(source) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/Meal_Recipess_Breakfast`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return json.map(e => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); });
-    });
-}
-exports.create_linked_Recipes_Meal_Recipess_Breakfast = create_linked_Recipes_Meal_Recipess_Breakfast;
-function link_Recipes_Meal_Recipess(source, target) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/Meal_Recipess/${target.Id}`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        return;
-    });
-}
-exports.link_Recipes_Meal_Recipess = link_Recipes_Meal_Recipess;
-function unlink_Recipes_Meal_Recipess(source, target) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/Meal_Recipess/${target.Id}`, { method: 'delete', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        return;
-    });
-}
-exports.unlink_Recipes_Meal_Recipess = unlink_Recipes_Meal_Recipess;
-function get_Recipes_HomePage_Recipess(source, page_index, page_size, query_string = null) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/HomePage_Recipess?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return exports.make_page(json, e => { return Object.assign({}, e); });
-    });
-}
-exports.get_Recipes_HomePage_Recipess = get_Recipes_HomePage_Recipess;
-function get_Recipes_HomePage_Recipess_HomePage(source, page_index, page_size, id) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/HomePage_Recipess/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
-    });
-}
-exports.get_Recipes_HomePage_Recipess_HomePage = get_Recipes_HomePage_Recipess_HomePage;
-function get_Recipes_HomePage_Recipess_HomePage_by_id(source, id) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}/HomePage_Recipess/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
-    });
-}
-exports.get_Recipes_HomePage_Recipess_HomePage_by_id = get_Recipes_HomePage_Recipess_HomePage_by_id;
-function create_Recipes() {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json',
-                'X-XSRF-TOKEN': document.getElementsByName("__RequestVerificationToken")[0].value } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
-    });
-}
-exports.create_Recipes = create_Recipes;
-function update_Recipes(item) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/`, { method: 'put',
-            body: JSON.stringify(Object.assign({}, item, { CreatedDate: undefined, Picture: "" })), credentials: 'include', headers: { 'content-type': 'application/json', 'X-XSRF-TOKEN': document.getElementsByName("__RequestVerificationToken")[0].value } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        return;
-    });
-}
-exports.update_Recipes = update_Recipes;
-function delete_Recipes(source) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${source.Id}`, { method: 'delete', credentials: 'include', headers: { 'content-type': 'application/json', 'X-XSRF-TOKEN': document.getElementsByName("__RequestVerificationToken")[0].value } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        return;
-    });
-}
-exports.delete_Recipes = delete_Recipes;
-function get_Recipes(id) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return { Item: Object.assign({}, json.Item, { CreatedDate: Moment.utc(json.Item.CreatedDate) }),
-            Editable: !!json.Editable, JustCreated: false };
-    });
-}
-exports.get_Recipes = get_Recipes;
-function get_Recipess(page_index, page_size, search_query = null) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes?page_index=${page_index}&page_size=${page_size}${(search_query != null ? "&page_size=" + search_query : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return exports.make_page(json, e => { return Object.assign({}, e); });
-    });
-}
-exports.get_Recipess = get_Recipess;
-function get_Recipes_Picture(item) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${item.Id}/Picture`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return json.Content;
-    });
-}
-exports.get_Recipes_Picture = get_Recipes_Picture;
-function update_Recipes_Picture(item, new_src) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipes/${item.Id}/Picture`, { method: 'put', body: JSON.stringify({ Content: new_src }), credentials: 'include', headers: { 'content-type': 'application/json', 'X-XSRF-TOKEN': document.getElementsByName("__RequestVerificationToken")[0].value } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        return;
-    });
-}
-exports.update_Recipes_Picture = update_Recipes_Picture;
 function create_Lunch() {
     return __awaiter(this, void 0, void 0, function* () {
         let res = yield fetch(`/api/v1/Lunch/`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json',
@@ -11779,74 +11425,74 @@ function get_Lunches(page_index, page_size, search_query = null) {
     });
 }
 exports.get_Lunches = get_Lunches;
-function get_User_User_Recipess(source, page_index, page_size, query_string = null) {
+function get_User_User_Recipes(source, page_index, page_size, query_string = null) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/User/${source.Id}/User_Recipess?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/User/${source.Id}/User_Recipes?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return exports.make_page(json, e => { return Object.assign({}, e); });
     });
 }
-exports.get_User_User_Recipess = get_User_User_Recipess;
-function get_User_User_Recipess_Recipes(source, page_index, page_size, id) {
+exports.get_User_User_Recipes = get_User_User_Recipes;
+function get_User_User_Recipes_Recipe(source, page_index, page_size, id) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/User/${source.Id}/User_Recipess/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/User/${source.Id}/User_Recipes/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
     });
 }
-exports.get_User_User_Recipess_Recipes = get_User_User_Recipess_Recipes;
-function get_User_User_Recipess_Recipes_by_id(source, id) {
+exports.get_User_User_Recipes_Recipe = get_User_User_Recipes_Recipe;
+function get_User_User_Recipes_Recipe_by_id(source, id) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/User/${source.Id}/User_Recipess/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/User/${source.Id}/User_Recipes/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
     });
 }
-exports.get_User_User_Recipess_Recipes_by_id = get_User_User_Recipess_Recipes_by_id;
-function get_unlinked_User_User_Recipess(source, page_index, page_size) {
+exports.get_User_User_Recipes_Recipe_by_id = get_User_User_Recipes_Recipe_by_id;
+function get_unlinked_User_User_Recipes(source, page_index, page_size) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/User/${source.Id}/unlinked/User_Recipess?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/User/${source.Id}/unlinked/User_Recipes?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return exports.make_page(json, e => { return Object.assign({}, e); });
     });
 }
-exports.get_unlinked_User_User_Recipess = get_unlinked_User_User_Recipess;
-function create_linked_User_User_Recipess_Recipes(source) {
+exports.get_unlinked_User_User_Recipes = get_unlinked_User_User_Recipes;
+function create_linked_User_User_Recipes_Recipe(source) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/User/${source.Id}/User_Recipess_Recipes`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/User/${source.Id}/User_Recipes_Recipe`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return json.map(e => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); });
     });
 }
-exports.create_linked_User_User_Recipess_Recipes = create_linked_User_User_Recipess_Recipes;
-function link_User_User_Recipess(source, target) {
+exports.create_linked_User_User_Recipes_Recipe = create_linked_User_User_Recipes_Recipe;
+function link_User_User_Recipes(source, target) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/User/${source.Id}/User_Recipess/${target.Id}`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/User/${source.Id}/User_Recipes/${target.Id}`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         return;
     });
 }
-exports.link_User_User_Recipess = link_User_User_Recipess;
-function unlink_User_User_Recipess(source, target) {
+exports.link_User_User_Recipes = link_User_User_Recipes;
+function unlink_User_User_Recipes(source, target) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/User/${source.Id}/User_Recipess/${target.Id}`, { method: 'delete', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/User/${source.Id}/User_Recipes/${target.Id}`, { method: 'delete', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         return;
     });
 }
-exports.unlink_User_User_Recipess = unlink_User_User_Recipess;
+exports.unlink_User_User_Recipes = unlink_User_User_Recipes;
 function create_User() {
     return __awaiter(this, void 0, void 0, function* () {
         let res = yield fetch(`/api/v1/User/`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json',
@@ -11993,66 +11639,66 @@ function reset_User_password(username, email) {
     });
 }
 exports.reset_User_password = reset_User_password;
-function get_HomePage_HomePage_Recipess(source, page_index, page_size, query_string = null) {
+function get_HomePage_HomePage_Recipes(source, page_index, page_size, query_string = null) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/HomePage/${source.Id}/HomePage_Recipess?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/HomePage/${source.Id}/HomePage_Recipes?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return exports.make_page(json, e => { return Object.assign({}, e); });
     });
 }
-exports.get_HomePage_HomePage_Recipess = get_HomePage_HomePage_Recipess;
-function get_HomePage_HomePage_Recipess_Recipes(source, page_index, page_size, id) {
+exports.get_HomePage_HomePage_Recipes = get_HomePage_HomePage_Recipes;
+function get_HomePage_HomePage_Recipes_Recipe(source, page_index, page_size, id) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/HomePage/${source.Id}/HomePage_Recipess/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/HomePage/${source.Id}/HomePage_Recipes/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
     });
 }
-exports.get_HomePage_HomePage_Recipess_Recipes = get_HomePage_HomePage_Recipess_Recipes;
-function get_HomePage_HomePage_Recipess_Recipes_by_id(source, id) {
+exports.get_HomePage_HomePage_Recipes_Recipe = get_HomePage_HomePage_Recipes_Recipe;
+function get_HomePage_HomePage_Recipes_Recipe_by_id(source, id) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/HomePage/${source.Id}/HomePage_Recipess/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/HomePage/${source.Id}/HomePage_Recipes/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
     });
 }
-exports.get_HomePage_HomePage_Recipess_Recipes_by_id = get_HomePage_HomePage_Recipess_Recipes_by_id;
-function get_HomePage_HomePage_Categoriess(source, page_index, page_size, query_string = null) {
+exports.get_HomePage_HomePage_Recipes_Recipe_by_id = get_HomePage_HomePage_Recipes_Recipe_by_id;
+function get_HomePage_HomePage_Categories(source, page_index, page_size, query_string = null) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/HomePage/${source.Id}/HomePage_Categoriess?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/HomePage/${source.Id}/HomePage_Categories?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return exports.make_page(json, e => { return Object.assign({}, e); });
     });
 }
-exports.get_HomePage_HomePage_Categoriess = get_HomePage_HomePage_Categoriess;
-function get_HomePage_HomePage_Categoriess_Categories(source, page_index, page_size, id) {
+exports.get_HomePage_HomePage_Categories = get_HomePage_HomePage_Categories;
+function get_HomePage_HomePage_Categories_Categorie(source, page_index, page_size, id) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/HomePage/${source.Id}/HomePage_Categoriess/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/HomePage/${source.Id}/HomePage_Categories/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
     });
 }
-exports.get_HomePage_HomePage_Categoriess_Categories = get_HomePage_HomePage_Categoriess_Categories;
-function get_HomePage_HomePage_Categoriess_Categories_by_id(source, id) {
+exports.get_HomePage_HomePage_Categories_Categorie = get_HomePage_HomePage_Categories_Categorie;
+function get_HomePage_HomePage_Categories_Categorie_by_id(source, id) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/HomePage/${source.Id}/HomePage_Categoriess/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/HomePage/${source.Id}/HomePage_Categories/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
     });
 }
-exports.get_HomePage_HomePage_Categoriess_Categories_by_id = get_HomePage_HomePage_Categoriess_Categories_by_id;
+exports.get_HomePage_HomePage_Categories_Categorie_by_id = get_HomePage_HomePage_Categories_Categorie_by_id;
 function create_HomePage() {
     return __awaiter(this, void 0, void 0, function* () {
         let res = yield fetch(`/api/v1/HomePage/`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json',
@@ -12104,6 +11750,360 @@ function get_HomePages(page_index, page_size, search_query = null) {
     });
 }
 exports.get_HomePages = get_HomePages;
+function get_Recipe_User_Recipes(source, page_index, page_size, query_string = null) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/User_Recipes?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return exports.make_page(json, e => { return Object.assign({}, e); });
+    });
+}
+exports.get_Recipe_User_Recipes = get_Recipe_User_Recipes;
+function get_Recipe_User_Recipes_User(source, page_index, page_size, id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/User_Recipes/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
+    });
+}
+exports.get_Recipe_User_Recipes_User = get_Recipe_User_Recipes_User;
+function get_Recipe_User_Recipes_User_by_id(source, id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/User_Recipes/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
+    });
+}
+exports.get_Recipe_User_Recipes_User_by_id = get_Recipe_User_Recipes_User_by_id;
+function get_unlinked_Recipe_User_Recipes(source, page_index, page_size) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/unlinked/User_Recipes?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return exports.make_page(json, e => { return Object.assign({}, e); });
+    });
+}
+exports.get_unlinked_Recipe_User_Recipes = get_unlinked_Recipe_User_Recipes;
+function create_linked_Recipe_User_Recipes_User(source) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/User_Recipes_User`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return json.map(e => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); });
+    });
+}
+exports.create_linked_Recipe_User_Recipes_User = create_linked_Recipe_User_Recipes_User;
+function link_Recipe_User_Recipes(source, target) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/User_Recipes/${target.Id}`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        return;
+    });
+}
+exports.link_Recipe_User_Recipes = link_Recipe_User_Recipes;
+function unlink_Recipe_User_Recipes(source, target) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/User_Recipes/${target.Id}`, { method: 'delete', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        return;
+    });
+}
+exports.unlink_Recipe_User_Recipes = unlink_Recipe_User_Recipes;
+function get_Recipe_Recipe_Ratings(source, page_index, page_size, query_string = null) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/Recipe_Ratings?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return exports.make_page(json, e => { return Object.assign({}, e); });
+    });
+}
+exports.get_Recipe_Recipe_Ratings = get_Recipe_Recipe_Ratings;
+function get_Recipe_Recipe_Ratings_Rating(source, page_index, page_size, id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/Recipe_Ratings/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
+    });
+}
+exports.get_Recipe_Recipe_Ratings_Rating = get_Recipe_Recipe_Ratings_Rating;
+function get_Recipe_Recipe_Ratings_Rating_by_id(source, id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/Recipe_Ratings/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
+    });
+}
+exports.get_Recipe_Recipe_Ratings_Rating_by_id = get_Recipe_Recipe_Ratings_Rating_by_id;
+function get_unlinked_Recipe_Recipe_Ratings(source, page_index, page_size) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/unlinked/Recipe_Ratings?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return exports.make_page(json, e => { return Object.assign({}, e); });
+    });
+}
+exports.get_unlinked_Recipe_Recipe_Ratings = get_unlinked_Recipe_Recipe_Ratings;
+function create_linked_Recipe_Recipe_Ratings_Rating(source) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/Recipe_Ratings_Rating`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return json.map(e => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); });
+    });
+}
+exports.create_linked_Recipe_Recipe_Ratings_Rating = create_linked_Recipe_Recipe_Ratings_Rating;
+function link_Recipe_Recipe_Ratings(source, target) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/Recipe_Ratings/${target.Id}`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        return;
+    });
+}
+exports.link_Recipe_Recipe_Ratings = link_Recipe_Recipe_Ratings;
+function unlink_Recipe_Recipe_Ratings(source, target) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/Recipe_Ratings/${target.Id}`, { method: 'delete', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        return;
+    });
+}
+exports.unlink_Recipe_Recipe_Ratings = unlink_Recipe_Recipe_Ratings;
+function get_Recipe_Meal_Recipes(source, page_index, page_size, query_string = null) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/Meal_Recipes?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return exports.make_page(json, e => { return Object.assign({}, e); });
+    });
+}
+exports.get_Recipe_Meal_Recipes = get_Recipe_Meal_Recipes;
+function get_Recipe_Meal_Recipes_Meal(source, page_index, page_size, id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/Meal_Recipes/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
+    });
+}
+exports.get_Recipe_Meal_Recipes_Meal = get_Recipe_Meal_Recipes_Meal;
+function get_Recipe_Meal_Recipes_Meal_by_id(source, id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/Meal_Recipes/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
+    });
+}
+exports.get_Recipe_Meal_Recipes_Meal_by_id = get_Recipe_Meal_Recipes_Meal_by_id;
+function get_unlinked_Recipe_Meal_Recipes(source, page_index, page_size) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/unlinked/Meal_Recipes?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return exports.make_page(json, e => { return Object.assign({}, e); });
+    });
+}
+exports.get_unlinked_Recipe_Meal_Recipes = get_unlinked_Recipe_Meal_Recipes;
+function get_unlinked_Recipe_Meal_Recipes_Lunch(source, page_index, page_size) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/unlinked/Meal_Recipes/Lunch?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return exports.make_page(json, e => { return Object.assign({}, e); });
+    });
+}
+exports.get_unlinked_Recipe_Meal_Recipes_Lunch = get_unlinked_Recipe_Meal_Recipes_Lunch;
+function get_unlinked_Recipe_Meal_Recipes_Dinner(source, page_index, page_size) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/unlinked/Meal_Recipes/Dinner?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return exports.make_page(json, e => { return Object.assign({}, e); });
+    });
+}
+exports.get_unlinked_Recipe_Meal_Recipes_Dinner = get_unlinked_Recipe_Meal_Recipes_Dinner;
+function get_unlinked_Recipe_Meal_Recipes_Breakfast(source, page_index, page_size) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/unlinked/Meal_Recipes/Breakfast?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return exports.make_page(json, e => { return Object.assign({}, e); });
+    });
+}
+exports.get_unlinked_Recipe_Meal_Recipes_Breakfast = get_unlinked_Recipe_Meal_Recipes_Breakfast;
+function create_linked_Recipe_Meal_Recipes_Lunch(source) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/Meal_Recipes_Lunch`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return json.map(e => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); });
+    });
+}
+exports.create_linked_Recipe_Meal_Recipes_Lunch = create_linked_Recipe_Meal_Recipes_Lunch;
+function create_linked_Recipe_Meal_Recipes_Dinner(source) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/Meal_Recipes_Dinner`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return json.map(e => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); });
+    });
+}
+exports.create_linked_Recipe_Meal_Recipes_Dinner = create_linked_Recipe_Meal_Recipes_Dinner;
+function create_linked_Recipe_Meal_Recipes_Breakfast(source) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/Meal_Recipes_Breakfast`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return json.map(e => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); });
+    });
+}
+exports.create_linked_Recipe_Meal_Recipes_Breakfast = create_linked_Recipe_Meal_Recipes_Breakfast;
+function link_Recipe_Meal_Recipes(source, target) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/Meal_Recipes/${target.Id}`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        return;
+    });
+}
+exports.link_Recipe_Meal_Recipes = link_Recipe_Meal_Recipes;
+function unlink_Recipe_Meal_Recipes(source, target) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/Meal_Recipes/${target.Id}`, { method: 'delete', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        return;
+    });
+}
+exports.unlink_Recipe_Meal_Recipes = unlink_Recipe_Meal_Recipes;
+function get_Recipe_HomePage_Recipes(source, page_index, page_size, query_string = null) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/HomePage_Recipes?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return exports.make_page(json, e => { return Object.assign({}, e); });
+    });
+}
+exports.get_Recipe_HomePage_Recipes = get_Recipe_HomePage_Recipes;
+function get_Recipe_HomePage_Recipes_HomePage(source, page_index, page_size, id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/HomePage_Recipes/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
+    });
+}
+exports.get_Recipe_HomePage_Recipes_HomePage = get_Recipe_HomePage_Recipes_HomePage;
+function get_Recipe_HomePage_Recipes_HomePage_by_id(source, id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}/HomePage_Recipes/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
+    });
+}
+exports.get_Recipe_HomePage_Recipes_HomePage_by_id = get_Recipe_HomePage_Recipes_HomePage_by_id;
+function create_Recipe() {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json',
+                'X-XSRF-TOKEN': document.getElementsByName("__RequestVerificationToken")[0].value } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
+    });
+}
+exports.create_Recipe = create_Recipe;
+function update_Recipe(item) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/`, { method: 'put',
+            body: JSON.stringify(Object.assign({}, item, { CreatedDate: undefined, Picture: "" })), credentials: 'include', headers: { 'content-type': 'application/json', 'X-XSRF-TOKEN': document.getElementsByName("__RequestVerificationToken")[0].value } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        return;
+    });
+}
+exports.update_Recipe = update_Recipe;
+function delete_Recipe(source) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${source.Id}`, { method: 'delete', credentials: 'include', headers: { 'content-type': 'application/json', 'X-XSRF-TOKEN': document.getElementsByName("__RequestVerificationToken")[0].value } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        return;
+    });
+}
+exports.delete_Recipe = delete_Recipe;
+function get_Recipe(id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return { Item: Object.assign({}, json.Item, { CreatedDate: Moment.utc(json.Item.CreatedDate) }),
+            Editable: !!json.Editable, JustCreated: false };
+    });
+}
+exports.get_Recipe = get_Recipe;
+function get_Recipes(page_index, page_size, search_query = null) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe?page_index=${page_index}&page_size=${page_size}${(search_query != null ? "&page_size=" + search_query : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return exports.make_page(json, e => { return Object.assign({}, e); });
+    });
+}
+exports.get_Recipes = get_Recipes;
+function get_Recipe_Picture(item) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${item.Id}/Picture`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return json.Content;
+    });
+}
+exports.get_Recipe_Picture = get_Recipe_Picture;
+function update_Recipe_Picture(item, new_src) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Recipe/${item.Id}/Picture`, { method: 'put', body: JSON.stringify({ Content: new_src }), credentials: 'include', headers: { 'content-type': 'application/json', 'X-XSRF-TOKEN': document.getElementsByName("__RequestVerificationToken")[0].value } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        return;
+    });
+}
+exports.update_Recipe_Picture = update_Recipe_Picture;
 function create_Admin() {
     return __awaiter(this, void 0, void 0, function* () {
         let res = yield fetch(`/api/v1/Admin/`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json',
@@ -12301,6 +12301,202 @@ function get_Dinners(page_index, page_size, search_query = null) {
     });
 }
 exports.get_Dinners = get_Dinners;
+function get_Categorie_Categorie_Meals(source, page_index, page_size, query_string = null) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Categorie/${source.Id}/Categorie_Meals?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return exports.make_page(json, e => { return Object.assign({}, e); });
+    });
+}
+exports.get_Categorie_Categorie_Meals = get_Categorie_Categorie_Meals;
+function get_Categorie_Categorie_Meals_Meal(source, page_index, page_size, id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Categorie/${source.Id}/Categorie_Meals/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
+    });
+}
+exports.get_Categorie_Categorie_Meals_Meal = get_Categorie_Categorie_Meals_Meal;
+function get_Categorie_Categorie_Meals_Meal_by_id(source, id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Categorie/${source.Id}/Categorie_Meals/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
+    });
+}
+exports.get_Categorie_Categorie_Meals_Meal_by_id = get_Categorie_Categorie_Meals_Meal_by_id;
+function get_unlinked_Categorie_Categorie_Meals(source, page_index, page_size) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Categorie/${source.Id}/unlinked/Categorie_Meals?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return exports.make_page(json, e => { return Object.assign({}, e); });
+    });
+}
+exports.get_unlinked_Categorie_Categorie_Meals = get_unlinked_Categorie_Categorie_Meals;
+function get_unlinked_Categorie_Categorie_Meals_Lunch(source, page_index, page_size) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Categorie/${source.Id}/unlinked/Categorie_Meals/Lunch?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return exports.make_page(json, e => { return Object.assign({}, e); });
+    });
+}
+exports.get_unlinked_Categorie_Categorie_Meals_Lunch = get_unlinked_Categorie_Categorie_Meals_Lunch;
+function get_unlinked_Categorie_Categorie_Meals_Dinner(source, page_index, page_size) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Categorie/${source.Id}/unlinked/Categorie_Meals/Dinner?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return exports.make_page(json, e => { return Object.assign({}, e); });
+    });
+}
+exports.get_unlinked_Categorie_Categorie_Meals_Dinner = get_unlinked_Categorie_Categorie_Meals_Dinner;
+function get_unlinked_Categorie_Categorie_Meals_Breakfast(source, page_index, page_size) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Categorie/${source.Id}/unlinked/Categorie_Meals/Breakfast?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return exports.make_page(json, e => { return Object.assign({}, e); });
+    });
+}
+exports.get_unlinked_Categorie_Categorie_Meals_Breakfast = get_unlinked_Categorie_Categorie_Meals_Breakfast;
+function create_linked_Categorie_Categorie_Meals_Lunch(source) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Categorie/${source.Id}/Categorie_Meals_Lunch`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return json.map(e => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); });
+    });
+}
+exports.create_linked_Categorie_Categorie_Meals_Lunch = create_linked_Categorie_Categorie_Meals_Lunch;
+function create_linked_Categorie_Categorie_Meals_Dinner(source) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Categorie/${source.Id}/Categorie_Meals_Dinner`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return json.map(e => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); });
+    });
+}
+exports.create_linked_Categorie_Categorie_Meals_Dinner = create_linked_Categorie_Categorie_Meals_Dinner;
+function create_linked_Categorie_Categorie_Meals_Breakfast(source) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Categorie/${source.Id}/Categorie_Meals_Breakfast`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return json.map(e => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); });
+    });
+}
+exports.create_linked_Categorie_Categorie_Meals_Breakfast = create_linked_Categorie_Categorie_Meals_Breakfast;
+function link_Categorie_Categorie_Meals(source, target) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Categorie/${source.Id}/Categorie_Meals/${target.Id}`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        return;
+    });
+}
+exports.link_Categorie_Categorie_Meals = link_Categorie_Categorie_Meals;
+function unlink_Categorie_Categorie_Meals(source, target) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Categorie/${source.Id}/Categorie_Meals/${target.Id}`, { method: 'delete', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        return;
+    });
+}
+exports.unlink_Categorie_Categorie_Meals = unlink_Categorie_Categorie_Meals;
+function get_Categorie_HomePage_Categories(source, page_index, page_size, query_string = null) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Categorie/${source.Id}/HomePage_Categories?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return exports.make_page(json, e => { return Object.assign({}, e); });
+    });
+}
+exports.get_Categorie_HomePage_Categories = get_Categorie_HomePage_Categories;
+function get_Categorie_HomePage_Categories_HomePage(source, page_index, page_size, id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Categorie/${source.Id}/HomePage_Categories/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
+    });
+}
+exports.get_Categorie_HomePage_Categories_HomePage = get_Categorie_HomePage_Categories_HomePage;
+function get_Categorie_HomePage_Categories_HomePage_by_id(source, id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Categorie/${source.Id}/HomePage_Categories/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
+    });
+}
+exports.get_Categorie_HomePage_Categories_HomePage_by_id = get_Categorie_HomePage_Categories_HomePage_by_id;
+function create_Categorie() {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Categorie/`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json',
+                'X-XSRF-TOKEN': document.getElementsByName("__RequestVerificationToken")[0].value } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
+    });
+}
+exports.create_Categorie = create_Categorie;
+function update_Categorie(item) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = item.Kind == "American" ? yield update_American(item) : item.Kind == "Asian" ? yield update_Asian(item) : item.Kind == "Mediterranean" ? yield update_Mediterranean(item) : null;
+        return;
+    });
+}
+exports.update_Categorie = update_Categorie;
+function delete_Categorie(source) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Categorie/${source.Id}`, { method: 'delete', credentials: 'include', headers: { 'content-type': 'application/json', 'X-XSRF-TOKEN': document.getElementsByName("__RequestVerificationToken")[0].value } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        return;
+    });
+}
+exports.delete_Categorie = delete_Categorie;
+function get_Categorie(id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Categorie/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return { Item: Object.assign({}, json.Item, { CreatedDate: Moment.utc(json.Item.CreatedDate) }),
+            Editable: !!json.Editable, JustCreated: false };
+    });
+}
+exports.get_Categorie = get_Categorie;
+function get_Categories(page_index, page_size, search_query = null) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Categorie?page_index=${page_index}&page_size=${page_size}${(search_query != null ? "&page_size=" + search_query : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return exports.make_page(json, e => { return Object.assign({}, e); });
+    });
+}
+exports.get_Categories = get_Categories;
 function create_Mediterranean() {
     return __awaiter(this, void 0, void 0, function* () {
         let res = yield fetch(`/api/v1/Mediterranean/`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json',
@@ -12403,270 +12599,74 @@ function get_Breakfasts(page_index, page_size, search_query = null) {
     });
 }
 exports.get_Breakfasts = get_Breakfasts;
-function get_Categories_Categories_Meals(source, page_index, page_size, query_string = null) {
+function get_Rating_Recipe_Ratings(source, page_index, page_size, query_string = null) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Categories/${source.Id}/Categories_Meals?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Rating/${source.Id}/Recipe_Ratings?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return exports.make_page(json, e => { return Object.assign({}, e); });
     });
 }
-exports.get_Categories_Categories_Meals = get_Categories_Categories_Meals;
-function get_Categories_Categories_Meals_Meal(source, page_index, page_size, id) {
+exports.get_Rating_Recipe_Ratings = get_Rating_Recipe_Ratings;
+function get_Rating_Recipe_Ratings_Recipe(source, page_index, page_size, id) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Categories/${source.Id}/Categories_Meals/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Rating/${source.Id}/Recipe_Ratings/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
     });
 }
-exports.get_Categories_Categories_Meals_Meal = get_Categories_Categories_Meals_Meal;
-function get_Categories_Categories_Meals_Meal_by_id(source, id) {
+exports.get_Rating_Recipe_Ratings_Recipe = get_Rating_Recipe_Ratings_Recipe;
+function get_Rating_Recipe_Ratings_Recipe_by_id(source, id) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Categories/${source.Id}/Categories_Meals/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Rating/${source.Id}/Recipe_Ratings/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
     });
 }
-exports.get_Categories_Categories_Meals_Meal_by_id = get_Categories_Categories_Meals_Meal_by_id;
-function get_unlinked_Categories_Categories_Meals(source, page_index, page_size) {
+exports.get_Rating_Recipe_Ratings_Recipe_by_id = get_Rating_Recipe_Ratings_Recipe_by_id;
+function get_unlinked_Rating_Recipe_Ratings(source, page_index, page_size) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Categories/${source.Id}/unlinked/Categories_Meals?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Rating/${source.Id}/unlinked/Recipe_Ratings?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return exports.make_page(json, e => { return Object.assign({}, e); });
     });
 }
-exports.get_unlinked_Categories_Categories_Meals = get_unlinked_Categories_Categories_Meals;
-function get_unlinked_Categories_Categories_Meals_Lunch(source, page_index, page_size) {
+exports.get_unlinked_Rating_Recipe_Ratings = get_unlinked_Rating_Recipe_Ratings;
+function create_linked_Rating_Recipe_Ratings_Recipe(source) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Categories/${source.Id}/unlinked/Categories_Meals/Lunch?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return exports.make_page(json, e => { return Object.assign({}, e); });
-    });
-}
-exports.get_unlinked_Categories_Categories_Meals_Lunch = get_unlinked_Categories_Categories_Meals_Lunch;
-function get_unlinked_Categories_Categories_Meals_Dinner(source, page_index, page_size) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Categories/${source.Id}/unlinked/Categories_Meals/Dinner?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return exports.make_page(json, e => { return Object.assign({}, e); });
-    });
-}
-exports.get_unlinked_Categories_Categories_Meals_Dinner = get_unlinked_Categories_Categories_Meals_Dinner;
-function get_unlinked_Categories_Categories_Meals_Breakfast(source, page_index, page_size) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Categories/${source.Id}/unlinked/Categories_Meals/Breakfast?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return exports.make_page(json, e => { return Object.assign({}, e); });
-    });
-}
-exports.get_unlinked_Categories_Categories_Meals_Breakfast = get_unlinked_Categories_Categories_Meals_Breakfast;
-function create_linked_Categories_Categories_Meals_Lunch(source) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Categories/${source.Id}/Categories_Meals_Lunch`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Rating/${source.Id}/Recipe_Ratings_Recipe`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         let json = yield res.json();
         return json.map(e => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); });
     });
 }
-exports.create_linked_Categories_Categories_Meals_Lunch = create_linked_Categories_Categories_Meals_Lunch;
-function create_linked_Categories_Categories_Meals_Dinner(source) {
+exports.create_linked_Rating_Recipe_Ratings_Recipe = create_linked_Rating_Recipe_Ratings_Recipe;
+function link_Rating_Recipe_Ratings(source, target) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Categories/${source.Id}/Categories_Meals_Dinner`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return json.map(e => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); });
-    });
-}
-exports.create_linked_Categories_Categories_Meals_Dinner = create_linked_Categories_Categories_Meals_Dinner;
-function create_linked_Categories_Categories_Meals_Breakfast(source) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Categories/${source.Id}/Categories_Meals_Breakfast`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return json.map(e => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); });
-    });
-}
-exports.create_linked_Categories_Categories_Meals_Breakfast = create_linked_Categories_Categories_Meals_Breakfast;
-function link_Categories_Categories_Meals(source, target) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Categories/${source.Id}/Categories_Meals/${target.Id}`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Rating/${source.Id}/Recipe_Ratings/${target.Id}`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         return;
     });
 }
-exports.link_Categories_Categories_Meals = link_Categories_Categories_Meals;
-function unlink_Categories_Categories_Meals(source, target) {
+exports.link_Rating_Recipe_Ratings = link_Rating_Recipe_Ratings;
+function unlink_Rating_Recipe_Ratings(source, target) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Categories/${source.Id}/Categories_Meals/${target.Id}`, { method: 'delete', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/Rating/${source.Id}/Recipe_Ratings/${target.Id}`, { method: 'delete', credentials: 'include', headers: { 'content-type': 'application/json' } });
         if (!res.ok)
             throw Error(res.statusText);
         return;
     });
 }
-exports.unlink_Categories_Categories_Meals = unlink_Categories_Categories_Meals;
-function get_Categories_HomePage_Categoriess(source, page_index, page_size, query_string = null) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Categories/${source.Id}/HomePage_Categoriess?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return exports.make_page(json, e => { return Object.assign({}, e); });
-    });
-}
-exports.get_Categories_HomePage_Categoriess = get_Categories_HomePage_Categoriess;
-function get_Categories_HomePage_Categoriess_HomePage(source, page_index, page_size, id) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Categories/${source.Id}/HomePage_Categoriess/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
-    });
-}
-exports.get_Categories_HomePage_Categoriess_HomePage = get_Categories_HomePage_Categoriess_HomePage;
-function get_Categories_HomePage_Categoriess_HomePage_by_id(source, id) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Categories/${source.Id}/HomePage_Categoriess/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
-    });
-}
-exports.get_Categories_HomePage_Categoriess_HomePage_by_id = get_Categories_HomePage_Categoriess_HomePage_by_id;
-function create_Categories() {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Categories/`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json',
-                'X-XSRF-TOKEN': document.getElementsByName("__RequestVerificationToken")[0].value } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
-    });
-}
-exports.create_Categories = create_Categories;
-function update_Categories(item) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = item.Kind == "American" ? yield update_American(item) : item.Kind == "Asian" ? yield update_Asian(item) : item.Kind == "Mediterranean" ? yield update_Mediterranean(item) : null;
-        return;
-    });
-}
-exports.update_Categories = update_Categories;
-function delete_Categories(source) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Categories/${source.Id}`, { method: 'delete', credentials: 'include', headers: { 'content-type': 'application/json', 'X-XSRF-TOKEN': document.getElementsByName("__RequestVerificationToken")[0].value } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        return;
-    });
-}
-exports.delete_Categories = delete_Categories;
-function get_Categories(id) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Categories/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return { Item: Object.assign({}, json.Item, { CreatedDate: Moment.utc(json.Item.CreatedDate) }),
-            Editable: !!json.Editable, JustCreated: false };
-    });
-}
-exports.get_Categories = get_Categories;
-function get_Categoriess(page_index, page_size, search_query = null) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Categories?page_index=${page_index}&page_size=${page_size}${(search_query != null ? "&page_size=" + search_query : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return exports.make_page(json, e => { return Object.assign({}, e); });
-    });
-}
-exports.get_Categoriess = get_Categoriess;
-function get_Rating_Recipes_Ratings(source, page_index, page_size, query_string = null) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Rating/${source.Id}/Recipes_Ratings?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return exports.make_page(json, e => { return Object.assign({}, e); });
-    });
-}
-exports.get_Rating_Recipes_Ratings = get_Rating_Recipes_Ratings;
-function get_Rating_Recipes_Ratings_Recipes(source, page_index, page_size, id) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Rating/${source.Id}/Recipes_Ratings/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
-    });
-}
-exports.get_Rating_Recipes_Ratings_Recipes = get_Rating_Recipes_Ratings_Recipes;
-function get_Rating_Recipes_Ratings_Recipes_by_id(source, id) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Rating/${source.Id}/Recipes_Ratings/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
-    });
-}
-exports.get_Rating_Recipes_Ratings_Recipes_by_id = get_Rating_Recipes_Ratings_Recipes_by_id;
-function get_unlinked_Rating_Recipes_Ratings(source, page_index, page_size) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Rating/${source.Id}/unlinked/Recipes_Ratings?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return exports.make_page(json, e => { return Object.assign({}, e); });
-    });
-}
-exports.get_unlinked_Rating_Recipes_Ratings = get_unlinked_Rating_Recipes_Ratings;
-function create_linked_Rating_Recipes_Ratings_Recipes(source) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Rating/${source.Id}/Recipes_Ratings_Recipes`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return json.map(e => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); });
-    });
-}
-exports.create_linked_Rating_Recipes_Ratings_Recipes = create_linked_Rating_Recipes_Ratings_Recipes;
-function link_Rating_Recipes_Ratings(source, target) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Rating/${source.Id}/Recipes_Ratings/${target.Id}`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        return;
-    });
-}
-exports.link_Rating_Recipes_Ratings = link_Rating_Recipes_Ratings;
-function unlink_Rating_Recipes_Ratings(source, target) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Rating/${source.Id}/Recipes_Ratings/${target.Id}`, { method: 'delete', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        return;
-    });
-}
-exports.unlink_Rating_Recipes_Ratings = unlink_Rating_Recipes_Ratings;
+exports.unlink_Rating_Recipe_Ratings = unlink_Rating_Recipe_Ratings;
 function create_Rating() {
     return __awaiter(this, void 0, void 0, function* () {
         let res = yield fetch(`/api/v1/Rating/`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json',
@@ -13125,7 +13125,7 @@ function render_page_manager(target_element_id, initial_page, current_User, curr
         i18next.init({
             lng: current_User ? current_User.Language : current_Admin ? current_Admin.Language : "nl",
             fallbackLng: "en",
-            ns: ["common", "American", "Meal", "Asian", "Recipes", "Lunch", "User", "HomePage", "Admin", "Dinner", "Mediterranean", "Breakfast", "Categories", "Rating"],
+            ns: ["common", "American", "Meal", "Asian", "Lunch", "User", "HomePage", "Recipe", "Admin", "Dinner", "Categorie", "Mediterranean", "Breakfast", "Rating"],
             resources: resources
         }, (err, t) => {
             ReactDOM.render(React.createElement(PageManager, { initial_page: initial_page, current_User: current_User, current_Admin: current_Admin }), document.getElementById(target_element_id));
@@ -13164,7 +13164,7 @@ module.exports = function(it, key){
 
 
 
-var CharacterMetadata = __webpack_require__(44);
+var CharacterMetadata = __webpack_require__(45);
 var ContentStateInlineStyle = __webpack_require__(590);
 var DraftFeatureFlags = __webpack_require__(226);
 var Immutable = __webpack_require__(12);
@@ -13362,40 +13362,26 @@ module.exports = emptyFunction;
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.can_view_American = (current_User, current_Admin) => true;
-exports.can_create_American = (current_User, current_Admin) => true;
-exports.can_edit_American = (current_User, current_Admin) => true;
-exports.can_delete_American = (current_User, current_Admin) => true;
+exports.can_view_American = (current_User, current_Admin) => current_User != null || current_Admin != null;
+exports.can_create_American = (current_User, current_Admin) => current_Admin != null;
+exports.can_edit_American = (current_User, current_Admin) => current_Admin != null;
+exports.can_delete_American = (current_User, current_Admin) => current_Admin != null;
 exports.can_view_American_Description = (current_User, current_Admin) => true;
 exports.can_edit_American_Description = (current_User, current_Admin) => true;
-exports.can_view_Meal = (current_User, current_Admin) => true;
-exports.can_create_Meal = (current_User, current_Admin) => true;
-exports.can_edit_Meal = (current_User, current_Admin) => true;
-exports.can_delete_Meal = (current_User, current_Admin) => true;
-exports.can_view_Asian = (current_User, current_Admin) => true;
-exports.can_create_Asian = (current_User, current_Admin) => true;
-exports.can_edit_Asian = (current_User, current_Admin) => true;
-exports.can_delete_Asian = (current_User, current_Admin) => true;
+exports.can_view_Meal = (current_User, current_Admin) => current_User != null || current_Admin != null;
+exports.can_create_Meal = (current_User, current_Admin) => current_Admin != null;
+exports.can_edit_Meal = (current_User, current_Admin) => current_Admin != null;
+exports.can_delete_Meal = (current_User, current_Admin) => current_Admin != null;
+exports.can_view_Asian = (current_User, current_Admin) => current_User != null || current_Admin != null;
+exports.can_create_Asian = (current_User, current_Admin) => current_Admin != null;
+exports.can_edit_Asian = (current_User, current_Admin) => current_Admin != null;
+exports.can_delete_Asian = (current_User, current_Admin) => current_Admin != null;
 exports.can_view_Asian_Description = (current_User, current_Admin) => true;
 exports.can_edit_Asian_Description = (current_User, current_Admin) => true;
-exports.can_view_Recipes = (current_User, current_Admin) => true;
-exports.can_create_Recipes = (current_User, current_Admin) => true;
-exports.can_edit_Recipes = (current_User, current_Admin) => true;
-exports.can_delete_Recipes = (current_User, current_Admin) => true;
-exports.can_view_Recipes_Picture = (current_User, current_Admin) => true;
-exports.can_edit_Recipes_Picture = (current_User, current_Admin) => true;
-exports.can_view_Recipes_Name = (current_User, current_Admin) => true;
-exports.can_edit_Recipes_Name = (current_User, current_Admin) => true;
-exports.can_view_Recipes_Ingredients = (current_User, current_Admin) => true;
-exports.can_edit_Recipes_Ingredients = (current_User, current_Admin) => true;
-exports.can_view_Recipes_Description = (current_User, current_Admin) => true;
-exports.can_edit_Recipes_Description = (current_User, current_Admin) => true;
-exports.can_view_Recipes_PreparationTime = (current_User, current_Admin) => true;
-exports.can_edit_Recipes_PreparationTime = (current_User, current_Admin) => true;
-exports.can_view_Lunch = (current_User, current_Admin) => true;
-exports.can_create_Lunch = (current_User, current_Admin) => true;
-exports.can_edit_Lunch = (current_User, current_Admin) => true;
-exports.can_delete_Lunch = (current_User, current_Admin) => true;
+exports.can_view_Lunch = (current_User, current_Admin) => current_User != null || current_Admin != null;
+exports.can_create_Lunch = (current_User, current_Admin) => current_Admin != null;
+exports.can_edit_Lunch = (current_User, current_Admin) => current_Admin != null;
+exports.can_delete_Lunch = (current_User, current_Admin) => current_Admin != null;
 exports.can_view_Lunch_Description = (current_User, current_Admin) => true;
 exports.can_edit_Lunch_Description = (current_User, current_Admin) => true;
 exports.can_view_User = (current_User, current_Admin) => current_Admin != null || current_User != null;
@@ -13412,6 +13398,24 @@ exports.can_view_HomePage = (current_User, current_Admin) => true;
 exports.can_create_HomePage = (current_User, current_Admin) => false;
 exports.can_edit_HomePage = (current_User, current_Admin) => true;
 exports.can_delete_HomePage = (current_User, current_Admin) => false;
+exports.can_view_HomePage_AppTest = (current_User, current_Admin) => true;
+exports.can_edit_HomePage_AppTest = (current_User, current_Admin) => true;
+exports.can_view_HomePage_Test = (current_User, current_Admin) => true;
+exports.can_edit_HomePage_Test = (current_User, current_Admin) => true;
+exports.can_view_Recipe = (current_User, current_Admin) => current_User != null || current_Admin != null;
+exports.can_create_Recipe = (current_User, current_Admin) => current_Admin != null;
+exports.can_edit_Recipe = (current_User, current_Admin) => current_Admin != null;
+exports.can_delete_Recipe = (current_User, current_Admin) => current_Admin != null;
+exports.can_view_Recipe_Picture = (current_User, current_Admin) => true;
+exports.can_edit_Recipe_Picture = (current_User, current_Admin) => true;
+exports.can_view_Recipe_Name = (current_User, current_Admin) => true;
+exports.can_edit_Recipe_Name = (current_User, current_Admin) => true;
+exports.can_view_Recipe_Ingredients = (current_User, current_Admin) => true;
+exports.can_edit_Recipe_Ingredients = (current_User, current_Admin) => true;
+exports.can_view_Recipe_Description = (current_User, current_Admin) => true;
+exports.can_edit_Recipe_Description = (current_User, current_Admin) => true;
+exports.can_view_Recipe_PreparationTime = (current_User, current_Admin) => true;
+exports.can_edit_Recipe_PreparationTime = (current_User, current_Admin) => true;
 exports.can_view_Admin = (current_User, current_Admin) => current_Admin != null;
 exports.can_create_Admin = (current_User, current_Admin) => current_Admin != null;
 exports.can_edit_Admin = (current_User, current_Admin) => current_Admin != null;
@@ -13422,58 +13426,58 @@ exports.can_view_Admin_Language = (current_User, current_Admin) => true;
 exports.can_edit_Admin_Language = (current_User, current_Admin) => true;
 exports.can_view_Admin_Email = (current_User, current_Admin) => true;
 exports.can_edit_Admin_Email = (current_User, current_Admin) => true;
-exports.can_view_Dinner = (current_User, current_Admin) => true;
-exports.can_create_Dinner = (current_User, current_Admin) => true;
-exports.can_edit_Dinner = (current_User, current_Admin) => true;
-exports.can_delete_Dinner = (current_User, current_Admin) => true;
+exports.can_view_Dinner = (current_User, current_Admin) => current_User != null || current_Admin != null;
+exports.can_create_Dinner = (current_User, current_Admin) => current_Admin != null;
+exports.can_edit_Dinner = (current_User, current_Admin) => current_Admin != null;
+exports.can_delete_Dinner = (current_User, current_Admin) => current_Admin != null;
 exports.can_view_Dinner_Description = (current_User, current_Admin) => true;
 exports.can_edit_Dinner_Description = (current_User, current_Admin) => true;
-exports.can_view_Mediterranean = (current_User, current_Admin) => true;
-exports.can_create_Mediterranean = (current_User, current_Admin) => true;
-exports.can_edit_Mediterranean = (current_User, current_Admin) => true;
-exports.can_delete_Mediterranean = (current_User, current_Admin) => true;
+exports.can_view_Categorie = (current_User, current_Admin) => current_User != null || current_Admin != null;
+exports.can_create_Categorie = (current_User, current_Admin) => current_Admin != null;
+exports.can_edit_Categorie = (current_User, current_Admin) => current_Admin != null;
+exports.can_delete_Categorie = (current_User, current_Admin) => current_Admin != null;
+exports.can_view_Mediterranean = (current_User, current_Admin) => current_User != null || current_Admin != null;
+exports.can_create_Mediterranean = (current_User, current_Admin) => current_Admin != null;
+exports.can_edit_Mediterranean = (current_User, current_Admin) => current_Admin != null;
+exports.can_delete_Mediterranean = (current_User, current_Admin) => current_Admin != null;
 exports.can_view_Mediterranean_Description = (current_User, current_Admin) => true;
 exports.can_edit_Mediterranean_Description = (current_User, current_Admin) => true;
-exports.can_view_Breakfast = (current_User, current_Admin) => true;
-exports.can_create_Breakfast = (current_User, current_Admin) => true;
-exports.can_edit_Breakfast = (current_User, current_Admin) => true;
-exports.can_delete_Breakfast = (current_User, current_Admin) => true;
+exports.can_view_Breakfast = (current_User, current_Admin) => current_User != null || current_Admin != null;
+exports.can_create_Breakfast = (current_User, current_Admin) => current_Admin != null;
+exports.can_edit_Breakfast = (current_User, current_Admin) => current_Admin != null;
+exports.can_delete_Breakfast = (current_User, current_Admin) => current_Admin != null;
 exports.can_view_Breakfast_Description = (current_User, current_Admin) => true;
 exports.can_edit_Breakfast_Description = (current_User, current_Admin) => true;
-exports.can_view_Categories = (current_User, current_Admin) => true;
-exports.can_create_Categories = (current_User, current_Admin) => true;
-exports.can_edit_Categories = (current_User, current_Admin) => true;
-exports.can_delete_Categories = (current_User, current_Admin) => true;
-exports.can_view_Rating = (current_User, current_Admin) => true;
-exports.can_create_Rating = (current_User, current_Admin) => true;
-exports.can_edit_Rating = (current_User, current_Admin) => true;
-exports.can_delete_Rating = (current_User, current_Admin) => true;
+exports.can_view_Rating = (current_User, current_Admin) => current_User != null || current_Admin != null;
+exports.can_create_Rating = (current_User, current_Admin) => current_Admin != null;
+exports.can_edit_Rating = (current_User, current_Admin) => current_Admin != null;
+exports.can_delete_Rating = (current_User, current_Admin) => current_Admin != null;
 exports.can_view_Rating_rating = (current_User, current_Admin) => true;
 exports.can_edit_Rating_rating = (current_User, current_Admin) => true;
-exports.can_view_Categories_Meal = (current_User, current_Admin) => true;
-exports.can_create_Categories_Meal = (current_User, current_Admin) => true;
-exports.can_edit_Categories_Meal = (current_User, current_Admin) => true;
-exports.can_delete_Categories_Meal = (current_User, current_Admin) => true;
-exports.can_view_User_Recipes = (current_User, current_Admin) => true;
-exports.can_create_User_Recipes = (current_User, current_Admin) => true;
-exports.can_edit_User_Recipes = (current_User, current_Admin) => true;
-exports.can_delete_User_Recipes = (current_User, current_Admin) => true;
-exports.can_view_Recipes_Rating = (current_User, current_Admin) => true;
-exports.can_create_Recipes_Rating = (current_User, current_Admin) => true;
-exports.can_edit_Recipes_Rating = (current_User, current_Admin) => true;
-exports.can_delete_Recipes_Rating = (current_User, current_Admin) => true;
-exports.can_view_Meal_Recipes = (current_User, current_Admin) => true;
-exports.can_create_Meal_Recipes = (current_User, current_Admin) => true;
-exports.can_edit_Meal_Recipes = (current_User, current_Admin) => true;
-exports.can_delete_Meal_Recipes = (current_User, current_Admin) => true;
-exports.can_view_HomePage_Recipes = (current_User, current_Admin) => true;
-exports.can_create_HomePage_Recipes = (current_User, current_Admin) => true;
-exports.can_edit_HomePage_Recipes = (current_User, current_Admin) => true;
-exports.can_delete_HomePage_Recipes = (current_User, current_Admin) => true;
-exports.can_view_HomePage_Categories = (current_User, current_Admin) => true;
-exports.can_create_HomePage_Categories = (current_User, current_Admin) => true;
-exports.can_edit_HomePage_Categories = (current_User, current_Admin) => true;
-exports.can_delete_HomePage_Categories = (current_User, current_Admin) => true;
+exports.can_view_Categorie_Meal = (current_User, current_Admin) => true;
+exports.can_create_Categorie_Meal = (current_User, current_Admin) => true;
+exports.can_edit_Categorie_Meal = (current_User, current_Admin) => true;
+exports.can_delete_Categorie_Meal = (current_User, current_Admin) => true;
+exports.can_view_User_Recipe = (current_User, current_Admin) => true;
+exports.can_create_User_Recipe = (current_User, current_Admin) => true;
+exports.can_edit_User_Recipe = (current_User, current_Admin) => true;
+exports.can_delete_User_Recipe = (current_User, current_Admin) => true;
+exports.can_view_Recipe_Rating = (current_User, current_Admin) => true;
+exports.can_create_Recipe_Rating = (current_User, current_Admin) => true;
+exports.can_edit_Recipe_Rating = (current_User, current_Admin) => true;
+exports.can_delete_Recipe_Rating = (current_User, current_Admin) => true;
+exports.can_view_Meal_Recipe = (current_User, current_Admin) => true;
+exports.can_create_Meal_Recipe = (current_User, current_Admin) => true;
+exports.can_edit_Meal_Recipe = (current_User, current_Admin) => true;
+exports.can_delete_Meal_Recipe = (current_User, current_Admin) => true;
+exports.can_view_HomePage_Recipe = (current_User, current_Admin) => true;
+exports.can_create_HomePage_Recipe = (current_User, current_Admin) => true;
+exports.can_edit_HomePage_Recipe = (current_User, current_Admin) => true;
+exports.can_delete_HomePage_Recipe = (current_User, current_Admin) => true;
+exports.can_view_HomePage_Categorie = (current_User, current_Admin) => true;
+exports.can_create_HomePage_Categorie = (current_User, current_Admin) => true;
+exports.can_edit_HomePage_Categorie = (current_User, current_Admin) => true;
+exports.can_delete_HomePage_Categorie = (current_User, current_Admin) => true;
 
 
 /***/ }),
@@ -13541,7 +13545,7 @@ __webpack_require__(55).inspectSource = function(it){
 
 var $export = __webpack_require__(1)
   , fails   = __webpack_require__(7)
-  , defined = __webpack_require__(42)
+  , defined = __webpack_require__(43)
   , quot    = /"/g;
 // B.2.3.2.1 CreateHTML(string, tag, attribute, value)
 var createHTML = function(string, tag, attribute, value) {
@@ -13565,7 +13569,7 @@ module.exports = function(NAME, exec){
 
 // to indexed object, toObject with fallback for non-array-like ES3 strings
 var IObject = __webpack_require__(92)
-  , defined = __webpack_require__(42);
+  , defined = __webpack_require__(43);
 module.exports = function(it){
   return IObject(defined(it));
 };
@@ -19043,618 +19047,6 @@ module.exports = { debugTool: debugTool };
 
 Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(14);
-const i18next = __webpack_require__(21);
-exports.Cancel = (props) => React.createElement("button", { className: "button button--cancel", onClick: () => props.onClick() }, i18next.t('Cancel'));
-exports.Add = (props) => React.createElement("button", { disabled: props.disabled, className: "button button--add", onClick: () => props.onClick() }, i18next.t(`Add existing ${props.target_name}`));
-exports.Create = (props) => React.createElement("button", { className: "button button--create", onClick: () => props.onClick() }, i18next.t(`Create new ${props.target_name}`));
-exports.Search = (props) => React.createElement("button", { className: "button button--search", onClick: () => props.onClick() }, i18next.t(`Search`));
-
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(14);
-const Immutable = __webpack_require__(33);
-const Api = __webpack_require__(22);
-const List = __webpack_require__(46);
-const Buttons = __webpack_require__(39);
-const Permissions = __webpack_require__(27);
-const Utils = __webpack_require__(23);
-const i18next = __webpack_require__(21);
-const RecipesViews = __webpack_require__(65);
-const CategoriesViews = __webpack_require__(89);
-function HomePage_HomePage_Recipes_can_create(self) {
-    let state = self.state();
-    return state.Recipes == "loading" ? false : state.Recipes.CanCreate;
-}
-exports.HomePage_HomePage_Recipes_can_create = HomePage_HomePage_Recipes_can_create;
-function HomePage_HomePage_Categories_can_create(self) {
-    let state = self.state();
-    return state.Categories == "loading" ? false : state.Categories.CanCreate;
-}
-exports.HomePage_HomePage_Categories_can_create = HomePage_HomePage_Categories_can_create;
-function HomePage_HomePage_Recipes_can_delete(self) {
-    let state = self.state();
-    return state.Recipes == "loading" ? false : state.Recipes.CanDelete;
-}
-exports.HomePage_HomePage_Recipes_can_delete = HomePage_HomePage_Recipes_can_delete;
-function HomePage_HomePage_Categories_can_delete(self) {
-    let state = self.state();
-    return state.Categories == "loading" ? false : state.Categories.CanDelete;
-}
-exports.HomePage_HomePage_Categories_can_delete = HomePage_HomePage_Categories_can_delete;
-function HomePage_HomePage_Recipes_page_index(self) {
-    let state = self.state();
-    return state.Recipes == "loading" ? 0 : state.Recipes.PageIndex;
-}
-exports.HomePage_HomePage_Recipes_page_index = HomePage_HomePage_Recipes_page_index;
-function HomePage_HomePage_Categories_page_index(self) {
-    let state = self.state();
-    return state.Categories == "loading" ? 0 : state.Categories.PageIndex;
-}
-exports.HomePage_HomePage_Categories_page_index = HomePage_HomePage_Categories_page_index;
-function HomePage_HomePage_Recipes_page_size(self) {
-    let state = self.state();
-    return state.Recipes == "loading" ? 25 : state.Recipes.PageSize;
-}
-exports.HomePage_HomePage_Recipes_page_size = HomePage_HomePage_Recipes_page_size;
-function HomePage_HomePage_Categories_page_size(self) {
-    let state = self.state();
-    return state.Categories == "loading" ? 25 : state.Categories.PageSize;
-}
-exports.HomePage_HomePage_Categories_page_size = HomePage_HomePage_Categories_page_size;
-function HomePage_HomePage_Recipes_search_query(self) {
-    let state = self.state();
-    return state.Recipes == "loading" ? null : state.Recipes.SearchQuery;
-}
-exports.HomePage_HomePage_Recipes_search_query = HomePage_HomePage_Recipes_search_query;
-function HomePage_HomePage_Categories_search_query(self) {
-    let state = self.state();
-    return state.Categories == "loading" ? null : state.Categories.SearchQuery;
-}
-exports.HomePage_HomePage_Categories_search_query = HomePage_HomePage_Categories_search_query;
-function HomePage_HomePage_Recipes_num_pages(self) {
-    let state = self.state();
-    return state.Recipes == "loading" ? 1 : state.Recipes.NumPages;
-}
-exports.HomePage_HomePage_Recipes_num_pages = HomePage_HomePage_Recipes_num_pages;
-function HomePage_HomePage_Categories_num_pages(self) {
-    let state = self.state();
-    return state.Categories == "loading" ? 1 : state.Categories.NumPages;
-}
-exports.HomePage_HomePage_Categories_num_pages = HomePage_HomePage_Categories_num_pages;
-function load_relation_HomePage_HomePage_Recipes(self, force_first_page, current_User, current_Admin, callback) {
-    let state = self.state();
-    let prelude = force_first_page && state.Recipes != "loading" ?
-        (c) => state.Recipes != "loading" && self.setState(Object.assign({}, state, { Recipes: Object.assign({}, state.Recipes, { PageIndex: 0 }) }), c)
-        :
-            (c) => c();
-    Permissions.can_view_Recipes(current_User, current_Admin) ?
-        prelude(() => Api.get_HomePage_HomePage_Recipess(self.props.entity, HomePage_HomePage_Recipes_page_index(self), HomePage_HomePage_Recipes_page_size(self), HomePage_HomePage_Recipes_search_query(self)).then(Recipess => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipes: Utils.raw_page_to_paginated_items((i, i_just_created) => {
-                let state = self.state();
-                return {
-                    element: i,
-                    size: state.Recipes != "loading" ?
-                        (state.Recipes.Items.has(i.Id) ?
-                            state.Recipes.Items.get(i.Id).size
-                            :
-                                "preview" /* i_just_created ? "large" : "preview" */)
-                        :
-                            "preview" /* i_just_created ? "large" : "preview" */,
-                    shown_relation: "all"
-                };
-            }, Recipess) }), callback)))
-        :
-            prelude(() => callback && callback());
-}
-exports.load_relation_HomePage_HomePage_Recipes = load_relation_HomePage_HomePage_Recipes;
-function load_relation_HomePage_HomePage_Categories(self, force_first_page, current_User, current_Admin, callback) {
-    let state = self.state();
-    let prelude = force_first_page && state.Categories != "loading" ?
-        (c) => state.Categories != "loading" && self.setState(Object.assign({}, state, { Categories: Object.assign({}, state.Categories, { PageIndex: 0 }) }), c)
-        :
-            (c) => c();
-    Permissions.can_view_Categories(current_User, current_Admin) ?
-        prelude(() => Api.get_HomePage_HomePage_Categoriess(self.props.entity, HomePage_HomePage_Categories_page_index(self), HomePage_HomePage_Categories_page_size(self), HomePage_HomePage_Categories_search_query(self)).then(Categoriess => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Categories: Utils.raw_page_to_paginated_items((i, i_just_created) => {
-                let state = self.state();
-                return {
-                    element: i,
-                    size: state.Categories != "loading" ?
-                        (state.Categories.Items.has(i.Id) ?
-                            state.Categories.Items.get(i.Id).size
-                            :
-                                "preview" /* i_just_created ? "large" : "preview" */)
-                        :
-                            "preview" /* i_just_created ? "large" : "preview" */,
-                    shown_relation: "all"
-                };
-            }, Categoriess) }), callback)))
-        :
-            prelude(() => callback && callback());
-}
-exports.load_relation_HomePage_HomePage_Categories = load_relation_HomePage_HomePage_Categories;
-function load_relations_HomePage(self, current_User, current_Admin, callback) {
-    load_relation_HomePage_HomePage_Categories(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_HomePage_HomePage_Recipes(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback()));
-}
-exports.load_relations_HomePage = load_relations_HomePage;
-function set_size_HomePage(self, new_size) {
-    self.props.set_size(new_size, () => {
-        if (new_size == "fullscreen")
-            self.props.push(exports.HomePage_to_page(self.props.entity.Id));
-    });
-}
-exports.set_size_HomePage = set_size_HomePage;
-function render_editable_attributes_minimised_HomePage(self) {
-    let attributes = (React.createElement("div", null));
-    return attributes;
-}
-exports.render_editable_attributes_minimised_HomePage = render_editable_attributes_minimised_HomePage;
-function render_editable_attributes_maximised_HomePage(self) {
-    let state = self.state();
-    let attributes = (React.createElement("div", null));
-    return attributes;
-}
-exports.render_editable_attributes_maximised_HomePage = render_editable_attributes_maximised_HomePage;
-function render_breadcrumb_HomePage(self) {
-    return React.createElement("div", { className: "breadcrumb-homepage" }, "HomePage");
-}
-exports.render_breadcrumb_HomePage = render_breadcrumb_HomePage;
-function render_menu_HomePage(self) {
-    let state = self.state();
-    return React.createElement("div", { className: "menu" },
-        React.createElement("img", { className: "logo", src: "/images/logo.png", alt: "Logo" }),
-        React.createElement("div", { className: "pages" },
-            !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin) ? null :
-                React.createElement("div", { className: `menu_entry page_link active-page` },
-                    React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('HomePage'))),
-            React.createElement("div", { className: "menu_entries" },
-                !Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipes" ? " active" : ""}` },
-                        React.createElement("a", { onClick: () => {
-                                self.props.set_shown_relation("HomePage_Recipes");
-                            } }, i18next.t('HomePage_Recipess'))),
-                !Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categories" ? " active" : ""}` },
-                        React.createElement("a", { onClick: () => {
-                                self.props.set_shown_relation("HomePage_Categories");
-                            } }, i18next.t('HomePage_Categoriess'))),
-                React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
-}
-exports.render_menu_HomePage = render_menu_HomePage;
-function render_local_menu_HomePage(self) {
-    let state = self.state();
-    return React.createElement("div", { className: "local-menu" },
-        React.createElement("div", { className: "local_menu_entries" },
-            React.createElement("div", { className: `local_menu_entry${self.props.shown_relation == "none" ? " local_menu_entry--active" : ""}` },
-                React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('About this HomePage')))));
-}
-exports.render_local_menu_HomePage = render_local_menu_HomePage;
-function render_controls_HomePage(self) {
-    return React.createElement("div", { className: "control" },
-        self.props.allow_maximisation && self.props.set_size ? React.createElement("a", { className: `"homepage button button--toggle ${self.props.size != 'preview' ? 'button--toggle--open' : ''}`, onClick: () => {
-                set_size_HomePage(self, self.props.size == "preview" ? "large" : "preview");
-            } }) : null,
-        Permissions.can_delete_HomePage(self.props.current_User, self.props.current_Admin) && self.props.size == "fullscreen" ? React.createElement("a", { className: "button button--delete", onClick: () => confirm(i18next.t('Are you sure?')) &&
-                Api.delete_HomePage(self.props.entity).then(() => self.props.force_reload(() => self.props.pop())) }) : null,
-        self.props.unlink && self.props.mode != "view" ?
-            React.createElement("a", { className: "button button--unlink", onClick: () => self.props.unlink() })
-            :
-                null,
-        self.props.delete && self.props.mode != "view" ?
-            React.createElement("a", { className: "button button--delete", onClick: () => self.props.delete() })
-            :
-                null);
-}
-exports.render_controls_HomePage = render_controls_HomePage;
-function render_content_HomePage(self) {
-    let actions = [
-        self.props.allow_maximisation && self.props.set_size && self.props.size == "preview" ?
-            () => set_size_HomePage(self, self.props.size == "preview" ? "large" : "preview")
-            :
-                null,
-    ].filter(a => a != null);
-    let content = Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin) ?
-        self.props.size == "preview" ?
-            render_preview_HomePage(self)
-            : self.props.size == "large" ?
-                render_large_HomePage(self)
-                : self.props.size == "fullscreen" ?
-                    render_large_HomePage(self)
-                    : "Error: unauthorised access to entity."
-        : "Error: unauthorised access to entity.";
-    if (self.props.mode == "view" && actions.length == 1 && !false)
-        return React.createElement("a", { onClick: () => actions[0]() },
-            React.createElement("div", { className: `${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}` }, content));
-    else
-        return React.createElement("div", { className: `${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}` }, content);
-}
-exports.render_content_HomePage = render_content_HomePage;
-function render_preview_HomePage(self) {
-    let attributes = null;
-    if (self.props.mode == "view" || !Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin))
-        attributes = (React.createElement("div", { className: "model__attributes" }));
-    else
-        attributes = render_editable_attributes_minimised_HomePage(self);
-    return (React.createElement("div", { className: "block" }, attributes));
-}
-exports.render_preview_HomePage = render_preview_HomePage;
-function render_large_HomePage(self) {
-    let state = self.state();
-    let attributes = null;
-    if (self.props.mode == "view" || !Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin))
-        attributes = (React.createElement("div", { className: "model__attributes" }));
-    else
-        attributes = render_editable_attributes_maximised_HomePage(self);
-    return (React.createElement("div", { className: "block" },
-        self.props.nesting_depth == 0 && self.props.shown_relation != "all" && self.props.shown_relation != "none" ? null : attributes,
-        render_relations_HomePage(self)));
-}
-exports.render_large_HomePage = render_large_HomePage;
-function render_HomePage_HomePage_Recipes(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "HomePage_Recipes") || !Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin))
-        return null;
-    let state = self.state();
-    return React.createElement("div", null, List.render_relation("homepage_homepage_recipes", "HomePage", "Recipes", "Recipess", self.props.nesting_depth > 0, false, false, false)(state.Recipes != "loading" ?
-        state.Recipes.IdsInServerOrder.map(id => state.Recipes != "loading" && state.Recipes.Items.get(id)) :
-        state.Recipes, HomePage_HomePage_Recipes_page_index(self), HomePage_HomePage_Recipes_num_pages(self), new_page_index => {
-        let state = self.state();
-        state.Recipes != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipes: Object.assign({}, state.Recipes, { PageIndex: new_page_index }) }), () => load_relation_HomePage_HomePage_Recipes(self, false, self.props.current_User, self.props.current_Admin));
-    }, (i, _) => {
-        let i_id = i.element.Id;
-        let state = self.state();
-        return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
-                        ${state.Recipes != "loading" && state.Recipes.JustCreated.has(i_id) && state.Recipes.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, RecipesViews.Recipes(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_HomePage_Recipes(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_HomePage_Recipes(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_HomePage_Recipes(self.props.current_User, self.props.current_Admin)) ?
-                    self.props.mode : "view", is_editable: state.Recipes != "loading" && state.Recipes.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
-                    let state = self.state();
-                    state.Recipes != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Recipes: Object.assign({}, state.Recipes, { Items: state.Recipes.Items.set(i_id, Object.assign({}, state.Recipes.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
-                }, nested_entity_names: self.props.nested_entity_names.push("Recipes"), set_size: (new_size, callback) => {
-                    let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
-                    let state = self.state();
-                    state.Recipes != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Recipes: Object.assign({}, state.Recipes, { Items: state.Recipes.Items.set(i_id, Object.assign({}, state.Recipes.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
-                }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
-                    let state = self.state();
-                    state.Recipes != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { dirty_Recipes: state.dirty_Recipes.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Recipes: Object.assign({}, state.Recipes, { Items: state.Recipes.Items.set(i_id, Object.assign({}, state.Recipes.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, unlink: undefined, delete: !Permissions.can_delete_Recipes(self.props.current_User, self.props.current_Admin) || !HomePage_HomePage_Recipes_can_delete(self) ?
-                    null
-                    :
-                        () => confirm(i18next.t('Are you sure?')) && Api.delete_Recipes(i.element).then(() => load_relation_HomePage_HomePage_Recipes(self, false, self.props.current_User, self.props.current_Admin)) }))));
-    }, () => React.createElement("div", null, Permissions.can_create_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_create_HomePage_Recipes(self.props.current_User, self.props.current_Admin) && HomePage_HomePage_Recipes_can_create(self) ? render_new_HomePage_HomePage_Recipes(self) : null)));
-}
-exports.render_HomePage_HomePage_Recipes = render_HomePage_HomePage_Recipes;
-function render_HomePage_HomePage_Categories(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "HomePage_Categories") || !Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin))
-        return null;
-    let state = self.state();
-    return React.createElement("div", null, List.render_relation("homepage_homepage_categories", "HomePage", "Categories", "Categoriess", self.props.nesting_depth > 0, false, false, false)(state.Categories != "loading" ?
-        state.Categories.IdsInServerOrder.map(id => state.Categories != "loading" && state.Categories.Items.get(id)) :
-        state.Categories, HomePage_HomePage_Categories_page_index(self), HomePage_HomePage_Categories_num_pages(self), new_page_index => {
-        let state = self.state();
-        state.Categories != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Categories: Object.assign({}, state.Categories, { PageIndex: new_page_index }) }), () => load_relation_HomePage_HomePage_Categories(self, false, self.props.current_User, self.props.current_Admin));
-    }, (i, _) => {
-        let i_id = i.element.Id;
-        let state = self.state();
-        return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
-                        ${state.Categories != "loading" && state.Categories.JustCreated.has(i_id) && state.Categories.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, CategoriesViews.Categories(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_HomePage_Categories(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_HomePage_Categories(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_HomePage_Categories(self.props.current_User, self.props.current_Admin)) ?
-                    self.props.mode : "view", is_editable: state.Categories != "loading" && state.Categories.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
-                    let state = self.state();
-                    state.Categories != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Categories: Object.assign({}, state.Categories, { Items: state.Categories.Items.set(i_id, Object.assign({}, state.Categories.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
-                }, nested_entity_names: self.props.nested_entity_names.push("Categories"), set_size: (new_size, callback) => {
-                    let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
-                    let state = self.state();
-                    state.Categories != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Categories: Object.assign({}, state.Categories, { Items: state.Categories.Items.set(i_id, Object.assign({}, state.Categories.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
-                }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
-                    let state = self.state();
-                    state.Categories != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { dirty_Categories: state.dirty_Categories.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Categories: Object.assign({}, state.Categories, { Items: state.Categories.Items.set(i_id, Object.assign({}, state.Categories.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, unlink: undefined, delete: !Permissions.can_delete_Categories(self.props.current_User, self.props.current_Admin) || !HomePage_HomePage_Categories_can_delete(self) ?
-                    null
-                    :
-                        () => confirm(i18next.t('Are you sure?')) && Api.delete_Categories(i.element).then(() => load_relation_HomePage_HomePage_Categories(self, false, self.props.current_User, self.props.current_Admin)) }))));
-    }, () => React.createElement("div", null, Permissions.can_create_Categories(self.props.current_User, self.props.current_Admin) && Permissions.can_create_HomePage_Categories(self.props.current_User, self.props.current_Admin) && HomePage_HomePage_Categories_can_create(self) ? render_new_HomePage_HomePage_Categories(self) : null)));
-}
-exports.render_HomePage_HomePage_Categories = render_HomePage_HomePage_Categories;
-function render_relations_HomePage(self) {
-    return React.createElement("div", { className: "relations" },
-        render_HomePage_HomePage_Recipes(self, "default"),
-        render_HomePage_HomePage_Categories(self, "default"));
-}
-exports.render_relations_HomePage = render_relations_HomePage;
-function render_new_HomePage_HomePage_Recipes(self) {
-    let state = self.state();
-    return self.props.mode == "edit" ?
-        React.createElement("div", { className: "button__actions" },
-            React.createElement("div", { className: "new-recipes" },
-                React.createElement("button", { className: "new-recipes button button--new", onClick: () => Api.create_Recipes().then(e => {
-                        Api.update_Recipes(Object.assign({}, e, { Picture: "", Name: "", Ingredients: "", Description: "", PreparationTime: 0 })).then(() => load_relation_HomePage_HomePage_Recipes(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "closed" }))));
-                    }) }, i18next.t('Create new Recipes'))))
-        :
-            null;
-}
-exports.render_new_HomePage_HomePage_Recipes = render_new_HomePage_HomePage_Recipes;
-function render_new_HomePage_HomePage_Categories(self) {
-    let state = self.state();
-    return self.props.mode == "edit" ?
-        React.createElement("div", { className: "button__actions" },
-            React.createElement(Buttons.Create, { target_name: "Categories", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "creating" })) }),
-            state.add_step_Categories != "creating" ?
-                null
-                :
-                    React.createElement("div", { className: "overlay__item overlay__item--new" },
-                        React.createElement("div", { className: "new-american" },
-                            React.createElement("button", { className: "new-american button button--new", onClick: () => Api.create_American().then(e => {
-                                    Api.update_Categories(Object.assign({}, e, { Kind: "American", Description: "" })).then(() => load_relation_HomePage_HomePage_Categories(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "closed" }))));
-                                }) }, i18next.t('Create new American'))),
-                        React.createElement("div", { className: "new-asian" },
-                            React.createElement("button", { className: "new-asian button button--new", onClick: () => Api.create_Asian().then(e => {
-                                    Api.update_Categories(Object.assign({}, e, { Kind: "Asian", Description: "" })).then(() => load_relation_HomePage_HomePage_Categories(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "closed" }))));
-                                }) }, i18next.t('Create new Asian'))),
-                        React.createElement("div", { className: "new-mediterranean" },
-                            React.createElement("button", { className: "new-mediterranean button button--new", onClick: () => Api.create_Mediterranean().then(e => {
-                                    Api.update_Categories(Object.assign({}, e, { Kind: "Mediterranean", Description: "" })).then(() => load_relation_HomePage_HomePage_Categories(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "closed" }))));
-                                }) }, i18next.t('Create new Mediterranean'))),
-                        React.createElement(Buttons.Cancel, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "closed" })) })))
-        :
-            null;
-}
-exports.render_new_HomePage_HomePage_Categories = render_new_HomePage_HomePage_Categories;
-function render_saving_animations_HomePage(self) {
-    return self.state().dirty_Recipes.count() > 0 ?
-        React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" }) :
-        self.state().dirty_Categories.count() > 0 ?
-            React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" })
-            : React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "cornflowerblue" }, className: "saved" });
-}
-exports.render_saving_animations_HomePage = render_saving_animations_HomePage;
-class HomePageComponent extends React.Component {
-    constructor(props, context) {
-        super(props, context);
-        this.thread = null;
-        this.state = { update_count: 0, add_step_Recipes: "closed", dirty_Recipes: Immutable.Map(), Recipes: "loading", add_step_Categories: "closed", dirty_Categories: Immutable.Map(), Categories: "loading" };
-    }
-    get_self() {
-        return { state: () => this.state, props: this.props, setState: (ns, c) => this.setState(ns, c) };
-    }
-    componentWillReceiveProps(new_props) {
-        if (new_props.size == "breadcrumb")
-            return;
-        let current_logged_in_entity = this.props.current_User || this.props.current_Admin || null;
-        let new_logged_in_entity = new_props.current_User || new_props.current_Admin || null;
-        if (new_props.mode != this.props.mode || (new_props.size != this.props.size && (new_props.size == "large" || new_props.size == "fullscreen")) ||
-            new_props.logic_frame != this.props.logic_frame ||
-            (current_logged_in_entity && !new_logged_in_entity) ||
-            (!current_logged_in_entity && new_logged_in_entity) ||
-            (current_logged_in_entity && new_logged_in_entity && current_logged_in_entity.Id != new_logged_in_entity.Id)) {
-            load_relations_HomePage(this.get_self(), new_props.current_User, new_props.current_Admin);
-        }
-    }
-    componentWillMount() {
-        if (this.props.size == "breadcrumb")
-            return;
-        if (this.props.size != "preview") {
-            load_relations_HomePage(this.get_self(), this.props.current_User, this.props.current_Admin);
-        }
-        this.thread = setInterval(() => {
-            if (this.state.dirty_Recipes.count() > 0) {
-                let first = this.state.dirty_Recipes.first();
-                this.setState(Object.assign({}, this.state, { dirty_Recipes: this.state.dirty_Recipes.remove(first.Id) }), () => Api.update_Recipes(first));
-            }
-            else if (this.state.dirty_Categories.count() > 0) {
-                let first = this.state.dirty_Categories.first();
-                this.setState(Object.assign({}, this.state, { dirty_Categories: this.state.dirty_Categories.remove(first.Id) }), () => Api.update_Categories(first));
-            }
-        }, 500);
-    }
-    componentWillUnmount() {
-        clearInterval(this.thread);
-    }
-    render() {
-        if (this.props.size == "breadcrumb") {
-            return Permissions.can_view_HomePage(this.props.current_User, this.props.current_Admin) ?
-                render_breadcrumb_HomePage(this.get_self())
-                : null;
-        }
-        return React.createElement("div", { id: `HomePage_${this.props.entity.Id.toString()}_${this.state.update_count}`, className: `model homepage` },
-            render_saving_animations_HomePage(this.get_self()),
-            this.props.nesting_depth == 0 ? render_menu_HomePage(this.get_self()) : null,
-            React.createElement("div", { className: "content" },
-                this.props.nesting_depth == 0 && !!this.props.toggle_button ?
-                    React.createElement("div", { className: "topbar" },
-                        this.props.breadcrumbs(),
-                        React.createElement("div", { className: "topbar__buttons" },
-                            this.props.toggle_button ? this.props.toggle_button() : null,
-                            this.props.authentication_menu()))
-                    :
-                        null,
-                render_controls_HomePage(this.get_self()),
-                render_content_HomePage(this.get_self())));
-    }
-}
-exports.HomePageComponent = HomePageComponent;
-exports.HomePage = (props) => React.createElement(HomePageComponent, Object.assign({}, props));
-exports.HomePage_to_page = (id) => {
-    let can_edit = Utils.any_of([Permissions.can_edit_HomePage, Permissions.can_edit_HomePage_Recipes, Permissions.can_edit_HomePage_Categories, Permissions.can_edit_Recipes, Permissions.can_edit_Categories]);
-    return Utils.scene_to_page(can_edit, exports.HomePage, Api.get_HomePage(id), Api.update_HomePage, "HomePage", "HomePage", `/HomePages/${id}`);
-};
-exports.HomePage_to = (id, target_element_id, current_User, current_Admin) => {
-    Utils.render_page_manager(target_element_id, exports.HomePage_to_page(id), current_User, current_Admin);
-};
-
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports) {
-
-var toString = {}.toString;
-
-module.exports = function(it){
-  return toString.call(it).slice(8, -1);
-};
-
-/***/ }),
-/* 42 */
-/***/ (function(module, exports) {
-
-// 7.2.1 RequireObjectCoercible(argument)
-module.exports = function(it){
-  if(it == undefined)throw TypeError("Can't call method on  " + it);
-  return it;
-};
-
-/***/ }),
-/* 43 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var fails = __webpack_require__(7);
-
-module.exports = function(method, arg){
-  return !!method && fails(function(){
-    arg ? method.call(null, function(){}, 1) : method.call(null);
-  });
-};
-
-/***/ }),
-/* 44 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule CharacterMetadata
- * @typechecks
- * 
- */
-
-
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _require = __webpack_require__(12);
-
-var Map = _require.Map;
-var OrderedSet = _require.OrderedSet;
-var Record = _require.Record;
-
-// Immutable.map is typed such that the value for every key in the map
-// must be the same type
-
-var EMPTY_SET = OrderedSet();
-
-var defaultRecord = {
-  style: EMPTY_SET,
-  entity: null
-};
-
-var CharacterMetadataRecord = Record(defaultRecord);
-
-var CharacterMetadata = function (_CharacterMetadataRec) {
-  _inherits(CharacterMetadata, _CharacterMetadataRec);
-
-  function CharacterMetadata() {
-    _classCallCheck(this, CharacterMetadata);
-
-    return _possibleConstructorReturn(this, _CharacterMetadataRec.apply(this, arguments));
-  }
-
-  CharacterMetadata.prototype.getStyle = function getStyle() {
-    return this.get('style');
-  };
-
-  CharacterMetadata.prototype.getEntity = function getEntity() {
-    return this.get('entity');
-  };
-
-  CharacterMetadata.prototype.hasStyle = function hasStyle(style) {
-    return this.getStyle().includes(style);
-  };
-
-  CharacterMetadata.applyStyle = function applyStyle(record, style) {
-    var withStyle = record.set('style', record.getStyle().add(style));
-    return CharacterMetadata.create(withStyle);
-  };
-
-  CharacterMetadata.removeStyle = function removeStyle(record, style) {
-    var withoutStyle = record.set('style', record.getStyle().remove(style));
-    return CharacterMetadata.create(withoutStyle);
-  };
-
-  CharacterMetadata.applyEntity = function applyEntity(record, entityKey) {
-    var withEntity = record.getEntity() === entityKey ? record : record.set('entity', entityKey);
-    return CharacterMetadata.create(withEntity);
-  };
-
-  /**
-   * Use this function instead of the `CharacterMetadata` constructor.
-   * Since most content generally uses only a very small number of
-   * style/entity permutations, we can reuse these objects as often as
-   * possible.
-   */
-
-
-  CharacterMetadata.create = function create(config) {
-    if (!config) {
-      return EMPTY;
-    }
-
-    var defaultConfig = { style: EMPTY_SET, entity: null };
-
-    // Fill in unspecified properties, if necessary.
-    var configMap = Map(defaultConfig).merge(config);
-
-    var existing = pool.get(configMap);
-    if (existing) {
-      return existing;
-    }
-
-    var newCharacter = new CharacterMetadata(configMap);
-    pool = pool.set(configMap, newCharacter);
-    return newCharacter;
-  };
-
-  return CharacterMetadata;
-}(CharacterMetadataRecord);
-
-var EMPTY = new CharacterMetadata();
-var pool = Map([[Map(defaultRecord), EMPTY]]);
-
-CharacterMetadata.EMPTY = EMPTY;
-
-module.exports = CharacterMetadata;
-
-/***/ }),
-/* 45 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(14);
 const LazyImage = __webpack_require__(401);
 const RichTextEditor = __webpack_require__(402);
 const Moment = __webpack_require__(0);
@@ -19806,6 +19198,688 @@ exports.File = File;
 
 
 /***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(14);
+const i18next = __webpack_require__(21);
+exports.Cancel = (props) => React.createElement("button", { className: "button button--cancel", onClick: () => props.onClick() }, i18next.t('Cancel'));
+exports.Add = (props) => React.createElement("button", { disabled: props.disabled, className: "button button--add", onClick: () => props.onClick() }, i18next.t(`Add existing ${props.target_name}`));
+exports.Create = (props) => React.createElement("button", { className: "button button--create", onClick: () => props.onClick() }, i18next.t(`Create new ${props.target_name}`));
+exports.Search = (props) => React.createElement("button", { className: "button button--search", onClick: () => props.onClick() }, i18next.t(`Search`));
+
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(14);
+const Immutable = __webpack_require__(33);
+const Api = __webpack_require__(22);
+const List = __webpack_require__(46);
+const Components = __webpack_require__(39);
+const Buttons = __webpack_require__(40);
+const Permissions = __webpack_require__(27);
+const Utils = __webpack_require__(23);
+const i18next = __webpack_require__(21);
+const RecipeViews = __webpack_require__(65);
+const CategorieViews = __webpack_require__(89);
+const CustomViews = __webpack_require__(772);
+function HomePage_HomePage_Recipe_can_create(self) {
+    let state = self.state();
+    return state.Recipe == "loading" ? false : state.Recipe.CanCreate;
+}
+exports.HomePage_HomePage_Recipe_can_create = HomePage_HomePage_Recipe_can_create;
+function HomePage_HomePage_Categorie_can_create(self) {
+    let state = self.state();
+    return state.Categorie == "loading" ? false : state.Categorie.CanCreate;
+}
+exports.HomePage_HomePage_Categorie_can_create = HomePage_HomePage_Categorie_can_create;
+function HomePage_HomePage_Recipe_can_delete(self) {
+    let state = self.state();
+    return state.Recipe == "loading" ? false : state.Recipe.CanDelete;
+}
+exports.HomePage_HomePage_Recipe_can_delete = HomePage_HomePage_Recipe_can_delete;
+function HomePage_HomePage_Categorie_can_delete(self) {
+    let state = self.state();
+    return state.Categorie == "loading" ? false : state.Categorie.CanDelete;
+}
+exports.HomePage_HomePage_Categorie_can_delete = HomePage_HomePage_Categorie_can_delete;
+function HomePage_HomePage_Recipe_page_index(self) {
+    let state = self.state();
+    return state.Recipe == "loading" ? 0 : state.Recipe.PageIndex;
+}
+exports.HomePage_HomePage_Recipe_page_index = HomePage_HomePage_Recipe_page_index;
+function HomePage_HomePage_Categorie_page_index(self) {
+    let state = self.state();
+    return state.Categorie == "loading" ? 0 : state.Categorie.PageIndex;
+}
+exports.HomePage_HomePage_Categorie_page_index = HomePage_HomePage_Categorie_page_index;
+function HomePage_HomePage_Recipe_page_size(self) {
+    let state = self.state();
+    return state.Recipe == "loading" ? 25 : state.Recipe.PageSize;
+}
+exports.HomePage_HomePage_Recipe_page_size = HomePage_HomePage_Recipe_page_size;
+function HomePage_HomePage_Categorie_page_size(self) {
+    let state = self.state();
+    return state.Categorie == "loading" ? 25 : state.Categorie.PageSize;
+}
+exports.HomePage_HomePage_Categorie_page_size = HomePage_HomePage_Categorie_page_size;
+function HomePage_HomePage_Recipe_search_query(self) {
+    let state = self.state();
+    return state.Recipe == "loading" ? null : state.Recipe.SearchQuery;
+}
+exports.HomePage_HomePage_Recipe_search_query = HomePage_HomePage_Recipe_search_query;
+function HomePage_HomePage_Categorie_search_query(self) {
+    let state = self.state();
+    return state.Categorie == "loading" ? null : state.Categorie.SearchQuery;
+}
+exports.HomePage_HomePage_Categorie_search_query = HomePage_HomePage_Categorie_search_query;
+function HomePage_HomePage_Recipe_num_pages(self) {
+    let state = self.state();
+    return state.Recipe == "loading" ? 1 : state.Recipe.NumPages;
+}
+exports.HomePage_HomePage_Recipe_num_pages = HomePage_HomePage_Recipe_num_pages;
+function HomePage_HomePage_Categorie_num_pages(self) {
+    let state = self.state();
+    return state.Categorie == "loading" ? 1 : state.Categorie.NumPages;
+}
+exports.HomePage_HomePage_Categorie_num_pages = HomePage_HomePage_Categorie_num_pages;
+function load_relation_HomePage_HomePage_Recipe(self, force_first_page, current_User, current_Admin, callback) {
+    let state = self.state();
+    let prelude = force_first_page && state.Recipe != "loading" ?
+        (c) => state.Recipe != "loading" && self.setState(Object.assign({}, state, { Recipe: Object.assign({}, state.Recipe, { PageIndex: 0 }) }), c)
+        :
+            (c) => c();
+    Permissions.can_view_Recipe(current_User, current_Admin) ?
+        prelude(() => Api.get_HomePage_HomePage_Recipes(self.props.entity, HomePage_HomePage_Recipe_page_index(self), HomePage_HomePage_Recipe_page_size(self), HomePage_HomePage_Recipe_search_query(self)).then(Recipes => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipe: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+                let state = self.state();
+                return {
+                    element: i,
+                    size: state.Recipe != "loading" ?
+                        (state.Recipe.Items.has(i.Id) ?
+                            state.Recipe.Items.get(i.Id).size
+                            :
+                                "preview" /* i_just_created ? "large" : "preview" */)
+                        :
+                            "preview" /* i_just_created ? "large" : "preview" */,
+                    shown_relation: "all"
+                };
+            }, Recipes) }), callback)))
+        :
+            prelude(() => callback && callback());
+}
+exports.load_relation_HomePage_HomePage_Recipe = load_relation_HomePage_HomePage_Recipe;
+function load_relation_HomePage_HomePage_Categorie(self, force_first_page, current_User, current_Admin, callback) {
+    let state = self.state();
+    let prelude = force_first_page && state.Categorie != "loading" ?
+        (c) => state.Categorie != "loading" && self.setState(Object.assign({}, state, { Categorie: Object.assign({}, state.Categorie, { PageIndex: 0 }) }), c)
+        :
+            (c) => c();
+    Permissions.can_view_Categorie(current_User, current_Admin) ?
+        prelude(() => Api.get_HomePage_HomePage_Categories(self.props.entity, HomePage_HomePage_Categorie_page_index(self), HomePage_HomePage_Categorie_page_size(self), HomePage_HomePage_Categorie_search_query(self)).then(Categories => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Categorie: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+                let state = self.state();
+                return {
+                    element: i,
+                    size: state.Categorie != "loading" ?
+                        (state.Categorie.Items.has(i.Id) ?
+                            state.Categorie.Items.get(i.Id).size
+                            :
+                                "preview" /* i_just_created ? "large" : "preview" */)
+                        :
+                            "preview" /* i_just_created ? "large" : "preview" */,
+                    shown_relation: "all"
+                };
+            }, Categories) }), callback)))
+        :
+            prelude(() => callback && callback());
+}
+exports.load_relation_HomePage_HomePage_Categorie = load_relation_HomePage_HomePage_Categorie;
+function load_relations_HomePage(self, current_User, current_Admin, callback) {
+    load_relation_HomePage_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_HomePage_HomePage_Recipe(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback()));
+}
+exports.load_relations_HomePage = load_relations_HomePage;
+function set_size_HomePage(self, new_size) {
+    self.props.set_size(new_size, () => {
+        if (new_size == "fullscreen")
+            self.props.push(exports.HomePage_to_page(self.props.entity.Id));
+    });
+}
+exports.set_size_HomePage = set_size_HomePage;
+function render_HomePage_AppTest_editable_minimised(self) {
+    if (!Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin))
+        return render_HomePage_AppTest_minimised(self);
+    else
+        return !Permissions.can_view_HomePage_AppTest(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute apptest" },
+                React.createElement("div", { className: "model__attribute-content" }, CustomViews.AppTest(Object.assign({}, self.props))));
+}
+exports.render_HomePage_AppTest_editable_minimised = render_HomePage_AppTest_editable_minimised;
+function render_HomePage_Test_editable_minimised(self) {
+    if (!Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin))
+        return render_HomePage_Test_minimised(self);
+    else
+        return !Permissions.can_view_HomePage_Test(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute test" },
+                React.createElement("label", { className: "attribute-label attribute-label-test" }, i18next.t(`HomePage:Test`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_HomePage_Test(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Test, v => self.props.set_entity(Object.assign({}, self.props.entity, { Test: v })))));
+}
+exports.render_HomePage_Test_editable_minimised = render_HomePage_Test_editable_minimised;
+function render_HomePage_AppTest_editable_maximised(self) {
+    if (!Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin))
+        return render_HomePage_AppTest_maximised(self);
+    else
+        return !Permissions.can_view_HomePage_AppTest(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute apptest" },
+                React.createElement("div", { className: "model__attribute-content" }, CustomViews.AppTest(Object.assign({}, self.props))));
+}
+exports.render_HomePage_AppTest_editable_maximised = render_HomePage_AppTest_editable_maximised;
+function render_HomePage_Test_editable_maximised(self) {
+    if (!Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin))
+        return render_HomePage_Test_maximised(self);
+    else
+        return !Permissions.can_view_HomePage_Test(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute test" },
+                React.createElement("label", { className: "attribute-label attribute-label-test" }, i18next.t(`HomePage:Test`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_HomePage_Test(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Test, v => self.props.set_entity(Object.assign({}, self.props.entity, { Test: v })))));
+}
+exports.render_HomePage_Test_editable_maximised = render_HomePage_Test_editable_maximised;
+function render_editable_attributes_minimised_HomePage(self) {
+    let attributes = (React.createElement("div", null,
+        render_HomePage_Test_editable_minimised(self),
+        CustomViews.AppTest(Object.assign({}, self.props))));
+    return attributes;
+}
+exports.render_editable_attributes_minimised_HomePage = render_editable_attributes_minimised_HomePage;
+function render_editable_attributes_maximised_HomePage(self) {
+    let state = self.state();
+    let attributes = (React.createElement("div", null,
+        render_HomePage_Test_editable_maximised(self),
+        CustomViews.AppTest(Object.assign({}, self.props))));
+    return attributes;
+}
+exports.render_editable_attributes_maximised_HomePage = render_editable_attributes_maximised_HomePage;
+function render_breadcrumb_HomePage(self) {
+    return React.createElement("div", { className: "breadcrumb-homepage" }, "HomePage");
+}
+exports.render_breadcrumb_HomePage = render_breadcrumb_HomePage;
+function render_menu_HomePage(self) {
+    let state = self.state();
+    return React.createElement("div", { className: "menu" },
+        React.createElement("img", { className: "logo", src: "/images/logo.png", alt: "Logo" }),
+        React.createElement("div", { className: "pages" },
+            !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link active-page` },
+                    React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('HomePage'))),
+            React.createElement("div", { className: "menu_entries" },
+                !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
+                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipe" ? " active" : ""}` },
+                        React.createElement("a", { onClick: () => {
+                                self.props.set_shown_relation("HomePage_Recipe");
+                            } }, i18next.t('HomePage_Recipes'))),
+                !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
+                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}` },
+                        React.createElement("a", { onClick: () => {
+                                self.props.set_shown_relation("HomePage_Categorie");
+                            } }, i18next.t('HomePage_Categories'))),
+                React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
+}
+exports.render_menu_HomePage = render_menu_HomePage;
+function render_local_menu_HomePage(self) {
+    let state = self.state();
+    return React.createElement("div", { className: "local-menu" },
+        React.createElement("div", { className: "local_menu_entries" },
+            React.createElement("div", { className: `local_menu_entry${self.props.shown_relation == "none" ? " local_menu_entry--active" : ""}` },
+                React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('About this HomePage')))));
+}
+exports.render_local_menu_HomePage = render_local_menu_HomePage;
+function render_controls_HomePage(self) {
+    return React.createElement("div", { className: "control" },
+        self.props.allow_maximisation && self.props.set_size ? React.createElement("a", { className: `"homepage button button--toggle ${self.props.size != 'preview' ? 'button--toggle--open' : ''}`, onClick: () => {
+                set_size_HomePage(self, self.props.size == "preview" ? "large" : "preview");
+            } }) : null,
+        Permissions.can_delete_HomePage(self.props.current_User, self.props.current_Admin) && self.props.size == "fullscreen" ? React.createElement("a", { className: "button button--delete", onClick: () => confirm(i18next.t('Are you sure?')) &&
+                Api.delete_HomePage(self.props.entity).then(() => self.props.force_reload(() => self.props.pop())) }) : null,
+        self.props.unlink && self.props.mode != "view" ?
+            React.createElement("a", { className: "button button--unlink", onClick: () => self.props.unlink() })
+            :
+                null,
+        self.props.delete && self.props.mode != "view" ?
+            React.createElement("a", { className: "button button--delete", onClick: () => self.props.delete() })
+            :
+                null);
+}
+exports.render_controls_HomePage = render_controls_HomePage;
+function render_content_HomePage(self) {
+    let actions = [
+        self.props.allow_maximisation && self.props.set_size && self.props.size == "preview" ?
+            () => set_size_HomePage(self, self.props.size == "preview" ? "large" : "preview")
+            :
+                null,
+    ].filter(a => a != null);
+    let content = Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin) ?
+        self.props.size == "preview" ?
+            render_preview_HomePage(self)
+            : self.props.size == "large" ?
+                render_large_HomePage(self)
+                : self.props.size == "fullscreen" ?
+                    render_large_HomePage(self)
+                    : "Error: unauthorised access to entity."
+        : "Error: unauthorised access to entity.";
+    if (self.props.mode == "view" && actions.length == 1 && !false)
+        return React.createElement("a", { onClick: () => actions[0]() },
+            React.createElement("div", { className: `${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}` }, content));
+    else
+        return React.createElement("div", { className: `${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}` }, content);
+}
+exports.render_content_HomePage = render_content_HomePage;
+function render_HomePage_AppTest_minimised(self) {
+    return !Permissions.can_view_HomePage_AppTest(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute apptest" },
+        React.createElement("div", { className: "model__attribute-content" }, CustomViews.AppTest(Object.assign({}, self.props))));
+}
+exports.render_HomePage_AppTest_minimised = render_HomePage_AppTest_minimised;
+function render_HomePage_Test_minimised(self) {
+    return !Permissions.can_view_HomePage_Test(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute test" },
+        React.createElement("label", { className: "attribute-label attribute-label-test" }, i18next.t(`HomePage:Test`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_HomePage_Test(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Test, v => self.props.set_entity(Object.assign({}, self.props.entity, { Test: v })))));
+}
+exports.render_HomePage_Test_minimised = render_HomePage_Test_minimised;
+function render_HomePage_AppTest_maximised(self) {
+    return !Permissions.can_view_HomePage_AppTest(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute apptest" },
+        React.createElement("div", { className: "model__attribute-content" }, CustomViews.AppTest(Object.assign({}, self.props))));
+}
+exports.render_HomePage_AppTest_maximised = render_HomePage_AppTest_maximised;
+function render_HomePage_Test_maximised(self) {
+    return !Permissions.can_view_HomePage_Test(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute test" },
+        React.createElement("label", { className: "attribute-label attribute-label-test" }, i18next.t(`HomePage:Test`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_HomePage_Test(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Test, v => self.props.set_entity(Object.assign({}, self.props.entity, { Test: v })))));
+}
+exports.render_HomePage_Test_maximised = render_HomePage_Test_maximised;
+function render_preview_HomePage(self) {
+    let attributes = null;
+    if (self.props.mode == "view" || !Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin))
+        attributes = (React.createElement("div", { className: "model__attributes" },
+            render_HomePage_AppTest_minimised(self),
+            render_HomePage_Test_minimised(self)));
+    else
+        attributes = render_editable_attributes_minimised_HomePage(self);
+    return (React.createElement("div", { className: "block" }, attributes));
+}
+exports.render_preview_HomePage = render_preview_HomePage;
+function render_large_HomePage(self) {
+    let state = self.state();
+    let attributes = null;
+    if (self.props.mode == "view" || !Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin))
+        attributes = (React.createElement("div", { className: "model__attributes" },
+            render_HomePage_AppTest_maximised(self),
+            render_HomePage_Test_maximised(self)));
+    else
+        attributes = render_editable_attributes_maximised_HomePage(self);
+    return (React.createElement("div", { className: "block" },
+        self.props.nesting_depth == 0 && self.props.shown_relation != "all" && self.props.shown_relation != "none" ? null : attributes,
+        render_relations_HomePage(self)));
+}
+exports.render_large_HomePage = render_large_HomePage;
+function render_HomePage_HomePage_Recipe(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "HomePage_Recipe") || !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin))
+        return null;
+    let state = self.state();
+    return React.createElement("div", null, List.render_relation("homepage_homepage_recipe", "HomePage", "Recipe", "Recipes", self.props.nesting_depth > 0, false, false, false)(state.Recipe != "loading" ?
+        state.Recipe.IdsInServerOrder.map(id => state.Recipe != "loading" && state.Recipe.Items.get(id)) :
+        state.Recipe, HomePage_HomePage_Recipe_page_index(self), HomePage_HomePage_Recipe_num_pages(self), new_page_index => {
+        let state = self.state();
+        state.Recipe != "loading" &&
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipe: Object.assign({}, state.Recipe, { PageIndex: new_page_index }) }), () => load_relation_HomePage_HomePage_Recipe(self, false, self.props.current_User, self.props.current_Admin));
+    }, (i, _) => {
+        let i_id = i.element.Id;
+        let state = self.state();
+        return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
+                        ${state.Recipe != "loading" && state.Recipe.JustCreated.has(i_id) && state.Recipe.JustCreated.get(i_id) ? "newly-created" : ""}` },
+            React.createElement("div", { key: i_id }, RecipeViews.Recipe(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_HomePage_Recipe(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_HomePage_Recipe(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_HomePage_Recipe(self.props.current_User, self.props.current_Admin)) ?
+                    self.props.mode : "view", is_editable: state.Recipe != "loading" && state.Recipe.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
+                    let state = self.state();
+                    state.Recipe != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
+                }, nested_entity_names: self.props.nested_entity_names.push("Recipe"), set_size: (new_size, callback) => {
+                    let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
+                    let state = self.state();
+                    state.Recipe != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
+                }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
+                    let state = self.state();
+                    state.Recipe != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { dirty_Recipe: state.dirty_Recipe.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { element: new_entity })) }) }), callback);
+                }, unlink: undefined, delete: !Permissions.can_delete_Recipe(self.props.current_User, self.props.current_Admin) || !HomePage_HomePage_Recipe_can_delete(self) ?
+                    null
+                    :
+                        () => confirm(i18next.t('Are you sure?')) && Api.delete_Recipe(i.element).then(() => load_relation_HomePage_HomePage_Recipe(self, false, self.props.current_User, self.props.current_Admin)) }))));
+    }, () => React.createElement("div", null, Permissions.can_create_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_create_HomePage_Recipe(self.props.current_User, self.props.current_Admin) && HomePage_HomePage_Recipe_can_create(self) ? render_new_HomePage_HomePage_Recipe(self) : null)));
+}
+exports.render_HomePage_HomePage_Recipe = render_HomePage_HomePage_Recipe;
+function render_HomePage_HomePage_Categorie(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "HomePage_Categorie") || !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin))
+        return null;
+    let state = self.state();
+    return React.createElement("div", null, List.render_relation("homepage_homepage_categorie", "HomePage", "Categorie", "Categories", self.props.nesting_depth > 0, false, false, false)(state.Categorie != "loading" ?
+        state.Categorie.IdsInServerOrder.map(id => state.Categorie != "loading" && state.Categorie.Items.get(id)) :
+        state.Categorie, HomePage_HomePage_Categorie_page_index(self), HomePage_HomePage_Categorie_num_pages(self), new_page_index => {
+        let state = self.state();
+        state.Categorie != "loading" &&
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Categorie: Object.assign({}, state.Categorie, { PageIndex: new_page_index }) }), () => load_relation_HomePage_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin));
+    }, (i, _) => {
+        let i_id = i.element.Id;
+        let state = self.state();
+        return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
+                        ${state.Categorie != "loading" && state.Categorie.JustCreated.has(i_id) && state.Categorie.JustCreated.get(i_id) ? "newly-created" : ""}` },
+            React.createElement("div", { key: i_id }, CategorieViews.Categorie(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_HomePage_Categorie(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_HomePage_Categorie(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_HomePage_Categorie(self.props.current_User, self.props.current_Admin)) ?
+                    self.props.mode : "view", is_editable: state.Categorie != "loading" && state.Categorie.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
+                    let state = self.state();
+                    state.Categorie != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Categorie: Object.assign({}, state.Categorie, { Items: state.Categorie.Items.set(i_id, Object.assign({}, state.Categorie.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
+                }, nested_entity_names: self.props.nested_entity_names.push("Categorie"), set_size: (new_size, callback) => {
+                    let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
+                    let state = self.state();
+                    state.Categorie != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Categorie: Object.assign({}, state.Categorie, { Items: state.Categorie.Items.set(i_id, Object.assign({}, state.Categorie.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
+                }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
+                    let state = self.state();
+                    state.Categorie != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { dirty_Categorie: state.dirty_Categorie.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Categorie: Object.assign({}, state.Categorie, { Items: state.Categorie.Items.set(i_id, Object.assign({}, state.Categorie.Items.get(i_id), { element: new_entity })) }) }), callback);
+                }, unlink: undefined, delete: !Permissions.can_delete_Categorie(self.props.current_User, self.props.current_Admin) || !HomePage_HomePage_Categorie_can_delete(self) ?
+                    null
+                    :
+                        () => confirm(i18next.t('Are you sure?')) && Api.delete_Categorie(i.element).then(() => load_relation_HomePage_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin)) }))));
+    }, () => React.createElement("div", null, Permissions.can_create_Categorie(self.props.current_User, self.props.current_Admin) && Permissions.can_create_HomePage_Categorie(self.props.current_User, self.props.current_Admin) && HomePage_HomePage_Categorie_can_create(self) ? render_new_HomePage_HomePage_Categorie(self) : null)));
+}
+exports.render_HomePage_HomePage_Categorie = render_HomePage_HomePage_Categorie;
+function render_relations_HomePage(self) {
+    return React.createElement("div", { className: "relations" },
+        render_HomePage_HomePage_Recipe(self, "default"),
+        render_HomePage_HomePage_Categorie(self, "default"));
+}
+exports.render_relations_HomePage = render_relations_HomePage;
+function render_new_HomePage_HomePage_Recipe(self) {
+    let state = self.state();
+    return self.props.mode == "edit" ?
+        React.createElement("div", { className: "button__actions" },
+            React.createElement("div", { className: "new-recipe" },
+                React.createElement("button", { className: "new-recipe button button--new", onClick: () => Api.create_Recipe().then(e => {
+                        Api.update_Recipe(Object.assign({}, e, { Picture: "", Name: "", Ingredients: "", Description: "", PreparationTime: 0 })).then(() => load_relation_HomePage_HomePage_Recipe(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" }))));
+                    }) }, i18next.t('Create new Recipe'))))
+        :
+            null;
+}
+exports.render_new_HomePage_HomePage_Recipe = render_new_HomePage_HomePage_Recipe;
+function render_new_HomePage_HomePage_Categorie(self) {
+    let state = self.state();
+    return self.props.mode == "edit" ?
+        React.createElement("div", { className: "button__actions" },
+            React.createElement(Buttons.Create, { target_name: "Categorie", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "creating" })) }),
+            state.add_step_Categorie != "creating" ?
+                null
+                :
+                    React.createElement("div", { className: "overlay__item overlay__item--new" },
+                        React.createElement("div", { className: "new-american" },
+                            React.createElement("button", { className: "new-american button button--new", onClick: () => Api.create_American().then(e => {
+                                    Api.update_Categorie(Object.assign({}, e, { Kind: "American", Description: "" })).then(() => load_relation_HomePage_HomePage_Categorie(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" }))));
+                                }) }, i18next.t('Create new American'))),
+                        React.createElement("div", { className: "new-asian" },
+                            React.createElement("button", { className: "new-asian button button--new", onClick: () => Api.create_Asian().then(e => {
+                                    Api.update_Categorie(Object.assign({}, e, { Kind: "Asian", Description: "" })).then(() => load_relation_HomePage_HomePage_Categorie(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" }))));
+                                }) }, i18next.t('Create new Asian'))),
+                        React.createElement("div", { className: "new-mediterranean" },
+                            React.createElement("button", { className: "new-mediterranean button button--new", onClick: () => Api.create_Mediterranean().then(e => {
+                                    Api.update_Categorie(Object.assign({}, e, { Kind: "Mediterranean", Description: "" })).then(() => load_relation_HomePage_HomePage_Categorie(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" }))));
+                                }) }, i18next.t('Create new Mediterranean'))),
+                        React.createElement(Buttons.Cancel, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" })) })))
+        :
+            null;
+}
+exports.render_new_HomePage_HomePage_Categorie = render_new_HomePage_HomePage_Categorie;
+function render_saving_animations_HomePage(self) {
+    return self.state().dirty_Recipe.count() > 0 ?
+        React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" }) :
+        self.state().dirty_Categorie.count() > 0 ?
+            React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" })
+            : React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "cornflowerblue" }, className: "saved" });
+}
+exports.render_saving_animations_HomePage = render_saving_animations_HomePage;
+class HomePageComponent extends React.Component {
+    constructor(props, context) {
+        super(props, context);
+        this.thread = null;
+        this.state = { update_count: 0, add_step_Recipe: "closed", dirty_Recipe: Immutable.Map(), Recipe: "loading", add_step_Categorie: "closed", dirty_Categorie: Immutable.Map(), Categorie: "loading" };
+    }
+    get_self() {
+        return { state: () => this.state, props: this.props, setState: (ns, c) => this.setState(ns, c) };
+    }
+    componentWillReceiveProps(new_props) {
+        if (new_props.size == "breadcrumb")
+            return;
+        let current_logged_in_entity = this.props.current_User || this.props.current_Admin || null;
+        let new_logged_in_entity = new_props.current_User || new_props.current_Admin || null;
+        if (new_props.mode != this.props.mode || (new_props.size != this.props.size && (new_props.size == "large" || new_props.size == "fullscreen")) ||
+            new_props.logic_frame != this.props.logic_frame ||
+            (current_logged_in_entity && !new_logged_in_entity) ||
+            (!current_logged_in_entity && new_logged_in_entity) ||
+            (current_logged_in_entity && new_logged_in_entity && current_logged_in_entity.Id != new_logged_in_entity.Id)) {
+            load_relations_HomePage(this.get_self(), new_props.current_User, new_props.current_Admin);
+        }
+    }
+    componentWillMount() {
+        if (this.props.size == "breadcrumb")
+            return;
+        if (this.props.size != "preview") {
+            load_relations_HomePage(this.get_self(), this.props.current_User, this.props.current_Admin);
+        }
+        this.thread = setInterval(() => {
+            if (this.state.dirty_Recipe.count() > 0) {
+                let first = this.state.dirty_Recipe.first();
+                this.setState(Object.assign({}, this.state, { dirty_Recipe: this.state.dirty_Recipe.remove(first.Id) }), () => Api.update_Recipe(first));
+            }
+            else if (this.state.dirty_Categorie.count() > 0) {
+                let first = this.state.dirty_Categorie.first();
+                this.setState(Object.assign({}, this.state, { dirty_Categorie: this.state.dirty_Categorie.remove(first.Id) }), () => Api.update_Categorie(first));
+            }
+        }, 500);
+    }
+    componentWillUnmount() {
+        clearInterval(this.thread);
+    }
+    render() {
+        if (this.props.size == "breadcrumb") {
+            return Permissions.can_view_HomePage(this.props.current_User, this.props.current_Admin) ?
+                render_breadcrumb_HomePage(this.get_self())
+                : null;
+        }
+        return React.createElement("div", { id: `HomePage_${this.props.entity.Id.toString()}_${this.state.update_count}`, className: `model homepage` },
+            render_saving_animations_HomePage(this.get_self()),
+            this.props.nesting_depth == 0 ? render_menu_HomePage(this.get_self()) : null,
+            React.createElement("div", { className: "content" },
+                this.props.nesting_depth == 0 && !!this.props.toggle_button ?
+                    React.createElement("div", { className: "topbar" },
+                        this.props.breadcrumbs(),
+                        React.createElement("div", { className: "topbar__buttons" },
+                            this.props.toggle_button ? this.props.toggle_button() : null,
+                            this.props.authentication_menu()))
+                    :
+                        null,
+                render_controls_HomePage(this.get_self()),
+                render_content_HomePage(this.get_self())));
+    }
+}
+exports.HomePageComponent = HomePageComponent;
+exports.HomePage = (props) => React.createElement(HomePageComponent, Object.assign({}, props));
+exports.HomePage_to_page = (id) => {
+    let can_edit = Utils.any_of([Permissions.can_edit_HomePage, Permissions.can_edit_HomePage_Recipe, Permissions.can_edit_HomePage_Categorie, Permissions.can_edit_Recipe, Permissions.can_edit_Categorie]);
+    return Utils.scene_to_page(can_edit, exports.HomePage, Api.get_HomePage(id), Api.update_HomePage, "HomePage", "HomePage", `/HomePages/${id}`);
+};
+exports.HomePage_to = (id, target_element_id, current_User, current_Admin) => {
+    Utils.render_page_manager(target_element_id, exports.HomePage_to_page(id), current_User, current_Admin);
+};
+
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports) {
+
+var toString = {}.toString;
+
+module.exports = function(it){
+  return toString.call(it).slice(8, -1);
+};
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports) {
+
+// 7.2.1 RequireObjectCoercible(argument)
+module.exports = function(it){
+  if(it == undefined)throw TypeError("Can't call method on  " + it);
+  return it;
+};
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var fails = __webpack_require__(7);
+
+module.exports = function(method, arg){
+  return !!method && fails(function(){
+    arg ? method.call(null, function(){}, 1) : method.call(null);
+  });
+};
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule CharacterMetadata
+ * @typechecks
+ * 
+ */
+
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _require = __webpack_require__(12);
+
+var Map = _require.Map;
+var OrderedSet = _require.OrderedSet;
+var Record = _require.Record;
+
+// Immutable.map is typed such that the value for every key in the map
+// must be the same type
+
+var EMPTY_SET = OrderedSet();
+
+var defaultRecord = {
+  style: EMPTY_SET,
+  entity: null
+};
+
+var CharacterMetadataRecord = Record(defaultRecord);
+
+var CharacterMetadata = function (_CharacterMetadataRec) {
+  _inherits(CharacterMetadata, _CharacterMetadataRec);
+
+  function CharacterMetadata() {
+    _classCallCheck(this, CharacterMetadata);
+
+    return _possibleConstructorReturn(this, _CharacterMetadataRec.apply(this, arguments));
+  }
+
+  CharacterMetadata.prototype.getStyle = function getStyle() {
+    return this.get('style');
+  };
+
+  CharacterMetadata.prototype.getEntity = function getEntity() {
+    return this.get('entity');
+  };
+
+  CharacterMetadata.prototype.hasStyle = function hasStyle(style) {
+    return this.getStyle().includes(style);
+  };
+
+  CharacterMetadata.applyStyle = function applyStyle(record, style) {
+    var withStyle = record.set('style', record.getStyle().add(style));
+    return CharacterMetadata.create(withStyle);
+  };
+
+  CharacterMetadata.removeStyle = function removeStyle(record, style) {
+    var withoutStyle = record.set('style', record.getStyle().remove(style));
+    return CharacterMetadata.create(withoutStyle);
+  };
+
+  CharacterMetadata.applyEntity = function applyEntity(record, entityKey) {
+    var withEntity = record.getEntity() === entityKey ? record : record.set('entity', entityKey);
+    return CharacterMetadata.create(withEntity);
+  };
+
+  /**
+   * Use this function instead of the `CharacterMetadata` constructor.
+   * Since most content generally uses only a very small number of
+   * style/entity permutations, we can reuse these objects as often as
+   * possible.
+   */
+
+
+  CharacterMetadata.create = function create(config) {
+    if (!config) {
+      return EMPTY;
+    }
+
+    var defaultConfig = { style: EMPTY_SET, entity: null };
+
+    // Fill in unspecified properties, if necessary.
+    var configMap = Map(defaultConfig).merge(config);
+
+    var existing = pool.get(configMap);
+    if (existing) {
+      return existing;
+    }
+
+    var newCharacter = new CharacterMetadata(configMap);
+    pool = pool.set(configMap, newCharacter);
+    return newCharacter;
+  };
+
+  return CharacterMetadata;
+}(CharacterMetadataRecord);
+
+var EMPTY = new CharacterMetadata();
+var pool = Map([[Map(defaultRecord), EMPTY]]);
+
+CharacterMetadata.EMPTY = EMPTY;
+
+module.exports = CharacterMetadata;
+
+/***/ }),
 /* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -19823,7 +19897,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(14);
 const Immutable = __webpack_require__(33);
 const Utils = __webpack_require__(23);
-const Buttons = __webpack_require__(39);
+const Buttons = __webpack_require__(40);
 const i18next = __webpack_require__(21);
 exports.render_relation = (relation_name, source_name, target_name, target_plural, show_title, inline, cards, side_selector) => function (items, page_index, num_pages, page_selected, render_target, render_new_targets) {
     return React.createElement("div", { className: `${relation_name} ${inline ? "inline-relation" : ""} ${side_selector ? "column-view-menu" : ""}` }, items == "loading" ?
@@ -21992,143 +22066,143 @@ const React = __webpack_require__(14);
 const Immutable = __webpack_require__(33);
 const Api = __webpack_require__(22);
 const List = __webpack_require__(46);
-const Components = __webpack_require__(45);
-const Buttons = __webpack_require__(39);
+const Components = __webpack_require__(39);
+const Buttons = __webpack_require__(40);
 const Permissions = __webpack_require__(27);
 const Utils = __webpack_require__(23);
 const i18next = __webpack_require__(21);
-const HomePageViews = __webpack_require__(40);
+const HomePageViews = __webpack_require__(41);
 const UserViews = __webpack_require__(192);
 const RatingViews = __webpack_require__(191);
 const MealViews = __webpack_require__(90);
-function Recipes_User_Recipes_can_create(self) {
+function Recipe_User_Recipe_can_create(self) {
     let state = self.state();
     return state.User == "loading" ? false : state.User.CanCreate;
 }
-exports.Recipes_User_Recipes_can_create = Recipes_User_Recipes_can_create;
-function Recipes_Recipes_Rating_can_create(self) {
+exports.Recipe_User_Recipe_can_create = Recipe_User_Recipe_can_create;
+function Recipe_Recipe_Rating_can_create(self) {
     let state = self.state();
     return state.Rating == "loading" ? false : state.Rating.CanCreate;
 }
-exports.Recipes_Recipes_Rating_can_create = Recipes_Recipes_Rating_can_create;
-function Recipes_Meal_Recipes_can_create(self) {
+exports.Recipe_Recipe_Rating_can_create = Recipe_Recipe_Rating_can_create;
+function Recipe_Meal_Recipe_can_create(self) {
     let state = self.state();
     return state.Meal == "loading" ? false : state.Meal.CanCreate;
 }
-exports.Recipes_Meal_Recipes_can_create = Recipes_Meal_Recipes_can_create;
-function Recipes_HomePage_Recipes_can_create(self) {
+exports.Recipe_Meal_Recipe_can_create = Recipe_Meal_Recipe_can_create;
+function Recipe_HomePage_Recipe_can_create(self) {
     let state = self.state();
     return state.HomePage == "loading" ? false : state.HomePage.CanCreate;
 }
-exports.Recipes_HomePage_Recipes_can_create = Recipes_HomePage_Recipes_can_create;
-function Recipes_User_Recipes_can_delete(self) {
+exports.Recipe_HomePage_Recipe_can_create = Recipe_HomePage_Recipe_can_create;
+function Recipe_User_Recipe_can_delete(self) {
     let state = self.state();
     return state.User == "loading" ? false : state.User.CanDelete;
 }
-exports.Recipes_User_Recipes_can_delete = Recipes_User_Recipes_can_delete;
-function Recipes_Recipes_Rating_can_delete(self) {
+exports.Recipe_User_Recipe_can_delete = Recipe_User_Recipe_can_delete;
+function Recipe_Recipe_Rating_can_delete(self) {
     let state = self.state();
     return state.Rating == "loading" ? false : state.Rating.CanDelete;
 }
-exports.Recipes_Recipes_Rating_can_delete = Recipes_Recipes_Rating_can_delete;
-function Recipes_Meal_Recipes_can_delete(self) {
+exports.Recipe_Recipe_Rating_can_delete = Recipe_Recipe_Rating_can_delete;
+function Recipe_Meal_Recipe_can_delete(self) {
     let state = self.state();
     return state.Meal == "loading" ? false : state.Meal.CanDelete;
 }
-exports.Recipes_Meal_Recipes_can_delete = Recipes_Meal_Recipes_can_delete;
-function Recipes_HomePage_Recipes_can_delete(self) {
+exports.Recipe_Meal_Recipe_can_delete = Recipe_Meal_Recipe_can_delete;
+function Recipe_HomePage_Recipe_can_delete(self) {
     let state = self.state();
     return state.HomePage == "loading" ? false : state.HomePage.CanDelete;
 }
-exports.Recipes_HomePage_Recipes_can_delete = Recipes_HomePage_Recipes_can_delete;
-function Recipes_User_Recipes_page_index(self) {
+exports.Recipe_HomePage_Recipe_can_delete = Recipe_HomePage_Recipe_can_delete;
+function Recipe_User_Recipe_page_index(self) {
     let state = self.state();
     return state.User == "loading" ? 0 : state.User.PageIndex;
 }
-exports.Recipes_User_Recipes_page_index = Recipes_User_Recipes_page_index;
-function Recipes_Recipes_Rating_page_index(self) {
+exports.Recipe_User_Recipe_page_index = Recipe_User_Recipe_page_index;
+function Recipe_Recipe_Rating_page_index(self) {
     let state = self.state();
     return state.Rating == "loading" ? 0 : state.Rating.PageIndex;
 }
-exports.Recipes_Recipes_Rating_page_index = Recipes_Recipes_Rating_page_index;
-function Recipes_Meal_Recipes_page_index(self) {
+exports.Recipe_Recipe_Rating_page_index = Recipe_Recipe_Rating_page_index;
+function Recipe_Meal_Recipe_page_index(self) {
     let state = self.state();
     return state.Meal == "loading" ? 0 : state.Meal.PageIndex;
 }
-exports.Recipes_Meal_Recipes_page_index = Recipes_Meal_Recipes_page_index;
-function Recipes_HomePage_Recipes_page_index(self) {
+exports.Recipe_Meal_Recipe_page_index = Recipe_Meal_Recipe_page_index;
+function Recipe_HomePage_Recipe_page_index(self) {
     let state = self.state();
     return state.HomePage == "loading" ? 0 : state.HomePage.PageIndex;
 }
-exports.Recipes_HomePage_Recipes_page_index = Recipes_HomePage_Recipes_page_index;
-function Recipes_User_Recipes_page_size(self) {
+exports.Recipe_HomePage_Recipe_page_index = Recipe_HomePage_Recipe_page_index;
+function Recipe_User_Recipe_page_size(self) {
     let state = self.state();
     return state.User == "loading" ? 25 : state.User.PageSize;
 }
-exports.Recipes_User_Recipes_page_size = Recipes_User_Recipes_page_size;
-function Recipes_Recipes_Rating_page_size(self) {
+exports.Recipe_User_Recipe_page_size = Recipe_User_Recipe_page_size;
+function Recipe_Recipe_Rating_page_size(self) {
     let state = self.state();
     return state.Rating == "loading" ? 25 : state.Rating.PageSize;
 }
-exports.Recipes_Recipes_Rating_page_size = Recipes_Recipes_Rating_page_size;
-function Recipes_Meal_Recipes_page_size(self) {
+exports.Recipe_Recipe_Rating_page_size = Recipe_Recipe_Rating_page_size;
+function Recipe_Meal_Recipe_page_size(self) {
     let state = self.state();
     return state.Meal == "loading" ? 25 : state.Meal.PageSize;
 }
-exports.Recipes_Meal_Recipes_page_size = Recipes_Meal_Recipes_page_size;
-function Recipes_HomePage_Recipes_page_size(self) {
+exports.Recipe_Meal_Recipe_page_size = Recipe_Meal_Recipe_page_size;
+function Recipe_HomePage_Recipe_page_size(self) {
     let state = self.state();
     return state.HomePage == "loading" ? 25 : state.HomePage.PageSize;
 }
-exports.Recipes_HomePage_Recipes_page_size = Recipes_HomePage_Recipes_page_size;
-function Recipes_User_Recipes_search_query(self) {
+exports.Recipe_HomePage_Recipe_page_size = Recipe_HomePage_Recipe_page_size;
+function Recipe_User_Recipe_search_query(self) {
     let state = self.state();
     return state.User == "loading" ? null : state.User.SearchQuery;
 }
-exports.Recipes_User_Recipes_search_query = Recipes_User_Recipes_search_query;
-function Recipes_Recipes_Rating_search_query(self) {
+exports.Recipe_User_Recipe_search_query = Recipe_User_Recipe_search_query;
+function Recipe_Recipe_Rating_search_query(self) {
     let state = self.state();
     return state.Rating == "loading" ? null : state.Rating.SearchQuery;
 }
-exports.Recipes_Recipes_Rating_search_query = Recipes_Recipes_Rating_search_query;
-function Recipes_Meal_Recipes_search_query(self) {
+exports.Recipe_Recipe_Rating_search_query = Recipe_Recipe_Rating_search_query;
+function Recipe_Meal_Recipe_search_query(self) {
     let state = self.state();
     return state.Meal == "loading" ? null : state.Meal.SearchQuery;
 }
-exports.Recipes_Meal_Recipes_search_query = Recipes_Meal_Recipes_search_query;
-function Recipes_HomePage_Recipes_search_query(self) {
+exports.Recipe_Meal_Recipe_search_query = Recipe_Meal_Recipe_search_query;
+function Recipe_HomePage_Recipe_search_query(self) {
     let state = self.state();
     return state.HomePage == "loading" ? null : state.HomePage.SearchQuery;
 }
-exports.Recipes_HomePage_Recipes_search_query = Recipes_HomePage_Recipes_search_query;
-function Recipes_User_Recipes_num_pages(self) {
+exports.Recipe_HomePage_Recipe_search_query = Recipe_HomePage_Recipe_search_query;
+function Recipe_User_Recipe_num_pages(self) {
     let state = self.state();
     return state.User == "loading" ? 1 : state.User.NumPages;
 }
-exports.Recipes_User_Recipes_num_pages = Recipes_User_Recipes_num_pages;
-function Recipes_Recipes_Rating_num_pages(self) {
+exports.Recipe_User_Recipe_num_pages = Recipe_User_Recipe_num_pages;
+function Recipe_Recipe_Rating_num_pages(self) {
     let state = self.state();
     return state.Rating == "loading" ? 1 : state.Rating.NumPages;
 }
-exports.Recipes_Recipes_Rating_num_pages = Recipes_Recipes_Rating_num_pages;
-function Recipes_Meal_Recipes_num_pages(self) {
+exports.Recipe_Recipe_Rating_num_pages = Recipe_Recipe_Rating_num_pages;
+function Recipe_Meal_Recipe_num_pages(self) {
     let state = self.state();
     return state.Meal == "loading" ? 1 : state.Meal.NumPages;
 }
-exports.Recipes_Meal_Recipes_num_pages = Recipes_Meal_Recipes_num_pages;
-function Recipes_HomePage_Recipes_num_pages(self) {
+exports.Recipe_Meal_Recipe_num_pages = Recipe_Meal_Recipe_num_pages;
+function Recipe_HomePage_Recipe_num_pages(self) {
     let state = self.state();
     return state.HomePage == "loading" ? 1 : state.HomePage.NumPages;
 }
-exports.Recipes_HomePage_Recipes_num_pages = Recipes_HomePage_Recipes_num_pages;
-function load_relation_Recipes_User_Recipes(self, force_first_page, current_User, current_Admin, callback) {
+exports.Recipe_HomePage_Recipe_num_pages = Recipe_HomePage_Recipe_num_pages;
+function load_relation_Recipe_User_Recipe(self, force_first_page, current_User, current_Admin, callback) {
     let state = self.state();
     let prelude = force_first_page && state.User != "loading" ?
         (c) => state.User != "loading" && self.setState(Object.assign({}, state, { User: Object.assign({}, state.User, { PageIndex: 0 }) }), c)
         :
             (c) => c();
     Permissions.can_view_User(current_User, current_Admin) ?
-        prelude(() => Api.get_Recipes_User_Recipess(self.props.entity, Recipes_User_Recipes_page_index(self), Recipes_User_Recipes_page_size(self), Recipes_User_Recipes_search_query(self)).then(Users => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, User: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+        prelude(() => Api.get_Recipe_User_Recipes(self.props.entity, Recipe_User_Recipe_page_index(self), Recipe_User_Recipe_page_size(self), Recipe_User_Recipe_search_query(self)).then(Users => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, User: Utils.raw_page_to_paginated_items((i, i_just_created) => {
                 let state = self.state();
                 return {
                     element: i,
@@ -22145,15 +22219,15 @@ function load_relation_Recipes_User_Recipes(self, force_first_page, current_User
         :
             prelude(() => callback && callback());
 }
-exports.load_relation_Recipes_User_Recipes = load_relation_Recipes_User_Recipes;
-function load_relation_Recipes_Recipes_Rating(self, force_first_page, current_User, current_Admin, callback) {
+exports.load_relation_Recipe_User_Recipe = load_relation_Recipe_User_Recipe;
+function load_relation_Recipe_Recipe_Rating(self, force_first_page, current_User, current_Admin, callback) {
     let state = self.state();
     let prelude = force_first_page && state.Rating != "loading" ?
         (c) => state.Rating != "loading" && self.setState(Object.assign({}, state, { Rating: Object.assign({}, state.Rating, { PageIndex: 0 }) }), c)
         :
             (c) => c();
     Permissions.can_view_Rating(current_User, current_Admin) ?
-        prelude(() => Api.get_Recipes_Recipes_Ratings(self.props.entity, Recipes_Recipes_Rating_page_index(self), Recipes_Recipes_Rating_page_size(self), Recipes_Recipes_Rating_search_query(self)).then(Ratings => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Rating: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+        prelude(() => Api.get_Recipe_Recipe_Ratings(self.props.entity, Recipe_Recipe_Rating_page_index(self), Recipe_Recipe_Rating_page_size(self), Recipe_Recipe_Rating_search_query(self)).then(Ratings => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Rating: Utils.raw_page_to_paginated_items((i, i_just_created) => {
                 let state = self.state();
                 return {
                     element: i,
@@ -22170,15 +22244,15 @@ function load_relation_Recipes_Recipes_Rating(self, force_first_page, current_Us
         :
             prelude(() => callback && callback());
 }
-exports.load_relation_Recipes_Recipes_Rating = load_relation_Recipes_Recipes_Rating;
-function load_relation_Recipes_Meal_Recipes(self, force_first_page, current_User, current_Admin, callback) {
+exports.load_relation_Recipe_Recipe_Rating = load_relation_Recipe_Recipe_Rating;
+function load_relation_Recipe_Meal_Recipe(self, force_first_page, current_User, current_Admin, callback) {
     let state = self.state();
     let prelude = force_first_page && state.Meal != "loading" ?
         (c) => state.Meal != "loading" && self.setState(Object.assign({}, state, { Meal: Object.assign({}, state.Meal, { PageIndex: 0 }) }), c)
         :
             (c) => c();
     Permissions.can_view_Meal(current_User, current_Admin) ?
-        prelude(() => Api.get_Recipes_Meal_Recipess(self.props.entity, Recipes_Meal_Recipes_page_index(self), Recipes_Meal_Recipes_page_size(self), Recipes_Meal_Recipes_search_query(self)).then(Meals => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Meal: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+        prelude(() => Api.get_Recipe_Meal_Recipes(self.props.entity, Recipe_Meal_Recipe_page_index(self), Recipe_Meal_Recipe_page_size(self), Recipe_Meal_Recipe_search_query(self)).then(Meals => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Meal: Utils.raw_page_to_paginated_items((i, i_just_created) => {
                 let state = self.state();
                 return {
                     element: i,
@@ -22195,15 +22269,15 @@ function load_relation_Recipes_Meal_Recipes(self, force_first_page, current_User
         :
             prelude(() => callback && callback());
 }
-exports.load_relation_Recipes_Meal_Recipes = load_relation_Recipes_Meal_Recipes;
-function load_relation_Recipes_HomePage_Recipes(self, force_first_page, current_User, current_Admin, callback) {
+exports.load_relation_Recipe_Meal_Recipe = load_relation_Recipe_Meal_Recipe;
+function load_relation_Recipe_HomePage_Recipe(self, force_first_page, current_User, current_Admin, callback) {
     let state = self.state();
     let prelude = force_first_page && state.HomePage != "loading" ?
         (c) => state.HomePage != "loading" && self.setState(Object.assign({}, state, { HomePage: Object.assign({}, state.HomePage, { PageIndex: 0 }) }), c)
         :
             (c) => c();
     Permissions.can_view_HomePage(current_User, current_Admin) ?
-        prelude(() => Api.get_Recipes_HomePage_Recipess(self.props.entity, Recipes_HomePage_Recipes_page_index(self), Recipes_HomePage_Recipes_page_size(self), Recipes_HomePage_Recipes_search_query(self)).then(HomePages => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, HomePage: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+        prelude(() => Api.get_Recipe_HomePage_Recipes(self.props.entity, Recipe_HomePage_Recipe_page_index(self), Recipe_HomePage_Recipe_page_size(self), Recipe_HomePage_Recipe_search_query(self)).then(HomePages => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, HomePage: Utils.raw_page_to_paginated_items((i, i_just_created) => {
                 let state = self.state();
                 return {
                     element: i,
@@ -22220,144 +22294,144 @@ function load_relation_Recipes_HomePage_Recipes(self, force_first_page, current_
         :
             prelude(() => callback && callback());
 }
-exports.load_relation_Recipes_HomePage_Recipes = load_relation_Recipes_HomePage_Recipes;
-function load_relations_Recipes(self, current_User, current_Admin, callback) {
-    load_relation_Recipes_HomePage_Recipes(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_Recipes_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_Recipes_Recipes_Rating(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_Recipes_User_Recipes(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback()))));
+exports.load_relation_Recipe_HomePage_Recipe = load_relation_Recipe_HomePage_Recipe;
+function load_relations_Recipe(self, current_User, current_Admin, callback) {
+    load_relation_Recipe_HomePage_Recipe(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_Recipe_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_Recipe_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_Recipe_User_Recipe(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback()))));
 }
-exports.load_relations_Recipes = load_relations_Recipes;
-function set_size_Recipes(self, new_size) {
+exports.load_relations_Recipe = load_relations_Recipe;
+function set_size_Recipe(self, new_size) {
     self.props.set_size(new_size, () => {
         if (new_size == "fullscreen")
-            self.props.push(exports.Recipes_to_page(self.props.entity.Id));
+            self.props.push(exports.Recipe_to_page(self.props.entity.Id));
     });
 }
-exports.set_size_Recipes = set_size_Recipes;
-function render_Recipes_Picture_editable_minimised(self) {
-    if (!Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin))
-        return render_Recipes_Picture_minimised(self);
+exports.set_size_Recipe = set_size_Recipe;
+function render_Recipe_Picture_editable_minimised(self) {
+    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
+        return render_Recipe_Picture_minimised(self);
     else
-        return !Permissions.can_view_Recipes_Picture(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+        return !Permissions.can_view_Recipe_Picture(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
             React.createElement("div", { className: "model__attribute picture" },
-                React.createElement("label", { className: "attribute-label attribute-label-picture" }, i18next.t(`Recipes:Picture`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.Image(self.props.is_editable && Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipes_Picture(self.props.current_User, self.props.current_Admin), self.props.mode, () => Api.get_Recipes_Picture(self.props.entity), (new_src) => Api.update_Recipes_Picture(self.props.entity, new_src))));
+                React.createElement("label", { className: "attribute-label attribute-label-picture" }, i18next.t(`Recipe:Picture`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.Image(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Picture(self.props.current_User, self.props.current_Admin), self.props.mode, () => Api.get_Recipe_Picture(self.props.entity), (new_src) => Api.update_Recipe_Picture(self.props.entity, new_src))));
 }
-exports.render_Recipes_Picture_editable_minimised = render_Recipes_Picture_editable_minimised;
-function render_Recipes_Name_editable_minimised(self) {
-    if (!Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin))
-        return render_Recipes_Name_minimised(self);
+exports.render_Recipe_Picture_editable_minimised = render_Recipe_Picture_editable_minimised;
+function render_Recipe_Name_editable_minimised(self) {
+    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
+        return render_Recipe_Name_minimised(self);
     else
-        return !Permissions.can_view_Recipes_Name(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+        return !Permissions.can_view_Recipe_Name(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
             React.createElement("div", { className: "model__attribute name" },
-                React.createElement("label", { className: "attribute-label attribute-label-name" }, i18next.t(`Recipes:Name`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipes_Name(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Name, v => self.props.set_entity(Object.assign({}, self.props.entity, { Name: v })))));
+                React.createElement("label", { className: "attribute-label attribute-label-name" }, i18next.t(`Recipe:Name`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Name(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Name, v => self.props.set_entity(Object.assign({}, self.props.entity, { Name: v })))));
 }
-exports.render_Recipes_Name_editable_minimised = render_Recipes_Name_editable_minimised;
-function render_Recipes_Ingredients_editable_minimised(self) {
-    if (!Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin))
-        return render_Recipes_Ingredients_minimised(self);
+exports.render_Recipe_Name_editable_minimised = render_Recipe_Name_editable_minimised;
+function render_Recipe_Ingredients_editable_minimised(self) {
+    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
+        return render_Recipe_Ingredients_minimised(self);
     else
-        return !Permissions.can_view_Recipes_Ingredients(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+        return !Permissions.can_view_Recipe_Ingredients(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
             React.createElement("div", { className: "model__attribute ingredients" },
-                React.createElement("label", { className: "attribute-label attribute-label-ingredients" }, i18next.t(`Recipes:Ingredients`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipes_Ingredients(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Ingredients, v => self.props.set_entity(Object.assign({}, self.props.entity, { Ingredients: v })))));
+                React.createElement("label", { className: "attribute-label attribute-label-ingredients" }, i18next.t(`Recipe:Ingredients`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Ingredients(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Ingredients, v => self.props.set_entity(Object.assign({}, self.props.entity, { Ingredients: v })))));
 }
-exports.render_Recipes_Ingredients_editable_minimised = render_Recipes_Ingredients_editable_minimised;
-function render_Recipes_Description_editable_minimised(self) {
-    if (!Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin))
-        return render_Recipes_Description_minimised(self);
+exports.render_Recipe_Ingredients_editable_minimised = render_Recipe_Ingredients_editable_minimised;
+function render_Recipe_Description_editable_minimised(self) {
+    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
+        return render_Recipe_Description_minimised(self);
     else
-        return !Permissions.can_view_Recipes_Description(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+        return !Permissions.can_view_Recipe_Description(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
             React.createElement("div", { className: "model__attribute description" },
-                React.createElement("label", { className: "attribute-label attribute-label-description" }, i18next.t(`Recipes:Description`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipes_Description(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Description, v => self.props.set_entity(Object.assign({}, self.props.entity, { Description: v })))));
+                React.createElement("label", { className: "attribute-label attribute-label-description" }, i18next.t(`Recipe:Description`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Description(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Description, v => self.props.set_entity(Object.assign({}, self.props.entity, { Description: v })))));
 }
-exports.render_Recipes_Description_editable_minimised = render_Recipes_Description_editable_minimised;
-function render_Recipes_PreparationTime_editable_minimised(self) {
-    if (!Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin))
-        return render_Recipes_PreparationTime_minimised(self);
+exports.render_Recipe_Description_editable_minimised = render_Recipe_Description_editable_minimised;
+function render_Recipe_PreparationTime_editable_minimised(self) {
+    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
+        return render_Recipe_PreparationTime_minimised(self);
     else
-        return !Permissions.can_view_Recipes_PreparationTime(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+        return !Permissions.can_view_Recipe_PreparationTime(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
             React.createElement("div", { className: "model__attribute preparationtime" },
-                React.createElement("label", { className: "attribute-label attribute-label-preparationtime" }, i18next.t(`Recipes:PreparationTime`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.Number(self.props.is_editable && Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipes_PreparationTime(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.PreparationTime, v => self.props.set_entity(Object.assign({}, self.props.entity, { PreparationTime: v })))));
+                React.createElement("label", { className: "attribute-label attribute-label-preparationtime" }, i18next.t(`Recipe:PreparationTime`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.Number(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_PreparationTime(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.PreparationTime, v => self.props.set_entity(Object.assign({}, self.props.entity, { PreparationTime: v })))));
 }
-exports.render_Recipes_PreparationTime_editable_minimised = render_Recipes_PreparationTime_editable_minimised;
-function render_Recipes_Picture_editable_maximised(self) {
-    if (!Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin))
-        return render_Recipes_Picture_maximised(self);
+exports.render_Recipe_PreparationTime_editable_minimised = render_Recipe_PreparationTime_editable_minimised;
+function render_Recipe_Picture_editable_maximised(self) {
+    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
+        return render_Recipe_Picture_maximised(self);
     else
-        return !Permissions.can_view_Recipes_Picture(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+        return !Permissions.can_view_Recipe_Picture(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
             React.createElement("div", { className: "model__attribute picture" },
-                React.createElement("label", { className: "attribute-label attribute-label-picture" }, i18next.t(`Recipes:Picture`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.Image(self.props.is_editable && Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipes_Picture(self.props.current_User, self.props.current_Admin), self.props.mode, () => Api.get_Recipes_Picture(self.props.entity), (new_src) => Api.update_Recipes_Picture(self.props.entity, new_src))));
+                React.createElement("label", { className: "attribute-label attribute-label-picture" }, i18next.t(`Recipe:Picture`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.Image(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Picture(self.props.current_User, self.props.current_Admin), self.props.mode, () => Api.get_Recipe_Picture(self.props.entity), (new_src) => Api.update_Recipe_Picture(self.props.entity, new_src))));
 }
-exports.render_Recipes_Picture_editable_maximised = render_Recipes_Picture_editable_maximised;
-function render_Recipes_Name_editable_maximised(self) {
-    if (!Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin))
-        return render_Recipes_Name_maximised(self);
+exports.render_Recipe_Picture_editable_maximised = render_Recipe_Picture_editable_maximised;
+function render_Recipe_Name_editable_maximised(self) {
+    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
+        return render_Recipe_Name_maximised(self);
     else
-        return !Permissions.can_view_Recipes_Name(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+        return !Permissions.can_view_Recipe_Name(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
             React.createElement("div", { className: "model__attribute name" },
-                React.createElement("label", { className: "attribute-label attribute-label-name" }, i18next.t(`Recipes:Name`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipes_Name(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Name, v => self.props.set_entity(Object.assign({}, self.props.entity, { Name: v })))));
+                React.createElement("label", { className: "attribute-label attribute-label-name" }, i18next.t(`Recipe:Name`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Name(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Name, v => self.props.set_entity(Object.assign({}, self.props.entity, { Name: v })))));
 }
-exports.render_Recipes_Name_editable_maximised = render_Recipes_Name_editable_maximised;
-function render_Recipes_Ingredients_editable_maximised(self) {
-    if (!Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin))
-        return render_Recipes_Ingredients_maximised(self);
+exports.render_Recipe_Name_editable_maximised = render_Recipe_Name_editable_maximised;
+function render_Recipe_Ingredients_editable_maximised(self) {
+    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
+        return render_Recipe_Ingredients_maximised(self);
     else
-        return !Permissions.can_view_Recipes_Ingredients(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+        return !Permissions.can_view_Recipe_Ingredients(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
             React.createElement("div", { className: "model__attribute ingredients" },
-                React.createElement("label", { className: "attribute-label attribute-label-ingredients" }, i18next.t(`Recipes:Ingredients`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipes_Ingredients(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Ingredients, v => self.props.set_entity(Object.assign({}, self.props.entity, { Ingredients: v })))));
+                React.createElement("label", { className: "attribute-label attribute-label-ingredients" }, i18next.t(`Recipe:Ingredients`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Ingredients(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Ingredients, v => self.props.set_entity(Object.assign({}, self.props.entity, { Ingredients: v })))));
 }
-exports.render_Recipes_Ingredients_editable_maximised = render_Recipes_Ingredients_editable_maximised;
-function render_Recipes_Description_editable_maximised(self) {
-    if (!Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin))
-        return render_Recipes_Description_maximised(self);
+exports.render_Recipe_Ingredients_editable_maximised = render_Recipe_Ingredients_editable_maximised;
+function render_Recipe_Description_editable_maximised(self) {
+    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
+        return render_Recipe_Description_maximised(self);
     else
-        return !Permissions.can_view_Recipes_Description(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+        return !Permissions.can_view_Recipe_Description(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
             React.createElement("div", { className: "model__attribute description" },
-                React.createElement("label", { className: "attribute-label attribute-label-description" }, i18next.t(`Recipes:Description`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipes_Description(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Description, v => self.props.set_entity(Object.assign({}, self.props.entity, { Description: v })))));
+                React.createElement("label", { className: "attribute-label attribute-label-description" }, i18next.t(`Recipe:Description`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Description(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Description, v => self.props.set_entity(Object.assign({}, self.props.entity, { Description: v })))));
 }
-exports.render_Recipes_Description_editable_maximised = render_Recipes_Description_editable_maximised;
-function render_Recipes_PreparationTime_editable_maximised(self) {
-    if (!Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin))
-        return render_Recipes_PreparationTime_maximised(self);
+exports.render_Recipe_Description_editable_maximised = render_Recipe_Description_editable_maximised;
+function render_Recipe_PreparationTime_editable_maximised(self) {
+    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
+        return render_Recipe_PreparationTime_maximised(self);
     else
-        return !Permissions.can_view_Recipes_PreparationTime(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+        return !Permissions.can_view_Recipe_PreparationTime(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
             React.createElement("div", { className: "model__attribute preparationtime" },
-                React.createElement("label", { className: "attribute-label attribute-label-preparationtime" }, i18next.t(`Recipes:PreparationTime`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.Number(self.props.is_editable && Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipes_PreparationTime(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.PreparationTime, v => self.props.set_entity(Object.assign({}, self.props.entity, { PreparationTime: v })))));
+                React.createElement("label", { className: "attribute-label attribute-label-preparationtime" }, i18next.t(`Recipe:PreparationTime`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.Number(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_PreparationTime(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.PreparationTime, v => self.props.set_entity(Object.assign({}, self.props.entity, { PreparationTime: v })))));
 }
-exports.render_Recipes_PreparationTime_editable_maximised = render_Recipes_PreparationTime_editable_maximised;
-function render_editable_attributes_minimised_Recipes(self) {
+exports.render_Recipe_PreparationTime_editable_maximised = render_Recipe_PreparationTime_editable_maximised;
+function render_editable_attributes_minimised_Recipe(self) {
     let attributes = (React.createElement("div", null,
-        render_Recipes_Picture_editable_minimised(self),
-        render_Recipes_Name_editable_minimised(self),
-        render_Recipes_Ingredients_editable_minimised(self),
-        render_Recipes_Description_editable_minimised(self),
-        render_Recipes_PreparationTime_editable_minimised(self)));
+        render_Recipe_Picture_editable_minimised(self),
+        render_Recipe_Name_editable_minimised(self),
+        render_Recipe_Ingredients_editable_minimised(self),
+        render_Recipe_Description_editable_minimised(self),
+        render_Recipe_PreparationTime_editable_minimised(self)));
     return attributes;
 }
-exports.render_editable_attributes_minimised_Recipes = render_editable_attributes_minimised_Recipes;
-function render_editable_attributes_maximised_Recipes(self) {
+exports.render_editable_attributes_minimised_Recipe = render_editable_attributes_minimised_Recipe;
+function render_editable_attributes_maximised_Recipe(self) {
     let state = self.state();
     let attributes = (React.createElement("div", null,
-        render_Recipes_Picture_editable_maximised(self),
-        render_Recipes_Name_editable_maximised(self),
-        render_Recipes_Ingredients_editable_maximised(self),
-        render_Recipes_Description_editable_maximised(self),
-        render_Recipes_PreparationTime_editable_maximised(self)));
+        render_Recipe_Picture_editable_maximised(self),
+        render_Recipe_Name_editable_maximised(self),
+        render_Recipe_Ingredients_editable_maximised(self),
+        render_Recipe_Description_editable_maximised(self),
+        render_Recipe_PreparationTime_editable_maximised(self)));
     return attributes;
 }
-exports.render_editable_attributes_maximised_Recipes = render_editable_attributes_maximised_Recipes;
-function render_breadcrumb_Recipes(self) {
-    return React.createElement("div", { className: "breadcrumb-recipes" }, "Recipes");
+exports.render_editable_attributes_maximised_Recipe = render_editable_attributes_maximised_Recipe;
+function render_breadcrumb_Recipe(self) {
+    return React.createElement("div", { className: "breadcrumb-recipe" }, "Recipe");
 }
-exports.render_breadcrumb_Recipes = render_breadcrumb_Recipes;
-function render_menu_Recipes(self) {
+exports.render_breadcrumb_Recipe = render_breadcrumb_Recipe;
+function render_menu_Recipe(self) {
     let state = self.state();
     return React.createElement("div", { className: "menu" },
         React.createElement("img", { className: "logo", src: "/images/logo.png", alt: "Logo" }),
@@ -22366,39 +22440,39 @@ function render_menu_Recipes(self) {
                 React.createElement("div", { className: `menu_entry page_link` },
                     React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
             React.createElement("div", { className: "menu_entries" },
-                !Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ? null :
+                !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
                     React.createElement("div", { className: `menu_entry active` },
                         React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipes")));
-                            } }, i18next.t('HomePage_Recipess'))),
-                !Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categories" ? " active" : ""}` },
+                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipe")));
+                            } }, i18next.t('HomePage_Recipes'))),
+                !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
+                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}` },
                         React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categories")));
-                            } }, i18next.t('HomePage_Categoriess'))),
+                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categorie")));
+                            } }, i18next.t('HomePage_Categories'))),
                 React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
 }
-exports.render_menu_Recipes = render_menu_Recipes;
-function render_local_menu_Recipes(self) {
+exports.render_menu_Recipe = render_menu_Recipe;
+function render_local_menu_Recipe(self) {
     let state = self.state();
     return React.createElement("div", { className: "local-menu" },
         React.createElement("div", { className: "local_menu_entries" },
             React.createElement("div", { className: `local_menu_entry${self.props.shown_relation == "none" ? " local_menu_entry--active" : ""}` },
-                React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('About this Recipes'))),
+                React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('About this Recipe'))),
             !Permissions.can_view_Rating(self.props.current_User, self.props.current_Admin) ? null :
-                React.createElement("div", { key: "Recipes_Rating", className: `local_menu_entry${self.props.shown_relation == "Recipes_Rating" ? " local_menu_entry--active" : ""}` },
-                    React.createElement("a", { onClick: () => load_relation_Recipes_Recipes_Rating(self, false, self.props.current_User, self.props.current_Admin, () => self.props.set_shown_relation("Recipes_Rating")) }, i18next.t('Recipes_Ratings')))));
+                React.createElement("div", { key: "Recipe_Rating", className: `local_menu_entry${self.props.shown_relation == "Recipe_Rating" ? " local_menu_entry--active" : ""}` },
+                    React.createElement("a", { onClick: () => load_relation_Recipe_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin, () => self.props.set_shown_relation("Recipe_Rating")) }, i18next.t('Recipe_Ratings')))));
 }
-exports.render_local_menu_Recipes = render_local_menu_Recipes;
-function render_controls_Recipes(self) {
+exports.render_local_menu_Recipe = render_local_menu_Recipe;
+function render_controls_Recipe(self) {
     return React.createElement("div", { className: "control" },
-        self.props.allow_maximisation && self.props.set_size ? React.createElement("a", { className: `"recipes button button--toggle ${self.props.size != 'preview' ? 'button--toggle--open' : ''}`, onClick: () => {
-                set_size_Recipes(self, self.props.size == "preview" ? "large" : "preview");
+        self.props.allow_maximisation && self.props.set_size ? React.createElement("a", { className: `"recipe button button--toggle ${self.props.size != 'preview' ? 'button--toggle--open' : ''}`, onClick: () => {
+                set_size_Recipe(self, self.props.size == "preview" ? "large" : "preview");
             } }) : null,
-        self.props.allow_fullscreen && self.props.set_size ? React.createElement("a", { className: "recipes button button--fullscreen", onClick: () => set_size_Recipes(self, self.props.size == "fullscreen" ? "large" : "fullscreen") }) : null,
-        Permissions.can_delete_Recipes(self.props.current_User, self.props.current_Admin) && self.props.size == "fullscreen" ? React.createElement("a", { className: "button button--delete", onClick: () => confirm(i18next.t('Are you sure?')) &&
-                Api.delete_Recipes(self.props.entity).then(() => self.props.force_reload(() => self.props.pop())) }) : null,
-        self.props.size == "fullscreen" && self.props.pages_count > 0 ? React.createElement("a", { className: "recipes button button--close", onClick: () => self.props.pop() }) : null,
+        self.props.allow_fullscreen && self.props.set_size ? React.createElement("a", { className: "recipe button button--fullscreen", onClick: () => set_size_Recipe(self, self.props.size == "fullscreen" ? "large" : "fullscreen") }) : null,
+        Permissions.can_delete_Recipe(self.props.current_User, self.props.current_Admin) && self.props.size == "fullscreen" ? React.createElement("a", { className: "button button--delete", onClick: () => confirm(i18next.t('Are you sure?')) &&
+                Api.delete_Recipe(self.props.entity).then(() => self.props.force_reload(() => self.props.pop())) }) : null,
+        self.props.size == "fullscreen" && self.props.pages_count > 0 ? React.createElement("a", { className: "recipe button button--close", onClick: () => self.props.pop() }) : null,
         self.props.unlink && self.props.mode != "view" ?
             React.createElement("a", { className: "button button--unlink", onClick: () => self.props.unlink() })
             :
@@ -22408,24 +22482,24 @@ function render_controls_Recipes(self) {
             :
                 null);
 }
-exports.render_controls_Recipes = render_controls_Recipes;
-function render_content_Recipes(self) {
+exports.render_controls_Recipe = render_controls_Recipe;
+function render_content_Recipe(self) {
     let actions = [
         self.props.allow_maximisation && self.props.set_size && self.props.size == "preview" ?
-            () => set_size_Recipes(self, self.props.size == "preview" ? "large" : "preview")
+            () => set_size_Recipe(self, self.props.size == "preview" ? "large" : "preview")
             :
                 null, self.props.allow_fullscreen && self.props.set_size && self.props.size == "preview" ?
-            () => set_size_Recipes(self, self.props.size == "fullscreen" ? "large" : "fullscreen")
+            () => set_size_Recipe(self, self.props.size == "fullscreen" ? "large" : "fullscreen")
             :
                 null,
     ].filter(a => a != null);
-    let content = Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ?
+    let content = Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ?
         self.props.size == "preview" ?
-            render_preview_Recipes(self)
+            render_preview_Recipe(self)
             : self.props.size == "large" ?
-                render_large_Recipes(self)
+                render_large_Recipe(self)
                 : self.props.size == "fullscreen" ?
-                    render_large_Recipes(self)
+                    render_large_Recipe(self)
                     : "Error: unauthorised access to entity."
         : "Error: unauthorised access to entity.";
     if (self.props.mode == "view" && actions.length == 1 && !false)
@@ -22434,116 +22508,116 @@ function render_content_Recipes(self) {
     else
         return React.createElement("div", { className: `${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}` }, content);
 }
-exports.render_content_Recipes = render_content_Recipes;
-function render_Recipes_Picture_minimised(self) {
-    return !Permissions.can_view_Recipes_Picture(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute picture" },
-        React.createElement("label", { className: "attribute-label attribute-label-picture" }, i18next.t(`Recipes:Picture`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.Image(self.props.is_editable && Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipes_Picture(self.props.current_User, self.props.current_Admin), self.props.mode, () => Api.get_Recipes_Picture(self.props.entity), (new_src) => Api.update_Recipes_Picture(self.props.entity, new_src))));
+exports.render_content_Recipe = render_content_Recipe;
+function render_Recipe_Picture_minimised(self) {
+    return !Permissions.can_view_Recipe_Picture(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute picture" },
+        React.createElement("label", { className: "attribute-label attribute-label-picture" }, i18next.t(`Recipe:Picture`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.Image(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Picture(self.props.current_User, self.props.current_Admin), self.props.mode, () => Api.get_Recipe_Picture(self.props.entity), (new_src) => Api.update_Recipe_Picture(self.props.entity, new_src))));
 }
-exports.render_Recipes_Picture_minimised = render_Recipes_Picture_minimised;
-function render_Recipes_Name_minimised(self) {
-    return !Permissions.can_view_Recipes_Name(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute name" },
-        React.createElement("label", { className: "attribute-label attribute-label-name" }, i18next.t(`Recipes:Name`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipes_Name(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Name, v => self.props.set_entity(Object.assign({}, self.props.entity, { Name: v })))));
+exports.render_Recipe_Picture_minimised = render_Recipe_Picture_minimised;
+function render_Recipe_Name_minimised(self) {
+    return !Permissions.can_view_Recipe_Name(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute name" },
+        React.createElement("label", { className: "attribute-label attribute-label-name" }, i18next.t(`Recipe:Name`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Name(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Name, v => self.props.set_entity(Object.assign({}, self.props.entity, { Name: v })))));
 }
-exports.render_Recipes_Name_minimised = render_Recipes_Name_minimised;
-function render_Recipes_Ingredients_minimised(self) {
-    return !Permissions.can_view_Recipes_Ingredients(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute ingredients" },
-        React.createElement("label", { className: "attribute-label attribute-label-ingredients" }, i18next.t(`Recipes:Ingredients`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipes_Ingredients(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Ingredients, v => self.props.set_entity(Object.assign({}, self.props.entity, { Ingredients: v })))));
+exports.render_Recipe_Name_minimised = render_Recipe_Name_minimised;
+function render_Recipe_Ingredients_minimised(self) {
+    return !Permissions.can_view_Recipe_Ingredients(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute ingredients" },
+        React.createElement("label", { className: "attribute-label attribute-label-ingredients" }, i18next.t(`Recipe:Ingredients`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Ingredients(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Ingredients, v => self.props.set_entity(Object.assign({}, self.props.entity, { Ingredients: v })))));
 }
-exports.render_Recipes_Ingredients_minimised = render_Recipes_Ingredients_minimised;
-function render_Recipes_Description_minimised(self) {
-    return !Permissions.can_view_Recipes_Description(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute description" },
-        React.createElement("label", { className: "attribute-label attribute-label-description" }, i18next.t(`Recipes:Description`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipes_Description(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Description, v => self.props.set_entity(Object.assign({}, self.props.entity, { Description: v })))));
+exports.render_Recipe_Ingredients_minimised = render_Recipe_Ingredients_minimised;
+function render_Recipe_Description_minimised(self) {
+    return !Permissions.can_view_Recipe_Description(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute description" },
+        React.createElement("label", { className: "attribute-label attribute-label-description" }, i18next.t(`Recipe:Description`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Description(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Description, v => self.props.set_entity(Object.assign({}, self.props.entity, { Description: v })))));
 }
-exports.render_Recipes_Description_minimised = render_Recipes_Description_minimised;
-function render_Recipes_PreparationTime_minimised(self) {
-    return !Permissions.can_view_Recipes_PreparationTime(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute preparationtime" },
-        React.createElement("label", { className: "attribute-label attribute-label-preparationtime" }, i18next.t(`Recipes:PreparationTime`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.Number(self.props.is_editable && Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipes_PreparationTime(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.PreparationTime, v => self.props.set_entity(Object.assign({}, self.props.entity, { PreparationTime: v })))));
+exports.render_Recipe_Description_minimised = render_Recipe_Description_minimised;
+function render_Recipe_PreparationTime_minimised(self) {
+    return !Permissions.can_view_Recipe_PreparationTime(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute preparationtime" },
+        React.createElement("label", { className: "attribute-label attribute-label-preparationtime" }, i18next.t(`Recipe:PreparationTime`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.Number(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_PreparationTime(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.PreparationTime, v => self.props.set_entity(Object.assign({}, self.props.entity, { PreparationTime: v })))));
 }
-exports.render_Recipes_PreparationTime_minimised = render_Recipes_PreparationTime_minimised;
-function render_Recipes_Picture_maximised(self) {
-    return !Permissions.can_view_Recipes_Picture(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute picture" },
-        React.createElement("label", { className: "attribute-label attribute-label-picture" }, i18next.t(`Recipes:Picture`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.Image(self.props.is_editable && Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipes_Picture(self.props.current_User, self.props.current_Admin), self.props.mode, () => Api.get_Recipes_Picture(self.props.entity), (new_src) => Api.update_Recipes_Picture(self.props.entity, new_src))));
+exports.render_Recipe_PreparationTime_minimised = render_Recipe_PreparationTime_minimised;
+function render_Recipe_Picture_maximised(self) {
+    return !Permissions.can_view_Recipe_Picture(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute picture" },
+        React.createElement("label", { className: "attribute-label attribute-label-picture" }, i18next.t(`Recipe:Picture`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.Image(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Picture(self.props.current_User, self.props.current_Admin), self.props.mode, () => Api.get_Recipe_Picture(self.props.entity), (new_src) => Api.update_Recipe_Picture(self.props.entity, new_src))));
 }
-exports.render_Recipes_Picture_maximised = render_Recipes_Picture_maximised;
-function render_Recipes_Name_maximised(self) {
-    return !Permissions.can_view_Recipes_Name(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute name" },
-        React.createElement("label", { className: "attribute-label attribute-label-name" }, i18next.t(`Recipes:Name`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipes_Name(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Name, v => self.props.set_entity(Object.assign({}, self.props.entity, { Name: v })))));
+exports.render_Recipe_Picture_maximised = render_Recipe_Picture_maximised;
+function render_Recipe_Name_maximised(self) {
+    return !Permissions.can_view_Recipe_Name(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute name" },
+        React.createElement("label", { className: "attribute-label attribute-label-name" }, i18next.t(`Recipe:Name`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Name(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Name, v => self.props.set_entity(Object.assign({}, self.props.entity, { Name: v })))));
 }
-exports.render_Recipes_Name_maximised = render_Recipes_Name_maximised;
-function render_Recipes_Ingredients_maximised(self) {
-    return !Permissions.can_view_Recipes_Ingredients(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute ingredients" },
-        React.createElement("label", { className: "attribute-label attribute-label-ingredients" }, i18next.t(`Recipes:Ingredients`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipes_Ingredients(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Ingredients, v => self.props.set_entity(Object.assign({}, self.props.entity, { Ingredients: v })))));
+exports.render_Recipe_Name_maximised = render_Recipe_Name_maximised;
+function render_Recipe_Ingredients_maximised(self) {
+    return !Permissions.can_view_Recipe_Ingredients(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute ingredients" },
+        React.createElement("label", { className: "attribute-label attribute-label-ingredients" }, i18next.t(`Recipe:Ingredients`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Ingredients(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Ingredients, v => self.props.set_entity(Object.assign({}, self.props.entity, { Ingredients: v })))));
 }
-exports.render_Recipes_Ingredients_maximised = render_Recipes_Ingredients_maximised;
-function render_Recipes_Description_maximised(self) {
-    return !Permissions.can_view_Recipes_Description(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute description" },
-        React.createElement("label", { className: "attribute-label attribute-label-description" }, i18next.t(`Recipes:Description`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipes_Description(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Description, v => self.props.set_entity(Object.assign({}, self.props.entity, { Description: v })))));
+exports.render_Recipe_Ingredients_maximised = render_Recipe_Ingredients_maximised;
+function render_Recipe_Description_maximised(self) {
+    return !Permissions.can_view_Recipe_Description(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute description" },
+        React.createElement("label", { className: "attribute-label attribute-label-description" }, i18next.t(`Recipe:Description`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Description(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Description, v => self.props.set_entity(Object.assign({}, self.props.entity, { Description: v })))));
 }
-exports.render_Recipes_Description_maximised = render_Recipes_Description_maximised;
-function render_Recipes_PreparationTime_maximised(self) {
-    return !Permissions.can_view_Recipes_PreparationTime(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute preparationtime" },
-        React.createElement("label", { className: "attribute-label attribute-label-preparationtime" }, i18next.t(`Recipes:PreparationTime`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.Number(self.props.is_editable && Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipes_PreparationTime(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.PreparationTime, v => self.props.set_entity(Object.assign({}, self.props.entity, { PreparationTime: v })))));
+exports.render_Recipe_Description_maximised = render_Recipe_Description_maximised;
+function render_Recipe_PreparationTime_maximised(self) {
+    return !Permissions.can_view_Recipe_PreparationTime(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute preparationtime" },
+        React.createElement("label", { className: "attribute-label attribute-label-preparationtime" }, i18next.t(`Recipe:PreparationTime`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.Number(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_PreparationTime(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.PreparationTime, v => self.props.set_entity(Object.assign({}, self.props.entity, { PreparationTime: v })))));
 }
-exports.render_Recipes_PreparationTime_maximised = render_Recipes_PreparationTime_maximised;
-function render_preview_Recipes(self) {
+exports.render_Recipe_PreparationTime_maximised = render_Recipe_PreparationTime_maximised;
+function render_preview_Recipe(self) {
     let attributes = null;
-    if (self.props.mode == "view" || !Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin))
+    if (self.props.mode == "view" || !Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
         attributes = (React.createElement("div", { className: "model__attributes" },
-            render_Recipes_Picture_minimised(self),
-            render_Recipes_Name_minimised(self),
-            render_Recipes_Ingredients_minimised(self),
-            render_Recipes_Description_minimised(self),
-            render_Recipes_PreparationTime_minimised(self)));
+            render_Recipe_Picture_minimised(self),
+            render_Recipe_Name_minimised(self),
+            render_Recipe_Ingredients_minimised(self),
+            render_Recipe_Description_minimised(self),
+            render_Recipe_PreparationTime_minimised(self)));
     else
-        attributes = render_editable_attributes_minimised_Recipes(self);
+        attributes = render_editable_attributes_minimised_Recipe(self);
     return (React.createElement("div", { className: "block" }, attributes));
 }
-exports.render_preview_Recipes = render_preview_Recipes;
-function render_large_Recipes(self) {
+exports.render_preview_Recipe = render_preview_Recipe;
+function render_large_Recipe(self) {
     let state = self.state();
     let attributes = null;
-    if (self.props.mode == "view" || !Permissions.can_edit_Recipes(self.props.current_User, self.props.current_Admin))
+    if (self.props.mode == "view" || !Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
         attributes = (React.createElement("div", { className: "model__attributes" },
-            render_Recipes_Picture_maximised(self),
-            render_Recipes_Name_maximised(self),
-            render_Recipes_Ingredients_maximised(self),
-            render_Recipes_Description_maximised(self),
-            render_Recipes_PreparationTime_maximised(self)));
+            render_Recipe_Picture_maximised(self),
+            render_Recipe_Name_maximised(self),
+            render_Recipe_Ingredients_maximised(self),
+            render_Recipe_Description_maximised(self),
+            render_Recipe_PreparationTime_maximised(self)));
     else
-        attributes = render_editable_attributes_maximised_Recipes(self);
+        attributes = render_editable_attributes_maximised_Recipe(self);
     return (React.createElement("div", { className: "block" },
         self.props.nesting_depth == 0 && self.props.shown_relation != "all" && self.props.shown_relation != "none" ? null : attributes,
-        render_relations_Recipes(self)));
+        render_relations_Recipe(self)));
 }
-exports.render_large_Recipes = render_large_Recipes;
-function render_Recipes_User_Recipes(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "User_Recipes") || !Permissions.can_view_User(self.props.current_User, self.props.current_Admin))
+exports.render_large_Recipe = render_large_Recipe;
+function render_Recipe_User_Recipe(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "User_Recipe") || !Permissions.can_view_User(self.props.current_User, self.props.current_Admin))
         return null;
     let state = self.state();
-    return React.createElement("div", null, List.render_relation("recipes_user_recipes", "Recipes", "User", "Users", self.props.nesting_depth > 0, false, false, false)(state.User != "loading" ?
+    return React.createElement("div", null, List.render_relation("recipe_user_recipe", "Recipe", "User", "Users", self.props.nesting_depth > 0, false, false, false)(state.User != "loading" ?
         state.User.IdsInServerOrder.map(id => state.User != "loading" && state.User.Items.get(id)) :
-        state.User, Recipes_User_Recipes_page_index(self), Recipes_User_Recipes_num_pages(self), new_page_index => {
+        state.User, Recipe_User_Recipe_page_index(self), Recipe_User_Recipe_num_pages(self), new_page_index => {
         let state = self.state();
         state.User != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, User: Object.assign({}, state.User, { PageIndex: new_page_index }) }), () => load_relation_Recipes_User_Recipes(self, false, self.props.current_User, self.props.current_Admin));
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, User: Object.assign({}, state.User, { PageIndex: new_page_index }) }), () => load_relation_Recipe_User_Recipe(self, false, self.props.current_User, self.props.current_Admin));
     }, (i, _) => {
         let i_id = i.element.Id;
         let state = self.state();
         return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
                         ${state.User != "loading" && state.User.JustCreated.has(i_id) && state.User.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, UserViews.User(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_User_Recipes(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_User_Recipes(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_User_Recipes(self.props.current_User, self.props.current_Admin)) ?
+            React.createElement("div", { key: i_id }, UserViews.User(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_User_Recipe(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_User_Recipe(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_User_Recipe(self.props.current_User, self.props.current_Admin)) ?
                     self.props.mode : "view", is_editable: state.User != "loading" && state.User.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
                     let state = self.state();
                     state.User != "loading" &&
@@ -22557,33 +22631,33 @@ function render_Recipes_User_Recipes(self, context) {
                     let state = self.state();
                     state.User != "loading" &&
                         self.setState(Object.assign({}, self.state(), { dirty_User: state.dirty_User.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, User: Object.assign({}, state.User, { Items: state.User.Items.set(i_id, Object.assign({}, state.User.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, delete: undefined, unlink: !Permissions.can_delete_User_Recipes(self.props.current_User, self.props.current_Admin) ?
+                }, delete: undefined, unlink: !Permissions.can_delete_User_Recipe(self.props.current_User, self.props.current_Admin) ?
                     null
                     :
-                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_User_User_Recipess(i.element, self.props.entity).then(() => load_relation_Recipes_User_Recipes(self, false, self.props.current_User, self.props.current_Admin)) }))));
+                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_User_User_Recipes(i.element, self.props.entity).then(() => load_relation_Recipe_User_Recipe(self, false, self.props.current_User, self.props.current_Admin)) }))));
     }, () => React.createElement("div", null,
-        Permissions.can_create_User(self.props.current_User, self.props.current_Admin) && Permissions.can_create_User_Recipes(self.props.current_User, self.props.current_Admin) && Recipes_User_Recipes_can_create(self) ? render_new_Recipes_User_Recipes(self) : null,
-        Permissions.can_create_User_Recipes(self.props.current_User, self.props.current_Admin) ? render_add_existing_Recipes_User_Recipes(self) : null)));
+        Permissions.can_create_User(self.props.current_User, self.props.current_Admin) && Permissions.can_create_User_Recipe(self.props.current_User, self.props.current_Admin) && Recipe_User_Recipe_can_create(self) ? render_new_Recipe_User_Recipe(self) : null,
+        Permissions.can_create_User_Recipe(self.props.current_User, self.props.current_Admin) ? render_add_existing_Recipe_User_Recipe(self) : null)));
 }
-exports.render_Recipes_User_Recipes = render_Recipes_User_Recipes;
-function render_Recipes_Recipes_Rating(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Recipes_Rating") || !Permissions.can_view_Rating(self.props.current_User, self.props.current_Admin))
+exports.render_Recipe_User_Recipe = render_Recipe_User_Recipe;
+function render_Recipe_Recipe_Rating(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Recipe_Rating") || !Permissions.can_view_Rating(self.props.current_User, self.props.current_Admin))
         return null;
     let state = self.state();
-    return React.createElement("div", null, List.render_relation("recipes_recipes_rating", "Recipes", "Rating", "Ratings", self.props.nesting_depth > 0, false, false, false)(state.Rating != "loading" ?
+    return React.createElement("div", null, List.render_relation("recipe_recipe_rating", "Recipe", "Rating", "Ratings", self.props.nesting_depth > 0, false, false, false)(state.Rating != "loading" ?
         state.Rating.IdsInServerOrder.map(id => state.Rating != "loading" && state.Rating.Items.get(id)) :
-        state.Rating, Recipes_Recipes_Rating_page_index(self), Recipes_Recipes_Rating_num_pages(self), new_page_index => {
+        state.Rating, Recipe_Recipe_Rating_page_index(self), Recipe_Recipe_Rating_num_pages(self), new_page_index => {
         let state = self.state();
         state.Rating != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Rating: Object.assign({}, state.Rating, { PageIndex: new_page_index }) }), () => load_relation_Recipes_Recipes_Rating(self, false, self.props.current_User, self.props.current_Admin));
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Rating: Object.assign({}, state.Rating, { PageIndex: new_page_index }) }), () => load_relation_Recipe_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin));
     }, (i, _) => {
         let i_id = i.element.Id;
         let state = self.state();
         return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
                         ${state.Rating != "loading" && state.Rating.JustCreated.has(i_id) && state.Rating.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, RatingViews.Rating(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Recipes_Rating(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_Recipes_Rating(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_Recipes_Rating(self.props.current_User, self.props.current_Admin)) ?
+            React.createElement("div", { key: i_id }, RatingViews.Rating(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Recipe_Rating(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_Recipe_Rating(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_Recipe_Rating(self.props.current_User, self.props.current_Admin)) ?
                     self.props.mode : "view", is_editable: state.Rating != "loading" && state.Rating.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
                     let state = self.state();
                     state.Rating != "loading" &&
@@ -22597,33 +22671,33 @@ function render_Recipes_Recipes_Rating(self, context) {
                     let state = self.state();
                     state.Rating != "loading" &&
                         self.setState(Object.assign({}, self.state(), { dirty_Rating: state.dirty_Rating.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Rating: Object.assign({}, state.Rating, { Items: state.Rating.Items.set(i_id, Object.assign({}, state.Rating.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, delete: undefined, unlink: !Permissions.can_delete_Recipes_Rating(self.props.current_User, self.props.current_Admin) ?
+                }, delete: undefined, unlink: !Permissions.can_delete_Recipe_Rating(self.props.current_User, self.props.current_Admin) ?
                     null
                     :
-                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Recipes_Recipes_Ratings(self.props.entity, i.element).then(() => load_relation_Recipes_Recipes_Rating(self, false, self.props.current_User, self.props.current_Admin)) }))));
+                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Recipe_Recipe_Ratings(self.props.entity, i.element).then(() => load_relation_Recipe_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin)) }))));
     }, () => React.createElement("div", null,
-        Permissions.can_create_Rating(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Recipes_Rating(self.props.current_User, self.props.current_Admin) && Recipes_Recipes_Rating_can_create(self) ? render_new_Recipes_Recipes_Rating(self) : null,
-        Permissions.can_create_Recipes_Rating(self.props.current_User, self.props.current_Admin) ? render_add_existing_Recipes_Recipes_Rating(self) : null)));
+        Permissions.can_create_Rating(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Recipe_Rating(self.props.current_User, self.props.current_Admin) && Recipe_Recipe_Rating_can_create(self) ? render_new_Recipe_Recipe_Rating(self) : null,
+        Permissions.can_create_Recipe_Rating(self.props.current_User, self.props.current_Admin) ? render_add_existing_Recipe_Recipe_Rating(self) : null)));
 }
-exports.render_Recipes_Recipes_Rating = render_Recipes_Recipes_Rating;
-function render_Recipes_Meal_Recipes(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Meal_Recipes") || !Permissions.can_view_Meal(self.props.current_User, self.props.current_Admin))
+exports.render_Recipe_Recipe_Rating = render_Recipe_Recipe_Rating;
+function render_Recipe_Meal_Recipe(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Meal_Recipe") || !Permissions.can_view_Meal(self.props.current_User, self.props.current_Admin))
         return null;
     let state = self.state();
-    return React.createElement("div", null, List.render_relation("recipes_meal_recipes", "Recipes", "Meal", "Meals", self.props.nesting_depth > 0, false, false, false)(state.Meal != "loading" ?
+    return React.createElement("div", null, List.render_relation("recipe_meal_recipe", "Recipe", "Meal", "Meals", self.props.nesting_depth > 0, false, false, false)(state.Meal != "loading" ?
         state.Meal.IdsInServerOrder.map(id => state.Meal != "loading" && state.Meal.Items.get(id)) :
-        state.Meal, Recipes_Meal_Recipes_page_index(self), Recipes_Meal_Recipes_num_pages(self), new_page_index => {
+        state.Meal, Recipe_Meal_Recipe_page_index(self), Recipe_Meal_Recipe_num_pages(self), new_page_index => {
         let state = self.state();
         state.Meal != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Meal: Object.assign({}, state.Meal, { PageIndex: new_page_index }) }), () => load_relation_Recipes_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin));
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Meal: Object.assign({}, state.Meal, { PageIndex: new_page_index }) }), () => load_relation_Recipe_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin));
     }, (i, _) => {
         let i_id = i.element.Id;
         let state = self.state();
         return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
                         ${state.Meal != "loading" && state.Meal.JustCreated.has(i_id) && state.Meal.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, MealViews.Meal(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Meal_Recipes(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_Meal_Recipes(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_Meal_Recipes(self.props.current_User, self.props.current_Admin)) ?
+            React.createElement("div", { key: i_id }, MealViews.Meal(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Meal_Recipe(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_Meal_Recipe(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_Meal_Recipe(self.props.current_User, self.props.current_Admin)) ?
                     self.props.mode : "view", is_editable: state.Meal != "loading" && state.Meal.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
                     let state = self.state();
                     state.Meal != "loading" &&
@@ -22637,33 +22711,33 @@ function render_Recipes_Meal_Recipes(self, context) {
                     let state = self.state();
                     state.Meal != "loading" &&
                         self.setState(Object.assign({}, self.state(), { dirty_Meal: state.dirty_Meal.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Meal: Object.assign({}, state.Meal, { Items: state.Meal.Items.set(i_id, Object.assign({}, state.Meal.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, delete: undefined, unlink: !Permissions.can_delete_Meal_Recipes(self.props.current_User, self.props.current_Admin) ?
+                }, delete: undefined, unlink: !Permissions.can_delete_Meal_Recipe(self.props.current_User, self.props.current_Admin) ?
                     null
                     :
-                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Meal_Meal_Recipess(i.element, self.props.entity).then(() => load_relation_Recipes_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin)) }))));
+                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Meal_Meal_Recipes(i.element, self.props.entity).then(() => load_relation_Recipe_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin)) }))));
     }, () => React.createElement("div", null,
-        Permissions.can_create_Meal(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Meal_Recipes(self.props.current_User, self.props.current_Admin) && Recipes_Meal_Recipes_can_create(self) ? render_new_Recipes_Meal_Recipes(self) : null,
-        Permissions.can_create_Meal_Recipes(self.props.current_User, self.props.current_Admin) ? render_add_existing_Recipes_Meal_Recipes(self) : null)));
+        Permissions.can_create_Meal(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Meal_Recipe(self.props.current_User, self.props.current_Admin) && Recipe_Meal_Recipe_can_create(self) ? render_new_Recipe_Meal_Recipe(self) : null,
+        Permissions.can_create_Meal_Recipe(self.props.current_User, self.props.current_Admin) ? render_add_existing_Recipe_Meal_Recipe(self) : null)));
 }
-exports.render_Recipes_Meal_Recipes = render_Recipes_Meal_Recipes;
-function render_Recipes_HomePage_Recipes(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "HomePage_Recipes") || !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin))
+exports.render_Recipe_Meal_Recipe = render_Recipe_Meal_Recipe;
+function render_Recipe_HomePage_Recipe(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "HomePage_Recipe") || !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin))
         return null;
     let state = self.state();
-    return React.createElement("div", null, List.render_relation("recipes_homepage_recipes", "Recipes", "HomePage", "HomePages", self.props.nesting_depth > 0, false, false, false)(state.HomePage != "loading" ?
+    return React.createElement("div", null, List.render_relation("recipe_homepage_recipe", "Recipe", "HomePage", "HomePages", self.props.nesting_depth > 0, false, false, false)(state.HomePage != "loading" ?
         state.HomePage.IdsInServerOrder.map(id => state.HomePage != "loading" && state.HomePage.Items.get(id)) :
-        state.HomePage, Recipes_HomePage_Recipes_page_index(self), Recipes_HomePage_Recipes_num_pages(self), new_page_index => {
+        state.HomePage, Recipe_HomePage_Recipe_page_index(self), Recipe_HomePage_Recipe_num_pages(self), new_page_index => {
         let state = self.state();
         state.HomePage != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, HomePage: Object.assign({}, state.HomePage, { PageIndex: new_page_index }) }), () => load_relation_Recipes_HomePage_Recipes(self, false, self.props.current_User, self.props.current_Admin));
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, HomePage: Object.assign({}, state.HomePage, { PageIndex: new_page_index }) }), () => load_relation_Recipe_HomePage_Recipe(self, false, self.props.current_User, self.props.current_Admin));
     }, (i, _) => {
         let i_id = i.element.Id;
         let state = self.state();
         return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
                         ${state.HomePage != "loading" && state.HomePage.JustCreated.has(i_id) && state.HomePage.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, HomePageViews.HomePage(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_HomePage_Recipes(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_HomePage_Recipes(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_HomePage_Recipes(self.props.current_User, self.props.current_Admin)) ?
+            React.createElement("div", { key: i_id }, HomePageViews.HomePage(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_HomePage_Recipe(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_HomePage_Recipe(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_HomePage_Recipe(self.props.current_User, self.props.current_Admin)) ?
                     self.props.mode : "view", is_editable: state.HomePage != "loading" && state.HomePage.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
                     let state = self.state();
                     state.HomePage != "loading" &&
@@ -22677,92 +22751,92 @@ function render_Recipes_HomePage_Recipes(self, context) {
                     let state = self.state();
                     state.HomePage != "loading" &&
                         self.setState(Object.assign({}, self.state(), { dirty_HomePage: state.dirty_HomePage.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, HomePage: Object.assign({}, state.HomePage, { Items: state.HomePage.Items.set(i_id, Object.assign({}, state.HomePage.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, unlink: undefined, delete: !Permissions.can_delete_HomePage(self.props.current_User, self.props.current_Admin) || !Recipes_HomePage_Recipes_can_delete(self) ?
+                }, unlink: undefined, delete: !Permissions.can_delete_HomePage(self.props.current_User, self.props.current_Admin) || !Recipe_HomePage_Recipe_can_delete(self) ?
                     null
                     :
-                        () => confirm(i18next.t('Are you sure?')) && Api.delete_HomePage(i.element).then(() => load_relation_Recipes_HomePage_Recipes(self, false, self.props.current_User, self.props.current_Admin)) }))));
+                        () => confirm(i18next.t('Are you sure?')) && Api.delete_HomePage(i.element).then(() => load_relation_Recipe_HomePage_Recipe(self, false, self.props.current_User, self.props.current_Admin)) }))));
     }, () => React.createElement("div", null)));
 }
-exports.render_Recipes_HomePage_Recipes = render_Recipes_HomePage_Recipes;
-function render_relations_Recipes(self) {
-    return React.createElement("div", { className: "relations" }, render_Recipes_Recipes_Rating(self, "default"));
+exports.render_Recipe_HomePage_Recipe = render_Recipe_HomePage_Recipe;
+function render_relations_Recipe(self) {
+    return React.createElement("div", { className: "relations" }, render_Recipe_Recipe_Rating(self, "default"));
 }
-exports.render_relations_Recipes = render_relations_Recipes;
-function render_add_existing_Recipes_User_Recipes(self) {
+exports.render_relations_Recipe = render_relations_Recipe;
+function render_add_existing_Recipe_User_Recipe(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
         React.createElement("div", { className: "button__actions" }, state.add_step_User != "open" ?
             React.createElement(Buttons.Add, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_User: "open" })), target_name: "User" })
             :
                 React.createElement(List.AddToRelation, {
-                    relation_name: "recipes_user_recipes",
-                    source_name: "Recipes",
+                    relation_name: "recipe_user_recipe",
+                    source_name: "Recipe",
                     target_name: "User",
                     target_plural: "Users",
                     page_size: 25,
                     render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
-                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_User: "saving" }), () => Api.link_Recipes_User_Recipess(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_User: "closed" }), () => load_relation_Recipes_User_Recipes(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
+                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_User: "saving" }), () => Api.link_Recipe_User_Recipes(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_User: "closed" }), () => load_relation_Recipe_User_Recipe(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
                         React.createElement("div", { className: "group__title", disabled: true }, UserViews.User(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("User"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
                     cancel: () => self.setState(Object.assign({}, self.state(), { add_step_User: "closed" })),
                     get_items: [
-                        { name: "User", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Recipes_User_Recipess(self.props.entity, i, s); }) },
+                        { name: "User", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Recipe_User_Recipes(self.props.entity, i, s); }) },
                     ]
                 }))
         :
             null;
 }
-exports.render_add_existing_Recipes_User_Recipes = render_add_existing_Recipes_User_Recipes;
-function render_add_existing_Recipes_Recipes_Rating(self) {
+exports.render_add_existing_Recipe_User_Recipe = render_add_existing_Recipe_User_Recipe;
+function render_add_existing_Recipe_Recipe_Rating(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
         React.createElement("div", { className: "button__actions" }, state.add_step_Rating != "open" ?
             React.createElement(Buttons.Add, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Rating: "open" })), target_name: "Rating" })
             :
                 React.createElement(List.AddToRelation, {
-                    relation_name: "recipes_recipes_rating",
-                    source_name: "Recipes",
+                    relation_name: "recipe_recipe_rating",
+                    source_name: "Recipe",
                     target_name: "Rating",
                     target_plural: "Ratings",
                     page_size: 25,
                     render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
-                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Rating: "saving" }), () => Api.link_Recipes_Recipes_Ratings(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Rating: "closed" }), () => load_relation_Recipes_Recipes_Rating(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
+                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Rating: "saving" }), () => Api.link_Recipe_Recipe_Ratings(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Rating: "closed" }), () => load_relation_Recipe_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
                         React.createElement("div", { className: "group__title", disabled: true }, RatingViews.Rating(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Rating"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
                     cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Rating: "closed" })),
                     get_items: [
-                        { name: "Rating", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Recipes_Recipes_Ratings(self.props.entity, i, s); }) },
+                        { name: "Rating", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Recipe_Recipe_Ratings(self.props.entity, i, s); }) },
                     ]
                 }))
         :
             null;
 }
-exports.render_add_existing_Recipes_Recipes_Rating = render_add_existing_Recipes_Recipes_Rating;
-function render_add_existing_Recipes_Meal_Recipes(self) {
+exports.render_add_existing_Recipe_Recipe_Rating = render_add_existing_Recipe_Recipe_Rating;
+function render_add_existing_Recipe_Meal_Recipe(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
         React.createElement("div", { className: "button__actions" }, state.add_step_Meal != "open" ?
             React.createElement(Buttons.Add, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "open" })), target_name: "Meal" })
             :
                 React.createElement(List.AddToRelation, {
-                    relation_name: "recipes_meal_recipes",
-                    source_name: "Recipes",
+                    relation_name: "recipe_meal_recipe",
+                    source_name: "Recipe",
                     target_name: "Meal",
                     target_plural: "Meals",
                     page_size: 25,
                     render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
-                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "saving" }), () => Api.link_Recipes_Meal_Recipess(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }), () => load_relation_Recipes_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
+                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "saving" }), () => Api.link_Recipe_Meal_Recipes(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }), () => load_relation_Recipe_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
                         React.createElement("div", { className: "group__title", disabled: true }, MealViews.Meal(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Meal"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
                     cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" })),
                     get_items: [
-                        { name: "Lunch", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Recipes_Meal_Recipess_Lunch(self.props.entity, i, s); }) },
-                        { name: "Dinner", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Recipes_Meal_Recipess_Dinner(self.props.entity, i, s); }) },
-                        { name: "Breakfast", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Recipes_Meal_Recipess_Breakfast(self.props.entity, i, s); }) }
+                        { name: "Lunch", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Recipe_Meal_Recipes_Lunch(self.props.entity, i, s); }) },
+                        { name: "Dinner", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Recipe_Meal_Recipes_Dinner(self.props.entity, i, s); }) },
+                        { name: "Breakfast", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Recipe_Meal_Recipes_Breakfast(self.props.entity, i, s); }) }
                     ]
                 }))
         :
             null;
 }
-exports.render_add_existing_Recipes_Meal_Recipes = render_add_existing_Recipes_Meal_Recipes;
-function render_new_Recipes_User_Recipes(self) {
+exports.render_add_existing_Recipe_Meal_Recipe = render_add_existing_Recipe_Meal_Recipe;
+function render_new_Recipe_User_Recipe(self) {
     let state = self.state();
     return state.create_step_User != "none" ?
         React.createElement("div", { className: "overlay__item overlay__item--new" },
@@ -22784,7 +22858,7 @@ function render_new_Recipes_User_Recipes(self) {
                     React.createElement(Buttons.Create, { onClick: () => state.create_step_User != "none" &&
                             Api.validate_User(state.create_step_User.username, state.create_step_User.email, state.create_step_User.email_confirmation).then(is_valid => {
                                 if (state.create_step_User != "none" && is_valid) {
-                                    Api.register_User(state.create_step_User.username, state.create_step_User.email, state.create_step_User.email_confirmation).then(() => load_relation_Recipes_User_Recipes(self, false, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { create_step_User: "none" }))));
+                                    Api.register_User(state.create_step_User.username, state.create_step_User.email, state.create_step_User.email_confirmation).then(() => load_relation_Recipe_User_Recipe(self, false, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { create_step_User: "none" }))));
                                 }
                                 else {
                                     state.create_step_User != "none" &&
@@ -22800,21 +22874,21 @@ function render_new_Recipes_User_Recipes(self) {
             :
                 null;
 }
-exports.render_new_Recipes_User_Recipes = render_new_Recipes_User_Recipes;
-function render_new_Recipes_Recipes_Rating(self) {
+exports.render_new_Recipe_User_Recipe = render_new_Recipe_User_Recipe;
+function render_new_Recipe_Recipe_Rating(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
         React.createElement("div", { className: "button__actions" },
             React.createElement("div", { className: "new-rating" },
-                React.createElement("button", { className: "new-rating button button--new", onClick: () => Api.create_linked_Recipes_Recipes_Ratings_Rating(self.props.entity).then(e => {
+                React.createElement("button", { className: "new-rating button button--new", onClick: () => Api.create_linked_Recipe_Recipe_Ratings_Rating(self.props.entity).then(e => {
                         e.length > 0 &&
-                            Api.update_Rating(Object.assign({}, e[0], { rating: 0 })).then(() => load_relation_Recipes_Recipes_Rating(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Rating: "closed" }))));
+                            Api.update_Rating(Object.assign({}, e[0], { rating: 0 })).then(() => load_relation_Recipe_Recipe_Rating(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Rating: "closed" }))));
                     }) }, i18next.t('Create new Rating'))))
         :
             null;
 }
-exports.render_new_Recipes_Recipes_Rating = render_new_Recipes_Recipes_Rating;
-function render_new_Recipes_Meal_Recipes(self) {
+exports.render_new_Recipe_Recipe_Rating = render_new_Recipe_Recipe_Rating;
+function render_new_Recipe_Meal_Recipe(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
         React.createElement("div", { className: "button__actions" },
@@ -22824,26 +22898,26 @@ function render_new_Recipes_Meal_Recipes(self) {
                 :
                     React.createElement("div", { className: "overlay__item overlay__item--new" },
                         React.createElement("div", { className: "new-lunch" },
-                            React.createElement("button", { className: "new-lunch button button--new", onClick: () => Api.create_linked_Recipes_Meal_Recipess_Lunch(self.props.entity).then(e => {
+                            React.createElement("button", { className: "new-lunch button button--new", onClick: () => Api.create_linked_Recipe_Meal_Recipes_Lunch(self.props.entity).then(e => {
                                     e.length > 0 &&
-                                        Api.update_Lunch(Object.assign({}, e[0], { Kind: "Lunch", Description: "" })).then(() => load_relation_Recipes_Meal_Recipes(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
+                                        Api.update_Lunch(Object.assign({}, e[0], { Kind: "Lunch", Description: "" })).then(() => load_relation_Recipe_Meal_Recipe(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
                                 }) }, i18next.t('Create new Lunch'))),
                         React.createElement("div", { className: "new-dinner" },
-                            React.createElement("button", { className: "new-dinner button button--new", onClick: () => Api.create_linked_Recipes_Meal_Recipess_Dinner(self.props.entity).then(e => {
+                            React.createElement("button", { className: "new-dinner button button--new", onClick: () => Api.create_linked_Recipe_Meal_Recipes_Dinner(self.props.entity).then(e => {
                                     e.length > 0 &&
-                                        Api.update_Dinner(Object.assign({}, e[0], { Kind: "Dinner", Description: "" })).then(() => load_relation_Recipes_Meal_Recipes(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
+                                        Api.update_Dinner(Object.assign({}, e[0], { Kind: "Dinner", Description: "" })).then(() => load_relation_Recipe_Meal_Recipe(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
                                 }) }, i18next.t('Create new Dinner'))),
                         React.createElement("div", { className: "new-breakfast" },
-                            React.createElement("button", { className: "new-breakfast button button--new", onClick: () => Api.create_linked_Recipes_Meal_Recipess_Breakfast(self.props.entity).then(e => {
+                            React.createElement("button", { className: "new-breakfast button button--new", onClick: () => Api.create_linked_Recipe_Meal_Recipes_Breakfast(self.props.entity).then(e => {
                                     e.length > 0 &&
-                                        Api.update_Breakfast(Object.assign({}, e[0], { Kind: "Breakfast", Description: "" })).then(() => load_relation_Recipes_Meal_Recipes(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
+                                        Api.update_Breakfast(Object.assign({}, e[0], { Kind: "Breakfast", Description: "" })).then(() => load_relation_Recipe_Meal_Recipe(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
                                 }) }, i18next.t('Create new Breakfast'))),
                         React.createElement(Buttons.Cancel, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" })) })))
         :
             null;
 }
-exports.render_new_Recipes_Meal_Recipes = render_new_Recipes_Meal_Recipes;
-function render_saving_animations_Recipes(self) {
+exports.render_new_Recipe_Meal_Recipe = render_new_Recipe_Meal_Recipe;
+function render_saving_animations_Recipe(self) {
     return self.state().dirty_User.count() > 0 ?
         React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" }) :
         self.state().dirty_Rating.count() > 0 ?
@@ -22854,8 +22928,8 @@ function render_saving_animations_Recipes(self) {
                     React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" })
                     : React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "cornflowerblue" }, className: "saved" });
 }
-exports.render_saving_animations_Recipes = render_saving_animations_Recipes;
-class RecipesComponent extends React.Component {
+exports.render_saving_animations_Recipe = render_saving_animations_Recipe;
+class RecipeComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.thread = null;
@@ -22874,14 +22948,14 @@ class RecipesComponent extends React.Component {
             (current_logged_in_entity && !new_logged_in_entity) ||
             (!current_logged_in_entity && new_logged_in_entity) ||
             (current_logged_in_entity && new_logged_in_entity && current_logged_in_entity.Id != new_logged_in_entity.Id)) {
-            load_relations_Recipes(this.get_self(), new_props.current_User, new_props.current_Admin);
+            load_relations_Recipe(this.get_self(), new_props.current_User, new_props.current_Admin);
         }
     }
     componentWillMount() {
         if (this.props.size == "breadcrumb")
             return;
         if (this.props.size != "preview") {
-            load_relations_Recipes(this.get_self(), this.props.current_User, this.props.current_Admin);
+            load_relations_Recipe(this.get_self(), this.props.current_User, this.props.current_Admin);
         }
         this.thread = setInterval(() => {
             if (this.state.dirty_User.count() > 0) {
@@ -22907,13 +22981,13 @@ class RecipesComponent extends React.Component {
     }
     render() {
         if (this.props.size == "breadcrumb") {
-            return Permissions.can_view_Recipes(this.props.current_User, this.props.current_Admin) ?
-                render_breadcrumb_Recipes(this.get_self())
+            return Permissions.can_view_Recipe(this.props.current_User, this.props.current_Admin) ?
+                render_breadcrumb_Recipe(this.get_self())
                 : null;
         }
-        return React.createElement("div", { id: `Recipes_${this.props.entity.Id.toString()}_${this.state.update_count}`, className: `model recipes` },
-            render_saving_animations_Recipes(this.get_self()),
-            this.props.nesting_depth == 0 ? render_menu_Recipes(this.get_self()) : null,
+        return React.createElement("div", { id: `Recipe_${this.props.entity.Id.toString()}_${this.state.update_count}`, className: `model recipe` },
+            render_saving_animations_Recipe(this.get_self()),
+            this.props.nesting_depth == 0 ? render_menu_Recipe(this.get_self()) : null,
             React.createElement("div", { className: "content" },
                 this.props.nesting_depth == 0 && !!this.props.toggle_button ?
                     React.createElement("div", { className: "topbar" },
@@ -22923,19 +22997,19 @@ class RecipesComponent extends React.Component {
                             this.props.authentication_menu()))
                     :
                         null,
-                this.props.nesting_depth == 0 ? render_local_menu_Recipes(this.get_self()) : null,
-                render_controls_Recipes(this.get_self()),
-                render_content_Recipes(this.get_self())));
+                this.props.nesting_depth == 0 ? render_local_menu_Recipe(this.get_self()) : null,
+                render_controls_Recipe(this.get_self()),
+                render_content_Recipe(this.get_self())));
     }
 }
-exports.RecipesComponent = RecipesComponent;
-exports.Recipes = (props) => React.createElement(RecipesComponent, Object.assign({}, props));
-exports.Recipes_to_page = (id) => {
-    let can_edit = Utils.any_of([Permissions.can_edit_Recipes, Permissions.can_edit_User_Recipes, Permissions.can_edit_Recipes_Rating, Permissions.can_edit_Meal_Recipes, Permissions.can_edit_HomePage_Recipes, Permissions.can_edit_User, Permissions.can_edit_Rating, Permissions.can_edit_Meal, Permissions.can_edit_HomePage]);
-    return Utils.scene_to_page(can_edit, exports.Recipes, Api.get_Recipes(id), Api.update_Recipes, "Recipes", "Recipes", `/Recipess/${id}`);
+exports.RecipeComponent = RecipeComponent;
+exports.Recipe = (props) => React.createElement(RecipeComponent, Object.assign({}, props));
+exports.Recipe_to_page = (id) => {
+    let can_edit = Utils.any_of([Permissions.can_edit_Recipe, Permissions.can_edit_User_Recipe, Permissions.can_edit_Recipe_Rating, Permissions.can_edit_Meal_Recipe, Permissions.can_edit_HomePage_Recipe, Permissions.can_edit_User, Permissions.can_edit_Rating, Permissions.can_edit_Meal, Permissions.can_edit_HomePage]);
+    return Utils.scene_to_page(can_edit, exports.Recipe, Api.get_Recipe(id), Api.update_Recipe, "Recipe", "Recipe", `/Recipes/${id}`);
 };
-exports.Recipes_to = (id, target_element_id, current_User, current_Admin) => {
-    Utils.render_page_manager(target_element_id, exports.Recipes_to_page(id), current_User, current_Admin);
+exports.Recipe_to = (id, target_element_id, current_User, current_Admin) => {
+    Utils.render_page_manager(target_element_id, exports.Recipe_to_page(id), current_User, current_Admin);
 };
 
 
@@ -23954,7 +24028,7 @@ module.exports = function(it, tag, stat){
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(1)
-  , defined = __webpack_require__(42)
+  , defined = __webpack_require__(43)
   , fails   = __webpack_require__(7)
   , spaces  = __webpack_require__(149)
   , space   = '[' + spaces + ']'
@@ -24484,19 +24558,19 @@ const Utils = __webpack_require__(23);
 const AmericanViews = __webpack_require__(185);
 const AsianViews = __webpack_require__(186);
 const MediterraneanViews = __webpack_require__(190);
-exports.Categories = (props) => props.entity.Kind == "American" ?
+exports.Categorie = (props) => props.entity.Kind == "American" ?
     AmericanViews.American(Object.assign({}, props, { set_entity: (e, c) => props.set_entity(e, c), entity: props.entity }))
     : props.entity.Kind == "Asian" ?
         AsianViews.Asian(Object.assign({}, props, { set_entity: (e, c) => props.set_entity(e, c), entity: props.entity }))
         : props.entity.Kind == "Mediterranean" ?
             MediterraneanViews.Mediterranean(Object.assign({}, props, { set_entity: (e, c) => props.set_entity(e, c), entity: props.entity }))
             : null;
-exports.Categories_to_page = (id) => {
-    let can_edit = Utils.any_of([Permissions.can_edit_Categories, Permissions.can_edit_Categories_Meal, Permissions.can_edit_HomePage_Categories, Permissions.can_edit_Meal, Permissions.can_edit_HomePage]);
-    return Utils.scene_to_page(can_edit, exports.Categories, Api.get_Categories(id), Api.update_Categories, "Categories", "Categories", `/Categoriess/${id}`);
+exports.Categorie_to_page = (id) => {
+    let can_edit = Utils.any_of([Permissions.can_edit_Categorie, Permissions.can_edit_Categorie_Meal, Permissions.can_edit_HomePage_Categorie, Permissions.can_edit_Meal, Permissions.can_edit_HomePage]);
+    return Utils.scene_to_page(can_edit, exports.Categorie, Api.get_Categorie(id), Api.update_Categorie, "Categorie", "Categorie", `/Categories/${id}`);
 };
-exports.Categories_to = (id, target_element_id, current_User, current_Admin) => {
-    Utils.render_page_manager(target_element_id, exports.Categories_to_page(id), current_User, current_Admin);
+exports.Categorie_to = (id, target_element_id, current_User, current_Admin) => {
+    Utils.render_page_manager(target_element_id, exports.Categorie_to_page(id), current_User, current_Admin);
 };
 
 
@@ -24521,7 +24595,7 @@ exports.Meal = (props) => props.entity.Kind == "Lunch" ?
             BreakfastViews.Breakfast(Object.assign({}, props, { set_entity: (e, c) => props.set_entity(e, c), entity: props.entity }))
             : null;
 exports.Meal_to_page = (id) => {
-    let can_edit = Utils.any_of([Permissions.can_edit_Meal, Permissions.can_edit_Categories_Meal, Permissions.can_edit_Meal_Recipes, Permissions.can_edit_Categories, Permissions.can_edit_Recipes]);
+    let can_edit = Utils.any_of([Permissions.can_edit_Meal, Permissions.can_edit_Categorie_Meal, Permissions.can_edit_Meal_Recipe, Permissions.can_edit_Categorie, Permissions.can_edit_Recipe]);
     return Utils.scene_to_page(can_edit, exports.Meal, Api.get_Meal(id), Api.update_Meal, "Meal", "Meal", `/Meals/${id}`);
 };
 exports.Meal_to = (id, target_element_id, current_User, current_Admin) => {
@@ -24534,7 +24608,7 @@ exports.Meal_to = (id, target_element_id, current_User, current_Admin) => {
 /***/ (function(module, exports, __webpack_require__) {
 
 // getting tag from 19.1.3.6 Object.prototype.toString()
-var cof = __webpack_require__(41)
+var cof = __webpack_require__(42)
   , TAG = __webpack_require__(13)('toStringTag')
   // ES3 wrong here
   , ARG = cof(function(){ return arguments; }()) == 'Arguments';
@@ -24562,7 +24636,7 @@ module.exports = function(it){
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
-var cof = __webpack_require__(41);
+var cof = __webpack_require__(42);
 module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
   return cof(it) == 'String' ? it.split('') : Object(it);
 };
@@ -25688,7 +25762,7 @@ module.exports = function(NAME, wrapper, methods, common, IS_MAP, IS_WEAK){
 var hide     = __webpack_require__(29)
   , redefine = __webpack_require__(30)
   , fails    = __webpack_require__(7)
-  , defined  = __webpack_require__(42)
+  , defined  = __webpack_require__(43)
   , wks      = __webpack_require__(13);
 
 module.exports = function(KEY, length, exec){
@@ -25759,7 +25833,7 @@ module.exports = function(fn, args, that){
 
 // 7.2.8 IsRegExp(argument)
 var isObject = __webpack_require__(11)
-  , cof      = __webpack_require__(41)
+  , cof      = __webpack_require__(42)
   , MATCH    = __webpack_require__(13)('match');
 module.exports = function(it){
   var isRegExp;
@@ -27592,7 +27666,7 @@ module.exports = function(it){
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.2.2 IsArray(argument)
-var cof = __webpack_require__(41);
+var cof = __webpack_require__(42);
 module.exports = Array.isArray || function isArray(arg){
   return cof(arg) == 'Array';
 };
@@ -27725,7 +27799,7 @@ var global    = __webpack_require__(6)
   , Observer  = global.MutationObserver || global.WebKitMutationObserver
   , process   = global.process
   , Promise   = global.Promise
-  , isNode    = __webpack_require__(41)(process) == 'process';
+  , isNode    = __webpack_require__(42)(process) == 'process';
 
 module.exports = function(){
   var head, last, notify;
@@ -27847,7 +27921,7 @@ module.exports = function(O, D){
 /***/ (function(module, exports, __webpack_require__) {
 
 var toInteger = __webpack_require__(62)
-  , defined   = __webpack_require__(42);
+  , defined   = __webpack_require__(43);
 // true  -> String#at
 // false -> String#codePointAt
 module.exports = function(TO_STRING){
@@ -27870,7 +27944,7 @@ module.exports = function(TO_STRING){
 
 // helper for String#{startsWith, endsWith, includes}
 var isRegExp = __webpack_require__(109)
-  , defined  = __webpack_require__(42);
+  , defined  = __webpack_require__(43);
 
 module.exports = function(that, searchString, NAME){
   if(isRegExp(searchString))throw TypeError('String#' + NAME + " doesn't accept regex!");
@@ -27884,7 +27958,7 @@ module.exports = function(that, searchString, NAME){
 "use strict";
 
 var toInteger = __webpack_require__(62)
-  , defined   = __webpack_require__(42);
+  , defined   = __webpack_require__(43);
 
 module.exports = function repeat(count){
   var str = String(defined(this))
@@ -27945,7 +28019,7 @@ if(!setTask || !clearTask){
     delete queue[id];
   };
   // Node.js 0.8-
-  if(__webpack_require__(41)(process) == 'process'){
+  if(__webpack_require__(42)(process) == 'process'){
     defer = function(id){
       process.nextTick(ctx(run, id, 1));
     };
@@ -28355,7 +28429,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var BlockMapBuilder = __webpack_require__(94);
-var CharacterMetadata = __webpack_require__(44);
+var CharacterMetadata = __webpack_require__(45);
 var ContentBlock = __webpack_require__(75);
 var DraftEntity = __webpack_require__(115);
 var Immutable = __webpack_require__(12);
@@ -31525,81 +31599,81 @@ const React = __webpack_require__(14);
 const Immutable = __webpack_require__(33);
 const Api = __webpack_require__(22);
 const List = __webpack_require__(46);
-const Components = __webpack_require__(45);
-const Buttons = __webpack_require__(39);
+const Components = __webpack_require__(39);
+const Buttons = __webpack_require__(40);
 const Permissions = __webpack_require__(27);
 const Utils = __webpack_require__(23);
 const i18next = __webpack_require__(21);
-const HomePageViews = __webpack_require__(40);
+const HomePageViews = __webpack_require__(41);
 const MealViews = __webpack_require__(90);
-function American_Categories_Meal_can_create(self) {
+function American_Categorie_Meal_can_create(self) {
     let state = self.state();
     return state.Meal == "loading" ? false : state.Meal.CanCreate;
 }
-exports.American_Categories_Meal_can_create = American_Categories_Meal_can_create;
-function American_HomePage_Categories_can_create(self) {
+exports.American_Categorie_Meal_can_create = American_Categorie_Meal_can_create;
+function American_HomePage_Categorie_can_create(self) {
     let state = self.state();
     return state.HomePage == "loading" ? false : state.HomePage.CanCreate;
 }
-exports.American_HomePage_Categories_can_create = American_HomePage_Categories_can_create;
-function American_Categories_Meal_can_delete(self) {
+exports.American_HomePage_Categorie_can_create = American_HomePage_Categorie_can_create;
+function American_Categorie_Meal_can_delete(self) {
     let state = self.state();
     return state.Meal == "loading" ? false : state.Meal.CanDelete;
 }
-exports.American_Categories_Meal_can_delete = American_Categories_Meal_can_delete;
-function American_HomePage_Categories_can_delete(self) {
+exports.American_Categorie_Meal_can_delete = American_Categorie_Meal_can_delete;
+function American_HomePage_Categorie_can_delete(self) {
     let state = self.state();
     return state.HomePage == "loading" ? false : state.HomePage.CanDelete;
 }
-exports.American_HomePage_Categories_can_delete = American_HomePage_Categories_can_delete;
-function American_Categories_Meal_page_index(self) {
+exports.American_HomePage_Categorie_can_delete = American_HomePage_Categorie_can_delete;
+function American_Categorie_Meal_page_index(self) {
     let state = self.state();
     return state.Meal == "loading" ? 0 : state.Meal.PageIndex;
 }
-exports.American_Categories_Meal_page_index = American_Categories_Meal_page_index;
-function American_HomePage_Categories_page_index(self) {
+exports.American_Categorie_Meal_page_index = American_Categorie_Meal_page_index;
+function American_HomePage_Categorie_page_index(self) {
     let state = self.state();
     return state.HomePage == "loading" ? 0 : state.HomePage.PageIndex;
 }
-exports.American_HomePage_Categories_page_index = American_HomePage_Categories_page_index;
-function American_Categories_Meal_page_size(self) {
+exports.American_HomePage_Categorie_page_index = American_HomePage_Categorie_page_index;
+function American_Categorie_Meal_page_size(self) {
     let state = self.state();
     return state.Meal == "loading" ? 25 : state.Meal.PageSize;
 }
-exports.American_Categories_Meal_page_size = American_Categories_Meal_page_size;
-function American_HomePage_Categories_page_size(self) {
+exports.American_Categorie_Meal_page_size = American_Categorie_Meal_page_size;
+function American_HomePage_Categorie_page_size(self) {
     let state = self.state();
     return state.HomePage == "loading" ? 25 : state.HomePage.PageSize;
 }
-exports.American_HomePage_Categories_page_size = American_HomePage_Categories_page_size;
-function American_Categories_Meal_search_query(self) {
+exports.American_HomePage_Categorie_page_size = American_HomePage_Categorie_page_size;
+function American_Categorie_Meal_search_query(self) {
     let state = self.state();
     return state.Meal == "loading" ? null : state.Meal.SearchQuery;
 }
-exports.American_Categories_Meal_search_query = American_Categories_Meal_search_query;
-function American_HomePage_Categories_search_query(self) {
+exports.American_Categorie_Meal_search_query = American_Categorie_Meal_search_query;
+function American_HomePage_Categorie_search_query(self) {
     let state = self.state();
     return state.HomePage == "loading" ? null : state.HomePage.SearchQuery;
 }
-exports.American_HomePage_Categories_search_query = American_HomePage_Categories_search_query;
-function American_Categories_Meal_num_pages(self) {
+exports.American_HomePage_Categorie_search_query = American_HomePage_Categorie_search_query;
+function American_Categorie_Meal_num_pages(self) {
     let state = self.state();
     return state.Meal == "loading" ? 1 : state.Meal.NumPages;
 }
-exports.American_Categories_Meal_num_pages = American_Categories_Meal_num_pages;
-function American_HomePage_Categories_num_pages(self) {
+exports.American_Categorie_Meal_num_pages = American_Categorie_Meal_num_pages;
+function American_HomePage_Categorie_num_pages(self) {
     let state = self.state();
     return state.HomePage == "loading" ? 1 : state.HomePage.NumPages;
 }
-exports.American_HomePage_Categories_num_pages = American_HomePage_Categories_num_pages;
-function load_relation_American_Categories_Meal(self, force_first_page, current_User, current_Admin, callback) {
+exports.American_HomePage_Categorie_num_pages = American_HomePage_Categorie_num_pages;
+function load_relation_American_Categorie_Meal(self, force_first_page, current_User, current_Admin, callback) {
     let state = self.state();
     let prelude = force_first_page && state.Meal != "loading" ?
         (c) => state.Meal != "loading" && self.setState(Object.assign({}, state, { Meal: Object.assign({}, state.Meal, { PageIndex: 0 }) }), c)
         :
             (c) => c();
     Permissions.can_view_Meal(current_User, current_Admin) ?
-        prelude(() => Api.get_Categories_Categories_Meals(self.props.entity, American_Categories_Meal_page_index(self), American_Categories_Meal_page_size(self), American_Categories_Meal_search_query(self)).then(Meals => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Meal: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+        prelude(() => Api.get_Categorie_Categorie_Meals(self.props.entity, American_Categorie_Meal_page_index(self), American_Categorie_Meal_page_size(self), American_Categorie_Meal_search_query(self)).then(Meals => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Meal: Utils.raw_page_to_paginated_items((i, i_just_created) => {
                 let state = self.state();
                 return {
                     element: i,
@@ -31616,15 +31690,15 @@ function load_relation_American_Categories_Meal(self, force_first_page, current_
         :
             prelude(() => callback && callback());
 }
-exports.load_relation_American_Categories_Meal = load_relation_American_Categories_Meal;
-function load_relation_American_HomePage_Categories(self, force_first_page, current_User, current_Admin, callback) {
+exports.load_relation_American_Categorie_Meal = load_relation_American_Categorie_Meal;
+function load_relation_American_HomePage_Categorie(self, force_first_page, current_User, current_Admin, callback) {
     let state = self.state();
     let prelude = force_first_page && state.HomePage != "loading" ?
         (c) => state.HomePage != "loading" && self.setState(Object.assign({}, state, { HomePage: Object.assign({}, state.HomePage, { PageIndex: 0 }) }), c)
         :
             (c) => c();
     Permissions.can_view_HomePage(current_User, current_Admin) ?
-        prelude(() => Api.get_Categories_HomePage_Categoriess(self.props.entity, American_HomePage_Categories_page_index(self), American_HomePage_Categories_page_size(self), American_HomePage_Categories_search_query(self)).then(HomePages => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, HomePage: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+        prelude(() => Api.get_Categorie_HomePage_Categories(self.props.entity, American_HomePage_Categorie_page_index(self), American_HomePage_Categorie_page_size(self), American_HomePage_Categorie_search_query(self)).then(HomePages => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, HomePage: Utils.raw_page_to_paginated_items((i, i_just_created) => {
                 let state = self.state();
                 return {
                     element: i,
@@ -31641,9 +31715,9 @@ function load_relation_American_HomePage_Categories(self, force_first_page, curr
         :
             prelude(() => callback && callback());
 }
-exports.load_relation_American_HomePage_Categories = load_relation_American_HomePage_Categories;
+exports.load_relation_American_HomePage_Categorie = load_relation_American_HomePage_Categorie;
 function load_relations_American(self, current_User, current_Admin, callback) {
-    load_relation_American_HomePage_Categories(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_American_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback()));
+    load_relation_American_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_American_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback()));
 }
 exports.load_relations_American = load_relations_American;
 function set_size_American(self, new_size) {
@@ -31697,16 +31771,16 @@ function render_menu_American(self) {
                 React.createElement("div", { className: `menu_entry page_link` },
                     React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
             React.createElement("div", { className: "menu_entries" },
-                !Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipes" ? " active" : ""}` },
+                !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
+                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipe" ? " active" : ""}` },
                         React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipes")));
-                            } }, i18next.t('HomePage_Recipess'))),
-                !Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categories" ? " active" : ""}` },
+                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipe")));
+                            } }, i18next.t('HomePage_Recipes'))),
+                !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
+                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}` },
                         React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categories")));
-                            } }, i18next.t('HomePage_Categoriess'))),
+                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categorie")));
+                            } }, i18next.t('HomePage_Categories'))),
                 React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
 }
 exports.render_menu_American = render_menu_American;
@@ -31717,8 +31791,8 @@ function render_local_menu_American(self) {
             React.createElement("div", { className: `local_menu_entry${self.props.shown_relation == "none" ? " local_menu_entry--active" : ""}` },
                 React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('About this American'))),
             !Permissions.can_view_Meal(self.props.current_User, self.props.current_Admin) ? null :
-                React.createElement("div", { key: "Categories_Meal", className: `local_menu_entry${self.props.shown_relation == "Categories_Meal" ? " local_menu_entry--active" : ""}` },
-                    React.createElement("a", { onClick: () => load_relation_American_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin, () => self.props.set_shown_relation("Categories_Meal")) }, i18next.t('Categories_Meals')))));
+                React.createElement("div", { key: "Categorie_Meal", className: `local_menu_entry${self.props.shown_relation == "Categorie_Meal" ? " local_menu_entry--active" : ""}` },
+                    React.createElement("a", { onClick: () => load_relation_American_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin, () => self.props.set_shown_relation("Categorie_Meal")) }, i18next.t('Categorie_Meals')))));
 }
 exports.render_local_menu_American = render_local_menu_American;
 function render_controls_American(self) {
@@ -31799,24 +31873,24 @@ function render_large_American(self) {
         render_relations_American(self)));
 }
 exports.render_large_American = render_large_American;
-function render_American_Categories_Meal(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Categories_Meal") || !Permissions.can_view_Meal(self.props.current_User, self.props.current_Admin))
+function render_American_Categorie_Meal(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Categorie_Meal") || !Permissions.can_view_Meal(self.props.current_User, self.props.current_Admin))
         return null;
     let state = self.state();
-    return React.createElement("div", null, List.render_relation("american_categories_meal", "Categories", "Meal", "Meals", self.props.nesting_depth > 0, false, false, false)(state.Meal != "loading" ?
+    return React.createElement("div", null, List.render_relation("american_categorie_meal", "Categorie", "Meal", "Meals", self.props.nesting_depth > 0, false, false, false)(state.Meal != "loading" ?
         state.Meal.IdsInServerOrder.map(id => state.Meal != "loading" && state.Meal.Items.get(id)) :
-        state.Meal, American_Categories_Meal_page_index(self), American_Categories_Meal_num_pages(self), new_page_index => {
+        state.Meal, American_Categorie_Meal_page_index(self), American_Categorie_Meal_num_pages(self), new_page_index => {
         let state = self.state();
         state.Meal != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Meal: Object.assign({}, state.Meal, { PageIndex: new_page_index }) }), () => load_relation_American_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin));
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Meal: Object.assign({}, state.Meal, { PageIndex: new_page_index }) }), () => load_relation_American_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin));
     }, (i, _) => {
         let i_id = i.element.Id;
         let state = self.state();
         return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
                         ${state.Meal != "loading" && state.Meal.JustCreated.has(i_id) && state.Meal.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, MealViews.Meal(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Categories_Meal(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_Categories_Meal(self.props.current_User, self.props.current_Admin)) ?
+            React.createElement("div", { key: i_id }, MealViews.Meal(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Categorie_Meal(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_Categorie_Meal(self.props.current_User, self.props.current_Admin)) ?
                     self.props.mode : "view", is_editable: state.Meal != "loading" && state.Meal.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
                     let state = self.state();
                     state.Meal != "loading" &&
@@ -31830,33 +31904,33 @@ function render_American_Categories_Meal(self, context) {
                     let state = self.state();
                     state.Meal != "loading" &&
                         self.setState(Object.assign({}, self.state(), { dirty_Meal: state.dirty_Meal.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Meal: Object.assign({}, state.Meal, { Items: state.Meal.Items.set(i_id, Object.assign({}, state.Meal.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, delete: undefined, unlink: !Permissions.can_delete_Categories_Meal(self.props.current_User, self.props.current_Admin) ?
+                }, delete: undefined, unlink: !Permissions.can_delete_Categorie_Meal(self.props.current_User, self.props.current_Admin) ?
                     null
                     :
-                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Categories_Categories_Meals(self.props.entity, i.element).then(() => load_relation_American_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin)) }))));
+                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Categorie_Categorie_Meals(self.props.entity, i.element).then(() => load_relation_American_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin)) }))));
     }, () => React.createElement("div", null,
-        Permissions.can_create_Meal(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin) && American_Categories_Meal_can_create(self) ? render_new_American_Categories_Meal(self) : null,
-        Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin) ? render_add_existing_American_Categories_Meal(self) : null)));
+        Permissions.can_create_Meal(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin) && American_Categorie_Meal_can_create(self) ? render_new_American_Categorie_Meal(self) : null,
+        Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin) ? render_add_existing_American_Categorie_Meal(self) : null)));
 }
-exports.render_American_Categories_Meal = render_American_Categories_Meal;
-function render_American_HomePage_Categories(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "HomePage_Categories") || !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin))
+exports.render_American_Categorie_Meal = render_American_Categorie_Meal;
+function render_American_HomePage_Categorie(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "HomePage_Categorie") || !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin))
         return null;
     let state = self.state();
-    return React.createElement("div", null, List.render_relation("american_homepage_categories", "Categories", "HomePage", "HomePages", self.props.nesting_depth > 0, false, false, false)(state.HomePage != "loading" ?
+    return React.createElement("div", null, List.render_relation("american_homepage_categorie", "Categorie", "HomePage", "HomePages", self.props.nesting_depth > 0, false, false, false)(state.HomePage != "loading" ?
         state.HomePage.IdsInServerOrder.map(id => state.HomePage != "loading" && state.HomePage.Items.get(id)) :
-        state.HomePage, American_HomePage_Categories_page_index(self), American_HomePage_Categories_num_pages(self), new_page_index => {
+        state.HomePage, American_HomePage_Categorie_page_index(self), American_HomePage_Categorie_num_pages(self), new_page_index => {
         let state = self.state();
         state.HomePage != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, HomePage: Object.assign({}, state.HomePage, { PageIndex: new_page_index }) }), () => load_relation_American_HomePage_Categories(self, false, self.props.current_User, self.props.current_Admin));
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, HomePage: Object.assign({}, state.HomePage, { PageIndex: new_page_index }) }), () => load_relation_American_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin));
     }, (i, _) => {
         let i_id = i.element.Id;
         let state = self.state();
         return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
                         ${state.HomePage != "loading" && state.HomePage.JustCreated.has(i_id) && state.HomePage.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, HomePageViews.HomePage(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_HomePage_Categories(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_HomePage_Categories(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_HomePage_Categories(self.props.current_User, self.props.current_Admin)) ?
+            React.createElement("div", { key: i_id }, HomePageViews.HomePage(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_HomePage_Categorie(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_HomePage_Categorie(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_HomePage_Categorie(self.props.current_User, self.props.current_Admin)) ?
                     self.props.mode : "view", is_editable: state.HomePage != "loading" && state.HomePage.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
                     let state = self.state();
                     state.HomePage != "loading" &&
@@ -31870,44 +31944,44 @@ function render_American_HomePage_Categories(self, context) {
                     let state = self.state();
                     state.HomePage != "loading" &&
                         self.setState(Object.assign({}, self.state(), { dirty_HomePage: state.dirty_HomePage.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, HomePage: Object.assign({}, state.HomePage, { Items: state.HomePage.Items.set(i_id, Object.assign({}, state.HomePage.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, unlink: undefined, delete: !Permissions.can_delete_HomePage(self.props.current_User, self.props.current_Admin) || !American_HomePage_Categories_can_delete(self) ?
+                }, unlink: undefined, delete: !Permissions.can_delete_HomePage(self.props.current_User, self.props.current_Admin) || !American_HomePage_Categorie_can_delete(self) ?
                     null
                     :
-                        () => confirm(i18next.t('Are you sure?')) && Api.delete_HomePage(i.element).then(() => load_relation_American_HomePage_Categories(self, false, self.props.current_User, self.props.current_Admin)) }))));
+                        () => confirm(i18next.t('Are you sure?')) && Api.delete_HomePage(i.element).then(() => load_relation_American_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin)) }))));
     }, () => React.createElement("div", null)));
 }
-exports.render_American_HomePage_Categories = render_American_HomePage_Categories;
+exports.render_American_HomePage_Categorie = render_American_HomePage_Categorie;
 function render_relations_American(self) {
-    return React.createElement("div", { className: "relations" }, render_American_Categories_Meal(self, "default"));
+    return React.createElement("div", { className: "relations" }, render_American_Categorie_Meal(self, "default"));
 }
 exports.render_relations_American = render_relations_American;
-function render_add_existing_American_Categories_Meal(self) {
+function render_add_existing_American_Categorie_Meal(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
         React.createElement("div", { className: "button__actions" }, state.add_step_Meal != "open" ?
             React.createElement(Buttons.Add, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "open" })), target_name: "Meal" })
             :
                 React.createElement(List.AddToRelation, {
-                    relation_name: "american_categories_meal",
-                    source_name: "Categories",
+                    relation_name: "american_categorie_meal",
+                    source_name: "Categorie",
                     target_name: "Meal",
                     target_plural: "Meals",
                     page_size: 25,
                     render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
-                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "saving" }), () => Api.link_Categories_Categories_Meals(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }), () => load_relation_American_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
+                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "saving" }), () => Api.link_Categorie_Categorie_Meals(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }), () => load_relation_American_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
                         React.createElement("div", { className: "group__title", disabled: true }, MealViews.Meal(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Meal"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
                     cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" })),
                     get_items: [
-                        { name: "Lunch", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Categories_Categories_Meals_Lunch(self.props.entity, i, s); }) },
-                        { name: "Dinner", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Categories_Categories_Meals_Dinner(self.props.entity, i, s); }) },
-                        { name: "Breakfast", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Categories_Categories_Meals_Breakfast(self.props.entity, i, s); }) }
+                        { name: "Lunch", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Categorie_Categorie_Meals_Lunch(self.props.entity, i, s); }) },
+                        { name: "Dinner", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Categorie_Categorie_Meals_Dinner(self.props.entity, i, s); }) },
+                        { name: "Breakfast", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Categorie_Categorie_Meals_Breakfast(self.props.entity, i, s); }) }
                     ]
                 }))
         :
             null;
 }
-exports.render_add_existing_American_Categories_Meal = render_add_existing_American_Categories_Meal;
-function render_new_American_Categories_Meal(self) {
+exports.render_add_existing_American_Categorie_Meal = render_add_existing_American_Categorie_Meal;
+function render_new_American_Categorie_Meal(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
         React.createElement("div", { className: "button__actions" },
@@ -31917,25 +31991,25 @@ function render_new_American_Categories_Meal(self) {
                 :
                     React.createElement("div", { className: "overlay__item overlay__item--new" },
                         React.createElement("div", { className: "new-lunch" },
-                            React.createElement("button", { className: "new-lunch button button--new", onClick: () => Api.create_linked_Categories_Categories_Meals_Lunch(self.props.entity).then(e => {
+                            React.createElement("button", { className: "new-lunch button button--new", onClick: () => Api.create_linked_Categorie_Categorie_Meals_Lunch(self.props.entity).then(e => {
                                     e.length > 0 &&
-                                        Api.update_Lunch(Object.assign({}, e[0], { Kind: "Lunch", Description: "" })).then(() => load_relation_American_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
+                                        Api.update_Lunch(Object.assign({}, e[0], { Kind: "Lunch", Description: "" })).then(() => load_relation_American_Categorie_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
                                 }) }, i18next.t('Create new Lunch'))),
                         React.createElement("div", { className: "new-dinner" },
-                            React.createElement("button", { className: "new-dinner button button--new", onClick: () => Api.create_linked_Categories_Categories_Meals_Dinner(self.props.entity).then(e => {
+                            React.createElement("button", { className: "new-dinner button button--new", onClick: () => Api.create_linked_Categorie_Categorie_Meals_Dinner(self.props.entity).then(e => {
                                     e.length > 0 &&
-                                        Api.update_Dinner(Object.assign({}, e[0], { Kind: "Dinner", Description: "" })).then(() => load_relation_American_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
+                                        Api.update_Dinner(Object.assign({}, e[0], { Kind: "Dinner", Description: "" })).then(() => load_relation_American_Categorie_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
                                 }) }, i18next.t('Create new Dinner'))),
                         React.createElement("div", { className: "new-breakfast" },
-                            React.createElement("button", { className: "new-breakfast button button--new", onClick: () => Api.create_linked_Categories_Categories_Meals_Breakfast(self.props.entity).then(e => {
+                            React.createElement("button", { className: "new-breakfast button button--new", onClick: () => Api.create_linked_Categorie_Categorie_Meals_Breakfast(self.props.entity).then(e => {
                                     e.length > 0 &&
-                                        Api.update_Breakfast(Object.assign({}, e[0], { Kind: "Breakfast", Description: "" })).then(() => load_relation_American_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
+                                        Api.update_Breakfast(Object.assign({}, e[0], { Kind: "Breakfast", Description: "" })).then(() => load_relation_American_Categorie_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
                                 }) }, i18next.t('Create new Breakfast'))),
                         React.createElement(Buttons.Cancel, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" })) })))
         :
             null;
 }
-exports.render_new_American_Categories_Meal = render_new_American_Categories_Meal;
+exports.render_new_American_Categorie_Meal = render_new_American_Categorie_Meal;
 function render_saving_animations_American(self) {
     return self.state().dirty_Meal.count() > 0 ?
         React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" }) :
@@ -32012,7 +32086,7 @@ class AmericanComponent extends React.Component {
 exports.AmericanComponent = AmericanComponent;
 exports.American = (props) => React.createElement(AmericanComponent, Object.assign({}, props));
 exports.American_to_page = (id) => {
-    let can_edit = Utils.any_of([Permissions.can_edit_American, Permissions.can_edit_Categories_Meal, Permissions.can_edit_HomePage_Categories, Permissions.can_edit_Meal, Permissions.can_edit_HomePage]);
+    let can_edit = Utils.any_of([Permissions.can_edit_American, Permissions.can_edit_Categorie_Meal, Permissions.can_edit_HomePage_Categorie, Permissions.can_edit_Meal, Permissions.can_edit_HomePage]);
     return Utils.scene_to_page(can_edit, exports.American, Api.get_American(id), Api.update_American, "American", "American", `/Americans/${id}`);
 };
 exports.American_to = (id, target_element_id, current_User, current_Admin) => {
@@ -32039,81 +32113,81 @@ const React = __webpack_require__(14);
 const Immutable = __webpack_require__(33);
 const Api = __webpack_require__(22);
 const List = __webpack_require__(46);
-const Components = __webpack_require__(45);
-const Buttons = __webpack_require__(39);
+const Components = __webpack_require__(39);
+const Buttons = __webpack_require__(40);
 const Permissions = __webpack_require__(27);
 const Utils = __webpack_require__(23);
 const i18next = __webpack_require__(21);
-const HomePageViews = __webpack_require__(40);
+const HomePageViews = __webpack_require__(41);
 const MealViews = __webpack_require__(90);
-function Asian_Categories_Meal_can_create(self) {
+function Asian_Categorie_Meal_can_create(self) {
     let state = self.state();
     return state.Meal == "loading" ? false : state.Meal.CanCreate;
 }
-exports.Asian_Categories_Meal_can_create = Asian_Categories_Meal_can_create;
-function Asian_HomePage_Categories_can_create(self) {
+exports.Asian_Categorie_Meal_can_create = Asian_Categorie_Meal_can_create;
+function Asian_HomePage_Categorie_can_create(self) {
     let state = self.state();
     return state.HomePage == "loading" ? false : state.HomePage.CanCreate;
 }
-exports.Asian_HomePage_Categories_can_create = Asian_HomePage_Categories_can_create;
-function Asian_Categories_Meal_can_delete(self) {
+exports.Asian_HomePage_Categorie_can_create = Asian_HomePage_Categorie_can_create;
+function Asian_Categorie_Meal_can_delete(self) {
     let state = self.state();
     return state.Meal == "loading" ? false : state.Meal.CanDelete;
 }
-exports.Asian_Categories_Meal_can_delete = Asian_Categories_Meal_can_delete;
-function Asian_HomePage_Categories_can_delete(self) {
+exports.Asian_Categorie_Meal_can_delete = Asian_Categorie_Meal_can_delete;
+function Asian_HomePage_Categorie_can_delete(self) {
     let state = self.state();
     return state.HomePage == "loading" ? false : state.HomePage.CanDelete;
 }
-exports.Asian_HomePage_Categories_can_delete = Asian_HomePage_Categories_can_delete;
-function Asian_Categories_Meal_page_index(self) {
+exports.Asian_HomePage_Categorie_can_delete = Asian_HomePage_Categorie_can_delete;
+function Asian_Categorie_Meal_page_index(self) {
     let state = self.state();
     return state.Meal == "loading" ? 0 : state.Meal.PageIndex;
 }
-exports.Asian_Categories_Meal_page_index = Asian_Categories_Meal_page_index;
-function Asian_HomePage_Categories_page_index(self) {
+exports.Asian_Categorie_Meal_page_index = Asian_Categorie_Meal_page_index;
+function Asian_HomePage_Categorie_page_index(self) {
     let state = self.state();
     return state.HomePage == "loading" ? 0 : state.HomePage.PageIndex;
 }
-exports.Asian_HomePage_Categories_page_index = Asian_HomePage_Categories_page_index;
-function Asian_Categories_Meal_page_size(self) {
+exports.Asian_HomePage_Categorie_page_index = Asian_HomePage_Categorie_page_index;
+function Asian_Categorie_Meal_page_size(self) {
     let state = self.state();
     return state.Meal == "loading" ? 25 : state.Meal.PageSize;
 }
-exports.Asian_Categories_Meal_page_size = Asian_Categories_Meal_page_size;
-function Asian_HomePage_Categories_page_size(self) {
+exports.Asian_Categorie_Meal_page_size = Asian_Categorie_Meal_page_size;
+function Asian_HomePage_Categorie_page_size(self) {
     let state = self.state();
     return state.HomePage == "loading" ? 25 : state.HomePage.PageSize;
 }
-exports.Asian_HomePage_Categories_page_size = Asian_HomePage_Categories_page_size;
-function Asian_Categories_Meal_search_query(self) {
+exports.Asian_HomePage_Categorie_page_size = Asian_HomePage_Categorie_page_size;
+function Asian_Categorie_Meal_search_query(self) {
     let state = self.state();
     return state.Meal == "loading" ? null : state.Meal.SearchQuery;
 }
-exports.Asian_Categories_Meal_search_query = Asian_Categories_Meal_search_query;
-function Asian_HomePage_Categories_search_query(self) {
+exports.Asian_Categorie_Meal_search_query = Asian_Categorie_Meal_search_query;
+function Asian_HomePage_Categorie_search_query(self) {
     let state = self.state();
     return state.HomePage == "loading" ? null : state.HomePage.SearchQuery;
 }
-exports.Asian_HomePage_Categories_search_query = Asian_HomePage_Categories_search_query;
-function Asian_Categories_Meal_num_pages(self) {
+exports.Asian_HomePage_Categorie_search_query = Asian_HomePage_Categorie_search_query;
+function Asian_Categorie_Meal_num_pages(self) {
     let state = self.state();
     return state.Meal == "loading" ? 1 : state.Meal.NumPages;
 }
-exports.Asian_Categories_Meal_num_pages = Asian_Categories_Meal_num_pages;
-function Asian_HomePage_Categories_num_pages(self) {
+exports.Asian_Categorie_Meal_num_pages = Asian_Categorie_Meal_num_pages;
+function Asian_HomePage_Categorie_num_pages(self) {
     let state = self.state();
     return state.HomePage == "loading" ? 1 : state.HomePage.NumPages;
 }
-exports.Asian_HomePage_Categories_num_pages = Asian_HomePage_Categories_num_pages;
-function load_relation_Asian_Categories_Meal(self, force_first_page, current_User, current_Admin, callback) {
+exports.Asian_HomePage_Categorie_num_pages = Asian_HomePage_Categorie_num_pages;
+function load_relation_Asian_Categorie_Meal(self, force_first_page, current_User, current_Admin, callback) {
     let state = self.state();
     let prelude = force_first_page && state.Meal != "loading" ?
         (c) => state.Meal != "loading" && self.setState(Object.assign({}, state, { Meal: Object.assign({}, state.Meal, { PageIndex: 0 }) }), c)
         :
             (c) => c();
     Permissions.can_view_Meal(current_User, current_Admin) ?
-        prelude(() => Api.get_Categories_Categories_Meals(self.props.entity, Asian_Categories_Meal_page_index(self), Asian_Categories_Meal_page_size(self), Asian_Categories_Meal_search_query(self)).then(Meals => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Meal: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+        prelude(() => Api.get_Categorie_Categorie_Meals(self.props.entity, Asian_Categorie_Meal_page_index(self), Asian_Categorie_Meal_page_size(self), Asian_Categorie_Meal_search_query(self)).then(Meals => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Meal: Utils.raw_page_to_paginated_items((i, i_just_created) => {
                 let state = self.state();
                 return {
                     element: i,
@@ -32130,15 +32204,15 @@ function load_relation_Asian_Categories_Meal(self, force_first_page, current_Use
         :
             prelude(() => callback && callback());
 }
-exports.load_relation_Asian_Categories_Meal = load_relation_Asian_Categories_Meal;
-function load_relation_Asian_HomePage_Categories(self, force_first_page, current_User, current_Admin, callback) {
+exports.load_relation_Asian_Categorie_Meal = load_relation_Asian_Categorie_Meal;
+function load_relation_Asian_HomePage_Categorie(self, force_first_page, current_User, current_Admin, callback) {
     let state = self.state();
     let prelude = force_first_page && state.HomePage != "loading" ?
         (c) => state.HomePage != "loading" && self.setState(Object.assign({}, state, { HomePage: Object.assign({}, state.HomePage, { PageIndex: 0 }) }), c)
         :
             (c) => c();
     Permissions.can_view_HomePage(current_User, current_Admin) ?
-        prelude(() => Api.get_Categories_HomePage_Categoriess(self.props.entity, Asian_HomePage_Categories_page_index(self), Asian_HomePage_Categories_page_size(self), Asian_HomePage_Categories_search_query(self)).then(HomePages => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, HomePage: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+        prelude(() => Api.get_Categorie_HomePage_Categories(self.props.entity, Asian_HomePage_Categorie_page_index(self), Asian_HomePage_Categorie_page_size(self), Asian_HomePage_Categorie_search_query(self)).then(HomePages => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, HomePage: Utils.raw_page_to_paginated_items((i, i_just_created) => {
                 let state = self.state();
                 return {
                     element: i,
@@ -32155,9 +32229,9 @@ function load_relation_Asian_HomePage_Categories(self, force_first_page, current
         :
             prelude(() => callback && callback());
 }
-exports.load_relation_Asian_HomePage_Categories = load_relation_Asian_HomePage_Categories;
+exports.load_relation_Asian_HomePage_Categorie = load_relation_Asian_HomePage_Categorie;
 function load_relations_Asian(self, current_User, current_Admin, callback) {
-    load_relation_Asian_HomePage_Categories(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_Asian_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback()));
+    load_relation_Asian_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_Asian_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback()));
 }
 exports.load_relations_Asian = load_relations_Asian;
 function set_size_Asian(self, new_size) {
@@ -32211,16 +32285,16 @@ function render_menu_Asian(self) {
                 React.createElement("div", { className: `menu_entry page_link` },
                     React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
             React.createElement("div", { className: "menu_entries" },
-                !Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipes" ? " active" : ""}` },
+                !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
+                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipe" ? " active" : ""}` },
                         React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipes")));
-                            } }, i18next.t('HomePage_Recipess'))),
-                !Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categories" ? " active" : ""}` },
+                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipe")));
+                            } }, i18next.t('HomePage_Recipes'))),
+                !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
+                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}` },
                         React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categories")));
-                            } }, i18next.t('HomePage_Categoriess'))),
+                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categorie")));
+                            } }, i18next.t('HomePage_Categories'))),
                 React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
 }
 exports.render_menu_Asian = render_menu_Asian;
@@ -32231,8 +32305,8 @@ function render_local_menu_Asian(self) {
             React.createElement("div", { className: `local_menu_entry${self.props.shown_relation == "none" ? " local_menu_entry--active" : ""}` },
                 React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('About this Asian'))),
             !Permissions.can_view_Meal(self.props.current_User, self.props.current_Admin) ? null :
-                React.createElement("div", { key: "Categories_Meal", className: `local_menu_entry${self.props.shown_relation == "Categories_Meal" ? " local_menu_entry--active" : ""}` },
-                    React.createElement("a", { onClick: () => load_relation_Asian_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin, () => self.props.set_shown_relation("Categories_Meal")) }, i18next.t('Categories_Meals')))));
+                React.createElement("div", { key: "Categorie_Meal", className: `local_menu_entry${self.props.shown_relation == "Categorie_Meal" ? " local_menu_entry--active" : ""}` },
+                    React.createElement("a", { onClick: () => load_relation_Asian_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin, () => self.props.set_shown_relation("Categorie_Meal")) }, i18next.t('Categorie_Meals')))));
 }
 exports.render_local_menu_Asian = render_local_menu_Asian;
 function render_controls_Asian(self) {
@@ -32313,24 +32387,24 @@ function render_large_Asian(self) {
         render_relations_Asian(self)));
 }
 exports.render_large_Asian = render_large_Asian;
-function render_Asian_Categories_Meal(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Categories_Meal") || !Permissions.can_view_Meal(self.props.current_User, self.props.current_Admin))
+function render_Asian_Categorie_Meal(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Categorie_Meal") || !Permissions.can_view_Meal(self.props.current_User, self.props.current_Admin))
         return null;
     let state = self.state();
-    return React.createElement("div", null, List.render_relation("asian_categories_meal", "Categories", "Meal", "Meals", self.props.nesting_depth > 0, false, false, false)(state.Meal != "loading" ?
+    return React.createElement("div", null, List.render_relation("asian_categorie_meal", "Categorie", "Meal", "Meals", self.props.nesting_depth > 0, false, false, false)(state.Meal != "loading" ?
         state.Meal.IdsInServerOrder.map(id => state.Meal != "loading" && state.Meal.Items.get(id)) :
-        state.Meal, Asian_Categories_Meal_page_index(self), Asian_Categories_Meal_num_pages(self), new_page_index => {
+        state.Meal, Asian_Categorie_Meal_page_index(self), Asian_Categorie_Meal_num_pages(self), new_page_index => {
         let state = self.state();
         state.Meal != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Meal: Object.assign({}, state.Meal, { PageIndex: new_page_index }) }), () => load_relation_Asian_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin));
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Meal: Object.assign({}, state.Meal, { PageIndex: new_page_index }) }), () => load_relation_Asian_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin));
     }, (i, _) => {
         let i_id = i.element.Id;
         let state = self.state();
         return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
                         ${state.Meal != "loading" && state.Meal.JustCreated.has(i_id) && state.Meal.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, MealViews.Meal(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Categories_Meal(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_Categories_Meal(self.props.current_User, self.props.current_Admin)) ?
+            React.createElement("div", { key: i_id }, MealViews.Meal(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Categorie_Meal(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_Categorie_Meal(self.props.current_User, self.props.current_Admin)) ?
                     self.props.mode : "view", is_editable: state.Meal != "loading" && state.Meal.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
                     let state = self.state();
                     state.Meal != "loading" &&
@@ -32344,33 +32418,33 @@ function render_Asian_Categories_Meal(self, context) {
                     let state = self.state();
                     state.Meal != "loading" &&
                         self.setState(Object.assign({}, self.state(), { dirty_Meal: state.dirty_Meal.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Meal: Object.assign({}, state.Meal, { Items: state.Meal.Items.set(i_id, Object.assign({}, state.Meal.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, delete: undefined, unlink: !Permissions.can_delete_Categories_Meal(self.props.current_User, self.props.current_Admin) ?
+                }, delete: undefined, unlink: !Permissions.can_delete_Categorie_Meal(self.props.current_User, self.props.current_Admin) ?
                     null
                     :
-                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Categories_Categories_Meals(self.props.entity, i.element).then(() => load_relation_Asian_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin)) }))));
+                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Categorie_Categorie_Meals(self.props.entity, i.element).then(() => load_relation_Asian_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin)) }))));
     }, () => React.createElement("div", null,
-        Permissions.can_create_Meal(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin) && Asian_Categories_Meal_can_create(self) ? render_new_Asian_Categories_Meal(self) : null,
-        Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin) ? render_add_existing_Asian_Categories_Meal(self) : null)));
+        Permissions.can_create_Meal(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin) && Asian_Categorie_Meal_can_create(self) ? render_new_Asian_Categorie_Meal(self) : null,
+        Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin) ? render_add_existing_Asian_Categorie_Meal(self) : null)));
 }
-exports.render_Asian_Categories_Meal = render_Asian_Categories_Meal;
-function render_Asian_HomePage_Categories(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "HomePage_Categories") || !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin))
+exports.render_Asian_Categorie_Meal = render_Asian_Categorie_Meal;
+function render_Asian_HomePage_Categorie(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "HomePage_Categorie") || !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin))
         return null;
     let state = self.state();
-    return React.createElement("div", null, List.render_relation("asian_homepage_categories", "Categories", "HomePage", "HomePages", self.props.nesting_depth > 0, false, false, false)(state.HomePage != "loading" ?
+    return React.createElement("div", null, List.render_relation("asian_homepage_categorie", "Categorie", "HomePage", "HomePages", self.props.nesting_depth > 0, false, false, false)(state.HomePage != "loading" ?
         state.HomePage.IdsInServerOrder.map(id => state.HomePage != "loading" && state.HomePage.Items.get(id)) :
-        state.HomePage, Asian_HomePage_Categories_page_index(self), Asian_HomePage_Categories_num_pages(self), new_page_index => {
+        state.HomePage, Asian_HomePage_Categorie_page_index(self), Asian_HomePage_Categorie_num_pages(self), new_page_index => {
         let state = self.state();
         state.HomePage != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, HomePage: Object.assign({}, state.HomePage, { PageIndex: new_page_index }) }), () => load_relation_Asian_HomePage_Categories(self, false, self.props.current_User, self.props.current_Admin));
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, HomePage: Object.assign({}, state.HomePage, { PageIndex: new_page_index }) }), () => load_relation_Asian_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin));
     }, (i, _) => {
         let i_id = i.element.Id;
         let state = self.state();
         return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
                         ${state.HomePage != "loading" && state.HomePage.JustCreated.has(i_id) && state.HomePage.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, HomePageViews.HomePage(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_HomePage_Categories(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_HomePage_Categories(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_HomePage_Categories(self.props.current_User, self.props.current_Admin)) ?
+            React.createElement("div", { key: i_id }, HomePageViews.HomePage(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_HomePage_Categorie(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_HomePage_Categorie(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_HomePage_Categorie(self.props.current_User, self.props.current_Admin)) ?
                     self.props.mode : "view", is_editable: state.HomePage != "loading" && state.HomePage.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
                     let state = self.state();
                     state.HomePage != "loading" &&
@@ -32384,44 +32458,44 @@ function render_Asian_HomePage_Categories(self, context) {
                     let state = self.state();
                     state.HomePage != "loading" &&
                         self.setState(Object.assign({}, self.state(), { dirty_HomePage: state.dirty_HomePage.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, HomePage: Object.assign({}, state.HomePage, { Items: state.HomePage.Items.set(i_id, Object.assign({}, state.HomePage.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, unlink: undefined, delete: !Permissions.can_delete_HomePage(self.props.current_User, self.props.current_Admin) || !Asian_HomePage_Categories_can_delete(self) ?
+                }, unlink: undefined, delete: !Permissions.can_delete_HomePage(self.props.current_User, self.props.current_Admin) || !Asian_HomePage_Categorie_can_delete(self) ?
                     null
                     :
-                        () => confirm(i18next.t('Are you sure?')) && Api.delete_HomePage(i.element).then(() => load_relation_Asian_HomePage_Categories(self, false, self.props.current_User, self.props.current_Admin)) }))));
+                        () => confirm(i18next.t('Are you sure?')) && Api.delete_HomePage(i.element).then(() => load_relation_Asian_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin)) }))));
     }, () => React.createElement("div", null)));
 }
-exports.render_Asian_HomePage_Categories = render_Asian_HomePage_Categories;
+exports.render_Asian_HomePage_Categorie = render_Asian_HomePage_Categorie;
 function render_relations_Asian(self) {
-    return React.createElement("div", { className: "relations" }, render_Asian_Categories_Meal(self, "default"));
+    return React.createElement("div", { className: "relations" }, render_Asian_Categorie_Meal(self, "default"));
 }
 exports.render_relations_Asian = render_relations_Asian;
-function render_add_existing_Asian_Categories_Meal(self) {
+function render_add_existing_Asian_Categorie_Meal(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
         React.createElement("div", { className: "button__actions" }, state.add_step_Meal != "open" ?
             React.createElement(Buttons.Add, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "open" })), target_name: "Meal" })
             :
                 React.createElement(List.AddToRelation, {
-                    relation_name: "asian_categories_meal",
-                    source_name: "Categories",
+                    relation_name: "asian_categorie_meal",
+                    source_name: "Categorie",
                     target_name: "Meal",
                     target_plural: "Meals",
                     page_size: 25,
                     render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
-                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "saving" }), () => Api.link_Categories_Categories_Meals(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }), () => load_relation_Asian_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
+                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "saving" }), () => Api.link_Categorie_Categorie_Meals(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }), () => load_relation_Asian_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
                         React.createElement("div", { className: "group__title", disabled: true }, MealViews.Meal(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Meal"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
                     cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" })),
                     get_items: [
-                        { name: "Lunch", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Categories_Categories_Meals_Lunch(self.props.entity, i, s); }) },
-                        { name: "Dinner", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Categories_Categories_Meals_Dinner(self.props.entity, i, s); }) },
-                        { name: "Breakfast", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Categories_Categories_Meals_Breakfast(self.props.entity, i, s); }) }
+                        { name: "Lunch", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Categorie_Categorie_Meals_Lunch(self.props.entity, i, s); }) },
+                        { name: "Dinner", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Categorie_Categorie_Meals_Dinner(self.props.entity, i, s); }) },
+                        { name: "Breakfast", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Categorie_Categorie_Meals_Breakfast(self.props.entity, i, s); }) }
                     ]
                 }))
         :
             null;
 }
-exports.render_add_existing_Asian_Categories_Meal = render_add_existing_Asian_Categories_Meal;
-function render_new_Asian_Categories_Meal(self) {
+exports.render_add_existing_Asian_Categorie_Meal = render_add_existing_Asian_Categorie_Meal;
+function render_new_Asian_Categorie_Meal(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
         React.createElement("div", { className: "button__actions" },
@@ -32431,25 +32505,25 @@ function render_new_Asian_Categories_Meal(self) {
                 :
                     React.createElement("div", { className: "overlay__item overlay__item--new" },
                         React.createElement("div", { className: "new-lunch" },
-                            React.createElement("button", { className: "new-lunch button button--new", onClick: () => Api.create_linked_Categories_Categories_Meals_Lunch(self.props.entity).then(e => {
+                            React.createElement("button", { className: "new-lunch button button--new", onClick: () => Api.create_linked_Categorie_Categorie_Meals_Lunch(self.props.entity).then(e => {
                                     e.length > 0 &&
-                                        Api.update_Lunch(Object.assign({}, e[0], { Kind: "Lunch", Description: "" })).then(() => load_relation_Asian_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
+                                        Api.update_Lunch(Object.assign({}, e[0], { Kind: "Lunch", Description: "" })).then(() => load_relation_Asian_Categorie_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
                                 }) }, i18next.t('Create new Lunch'))),
                         React.createElement("div", { className: "new-dinner" },
-                            React.createElement("button", { className: "new-dinner button button--new", onClick: () => Api.create_linked_Categories_Categories_Meals_Dinner(self.props.entity).then(e => {
+                            React.createElement("button", { className: "new-dinner button button--new", onClick: () => Api.create_linked_Categorie_Categorie_Meals_Dinner(self.props.entity).then(e => {
                                     e.length > 0 &&
-                                        Api.update_Dinner(Object.assign({}, e[0], { Kind: "Dinner", Description: "" })).then(() => load_relation_Asian_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
+                                        Api.update_Dinner(Object.assign({}, e[0], { Kind: "Dinner", Description: "" })).then(() => load_relation_Asian_Categorie_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
                                 }) }, i18next.t('Create new Dinner'))),
                         React.createElement("div", { className: "new-breakfast" },
-                            React.createElement("button", { className: "new-breakfast button button--new", onClick: () => Api.create_linked_Categories_Categories_Meals_Breakfast(self.props.entity).then(e => {
+                            React.createElement("button", { className: "new-breakfast button button--new", onClick: () => Api.create_linked_Categorie_Categorie_Meals_Breakfast(self.props.entity).then(e => {
                                     e.length > 0 &&
-                                        Api.update_Breakfast(Object.assign({}, e[0], { Kind: "Breakfast", Description: "" })).then(() => load_relation_Asian_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
+                                        Api.update_Breakfast(Object.assign({}, e[0], { Kind: "Breakfast", Description: "" })).then(() => load_relation_Asian_Categorie_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
                                 }) }, i18next.t('Create new Breakfast'))),
                         React.createElement(Buttons.Cancel, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" })) })))
         :
             null;
 }
-exports.render_new_Asian_Categories_Meal = render_new_Asian_Categories_Meal;
+exports.render_new_Asian_Categorie_Meal = render_new_Asian_Categorie_Meal;
 function render_saving_animations_Asian(self) {
     return self.state().dirty_Meal.count() > 0 ?
         React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" }) :
@@ -32526,7 +32600,7 @@ class AsianComponent extends React.Component {
 exports.AsianComponent = AsianComponent;
 exports.Asian = (props) => React.createElement(AsianComponent, Object.assign({}, props));
 exports.Asian_to_page = (id) => {
-    let can_edit = Utils.any_of([Permissions.can_edit_Asian, Permissions.can_edit_Categories_Meal, Permissions.can_edit_HomePage_Categories, Permissions.can_edit_Meal, Permissions.can_edit_HomePage]);
+    let can_edit = Utils.any_of([Permissions.can_edit_Asian, Permissions.can_edit_Categorie_Meal, Permissions.can_edit_HomePage_Categorie, Permissions.can_edit_Meal, Permissions.can_edit_HomePage]);
     return Utils.scene_to_page(can_edit, exports.Asian, Api.get_Asian(id), Api.update_Asian, "Asian", "Asian", `/Asians/${id}`);
 };
 exports.Asian_to = (id, target_element_id, current_User, current_Admin) => {
@@ -32553,126 +32627,126 @@ const React = __webpack_require__(14);
 const Immutable = __webpack_require__(33);
 const Api = __webpack_require__(22);
 const List = __webpack_require__(46);
-const Components = __webpack_require__(45);
-const Buttons = __webpack_require__(39);
+const Components = __webpack_require__(39);
+const Buttons = __webpack_require__(40);
 const Permissions = __webpack_require__(27);
 const Utils = __webpack_require__(23);
 const i18next = __webpack_require__(21);
-const HomePageViews = __webpack_require__(40);
-const CategoriesViews = __webpack_require__(89);
-const RecipesViews = __webpack_require__(65);
-function Breakfast_Categories_Meal_can_create(self) {
+const HomePageViews = __webpack_require__(41);
+const CategorieViews = __webpack_require__(89);
+const RecipeViews = __webpack_require__(65);
+function Breakfast_Categorie_Meal_can_create(self) {
     let state = self.state();
-    return state.Categories == "loading" ? false : state.Categories.CanCreate;
+    return state.Categorie == "loading" ? false : state.Categorie.CanCreate;
 }
-exports.Breakfast_Categories_Meal_can_create = Breakfast_Categories_Meal_can_create;
-function Breakfast_Meal_Recipes_can_create(self) {
+exports.Breakfast_Categorie_Meal_can_create = Breakfast_Categorie_Meal_can_create;
+function Breakfast_Meal_Recipe_can_create(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? false : state.Recipes.CanCreate;
+    return state.Recipe == "loading" ? false : state.Recipe.CanCreate;
 }
-exports.Breakfast_Meal_Recipes_can_create = Breakfast_Meal_Recipes_can_create;
-function Breakfast_Categories_Meal_can_delete(self) {
+exports.Breakfast_Meal_Recipe_can_create = Breakfast_Meal_Recipe_can_create;
+function Breakfast_Categorie_Meal_can_delete(self) {
     let state = self.state();
-    return state.Categories == "loading" ? false : state.Categories.CanDelete;
+    return state.Categorie == "loading" ? false : state.Categorie.CanDelete;
 }
-exports.Breakfast_Categories_Meal_can_delete = Breakfast_Categories_Meal_can_delete;
-function Breakfast_Meal_Recipes_can_delete(self) {
+exports.Breakfast_Categorie_Meal_can_delete = Breakfast_Categorie_Meal_can_delete;
+function Breakfast_Meal_Recipe_can_delete(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? false : state.Recipes.CanDelete;
+    return state.Recipe == "loading" ? false : state.Recipe.CanDelete;
 }
-exports.Breakfast_Meal_Recipes_can_delete = Breakfast_Meal_Recipes_can_delete;
-function Breakfast_Categories_Meal_page_index(self) {
+exports.Breakfast_Meal_Recipe_can_delete = Breakfast_Meal_Recipe_can_delete;
+function Breakfast_Categorie_Meal_page_index(self) {
     let state = self.state();
-    return state.Categories == "loading" ? 0 : state.Categories.PageIndex;
+    return state.Categorie == "loading" ? 0 : state.Categorie.PageIndex;
 }
-exports.Breakfast_Categories_Meal_page_index = Breakfast_Categories_Meal_page_index;
-function Breakfast_Meal_Recipes_page_index(self) {
+exports.Breakfast_Categorie_Meal_page_index = Breakfast_Categorie_Meal_page_index;
+function Breakfast_Meal_Recipe_page_index(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? 0 : state.Recipes.PageIndex;
+    return state.Recipe == "loading" ? 0 : state.Recipe.PageIndex;
 }
-exports.Breakfast_Meal_Recipes_page_index = Breakfast_Meal_Recipes_page_index;
-function Breakfast_Categories_Meal_page_size(self) {
+exports.Breakfast_Meal_Recipe_page_index = Breakfast_Meal_Recipe_page_index;
+function Breakfast_Categorie_Meal_page_size(self) {
     let state = self.state();
-    return state.Categories == "loading" ? 25 : state.Categories.PageSize;
+    return state.Categorie == "loading" ? 25 : state.Categorie.PageSize;
 }
-exports.Breakfast_Categories_Meal_page_size = Breakfast_Categories_Meal_page_size;
-function Breakfast_Meal_Recipes_page_size(self) {
+exports.Breakfast_Categorie_Meal_page_size = Breakfast_Categorie_Meal_page_size;
+function Breakfast_Meal_Recipe_page_size(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? 25 : state.Recipes.PageSize;
+    return state.Recipe == "loading" ? 25 : state.Recipe.PageSize;
 }
-exports.Breakfast_Meal_Recipes_page_size = Breakfast_Meal_Recipes_page_size;
-function Breakfast_Categories_Meal_search_query(self) {
+exports.Breakfast_Meal_Recipe_page_size = Breakfast_Meal_Recipe_page_size;
+function Breakfast_Categorie_Meal_search_query(self) {
     let state = self.state();
-    return state.Categories == "loading" ? null : state.Categories.SearchQuery;
+    return state.Categorie == "loading" ? null : state.Categorie.SearchQuery;
 }
-exports.Breakfast_Categories_Meal_search_query = Breakfast_Categories_Meal_search_query;
-function Breakfast_Meal_Recipes_search_query(self) {
+exports.Breakfast_Categorie_Meal_search_query = Breakfast_Categorie_Meal_search_query;
+function Breakfast_Meal_Recipe_search_query(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? null : state.Recipes.SearchQuery;
+    return state.Recipe == "loading" ? null : state.Recipe.SearchQuery;
 }
-exports.Breakfast_Meal_Recipes_search_query = Breakfast_Meal_Recipes_search_query;
-function Breakfast_Categories_Meal_num_pages(self) {
+exports.Breakfast_Meal_Recipe_search_query = Breakfast_Meal_Recipe_search_query;
+function Breakfast_Categorie_Meal_num_pages(self) {
     let state = self.state();
-    return state.Categories == "loading" ? 1 : state.Categories.NumPages;
+    return state.Categorie == "loading" ? 1 : state.Categorie.NumPages;
 }
-exports.Breakfast_Categories_Meal_num_pages = Breakfast_Categories_Meal_num_pages;
-function Breakfast_Meal_Recipes_num_pages(self) {
+exports.Breakfast_Categorie_Meal_num_pages = Breakfast_Categorie_Meal_num_pages;
+function Breakfast_Meal_Recipe_num_pages(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? 1 : state.Recipes.NumPages;
+    return state.Recipe == "loading" ? 1 : state.Recipe.NumPages;
 }
-exports.Breakfast_Meal_Recipes_num_pages = Breakfast_Meal_Recipes_num_pages;
-function load_relation_Breakfast_Categories_Meal(self, force_first_page, current_User, current_Admin, callback) {
+exports.Breakfast_Meal_Recipe_num_pages = Breakfast_Meal_Recipe_num_pages;
+function load_relation_Breakfast_Categorie_Meal(self, force_first_page, current_User, current_Admin, callback) {
     let state = self.state();
-    let prelude = force_first_page && state.Categories != "loading" ?
-        (c) => state.Categories != "loading" && self.setState(Object.assign({}, state, { Categories: Object.assign({}, state.Categories, { PageIndex: 0 }) }), c)
+    let prelude = force_first_page && state.Categorie != "loading" ?
+        (c) => state.Categorie != "loading" && self.setState(Object.assign({}, state, { Categorie: Object.assign({}, state.Categorie, { PageIndex: 0 }) }), c)
         :
             (c) => c();
-    Permissions.can_view_Categories(current_User, current_Admin) ?
-        prelude(() => Api.get_Meal_Categories_Meals(self.props.entity, Breakfast_Categories_Meal_page_index(self), Breakfast_Categories_Meal_page_size(self), Breakfast_Categories_Meal_search_query(self)).then(Categoriess => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Categories: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+    Permissions.can_view_Categorie(current_User, current_Admin) ?
+        prelude(() => Api.get_Meal_Categorie_Meals(self.props.entity, Breakfast_Categorie_Meal_page_index(self), Breakfast_Categorie_Meal_page_size(self), Breakfast_Categorie_Meal_search_query(self)).then(Categories => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Categorie: Utils.raw_page_to_paginated_items((i, i_just_created) => {
                 let state = self.state();
                 return {
                     element: i,
-                    size: state.Categories != "loading" ?
-                        (state.Categories.Items.has(i.Id) ?
-                            state.Categories.Items.get(i.Id).size
+                    size: state.Categorie != "loading" ?
+                        (state.Categorie.Items.has(i.Id) ?
+                            state.Categorie.Items.get(i.Id).size
                             :
                                 "preview" /* i_just_created ? "large" : "preview" */)
                         :
                             "preview" /* i_just_created ? "large" : "preview" */,
                     shown_relation: "all"
                 };
-            }, Categoriess) }), callback)))
+            }, Categories) }), callback)))
         :
             prelude(() => callback && callback());
 }
-exports.load_relation_Breakfast_Categories_Meal = load_relation_Breakfast_Categories_Meal;
-function load_relation_Breakfast_Meal_Recipes(self, force_first_page, current_User, current_Admin, callback) {
+exports.load_relation_Breakfast_Categorie_Meal = load_relation_Breakfast_Categorie_Meal;
+function load_relation_Breakfast_Meal_Recipe(self, force_first_page, current_User, current_Admin, callback) {
     let state = self.state();
-    let prelude = force_first_page && state.Recipes != "loading" ?
-        (c) => state.Recipes != "loading" && self.setState(Object.assign({}, state, { Recipes: Object.assign({}, state.Recipes, { PageIndex: 0 }) }), c)
+    let prelude = force_first_page && state.Recipe != "loading" ?
+        (c) => state.Recipe != "loading" && self.setState(Object.assign({}, state, { Recipe: Object.assign({}, state.Recipe, { PageIndex: 0 }) }), c)
         :
             (c) => c();
-    Permissions.can_view_Recipes(current_User, current_Admin) ?
-        prelude(() => Api.get_Meal_Meal_Recipess(self.props.entity, Breakfast_Meal_Recipes_page_index(self), Breakfast_Meal_Recipes_page_size(self), Breakfast_Meal_Recipes_search_query(self)).then(Recipess => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipes: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+    Permissions.can_view_Recipe(current_User, current_Admin) ?
+        prelude(() => Api.get_Meal_Meal_Recipes(self.props.entity, Breakfast_Meal_Recipe_page_index(self), Breakfast_Meal_Recipe_page_size(self), Breakfast_Meal_Recipe_search_query(self)).then(Recipes => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipe: Utils.raw_page_to_paginated_items((i, i_just_created) => {
                 let state = self.state();
                 return {
                     element: i,
-                    size: state.Recipes != "loading" ?
-                        (state.Recipes.Items.has(i.Id) ?
-                            state.Recipes.Items.get(i.Id).size
+                    size: state.Recipe != "loading" ?
+                        (state.Recipe.Items.has(i.Id) ?
+                            state.Recipe.Items.get(i.Id).size
                             :
                                 "preview" /* i_just_created ? "large" : "preview" */)
                         :
                             "preview" /* i_just_created ? "large" : "preview" */,
                     shown_relation: "all"
                 };
-            }, Recipess) }), callback)))
+            }, Recipes) }), callback)))
         :
             prelude(() => callback && callback());
 }
-exports.load_relation_Breakfast_Meal_Recipes = load_relation_Breakfast_Meal_Recipes;
+exports.load_relation_Breakfast_Meal_Recipe = load_relation_Breakfast_Meal_Recipe;
 function load_relations_Breakfast(self, current_User, current_Admin, callback) {
-    load_relation_Breakfast_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_Breakfast_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback()));
+    load_relation_Breakfast_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_Breakfast_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback()));
 }
 exports.load_relations_Breakfast = load_relations_Breakfast;
 function set_size_Breakfast(self, new_size) {
@@ -32726,16 +32800,16 @@ function render_menu_Breakfast(self) {
                 React.createElement("div", { className: `menu_entry page_link` },
                     React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
             React.createElement("div", { className: "menu_entries" },
-                !Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipes" ? " active" : ""}` },
+                !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
+                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipe" ? " active" : ""}` },
                         React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipes")));
-                            } }, i18next.t('HomePage_Recipess'))),
-                !Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categories" ? " active" : ""}` },
+                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipe")));
+                            } }, i18next.t('HomePage_Recipes'))),
+                !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
+                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}` },
                         React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categories")));
-                            } }, i18next.t('HomePage_Categoriess'))),
+                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categorie")));
+                            } }, i18next.t('HomePage_Categories'))),
                 React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
 }
 exports.render_menu_Breakfast = render_menu_Breakfast;
@@ -32745,9 +32819,9 @@ function render_local_menu_Breakfast(self) {
         React.createElement("div", { className: "local_menu_entries" },
             React.createElement("div", { className: `local_menu_entry${self.props.shown_relation == "none" ? " local_menu_entry--active" : ""}` },
                 React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('About this Breakfast'))),
-            !Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ? null :
-                React.createElement("div", { key: "Meal_Recipes", className: `local_menu_entry${self.props.shown_relation == "Meal_Recipes" ? " local_menu_entry--active" : ""}` },
-                    React.createElement("a", { onClick: () => load_relation_Breakfast_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin, () => self.props.set_shown_relation("Meal_Recipes")) }, i18next.t('Meal_Recipess')))));
+            !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { key: "Meal_Recipe", className: `local_menu_entry${self.props.shown_relation == "Meal_Recipe" ? " local_menu_entry--active" : ""}` },
+                    React.createElement("a", { onClick: () => load_relation_Breakfast_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin, () => self.props.set_shown_relation("Meal_Recipe")) }, i18next.t('Meal_Recipes')))));
 }
 exports.render_local_menu_Breakfast = render_local_menu_Breakfast;
 function render_controls_Breakfast(self) {
@@ -32828,186 +32902,186 @@ function render_large_Breakfast(self) {
         render_relations_Breakfast(self)));
 }
 exports.render_large_Breakfast = render_large_Breakfast;
-function render_Breakfast_Categories_Meal(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Categories_Meal") || !Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin))
+function render_Breakfast_Categorie_Meal(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Categorie_Meal") || !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin))
         return null;
     let state = self.state();
-    return React.createElement("div", null, List.render_relation("breakfast_categories_meal", "Meal", "Categories", "Categoriess", self.props.nesting_depth > 0, false, false, false)(state.Categories != "loading" ?
-        state.Categories.IdsInServerOrder.map(id => state.Categories != "loading" && state.Categories.Items.get(id)) :
-        state.Categories, Breakfast_Categories_Meal_page_index(self), Breakfast_Categories_Meal_num_pages(self), new_page_index => {
+    return React.createElement("div", null, List.render_relation("breakfast_categorie_meal", "Meal", "Categorie", "Categories", self.props.nesting_depth > 0, false, false, false)(state.Categorie != "loading" ?
+        state.Categorie.IdsInServerOrder.map(id => state.Categorie != "loading" && state.Categorie.Items.get(id)) :
+        state.Categorie, Breakfast_Categorie_Meal_page_index(self), Breakfast_Categorie_Meal_num_pages(self), new_page_index => {
         let state = self.state();
-        state.Categories != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Categories: Object.assign({}, state.Categories, { PageIndex: new_page_index }) }), () => load_relation_Breakfast_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin));
+        state.Categorie != "loading" &&
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Categorie: Object.assign({}, state.Categorie, { PageIndex: new_page_index }) }), () => load_relation_Breakfast_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin));
     }, (i, _) => {
         let i_id = i.element.Id;
         let state = self.state();
         return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
-                        ${state.Categories != "loading" && state.Categories.JustCreated.has(i_id) && state.Categories.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, CategoriesViews.Categories(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Categories_Meal(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_Categories_Meal(self.props.current_User, self.props.current_Admin)) ?
-                    self.props.mode : "view", is_editable: state.Categories != "loading" && state.Categories.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
+                        ${state.Categorie != "loading" && state.Categorie.JustCreated.has(i_id) && state.Categorie.JustCreated.get(i_id) ? "newly-created" : ""}` },
+            React.createElement("div", { key: i_id }, CategorieViews.Categorie(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Categorie_Meal(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_Categorie_Meal(self.props.current_User, self.props.current_Admin)) ?
+                    self.props.mode : "view", is_editable: state.Categorie != "loading" && state.Categorie.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
                     let state = self.state();
-                    state.Categories != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Categories: Object.assign({}, state.Categories, { Items: state.Categories.Items.set(i_id, Object.assign({}, state.Categories.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
-                }, nested_entity_names: self.props.nested_entity_names.push("Categories"), set_size: (new_size, callback) => {
+                    state.Categorie != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Categorie: Object.assign({}, state.Categorie, { Items: state.Categorie.Items.set(i_id, Object.assign({}, state.Categorie.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
+                }, nested_entity_names: self.props.nested_entity_names.push("Categorie"), set_size: (new_size, callback) => {
                     let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
                     let state = self.state();
-                    state.Categories != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Categories: Object.assign({}, state.Categories, { Items: state.Categories.Items.set(i_id, Object.assign({}, state.Categories.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
+                    state.Categorie != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Categorie: Object.assign({}, state.Categorie, { Items: state.Categorie.Items.set(i_id, Object.assign({}, state.Categorie.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
                 }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
                     let state = self.state();
-                    state.Categories != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { dirty_Categories: state.dirty_Categories.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Categories: Object.assign({}, state.Categories, { Items: state.Categories.Items.set(i_id, Object.assign({}, state.Categories.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, delete: undefined, unlink: !Permissions.can_delete_Categories_Meal(self.props.current_User, self.props.current_Admin) ?
+                    state.Categorie != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { dirty_Categorie: state.dirty_Categorie.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Categorie: Object.assign({}, state.Categorie, { Items: state.Categorie.Items.set(i_id, Object.assign({}, state.Categorie.Items.get(i_id), { element: new_entity })) }) }), callback);
+                }, delete: undefined, unlink: !Permissions.can_delete_Categorie_Meal(self.props.current_User, self.props.current_Admin) ?
                     null
                     :
-                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Categories_Categories_Meals(i.element, self.props.entity).then(() => load_relation_Breakfast_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin)) }))));
+                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Categorie_Categorie_Meals(i.element, self.props.entity).then(() => load_relation_Breakfast_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin)) }))));
     }, () => React.createElement("div", null,
-        Permissions.can_create_Categories(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin) && Breakfast_Categories_Meal_can_create(self) ? render_new_Breakfast_Categories_Meal(self) : null,
-        Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin) ? render_add_existing_Breakfast_Categories_Meal(self) : null)));
+        Permissions.can_create_Categorie(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin) && Breakfast_Categorie_Meal_can_create(self) ? render_new_Breakfast_Categorie_Meal(self) : null,
+        Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin) ? render_add_existing_Breakfast_Categorie_Meal(self) : null)));
 }
-exports.render_Breakfast_Categories_Meal = render_Breakfast_Categories_Meal;
-function render_Breakfast_Meal_Recipes(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Meal_Recipes") || !Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin))
+exports.render_Breakfast_Categorie_Meal = render_Breakfast_Categorie_Meal;
+function render_Breakfast_Meal_Recipe(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Meal_Recipe") || !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin))
         return null;
     let state = self.state();
-    return React.createElement("div", null, List.render_relation("breakfast_meal_recipes", "Meal", "Recipes", "Recipess", self.props.nesting_depth > 0, false, false, false)(state.Recipes != "loading" ?
-        state.Recipes.IdsInServerOrder.map(id => state.Recipes != "loading" && state.Recipes.Items.get(id)) :
-        state.Recipes, Breakfast_Meal_Recipes_page_index(self), Breakfast_Meal_Recipes_num_pages(self), new_page_index => {
+    return React.createElement("div", null, List.render_relation("breakfast_meal_recipe", "Meal", "Recipe", "Recipes", self.props.nesting_depth > 0, false, false, false)(state.Recipe != "loading" ?
+        state.Recipe.IdsInServerOrder.map(id => state.Recipe != "loading" && state.Recipe.Items.get(id)) :
+        state.Recipe, Breakfast_Meal_Recipe_page_index(self), Breakfast_Meal_Recipe_num_pages(self), new_page_index => {
         let state = self.state();
-        state.Recipes != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipes: Object.assign({}, state.Recipes, { PageIndex: new_page_index }) }), () => load_relation_Breakfast_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin));
+        state.Recipe != "loading" &&
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipe: Object.assign({}, state.Recipe, { PageIndex: new_page_index }) }), () => load_relation_Breakfast_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin));
     }, (i, _) => {
         let i_id = i.element.Id;
         let state = self.state();
         return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
-                        ${state.Recipes != "loading" && state.Recipes.JustCreated.has(i_id) && state.Recipes.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, RecipesViews.Recipes(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Meal_Recipes(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_Meal_Recipes(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_Meal_Recipes(self.props.current_User, self.props.current_Admin)) ?
-                    self.props.mode : "view", is_editable: state.Recipes != "loading" && state.Recipes.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
+                        ${state.Recipe != "loading" && state.Recipe.JustCreated.has(i_id) && state.Recipe.JustCreated.get(i_id) ? "newly-created" : ""}` },
+            React.createElement("div", { key: i_id }, RecipeViews.Recipe(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Meal_Recipe(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_Meal_Recipe(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_Meal_Recipe(self.props.current_User, self.props.current_Admin)) ?
+                    self.props.mode : "view", is_editable: state.Recipe != "loading" && state.Recipe.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
                     let state = self.state();
-                    state.Recipes != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Recipes: Object.assign({}, state.Recipes, { Items: state.Recipes.Items.set(i_id, Object.assign({}, state.Recipes.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
-                }, nested_entity_names: self.props.nested_entity_names.push("Recipes"), set_size: (new_size, callback) => {
+                    state.Recipe != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
+                }, nested_entity_names: self.props.nested_entity_names.push("Recipe"), set_size: (new_size, callback) => {
                     let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
                     let state = self.state();
-                    state.Recipes != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Recipes: Object.assign({}, state.Recipes, { Items: state.Recipes.Items.set(i_id, Object.assign({}, state.Recipes.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
+                    state.Recipe != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
                 }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
                     let state = self.state();
-                    state.Recipes != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { dirty_Recipes: state.dirty_Recipes.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Recipes: Object.assign({}, state.Recipes, { Items: state.Recipes.Items.set(i_id, Object.assign({}, state.Recipes.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, delete: undefined, unlink: !Permissions.can_delete_Meal_Recipes(self.props.current_User, self.props.current_Admin) ?
+                    state.Recipe != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { dirty_Recipe: state.dirty_Recipe.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { element: new_entity })) }) }), callback);
+                }, delete: undefined, unlink: !Permissions.can_delete_Meal_Recipe(self.props.current_User, self.props.current_Admin) ?
                     null
                     :
-                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Meal_Meal_Recipess(self.props.entity, i.element).then(() => load_relation_Breakfast_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin)) }))));
+                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Meal_Meal_Recipes(self.props.entity, i.element).then(() => load_relation_Breakfast_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin)) }))));
     }, () => React.createElement("div", null,
-        Permissions.can_create_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Meal_Recipes(self.props.current_User, self.props.current_Admin) && Breakfast_Meal_Recipes_can_create(self) ? render_new_Breakfast_Meal_Recipes(self) : null,
-        Permissions.can_create_Meal_Recipes(self.props.current_User, self.props.current_Admin) ? render_add_existing_Breakfast_Meal_Recipes(self) : null)));
+        Permissions.can_create_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Meal_Recipe(self.props.current_User, self.props.current_Admin) && Breakfast_Meal_Recipe_can_create(self) ? render_new_Breakfast_Meal_Recipe(self) : null,
+        Permissions.can_create_Meal_Recipe(self.props.current_User, self.props.current_Admin) ? render_add_existing_Breakfast_Meal_Recipe(self) : null)));
 }
-exports.render_Breakfast_Meal_Recipes = render_Breakfast_Meal_Recipes;
+exports.render_Breakfast_Meal_Recipe = render_Breakfast_Meal_Recipe;
 function render_relations_Breakfast(self) {
-    return React.createElement("div", { className: "relations" }, render_Breakfast_Meal_Recipes(self, "default"));
+    return React.createElement("div", { className: "relations" }, render_Breakfast_Meal_Recipe(self, "default"));
 }
 exports.render_relations_Breakfast = render_relations_Breakfast;
-function render_add_existing_Breakfast_Categories_Meal(self) {
+function render_add_existing_Breakfast_Categorie_Meal(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
-        React.createElement("div", { className: "button__actions" }, state.add_step_Categories != "open" ?
-            React.createElement(Buttons.Add, { disabled: state.Categories == "loading" ? true : state.Categories.TotalCount >= 1, onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "open" })), target_name: "Categories" })
+        React.createElement("div", { className: "button__actions" }, state.add_step_Categorie != "open" ?
+            React.createElement(Buttons.Add, { disabled: state.Categorie == "loading" ? true : state.Categorie.TotalCount >= 1, onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "open" })), target_name: "Categorie" })
             :
                 React.createElement(List.AddToRelation, {
-                    relation_name: "breakfast_categories_meal",
+                    relation_name: "breakfast_categorie_meal",
                     source_name: "Meal",
-                    target_name: "Categories",
-                    target_plural: "Categoriess",
+                    target_name: "Categorie",
+                    target_plural: "Categories",
                     page_size: 25,
                     render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
-                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "saving" }), () => Api.link_Meal_Categories_Meals(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Categories: "closed" }), () => load_relation_Breakfast_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
-                        React.createElement("div", { className: "group__title", disabled: true }, CategoriesViews.Categories(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Categories"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
-                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "closed" })),
+                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "saving" }), () => Api.link_Meal_Categorie_Meals(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" }), () => load_relation_Breakfast_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
+                        React.createElement("div", { className: "group__title", disabled: true }, CategorieViews.Categorie(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Categorie"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
+                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" })),
                     get_items: [
-                        { name: "American", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Meal_Categories_Meals_American(self.props.entity, i, s); }) },
-                        { name: "Asian", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Meal_Categories_Meals_Asian(self.props.entity, i, s); }) },
-                        { name: "Mediterranean", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Meal_Categories_Meals_Mediterranean(self.props.entity, i, s); }) }
+                        { name: "American", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Meal_Categorie_Meals_American(self.props.entity, i, s); }) },
+                        { name: "Asian", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Meal_Categorie_Meals_Asian(self.props.entity, i, s); }) },
+                        { name: "Mediterranean", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Meal_Categorie_Meals_Mediterranean(self.props.entity, i, s); }) }
                     ]
                 }))
         :
             null;
 }
-exports.render_add_existing_Breakfast_Categories_Meal = render_add_existing_Breakfast_Categories_Meal;
-function render_add_existing_Breakfast_Meal_Recipes(self) {
+exports.render_add_existing_Breakfast_Categorie_Meal = render_add_existing_Breakfast_Categorie_Meal;
+function render_add_existing_Breakfast_Meal_Recipe(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
-        React.createElement("div", { className: "button__actions" }, state.add_step_Recipes != "open" ?
-            React.createElement(Buttons.Add, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "open" })), target_name: "Recipes" })
+        React.createElement("div", { className: "button__actions" }, state.add_step_Recipe != "open" ?
+            React.createElement(Buttons.Add, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "open" })), target_name: "Recipe" })
             :
                 React.createElement(List.AddToRelation, {
-                    relation_name: "breakfast_meal_recipes",
+                    relation_name: "breakfast_meal_recipe",
                     source_name: "Meal",
-                    target_name: "Recipes",
-                    target_plural: "Recipess",
+                    target_name: "Recipe",
+                    target_plural: "Recipes",
                     page_size: 25,
                     render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
-                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "saving" }), () => Api.link_Meal_Meal_Recipess(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "closed" }), () => load_relation_Breakfast_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
-                        React.createElement("div", { className: "group__title", disabled: true }, RecipesViews.Recipes(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Recipes"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
-                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "closed" })),
+                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "saving" }), () => Api.link_Meal_Meal_Recipes(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" }), () => load_relation_Breakfast_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
+                        React.createElement("div", { className: "group__title", disabled: true }, RecipeViews.Recipe(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Recipe"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
+                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" })),
                     get_items: [
-                        { name: "Recipes", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Meal_Meal_Recipess(self.props.entity, i, s); }) },
+                        { name: "Recipe", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Meal_Meal_Recipes(self.props.entity, i, s); }) },
                     ]
                 }))
         :
             null;
 }
-exports.render_add_existing_Breakfast_Meal_Recipes = render_add_existing_Breakfast_Meal_Recipes;
-function render_new_Breakfast_Categories_Meal(self) {
+exports.render_add_existing_Breakfast_Meal_Recipe = render_add_existing_Breakfast_Meal_Recipe;
+function render_new_Breakfast_Categorie_Meal(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
         React.createElement("div", { className: "button__actions" },
-            React.createElement(Buttons.Create, { target_name: "Categories", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "creating" })) }),
-            state.add_step_Categories != "creating" ?
+            React.createElement(Buttons.Create, { target_name: "Categorie", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "creating" })) }),
+            state.add_step_Categorie != "creating" ?
                 null
                 :
                     React.createElement("div", { className: "overlay__item overlay__item--new" },
                         React.createElement("div", { className: "new-american" },
-                            React.createElement("button", { disabled: state.Categories == "loading" ? true : state.Categories.TotalCount >= 1, className: "new-american button button--new", onClick: () => Api.create_linked_Meal_Categories_Meals_American(self.props.entity).then(e => {
+                            React.createElement("button", { disabled: state.Categorie == "loading" ? true : state.Categorie.TotalCount >= 1, className: "new-american button button--new", onClick: () => Api.create_linked_Meal_Categorie_Meals_American(self.props.entity).then(e => {
                                     e.length > 0 &&
-                                        Api.update_American(Object.assign({}, e[0], { Kind: "American", Description: "" })).then(() => load_relation_Breakfast_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "closed" }))));
+                                        Api.update_American(Object.assign({}, e[0], { Kind: "American", Description: "" })).then(() => load_relation_Breakfast_Categorie_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" }))));
                                 }) }, i18next.t('Create new American'))),
                         React.createElement("div", { className: "new-asian" },
-                            React.createElement("button", { disabled: state.Categories == "loading" ? true : state.Categories.TotalCount >= 1, className: "new-asian button button--new", onClick: () => Api.create_linked_Meal_Categories_Meals_Asian(self.props.entity).then(e => {
+                            React.createElement("button", { disabled: state.Categorie == "loading" ? true : state.Categorie.TotalCount >= 1, className: "new-asian button button--new", onClick: () => Api.create_linked_Meal_Categorie_Meals_Asian(self.props.entity).then(e => {
                                     e.length > 0 &&
-                                        Api.update_Asian(Object.assign({}, e[0], { Kind: "Asian", Description: "" })).then(() => load_relation_Breakfast_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "closed" }))));
+                                        Api.update_Asian(Object.assign({}, e[0], { Kind: "Asian", Description: "" })).then(() => load_relation_Breakfast_Categorie_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" }))));
                                 }) }, i18next.t('Create new Asian'))),
                         React.createElement("div", { className: "new-mediterranean" },
-                            React.createElement("button", { disabled: state.Categories == "loading" ? true : state.Categories.TotalCount >= 1, className: "new-mediterranean button button--new", onClick: () => Api.create_linked_Meal_Categories_Meals_Mediterranean(self.props.entity).then(e => {
+                            React.createElement("button", { disabled: state.Categorie == "loading" ? true : state.Categorie.TotalCount >= 1, className: "new-mediterranean button button--new", onClick: () => Api.create_linked_Meal_Categorie_Meals_Mediterranean(self.props.entity).then(e => {
                                     e.length > 0 &&
-                                        Api.update_Mediterranean(Object.assign({}, e[0], { Kind: "Mediterranean", Description: "" })).then(() => load_relation_Breakfast_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "closed" }))));
+                                        Api.update_Mediterranean(Object.assign({}, e[0], { Kind: "Mediterranean", Description: "" })).then(() => load_relation_Breakfast_Categorie_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" }))));
                                 }) }, i18next.t('Create new Mediterranean'))),
-                        React.createElement(Buttons.Cancel, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "closed" })) })))
+                        React.createElement(Buttons.Cancel, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" })) })))
         :
             null;
 }
-exports.render_new_Breakfast_Categories_Meal = render_new_Breakfast_Categories_Meal;
-function render_new_Breakfast_Meal_Recipes(self) {
+exports.render_new_Breakfast_Categorie_Meal = render_new_Breakfast_Categorie_Meal;
+function render_new_Breakfast_Meal_Recipe(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
         React.createElement("div", { className: "button__actions" },
-            React.createElement("div", { className: "new-recipes" },
-                React.createElement("button", { className: "new-recipes button button--new", onClick: () => Api.create_linked_Meal_Meal_Recipess_Recipes(self.props.entity).then(e => {
+            React.createElement("div", { className: "new-recipe" },
+                React.createElement("button", { className: "new-recipe button button--new", onClick: () => Api.create_linked_Meal_Meal_Recipes_Recipe(self.props.entity).then(e => {
                         e.length > 0 &&
-                            Api.update_Recipes(Object.assign({}, e[0], { Picture: "", Name: "", Ingredients: "", Description: "", PreparationTime: 0 })).then(() => load_relation_Breakfast_Meal_Recipes(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "closed" }))));
-                    }) }, i18next.t('Create new Recipes'))))
+                            Api.update_Recipe(Object.assign({}, e[0], { Picture: "", Name: "", Ingredients: "", Description: "", PreparationTime: 0 })).then(() => load_relation_Breakfast_Meal_Recipe(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" }))));
+                    }) }, i18next.t('Create new Recipe'))))
         :
             null;
 }
-exports.render_new_Breakfast_Meal_Recipes = render_new_Breakfast_Meal_Recipes;
+exports.render_new_Breakfast_Meal_Recipe = render_new_Breakfast_Meal_Recipe;
 function render_saving_animations_Breakfast(self) {
-    return self.state().dirty_Categories.count() > 0 ?
+    return self.state().dirty_Categorie.count() > 0 ?
         React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" }) :
-        self.state().dirty_Recipes.count() > 0 ?
+        self.state().dirty_Recipe.count() > 0 ?
             React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" })
             : React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "cornflowerblue" }, className: "saved" });
 }
@@ -33016,7 +33090,7 @@ class BreakfastComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.thread = null;
-        this.state = { update_count: 0, add_step_Categories: "closed", dirty_Categories: Immutable.Map(), Categories: "loading", add_step_Recipes: "closed", dirty_Recipes: Immutable.Map(), Recipes: "loading" };
+        this.state = { update_count: 0, add_step_Categorie: "closed", dirty_Categorie: Immutable.Map(), Categorie: "loading", add_step_Recipe: "closed", dirty_Recipe: Immutable.Map(), Recipe: "loading" };
     }
     get_self() {
         return { state: () => this.state, props: this.props, setState: (ns, c) => this.setState(ns, c) };
@@ -33041,13 +33115,13 @@ class BreakfastComponent extends React.Component {
             load_relations_Breakfast(this.get_self(), this.props.current_User, this.props.current_Admin);
         }
         this.thread = setInterval(() => {
-            if (this.state.dirty_Categories.count() > 0) {
-                let first = this.state.dirty_Categories.first();
-                this.setState(Object.assign({}, this.state, { dirty_Categories: this.state.dirty_Categories.remove(first.Id) }), () => Api.update_Categories(first));
+            if (this.state.dirty_Categorie.count() > 0) {
+                let first = this.state.dirty_Categorie.first();
+                this.setState(Object.assign({}, this.state, { dirty_Categorie: this.state.dirty_Categorie.remove(first.Id) }), () => Api.update_Categorie(first));
             }
-            else if (this.state.dirty_Recipes.count() > 0) {
-                let first = this.state.dirty_Recipes.first();
-                this.setState(Object.assign({}, this.state, { dirty_Recipes: this.state.dirty_Recipes.remove(first.Id) }), () => Api.update_Recipes(first));
+            else if (this.state.dirty_Recipe.count() > 0) {
+                let first = this.state.dirty_Recipe.first();
+                this.setState(Object.assign({}, this.state, { dirty_Recipe: this.state.dirty_Recipe.remove(first.Id) }), () => Api.update_Recipe(first));
             }
         }, 500);
     }
@@ -33080,7 +33154,7 @@ class BreakfastComponent extends React.Component {
 exports.BreakfastComponent = BreakfastComponent;
 exports.Breakfast = (props) => React.createElement(BreakfastComponent, Object.assign({}, props));
 exports.Breakfast_to_page = (id) => {
-    let can_edit = Utils.any_of([Permissions.can_edit_Breakfast, Permissions.can_edit_Categories_Meal, Permissions.can_edit_Meal_Recipes, Permissions.can_edit_Categories, Permissions.can_edit_Recipes]);
+    let can_edit = Utils.any_of([Permissions.can_edit_Breakfast, Permissions.can_edit_Categorie_Meal, Permissions.can_edit_Meal_Recipe, Permissions.can_edit_Categorie, Permissions.can_edit_Recipe]);
     return Utils.scene_to_page(can_edit, exports.Breakfast, Api.get_Breakfast(id), Api.update_Breakfast, "Breakfast", "Breakfast", `/Breakfasts/${id}`);
 };
 exports.Breakfast_to = (id, target_element_id, current_User, current_Admin) => {
@@ -33107,126 +33181,126 @@ const React = __webpack_require__(14);
 const Immutable = __webpack_require__(33);
 const Api = __webpack_require__(22);
 const List = __webpack_require__(46);
-const Components = __webpack_require__(45);
-const Buttons = __webpack_require__(39);
+const Components = __webpack_require__(39);
+const Buttons = __webpack_require__(40);
 const Permissions = __webpack_require__(27);
 const Utils = __webpack_require__(23);
 const i18next = __webpack_require__(21);
-const HomePageViews = __webpack_require__(40);
-const CategoriesViews = __webpack_require__(89);
-const RecipesViews = __webpack_require__(65);
-function Dinner_Categories_Meal_can_create(self) {
+const HomePageViews = __webpack_require__(41);
+const CategorieViews = __webpack_require__(89);
+const RecipeViews = __webpack_require__(65);
+function Dinner_Categorie_Meal_can_create(self) {
     let state = self.state();
-    return state.Categories == "loading" ? false : state.Categories.CanCreate;
+    return state.Categorie == "loading" ? false : state.Categorie.CanCreate;
 }
-exports.Dinner_Categories_Meal_can_create = Dinner_Categories_Meal_can_create;
-function Dinner_Meal_Recipes_can_create(self) {
+exports.Dinner_Categorie_Meal_can_create = Dinner_Categorie_Meal_can_create;
+function Dinner_Meal_Recipe_can_create(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? false : state.Recipes.CanCreate;
+    return state.Recipe == "loading" ? false : state.Recipe.CanCreate;
 }
-exports.Dinner_Meal_Recipes_can_create = Dinner_Meal_Recipes_can_create;
-function Dinner_Categories_Meal_can_delete(self) {
+exports.Dinner_Meal_Recipe_can_create = Dinner_Meal_Recipe_can_create;
+function Dinner_Categorie_Meal_can_delete(self) {
     let state = self.state();
-    return state.Categories == "loading" ? false : state.Categories.CanDelete;
+    return state.Categorie == "loading" ? false : state.Categorie.CanDelete;
 }
-exports.Dinner_Categories_Meal_can_delete = Dinner_Categories_Meal_can_delete;
-function Dinner_Meal_Recipes_can_delete(self) {
+exports.Dinner_Categorie_Meal_can_delete = Dinner_Categorie_Meal_can_delete;
+function Dinner_Meal_Recipe_can_delete(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? false : state.Recipes.CanDelete;
+    return state.Recipe == "loading" ? false : state.Recipe.CanDelete;
 }
-exports.Dinner_Meal_Recipes_can_delete = Dinner_Meal_Recipes_can_delete;
-function Dinner_Categories_Meal_page_index(self) {
+exports.Dinner_Meal_Recipe_can_delete = Dinner_Meal_Recipe_can_delete;
+function Dinner_Categorie_Meal_page_index(self) {
     let state = self.state();
-    return state.Categories == "loading" ? 0 : state.Categories.PageIndex;
+    return state.Categorie == "loading" ? 0 : state.Categorie.PageIndex;
 }
-exports.Dinner_Categories_Meal_page_index = Dinner_Categories_Meal_page_index;
-function Dinner_Meal_Recipes_page_index(self) {
+exports.Dinner_Categorie_Meal_page_index = Dinner_Categorie_Meal_page_index;
+function Dinner_Meal_Recipe_page_index(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? 0 : state.Recipes.PageIndex;
+    return state.Recipe == "loading" ? 0 : state.Recipe.PageIndex;
 }
-exports.Dinner_Meal_Recipes_page_index = Dinner_Meal_Recipes_page_index;
-function Dinner_Categories_Meal_page_size(self) {
+exports.Dinner_Meal_Recipe_page_index = Dinner_Meal_Recipe_page_index;
+function Dinner_Categorie_Meal_page_size(self) {
     let state = self.state();
-    return state.Categories == "loading" ? 25 : state.Categories.PageSize;
+    return state.Categorie == "loading" ? 25 : state.Categorie.PageSize;
 }
-exports.Dinner_Categories_Meal_page_size = Dinner_Categories_Meal_page_size;
-function Dinner_Meal_Recipes_page_size(self) {
+exports.Dinner_Categorie_Meal_page_size = Dinner_Categorie_Meal_page_size;
+function Dinner_Meal_Recipe_page_size(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? 25 : state.Recipes.PageSize;
+    return state.Recipe == "loading" ? 25 : state.Recipe.PageSize;
 }
-exports.Dinner_Meal_Recipes_page_size = Dinner_Meal_Recipes_page_size;
-function Dinner_Categories_Meal_search_query(self) {
+exports.Dinner_Meal_Recipe_page_size = Dinner_Meal_Recipe_page_size;
+function Dinner_Categorie_Meal_search_query(self) {
     let state = self.state();
-    return state.Categories == "loading" ? null : state.Categories.SearchQuery;
+    return state.Categorie == "loading" ? null : state.Categorie.SearchQuery;
 }
-exports.Dinner_Categories_Meal_search_query = Dinner_Categories_Meal_search_query;
-function Dinner_Meal_Recipes_search_query(self) {
+exports.Dinner_Categorie_Meal_search_query = Dinner_Categorie_Meal_search_query;
+function Dinner_Meal_Recipe_search_query(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? null : state.Recipes.SearchQuery;
+    return state.Recipe == "loading" ? null : state.Recipe.SearchQuery;
 }
-exports.Dinner_Meal_Recipes_search_query = Dinner_Meal_Recipes_search_query;
-function Dinner_Categories_Meal_num_pages(self) {
+exports.Dinner_Meal_Recipe_search_query = Dinner_Meal_Recipe_search_query;
+function Dinner_Categorie_Meal_num_pages(self) {
     let state = self.state();
-    return state.Categories == "loading" ? 1 : state.Categories.NumPages;
+    return state.Categorie == "loading" ? 1 : state.Categorie.NumPages;
 }
-exports.Dinner_Categories_Meal_num_pages = Dinner_Categories_Meal_num_pages;
-function Dinner_Meal_Recipes_num_pages(self) {
+exports.Dinner_Categorie_Meal_num_pages = Dinner_Categorie_Meal_num_pages;
+function Dinner_Meal_Recipe_num_pages(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? 1 : state.Recipes.NumPages;
+    return state.Recipe == "loading" ? 1 : state.Recipe.NumPages;
 }
-exports.Dinner_Meal_Recipes_num_pages = Dinner_Meal_Recipes_num_pages;
-function load_relation_Dinner_Categories_Meal(self, force_first_page, current_User, current_Admin, callback) {
+exports.Dinner_Meal_Recipe_num_pages = Dinner_Meal_Recipe_num_pages;
+function load_relation_Dinner_Categorie_Meal(self, force_first_page, current_User, current_Admin, callback) {
     let state = self.state();
-    let prelude = force_first_page && state.Categories != "loading" ?
-        (c) => state.Categories != "loading" && self.setState(Object.assign({}, state, { Categories: Object.assign({}, state.Categories, { PageIndex: 0 }) }), c)
+    let prelude = force_first_page && state.Categorie != "loading" ?
+        (c) => state.Categorie != "loading" && self.setState(Object.assign({}, state, { Categorie: Object.assign({}, state.Categorie, { PageIndex: 0 }) }), c)
         :
             (c) => c();
-    Permissions.can_view_Categories(current_User, current_Admin) ?
-        prelude(() => Api.get_Meal_Categories_Meals(self.props.entity, Dinner_Categories_Meal_page_index(self), Dinner_Categories_Meal_page_size(self), Dinner_Categories_Meal_search_query(self)).then(Categoriess => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Categories: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+    Permissions.can_view_Categorie(current_User, current_Admin) ?
+        prelude(() => Api.get_Meal_Categorie_Meals(self.props.entity, Dinner_Categorie_Meal_page_index(self), Dinner_Categorie_Meal_page_size(self), Dinner_Categorie_Meal_search_query(self)).then(Categories => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Categorie: Utils.raw_page_to_paginated_items((i, i_just_created) => {
                 let state = self.state();
                 return {
                     element: i,
-                    size: state.Categories != "loading" ?
-                        (state.Categories.Items.has(i.Id) ?
-                            state.Categories.Items.get(i.Id).size
+                    size: state.Categorie != "loading" ?
+                        (state.Categorie.Items.has(i.Id) ?
+                            state.Categorie.Items.get(i.Id).size
                             :
                                 "preview" /* i_just_created ? "large" : "preview" */)
                         :
                             "preview" /* i_just_created ? "large" : "preview" */,
                     shown_relation: "all"
                 };
-            }, Categoriess) }), callback)))
+            }, Categories) }), callback)))
         :
             prelude(() => callback && callback());
 }
-exports.load_relation_Dinner_Categories_Meal = load_relation_Dinner_Categories_Meal;
-function load_relation_Dinner_Meal_Recipes(self, force_first_page, current_User, current_Admin, callback) {
+exports.load_relation_Dinner_Categorie_Meal = load_relation_Dinner_Categorie_Meal;
+function load_relation_Dinner_Meal_Recipe(self, force_first_page, current_User, current_Admin, callback) {
     let state = self.state();
-    let prelude = force_first_page && state.Recipes != "loading" ?
-        (c) => state.Recipes != "loading" && self.setState(Object.assign({}, state, { Recipes: Object.assign({}, state.Recipes, { PageIndex: 0 }) }), c)
+    let prelude = force_first_page && state.Recipe != "loading" ?
+        (c) => state.Recipe != "loading" && self.setState(Object.assign({}, state, { Recipe: Object.assign({}, state.Recipe, { PageIndex: 0 }) }), c)
         :
             (c) => c();
-    Permissions.can_view_Recipes(current_User, current_Admin) ?
-        prelude(() => Api.get_Meal_Meal_Recipess(self.props.entity, Dinner_Meal_Recipes_page_index(self), Dinner_Meal_Recipes_page_size(self), Dinner_Meal_Recipes_search_query(self)).then(Recipess => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipes: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+    Permissions.can_view_Recipe(current_User, current_Admin) ?
+        prelude(() => Api.get_Meal_Meal_Recipes(self.props.entity, Dinner_Meal_Recipe_page_index(self), Dinner_Meal_Recipe_page_size(self), Dinner_Meal_Recipe_search_query(self)).then(Recipes => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipe: Utils.raw_page_to_paginated_items((i, i_just_created) => {
                 let state = self.state();
                 return {
                     element: i,
-                    size: state.Recipes != "loading" ?
-                        (state.Recipes.Items.has(i.Id) ?
-                            state.Recipes.Items.get(i.Id).size
+                    size: state.Recipe != "loading" ?
+                        (state.Recipe.Items.has(i.Id) ?
+                            state.Recipe.Items.get(i.Id).size
                             :
                                 "preview" /* i_just_created ? "large" : "preview" */)
                         :
                             "preview" /* i_just_created ? "large" : "preview" */,
                     shown_relation: "all"
                 };
-            }, Recipess) }), callback)))
+            }, Recipes) }), callback)))
         :
             prelude(() => callback && callback());
 }
-exports.load_relation_Dinner_Meal_Recipes = load_relation_Dinner_Meal_Recipes;
+exports.load_relation_Dinner_Meal_Recipe = load_relation_Dinner_Meal_Recipe;
 function load_relations_Dinner(self, current_User, current_Admin, callback) {
-    load_relation_Dinner_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_Dinner_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback()));
+    load_relation_Dinner_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_Dinner_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback()));
 }
 exports.load_relations_Dinner = load_relations_Dinner;
 function set_size_Dinner(self, new_size) {
@@ -33280,16 +33354,16 @@ function render_menu_Dinner(self) {
                 React.createElement("div", { className: `menu_entry page_link` },
                     React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
             React.createElement("div", { className: "menu_entries" },
-                !Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipes" ? " active" : ""}` },
+                !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
+                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipe" ? " active" : ""}` },
                         React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipes")));
-                            } }, i18next.t('HomePage_Recipess'))),
-                !Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categories" ? " active" : ""}` },
+                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipe")));
+                            } }, i18next.t('HomePage_Recipes'))),
+                !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
+                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}` },
                         React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categories")));
-                            } }, i18next.t('HomePage_Categoriess'))),
+                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categorie")));
+                            } }, i18next.t('HomePage_Categories'))),
                 React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
 }
 exports.render_menu_Dinner = render_menu_Dinner;
@@ -33299,9 +33373,9 @@ function render_local_menu_Dinner(self) {
         React.createElement("div", { className: "local_menu_entries" },
             React.createElement("div", { className: `local_menu_entry${self.props.shown_relation == "none" ? " local_menu_entry--active" : ""}` },
                 React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('About this Dinner'))),
-            !Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ? null :
-                React.createElement("div", { key: "Meal_Recipes", className: `local_menu_entry${self.props.shown_relation == "Meal_Recipes" ? " local_menu_entry--active" : ""}` },
-                    React.createElement("a", { onClick: () => load_relation_Dinner_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin, () => self.props.set_shown_relation("Meal_Recipes")) }, i18next.t('Meal_Recipess')))));
+            !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { key: "Meal_Recipe", className: `local_menu_entry${self.props.shown_relation == "Meal_Recipe" ? " local_menu_entry--active" : ""}` },
+                    React.createElement("a", { onClick: () => load_relation_Dinner_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin, () => self.props.set_shown_relation("Meal_Recipe")) }, i18next.t('Meal_Recipes')))));
 }
 exports.render_local_menu_Dinner = render_local_menu_Dinner;
 function render_controls_Dinner(self) {
@@ -33382,186 +33456,186 @@ function render_large_Dinner(self) {
         render_relations_Dinner(self)));
 }
 exports.render_large_Dinner = render_large_Dinner;
-function render_Dinner_Categories_Meal(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Categories_Meal") || !Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin))
+function render_Dinner_Categorie_Meal(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Categorie_Meal") || !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin))
         return null;
     let state = self.state();
-    return React.createElement("div", null, List.render_relation("dinner_categories_meal", "Meal", "Categories", "Categoriess", self.props.nesting_depth > 0, false, false, false)(state.Categories != "loading" ?
-        state.Categories.IdsInServerOrder.map(id => state.Categories != "loading" && state.Categories.Items.get(id)) :
-        state.Categories, Dinner_Categories_Meal_page_index(self), Dinner_Categories_Meal_num_pages(self), new_page_index => {
+    return React.createElement("div", null, List.render_relation("dinner_categorie_meal", "Meal", "Categorie", "Categories", self.props.nesting_depth > 0, false, false, false)(state.Categorie != "loading" ?
+        state.Categorie.IdsInServerOrder.map(id => state.Categorie != "loading" && state.Categorie.Items.get(id)) :
+        state.Categorie, Dinner_Categorie_Meal_page_index(self), Dinner_Categorie_Meal_num_pages(self), new_page_index => {
         let state = self.state();
-        state.Categories != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Categories: Object.assign({}, state.Categories, { PageIndex: new_page_index }) }), () => load_relation_Dinner_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin));
+        state.Categorie != "loading" &&
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Categorie: Object.assign({}, state.Categorie, { PageIndex: new_page_index }) }), () => load_relation_Dinner_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin));
     }, (i, _) => {
         let i_id = i.element.Id;
         let state = self.state();
         return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
-                        ${state.Categories != "loading" && state.Categories.JustCreated.has(i_id) && state.Categories.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, CategoriesViews.Categories(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Categories_Meal(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_Categories_Meal(self.props.current_User, self.props.current_Admin)) ?
-                    self.props.mode : "view", is_editable: state.Categories != "loading" && state.Categories.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
+                        ${state.Categorie != "loading" && state.Categorie.JustCreated.has(i_id) && state.Categorie.JustCreated.get(i_id) ? "newly-created" : ""}` },
+            React.createElement("div", { key: i_id }, CategorieViews.Categorie(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Categorie_Meal(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_Categorie_Meal(self.props.current_User, self.props.current_Admin)) ?
+                    self.props.mode : "view", is_editable: state.Categorie != "loading" && state.Categorie.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
                     let state = self.state();
-                    state.Categories != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Categories: Object.assign({}, state.Categories, { Items: state.Categories.Items.set(i_id, Object.assign({}, state.Categories.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
-                }, nested_entity_names: self.props.nested_entity_names.push("Categories"), set_size: (new_size, callback) => {
+                    state.Categorie != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Categorie: Object.assign({}, state.Categorie, { Items: state.Categorie.Items.set(i_id, Object.assign({}, state.Categorie.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
+                }, nested_entity_names: self.props.nested_entity_names.push("Categorie"), set_size: (new_size, callback) => {
                     let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
                     let state = self.state();
-                    state.Categories != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Categories: Object.assign({}, state.Categories, { Items: state.Categories.Items.set(i_id, Object.assign({}, state.Categories.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
+                    state.Categorie != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Categorie: Object.assign({}, state.Categorie, { Items: state.Categorie.Items.set(i_id, Object.assign({}, state.Categorie.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
                 }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
                     let state = self.state();
-                    state.Categories != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { dirty_Categories: state.dirty_Categories.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Categories: Object.assign({}, state.Categories, { Items: state.Categories.Items.set(i_id, Object.assign({}, state.Categories.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, delete: undefined, unlink: !Permissions.can_delete_Categories_Meal(self.props.current_User, self.props.current_Admin) ?
+                    state.Categorie != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { dirty_Categorie: state.dirty_Categorie.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Categorie: Object.assign({}, state.Categorie, { Items: state.Categorie.Items.set(i_id, Object.assign({}, state.Categorie.Items.get(i_id), { element: new_entity })) }) }), callback);
+                }, delete: undefined, unlink: !Permissions.can_delete_Categorie_Meal(self.props.current_User, self.props.current_Admin) ?
                     null
                     :
-                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Categories_Categories_Meals(i.element, self.props.entity).then(() => load_relation_Dinner_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin)) }))));
+                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Categorie_Categorie_Meals(i.element, self.props.entity).then(() => load_relation_Dinner_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin)) }))));
     }, () => React.createElement("div", null,
-        Permissions.can_create_Categories(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin) && Dinner_Categories_Meal_can_create(self) ? render_new_Dinner_Categories_Meal(self) : null,
-        Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin) ? render_add_existing_Dinner_Categories_Meal(self) : null)));
+        Permissions.can_create_Categorie(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin) && Dinner_Categorie_Meal_can_create(self) ? render_new_Dinner_Categorie_Meal(self) : null,
+        Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin) ? render_add_existing_Dinner_Categorie_Meal(self) : null)));
 }
-exports.render_Dinner_Categories_Meal = render_Dinner_Categories_Meal;
-function render_Dinner_Meal_Recipes(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Meal_Recipes") || !Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin))
+exports.render_Dinner_Categorie_Meal = render_Dinner_Categorie_Meal;
+function render_Dinner_Meal_Recipe(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Meal_Recipe") || !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin))
         return null;
     let state = self.state();
-    return React.createElement("div", null, List.render_relation("dinner_meal_recipes", "Meal", "Recipes", "Recipess", self.props.nesting_depth > 0, false, false, false)(state.Recipes != "loading" ?
-        state.Recipes.IdsInServerOrder.map(id => state.Recipes != "loading" && state.Recipes.Items.get(id)) :
-        state.Recipes, Dinner_Meal_Recipes_page_index(self), Dinner_Meal_Recipes_num_pages(self), new_page_index => {
+    return React.createElement("div", null, List.render_relation("dinner_meal_recipe", "Meal", "Recipe", "Recipes", self.props.nesting_depth > 0, false, false, false)(state.Recipe != "loading" ?
+        state.Recipe.IdsInServerOrder.map(id => state.Recipe != "loading" && state.Recipe.Items.get(id)) :
+        state.Recipe, Dinner_Meal_Recipe_page_index(self), Dinner_Meal_Recipe_num_pages(self), new_page_index => {
         let state = self.state();
-        state.Recipes != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipes: Object.assign({}, state.Recipes, { PageIndex: new_page_index }) }), () => load_relation_Dinner_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin));
+        state.Recipe != "loading" &&
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipe: Object.assign({}, state.Recipe, { PageIndex: new_page_index }) }), () => load_relation_Dinner_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin));
     }, (i, _) => {
         let i_id = i.element.Id;
         let state = self.state();
         return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
-                        ${state.Recipes != "loading" && state.Recipes.JustCreated.has(i_id) && state.Recipes.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, RecipesViews.Recipes(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Meal_Recipes(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_Meal_Recipes(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_Meal_Recipes(self.props.current_User, self.props.current_Admin)) ?
-                    self.props.mode : "view", is_editable: state.Recipes != "loading" && state.Recipes.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
+                        ${state.Recipe != "loading" && state.Recipe.JustCreated.has(i_id) && state.Recipe.JustCreated.get(i_id) ? "newly-created" : ""}` },
+            React.createElement("div", { key: i_id }, RecipeViews.Recipe(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Meal_Recipe(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_Meal_Recipe(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_Meal_Recipe(self.props.current_User, self.props.current_Admin)) ?
+                    self.props.mode : "view", is_editable: state.Recipe != "loading" && state.Recipe.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
                     let state = self.state();
-                    state.Recipes != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Recipes: Object.assign({}, state.Recipes, { Items: state.Recipes.Items.set(i_id, Object.assign({}, state.Recipes.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
-                }, nested_entity_names: self.props.nested_entity_names.push("Recipes"), set_size: (new_size, callback) => {
+                    state.Recipe != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
+                }, nested_entity_names: self.props.nested_entity_names.push("Recipe"), set_size: (new_size, callback) => {
                     let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
                     let state = self.state();
-                    state.Recipes != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Recipes: Object.assign({}, state.Recipes, { Items: state.Recipes.Items.set(i_id, Object.assign({}, state.Recipes.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
+                    state.Recipe != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
                 }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
                     let state = self.state();
-                    state.Recipes != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { dirty_Recipes: state.dirty_Recipes.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Recipes: Object.assign({}, state.Recipes, { Items: state.Recipes.Items.set(i_id, Object.assign({}, state.Recipes.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, delete: undefined, unlink: !Permissions.can_delete_Meal_Recipes(self.props.current_User, self.props.current_Admin) ?
+                    state.Recipe != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { dirty_Recipe: state.dirty_Recipe.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { element: new_entity })) }) }), callback);
+                }, delete: undefined, unlink: !Permissions.can_delete_Meal_Recipe(self.props.current_User, self.props.current_Admin) ?
                     null
                     :
-                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Meal_Meal_Recipess(self.props.entity, i.element).then(() => load_relation_Dinner_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin)) }))));
+                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Meal_Meal_Recipes(self.props.entity, i.element).then(() => load_relation_Dinner_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin)) }))));
     }, () => React.createElement("div", null,
-        Permissions.can_create_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Meal_Recipes(self.props.current_User, self.props.current_Admin) && Dinner_Meal_Recipes_can_create(self) ? render_new_Dinner_Meal_Recipes(self) : null,
-        Permissions.can_create_Meal_Recipes(self.props.current_User, self.props.current_Admin) ? render_add_existing_Dinner_Meal_Recipes(self) : null)));
+        Permissions.can_create_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Meal_Recipe(self.props.current_User, self.props.current_Admin) && Dinner_Meal_Recipe_can_create(self) ? render_new_Dinner_Meal_Recipe(self) : null,
+        Permissions.can_create_Meal_Recipe(self.props.current_User, self.props.current_Admin) ? render_add_existing_Dinner_Meal_Recipe(self) : null)));
 }
-exports.render_Dinner_Meal_Recipes = render_Dinner_Meal_Recipes;
+exports.render_Dinner_Meal_Recipe = render_Dinner_Meal_Recipe;
 function render_relations_Dinner(self) {
-    return React.createElement("div", { className: "relations" }, render_Dinner_Meal_Recipes(self, "default"));
+    return React.createElement("div", { className: "relations" }, render_Dinner_Meal_Recipe(self, "default"));
 }
 exports.render_relations_Dinner = render_relations_Dinner;
-function render_add_existing_Dinner_Categories_Meal(self) {
+function render_add_existing_Dinner_Categorie_Meal(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
-        React.createElement("div", { className: "button__actions" }, state.add_step_Categories != "open" ?
-            React.createElement(Buttons.Add, { disabled: state.Categories == "loading" ? true : state.Categories.TotalCount >= 1, onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "open" })), target_name: "Categories" })
+        React.createElement("div", { className: "button__actions" }, state.add_step_Categorie != "open" ?
+            React.createElement(Buttons.Add, { disabled: state.Categorie == "loading" ? true : state.Categorie.TotalCount >= 1, onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "open" })), target_name: "Categorie" })
             :
                 React.createElement(List.AddToRelation, {
-                    relation_name: "dinner_categories_meal",
+                    relation_name: "dinner_categorie_meal",
                     source_name: "Meal",
-                    target_name: "Categories",
-                    target_plural: "Categoriess",
+                    target_name: "Categorie",
+                    target_plural: "Categories",
                     page_size: 25,
                     render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
-                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "saving" }), () => Api.link_Meal_Categories_Meals(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Categories: "closed" }), () => load_relation_Dinner_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
-                        React.createElement("div", { className: "group__title", disabled: true }, CategoriesViews.Categories(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Categories"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
-                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "closed" })),
+                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "saving" }), () => Api.link_Meal_Categorie_Meals(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" }), () => load_relation_Dinner_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
+                        React.createElement("div", { className: "group__title", disabled: true }, CategorieViews.Categorie(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Categorie"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
+                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" })),
                     get_items: [
-                        { name: "American", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Meal_Categories_Meals_American(self.props.entity, i, s); }) },
-                        { name: "Asian", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Meal_Categories_Meals_Asian(self.props.entity, i, s); }) },
-                        { name: "Mediterranean", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Meal_Categories_Meals_Mediterranean(self.props.entity, i, s); }) }
+                        { name: "American", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Meal_Categorie_Meals_American(self.props.entity, i, s); }) },
+                        { name: "Asian", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Meal_Categorie_Meals_Asian(self.props.entity, i, s); }) },
+                        { name: "Mediterranean", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Meal_Categorie_Meals_Mediterranean(self.props.entity, i, s); }) }
                     ]
                 }))
         :
             null;
 }
-exports.render_add_existing_Dinner_Categories_Meal = render_add_existing_Dinner_Categories_Meal;
-function render_add_existing_Dinner_Meal_Recipes(self) {
+exports.render_add_existing_Dinner_Categorie_Meal = render_add_existing_Dinner_Categorie_Meal;
+function render_add_existing_Dinner_Meal_Recipe(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
-        React.createElement("div", { className: "button__actions" }, state.add_step_Recipes != "open" ?
-            React.createElement(Buttons.Add, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "open" })), target_name: "Recipes" })
+        React.createElement("div", { className: "button__actions" }, state.add_step_Recipe != "open" ?
+            React.createElement(Buttons.Add, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "open" })), target_name: "Recipe" })
             :
                 React.createElement(List.AddToRelation, {
-                    relation_name: "dinner_meal_recipes",
+                    relation_name: "dinner_meal_recipe",
                     source_name: "Meal",
-                    target_name: "Recipes",
-                    target_plural: "Recipess",
+                    target_name: "Recipe",
+                    target_plural: "Recipes",
                     page_size: 25,
                     render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
-                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "saving" }), () => Api.link_Meal_Meal_Recipess(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "closed" }), () => load_relation_Dinner_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
-                        React.createElement("div", { className: "group__title", disabled: true }, RecipesViews.Recipes(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Recipes"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
-                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "closed" })),
+                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "saving" }), () => Api.link_Meal_Meal_Recipes(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" }), () => load_relation_Dinner_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
+                        React.createElement("div", { className: "group__title", disabled: true }, RecipeViews.Recipe(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Recipe"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
+                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" })),
                     get_items: [
-                        { name: "Recipes", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Meal_Meal_Recipess(self.props.entity, i, s); }) },
+                        { name: "Recipe", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Meal_Meal_Recipes(self.props.entity, i, s); }) },
                     ]
                 }))
         :
             null;
 }
-exports.render_add_existing_Dinner_Meal_Recipes = render_add_existing_Dinner_Meal_Recipes;
-function render_new_Dinner_Categories_Meal(self) {
+exports.render_add_existing_Dinner_Meal_Recipe = render_add_existing_Dinner_Meal_Recipe;
+function render_new_Dinner_Categorie_Meal(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
         React.createElement("div", { className: "button__actions" },
-            React.createElement(Buttons.Create, { target_name: "Categories", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "creating" })) }),
-            state.add_step_Categories != "creating" ?
+            React.createElement(Buttons.Create, { target_name: "Categorie", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "creating" })) }),
+            state.add_step_Categorie != "creating" ?
                 null
                 :
                     React.createElement("div", { className: "overlay__item overlay__item--new" },
                         React.createElement("div", { className: "new-american" },
-                            React.createElement("button", { disabled: state.Categories == "loading" ? true : state.Categories.TotalCount >= 1, className: "new-american button button--new", onClick: () => Api.create_linked_Meal_Categories_Meals_American(self.props.entity).then(e => {
+                            React.createElement("button", { disabled: state.Categorie == "loading" ? true : state.Categorie.TotalCount >= 1, className: "new-american button button--new", onClick: () => Api.create_linked_Meal_Categorie_Meals_American(self.props.entity).then(e => {
                                     e.length > 0 &&
-                                        Api.update_American(Object.assign({}, e[0], { Kind: "American", Description: "" })).then(() => load_relation_Dinner_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "closed" }))));
+                                        Api.update_American(Object.assign({}, e[0], { Kind: "American", Description: "" })).then(() => load_relation_Dinner_Categorie_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" }))));
                                 }) }, i18next.t('Create new American'))),
                         React.createElement("div", { className: "new-asian" },
-                            React.createElement("button", { disabled: state.Categories == "loading" ? true : state.Categories.TotalCount >= 1, className: "new-asian button button--new", onClick: () => Api.create_linked_Meal_Categories_Meals_Asian(self.props.entity).then(e => {
+                            React.createElement("button", { disabled: state.Categorie == "loading" ? true : state.Categorie.TotalCount >= 1, className: "new-asian button button--new", onClick: () => Api.create_linked_Meal_Categorie_Meals_Asian(self.props.entity).then(e => {
                                     e.length > 0 &&
-                                        Api.update_Asian(Object.assign({}, e[0], { Kind: "Asian", Description: "" })).then(() => load_relation_Dinner_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "closed" }))));
+                                        Api.update_Asian(Object.assign({}, e[0], { Kind: "Asian", Description: "" })).then(() => load_relation_Dinner_Categorie_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" }))));
                                 }) }, i18next.t('Create new Asian'))),
                         React.createElement("div", { className: "new-mediterranean" },
-                            React.createElement("button", { disabled: state.Categories == "loading" ? true : state.Categories.TotalCount >= 1, className: "new-mediterranean button button--new", onClick: () => Api.create_linked_Meal_Categories_Meals_Mediterranean(self.props.entity).then(e => {
+                            React.createElement("button", { disabled: state.Categorie == "loading" ? true : state.Categorie.TotalCount >= 1, className: "new-mediterranean button button--new", onClick: () => Api.create_linked_Meal_Categorie_Meals_Mediterranean(self.props.entity).then(e => {
                                     e.length > 0 &&
-                                        Api.update_Mediterranean(Object.assign({}, e[0], { Kind: "Mediterranean", Description: "" })).then(() => load_relation_Dinner_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "closed" }))));
+                                        Api.update_Mediterranean(Object.assign({}, e[0], { Kind: "Mediterranean", Description: "" })).then(() => load_relation_Dinner_Categorie_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" }))));
                                 }) }, i18next.t('Create new Mediterranean'))),
-                        React.createElement(Buttons.Cancel, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "closed" })) })))
+                        React.createElement(Buttons.Cancel, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" })) })))
         :
             null;
 }
-exports.render_new_Dinner_Categories_Meal = render_new_Dinner_Categories_Meal;
-function render_new_Dinner_Meal_Recipes(self) {
+exports.render_new_Dinner_Categorie_Meal = render_new_Dinner_Categorie_Meal;
+function render_new_Dinner_Meal_Recipe(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
         React.createElement("div", { className: "button__actions" },
-            React.createElement("div", { className: "new-recipes" },
-                React.createElement("button", { className: "new-recipes button button--new", onClick: () => Api.create_linked_Meal_Meal_Recipess_Recipes(self.props.entity).then(e => {
+            React.createElement("div", { className: "new-recipe" },
+                React.createElement("button", { className: "new-recipe button button--new", onClick: () => Api.create_linked_Meal_Meal_Recipes_Recipe(self.props.entity).then(e => {
                         e.length > 0 &&
-                            Api.update_Recipes(Object.assign({}, e[0], { Picture: "", Name: "", Ingredients: "", Description: "", PreparationTime: 0 })).then(() => load_relation_Dinner_Meal_Recipes(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "closed" }))));
-                    }) }, i18next.t('Create new Recipes'))))
+                            Api.update_Recipe(Object.assign({}, e[0], { Picture: "", Name: "", Ingredients: "", Description: "", PreparationTime: 0 })).then(() => load_relation_Dinner_Meal_Recipe(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" }))));
+                    }) }, i18next.t('Create new Recipe'))))
         :
             null;
 }
-exports.render_new_Dinner_Meal_Recipes = render_new_Dinner_Meal_Recipes;
+exports.render_new_Dinner_Meal_Recipe = render_new_Dinner_Meal_Recipe;
 function render_saving_animations_Dinner(self) {
-    return self.state().dirty_Categories.count() > 0 ?
+    return self.state().dirty_Categorie.count() > 0 ?
         React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" }) :
-        self.state().dirty_Recipes.count() > 0 ?
+        self.state().dirty_Recipe.count() > 0 ?
             React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" })
             : React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "cornflowerblue" }, className: "saved" });
 }
@@ -33570,7 +33644,7 @@ class DinnerComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.thread = null;
-        this.state = { update_count: 0, add_step_Categories: "closed", dirty_Categories: Immutable.Map(), Categories: "loading", add_step_Recipes: "closed", dirty_Recipes: Immutable.Map(), Recipes: "loading" };
+        this.state = { update_count: 0, add_step_Categorie: "closed", dirty_Categorie: Immutable.Map(), Categorie: "loading", add_step_Recipe: "closed", dirty_Recipe: Immutable.Map(), Recipe: "loading" };
     }
     get_self() {
         return { state: () => this.state, props: this.props, setState: (ns, c) => this.setState(ns, c) };
@@ -33595,13 +33669,13 @@ class DinnerComponent extends React.Component {
             load_relations_Dinner(this.get_self(), this.props.current_User, this.props.current_Admin);
         }
         this.thread = setInterval(() => {
-            if (this.state.dirty_Categories.count() > 0) {
-                let first = this.state.dirty_Categories.first();
-                this.setState(Object.assign({}, this.state, { dirty_Categories: this.state.dirty_Categories.remove(first.Id) }), () => Api.update_Categories(first));
+            if (this.state.dirty_Categorie.count() > 0) {
+                let first = this.state.dirty_Categorie.first();
+                this.setState(Object.assign({}, this.state, { dirty_Categorie: this.state.dirty_Categorie.remove(first.Id) }), () => Api.update_Categorie(first));
             }
-            else if (this.state.dirty_Recipes.count() > 0) {
-                let first = this.state.dirty_Recipes.first();
-                this.setState(Object.assign({}, this.state, { dirty_Recipes: this.state.dirty_Recipes.remove(first.Id) }), () => Api.update_Recipes(first));
+            else if (this.state.dirty_Recipe.count() > 0) {
+                let first = this.state.dirty_Recipe.first();
+                this.setState(Object.assign({}, this.state, { dirty_Recipe: this.state.dirty_Recipe.remove(first.Id) }), () => Api.update_Recipe(first));
             }
         }, 500);
     }
@@ -33634,7 +33708,7 @@ class DinnerComponent extends React.Component {
 exports.DinnerComponent = DinnerComponent;
 exports.Dinner = (props) => React.createElement(DinnerComponent, Object.assign({}, props));
 exports.Dinner_to_page = (id) => {
-    let can_edit = Utils.any_of([Permissions.can_edit_Dinner, Permissions.can_edit_Categories_Meal, Permissions.can_edit_Meal_Recipes, Permissions.can_edit_Categories, Permissions.can_edit_Recipes]);
+    let can_edit = Utils.any_of([Permissions.can_edit_Dinner, Permissions.can_edit_Categorie_Meal, Permissions.can_edit_Meal_Recipe, Permissions.can_edit_Categorie, Permissions.can_edit_Recipe]);
     return Utils.scene_to_page(can_edit, exports.Dinner, Api.get_Dinner(id), Api.update_Dinner, "Dinner", "Dinner", `/Dinners/${id}`);
 };
 exports.Dinner_to = (id, target_element_id, current_User, current_Admin) => {
@@ -33661,126 +33735,126 @@ const React = __webpack_require__(14);
 const Immutable = __webpack_require__(33);
 const Api = __webpack_require__(22);
 const List = __webpack_require__(46);
-const Components = __webpack_require__(45);
-const Buttons = __webpack_require__(39);
+const Components = __webpack_require__(39);
+const Buttons = __webpack_require__(40);
 const Permissions = __webpack_require__(27);
 const Utils = __webpack_require__(23);
 const i18next = __webpack_require__(21);
-const HomePageViews = __webpack_require__(40);
-const CategoriesViews = __webpack_require__(89);
-const RecipesViews = __webpack_require__(65);
-function Lunch_Categories_Meal_can_create(self) {
+const HomePageViews = __webpack_require__(41);
+const CategorieViews = __webpack_require__(89);
+const RecipeViews = __webpack_require__(65);
+function Lunch_Categorie_Meal_can_create(self) {
     let state = self.state();
-    return state.Categories == "loading" ? false : state.Categories.CanCreate;
+    return state.Categorie == "loading" ? false : state.Categorie.CanCreate;
 }
-exports.Lunch_Categories_Meal_can_create = Lunch_Categories_Meal_can_create;
-function Lunch_Meal_Recipes_can_create(self) {
+exports.Lunch_Categorie_Meal_can_create = Lunch_Categorie_Meal_can_create;
+function Lunch_Meal_Recipe_can_create(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? false : state.Recipes.CanCreate;
+    return state.Recipe == "loading" ? false : state.Recipe.CanCreate;
 }
-exports.Lunch_Meal_Recipes_can_create = Lunch_Meal_Recipes_can_create;
-function Lunch_Categories_Meal_can_delete(self) {
+exports.Lunch_Meal_Recipe_can_create = Lunch_Meal_Recipe_can_create;
+function Lunch_Categorie_Meal_can_delete(self) {
     let state = self.state();
-    return state.Categories == "loading" ? false : state.Categories.CanDelete;
+    return state.Categorie == "loading" ? false : state.Categorie.CanDelete;
 }
-exports.Lunch_Categories_Meal_can_delete = Lunch_Categories_Meal_can_delete;
-function Lunch_Meal_Recipes_can_delete(self) {
+exports.Lunch_Categorie_Meal_can_delete = Lunch_Categorie_Meal_can_delete;
+function Lunch_Meal_Recipe_can_delete(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? false : state.Recipes.CanDelete;
+    return state.Recipe == "loading" ? false : state.Recipe.CanDelete;
 }
-exports.Lunch_Meal_Recipes_can_delete = Lunch_Meal_Recipes_can_delete;
-function Lunch_Categories_Meal_page_index(self) {
+exports.Lunch_Meal_Recipe_can_delete = Lunch_Meal_Recipe_can_delete;
+function Lunch_Categorie_Meal_page_index(self) {
     let state = self.state();
-    return state.Categories == "loading" ? 0 : state.Categories.PageIndex;
+    return state.Categorie == "loading" ? 0 : state.Categorie.PageIndex;
 }
-exports.Lunch_Categories_Meal_page_index = Lunch_Categories_Meal_page_index;
-function Lunch_Meal_Recipes_page_index(self) {
+exports.Lunch_Categorie_Meal_page_index = Lunch_Categorie_Meal_page_index;
+function Lunch_Meal_Recipe_page_index(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? 0 : state.Recipes.PageIndex;
+    return state.Recipe == "loading" ? 0 : state.Recipe.PageIndex;
 }
-exports.Lunch_Meal_Recipes_page_index = Lunch_Meal_Recipes_page_index;
-function Lunch_Categories_Meal_page_size(self) {
+exports.Lunch_Meal_Recipe_page_index = Lunch_Meal_Recipe_page_index;
+function Lunch_Categorie_Meal_page_size(self) {
     let state = self.state();
-    return state.Categories == "loading" ? 25 : state.Categories.PageSize;
+    return state.Categorie == "loading" ? 25 : state.Categorie.PageSize;
 }
-exports.Lunch_Categories_Meal_page_size = Lunch_Categories_Meal_page_size;
-function Lunch_Meal_Recipes_page_size(self) {
+exports.Lunch_Categorie_Meal_page_size = Lunch_Categorie_Meal_page_size;
+function Lunch_Meal_Recipe_page_size(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? 25 : state.Recipes.PageSize;
+    return state.Recipe == "loading" ? 25 : state.Recipe.PageSize;
 }
-exports.Lunch_Meal_Recipes_page_size = Lunch_Meal_Recipes_page_size;
-function Lunch_Categories_Meal_search_query(self) {
+exports.Lunch_Meal_Recipe_page_size = Lunch_Meal_Recipe_page_size;
+function Lunch_Categorie_Meal_search_query(self) {
     let state = self.state();
-    return state.Categories == "loading" ? null : state.Categories.SearchQuery;
+    return state.Categorie == "loading" ? null : state.Categorie.SearchQuery;
 }
-exports.Lunch_Categories_Meal_search_query = Lunch_Categories_Meal_search_query;
-function Lunch_Meal_Recipes_search_query(self) {
+exports.Lunch_Categorie_Meal_search_query = Lunch_Categorie_Meal_search_query;
+function Lunch_Meal_Recipe_search_query(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? null : state.Recipes.SearchQuery;
+    return state.Recipe == "loading" ? null : state.Recipe.SearchQuery;
 }
-exports.Lunch_Meal_Recipes_search_query = Lunch_Meal_Recipes_search_query;
-function Lunch_Categories_Meal_num_pages(self) {
+exports.Lunch_Meal_Recipe_search_query = Lunch_Meal_Recipe_search_query;
+function Lunch_Categorie_Meal_num_pages(self) {
     let state = self.state();
-    return state.Categories == "loading" ? 1 : state.Categories.NumPages;
+    return state.Categorie == "loading" ? 1 : state.Categorie.NumPages;
 }
-exports.Lunch_Categories_Meal_num_pages = Lunch_Categories_Meal_num_pages;
-function Lunch_Meal_Recipes_num_pages(self) {
+exports.Lunch_Categorie_Meal_num_pages = Lunch_Categorie_Meal_num_pages;
+function Lunch_Meal_Recipe_num_pages(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? 1 : state.Recipes.NumPages;
+    return state.Recipe == "loading" ? 1 : state.Recipe.NumPages;
 }
-exports.Lunch_Meal_Recipes_num_pages = Lunch_Meal_Recipes_num_pages;
-function load_relation_Lunch_Categories_Meal(self, force_first_page, current_User, current_Admin, callback) {
+exports.Lunch_Meal_Recipe_num_pages = Lunch_Meal_Recipe_num_pages;
+function load_relation_Lunch_Categorie_Meal(self, force_first_page, current_User, current_Admin, callback) {
     let state = self.state();
-    let prelude = force_first_page && state.Categories != "loading" ?
-        (c) => state.Categories != "loading" && self.setState(Object.assign({}, state, { Categories: Object.assign({}, state.Categories, { PageIndex: 0 }) }), c)
+    let prelude = force_first_page && state.Categorie != "loading" ?
+        (c) => state.Categorie != "loading" && self.setState(Object.assign({}, state, { Categorie: Object.assign({}, state.Categorie, { PageIndex: 0 }) }), c)
         :
             (c) => c();
-    Permissions.can_view_Categories(current_User, current_Admin) ?
-        prelude(() => Api.get_Meal_Categories_Meals(self.props.entity, Lunch_Categories_Meal_page_index(self), Lunch_Categories_Meal_page_size(self), Lunch_Categories_Meal_search_query(self)).then(Categoriess => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Categories: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+    Permissions.can_view_Categorie(current_User, current_Admin) ?
+        prelude(() => Api.get_Meal_Categorie_Meals(self.props.entity, Lunch_Categorie_Meal_page_index(self), Lunch_Categorie_Meal_page_size(self), Lunch_Categorie_Meal_search_query(self)).then(Categories => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Categorie: Utils.raw_page_to_paginated_items((i, i_just_created) => {
                 let state = self.state();
                 return {
                     element: i,
-                    size: state.Categories != "loading" ?
-                        (state.Categories.Items.has(i.Id) ?
-                            state.Categories.Items.get(i.Id).size
+                    size: state.Categorie != "loading" ?
+                        (state.Categorie.Items.has(i.Id) ?
+                            state.Categorie.Items.get(i.Id).size
                             :
                                 "preview" /* i_just_created ? "large" : "preview" */)
                         :
                             "preview" /* i_just_created ? "large" : "preview" */,
                     shown_relation: "all"
                 };
-            }, Categoriess) }), callback)))
+            }, Categories) }), callback)))
         :
             prelude(() => callback && callback());
 }
-exports.load_relation_Lunch_Categories_Meal = load_relation_Lunch_Categories_Meal;
-function load_relation_Lunch_Meal_Recipes(self, force_first_page, current_User, current_Admin, callback) {
+exports.load_relation_Lunch_Categorie_Meal = load_relation_Lunch_Categorie_Meal;
+function load_relation_Lunch_Meal_Recipe(self, force_first_page, current_User, current_Admin, callback) {
     let state = self.state();
-    let prelude = force_first_page && state.Recipes != "loading" ?
-        (c) => state.Recipes != "loading" && self.setState(Object.assign({}, state, { Recipes: Object.assign({}, state.Recipes, { PageIndex: 0 }) }), c)
+    let prelude = force_first_page && state.Recipe != "loading" ?
+        (c) => state.Recipe != "loading" && self.setState(Object.assign({}, state, { Recipe: Object.assign({}, state.Recipe, { PageIndex: 0 }) }), c)
         :
             (c) => c();
-    Permissions.can_view_Recipes(current_User, current_Admin) ?
-        prelude(() => Api.get_Meal_Meal_Recipess(self.props.entity, Lunch_Meal_Recipes_page_index(self), Lunch_Meal_Recipes_page_size(self), Lunch_Meal_Recipes_search_query(self)).then(Recipess => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipes: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+    Permissions.can_view_Recipe(current_User, current_Admin) ?
+        prelude(() => Api.get_Meal_Meal_Recipes(self.props.entity, Lunch_Meal_Recipe_page_index(self), Lunch_Meal_Recipe_page_size(self), Lunch_Meal_Recipe_search_query(self)).then(Recipes => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipe: Utils.raw_page_to_paginated_items((i, i_just_created) => {
                 let state = self.state();
                 return {
                     element: i,
-                    size: state.Recipes != "loading" ?
-                        (state.Recipes.Items.has(i.Id) ?
-                            state.Recipes.Items.get(i.Id).size
+                    size: state.Recipe != "loading" ?
+                        (state.Recipe.Items.has(i.Id) ?
+                            state.Recipe.Items.get(i.Id).size
                             :
                                 "preview" /* i_just_created ? "large" : "preview" */)
                         :
                             "preview" /* i_just_created ? "large" : "preview" */,
                     shown_relation: "all"
                 };
-            }, Recipess) }), callback)))
+            }, Recipes) }), callback)))
         :
             prelude(() => callback && callback());
 }
-exports.load_relation_Lunch_Meal_Recipes = load_relation_Lunch_Meal_Recipes;
+exports.load_relation_Lunch_Meal_Recipe = load_relation_Lunch_Meal_Recipe;
 function load_relations_Lunch(self, current_User, current_Admin, callback) {
-    load_relation_Lunch_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_Lunch_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback()));
+    load_relation_Lunch_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_Lunch_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback()));
 }
 exports.load_relations_Lunch = load_relations_Lunch;
 function set_size_Lunch(self, new_size) {
@@ -33834,16 +33908,16 @@ function render_menu_Lunch(self) {
                 React.createElement("div", { className: `menu_entry page_link` },
                     React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
             React.createElement("div", { className: "menu_entries" },
-                !Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipes" ? " active" : ""}` },
+                !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
+                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipe" ? " active" : ""}` },
                         React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipes")));
-                            } }, i18next.t('HomePage_Recipess'))),
-                !Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categories" ? " active" : ""}` },
+                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipe")));
+                            } }, i18next.t('HomePage_Recipes'))),
+                !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
+                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}` },
                         React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categories")));
-                            } }, i18next.t('HomePage_Categoriess'))),
+                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categorie")));
+                            } }, i18next.t('HomePage_Categories'))),
                 React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
 }
 exports.render_menu_Lunch = render_menu_Lunch;
@@ -33853,9 +33927,9 @@ function render_local_menu_Lunch(self) {
         React.createElement("div", { className: "local_menu_entries" },
             React.createElement("div", { className: `local_menu_entry${self.props.shown_relation == "none" ? " local_menu_entry--active" : ""}` },
                 React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('About this Lunch'))),
-            !Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ? null :
-                React.createElement("div", { key: "Meal_Recipes", className: `local_menu_entry${self.props.shown_relation == "Meal_Recipes" ? " local_menu_entry--active" : ""}` },
-                    React.createElement("a", { onClick: () => load_relation_Lunch_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin, () => self.props.set_shown_relation("Meal_Recipes")) }, i18next.t('Meal_Recipess')))));
+            !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { key: "Meal_Recipe", className: `local_menu_entry${self.props.shown_relation == "Meal_Recipe" ? " local_menu_entry--active" : ""}` },
+                    React.createElement("a", { onClick: () => load_relation_Lunch_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin, () => self.props.set_shown_relation("Meal_Recipe")) }, i18next.t('Meal_Recipes')))));
 }
 exports.render_local_menu_Lunch = render_local_menu_Lunch;
 function render_controls_Lunch(self) {
@@ -33936,186 +34010,186 @@ function render_large_Lunch(self) {
         render_relations_Lunch(self)));
 }
 exports.render_large_Lunch = render_large_Lunch;
-function render_Lunch_Categories_Meal(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Categories_Meal") || !Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin))
+function render_Lunch_Categorie_Meal(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Categorie_Meal") || !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin))
         return null;
     let state = self.state();
-    return React.createElement("div", null, List.render_relation("lunch_categories_meal", "Meal", "Categories", "Categoriess", self.props.nesting_depth > 0, false, false, false)(state.Categories != "loading" ?
-        state.Categories.IdsInServerOrder.map(id => state.Categories != "loading" && state.Categories.Items.get(id)) :
-        state.Categories, Lunch_Categories_Meal_page_index(self), Lunch_Categories_Meal_num_pages(self), new_page_index => {
+    return React.createElement("div", null, List.render_relation("lunch_categorie_meal", "Meal", "Categorie", "Categories", self.props.nesting_depth > 0, false, false, false)(state.Categorie != "loading" ?
+        state.Categorie.IdsInServerOrder.map(id => state.Categorie != "loading" && state.Categorie.Items.get(id)) :
+        state.Categorie, Lunch_Categorie_Meal_page_index(self), Lunch_Categorie_Meal_num_pages(self), new_page_index => {
         let state = self.state();
-        state.Categories != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Categories: Object.assign({}, state.Categories, { PageIndex: new_page_index }) }), () => load_relation_Lunch_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin));
+        state.Categorie != "loading" &&
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Categorie: Object.assign({}, state.Categorie, { PageIndex: new_page_index }) }), () => load_relation_Lunch_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin));
     }, (i, _) => {
         let i_id = i.element.Id;
         let state = self.state();
         return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
-                        ${state.Categories != "loading" && state.Categories.JustCreated.has(i_id) && state.Categories.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, CategoriesViews.Categories(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Categories_Meal(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_Categories_Meal(self.props.current_User, self.props.current_Admin)) ?
-                    self.props.mode : "view", is_editable: state.Categories != "loading" && state.Categories.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
+                        ${state.Categorie != "loading" && state.Categorie.JustCreated.has(i_id) && state.Categorie.JustCreated.get(i_id) ? "newly-created" : ""}` },
+            React.createElement("div", { key: i_id }, CategorieViews.Categorie(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Categorie_Meal(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_Categorie_Meal(self.props.current_User, self.props.current_Admin)) ?
+                    self.props.mode : "view", is_editable: state.Categorie != "loading" && state.Categorie.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
                     let state = self.state();
-                    state.Categories != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Categories: Object.assign({}, state.Categories, { Items: state.Categories.Items.set(i_id, Object.assign({}, state.Categories.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
-                }, nested_entity_names: self.props.nested_entity_names.push("Categories"), set_size: (new_size, callback) => {
+                    state.Categorie != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Categorie: Object.assign({}, state.Categorie, { Items: state.Categorie.Items.set(i_id, Object.assign({}, state.Categorie.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
+                }, nested_entity_names: self.props.nested_entity_names.push("Categorie"), set_size: (new_size, callback) => {
                     let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
                     let state = self.state();
-                    state.Categories != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Categories: Object.assign({}, state.Categories, { Items: state.Categories.Items.set(i_id, Object.assign({}, state.Categories.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
+                    state.Categorie != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Categorie: Object.assign({}, state.Categorie, { Items: state.Categorie.Items.set(i_id, Object.assign({}, state.Categorie.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
                 }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
                     let state = self.state();
-                    state.Categories != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { dirty_Categories: state.dirty_Categories.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Categories: Object.assign({}, state.Categories, { Items: state.Categories.Items.set(i_id, Object.assign({}, state.Categories.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, delete: undefined, unlink: !Permissions.can_delete_Categories_Meal(self.props.current_User, self.props.current_Admin) ?
+                    state.Categorie != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { dirty_Categorie: state.dirty_Categorie.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Categorie: Object.assign({}, state.Categorie, { Items: state.Categorie.Items.set(i_id, Object.assign({}, state.Categorie.Items.get(i_id), { element: new_entity })) }) }), callback);
+                }, delete: undefined, unlink: !Permissions.can_delete_Categorie_Meal(self.props.current_User, self.props.current_Admin) ?
                     null
                     :
-                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Categories_Categories_Meals(i.element, self.props.entity).then(() => load_relation_Lunch_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin)) }))));
+                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Categorie_Categorie_Meals(i.element, self.props.entity).then(() => load_relation_Lunch_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin)) }))));
     }, () => React.createElement("div", null,
-        Permissions.can_create_Categories(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin) && Lunch_Categories_Meal_can_create(self) ? render_new_Lunch_Categories_Meal(self) : null,
-        Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin) ? render_add_existing_Lunch_Categories_Meal(self) : null)));
+        Permissions.can_create_Categorie(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin) && Lunch_Categorie_Meal_can_create(self) ? render_new_Lunch_Categorie_Meal(self) : null,
+        Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin) ? render_add_existing_Lunch_Categorie_Meal(self) : null)));
 }
-exports.render_Lunch_Categories_Meal = render_Lunch_Categories_Meal;
-function render_Lunch_Meal_Recipes(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Meal_Recipes") || !Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin))
+exports.render_Lunch_Categorie_Meal = render_Lunch_Categorie_Meal;
+function render_Lunch_Meal_Recipe(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Meal_Recipe") || !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin))
         return null;
     let state = self.state();
-    return React.createElement("div", null, List.render_relation("lunch_meal_recipes", "Meal", "Recipes", "Recipess", self.props.nesting_depth > 0, false, false, false)(state.Recipes != "loading" ?
-        state.Recipes.IdsInServerOrder.map(id => state.Recipes != "loading" && state.Recipes.Items.get(id)) :
-        state.Recipes, Lunch_Meal_Recipes_page_index(self), Lunch_Meal_Recipes_num_pages(self), new_page_index => {
+    return React.createElement("div", null, List.render_relation("lunch_meal_recipe", "Meal", "Recipe", "Recipes", self.props.nesting_depth > 0, false, false, false)(state.Recipe != "loading" ?
+        state.Recipe.IdsInServerOrder.map(id => state.Recipe != "loading" && state.Recipe.Items.get(id)) :
+        state.Recipe, Lunch_Meal_Recipe_page_index(self), Lunch_Meal_Recipe_num_pages(self), new_page_index => {
         let state = self.state();
-        state.Recipes != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipes: Object.assign({}, state.Recipes, { PageIndex: new_page_index }) }), () => load_relation_Lunch_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin));
+        state.Recipe != "loading" &&
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipe: Object.assign({}, state.Recipe, { PageIndex: new_page_index }) }), () => load_relation_Lunch_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin));
     }, (i, _) => {
         let i_id = i.element.Id;
         let state = self.state();
         return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
-                        ${state.Recipes != "loading" && state.Recipes.JustCreated.has(i_id) && state.Recipes.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, RecipesViews.Recipes(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Meal_Recipes(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_Meal_Recipes(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_Meal_Recipes(self.props.current_User, self.props.current_Admin)) ?
-                    self.props.mode : "view", is_editable: state.Recipes != "loading" && state.Recipes.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
+                        ${state.Recipe != "loading" && state.Recipe.JustCreated.has(i_id) && state.Recipe.JustCreated.get(i_id) ? "newly-created" : ""}` },
+            React.createElement("div", { key: i_id }, RecipeViews.Recipe(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Meal_Recipe(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_Meal_Recipe(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_Meal_Recipe(self.props.current_User, self.props.current_Admin)) ?
+                    self.props.mode : "view", is_editable: state.Recipe != "loading" && state.Recipe.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
                     let state = self.state();
-                    state.Recipes != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Recipes: Object.assign({}, state.Recipes, { Items: state.Recipes.Items.set(i_id, Object.assign({}, state.Recipes.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
-                }, nested_entity_names: self.props.nested_entity_names.push("Recipes"), set_size: (new_size, callback) => {
+                    state.Recipe != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
+                }, nested_entity_names: self.props.nested_entity_names.push("Recipe"), set_size: (new_size, callback) => {
                     let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
                     let state = self.state();
-                    state.Recipes != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Recipes: Object.assign({}, state.Recipes, { Items: state.Recipes.Items.set(i_id, Object.assign({}, state.Recipes.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
+                    state.Recipe != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
                 }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
                     let state = self.state();
-                    state.Recipes != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { dirty_Recipes: state.dirty_Recipes.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Recipes: Object.assign({}, state.Recipes, { Items: state.Recipes.Items.set(i_id, Object.assign({}, state.Recipes.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, delete: undefined, unlink: !Permissions.can_delete_Meal_Recipes(self.props.current_User, self.props.current_Admin) ?
+                    state.Recipe != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { dirty_Recipe: state.dirty_Recipe.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { element: new_entity })) }) }), callback);
+                }, delete: undefined, unlink: !Permissions.can_delete_Meal_Recipe(self.props.current_User, self.props.current_Admin) ?
                     null
                     :
-                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Meal_Meal_Recipess(self.props.entity, i.element).then(() => load_relation_Lunch_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin)) }))));
+                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Meal_Meal_Recipes(self.props.entity, i.element).then(() => load_relation_Lunch_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin)) }))));
     }, () => React.createElement("div", null,
-        Permissions.can_create_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Meal_Recipes(self.props.current_User, self.props.current_Admin) && Lunch_Meal_Recipes_can_create(self) ? render_new_Lunch_Meal_Recipes(self) : null,
-        Permissions.can_create_Meal_Recipes(self.props.current_User, self.props.current_Admin) ? render_add_existing_Lunch_Meal_Recipes(self) : null)));
+        Permissions.can_create_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Meal_Recipe(self.props.current_User, self.props.current_Admin) && Lunch_Meal_Recipe_can_create(self) ? render_new_Lunch_Meal_Recipe(self) : null,
+        Permissions.can_create_Meal_Recipe(self.props.current_User, self.props.current_Admin) ? render_add_existing_Lunch_Meal_Recipe(self) : null)));
 }
-exports.render_Lunch_Meal_Recipes = render_Lunch_Meal_Recipes;
+exports.render_Lunch_Meal_Recipe = render_Lunch_Meal_Recipe;
 function render_relations_Lunch(self) {
-    return React.createElement("div", { className: "relations" }, render_Lunch_Meal_Recipes(self, "default"));
+    return React.createElement("div", { className: "relations" }, render_Lunch_Meal_Recipe(self, "default"));
 }
 exports.render_relations_Lunch = render_relations_Lunch;
-function render_add_existing_Lunch_Categories_Meal(self) {
+function render_add_existing_Lunch_Categorie_Meal(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
-        React.createElement("div", { className: "button__actions" }, state.add_step_Categories != "open" ?
-            React.createElement(Buttons.Add, { disabled: state.Categories == "loading" ? true : state.Categories.TotalCount >= 1, onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "open" })), target_name: "Categories" })
+        React.createElement("div", { className: "button__actions" }, state.add_step_Categorie != "open" ?
+            React.createElement(Buttons.Add, { disabled: state.Categorie == "loading" ? true : state.Categorie.TotalCount >= 1, onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "open" })), target_name: "Categorie" })
             :
                 React.createElement(List.AddToRelation, {
-                    relation_name: "lunch_categories_meal",
+                    relation_name: "lunch_categorie_meal",
                     source_name: "Meal",
-                    target_name: "Categories",
-                    target_plural: "Categoriess",
+                    target_name: "Categorie",
+                    target_plural: "Categories",
                     page_size: 25,
                     render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
-                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "saving" }), () => Api.link_Meal_Categories_Meals(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Categories: "closed" }), () => load_relation_Lunch_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
-                        React.createElement("div", { className: "group__title", disabled: true }, CategoriesViews.Categories(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Categories"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
-                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "closed" })),
+                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "saving" }), () => Api.link_Meal_Categorie_Meals(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" }), () => load_relation_Lunch_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
+                        React.createElement("div", { className: "group__title", disabled: true }, CategorieViews.Categorie(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Categorie"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
+                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" })),
                     get_items: [
-                        { name: "American", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Meal_Categories_Meals_American(self.props.entity, i, s); }) },
-                        { name: "Asian", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Meal_Categories_Meals_Asian(self.props.entity, i, s); }) },
-                        { name: "Mediterranean", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Meal_Categories_Meals_Mediterranean(self.props.entity, i, s); }) }
+                        { name: "American", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Meal_Categorie_Meals_American(self.props.entity, i, s); }) },
+                        { name: "Asian", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Meal_Categorie_Meals_Asian(self.props.entity, i, s); }) },
+                        { name: "Mediterranean", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Meal_Categorie_Meals_Mediterranean(self.props.entity, i, s); }) }
                     ]
                 }))
         :
             null;
 }
-exports.render_add_existing_Lunch_Categories_Meal = render_add_existing_Lunch_Categories_Meal;
-function render_add_existing_Lunch_Meal_Recipes(self) {
+exports.render_add_existing_Lunch_Categorie_Meal = render_add_existing_Lunch_Categorie_Meal;
+function render_add_existing_Lunch_Meal_Recipe(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
-        React.createElement("div", { className: "button__actions" }, state.add_step_Recipes != "open" ?
-            React.createElement(Buttons.Add, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "open" })), target_name: "Recipes" })
+        React.createElement("div", { className: "button__actions" }, state.add_step_Recipe != "open" ?
+            React.createElement(Buttons.Add, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "open" })), target_name: "Recipe" })
             :
                 React.createElement(List.AddToRelation, {
-                    relation_name: "lunch_meal_recipes",
+                    relation_name: "lunch_meal_recipe",
                     source_name: "Meal",
-                    target_name: "Recipes",
-                    target_plural: "Recipess",
+                    target_name: "Recipe",
+                    target_plural: "Recipes",
                     page_size: 25,
                     render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
-                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "saving" }), () => Api.link_Meal_Meal_Recipess(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "closed" }), () => load_relation_Lunch_Meal_Recipes(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
-                        React.createElement("div", { className: "group__title", disabled: true }, RecipesViews.Recipes(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Recipes"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
-                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "closed" })),
+                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "saving" }), () => Api.link_Meal_Meal_Recipes(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" }), () => load_relation_Lunch_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
+                        React.createElement("div", { className: "group__title", disabled: true }, RecipeViews.Recipe(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Recipe"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
+                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" })),
                     get_items: [
-                        { name: "Recipes", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Meal_Meal_Recipess(self.props.entity, i, s); }) },
+                        { name: "Recipe", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Meal_Meal_Recipes(self.props.entity, i, s); }) },
                     ]
                 }))
         :
             null;
 }
-exports.render_add_existing_Lunch_Meal_Recipes = render_add_existing_Lunch_Meal_Recipes;
-function render_new_Lunch_Categories_Meal(self) {
+exports.render_add_existing_Lunch_Meal_Recipe = render_add_existing_Lunch_Meal_Recipe;
+function render_new_Lunch_Categorie_Meal(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
         React.createElement("div", { className: "button__actions" },
-            React.createElement(Buttons.Create, { target_name: "Categories", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "creating" })) }),
-            state.add_step_Categories != "creating" ?
+            React.createElement(Buttons.Create, { target_name: "Categorie", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "creating" })) }),
+            state.add_step_Categorie != "creating" ?
                 null
                 :
                     React.createElement("div", { className: "overlay__item overlay__item--new" },
                         React.createElement("div", { className: "new-american" },
-                            React.createElement("button", { disabled: state.Categories == "loading" ? true : state.Categories.TotalCount >= 1, className: "new-american button button--new", onClick: () => Api.create_linked_Meal_Categories_Meals_American(self.props.entity).then(e => {
+                            React.createElement("button", { disabled: state.Categorie == "loading" ? true : state.Categorie.TotalCount >= 1, className: "new-american button button--new", onClick: () => Api.create_linked_Meal_Categorie_Meals_American(self.props.entity).then(e => {
                                     e.length > 0 &&
-                                        Api.update_American(Object.assign({}, e[0], { Kind: "American", Description: "" })).then(() => load_relation_Lunch_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "closed" }))));
+                                        Api.update_American(Object.assign({}, e[0], { Kind: "American", Description: "" })).then(() => load_relation_Lunch_Categorie_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" }))));
                                 }) }, i18next.t('Create new American'))),
                         React.createElement("div", { className: "new-asian" },
-                            React.createElement("button", { disabled: state.Categories == "loading" ? true : state.Categories.TotalCount >= 1, className: "new-asian button button--new", onClick: () => Api.create_linked_Meal_Categories_Meals_Asian(self.props.entity).then(e => {
+                            React.createElement("button", { disabled: state.Categorie == "loading" ? true : state.Categorie.TotalCount >= 1, className: "new-asian button button--new", onClick: () => Api.create_linked_Meal_Categorie_Meals_Asian(self.props.entity).then(e => {
                                     e.length > 0 &&
-                                        Api.update_Asian(Object.assign({}, e[0], { Kind: "Asian", Description: "" })).then(() => load_relation_Lunch_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "closed" }))));
+                                        Api.update_Asian(Object.assign({}, e[0], { Kind: "Asian", Description: "" })).then(() => load_relation_Lunch_Categorie_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" }))));
                                 }) }, i18next.t('Create new Asian'))),
                         React.createElement("div", { className: "new-mediterranean" },
-                            React.createElement("button", { disabled: state.Categories == "loading" ? true : state.Categories.TotalCount >= 1, className: "new-mediterranean button button--new", onClick: () => Api.create_linked_Meal_Categories_Meals_Mediterranean(self.props.entity).then(e => {
+                            React.createElement("button", { disabled: state.Categorie == "loading" ? true : state.Categorie.TotalCount >= 1, className: "new-mediterranean button button--new", onClick: () => Api.create_linked_Meal_Categorie_Meals_Mediterranean(self.props.entity).then(e => {
                                     e.length > 0 &&
-                                        Api.update_Mediterranean(Object.assign({}, e[0], { Kind: "Mediterranean", Description: "" })).then(() => load_relation_Lunch_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "closed" }))));
+                                        Api.update_Mediterranean(Object.assign({}, e[0], { Kind: "Mediterranean", Description: "" })).then(() => load_relation_Lunch_Categorie_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" }))));
                                 }) }, i18next.t('Create new Mediterranean'))),
-                        React.createElement(Buttons.Cancel, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categories: "closed" })) })))
+                        React.createElement(Buttons.Cancel, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" })) })))
         :
             null;
 }
-exports.render_new_Lunch_Categories_Meal = render_new_Lunch_Categories_Meal;
-function render_new_Lunch_Meal_Recipes(self) {
+exports.render_new_Lunch_Categorie_Meal = render_new_Lunch_Categorie_Meal;
+function render_new_Lunch_Meal_Recipe(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
         React.createElement("div", { className: "button__actions" },
-            React.createElement("div", { className: "new-recipes" },
-                React.createElement("button", { className: "new-recipes button button--new", onClick: () => Api.create_linked_Meal_Meal_Recipess_Recipes(self.props.entity).then(e => {
+            React.createElement("div", { className: "new-recipe" },
+                React.createElement("button", { className: "new-recipe button button--new", onClick: () => Api.create_linked_Meal_Meal_Recipes_Recipe(self.props.entity).then(e => {
                         e.length > 0 &&
-                            Api.update_Recipes(Object.assign({}, e[0], { Picture: "", Name: "", Ingredients: "", Description: "", PreparationTime: 0 })).then(() => load_relation_Lunch_Meal_Recipes(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "closed" }))));
-                    }) }, i18next.t('Create new Recipes'))))
+                            Api.update_Recipe(Object.assign({}, e[0], { Picture: "", Name: "", Ingredients: "", Description: "", PreparationTime: 0 })).then(() => load_relation_Lunch_Meal_Recipe(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" }))));
+                    }) }, i18next.t('Create new Recipe'))))
         :
             null;
 }
-exports.render_new_Lunch_Meal_Recipes = render_new_Lunch_Meal_Recipes;
+exports.render_new_Lunch_Meal_Recipe = render_new_Lunch_Meal_Recipe;
 function render_saving_animations_Lunch(self) {
-    return self.state().dirty_Categories.count() > 0 ?
+    return self.state().dirty_Categorie.count() > 0 ?
         React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" }) :
-        self.state().dirty_Recipes.count() > 0 ?
+        self.state().dirty_Recipe.count() > 0 ?
             React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" })
             : React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "cornflowerblue" }, className: "saved" });
 }
@@ -34124,7 +34198,7 @@ class LunchComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.thread = null;
-        this.state = { update_count: 0, add_step_Categories: "closed", dirty_Categories: Immutable.Map(), Categories: "loading", add_step_Recipes: "closed", dirty_Recipes: Immutable.Map(), Recipes: "loading" };
+        this.state = { update_count: 0, add_step_Categorie: "closed", dirty_Categorie: Immutable.Map(), Categorie: "loading", add_step_Recipe: "closed", dirty_Recipe: Immutable.Map(), Recipe: "loading" };
     }
     get_self() {
         return { state: () => this.state, props: this.props, setState: (ns, c) => this.setState(ns, c) };
@@ -34149,13 +34223,13 @@ class LunchComponent extends React.Component {
             load_relations_Lunch(this.get_self(), this.props.current_User, this.props.current_Admin);
         }
         this.thread = setInterval(() => {
-            if (this.state.dirty_Categories.count() > 0) {
-                let first = this.state.dirty_Categories.first();
-                this.setState(Object.assign({}, this.state, { dirty_Categories: this.state.dirty_Categories.remove(first.Id) }), () => Api.update_Categories(first));
+            if (this.state.dirty_Categorie.count() > 0) {
+                let first = this.state.dirty_Categorie.first();
+                this.setState(Object.assign({}, this.state, { dirty_Categorie: this.state.dirty_Categorie.remove(first.Id) }), () => Api.update_Categorie(first));
             }
-            else if (this.state.dirty_Recipes.count() > 0) {
-                let first = this.state.dirty_Recipes.first();
-                this.setState(Object.assign({}, this.state, { dirty_Recipes: this.state.dirty_Recipes.remove(first.Id) }), () => Api.update_Recipes(first));
+            else if (this.state.dirty_Recipe.count() > 0) {
+                let first = this.state.dirty_Recipe.first();
+                this.setState(Object.assign({}, this.state, { dirty_Recipe: this.state.dirty_Recipe.remove(first.Id) }), () => Api.update_Recipe(first));
             }
         }, 500);
     }
@@ -34188,7 +34262,7 @@ class LunchComponent extends React.Component {
 exports.LunchComponent = LunchComponent;
 exports.Lunch = (props) => React.createElement(LunchComponent, Object.assign({}, props));
 exports.Lunch_to_page = (id) => {
-    let can_edit = Utils.any_of([Permissions.can_edit_Lunch, Permissions.can_edit_Categories_Meal, Permissions.can_edit_Meal_Recipes, Permissions.can_edit_Categories, Permissions.can_edit_Recipes]);
+    let can_edit = Utils.any_of([Permissions.can_edit_Lunch, Permissions.can_edit_Categorie_Meal, Permissions.can_edit_Meal_Recipe, Permissions.can_edit_Categorie, Permissions.can_edit_Recipe]);
     return Utils.scene_to_page(can_edit, exports.Lunch, Api.get_Lunch(id), Api.update_Lunch, "Lunch", "Lunch", `/Lunches/${id}`);
 };
 exports.Lunch_to = (id, target_element_id, current_User, current_Admin) => {
@@ -34215,81 +34289,81 @@ const React = __webpack_require__(14);
 const Immutable = __webpack_require__(33);
 const Api = __webpack_require__(22);
 const List = __webpack_require__(46);
-const Components = __webpack_require__(45);
-const Buttons = __webpack_require__(39);
+const Components = __webpack_require__(39);
+const Buttons = __webpack_require__(40);
 const Permissions = __webpack_require__(27);
 const Utils = __webpack_require__(23);
 const i18next = __webpack_require__(21);
-const HomePageViews = __webpack_require__(40);
+const HomePageViews = __webpack_require__(41);
 const MealViews = __webpack_require__(90);
-function Mediterranean_Categories_Meal_can_create(self) {
+function Mediterranean_Categorie_Meal_can_create(self) {
     let state = self.state();
     return state.Meal == "loading" ? false : state.Meal.CanCreate;
 }
-exports.Mediterranean_Categories_Meal_can_create = Mediterranean_Categories_Meal_can_create;
-function Mediterranean_HomePage_Categories_can_create(self) {
+exports.Mediterranean_Categorie_Meal_can_create = Mediterranean_Categorie_Meal_can_create;
+function Mediterranean_HomePage_Categorie_can_create(self) {
     let state = self.state();
     return state.HomePage == "loading" ? false : state.HomePage.CanCreate;
 }
-exports.Mediterranean_HomePage_Categories_can_create = Mediterranean_HomePage_Categories_can_create;
-function Mediterranean_Categories_Meal_can_delete(self) {
+exports.Mediterranean_HomePage_Categorie_can_create = Mediterranean_HomePage_Categorie_can_create;
+function Mediterranean_Categorie_Meal_can_delete(self) {
     let state = self.state();
     return state.Meal == "loading" ? false : state.Meal.CanDelete;
 }
-exports.Mediterranean_Categories_Meal_can_delete = Mediterranean_Categories_Meal_can_delete;
-function Mediterranean_HomePage_Categories_can_delete(self) {
+exports.Mediterranean_Categorie_Meal_can_delete = Mediterranean_Categorie_Meal_can_delete;
+function Mediterranean_HomePage_Categorie_can_delete(self) {
     let state = self.state();
     return state.HomePage == "loading" ? false : state.HomePage.CanDelete;
 }
-exports.Mediterranean_HomePage_Categories_can_delete = Mediterranean_HomePage_Categories_can_delete;
-function Mediterranean_Categories_Meal_page_index(self) {
+exports.Mediterranean_HomePage_Categorie_can_delete = Mediterranean_HomePage_Categorie_can_delete;
+function Mediterranean_Categorie_Meal_page_index(self) {
     let state = self.state();
     return state.Meal == "loading" ? 0 : state.Meal.PageIndex;
 }
-exports.Mediterranean_Categories_Meal_page_index = Mediterranean_Categories_Meal_page_index;
-function Mediterranean_HomePage_Categories_page_index(self) {
+exports.Mediterranean_Categorie_Meal_page_index = Mediterranean_Categorie_Meal_page_index;
+function Mediterranean_HomePage_Categorie_page_index(self) {
     let state = self.state();
     return state.HomePage == "loading" ? 0 : state.HomePage.PageIndex;
 }
-exports.Mediterranean_HomePage_Categories_page_index = Mediterranean_HomePage_Categories_page_index;
-function Mediterranean_Categories_Meal_page_size(self) {
+exports.Mediterranean_HomePage_Categorie_page_index = Mediterranean_HomePage_Categorie_page_index;
+function Mediterranean_Categorie_Meal_page_size(self) {
     let state = self.state();
     return state.Meal == "loading" ? 25 : state.Meal.PageSize;
 }
-exports.Mediterranean_Categories_Meal_page_size = Mediterranean_Categories_Meal_page_size;
-function Mediterranean_HomePage_Categories_page_size(self) {
+exports.Mediterranean_Categorie_Meal_page_size = Mediterranean_Categorie_Meal_page_size;
+function Mediterranean_HomePage_Categorie_page_size(self) {
     let state = self.state();
     return state.HomePage == "loading" ? 25 : state.HomePage.PageSize;
 }
-exports.Mediterranean_HomePage_Categories_page_size = Mediterranean_HomePage_Categories_page_size;
-function Mediterranean_Categories_Meal_search_query(self) {
+exports.Mediterranean_HomePage_Categorie_page_size = Mediterranean_HomePage_Categorie_page_size;
+function Mediterranean_Categorie_Meal_search_query(self) {
     let state = self.state();
     return state.Meal == "loading" ? null : state.Meal.SearchQuery;
 }
-exports.Mediterranean_Categories_Meal_search_query = Mediterranean_Categories_Meal_search_query;
-function Mediterranean_HomePage_Categories_search_query(self) {
+exports.Mediterranean_Categorie_Meal_search_query = Mediterranean_Categorie_Meal_search_query;
+function Mediterranean_HomePage_Categorie_search_query(self) {
     let state = self.state();
     return state.HomePage == "loading" ? null : state.HomePage.SearchQuery;
 }
-exports.Mediterranean_HomePage_Categories_search_query = Mediterranean_HomePage_Categories_search_query;
-function Mediterranean_Categories_Meal_num_pages(self) {
+exports.Mediterranean_HomePage_Categorie_search_query = Mediterranean_HomePage_Categorie_search_query;
+function Mediterranean_Categorie_Meal_num_pages(self) {
     let state = self.state();
     return state.Meal == "loading" ? 1 : state.Meal.NumPages;
 }
-exports.Mediterranean_Categories_Meal_num_pages = Mediterranean_Categories_Meal_num_pages;
-function Mediterranean_HomePage_Categories_num_pages(self) {
+exports.Mediterranean_Categorie_Meal_num_pages = Mediterranean_Categorie_Meal_num_pages;
+function Mediterranean_HomePage_Categorie_num_pages(self) {
     let state = self.state();
     return state.HomePage == "loading" ? 1 : state.HomePage.NumPages;
 }
-exports.Mediterranean_HomePage_Categories_num_pages = Mediterranean_HomePage_Categories_num_pages;
-function load_relation_Mediterranean_Categories_Meal(self, force_first_page, current_User, current_Admin, callback) {
+exports.Mediterranean_HomePage_Categorie_num_pages = Mediterranean_HomePage_Categorie_num_pages;
+function load_relation_Mediterranean_Categorie_Meal(self, force_first_page, current_User, current_Admin, callback) {
     let state = self.state();
     let prelude = force_first_page && state.Meal != "loading" ?
         (c) => state.Meal != "loading" && self.setState(Object.assign({}, state, { Meal: Object.assign({}, state.Meal, { PageIndex: 0 }) }), c)
         :
             (c) => c();
     Permissions.can_view_Meal(current_User, current_Admin) ?
-        prelude(() => Api.get_Categories_Categories_Meals(self.props.entity, Mediterranean_Categories_Meal_page_index(self), Mediterranean_Categories_Meal_page_size(self), Mediterranean_Categories_Meal_search_query(self)).then(Meals => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Meal: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+        prelude(() => Api.get_Categorie_Categorie_Meals(self.props.entity, Mediterranean_Categorie_Meal_page_index(self), Mediterranean_Categorie_Meal_page_size(self), Mediterranean_Categorie_Meal_search_query(self)).then(Meals => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Meal: Utils.raw_page_to_paginated_items((i, i_just_created) => {
                 let state = self.state();
                 return {
                     element: i,
@@ -34306,15 +34380,15 @@ function load_relation_Mediterranean_Categories_Meal(self, force_first_page, cur
         :
             prelude(() => callback && callback());
 }
-exports.load_relation_Mediterranean_Categories_Meal = load_relation_Mediterranean_Categories_Meal;
-function load_relation_Mediterranean_HomePage_Categories(self, force_first_page, current_User, current_Admin, callback) {
+exports.load_relation_Mediterranean_Categorie_Meal = load_relation_Mediterranean_Categorie_Meal;
+function load_relation_Mediterranean_HomePage_Categorie(self, force_first_page, current_User, current_Admin, callback) {
     let state = self.state();
     let prelude = force_first_page && state.HomePage != "loading" ?
         (c) => state.HomePage != "loading" && self.setState(Object.assign({}, state, { HomePage: Object.assign({}, state.HomePage, { PageIndex: 0 }) }), c)
         :
             (c) => c();
     Permissions.can_view_HomePage(current_User, current_Admin) ?
-        prelude(() => Api.get_Categories_HomePage_Categoriess(self.props.entity, Mediterranean_HomePage_Categories_page_index(self), Mediterranean_HomePage_Categories_page_size(self), Mediterranean_HomePage_Categories_search_query(self)).then(HomePages => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, HomePage: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+        prelude(() => Api.get_Categorie_HomePage_Categories(self.props.entity, Mediterranean_HomePage_Categorie_page_index(self), Mediterranean_HomePage_Categorie_page_size(self), Mediterranean_HomePage_Categorie_search_query(self)).then(HomePages => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, HomePage: Utils.raw_page_to_paginated_items((i, i_just_created) => {
                 let state = self.state();
                 return {
                     element: i,
@@ -34331,9 +34405,9 @@ function load_relation_Mediterranean_HomePage_Categories(self, force_first_page,
         :
             prelude(() => callback && callback());
 }
-exports.load_relation_Mediterranean_HomePage_Categories = load_relation_Mediterranean_HomePage_Categories;
+exports.load_relation_Mediterranean_HomePage_Categorie = load_relation_Mediterranean_HomePage_Categorie;
 function load_relations_Mediterranean(self, current_User, current_Admin, callback) {
-    load_relation_Mediterranean_HomePage_Categories(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_Mediterranean_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback()));
+    load_relation_Mediterranean_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_Mediterranean_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback()));
 }
 exports.load_relations_Mediterranean = load_relations_Mediterranean;
 function set_size_Mediterranean(self, new_size) {
@@ -34387,16 +34461,16 @@ function render_menu_Mediterranean(self) {
                 React.createElement("div", { className: `menu_entry page_link` },
                     React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
             React.createElement("div", { className: "menu_entries" },
-                !Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipes" ? " active" : ""}` },
+                !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
+                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipe" ? " active" : ""}` },
                         React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipes")));
-                            } }, i18next.t('HomePage_Recipess'))),
-                !Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categories" ? " active" : ""}` },
+                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipe")));
+                            } }, i18next.t('HomePage_Recipes'))),
+                !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
+                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}` },
                         React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categories")));
-                            } }, i18next.t('HomePage_Categoriess'))),
+                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categorie")));
+                            } }, i18next.t('HomePage_Categories'))),
                 React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
 }
 exports.render_menu_Mediterranean = render_menu_Mediterranean;
@@ -34407,8 +34481,8 @@ function render_local_menu_Mediterranean(self) {
             React.createElement("div", { className: `local_menu_entry${self.props.shown_relation == "none" ? " local_menu_entry--active" : ""}` },
                 React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('About this Mediterranean'))),
             !Permissions.can_view_Meal(self.props.current_User, self.props.current_Admin) ? null :
-                React.createElement("div", { key: "Categories_Meal", className: `local_menu_entry${self.props.shown_relation == "Categories_Meal" ? " local_menu_entry--active" : ""}` },
-                    React.createElement("a", { onClick: () => load_relation_Mediterranean_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin, () => self.props.set_shown_relation("Categories_Meal")) }, i18next.t('Categories_Meals')))));
+                React.createElement("div", { key: "Categorie_Meal", className: `local_menu_entry${self.props.shown_relation == "Categorie_Meal" ? " local_menu_entry--active" : ""}` },
+                    React.createElement("a", { onClick: () => load_relation_Mediterranean_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin, () => self.props.set_shown_relation("Categorie_Meal")) }, i18next.t('Categorie_Meals')))));
 }
 exports.render_local_menu_Mediterranean = render_local_menu_Mediterranean;
 function render_controls_Mediterranean(self) {
@@ -34489,24 +34563,24 @@ function render_large_Mediterranean(self) {
         render_relations_Mediterranean(self)));
 }
 exports.render_large_Mediterranean = render_large_Mediterranean;
-function render_Mediterranean_Categories_Meal(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Categories_Meal") || !Permissions.can_view_Meal(self.props.current_User, self.props.current_Admin))
+function render_Mediterranean_Categorie_Meal(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Categorie_Meal") || !Permissions.can_view_Meal(self.props.current_User, self.props.current_Admin))
         return null;
     let state = self.state();
-    return React.createElement("div", null, List.render_relation("mediterranean_categories_meal", "Categories", "Meal", "Meals", self.props.nesting_depth > 0, false, false, false)(state.Meal != "loading" ?
+    return React.createElement("div", null, List.render_relation("mediterranean_categorie_meal", "Categorie", "Meal", "Meals", self.props.nesting_depth > 0, false, false, false)(state.Meal != "loading" ?
         state.Meal.IdsInServerOrder.map(id => state.Meal != "loading" && state.Meal.Items.get(id)) :
-        state.Meal, Mediterranean_Categories_Meal_page_index(self), Mediterranean_Categories_Meal_num_pages(self), new_page_index => {
+        state.Meal, Mediterranean_Categorie_Meal_page_index(self), Mediterranean_Categorie_Meal_num_pages(self), new_page_index => {
         let state = self.state();
         state.Meal != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Meal: Object.assign({}, state.Meal, { PageIndex: new_page_index }) }), () => load_relation_Mediterranean_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin));
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Meal: Object.assign({}, state.Meal, { PageIndex: new_page_index }) }), () => load_relation_Mediterranean_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin));
     }, (i, _) => {
         let i_id = i.element.Id;
         let state = self.state();
         return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
                         ${state.Meal != "loading" && state.Meal.JustCreated.has(i_id) && state.Meal.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, MealViews.Meal(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Categories_Meal(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_Categories_Meal(self.props.current_User, self.props.current_Admin)) ?
+            React.createElement("div", { key: i_id }, MealViews.Meal(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Categorie_Meal(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_Categorie_Meal(self.props.current_User, self.props.current_Admin)) ?
                     self.props.mode : "view", is_editable: state.Meal != "loading" && state.Meal.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
                     let state = self.state();
                     state.Meal != "loading" &&
@@ -34520,33 +34594,33 @@ function render_Mediterranean_Categories_Meal(self, context) {
                     let state = self.state();
                     state.Meal != "loading" &&
                         self.setState(Object.assign({}, self.state(), { dirty_Meal: state.dirty_Meal.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Meal: Object.assign({}, state.Meal, { Items: state.Meal.Items.set(i_id, Object.assign({}, state.Meal.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, delete: undefined, unlink: !Permissions.can_delete_Categories_Meal(self.props.current_User, self.props.current_Admin) ?
+                }, delete: undefined, unlink: !Permissions.can_delete_Categorie_Meal(self.props.current_User, self.props.current_Admin) ?
                     null
                     :
-                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Categories_Categories_Meals(self.props.entity, i.element).then(() => load_relation_Mediterranean_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin)) }))));
+                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Categorie_Categorie_Meals(self.props.entity, i.element).then(() => load_relation_Mediterranean_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin)) }))));
     }, () => React.createElement("div", null,
-        Permissions.can_create_Meal(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin) && Mediterranean_Categories_Meal_can_create(self) ? render_new_Mediterranean_Categories_Meal(self) : null,
-        Permissions.can_create_Categories_Meal(self.props.current_User, self.props.current_Admin) ? render_add_existing_Mediterranean_Categories_Meal(self) : null)));
+        Permissions.can_create_Meal(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin) && Mediterranean_Categorie_Meal_can_create(self) ? render_new_Mediterranean_Categorie_Meal(self) : null,
+        Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin) ? render_add_existing_Mediterranean_Categorie_Meal(self) : null)));
 }
-exports.render_Mediterranean_Categories_Meal = render_Mediterranean_Categories_Meal;
-function render_Mediterranean_HomePage_Categories(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "HomePage_Categories") || !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin))
+exports.render_Mediterranean_Categorie_Meal = render_Mediterranean_Categorie_Meal;
+function render_Mediterranean_HomePage_Categorie(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "HomePage_Categorie") || !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin))
         return null;
     let state = self.state();
-    return React.createElement("div", null, List.render_relation("mediterranean_homepage_categories", "Categories", "HomePage", "HomePages", self.props.nesting_depth > 0, false, false, false)(state.HomePage != "loading" ?
+    return React.createElement("div", null, List.render_relation("mediterranean_homepage_categorie", "Categorie", "HomePage", "HomePages", self.props.nesting_depth > 0, false, false, false)(state.HomePage != "loading" ?
         state.HomePage.IdsInServerOrder.map(id => state.HomePage != "loading" && state.HomePage.Items.get(id)) :
-        state.HomePage, Mediterranean_HomePage_Categories_page_index(self), Mediterranean_HomePage_Categories_num_pages(self), new_page_index => {
+        state.HomePage, Mediterranean_HomePage_Categorie_page_index(self), Mediterranean_HomePage_Categorie_num_pages(self), new_page_index => {
         let state = self.state();
         state.HomePage != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, HomePage: Object.assign({}, state.HomePage, { PageIndex: new_page_index }) }), () => load_relation_Mediterranean_HomePage_Categories(self, false, self.props.current_User, self.props.current_Admin));
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, HomePage: Object.assign({}, state.HomePage, { PageIndex: new_page_index }) }), () => load_relation_Mediterranean_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin));
     }, (i, _) => {
         let i_id = i.element.Id;
         let state = self.state();
         return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
                         ${state.HomePage != "loading" && state.HomePage.JustCreated.has(i_id) && state.HomePage.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, HomePageViews.HomePage(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_HomePage_Categories(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_HomePage_Categories(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_HomePage_Categories(self.props.current_User, self.props.current_Admin)) ?
+            React.createElement("div", { key: i_id }, HomePageViews.HomePage(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_HomePage_Categorie(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_HomePage_Categorie(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_HomePage_Categorie(self.props.current_User, self.props.current_Admin)) ?
                     self.props.mode : "view", is_editable: state.HomePage != "loading" && state.HomePage.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
                     let state = self.state();
                     state.HomePage != "loading" &&
@@ -34560,44 +34634,44 @@ function render_Mediterranean_HomePage_Categories(self, context) {
                     let state = self.state();
                     state.HomePage != "loading" &&
                         self.setState(Object.assign({}, self.state(), { dirty_HomePage: state.dirty_HomePage.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, HomePage: Object.assign({}, state.HomePage, { Items: state.HomePage.Items.set(i_id, Object.assign({}, state.HomePage.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, unlink: undefined, delete: !Permissions.can_delete_HomePage(self.props.current_User, self.props.current_Admin) || !Mediterranean_HomePage_Categories_can_delete(self) ?
+                }, unlink: undefined, delete: !Permissions.can_delete_HomePage(self.props.current_User, self.props.current_Admin) || !Mediterranean_HomePage_Categorie_can_delete(self) ?
                     null
                     :
-                        () => confirm(i18next.t('Are you sure?')) && Api.delete_HomePage(i.element).then(() => load_relation_Mediterranean_HomePage_Categories(self, false, self.props.current_User, self.props.current_Admin)) }))));
+                        () => confirm(i18next.t('Are you sure?')) && Api.delete_HomePage(i.element).then(() => load_relation_Mediterranean_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin)) }))));
     }, () => React.createElement("div", null)));
 }
-exports.render_Mediterranean_HomePage_Categories = render_Mediterranean_HomePage_Categories;
+exports.render_Mediterranean_HomePage_Categorie = render_Mediterranean_HomePage_Categorie;
 function render_relations_Mediterranean(self) {
-    return React.createElement("div", { className: "relations" }, render_Mediterranean_Categories_Meal(self, "default"));
+    return React.createElement("div", { className: "relations" }, render_Mediterranean_Categorie_Meal(self, "default"));
 }
 exports.render_relations_Mediterranean = render_relations_Mediterranean;
-function render_add_existing_Mediterranean_Categories_Meal(self) {
+function render_add_existing_Mediterranean_Categorie_Meal(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
         React.createElement("div", { className: "button__actions" }, state.add_step_Meal != "open" ?
             React.createElement(Buttons.Add, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "open" })), target_name: "Meal" })
             :
                 React.createElement(List.AddToRelation, {
-                    relation_name: "mediterranean_categories_meal",
-                    source_name: "Categories",
+                    relation_name: "mediterranean_categorie_meal",
+                    source_name: "Categorie",
                     target_name: "Meal",
                     target_plural: "Meals",
                     page_size: 25,
                     render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
-                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "saving" }), () => Api.link_Categories_Categories_Meals(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }), () => load_relation_Mediterranean_Categories_Meal(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
+                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "saving" }), () => Api.link_Categorie_Categorie_Meals(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }), () => load_relation_Mediterranean_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
                         React.createElement("div", { className: "group__title", disabled: true }, MealViews.Meal(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Meal"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
                     cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" })),
                     get_items: [
-                        { name: "Lunch", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Categories_Categories_Meals_Lunch(self.props.entity, i, s); }) },
-                        { name: "Dinner", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Categories_Categories_Meals_Dinner(self.props.entity, i, s); }) },
-                        { name: "Breakfast", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Categories_Categories_Meals_Breakfast(self.props.entity, i, s); }) }
+                        { name: "Lunch", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Categorie_Categorie_Meals_Lunch(self.props.entity, i, s); }) },
+                        { name: "Dinner", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Categorie_Categorie_Meals_Dinner(self.props.entity, i, s); }) },
+                        { name: "Breakfast", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Categorie_Categorie_Meals_Breakfast(self.props.entity, i, s); }) }
                     ]
                 }))
         :
             null;
 }
-exports.render_add_existing_Mediterranean_Categories_Meal = render_add_existing_Mediterranean_Categories_Meal;
-function render_new_Mediterranean_Categories_Meal(self) {
+exports.render_add_existing_Mediterranean_Categorie_Meal = render_add_existing_Mediterranean_Categorie_Meal;
+function render_new_Mediterranean_Categorie_Meal(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
         React.createElement("div", { className: "button__actions" },
@@ -34607,25 +34681,25 @@ function render_new_Mediterranean_Categories_Meal(self) {
                 :
                     React.createElement("div", { className: "overlay__item overlay__item--new" },
                         React.createElement("div", { className: "new-lunch" },
-                            React.createElement("button", { className: "new-lunch button button--new", onClick: () => Api.create_linked_Categories_Categories_Meals_Lunch(self.props.entity).then(e => {
+                            React.createElement("button", { className: "new-lunch button button--new", onClick: () => Api.create_linked_Categorie_Categorie_Meals_Lunch(self.props.entity).then(e => {
                                     e.length > 0 &&
-                                        Api.update_Lunch(Object.assign({}, e[0], { Kind: "Lunch", Description: "" })).then(() => load_relation_Mediterranean_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
+                                        Api.update_Lunch(Object.assign({}, e[0], { Kind: "Lunch", Description: "" })).then(() => load_relation_Mediterranean_Categorie_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
                                 }) }, i18next.t('Create new Lunch'))),
                         React.createElement("div", { className: "new-dinner" },
-                            React.createElement("button", { className: "new-dinner button button--new", onClick: () => Api.create_linked_Categories_Categories_Meals_Dinner(self.props.entity).then(e => {
+                            React.createElement("button", { className: "new-dinner button button--new", onClick: () => Api.create_linked_Categorie_Categorie_Meals_Dinner(self.props.entity).then(e => {
                                     e.length > 0 &&
-                                        Api.update_Dinner(Object.assign({}, e[0], { Kind: "Dinner", Description: "" })).then(() => load_relation_Mediterranean_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
+                                        Api.update_Dinner(Object.assign({}, e[0], { Kind: "Dinner", Description: "" })).then(() => load_relation_Mediterranean_Categorie_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
                                 }) }, i18next.t('Create new Dinner'))),
                         React.createElement("div", { className: "new-breakfast" },
-                            React.createElement("button", { className: "new-breakfast button button--new", onClick: () => Api.create_linked_Categories_Categories_Meals_Breakfast(self.props.entity).then(e => {
+                            React.createElement("button", { className: "new-breakfast button button--new", onClick: () => Api.create_linked_Categorie_Categorie_Meals_Breakfast(self.props.entity).then(e => {
                                     e.length > 0 &&
-                                        Api.update_Breakfast(Object.assign({}, e[0], { Kind: "Breakfast", Description: "" })).then(() => load_relation_Mediterranean_Categories_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
+                                        Api.update_Breakfast(Object.assign({}, e[0], { Kind: "Breakfast", Description: "" })).then(() => load_relation_Mediterranean_Categorie_Meal(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
                                 }) }, i18next.t('Create new Breakfast'))),
                         React.createElement(Buttons.Cancel, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" })) })))
         :
             null;
 }
-exports.render_new_Mediterranean_Categories_Meal = render_new_Mediterranean_Categories_Meal;
+exports.render_new_Mediterranean_Categorie_Meal = render_new_Mediterranean_Categorie_Meal;
 function render_saving_animations_Mediterranean(self) {
     return self.state().dirty_Meal.count() > 0 ?
         React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" }) :
@@ -34702,7 +34776,7 @@ class MediterraneanComponent extends React.Component {
 exports.MediterraneanComponent = MediterraneanComponent;
 exports.Mediterranean = (props) => React.createElement(MediterraneanComponent, Object.assign({}, props));
 exports.Mediterranean_to_page = (id) => {
-    let can_edit = Utils.any_of([Permissions.can_edit_Mediterranean, Permissions.can_edit_Categories_Meal, Permissions.can_edit_HomePage_Categories, Permissions.can_edit_Meal, Permissions.can_edit_HomePage]);
+    let can_edit = Utils.any_of([Permissions.can_edit_Mediterranean, Permissions.can_edit_Categorie_Meal, Permissions.can_edit_HomePage_Categorie, Permissions.can_edit_Meal, Permissions.can_edit_HomePage]);
     return Utils.scene_to_page(can_edit, exports.Mediterranean, Api.get_Mediterranean(id), Api.update_Mediterranean, "Mediterranean", "Mediterranean", `/Mediterraneans/${id}`);
 };
 exports.Mediterranean_to = (id, target_element_id, current_User, current_Admin) => {
@@ -34729,70 +34803,70 @@ const React = __webpack_require__(14);
 const Immutable = __webpack_require__(33);
 const Api = __webpack_require__(22);
 const List = __webpack_require__(46);
-const Components = __webpack_require__(45);
-const Buttons = __webpack_require__(39);
+const Components = __webpack_require__(39);
+const Buttons = __webpack_require__(40);
 const Permissions = __webpack_require__(27);
 const Utils = __webpack_require__(23);
 const i18next = __webpack_require__(21);
-const HomePageViews = __webpack_require__(40);
-const RecipesViews = __webpack_require__(65);
-function Rating_Recipes_Rating_can_create(self) {
+const HomePageViews = __webpack_require__(41);
+const RecipeViews = __webpack_require__(65);
+function Rating_Recipe_Rating_can_create(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? false : state.Recipes.CanCreate;
+    return state.Recipe == "loading" ? false : state.Recipe.CanCreate;
 }
-exports.Rating_Recipes_Rating_can_create = Rating_Recipes_Rating_can_create;
-function Rating_Recipes_Rating_can_delete(self) {
+exports.Rating_Recipe_Rating_can_create = Rating_Recipe_Rating_can_create;
+function Rating_Recipe_Rating_can_delete(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? false : state.Recipes.CanDelete;
+    return state.Recipe == "loading" ? false : state.Recipe.CanDelete;
 }
-exports.Rating_Recipes_Rating_can_delete = Rating_Recipes_Rating_can_delete;
-function Rating_Recipes_Rating_page_index(self) {
+exports.Rating_Recipe_Rating_can_delete = Rating_Recipe_Rating_can_delete;
+function Rating_Recipe_Rating_page_index(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? 0 : state.Recipes.PageIndex;
+    return state.Recipe == "loading" ? 0 : state.Recipe.PageIndex;
 }
-exports.Rating_Recipes_Rating_page_index = Rating_Recipes_Rating_page_index;
-function Rating_Recipes_Rating_page_size(self) {
+exports.Rating_Recipe_Rating_page_index = Rating_Recipe_Rating_page_index;
+function Rating_Recipe_Rating_page_size(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? 25 : state.Recipes.PageSize;
+    return state.Recipe == "loading" ? 25 : state.Recipe.PageSize;
 }
-exports.Rating_Recipes_Rating_page_size = Rating_Recipes_Rating_page_size;
-function Rating_Recipes_Rating_search_query(self) {
+exports.Rating_Recipe_Rating_page_size = Rating_Recipe_Rating_page_size;
+function Rating_Recipe_Rating_search_query(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? null : state.Recipes.SearchQuery;
+    return state.Recipe == "loading" ? null : state.Recipe.SearchQuery;
 }
-exports.Rating_Recipes_Rating_search_query = Rating_Recipes_Rating_search_query;
-function Rating_Recipes_Rating_num_pages(self) {
+exports.Rating_Recipe_Rating_search_query = Rating_Recipe_Rating_search_query;
+function Rating_Recipe_Rating_num_pages(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? 1 : state.Recipes.NumPages;
+    return state.Recipe == "loading" ? 1 : state.Recipe.NumPages;
 }
-exports.Rating_Recipes_Rating_num_pages = Rating_Recipes_Rating_num_pages;
-function load_relation_Rating_Recipes_Rating(self, force_first_page, current_User, current_Admin, callback) {
+exports.Rating_Recipe_Rating_num_pages = Rating_Recipe_Rating_num_pages;
+function load_relation_Rating_Recipe_Rating(self, force_first_page, current_User, current_Admin, callback) {
     let state = self.state();
-    let prelude = force_first_page && state.Recipes != "loading" ?
-        (c) => state.Recipes != "loading" && self.setState(Object.assign({}, state, { Recipes: Object.assign({}, state.Recipes, { PageIndex: 0 }) }), c)
+    let prelude = force_first_page && state.Recipe != "loading" ?
+        (c) => state.Recipe != "loading" && self.setState(Object.assign({}, state, { Recipe: Object.assign({}, state.Recipe, { PageIndex: 0 }) }), c)
         :
             (c) => c();
-    Permissions.can_view_Recipes(current_User, current_Admin) ?
-        prelude(() => Api.get_Rating_Recipes_Ratings(self.props.entity, Rating_Recipes_Rating_page_index(self), Rating_Recipes_Rating_page_size(self), Rating_Recipes_Rating_search_query(self)).then(Recipess => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipes: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+    Permissions.can_view_Recipe(current_User, current_Admin) ?
+        prelude(() => Api.get_Rating_Recipe_Ratings(self.props.entity, Rating_Recipe_Rating_page_index(self), Rating_Recipe_Rating_page_size(self), Rating_Recipe_Rating_search_query(self)).then(Recipes => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipe: Utils.raw_page_to_paginated_items((i, i_just_created) => {
                 let state = self.state();
                 return {
                     element: i,
-                    size: state.Recipes != "loading" ?
-                        (state.Recipes.Items.has(i.Id) ?
-                            state.Recipes.Items.get(i.Id).size
+                    size: state.Recipe != "loading" ?
+                        (state.Recipe.Items.has(i.Id) ?
+                            state.Recipe.Items.get(i.Id).size
                             :
                                 "preview" /* i_just_created ? "large" : "preview" */)
                         :
                             "preview" /* i_just_created ? "large" : "preview" */,
                     shown_relation: "all"
                 };
-            }, Recipess) }), callback)))
+            }, Recipes) }), callback)))
         :
             prelude(() => callback && callback());
 }
-exports.load_relation_Rating_Recipes_Rating = load_relation_Rating_Recipes_Rating;
+exports.load_relation_Rating_Recipe_Rating = load_relation_Rating_Recipe_Rating;
 function load_relations_Rating(self, current_User, current_Admin, callback) {
-    load_relation_Rating_Recipes_Rating(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback());
+    load_relation_Rating_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback());
 }
 exports.load_relations_Rating = load_relations_Rating;
 function set_size_Rating(self, new_size) {
@@ -34846,16 +34920,16 @@ function render_menu_Rating(self) {
                 React.createElement("div", { className: `menu_entry page_link` },
                     React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
             React.createElement("div", { className: "menu_entries" },
-                !Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipes" ? " active" : ""}` },
+                !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
+                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipe" ? " active" : ""}` },
                         React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipes")));
-                            } }, i18next.t('HomePage_Recipess'))),
-                !Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categories" ? " active" : ""}` },
+                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipe")));
+                            } }, i18next.t('HomePage_Recipes'))),
+                !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
+                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}` },
                         React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categories")));
-                            } }, i18next.t('HomePage_Categoriess'))),
+                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categorie")));
+                            } }, i18next.t('HomePage_Categories'))),
                 React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
 }
 exports.render_menu_Rating = render_menu_Rating;
@@ -34945,89 +35019,89 @@ function render_large_Rating(self) {
         render_relations_Rating(self)));
 }
 exports.render_large_Rating = render_large_Rating;
-function render_Rating_Recipes_Rating(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Recipes_Rating") || !Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin))
+function render_Rating_Recipe_Rating(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Recipe_Rating") || !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin))
         return null;
     let state = self.state();
-    return React.createElement("div", null, List.render_relation("rating_recipes_rating", "Rating", "Recipes", "Recipess", self.props.nesting_depth > 0, false, false, false)(state.Recipes != "loading" ?
-        state.Recipes.IdsInServerOrder.map(id => state.Recipes != "loading" && state.Recipes.Items.get(id)) :
-        state.Recipes, Rating_Recipes_Rating_page_index(self), Rating_Recipes_Rating_num_pages(self), new_page_index => {
+    return React.createElement("div", null, List.render_relation("rating_recipe_rating", "Rating", "Recipe", "Recipes", self.props.nesting_depth > 0, false, false, false)(state.Recipe != "loading" ?
+        state.Recipe.IdsInServerOrder.map(id => state.Recipe != "loading" && state.Recipe.Items.get(id)) :
+        state.Recipe, Rating_Recipe_Rating_page_index(self), Rating_Recipe_Rating_num_pages(self), new_page_index => {
         let state = self.state();
-        state.Recipes != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipes: Object.assign({}, state.Recipes, { PageIndex: new_page_index }) }), () => load_relation_Rating_Recipes_Rating(self, false, self.props.current_User, self.props.current_Admin));
+        state.Recipe != "loading" &&
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipe: Object.assign({}, state.Recipe, { PageIndex: new_page_index }) }), () => load_relation_Rating_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin));
     }, (i, _) => {
         let i_id = i.element.Id;
         let state = self.state();
         return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
-                        ${state.Recipes != "loading" && state.Recipes.JustCreated.has(i_id) && state.Recipes.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, RecipesViews.Recipes(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Recipes_Rating(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_Recipes_Rating(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_Recipes_Rating(self.props.current_User, self.props.current_Admin)) ?
-                    self.props.mode : "view", is_editable: state.Recipes != "loading" && state.Recipes.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
+                        ${state.Recipe != "loading" && state.Recipe.JustCreated.has(i_id) && state.Recipe.JustCreated.get(i_id) ? "newly-created" : ""}` },
+            React.createElement("div", { key: i_id }, RecipeViews.Recipe(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Recipe_Rating(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_Recipe_Rating(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_Recipe_Rating(self.props.current_User, self.props.current_Admin)) ?
+                    self.props.mode : "view", is_editable: state.Recipe != "loading" && state.Recipe.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
                     let state = self.state();
-                    state.Recipes != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Recipes: Object.assign({}, state.Recipes, { Items: state.Recipes.Items.set(i_id, Object.assign({}, state.Recipes.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
-                }, nested_entity_names: self.props.nested_entity_names.push("Recipes"), set_size: (new_size, callback) => {
+                    state.Recipe != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
+                }, nested_entity_names: self.props.nested_entity_names.push("Recipe"), set_size: (new_size, callback) => {
                     let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
                     let state = self.state();
-                    state.Recipes != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Recipes: Object.assign({}, state.Recipes, { Items: state.Recipes.Items.set(i_id, Object.assign({}, state.Recipes.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
+                    state.Recipe != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
                 }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
                     let state = self.state();
-                    state.Recipes != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { dirty_Recipes: state.dirty_Recipes.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Recipes: Object.assign({}, state.Recipes, { Items: state.Recipes.Items.set(i_id, Object.assign({}, state.Recipes.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, delete: undefined, unlink: !Permissions.can_delete_Recipes_Rating(self.props.current_User, self.props.current_Admin) ?
+                    state.Recipe != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { dirty_Recipe: state.dirty_Recipe.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { element: new_entity })) }) }), callback);
+                }, delete: undefined, unlink: !Permissions.can_delete_Recipe_Rating(self.props.current_User, self.props.current_Admin) ?
                     null
                     :
-                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Recipes_Recipes_Ratings(i.element, self.props.entity).then(() => load_relation_Rating_Recipes_Rating(self, false, self.props.current_User, self.props.current_Admin)) }))));
+                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Recipe_Recipe_Ratings(i.element, self.props.entity).then(() => load_relation_Rating_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin)) }))));
     }, () => React.createElement("div", null,
-        Permissions.can_create_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Recipes_Rating(self.props.current_User, self.props.current_Admin) && Rating_Recipes_Rating_can_create(self) ? render_new_Rating_Recipes_Rating(self) : null,
-        Permissions.can_create_Recipes_Rating(self.props.current_User, self.props.current_Admin) ? render_add_existing_Rating_Recipes_Rating(self) : null)));
+        Permissions.can_create_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Recipe_Rating(self.props.current_User, self.props.current_Admin) && Rating_Recipe_Rating_can_create(self) ? render_new_Rating_Recipe_Rating(self) : null,
+        Permissions.can_create_Recipe_Rating(self.props.current_User, self.props.current_Admin) ? render_add_existing_Rating_Recipe_Rating(self) : null)));
 }
-exports.render_Rating_Recipes_Rating = render_Rating_Recipes_Rating;
+exports.render_Rating_Recipe_Rating = render_Rating_Recipe_Rating;
 function render_relations_Rating(self) {
     return React.createElement("div", { className: "relations" });
 }
 exports.render_relations_Rating = render_relations_Rating;
-function render_add_existing_Rating_Recipes_Rating(self) {
+function render_add_existing_Rating_Recipe_Rating(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
-        React.createElement("div", { className: "button__actions" }, state.add_step_Recipes != "open" ?
-            React.createElement(Buttons.Add, { disabled: state.Recipes == "loading" ? true : state.Recipes.TotalCount >= 1, onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "open" })), target_name: "Recipes" })
+        React.createElement("div", { className: "button__actions" }, state.add_step_Recipe != "open" ?
+            React.createElement(Buttons.Add, { disabled: state.Recipe == "loading" ? true : state.Recipe.TotalCount >= 1, onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "open" })), target_name: "Recipe" })
             :
                 React.createElement(List.AddToRelation, {
-                    relation_name: "rating_recipes_rating",
+                    relation_name: "rating_recipe_rating",
                     source_name: "Rating",
-                    target_name: "Recipes",
-                    target_plural: "Recipess",
+                    target_name: "Recipe",
+                    target_plural: "Recipes",
                     page_size: 25,
                     render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
-                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "saving" }), () => Api.link_Rating_Recipes_Ratings(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "closed" }), () => load_relation_Rating_Recipes_Rating(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
-                        React.createElement("div", { className: "group__title", disabled: true }, RecipesViews.Recipes(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Recipes"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
-                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "closed" })),
+                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "saving" }), () => Api.link_Rating_Recipe_Ratings(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" }), () => load_relation_Rating_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
+                        React.createElement("div", { className: "group__title", disabled: true }, RecipeViews.Recipe(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Recipe"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
+                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" })),
                     get_items: [
-                        { name: "Recipes", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Rating_Recipes_Ratings(self.props.entity, i, s); }) },
+                        { name: "Recipe", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Rating_Recipe_Ratings(self.props.entity, i, s); }) },
                     ]
                 }))
         :
             null;
 }
-exports.render_add_existing_Rating_Recipes_Rating = render_add_existing_Rating_Recipes_Rating;
-function render_new_Rating_Recipes_Rating(self) {
+exports.render_add_existing_Rating_Recipe_Rating = render_add_existing_Rating_Recipe_Rating;
+function render_new_Rating_Recipe_Rating(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
         React.createElement("div", { className: "button__actions" },
-            React.createElement("div", { className: "new-recipes" },
-                React.createElement("button", { disabled: state.Recipes == "loading" ? true : state.Recipes.TotalCount >= 1, className: "new-recipes button button--new", onClick: () => Api.create_linked_Rating_Recipes_Ratings_Recipes(self.props.entity).then(e => {
+            React.createElement("div", { className: "new-recipe" },
+                React.createElement("button", { disabled: state.Recipe == "loading" ? true : state.Recipe.TotalCount >= 1, className: "new-recipe button button--new", onClick: () => Api.create_linked_Rating_Recipe_Ratings_Recipe(self.props.entity).then(e => {
                         e.length > 0 &&
-                            Api.update_Recipes(Object.assign({}, e[0], { Picture: "", Name: "", Ingredients: "", Description: "", PreparationTime: 0 })).then(() => load_relation_Rating_Recipes_Rating(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "closed" }))));
-                    }) }, i18next.t('Create new Recipes'))))
+                            Api.update_Recipe(Object.assign({}, e[0], { Picture: "", Name: "", Ingredients: "", Description: "", PreparationTime: 0 })).then(() => load_relation_Rating_Recipe_Rating(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" }))));
+                    }) }, i18next.t('Create new Recipe'))))
         :
             null;
 }
-exports.render_new_Rating_Recipes_Rating = render_new_Rating_Recipes_Rating;
+exports.render_new_Rating_Recipe_Rating = render_new_Rating_Recipe_Rating;
 function render_saving_animations_Rating(self) {
-    return self.state().dirty_Recipes.count() > 0 ?
+    return self.state().dirty_Recipe.count() > 0 ?
         React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" })
         : React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "cornflowerblue" }, className: "saved" });
 }
@@ -35036,7 +35110,7 @@ class RatingComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.thread = null;
-        this.state = { update_count: 0, add_step_Recipes: "closed", dirty_Recipes: Immutable.Map(), Recipes: "loading" };
+        this.state = { update_count: 0, add_step_Recipe: "closed", dirty_Recipe: Immutable.Map(), Recipe: "loading" };
     }
     get_self() {
         return { state: () => this.state, props: this.props, setState: (ns, c) => this.setState(ns, c) };
@@ -35061,9 +35135,9 @@ class RatingComponent extends React.Component {
             load_relations_Rating(this.get_self(), this.props.current_User, this.props.current_Admin);
         }
         this.thread = setInterval(() => {
-            if (this.state.dirty_Recipes.count() > 0) {
-                let first = this.state.dirty_Recipes.first();
-                this.setState(Object.assign({}, this.state, { dirty_Recipes: this.state.dirty_Recipes.remove(first.Id) }), () => Api.update_Recipes(first));
+            if (this.state.dirty_Recipe.count() > 0) {
+                let first = this.state.dirty_Recipe.first();
+                this.setState(Object.assign({}, this.state, { dirty_Recipe: this.state.dirty_Recipe.remove(first.Id) }), () => Api.update_Recipe(first));
             }
         }, 500);
     }
@@ -35096,7 +35170,7 @@ class RatingComponent extends React.Component {
 exports.RatingComponent = RatingComponent;
 exports.Rating = (props) => React.createElement(RatingComponent, Object.assign({}, props));
 exports.Rating_to_page = (id) => {
-    let can_edit = Utils.any_of([Permissions.can_edit_Rating, Permissions.can_edit_Recipes_Rating, Permissions.can_edit_Recipes]);
+    let can_edit = Utils.any_of([Permissions.can_edit_Rating, Permissions.can_edit_Recipe_Rating, Permissions.can_edit_Recipe]);
     return Utils.scene_to_page(can_edit, exports.Rating, Api.get_Rating(id), Api.update_Rating, "Rating", "Rating", `/Ratings/${id}`);
 };
 exports.Rating_to = (id, target_element_id, current_User, current_Admin) => {
@@ -35123,71 +35197,71 @@ const React = __webpack_require__(14);
 const Immutable = __webpack_require__(33);
 const Api = __webpack_require__(22);
 const List = __webpack_require__(46);
-const Components = __webpack_require__(45);
-const Buttons = __webpack_require__(39);
+const Components = __webpack_require__(39);
+const Buttons = __webpack_require__(40);
 const Permissions = __webpack_require__(27);
 const Utils = __webpack_require__(23);
 const i18next = __webpack_require__(21);
 const Moment = __webpack_require__(0);
-const HomePageViews = __webpack_require__(40);
-const RecipesViews = __webpack_require__(65);
-function User_User_Recipes_can_create(self) {
+const HomePageViews = __webpack_require__(41);
+const RecipeViews = __webpack_require__(65);
+function User_User_Recipe_can_create(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? false : state.Recipes.CanCreate;
+    return state.Recipe == "loading" ? false : state.Recipe.CanCreate;
 }
-exports.User_User_Recipes_can_create = User_User_Recipes_can_create;
-function User_User_Recipes_can_delete(self) {
+exports.User_User_Recipe_can_create = User_User_Recipe_can_create;
+function User_User_Recipe_can_delete(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? false : state.Recipes.CanDelete;
+    return state.Recipe == "loading" ? false : state.Recipe.CanDelete;
 }
-exports.User_User_Recipes_can_delete = User_User_Recipes_can_delete;
-function User_User_Recipes_page_index(self) {
+exports.User_User_Recipe_can_delete = User_User_Recipe_can_delete;
+function User_User_Recipe_page_index(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? 0 : state.Recipes.PageIndex;
+    return state.Recipe == "loading" ? 0 : state.Recipe.PageIndex;
 }
-exports.User_User_Recipes_page_index = User_User_Recipes_page_index;
-function User_User_Recipes_page_size(self) {
+exports.User_User_Recipe_page_index = User_User_Recipe_page_index;
+function User_User_Recipe_page_size(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? 25 : state.Recipes.PageSize;
+    return state.Recipe == "loading" ? 25 : state.Recipe.PageSize;
 }
-exports.User_User_Recipes_page_size = User_User_Recipes_page_size;
-function User_User_Recipes_search_query(self) {
+exports.User_User_Recipe_page_size = User_User_Recipe_page_size;
+function User_User_Recipe_search_query(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? null : state.Recipes.SearchQuery;
+    return state.Recipe == "loading" ? null : state.Recipe.SearchQuery;
 }
-exports.User_User_Recipes_search_query = User_User_Recipes_search_query;
-function User_User_Recipes_num_pages(self) {
+exports.User_User_Recipe_search_query = User_User_Recipe_search_query;
+function User_User_Recipe_num_pages(self) {
     let state = self.state();
-    return state.Recipes == "loading" ? 1 : state.Recipes.NumPages;
+    return state.Recipe == "loading" ? 1 : state.Recipe.NumPages;
 }
-exports.User_User_Recipes_num_pages = User_User_Recipes_num_pages;
-function load_relation_User_User_Recipes(self, force_first_page, current_User, current_Admin, callback) {
+exports.User_User_Recipe_num_pages = User_User_Recipe_num_pages;
+function load_relation_User_User_Recipe(self, force_first_page, current_User, current_Admin, callback) {
     let state = self.state();
-    let prelude = force_first_page && state.Recipes != "loading" ?
-        (c) => state.Recipes != "loading" && self.setState(Object.assign({}, state, { Recipes: Object.assign({}, state.Recipes, { PageIndex: 0 }) }), c)
+    let prelude = force_first_page && state.Recipe != "loading" ?
+        (c) => state.Recipe != "loading" && self.setState(Object.assign({}, state, { Recipe: Object.assign({}, state.Recipe, { PageIndex: 0 }) }), c)
         :
             (c) => c();
-    Permissions.can_view_Recipes(current_User, current_Admin) ?
-        prelude(() => Api.get_User_User_Recipess(self.props.entity, User_User_Recipes_page_index(self), User_User_Recipes_page_size(self), User_User_Recipes_search_query(self)).then(Recipess => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipes: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+    Permissions.can_view_Recipe(current_User, current_Admin) ?
+        prelude(() => Api.get_User_User_Recipes(self.props.entity, User_User_Recipe_page_index(self), User_User_Recipe_page_size(self), User_User_Recipe_search_query(self)).then(Recipes => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipe: Utils.raw_page_to_paginated_items((i, i_just_created) => {
                 let state = self.state();
                 return {
                     element: i,
-                    size: state.Recipes != "loading" ?
-                        (state.Recipes.Items.has(i.Id) ?
-                            state.Recipes.Items.get(i.Id).size
+                    size: state.Recipe != "loading" ?
+                        (state.Recipe.Items.has(i.Id) ?
+                            state.Recipe.Items.get(i.Id).size
                             :
                                 "preview" /* i_just_created ? "large" : "preview" */)
                         :
                             "preview" /* i_just_created ? "large" : "preview" */,
                     shown_relation: "all"
                 };
-            }, Recipess) }), callback)))
+            }, Recipes) }), callback)))
         :
             prelude(() => callback && callback());
 }
-exports.load_relation_User_User_Recipes = load_relation_User_User_Recipes;
+exports.load_relation_User_User_Recipe = load_relation_User_User_Recipe;
 function load_relations_User(self, current_User, current_Admin, callback) {
-    load_relation_User_User_Recipes(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback());
+    load_relation_User_User_Recipe(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback());
 }
 exports.load_relations_User = load_relations_User;
 function set_size_User(self, new_size) {
@@ -35295,16 +35369,16 @@ function render_menu_User(self) {
                 React.createElement("div", { className: `menu_entry page_link` },
                     React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
             React.createElement("div", { className: "menu_entries" },
-                !Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipes" ? " active" : ""}` },
+                !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
+                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipe" ? " active" : ""}` },
                         React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipes")));
-                            } }, i18next.t('HomePage_Recipess'))),
-                !Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categories" ? " active" : ""}` },
+                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipe")));
+                            } }, i18next.t('HomePage_Recipes'))),
+                !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
+                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}` },
                         React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categories")));
-                            } }, i18next.t('HomePage_Categoriess'))),
+                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categorie")));
+                            } }, i18next.t('HomePage_Categories'))),
                 React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
 }
 exports.render_menu_User = render_menu_User;
@@ -35314,9 +35388,9 @@ function render_local_menu_User(self) {
         React.createElement("div", { className: "local_menu_entries" },
             React.createElement("div", { className: `local_menu_entry${self.props.shown_relation == "none" ? " local_menu_entry--active" : ""}` },
                 React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('About this User'))),
-            !Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ? null :
-                React.createElement("div", { key: "User_Recipes", className: `local_menu_entry${self.props.shown_relation == "User_Recipes" ? " local_menu_entry--active" : ""}` },
-                    React.createElement("a", { onClick: () => load_relation_User_User_Recipes(self, false, self.props.current_User, self.props.current_Admin, () => self.props.set_shown_relation("User_Recipes")) }, i18next.t('User_Recipess')))));
+            !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { key: "User_Recipe", className: `local_menu_entry${self.props.shown_relation == "User_Recipe" ? " local_menu_entry--active" : ""}` },
+                    React.createElement("a", { onClick: () => load_relation_User_User_Recipe(self, false, self.props.current_User, self.props.current_Admin, () => self.props.set_shown_relation("User_Recipe")) }, i18next.t('User_Recipes')))));
 }
 exports.render_local_menu_User = render_local_menu_User;
 function render_controls_User(self) {
@@ -35428,89 +35502,89 @@ function render_large_User(self) {
         render_relations_User(self)));
 }
 exports.render_large_User = render_large_User;
-function render_User_User_Recipes(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "User_Recipes") || !Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin))
+function render_User_User_Recipe(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "User_Recipe") || !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin))
         return null;
     let state = self.state();
-    return React.createElement("div", null, List.render_relation("user_user_recipes", "User", "Recipes", "Recipess", self.props.nesting_depth > 0, false, false, false)(state.Recipes != "loading" ?
-        state.Recipes.IdsInServerOrder.map(id => state.Recipes != "loading" && state.Recipes.Items.get(id)) :
-        state.Recipes, User_User_Recipes_page_index(self), User_User_Recipes_num_pages(self), new_page_index => {
+    return React.createElement("div", null, List.render_relation("user_user_recipe", "User", "Recipe", "Recipes", self.props.nesting_depth > 0, false, false, false)(state.Recipe != "loading" ?
+        state.Recipe.IdsInServerOrder.map(id => state.Recipe != "loading" && state.Recipe.Items.get(id)) :
+        state.Recipe, User_User_Recipe_page_index(self), User_User_Recipe_num_pages(self), new_page_index => {
         let state = self.state();
-        state.Recipes != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipes: Object.assign({}, state.Recipes, { PageIndex: new_page_index }) }), () => load_relation_User_User_Recipes(self, false, self.props.current_User, self.props.current_Admin));
+        state.Recipe != "loading" &&
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipe: Object.assign({}, state.Recipe, { PageIndex: new_page_index }) }), () => load_relation_User_User_Recipe(self, false, self.props.current_User, self.props.current_Admin));
     }, (i, _) => {
         let i_id = i.element.Id;
         let state = self.state();
         return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
-                        ${state.Recipes != "loading" && state.Recipes.JustCreated.has(i_id) && state.Recipes.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, RecipesViews.Recipes(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_User_Recipes(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_User_Recipes(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_User_Recipes(self.props.current_User, self.props.current_Admin)) ?
-                    self.props.mode : "view", is_editable: state.Recipes != "loading" && state.Recipes.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
+                        ${state.Recipe != "loading" && state.Recipe.JustCreated.has(i_id) && state.Recipe.JustCreated.get(i_id) ? "newly-created" : ""}` },
+            React.createElement("div", { key: i_id }, RecipeViews.Recipe(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_User_Recipe(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_User_Recipe(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_User_Recipe(self.props.current_User, self.props.current_Admin)) ?
+                    self.props.mode : "view", is_editable: state.Recipe != "loading" && state.Recipe.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
                     let state = self.state();
-                    state.Recipes != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Recipes: Object.assign({}, state.Recipes, { Items: state.Recipes.Items.set(i_id, Object.assign({}, state.Recipes.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
-                }, nested_entity_names: self.props.nested_entity_names.push("Recipes"), set_size: (new_size, callback) => {
+                    state.Recipe != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
+                }, nested_entity_names: self.props.nested_entity_names.push("Recipe"), set_size: (new_size, callback) => {
                     let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
                     let state = self.state();
-                    state.Recipes != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Recipes: Object.assign({}, state.Recipes, { Items: state.Recipes.Items.set(i_id, Object.assign({}, state.Recipes.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
+                    state.Recipe != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
                 }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
                     let state = self.state();
-                    state.Recipes != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { dirty_Recipes: state.dirty_Recipes.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Recipes: Object.assign({}, state.Recipes, { Items: state.Recipes.Items.set(i_id, Object.assign({}, state.Recipes.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, delete: undefined, unlink: !Permissions.can_delete_User_Recipes(self.props.current_User, self.props.current_Admin) ?
+                    state.Recipe != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { dirty_Recipe: state.dirty_Recipe.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { element: new_entity })) }) }), callback);
+                }, delete: undefined, unlink: !Permissions.can_delete_User_Recipe(self.props.current_User, self.props.current_Admin) ?
                     null
                     :
-                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_User_User_Recipess(self.props.entity, i.element).then(() => load_relation_User_User_Recipes(self, false, self.props.current_User, self.props.current_Admin)) }))));
+                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_User_User_Recipes(self.props.entity, i.element).then(() => load_relation_User_User_Recipe(self, false, self.props.current_User, self.props.current_Admin)) }))));
     }, () => React.createElement("div", null,
-        Permissions.can_create_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_create_User_Recipes(self.props.current_User, self.props.current_Admin) && User_User_Recipes_can_create(self) ? render_new_User_User_Recipes(self) : null,
-        Permissions.can_create_User_Recipes(self.props.current_User, self.props.current_Admin) ? render_add_existing_User_User_Recipes(self) : null)));
+        Permissions.can_create_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_create_User_Recipe(self.props.current_User, self.props.current_Admin) && User_User_Recipe_can_create(self) ? render_new_User_User_Recipe(self) : null,
+        Permissions.can_create_User_Recipe(self.props.current_User, self.props.current_Admin) ? render_add_existing_User_User_Recipe(self) : null)));
 }
-exports.render_User_User_Recipes = render_User_User_Recipes;
+exports.render_User_User_Recipe = render_User_User_Recipe;
 function render_relations_User(self) {
-    return React.createElement("div", { className: "relations" }, render_User_User_Recipes(self, "default"));
+    return React.createElement("div", { className: "relations" }, render_User_User_Recipe(self, "default"));
 }
 exports.render_relations_User = render_relations_User;
-function render_add_existing_User_User_Recipes(self) {
+function render_add_existing_User_User_Recipe(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
-        React.createElement("div", { className: "button__actions" }, state.add_step_Recipes != "open" ?
-            React.createElement(Buttons.Add, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "open" })), target_name: "Recipes" })
+        React.createElement("div", { className: "button__actions" }, state.add_step_Recipe != "open" ?
+            React.createElement(Buttons.Add, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "open" })), target_name: "Recipe" })
             :
                 React.createElement(List.AddToRelation, {
-                    relation_name: "user_user_recipes",
+                    relation_name: "user_user_recipe",
                     source_name: "User",
-                    target_name: "Recipes",
-                    target_plural: "Recipess",
+                    target_name: "Recipe",
+                    target_plural: "Recipes",
                     page_size: 25,
                     render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
-                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "saving" }), () => Api.link_User_User_Recipess(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "closed" }), () => load_relation_User_User_Recipes(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
-                        React.createElement("div", { className: "group__title", disabled: true }, RecipesViews.Recipes(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Recipes"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
-                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "closed" })),
+                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "saving" }), () => Api.link_User_User_Recipes(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" }), () => load_relation_User_User_Recipe(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
+                        React.createElement("div", { className: "group__title", disabled: true }, RecipeViews.Recipe(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Recipe"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
+                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" })),
                     get_items: [
-                        { name: "Recipes", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_User_User_Recipess(self.props.entity, i, s); }) },
+                        { name: "Recipe", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_User_User_Recipes(self.props.entity, i, s); }) },
                     ]
                 }))
         :
             null;
 }
-exports.render_add_existing_User_User_Recipes = render_add_existing_User_User_Recipes;
-function render_new_User_User_Recipes(self) {
+exports.render_add_existing_User_User_Recipe = render_add_existing_User_User_Recipe;
+function render_new_User_User_Recipe(self) {
     let state = self.state();
     return self.props.mode == "edit" ?
         React.createElement("div", { className: "button__actions" },
-            React.createElement("div", { className: "new-recipes" },
-                React.createElement("button", { className: "new-recipes button button--new", onClick: () => Api.create_linked_User_User_Recipess_Recipes(self.props.entity).then(e => {
+            React.createElement("div", { className: "new-recipe" },
+                React.createElement("button", { className: "new-recipe button button--new", onClick: () => Api.create_linked_User_User_Recipes_Recipe(self.props.entity).then(e => {
                         e.length > 0 &&
-                            Api.update_Recipes(Object.assign({}, e[0], { Picture: "", Name: "", Ingredients: "", Description: "", PreparationTime: 0 })).then(() => load_relation_User_User_Recipes(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Recipes: "closed" }))));
-                    }) }, i18next.t('Create new Recipes'))))
+                            Api.update_Recipe(Object.assign({}, e[0], { Picture: "", Name: "", Ingredients: "", Description: "", PreparationTime: 0 })).then(() => load_relation_User_User_Recipe(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" }))));
+                    }) }, i18next.t('Create new Recipe'))))
         :
             null;
 }
-exports.render_new_User_User_Recipes = render_new_User_User_Recipes;
+exports.render_new_User_User_Recipe = render_new_User_User_Recipe;
 function render_saving_animations_User(self) {
-    return self.state().dirty_Recipes.count() > 0 ?
+    return self.state().dirty_Recipe.count() > 0 ?
         React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" })
         : React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "cornflowerblue" }, className: "saved" });
 }
@@ -35519,7 +35593,7 @@ class UserComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.thread = null;
-        this.state = { update_count: 0, active_sessions: "loading", add_step_Recipes: "closed", dirty_Recipes: Immutable.Map(), Recipes: "loading" };
+        this.state = { update_count: 0, active_sessions: "loading", add_step_Recipe: "closed", dirty_Recipe: Immutable.Map(), Recipe: "loading" };
     }
     get_self() {
         return { state: () => this.state, props: this.props, setState: (ns, c) => this.setState(ns, c) };
@@ -35545,9 +35619,9 @@ class UserComponent extends React.Component {
             load_relations_User(this.get_self(), this.props.current_User, this.props.current_Admin);
         }
         this.thread = setInterval(() => {
-            if (this.state.dirty_Recipes.count() > 0) {
-                let first = this.state.dirty_Recipes.first();
-                this.setState(Object.assign({}, this.state, { dirty_Recipes: this.state.dirty_Recipes.remove(first.Id) }), () => Api.update_Recipes(first));
+            if (this.state.dirty_Recipe.count() > 0) {
+                let first = this.state.dirty_Recipe.first();
+                this.setState(Object.assign({}, this.state, { dirty_Recipe: this.state.dirty_Recipe.remove(first.Id) }), () => Api.update_Recipe(first));
             }
         }, 500);
     }
@@ -35580,7 +35654,7 @@ class UserComponent extends React.Component {
 exports.UserComponent = UserComponent;
 exports.User = (props) => React.createElement(UserComponent, Object.assign({}, props));
 exports.User_to_page = (id) => {
-    let can_edit = Utils.any_of([Permissions.can_edit_User, Permissions.can_edit_User_Recipes, Permissions.can_edit_Recipes]);
+    let can_edit = Utils.any_of([Permissions.can_edit_User, Permissions.can_edit_User_Recipe, Permissions.can_edit_Recipe]);
     return Utils.scene_to_page(can_edit, exports.User, Api.get_User(id), Api.update_User, "User", "User", `/Users/${id}`);
 };
 exports.User_to = (id, target_element_id, current_User, current_Admin) => {
@@ -35592,7 +35666,7 @@ exports.User_to = (id, target_element_id, current_User, current_Admin) => {
 /* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var cof = __webpack_require__(41);
+var cof = __webpack_require__(42);
 module.exports = function(it, msg){
   if(typeof it != 'number' && cof(it) != 'Number')throw TypeError(msg);
   return +it;
@@ -35717,7 +35791,7 @@ var dP          = __webpack_require__(16).f
   , redefineAll = __webpack_require__(71)
   , ctx         = __webpack_require__(56)
   , anInstance  = __webpack_require__(66)
-  , defined     = __webpack_require__(42)
+  , defined     = __webpack_require__(43)
   , forOf       = __webpack_require__(80)
   , $iterDefine = __webpack_require__(139)
   , step        = __webpack_require__(204)
@@ -36193,7 +36267,7 @@ module.exports = Object.is || function is(x, y){
 // https://github.com/tc39/proposal-string-pad-start-end
 var toLength = __webpack_require__(18)
   , repeat   = __webpack_require__(148)
-  , defined  = __webpack_require__(42);
+  , defined  = __webpack_require__(43);
 
 module.exports = function(that, maxLength, fillString, left){
   var S            = String(defined(that))
@@ -36507,7 +36581,7 @@ module.exports = {
 
 var AtomicBlockUtils = __webpack_require__(588);
 var BlockMapBuilder = __webpack_require__(94);
-var CharacterMetadata = __webpack_require__(44);
+var CharacterMetadata = __webpack_require__(45);
 var CompositeDraftDecorator = __webpack_require__(589);
 var ContentBlock = __webpack_require__(75);
 var ContentState = __webpack_require__(155);
@@ -36987,7 +37061,7 @@ module.exports = DraftStringKey;
 
 
 
-var CharacterMetadata = __webpack_require__(44);
+var CharacterMetadata = __webpack_require__(45);
 var ContentBlock = __webpack_require__(75);
 var DefaultDraftBlockRenderMap = __webpack_require__(156);
 var DraftEntity = __webpack_require__(115);
@@ -38324,7 +38398,7 @@ module.exports = moveSelectionForward;
 
 
 
-var CharacterMetadata = __webpack_require__(44);
+var CharacterMetadata = __webpack_require__(45);
 
 var findRangesImmutable = __webpack_require__(117);
 var invariant = __webpack_require__(3);
@@ -53592,15 +53666,15 @@ Object.defineProperty(exports, "__esModule", { value: true });
 __export(__webpack_require__(185));
 __export(__webpack_require__(90));
 __export(__webpack_require__(186));
-__export(__webpack_require__(65));
 __export(__webpack_require__(189));
 __export(__webpack_require__(192));
-__export(__webpack_require__(40));
+__export(__webpack_require__(41));
+__export(__webpack_require__(65));
 __export(__webpack_require__(404));
 __export(__webpack_require__(188));
+__export(__webpack_require__(89));
 __export(__webpack_require__(190));
 __export(__webpack_require__(187));
-__export(__webpack_require__(89));
 __export(__webpack_require__(191));
 
 
@@ -53899,12 +53973,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(14);
 const Immutable = __webpack_require__(33);
 const Api = __webpack_require__(22);
-const Components = __webpack_require__(45);
+const Components = __webpack_require__(39);
 const Permissions = __webpack_require__(27);
 const Utils = __webpack_require__(23);
 const i18next = __webpack_require__(21);
 const Moment = __webpack_require__(0);
-const HomePageViews = __webpack_require__(40);
+const HomePageViews = __webpack_require__(41);
 function load_relations_Admin(self, current_User, current_Admin, callback) {
     callback && callback();
 }
@@ -54014,16 +54088,16 @@ function render_menu_Admin(self) {
                 React.createElement("div", { className: `menu_entry page_link` },
                     React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
             React.createElement("div", { className: "menu_entries" },
-                !Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipes" ? " active" : ""}` },
+                !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
+                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipe" ? " active" : ""}` },
                         React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipes")));
-                            } }, i18next.t('HomePage_Recipess'))),
-                !Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categories" ? " active" : ""}` },
+                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipe")));
+                            } }, i18next.t('HomePage_Recipes'))),
+                !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
+                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}` },
                         React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categories")));
-                            } }, i18next.t('HomePage_Categoriess'))),
+                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categorie")));
+                            } }, i18next.t('HomePage_Categories'))),
                 React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
 }
 exports.render_menu_Admin = render_menu_Admin;
@@ -54641,7 +54715,7 @@ __webpack_require__(79)('copyWithin');
 var $export = __webpack_require__(1)
   , $every  = __webpack_require__(47)(4);
 
-$export($export.P + $export.F * !__webpack_require__(43)([].every, true), 'Array', {
+$export($export.P + $export.F * !__webpack_require__(44)([].every, true), 'Array', {
   // 22.1.3.5 / 15.4.4.16 Array.prototype.every(callbackfn [, thisArg])
   every: function every(callbackfn /* , thisArg */){
     return $every(this, callbackfn, arguments[1]);
@@ -54668,7 +54742,7 @@ __webpack_require__(79)('fill');
 var $export = __webpack_require__(1)
   , $filter = __webpack_require__(47)(2);
 
-$export($export.P + $export.F * !__webpack_require__(43)([].filter, true), 'Array', {
+$export($export.P + $export.F * !__webpack_require__(44)([].filter, true), 'Array', {
   // 22.1.3.7 / 15.4.4.20 Array.prototype.filter(callbackfn [, thisArg])
   filter: function filter(callbackfn /* , thisArg */){
     return $filter(this, callbackfn, arguments[1]);
@@ -54723,7 +54797,7 @@ __webpack_require__(79)(KEY);
 
 var $export  = __webpack_require__(1)
   , $forEach = __webpack_require__(47)(0)
-  , STRICT   = __webpack_require__(43)([].forEach, true);
+  , STRICT   = __webpack_require__(44)([].forEach, true);
 
 $export($export.P + $export.F * !STRICT, 'Array', {
   // 22.1.3.10 / 15.4.4.18 Array.prototype.forEach(callbackfn [, thisArg])
@@ -54787,7 +54861,7 @@ var $export       = __webpack_require__(1)
   , $native       = [].indexOf
   , NEGATIVE_ZERO = !!$native && 1 / [1].indexOf(1, -0) < 0;
 
-$export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(43)($native)), 'Array', {
+$export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(44)($native)), 'Array', {
   // 22.1.3.11 / 15.4.4.14 Array.prototype.indexOf(searchElement [, fromIndex])
   indexOf: function indexOf(searchElement /*, fromIndex = 0 */){
     return NEGATIVE_ZERO
@@ -54818,7 +54892,7 @@ var $export   = __webpack_require__(1)
   , arrayJoin = [].join;
 
 // fallback for not array-like strings
-$export($export.P + $export.F * (__webpack_require__(92) != Object || !__webpack_require__(43)(arrayJoin)), 'Array', {
+$export($export.P + $export.F * (__webpack_require__(92) != Object || !__webpack_require__(44)(arrayJoin)), 'Array', {
   join: function join(separator){
     return arrayJoin.call(toIObject(this), separator === undefined ? ',' : separator);
   }
@@ -54837,7 +54911,7 @@ var $export       = __webpack_require__(1)
   , $native       = [].lastIndexOf
   , NEGATIVE_ZERO = !!$native && 1 / [1].lastIndexOf(1, -0) < 0;
 
-$export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(43)($native)), 'Array', {
+$export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(44)($native)), 'Array', {
   // 22.1.3.14 / 15.4.4.15 Array.prototype.lastIndexOf(searchElement [, fromIndex])
   lastIndexOf: function lastIndexOf(searchElement /*, fromIndex = @[*-1] */){
     // convert -0 to +0
@@ -54861,7 +54935,7 @@ $export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(43)($nati
 var $export = __webpack_require__(1)
   , $map    = __webpack_require__(47)(1);
 
-$export($export.P + $export.F * !__webpack_require__(43)([].map, true), 'Array', {
+$export($export.P + $export.F * !__webpack_require__(44)([].map, true), 'Array', {
   // 22.1.3.15 / 15.4.4.19 Array.prototype.map(callbackfn [, thisArg])
   map: function map(callbackfn /* , thisArg */){
     return $map(this, callbackfn, arguments[1]);
@@ -54902,7 +54976,7 @@ $export($export.S + $export.F * __webpack_require__(7)(function(){
 var $export = __webpack_require__(1)
   , $reduce = __webpack_require__(196);
 
-$export($export.P + $export.F * !__webpack_require__(43)([].reduceRight, true), 'Array', {
+$export($export.P + $export.F * !__webpack_require__(44)([].reduceRight, true), 'Array', {
   // 22.1.3.19 / 15.4.4.22 Array.prototype.reduceRight(callbackfn [, initialValue])
   reduceRight: function reduceRight(callbackfn /* , initialValue */){
     return $reduce(this, callbackfn, arguments.length, arguments[1], true);
@@ -54918,7 +54992,7 @@ $export($export.P + $export.F * !__webpack_require__(43)([].reduceRight, true), 
 var $export = __webpack_require__(1)
   , $reduce = __webpack_require__(196);
 
-$export($export.P + $export.F * !__webpack_require__(43)([].reduce, true), 'Array', {
+$export($export.P + $export.F * !__webpack_require__(44)([].reduce, true), 'Array', {
   // 22.1.3.18 / 15.4.4.21 Array.prototype.reduce(callbackfn [, initialValue])
   reduce: function reduce(callbackfn /* , initialValue */){
     return $reduce(this, callbackfn, arguments.length, arguments[1], false);
@@ -54933,7 +55007,7 @@ $export($export.P + $export.F * !__webpack_require__(43)([].reduce, true), 'Arra
 
 var $export    = __webpack_require__(1)
   , html       = __webpack_require__(134)
-  , cof        = __webpack_require__(41)
+  , cof        = __webpack_require__(42)
   , toIndex    = __webpack_require__(73)
   , toLength   = __webpack_require__(18)
   , arraySlice = [].slice;
@@ -54968,7 +55042,7 @@ $export($export.P + $export.F * __webpack_require__(7)(function(){
 var $export = __webpack_require__(1)
   , $some   = __webpack_require__(47)(3);
 
-$export($export.P + $export.F * !__webpack_require__(43)([].some, true), 'Array', {
+$export($export.P + $export.F * !__webpack_require__(44)([].some, true), 'Array', {
   // 22.1.3.23 / 15.4.4.17 Array.prototype.some(callbackfn [, thisArg])
   some: function some(callbackfn /* , thisArg */){
     return $some(this, callbackfn, arguments[1]);
@@ -54995,7 +55069,7 @@ $export($export.P + $export.F * (fails(function(){
   // V8 bug
   test.sort(null);
   // Old WebKit
-}) || !__webpack_require__(43)($sort)), 'Array', {
+}) || !__webpack_require__(44)($sort)), 'Array', {
   // 22.1.3.25 Array.prototype.sort(comparefn)
   sort: function sort(comparefn){
     return comparefn === undefined
@@ -55445,7 +55519,7 @@ $export($export.S, 'Math', {
 
 var global            = __webpack_require__(6)
   , has               = __webpack_require__(24)
-  , cof               = __webpack_require__(41)
+  , cof               = __webpack_require__(42)
   , inheritIfRequired = __webpack_require__(135)
   , toPrimitive       = __webpack_require__(49)
   , fails             = __webpack_require__(7)
@@ -57577,7 +57651,7 @@ __webpack_require__(79)('includes');
 var $export   = __webpack_require__(1)
   , microtask = __webpack_require__(142)()
   , process   = __webpack_require__(6).process
-  , isNode    = __webpack_require__(41)(process) == 'process';
+  , isNode    = __webpack_require__(42)(process) == 'process';
 
 $export($export.G, {
   asap: function asap(fn){
@@ -57592,7 +57666,7 @@ $export($export.G, {
 
 // https://github.com/ljharb/proposal-is-error
 var $export = __webpack_require__(1)
-  , cof     = __webpack_require__(41);
+  , cof     = __webpack_require__(42);
 
 $export($export.S, 'Error', {
   isError: function isError(it){
@@ -58218,7 +58292,7 @@ $export($export.P, 'String', {
 
 // https://tc39.github.io/String.prototype.matchAll/
 var $export     = __webpack_require__(1)
-  , defined     = __webpack_require__(42)
+  , defined     = __webpack_require__(43)
   , toLength    = __webpack_require__(18)
   , isRegExp    = __webpack_require__(109)
   , getFlags    = __webpack_require__(107)
@@ -59470,7 +59544,7 @@ module.exports = factory;
 
 
 var BlockMapBuilder = __webpack_require__(94);
-var CharacterMetadata = __webpack_require__(44);
+var CharacterMetadata = __webpack_require__(45);
 var ContentBlock = __webpack_require__(75);
 var DraftModifier = __webpack_require__(25);
 var EditorState = __webpack_require__(10);
@@ -59704,7 +59778,7 @@ module.exports = CompositeDraftDecorator;
 
 
 
-var CharacterMetadata = __webpack_require__(44);
+var CharacterMetadata = __webpack_require__(45);
 
 var _require = __webpack_require__(12);
 
@@ -61338,7 +61412,7 @@ module.exports = {
 
 
 
-var CharacterMetadata = __webpack_require__(44);
+var CharacterMetadata = __webpack_require__(45);
 var ContentBlock = __webpack_require__(75);
 var Immutable = __webpack_require__(12);
 
@@ -61875,7 +61949,7 @@ module.exports = adjustBlockDepthForContentState;
 
 
 
-var CharacterMetadata = __webpack_require__(44);
+var CharacterMetadata = __webpack_require__(45);
 
 function applyEntityToContentBlock(contentBlock, start, end, entityKey) {
   var characterList = contentBlock.getCharacterList();
@@ -62120,7 +62194,7 @@ module.exports = convertFromRawToDraftState;
 
 
 
-var CharacterMetadata = __webpack_require__(44);
+var CharacterMetadata = __webpack_require__(45);
 var Immutable = __webpack_require__(12);
 
 var List = Immutable.List;
@@ -63028,7 +63102,7 @@ module.exports = editOnKeyDown;
 
 
 var BlockMapBuilder = __webpack_require__(94);
-var CharacterMetadata = __webpack_require__(44);
+var CharacterMetadata = __webpack_require__(45);
 var DataTransfer = __webpack_require__(242);
 var DraftModifier = __webpack_require__(25);
 var DraftPasteProcessor = __webpack_require__(601);
@@ -81349,6 +81423,17 @@ module.exports = function(module) {
 module.exports = __webpack_amd_options__;
 
 /* WEBPACK VAR INJECTION */}.call(exports, {}))
+
+/***/ }),
+/* 772 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(14);
+exports.AppTest = (props) => React.createElement("div", null);
+
 
 /***/ })
 /******/ ]);

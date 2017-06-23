@@ -34,7 +34,7 @@ using System.IO;
         HttpContext.Request.Headers["ApiToken"] == RestrictToUserTypeAttribute.ApiToken;
 
     
-    [RestrictToUserType(new string[] {"*"})]
+    [RestrictToUserType(new string[] {"User", "Admin"})]
     [HttpGet("{id}")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult /*ItemWithEditable<Lunch>*/ GetById(int id)
@@ -43,7 +43,7 @@ using System.IO;
       var current_User = session == null ? null : session.User;
       var current_Admin = session == null ? null : session.Admin;
       var allowed_items = ApiTokenValid ? _context.Lunch : _context.Lunch;
-      var editable_items = ApiTokenValid ? _context.Lunch : _context.Lunch;
+      var editable_items = ApiTokenValid ? _context.Lunch : current_Admin != null ? _context.Lunch : Enumerable.Empty<Lunch>().AsQueryable();
       var item_full = allowed_items.FirstOrDefault(e => e.Id == id);
       if (item_full == null) return NotFound();
       var item = PortableRecipes.Models.Lunch.FilterViewableAttributesLocal(current_User, current_Admin)(item_full);
@@ -54,7 +54,7 @@ using System.IO;
     }
     
 
-    [RestrictToUserType(new string[] {"*"})]
+    [RestrictToUserType(new string[] {"Admin"})]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult /*Lunch*/ Create()
@@ -73,7 +73,7 @@ using System.IO;
       return Ok(item);
     }
 
-    [RestrictToUserType(new string[] {"*"})]
+    [RestrictToUserType(new string[] {"Admin"})]
     [HttpPut]
     [ValidateAntiForgeryToken]
     public IActionResult Update([FromBody] Lunch item)
@@ -95,7 +95,7 @@ using System.IO;
       return Ok();
     }
 
-    [RestrictToUserType(new string[] {"*"})]
+    [RestrictToUserType(new string[] {"Admin"})]
     [HttpDelete("{id}")]
     [ValidateAntiForgeryToken]
     public IActionResult Delete(int id)
@@ -120,7 +120,7 @@ using System.IO;
     }
 
 
-    [RestrictToUserType(new string[] {"*"})]
+    [RestrictToUserType(new string[] {"User", "Admin"})]
     [HttpGet]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
     public Page<Lunch> GetAll([FromQuery] int page_index, [FromQuery] int page_size = 25 )
@@ -129,7 +129,7 @@ using System.IO;
       var current_User = session == null ? null : session.User;
       var current_Admin = session == null ? null : session.Admin;
       var allowed_items = ApiTokenValid ? _context.Lunch : _context.Lunch;
-      var editable_items = ApiTokenValid ? _context.Lunch : _context.Lunch;
+      var editable_items = ApiTokenValid ? _context.Lunch : current_Admin != null ? _context.Lunch : Enumerable.Empty<Lunch>().AsQueryable();
       var can_edit_by_token = ApiTokenValid || true;
       var can_create_by_token = ApiTokenValid || true;
       var can_delete_by_token = ApiTokenValid || true;

@@ -34,10 +34,10 @@ using System.IO;
         HttpContext.Request.Headers["ApiToken"] == RestrictToUserTypeAttribute.ApiToken;
 
     
-    [RestrictToUserType(new string[] {"*"})]
-    [HttpGet("{HomePage_id}/HomePage_Recipess")]
+    [RestrictToUserType(new string[] {"User", "Admin"})]
+    [HttpGet("{HomePage_id}/HomePage_Recipes")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
-    public Page<Recipes> GetHomePage_Recipess(int HomePage_id, [FromQuery] int page_index, [FromQuery] int page_size = 25 )
+    public Page<Recipe> GetHomePage_Recipes(int HomePage_id, [FromQuery] int page_index, [FromQuery] int page_size = 25 )
     {
       var session = HttpContext.Get<LoggableEntities>(_context);
       var current_User = session == null ? null : session.User;
@@ -49,26 +49,26 @@ using System.IO;
       var can_link_by_token = ApiTokenValid || true;
       var can_view_by_token = ApiTokenValid || true;
       if (source == null || !can_view_by_token) // test
-        return Enumerable.Empty<PortableRecipes.Models.Recipes>() // B
+        return Enumerable.Empty<PortableRecipes.Models.Recipe>() // B
               .AsQueryable()
-              .Select(PortableRecipes.Models.Recipes.FilterViewableAttributes(current_User, current_Admin))
+              .Select(PortableRecipes.Models.Recipe.FilterViewableAttributes(current_User, current_Admin))
               .Select(t => Tuple.Create(t, false))
-              .Paginate(can_create_by_token, can_delete_by_token, can_link_by_token, page_index, page_size, PortableRecipes.Models.Recipes.WithoutImages, item => item , null);
-      var allowed_targets = ApiTokenValid ? _context.Recipes : _context.Recipes;
-      var editable_targets = ApiTokenValid ? _context.Recipes : (_context.Recipes);
+              .Paginate(can_create_by_token, can_delete_by_token, can_link_by_token, page_index, page_size, PortableRecipes.Models.Recipe.WithoutImages, item => item , null);
+      var allowed_targets = ApiTokenValid ? _context.Recipe : _context.Recipe;
+      var editable_targets = ApiTokenValid ? _context.Recipe : (current_Admin != null ? _context.Recipe : Enumerable.Empty<Recipe>().AsQueryable());
       var can_edit_by_token = ApiTokenValid || true;
       var items = (from target in allowed_targets
               select target).OrderBy(i => i.CreatedDate).AsQueryable();
       
       return items
-              .Select(PortableRecipes.Models.Recipes.FilterViewableAttributes(current_User, current_Admin))
+              .Select(PortableRecipes.Models.Recipe.FilterViewableAttributes(current_User, current_Admin))
               .Select(t => Tuple.Create(t, can_edit_by_token && editable_targets.Any(et => et.Id == t.Id)))
-              .Paginate(can_create_by_token, can_delete_by_token, can_link_by_token, page_index, page_size, PortableRecipes.Models.Recipes.WithoutImages, item => item , null);
+              .Paginate(can_create_by_token, can_delete_by_token, can_link_by_token, page_index, page_size, PortableRecipes.Models.Recipe.WithoutImages, item => item , null);
     }
 
-    [HttpGet("{HomePage_id}/HomePage_Recipess/{Recipes_id}")]
+    [HttpGet("{HomePage_id}/HomePage_Recipes/{Recipe_id}")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult /*Recipes*/ GetHomePage_RecipesById(int HomePage_id, int Recipes_id)
+    public IActionResult /*Recipe*/ GetHomePage_RecipeById(int HomePage_id, int Recipe_id)
     {
       var session = HttpContext.Get<LoggableEntities>(_context);
       var current_User = session == null ? null : session.User;
@@ -78,21 +78,21 @@ using System.IO;
       var can_view_by_token = ApiTokenValid || true;
       if (source == null || !can_view_by_token)
         return NotFound();
-      var allowed_targets = ApiTokenValid ? _context.Recipes : _context.Recipes;
+      var allowed_targets = ApiTokenValid ? _context.Recipe : _context.Recipe;
       var item = (from target in allowed_targets
               select target).OrderBy(i => i.CreatedDate)
-              .Select(PortableRecipes.Models.Recipes.FilterViewableAttributes(current_User, current_Admin))
-              .FirstOrDefault(t => t.Id == Recipes_id);
+              .Select(PortableRecipes.Models.Recipe.FilterViewableAttributes(current_User, current_Admin))
+              .FirstOrDefault(t => t.Id == Recipe_id);
       if (item == null) return NotFound();
-      item = PortableRecipes.Models.Recipes.WithoutImages(item);
+      item = PortableRecipes.Models.Recipe.WithoutImages(item);
       return Ok(item);
     }
 
     
-    [RestrictToUserType(new string[] {"*"})]
-    [HttpGet("{HomePage_id}/HomePage_Categoriess")]
+    [RestrictToUserType(new string[] {"User", "Admin"})]
+    [HttpGet("{HomePage_id}/HomePage_Categories")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
-    public Page<Categories> GetHomePage_Categoriess(int HomePage_id, [FromQuery] int page_index, [FromQuery] int page_size = 25 )
+    public Page<Categorie> GetHomePage_Categories(int HomePage_id, [FromQuery] int page_index, [FromQuery] int page_size = 25 )
     {
       var session = HttpContext.Get<LoggableEntities>(_context);
       var current_User = session == null ? null : session.User;
@@ -104,26 +104,26 @@ using System.IO;
       var can_link_by_token = ApiTokenValid || true;
       var can_view_by_token = ApiTokenValid || true;
       if (source == null || !can_view_by_token) // test
-        return Enumerable.Empty<PortableRecipes.Models.Categories>() // B
+        return Enumerable.Empty<PortableRecipes.Models.Categorie>() // B
               .AsQueryable()
-              .Select(PortableRecipes.Models.Categories.FilterViewableAttributes(current_User, current_Admin))
+              .Select(PortableRecipes.Models.Categorie.FilterViewableAttributes(current_User, current_Admin))
               .Select(t => Tuple.Create(t, false))
-              .Paginate(can_create_by_token, can_delete_by_token, can_link_by_token, page_index, page_size, PortableRecipes.Models.Categories.WithoutImages, item => item , null);
-      var allowed_targets = ApiTokenValid ? _context.Categories : _context.Categories;
-      var editable_targets = ApiTokenValid ? _context.Categories : (_context.Categories);
+              .Paginate(can_create_by_token, can_delete_by_token, can_link_by_token, page_index, page_size, PortableRecipes.Models.Categorie.WithoutImages, item => item , null);
+      var allowed_targets = ApiTokenValid ? _context.Categorie : _context.Categorie;
+      var editable_targets = ApiTokenValid ? _context.Categorie : (current_Admin != null ? _context.Categorie : Enumerable.Empty<Categorie>().AsQueryable());
       var can_edit_by_token = ApiTokenValid || true;
       var items = (from target in allowed_targets
               select target).OrderBy(i => i.CreatedDate).AsQueryable();
       
       return items
-              .Select(PortableRecipes.Models.Categories.FilterViewableAttributes(current_User, current_Admin))
+              .Select(PortableRecipes.Models.Categorie.FilterViewableAttributes(current_User, current_Admin))
               .Select(t => Tuple.Create(t, can_edit_by_token && editable_targets.Any(et => et.Id == t.Id)))
-              .Paginate(can_create_by_token, can_delete_by_token, can_link_by_token, page_index, page_size, PortableRecipes.Models.Categories.WithoutImages, item => item , null);
+              .Paginate(can_create_by_token, can_delete_by_token, can_link_by_token, page_index, page_size, PortableRecipes.Models.Categorie.WithoutImages, item => item , null);
     }
 
-    [HttpGet("{HomePage_id}/HomePage_Categoriess/{Categories_id}")]
+    [HttpGet("{HomePage_id}/HomePage_Categories/{Categorie_id}")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult /*Categories*/ GetHomePage_CategoriesById(int HomePage_id, int Categories_id)
+    public IActionResult /*Categorie*/ GetHomePage_CategorieById(int HomePage_id, int Categorie_id)
     {
       var session = HttpContext.Get<LoggableEntities>(_context);
       var current_User = session == null ? null : session.User;
@@ -133,13 +133,13 @@ using System.IO;
       var can_view_by_token = ApiTokenValid || true;
       if (source == null || !can_view_by_token)
         return NotFound();
-      var allowed_targets = ApiTokenValid ? _context.Categories : _context.Categories;
+      var allowed_targets = ApiTokenValid ? _context.Categorie : _context.Categorie;
       var item = (from target in allowed_targets
               select target).OrderBy(i => i.CreatedDate)
-              .Select(PortableRecipes.Models.Categories.FilterViewableAttributes(current_User, current_Admin))
-              .FirstOrDefault(t => t.Id == Categories_id);
+              .Select(PortableRecipes.Models.Categorie.FilterViewableAttributes(current_User, current_Admin))
+              .FirstOrDefault(t => t.Id == Categorie_id);
       if (item == null) return NotFound();
-      item = PortableRecipes.Models.Categories.WithoutImages(item);
+      item = PortableRecipes.Models.Categorie.WithoutImages(item);
       return Ok(item);
     }
 
@@ -257,66 +257,66 @@ using System.IO;
     /*
     static public void CleanupNullRelations(PortableRecipesContext _context) {
     
-      _context.Categories_Meal.RemoveRange(_context.Categories_Meal.Where(l =>
-        l.CategoriesId == null ||
+      _context.Categorie_Meal.RemoveRange(_context.Categorie_Meal.Where(l =>
+        l.CategorieId == null ||
         l.MealId == null ||
-        !_context.Categories.Any(s => s.Id == l.CategoriesId) ||
+        !_context.Categorie.Any(s => s.Id == l.CategorieId) ||
         !_context.Meal.Any(s => s.Id == l.MealId)));
       _context.SaveChanges();
     
 
-      _context.Categories_Meal.RemoveRange(_context.Categories_Meal.Where(l =>
+      _context.Categorie_Meal.RemoveRange(_context.Categorie_Meal.Where(l =>
         l.MealId == null ||
-        l.CategoriesId == null ||
+        l.CategorieId == null ||
         !_context.Meal.Any(s => s.Id == l.MealId) ||
-        !_context.Categories.Any(s => s.Id == l.CategoriesId)));
+        !_context.Categorie.Any(s => s.Id == l.CategorieId)));
       _context.SaveChanges();
     
 
-      _context.User_Recipes.RemoveRange(_context.User_Recipes.Where(l =>
+      _context.User_Recipe.RemoveRange(_context.User_Recipe.Where(l =>
         l.UserId == null ||
-        l.RecipesId == null ||
+        l.RecipeId == null ||
         !_context.User.Any(s => s.Id == l.UserId) ||
-        !_context.Recipes.Any(s => s.Id == l.RecipesId)));
+        !_context.Recipe.Any(s => s.Id == l.RecipeId)));
       _context.SaveChanges();
     
 
-      _context.User_Recipes.RemoveRange(_context.User_Recipes.Where(l =>
-        l.RecipesId == null ||
+      _context.User_Recipe.RemoveRange(_context.User_Recipe.Where(l =>
+        l.RecipeId == null ||
         l.UserId == null ||
-        !_context.Recipes.Any(s => s.Id == l.RecipesId) ||
+        !_context.Recipe.Any(s => s.Id == l.RecipeId) ||
         !_context.User.Any(s => s.Id == l.UserId)));
       _context.SaveChanges();
     
 
-      _context.Recipes_Rating.RemoveRange(_context.Recipes_Rating.Where(l =>
-        l.RecipesId == null ||
+      _context.Recipe_Rating.RemoveRange(_context.Recipe_Rating.Where(l =>
+        l.RecipeId == null ||
         l.RatingId == null ||
-        !_context.Recipes.Any(s => s.Id == l.RecipesId) ||
+        !_context.Recipe.Any(s => s.Id == l.RecipeId) ||
         !_context.Rating.Any(s => s.Id == l.RatingId)));
       _context.SaveChanges();
     
 
-      _context.Recipes_Rating.RemoveRange(_context.Recipes_Rating.Where(l =>
+      _context.Recipe_Rating.RemoveRange(_context.Recipe_Rating.Where(l =>
         l.RatingId == null ||
-        l.RecipesId == null ||
+        l.RecipeId == null ||
         !_context.Rating.Any(s => s.Id == l.RatingId) ||
-        !_context.Recipes.Any(s => s.Id == l.RecipesId)));
+        !_context.Recipe.Any(s => s.Id == l.RecipeId)));
       _context.SaveChanges();
     
 
-      _context.Meal_Recipes.RemoveRange(_context.Meal_Recipes.Where(l =>
+      _context.Meal_Recipe.RemoveRange(_context.Meal_Recipe.Where(l =>
         l.MealId == null ||
-        l.RecipesId == null ||
+        l.RecipeId == null ||
         !_context.Meal.Any(s => s.Id == l.MealId) ||
-        !_context.Recipes.Any(s => s.Id == l.RecipesId)));
+        !_context.Recipe.Any(s => s.Id == l.RecipeId)));
       _context.SaveChanges();
     
 
-      _context.Meal_Recipes.RemoveRange(_context.Meal_Recipes.Where(l =>
-        l.RecipesId == null ||
+      _context.Meal_Recipe.RemoveRange(_context.Meal_Recipe.Where(l =>
+        l.RecipeId == null ||
         l.MealId == null ||
-        !_context.Recipes.Any(s => s.Id == l.RecipesId) ||
+        !_context.Recipe.Any(s => s.Id == l.RecipeId) ||
         !_context.Meal.Any(s => s.Id == l.MealId)));
       _context.SaveChanges();
     

@@ -34,10 +34,10 @@ using System.IO;
         HttpContext.Request.Headers["ApiToken"] == RestrictToUserTypeAttribute.ApiToken;
 
     
-    [RestrictToUserType(new string[] {"*"})]
-    [HttpGet("{Rating_id}/Recipes_Ratings")]
+    [RestrictToUserType(new string[] {"User", "Admin"})]
+    [HttpGet("{Rating_id}/Recipe_Ratings")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
-    public Page<Recipes> GetRecipes_Ratings(int Rating_id, [FromQuery] int page_index, [FromQuery] int page_size = 25 )
+    public Page<Recipe> GetRecipe_Ratings(int Rating_id, [FromQuery] int page_index, [FromQuery] int page_size = 25 )
     {
       var session = HttpContext.Get<LoggableEntities>(_context);
       var current_User = session == null ? null : session.User;
@@ -49,29 +49,29 @@ using System.IO;
       var can_link_by_token = ApiTokenValid || true;
       var can_view_by_token = ApiTokenValid || true;
       if (source == null || !can_view_by_token) // test
-        return Enumerable.Empty<PortableRecipes.Models.Recipes>() // B
+        return Enumerable.Empty<PortableRecipes.Models.Recipe>() // B
               .AsQueryable()
-              .Select(PortableRecipes.Models.Recipes.FilterViewableAttributes(current_User, current_Admin))
+              .Select(PortableRecipes.Models.Recipe.FilterViewableAttributes(current_User, current_Admin))
               .Select(t => Tuple.Create(t, false))
-              .Paginate(can_create_by_token, can_delete_by_token, can_link_by_token, page_index, page_size, PortableRecipes.Models.Recipes.WithoutImages, item => item , null);
-      var allowed_targets = ApiTokenValid ? _context.Recipes : _context.Recipes;
-      var editable_targets = ApiTokenValid ? _context.Recipes : (_context.Recipes);
+              .Paginate(can_create_by_token, can_delete_by_token, can_link_by_token, page_index, page_size, PortableRecipes.Models.Recipe.WithoutImages, item => item , null);
+      var allowed_targets = ApiTokenValid ? _context.Recipe : _context.Recipe;
+      var editable_targets = ApiTokenValid ? _context.Recipe : (current_Admin != null ? _context.Recipe : Enumerable.Empty<Recipe>().AsQueryable());
       var can_edit_by_token = ApiTokenValid || true;
-      var items = (from link in _context.Recipes_Rating
+      var items = (from link in _context.Recipe_Rating
               where link.RatingId == source.Id
               from target in allowed_targets
-              where link.RecipesId == target.Id
+              where link.RecipeId == target.Id
               select target).OrderBy(i => i.CreatedDate).AsQueryable();
       
       return items
-              .Select(PortableRecipes.Models.Recipes.FilterViewableAttributes(current_User, current_Admin))
+              .Select(PortableRecipes.Models.Recipe.FilterViewableAttributes(current_User, current_Admin))
               .Select(t => Tuple.Create(t, can_edit_by_token && editable_targets.Any(et => et.Id == t.Id)))
-              .Paginate(can_create_by_token, can_delete_by_token, can_link_by_token, page_index, page_size, PortableRecipes.Models.Recipes.WithoutImages, item => item , null);
+              .Paginate(can_create_by_token, can_delete_by_token, can_link_by_token, page_index, page_size, PortableRecipes.Models.Recipe.WithoutImages, item => item , null);
     }
 
-    [HttpGet("{Rating_id}/Recipes_Ratings/{Recipes_id}")]
+    [HttpGet("{Rating_id}/Recipe_Ratings/{Recipe_id}")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult /*Recipes*/ GetRecipes_RatingById(int Rating_id, int Recipes_id)
+    public IActionResult /*Recipe*/ GetRecipe_RatingById(int Rating_id, int Recipe_id)
     {
       var session = HttpContext.Get<LoggableEntities>(_context);
       var current_User = session == null ? null : session.User;
@@ -81,23 +81,23 @@ using System.IO;
       var can_view_by_token = ApiTokenValid || true;
       if (source == null || !can_view_by_token)
         return NotFound();
-      var allowed_targets = ApiTokenValid ? _context.Recipes : _context.Recipes;
-      var item = (from link in _context.Recipes_Rating
+      var allowed_targets = ApiTokenValid ? _context.Recipe : _context.Recipe;
+      var item = (from link in _context.Recipe_Rating
               where link.RatingId == source.Id
               from target in allowed_targets
-              where link.RecipesId == target.Id
+              where link.RecipeId == target.Id
               select target).OrderBy(i => i.CreatedDate)
-              .Select(PortableRecipes.Models.Recipes.FilterViewableAttributes(current_User, current_Admin))
-              .FirstOrDefault(t => t.Id == Recipes_id);
+              .Select(PortableRecipes.Models.Recipe.FilterViewableAttributes(current_User, current_Admin))
+              .FirstOrDefault(t => t.Id == Recipe_id);
       if (item == null) return NotFound();
-      item = PortableRecipes.Models.Recipes.WithoutImages(item);
+      item = PortableRecipes.Models.Recipe.WithoutImages(item);
       return Ok(item);
     }
 
-    [RestrictToUserType(new string[] {"*"})]
-    [HttpGet("{Rating_id}/unlinked/Recipes_Ratings")]
+    [RestrictToUserType(new string[] {"User", "Admin"})]
+    [HttpGet("{Rating_id}/unlinked/Recipe_Ratings")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
-    public Page<Recipes> GetUnlinkedRecipes_Ratings(int Rating_id, [FromQuery] int page_index, [FromQuery] int page_size = 25)
+    public Page<Recipe> GetUnlinkedRecipe_Ratings(int Rating_id, [FromQuery] int page_index, [FromQuery] int page_size = 25)
     {
       var session = HttpContext.Get<LoggableEntities>(_context);
       var current_User = session == null ? null : session.User;
@@ -109,38 +109,39 @@ using System.IO;
       var can_link_by_token = ApiTokenValid || true;
       var can_view_by_token = ApiTokenValid || true;
       if (source == null || !can_view_by_token)
-        return Enumerable.Empty<PortableRecipes.Models.Recipes>()
+        return Enumerable.Empty<PortableRecipes.Models.Recipe>()
               .AsQueryable()
-              .Select(PortableRecipes.Models.Recipes.FilterViewableAttributes(current_User, current_Admin))
+              .Select(PortableRecipes.Models.Recipe.FilterViewableAttributes(current_User, current_Admin))
               .Select(t => Tuple.Create(t, false))
-              .Paginate(can_create_by_token, can_delete_by_token, can_link_by_token, page_index, page_size, PortableRecipes.Models.Recipes.WithoutImages, item => item);
-      var allowed_targets = ApiTokenValid ? _context.Recipes : _context.Recipes;
-      var editable_targets = ApiTokenValid ? _context.Recipes : (_context.Recipes);
+              .Paginate(can_create_by_token, can_delete_by_token, can_link_by_token, page_index, page_size, PortableRecipes.Models.Recipe.WithoutImages, item => item);
+      var allowed_targets = ApiTokenValid ? _context.Recipe : _context.Recipe;
+      var editable_targets = ApiTokenValid ? _context.Recipe : (current_Admin != null ? _context.Recipe : Enumerable.Empty<Recipe>().AsQueryable());
       var can_edit_by_token = ApiTokenValid || true;
       return (from target in allowed_targets
-              where !_context.Recipes_Rating.Any(link => link.RatingId == source.Id && link.RecipesId == target.Id) &&
+              where !_context.Recipe_Rating.Any(link => link.RatingId == source.Id && link.RecipeId == target.Id) &&
               true
               select target).OrderBy(i => i.CreatedDate)
-              .Select(PortableRecipes.Models.Recipes.FilterViewableAttributes(current_User, current_Admin))
+              .Select(PortableRecipes.Models.Recipe.FilterViewableAttributes(current_User, current_Admin))
               .Select(t => Tuple.Create(t, can_edit_by_token && editable_targets.Any(et => et.Id == t.Id)))
-              .Paginate(can_create_by_token, can_delete_by_token, can_link_by_token, page_index, page_size, PortableRecipes.Models.Recipes.WithoutImages, item => item);
+              .Paginate(can_create_by_token, can_delete_by_token, can_link_by_token, page_index, page_size, PortableRecipes.Models.Recipe.WithoutImages, item => item);
     }
 
-    bool CanAdd_Rating_Recipes_Ratings(Rating source) {
-      return (from link in _context.Recipes_Rating
+    bool CanAdd_Rating_Recipe_Ratings(Rating source) {
+      return (from link in _context.Recipe_Rating
            where link.RatingId == source.Id
-           from target in _context.Recipes
-           where link.RecipesId == target.Id
+           from target in _context.Recipe
+           where link.RecipeId == target.Id
            select target).Count() < 1;
     }
 
-    bool CanAdd_Recipes_Recipes_Ratings(Recipes target) {
+    bool CanAdd_Recipe_Recipe_Ratings(Recipe target) {
       return true;
     }
 
-    [RestrictToUserType(new string[] {"*"})]
-    [HttpPost("{Rating_id}/Recipes_Ratings_Recipes")]
-    public IActionResult /*IEnumerable<Recipes>*/ CreateNewRecipes_Rating_Recipes(int Rating_id)
+    [RestrictToUserType(new string[] {"User", "Admin"})]
+    [RestrictToUserType(new string[] {"Admin"})]
+    [HttpPost("{Rating_id}/Recipe_Ratings_Recipe")]
+    public IActionResult /*IEnumerable<Recipe>*/ CreateNewRecipe_Rating_Recipe(int Rating_id)
     {
       var session = HttpContext.Get<LoggableEntities>(_context);
       var current_User = session == null ? null : session.User;
@@ -150,67 +151,67 @@ using System.IO;
       var can_create_by_token = ApiTokenValid || true;
       if (source == null || !can_create_by_token)
         return Unauthorized();
-        // throw new Exception("Cannot create item in relation Recipes_Ratings");
+        // throw new Exception("Cannot create item in relation Recipe_Ratings");
       var can_link_by_token = ApiTokenValid || true;
-      if (!CanAdd_Rating_Recipes_Ratings(source) || !can_link_by_token)
+      if (!CanAdd_Rating_Recipe_Ratings(source) || !can_link_by_token)
         return Unauthorized();
-        //throw new Exception("Cannot add item to relation Recipes_Ratings");
-      var new_target = new Recipes() { CreatedDate = DateTime.Now, Id = _context.Recipes.Max(i => i.Id) + 1 };
-      _context.Recipes.Add(new_target);
+        //throw new Exception("Cannot add item to relation Recipe_Ratings");
+      var new_target = new Recipe() { CreatedDate = DateTime.Now, Id = _context.Recipe.Max(i => i.Id) + 1 };
+      _context.Recipe.Add(new_target);
       _context.SaveChanges();
-      var link = new Recipes_Rating() { Id = _context.Recipes_Rating.Max(l => l.Id) + 1, RatingId = source.Id, RecipesId = new_target.Id };
-      _context.Recipes_Rating.Add(link);
+      var link = new Recipe_Rating() { Id = _context.Recipe_Rating.Max(l => l.Id) + 1, RatingId = source.Id, RecipeId = new_target.Id };
+      _context.Recipe_Rating.Add(link);
       _context.SaveChanges();
-      return Ok(new Recipes[] { new_target });
+      return Ok(new Recipe[] { new_target });
     }
 
-    [RestrictToUserType(new string[] {"*"})]
-    [HttpPost("{Rating_id}/Recipes_Ratings/{Recipes_id}")]
-    public IActionResult LinkWithRecipes_Rating(int Rating_id, int Recipes_id)
+    [RestrictToUserType(new string[] {"User", "Admin"})]
+    [HttpPost("{Rating_id}/Recipe_Ratings/{Recipe_id}")]
+    public IActionResult LinkWithRecipe_Rating(int Rating_id, int Recipe_id)
     {
       var session = HttpContext.Get<LoggableEntities>(_context);
       var current_User = session == null ? null : session.User;
       var current_Admin = session == null ? null : session.Admin;
       var allowed_sources = _context.Rating;
       var source = allowed_sources.FirstOrDefault(s => s.Id == Rating_id);
-      var allowed_targets = _context.Recipes;
-      var target = allowed_targets.FirstOrDefault(s => s.Id == Recipes_id);
+      var allowed_targets = _context.Recipe;
+      var target = allowed_targets.FirstOrDefault(s => s.Id == Recipe_id);
       var can_edit_source_by_token = ApiTokenValid || true;
       var can_edit_target_by_token = ApiTokenValid || true;
       var can_link_by_token = ApiTokenValid || true;
-      if (!CanAdd_Rating_Recipes_Ratings(source) || !can_link_by_token || !can_edit_source_by_token || !can_edit_target_by_token)
+      if (!CanAdd_Rating_Recipe_Ratings(source) || !can_link_by_token || !can_edit_source_by_token || !can_edit_target_by_token)
         return BadRequest();
-        // throw new Exception("Cannot add item to relation Recipes_Ratings");
-      if (!CanAdd_Recipes_Recipes_Ratings(target))
+        // throw new Exception("Cannot add item to relation Recipe_Ratings");
+      if (!CanAdd_Recipe_Recipe_Ratings(target))
         return BadRequest();
-        // throw new Exception("Cannot add item to relation Recipes_Ratings");
-      var link = new Recipes_Rating() { Id = _context.Recipes_Rating.Max(i => i.Id) + 1, RatingId = source.Id, RecipesId = target.Id };
-      _context.Recipes_Rating.Add(link);
+        // throw new Exception("Cannot add item to relation Recipe_Ratings");
+      var link = new Recipe_Rating() { Id = _context.Recipe_Rating.Max(i => i.Id) + 1, RatingId = source.Id, RecipeId = target.Id };
+      _context.Recipe_Rating.Add(link);
       _context.SaveChanges();
       return Ok();
     }
-    [RestrictToUserType(new string[] {"*"})]
-    [HttpDelete("{Rating_id}/Recipes_Ratings/{Recipes_id}")]
-    public IActionResult UnlinkFromRecipes_Rating(int Rating_id, int Recipes_id)
+    [RestrictToUserType(new string[] {"User", "Admin"})]
+    [HttpDelete("{Rating_id}/Recipe_Ratings/{Recipe_id}")]
+    public IActionResult UnlinkFromRecipe_Rating(int Rating_id, int Recipe_id)
     {
       var session = HttpContext.Get<LoggableEntities>(_context);
       var current_User = session == null ? null : session.User;
       var current_Admin = session == null ? null : session.Admin;
       var allowed_sources = _context.Rating;
       var source = allowed_sources.FirstOrDefault(s => s.Id == Rating_id);
-      var allowed_targets = _context.Recipes;
-      var target = allowed_targets.FirstOrDefault(s => s.Id == Recipes_id);
-      var link = _context.Recipes_Rating.FirstOrDefault(l => l.RatingId == source.Id && l.RecipesId == target.Id);
+      var allowed_targets = _context.Recipe;
+      var target = allowed_targets.FirstOrDefault(s => s.Id == Recipe_id);
+      var link = _context.Recipe_Rating.FirstOrDefault(l => l.RatingId == source.Id && l.RecipeId == target.Id);
 
       var can_edit_source_by_token = ApiTokenValid || true;
       var can_edit_target_by_token = ApiTokenValid || true;
       var can_unlink_by_token = ApiTokenValid || true;
-      if (!can_unlink_by_token || !can_edit_source_by_token || !can_edit_target_by_token) return Unauthorized(); // throw new Exception("Cannot remove item from relation Recipes_Ratings");
-      _context.Recipes_Rating.Remove(link);
+      if (!can_unlink_by_token || !can_edit_source_by_token || !can_edit_target_by_token) return Unauthorized(); // throw new Exception("Cannot remove item from relation Recipe_Ratings");
+      _context.Recipe_Rating.Remove(link);
       _context.SaveChanges();
       return Ok();
     }
-    [RestrictToUserType(new string[] {"*"})]
+    [RestrictToUserType(new string[] {"User", "Admin"})]
     [HttpGet("{id}")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult /*ItemWithEditable<Rating>*/ GetById(int id)
@@ -219,7 +220,7 @@ using System.IO;
       var current_User = session == null ? null : session.User;
       var current_Admin = session == null ? null : session.Admin;
       var allowed_items = ApiTokenValid ? _context.Rating : _context.Rating;
-      var editable_items = ApiTokenValid ? _context.Rating : _context.Rating;
+      var editable_items = ApiTokenValid ? _context.Rating : current_Admin != null ? _context.Rating : Enumerable.Empty<Rating>().AsQueryable();
       var item_full = allowed_items.FirstOrDefault(e => e.Id == id);
       if (item_full == null) return NotFound();
       var item = PortableRecipes.Models.Rating.FilterViewableAttributesLocal(current_User, current_Admin)(item_full);
@@ -230,7 +231,7 @@ using System.IO;
     }
     
 
-    [RestrictToUserType(new string[] {"*"})]
+    [RestrictToUserType(new string[] {"Admin"})]
     [HttpPost]
     [ValidateAntiForgeryToken]
     public IActionResult /*Rating*/ Create()
@@ -249,7 +250,7 @@ using System.IO;
       return Ok(item);
     }
 
-    [RestrictToUserType(new string[] {"*"})]
+    [RestrictToUserType(new string[] {"Admin"})]
     [HttpPut]
     [ValidateAntiForgeryToken]
     public IActionResult Update([FromBody] Rating item)
@@ -271,7 +272,7 @@ using System.IO;
       return Ok();
     }
 
-    [RestrictToUserType(new string[] {"*"})]
+    [RestrictToUserType(new string[] {"Admin"})]
     [HttpDelete("{id}")]
     [ValidateAntiForgeryToken]
     public IActionResult Delete(int id)
@@ -296,7 +297,7 @@ using System.IO;
     }
 
 
-    [RestrictToUserType(new string[] {"*"})]
+    [RestrictToUserType(new string[] {"User", "Admin"})]
     [HttpGet]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
     public Page<Rating> GetAll([FromQuery] int page_index, [FromQuery] int page_size = 25 )
@@ -305,7 +306,7 @@ using System.IO;
       var current_User = session == null ? null : session.User;
       var current_Admin = session == null ? null : session.Admin;
       var allowed_items = ApiTokenValid ? _context.Rating : _context.Rating;
-      var editable_items = ApiTokenValid ? _context.Rating : _context.Rating;
+      var editable_items = ApiTokenValid ? _context.Rating : current_Admin != null ? _context.Rating : Enumerable.Empty<Rating>().AsQueryable();
       var can_edit_by_token = ApiTokenValid || true;
       var can_create_by_token = ApiTokenValid || true;
       var can_delete_by_token = ApiTokenValid || true;

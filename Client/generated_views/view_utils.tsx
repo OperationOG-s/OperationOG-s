@@ -731,7 +731,7 @@ export async function render_page_manager(target_element_id:string, initial_page
   i18next.init({
     lng: current_User ? current_User.Language : current_Admin ? current_Admin.Language :  "nl",
     fallbackLng: "en",
-    ns: ["common","American","Meal","Asian","Recipes","Lunch","User","HomePage","Admin","Dinner","Mediterranean","Breakfast","Categories","Rating"],
+    ns: ["common","American","Meal","Asian","Lunch","User","HomePage","Recipe","Admin","Dinner","Categorie","Mediterranean","Breakfast","Rating"],
     resources: resources
   }, (err, t) => {
     ReactDOM.render(

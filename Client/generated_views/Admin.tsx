@@ -13,7 +13,7 @@ import * as Draft from 'draft-js'
 import * as i18next from 'i18next'
 import * as Moment from 'moment'
 import * as HomePageViews from './HomePage'
-
+import * as CustomViews from '../custom_views'
 
 
 
@@ -176,31 +176,31 @@ export function render_menu_Admin(self:AdminContext) {
             }
           <div className="menu_entries">
           
-            {!Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ? null :
-                  <div className={`menu_entry${self.props.shown_relation == "HomePage_Recipes" ? " active" : ""}`}>
+            {!Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
+                  <div className={`menu_entry${self.props.shown_relation == "HomePage_Recipe" ? " active" : ""}`}>
                     <a onClick={() =>
                         {
                             Api.get_HomePages(0, 1).then(e =>
                               e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id),
-                                () => self.props.set_shown_relation("HomePage_Recipes"))
+                                () => self.props.set_shown_relation("HomePage_Recipe"))
                             )
                         }
                       }>
-                      {i18next.t('HomePage_Recipess')}
+                      {i18next.t('HomePage_Recipes')}
                     </a>
                   </div>
                 }
-        {!Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin) ? null :
-                  <div className={`menu_entry${self.props.shown_relation == "HomePage_Categories" ? " active" : ""}`}>
+        {!Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
+                  <div className={`menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}`}>
                     <a onClick={() =>
                         {
                             Api.get_HomePages(0, 1).then(e =>
                               e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id),
-                                () => self.props.set_shown_relation("HomePage_Categories"))
+                                () => self.props.set_shown_relation("HomePage_Categorie"))
                             )
                         }
                       }>
-                      {i18next.t('HomePage_Categoriess')}
+                      {i18next.t('HomePage_Categories')}
                     </a>
                   </div>
                 }

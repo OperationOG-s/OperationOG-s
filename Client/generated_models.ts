@@ -22,17 +22,6 @@ export type Asian = {
     Kind:"Asian"
   }
   
-export type Recipes = {
-    Id : number
-    CreatedDate:Moment.Moment
-    Picture : string
-  Name : string
-  Ingredients : string
-  Description : string
-  PreparationTime : number
-    
-  }
-  
 export type Lunch = {
     Id : number
     CreatedDate:Moment.Moment
@@ -54,6 +43,18 @@ export type HomePage = {
     Id : number
     CreatedDate:Moment.Moment
     
+  Test : string
+    
+  }
+  
+export type Recipe = {
+    Id : number
+    CreatedDate:Moment.Moment
+    Picture : string
+  Name : string
+  Ingredients : string
+  Description : string
+  PreparationTime : number
     
   }
   
@@ -74,6 +75,13 @@ export type Dinner = {
     Kind:"Dinner"
   }
   
+export type Categorie = {
+    Id : number
+    CreatedDate:Moment.Moment
+    
+    
+  } & (American | Asian | Mediterranean)
+  
 export type Mediterranean = {
     Id : number
     CreatedDate:Moment.Moment
@@ -88,13 +96,6 @@ export type Breakfast = {
     Kind:"Breakfast"
   }
   
-export type Categories = {
-    Id : number
-    CreatedDate:Moment.Moment
-    
-    
-  } & (American | Asian | Mediterranean)
-  
 export type Rating = {
     Id : number
     CreatedDate:Moment.Moment
@@ -102,56 +103,56 @@ export type Rating = {
     
   }
   
-export type Categories_Meal = {
+export type Categorie_Meal = {
     Id : number
     CreatedDate:Moment.Moment
-    CategoriesId : number
+    CategorieId : number
   MealId : number
     
   }
   
 
-export type User_Recipes = {
+export type User_Recipe = {
     Id : number
     CreatedDate:Moment.Moment
     UserId : number
-  RecipesId : number
+  RecipeId : number
     
   }
   
 
-export type Recipes_Rating = {
+export type Recipe_Rating = {
     Id : number
     CreatedDate:Moment.Moment
-    RecipesId : number
+    RecipeId : number
   RatingId : number
     
   }
   
 
-export type Meal_Recipes = {
+export type Meal_Recipe = {
     Id : number
     CreatedDate:Moment.Moment
     MealId : number
-  RecipesId : number
+  RecipeId : number
     
   }
   
 
-export type HomePage_Recipes = {
+export type HomePage_Recipe = {
     Id : number
     CreatedDate:Moment.Moment
     HomePageId : number
-  RecipesId : number
+  RecipeId : number
     
   }
   
 
-export type HomePage_Categories = {
+export type HomePage_Categorie = {
     Id : number
     CreatedDate:Moment.Moment
     HomePageId : number
-  CategoriesId : number
+  CategorieId : number
     
   }
   

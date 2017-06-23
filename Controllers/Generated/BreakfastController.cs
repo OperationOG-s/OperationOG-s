@@ -29,7 +29,7 @@ using PortableRecipes.Filters;
       this.env = env;
     }
 
-    [RestrictToUserType(new string[] {"*"})]
+    [RestrictToUserType(new string[] {"User", "Admin"})]
     [HttpGet("{id}")]
     public IActionResult View(int id)
     {

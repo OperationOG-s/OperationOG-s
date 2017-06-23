@@ -13,66 +13,66 @@ import * as Draft from 'draft-js'
 import * as i18next from 'i18next'
 import * as Moment from 'moment'
 import * as HomePageViews from './HomePage'
-import * as RecipesViews from './Recipes'
+import * as RecipeViews from './Recipe'
+import * as CustomViews from '../custom_views'
 
+export function User_User_Recipe_can_create(self:UserContext) {
+  let state = self.state()
+  return state.Recipe == "loading" ? false : state.Recipe.CanCreate
+}
+export function User_User_Recipe_can_delete(self:UserContext) {
+  let state = self.state()
+  return state.Recipe == "loading" ? false : state.Recipe.CanDelete
+}
+export function User_User_Recipe_page_index(self:UserContext) {
+  let state = self.state()
+  return state.Recipe == "loading" ? 0 : state.Recipe.PageIndex
+}
+export function User_User_Recipe_page_size(self:UserContext) {
+  let state = self.state()
+  return state.Recipe == "loading" ? 25 : state.Recipe.PageSize
+}
+export function User_User_Recipe_search_query(self:UserContext) {
+  let state = self.state()
+  return state.Recipe == "loading" ? null : state.Recipe.SearchQuery
+}
+export function User_User_Recipe_num_pages(self:UserContext) {
+  let state = self.state()
+  return state.Recipe == "loading" ? 1 : state.Recipe.NumPages
+}
 
-export function User_User_Recipes_can_create(self:UserContext) {
+export function load_relation_User_User_Recipe(self:UserContext, force_first_page:boolean, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
   let state = self.state()
-  return state.Recipes == "loading" ? false : state.Recipes.CanCreate
-}
-export function User_User_Recipes_can_delete(self:UserContext) {
-  let state = self.state()
-  return state.Recipes == "loading" ? false : state.Recipes.CanDelete
-}
-export function User_User_Recipes_page_index(self:UserContext) {
-  let state = self.state()
-  return state.Recipes == "loading" ? 0 : state.Recipes.PageIndex
-}
-export function User_User_Recipes_page_size(self:UserContext) {
-  let state = self.state()
-  return state.Recipes == "loading" ? 25 : state.Recipes.PageSize
-}
-export function User_User_Recipes_search_query(self:UserContext) {
-  let state = self.state()
-  return state.Recipes == "loading" ? null : state.Recipes.SearchQuery
-}
-export function User_User_Recipes_num_pages(self:UserContext) {
-  let state = self.state()
-  return state.Recipes == "loading" ? 1 : state.Recipes.NumPages
-}
-
-export function load_relation_User_User_Recipes(self:UserContext, force_first_page:boolean, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
-  let state = self.state()
-  let prelude = force_first_page && state.Recipes != "loading" ?
-    (c:() => void) => state.Recipes != "loading" && self.setState({
+  let prelude = force_first_page && state.Recipe != "loading" ?
+    (c:() => void) => state.Recipe != "loading" && self.setState({
       ...state,
-      Recipes: {...state.Recipes, PageIndex:0 }
+      Recipe: {...state.Recipe, PageIndex:0 }
     }, c)
     :
     (c:() => void) => c()
-  Permissions.can_view_Recipes(current_User, current_Admin) ?
+  Permissions.can_view_Recipe(current_User, current_Admin) ?
     prelude(() =>
-      Api.get_User_User_Recipess(self.props.entity, User_User_Recipes_page_index(self), User_User_Recipes_page_size(self), User_User_Recipes_search_query(self)).then(Recipess =>
+      Api.get_User_User_Recipes(self.props.entity, User_User_Recipe_page_index(self), User_User_Recipe_page_size(self), User_User_Recipe_search_query(self)).then(Recipes =>
         self.setState({...self.state(), update_count:self.state().update_count+1,
-            Recipes:Utils.raw_page_to_paginated_items<Models.Recipes, Utils.EntityAndSize<Models.Recipes> & { shown_relation:string }>((i, i_just_created) => {
+            Recipe:Utils.raw_page_to_paginated_items<Models.Recipe, Utils.EntityAndSize<Models.Recipe> & { shown_relation:string }>((i, i_just_created) => {
               let state = self.state()
               return {
                 element:i,
-                size: state.Recipes != "loading" ?
-                  (state.Recipes.Items.has(i.Id) ?
-                    state.Recipes.Items.get(i.Id).size
+                size: state.Recipe != "loading" ?
+                  (state.Recipe.Items.has(i.Id) ?
+                    state.Recipe.Items.get(i.Id).size
                   :
                     "preview" /* i_just_created ? "large" : "preview" */)
                   :
                     "preview" /* i_just_created ? "large" : "preview" */,
-                shown_relation:"all"}}, Recipess)
+                shown_relation:"all"}}, Recipes)
             }, callback)))
     :
       prelude(() => callback && callback())
 }
 
 export function load_relations_User(self, current_User:Models.User, current_Admin:Models.Admin, callback?:()=>void) {
-  load_relation_User_User_Recipes(self, false, self.props.current_User, self.props.current_Admin, 
+  load_relation_User_User_Recipe(self, false, self.props.current_User, self.props.current_Admin, 
         () => callback && callback())
 }
 
@@ -225,31 +225,31 @@ export function render_menu_User(self:UserContext) {
             }
           <div className="menu_entries">
           
-            {!Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ? null :
-                  <div className={`menu_entry${self.props.shown_relation == "HomePage_Recipes" ? " active" : ""}`}>
+            {!Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
+                  <div className={`menu_entry${self.props.shown_relation == "HomePage_Recipe" ? " active" : ""}`}>
                     <a onClick={() =>
                         {
                             Api.get_HomePages(0, 1).then(e =>
                               e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id),
-                                () => self.props.set_shown_relation("HomePage_Recipes"))
+                                () => self.props.set_shown_relation("HomePage_Recipe"))
                             )
                         }
                       }>
-                      {i18next.t('HomePage_Recipess')}
+                      {i18next.t('HomePage_Recipes')}
                     </a>
                   </div>
                 }
-        {!Permissions.can_view_Categories(self.props.current_User, self.props.current_Admin) ? null :
-                  <div className={`menu_entry${self.props.shown_relation == "HomePage_Categories" ? " active" : ""}`}>
+        {!Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
+                  <div className={`menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}`}>
                     <a onClick={() =>
                         {
                             Api.get_HomePages(0, 1).then(e =>
                               e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id),
-                                () => self.props.set_shown_relation("HomePage_Categories"))
+                                () => self.props.set_shown_relation("HomePage_Categorie"))
                             )
                         }
                       }>
-                      {i18next.t('HomePage_Categoriess')}
+                      {i18next.t('HomePage_Categories')}
                     </a>
                   </div>
                 }
@@ -273,15 +273,15 @@ export function render_local_menu_User(self:UserContext) {
               </a>
             </div>
           
-            {!Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin) ? null :
-                  <div key={"User_Recipes"} className={`local_menu_entry${self.props.shown_relation == "User_Recipes" ? " local_menu_entry--active" : ""}`}>
+            {!Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
+                  <div key={"User_Recipe"} className={`local_menu_entry${self.props.shown_relation == "User_Recipe" ? " local_menu_entry--active" : ""}`}>
                     <a onClick={() =>
-                      load_relation_User_User_Recipes(self,
+                      load_relation_User_User_Recipe(self,
                         false,
                         self.props.current_User, self.props.current_Admin, 
-                        () => self.props.set_shown_relation("User_Recipes"))
+                        () => self.props.set_shown_relation("User_Recipe"))
                     }>
-                      {i18next.t('User_Recipess')}
+                      {i18next.t('User_Recipes')}
                     </a>
                   </div>
                 }  
@@ -460,48 +460,48 @@ export function render_large_User(self:UserContext) {
 }
 
 
-export function render_User_User_Recipes(self:UserContext, context:"presentation_structure"|"default") {
-  if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "User_Recipes") || !Permissions.can_view_Recipes(self.props.current_User, self.props.current_Admin))
+export function render_User_User_Recipe(self:UserContext, context:"presentation_structure"|"default") {
+  if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "User_Recipe") || !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin))
     return null
   let state = self.state()
   return <div>
     
-    { List.render_relation("user_user_recipes",
+    { List.render_relation("user_user_recipe",
    "User",
+   "Recipe",
    "Recipes",
-   "Recipess",
    self.props.nesting_depth > 0,
    false,
    false,
    false)
   (
-      state.Recipes != "loading" ?
-        state.Recipes.IdsInServerOrder.map(id => state.Recipes != "loading" && state.Recipes.Items.get(id)):
-        state.Recipes,
-      User_User_Recipes_page_index(self),
-      User_User_Recipes_num_pages(self),
+      state.Recipe != "loading" ?
+        state.Recipe.IdsInServerOrder.map(id => state.Recipe != "loading" && state.Recipe.Items.get(id)):
+        state.Recipe,
+      User_User_Recipe_page_index(self),
+      User_User_Recipe_num_pages(self),
       new_page_index => {
           let state = self.state()
-          state.Recipes != "loading" &&
+          state.Recipe != "loading" &&
           self.setState({...self.state(),
             update_count:self.state().update_count+1,
-            Recipes: {
-              ...state.Recipes,
+            Recipe: {
+              ...state.Recipe,
               PageIndex:new_page_index
             }
-          }, () =>  load_relation_User_User_Recipes(self, false, self.props.current_User, self.props.current_Admin))
+          }, () =>  load_relation_User_User_Recipe(self, false, self.props.current_User, self.props.current_Admin))
         },
       (i,_) => {
           let i_id = i.element.Id
           let state = self.state()
           return <div key={i_id}
             className={`model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
-                        ${state.Recipes != "loading" && state.Recipes.JustCreated.has(i_id) && state.Recipes.JustCreated.get(i_id) ? "newly-created" : ""}` }
+                        ${state.Recipe != "loading" && state.Recipe.JustCreated.has(i_id) && state.Recipe.JustCreated.get(i_id) ? "newly-created" : ""}` }
           
             >
             <div key={i_id}>
               {
-                RecipesViews.Recipes({
+                RecipeViews.Recipe({
                   ...self.props,
                   entity:i.element,
                   inline:false,
@@ -509,35 +509,35 @@ export function render_User_User_Recipes(self:UserContext, context:"presentation
                   size: i.size,
                   allow_maximisation:true,
                   allow_fullscreen:true,
-                  mode:self.props.mode == "edit" && (Permissions.can_edit_User_Recipes(self.props.current_User, self.props.current_Admin)
-                        || Permissions.can_create_User_Recipes(self.props.current_User, self.props.current_Admin)
-                        || Permissions.can_delete_User_Recipes(self.props.current_User, self.props.current_Admin)) ?
+                  mode:self.props.mode == "edit" && (Permissions.can_edit_User_Recipe(self.props.current_User, self.props.current_Admin)
+                        || Permissions.can_create_User_Recipe(self.props.current_User, self.props.current_Admin)
+                        || Permissions.can_delete_User_Recipe(self.props.current_User, self.props.current_Admin)) ?
                     self.props.mode : "view",
-                  is_editable:state.Recipes != "loading" && state.Recipes.Editable.get(i_id),
+                  is_editable:state.Recipe != "loading" && state.Recipe.Editable.get(i_id),
                   shown_relation:i.shown_relation,
                   set_shown_relation:(new_shown_relation:string, callback) => {
                     let state = self.state()
-                    state.Recipes != "loading" &&
+                    state.Recipe != "loading" &&
                     self.setState({...self.state(),
-                      Recipes:
+                      Recipe:
                         {
-                          ...state.Recipes,
-                          Items:state.Recipes.Items.set(i_id,{...state.Recipes.Items.get(i_id), shown_relation:new_shown_relation})
+                          ...state.Recipe,
+                          Items:state.Recipe.Items.set(i_id,{...state.Recipe.Items.get(i_id), shown_relation:new_shown_relation})
                         }
                     }, callback)
                   },
-                  nested_entity_names: self.props.nested_entity_names.push("Recipes"),
+                  nested_entity_names: self.props.nested_entity_names.push("Recipe"),
                   
                   set_size:(new_size:Utils.EntitySize, callback) => {
                     let new_shown_relation = new_size == "large" ? "all" : i.shown_relation
                     let state = self.state()
-                    state.Recipes != "loading" &&
+                    state.Recipe != "loading" &&
                     self.setState({...self.state(),
-                      Recipes:
+                      Recipe:
                         {
-                          ...state.Recipes,
-                          Items:state.Recipes.Items.set(i_id,
-                            {...state.Recipes.Items.get(i_id),
+                          ...state.Recipe,
+                          Items:state.Recipe.Items.set(i_id,
+                            {...state.Recipe.Items.get(i_id),
                               size:new_size, shown_relation:new_shown_relation})
                         }
                     }, callback)
@@ -545,25 +545,25 @@ export function render_User_User_Recipes(self:UserContext, context:"presentation
                     
                   toggle_button:undefined,
                   set_mode:undefined,
-                  set_entity:(new_entity:Models.Recipes, callback?:()=>void, force_update_count_increment?:boolean) => {
+                  set_entity:(new_entity:Models.Recipe, callback?:()=>void, force_update_count_increment?:boolean) => {
                     let state = self.state()
-                    state.Recipes != "loading" &&
+                    state.Recipe != "loading" &&
                     self.setState({...self.state(),
-                      dirty_Recipes:state.dirty_Recipes.set(i_id, new_entity),
+                      dirty_Recipe:state.dirty_Recipe.set(i_id, new_entity),
                       update_count:force_update_count_increment ? self.state().update_count+1 : state.update_count,
-                      Recipes:
+                      Recipe:
                         {
-                          ...state.Recipes,
-                          Items:state.Recipes.Items.set(i_id,{...state.Recipes.Items.get(i_id), element:new_entity})
+                          ...state.Recipe,
+                          Items:state.Recipe.Items.set(i_id,{...state.Recipe.Items.get(i_id), element:new_entity})
                         }
                     }, callback)
                   },
                   delete: undefined,
-                  unlink: !Permissions.can_delete_User_Recipes(self.props.current_User, self.props.current_Admin) ?
+                  unlink: !Permissions.can_delete_User_Recipe(self.props.current_User, self.props.current_Admin) ?
                     null
                     :
-                    () => confirm(i18next.t('Are you sure?')) && Api.unlink_User_User_Recipess(self.props.entity, i.element).then(() =>
-                      load_relation_User_User_Recipes(self, false, self.props.current_User, self.props.current_Admin))
+                    () => confirm(i18next.t('Are you sure?')) && Api.unlink_User_User_Recipes(self.props.entity, i.element).then(() =>
+                      load_relation_User_User_Recipe(self, false, self.props.current_User, self.props.current_Admin))
                 })
               }
             </div>
@@ -571,8 +571,8 @@ export function render_User_User_Recipes(self:UserContext, context:"presentation
         },
       () =>
         <div>
-          {Permissions.can_create_Recipes(self.props.current_User, self.props.current_Admin) && Permissions.can_create_User_Recipes(self.props.current_User, self.props.current_Admin) && User_User_Recipes_can_create(self) ? render_new_User_User_Recipes(self) : null}
-          {Permissions.can_create_User_Recipes(self.props.current_User, self.props.current_Admin) ? render_add_existing_User_User_Recipes(self) : null}
+          {Permissions.can_create_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_create_User_Recipe(self.props.current_User, self.props.current_Admin) && User_User_Recipe_can_create(self) ? render_new_User_User_Recipe(self) : null}
+          {Permissions.can_create_User_Recipe(self.props.current_User, self.props.current_Admin) ? render_add_existing_User_User_Recipe(self) : null}
         </div>)
     }
     
@@ -583,64 +583,64 @@ export function render_User_User_Recipes(self:UserContext, context:"presentation
 
 export function render_relations_User(self:UserContext) {
   return <div className="relations">
-      { render_User_User_Recipes(self, "default") }
+      { render_User_User_Recipe(self, "default") }
       
     </div>
 }
 
-export function render_add_existing_User_User_Recipes(self:UserContext) {
+export function render_add_existing_User_User_Recipe(self:UserContext) {
     
     let state = self.state()
     return self.props.mode == "edit" ?
       <div className="button__actions">
         {
-          state.add_step_Recipes != "open" ?
+          state.add_step_Recipe != "open" ?
             <Buttons.Add 
               onClick={() =>
-                self.setState({...self.state(), add_step_Recipes:"open"}) }
-                  target_name={"Recipes"} />
+                self.setState({...self.state(), add_step_Recipe:"open"}) }
+                  target_name={"Recipe"} />
           :
           React.createElement(List.AddToRelation,
             {
-              relation_name:"user_user_recipes",
+              relation_name:"user_user_recipe",
               source_name:"User",
-              target_name:"Recipes",
-              target_plural:"Recipess",
+              target_name:"Recipe",
+              target_plural:"Recipes",
               page_size:25,
               render_target:(i,i_id) =>
                 <div key={i_id} className="group__item">
                   <a className="group__button button button--existing"
                     onClick={() =>
-                        self.setState({...self.state(), add_step_Recipes:"saving"}, () =>
-                          Api.link_User_User_Recipess(self.props.entity, i).then(() =>
-                            self.setState({...self.state(), add_step_Recipes:"closed"}, () =>
-                              load_relation_User_User_Recipes(self, false, self.props.current_User, self.props.current_Admin))))
+                        self.setState({...self.state(), add_step_Recipe:"saving"}, () =>
+                          Api.link_User_User_Recipes(self.props.entity, i).then(() =>
+                            self.setState({...self.state(), add_step_Recipe:"closed"}, () =>
+                              load_relation_User_User_Recipe(self, false, self.props.current_User, self.props.current_Admin))))
                       }>
                       Add existing
                   </a>
                   <div className="group__title" disabled={true}>
                     {
-                      RecipesViews.Recipes({
+                      RecipeViews.Recipe({
                         ...self.props,
                         entity:i,
                         nesting_depth:self.props.nesting_depth+1,
                         size:"preview",
                         mode:"view",
                         is_editable:false,
-                        nested_entity_names: self.props.nested_entity_names.push("Recipes"),
+                        nested_entity_names: self.props.nested_entity_names.push("Recipe"),
                         set_size:undefined,
                         toggle_button:undefined,
                         set_mode:undefined,
-                        set_entity:(new_entity:Models.Recipes, callback?:()=>void) => {},
+                        set_entity:(new_entity:Models.Recipe, callback?:()=>void) => {},
                         unlink: undefined,
                         delete: undefined
                       })
                     }
                   </div>
                 </div>,
-              cancel:() => self.setState({...self.state(), add_step_Recipes:"closed"}),
+              cancel:() => self.setState({...self.state(), add_step_Recipe:"closed"}),
               get_items:[
-                { name: "Recipes", get: async(i,s) => Api.get_unlinked_User_User_Recipess(self.props.entity, i, s) },
+                { name: "Recipe", get: async(i,s) => Api.get_unlinked_User_User_Recipes(self.props.entity, i, s) },
               ]
             })
         }
@@ -650,25 +650,25 @@ export function render_add_existing_User_User_Recipes(self:UserContext) {
     }
   
 
-export function render_new_User_User_Recipes(self:UserContext) {
+export function render_new_User_User_Recipe(self:UserContext) {
     let state = self.state()
     return  self.props.mode == "edit" ?
       <div className="button__actions">
-        <div className="new-recipes">
+        <div className="new-recipe">
               <button 
-                      className="new-recipes button button--new"
+                      className="new-recipe button button--new"
                       onClick={() =>
-                          Api.create_linked_User_User_Recipess_Recipes(self.props.entity).then(e => {
+                          Api.create_linked_User_User_Recipes_Recipe(self.props.entity).then(e => {
                               e.length > 0 &&
-                              Api.update_Recipes(
-                                ({ ...e[0], Picture:"", Name:"", Ingredients:"", Description:"", PreparationTime:0 } as Models.Recipes)).then(() =>
-                                load_relation_User_User_Recipes(self, true, self.props.current_User, self.props.current_Admin, () =>
-                                    self.setState({...self.state(), add_step_Recipes:"closed"})
+                              Api.update_Recipe(
+                                ({ ...e[0], Picture:"", Name:"", Ingredients:"", Description:"", PreparationTime:0 } as Models.Recipe)).then(() =>
+                                load_relation_User_User_Recipe(self, true, self.props.current_User, self.props.current_Admin, () =>
+                                    self.setState({...self.state(), add_step_Recipe:"closed"})
                                   )
                                 )
                           })
                       }>
-                  {i18next.t('Create new Recipes')}
+                  {i18next.t('Create new Recipe')}
               </button>
             </div>
         </div>
@@ -678,7 +678,7 @@ export function render_new_User_User_Recipes(self:UserContext) {
   
 
 export function render_saving_animations_User(self:UserContext) {
-  return self.state().dirty_Recipes.count() > 0 ?
+  return self.state().dirty_Recipe.count() > 0 ?
     <div style={{position:"fixed", zIndex:10000, top:0, left:0, width:"20px", height:"20px", backgroundColor:"red"}} className="saving"/>
     : <div style={{position:"fixed", zIndex:10000, top:0, left:0, width:"20px", height:"20px", backgroundColor:"cornflowerblue"}} className="saved"/>
 }
@@ -688,14 +688,14 @@ export type UserContext = {state:()=>UserState, props:Utils.EntityComponentProps
 export type UserState = {
     update_count:number
     active_sessions:"loading"|Array<{Item1:string, Item2:Date}>,
-    add_step_Recipes:"closed"|"open"|"saving",
-      dirty_Recipes:Immutable.Map<number,Models.Recipes>,
-      Recipes:Utils.PaginatedItems<{ shown_relation: string } & Utils.EntityAndSize<Models.Recipes>>|"loading"
+    add_step_Recipe:"closed"|"open"|"saving",
+      dirty_Recipe:Immutable.Map<number,Models.Recipe>,
+      Recipe:Utils.PaginatedItems<{ shown_relation: string } & Utils.EntityAndSize<Models.Recipe>>|"loading"
   }
 export class UserComponent extends React.Component<Utils.EntityComponentProps<Models.User>, UserState> {
   constructor(props:Utils.EntityComponentProps<Models.User>, context:any) {
     super(props, context)
-    this.state = { update_count:0,active_sessions:"loading", add_step_Recipes:"closed", dirty_Recipes:Immutable.Map<number,Models.Recipes>(), Recipes:"loading" }
+    this.state = { update_count:0,active_sessions:"loading", add_step_Recipe:"closed", dirty_Recipe:Immutable.Map<number,Models.Recipe>(), Recipe:"loading" }
   }
 
   get_self() {
@@ -724,10 +724,10 @@ export class UserComponent extends React.Component<Utils.EntityComponentProps<Mo
     }
 
     this.thread = setInterval(() => {
-      if (this.state.dirty_Recipes.count() > 0) {
-         let first = this.state.dirty_Recipes.first()
-         this.setState({...this.state, dirty_Recipes: this.state.dirty_Recipes.remove(first.Id)}, () =>
-           Api.update_Recipes(first)
+      if (this.state.dirty_Recipe.count() > 0) {
+         let first = this.state.dirty_Recipe.first()
+         this.setState({...this.state, dirty_Recipe: this.state.dirty_Recipe.remove(first.Id)}, () =>
+           Api.update_Recipe(first)
          )
        }
 
@@ -774,7 +774,7 @@ export let User = (props:Utils.EntityComponentProps<Models.User>) : JSX.Element 
   <UserComponent {...props} />
 
 export let User_to_page = (id:number) => {
-  let can_edit = Utils.any_of([Permissions.can_edit_User, Permissions.can_edit_User_Recipes, Permissions.can_edit_Recipes])
+  let can_edit = Utils.any_of([Permissions.can_edit_User, Permissions.can_edit_User_Recipe, Permissions.can_edit_Recipe])
   return Utils.scene_to_page<Models.User>(can_edit, User, Api.get_User(id), Api.update_User, "User", "User", `/Users/${id}`)
 }
 
