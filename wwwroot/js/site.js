@@ -53958,6 +53958,10 @@ class IComponent extends React.Component {
             return Immutable.List(loaded_recipes);
         });
     }
+    // prints out in the console everytime the button is clicked
+    clicked() {
+        console.log('the button was clicked: recipe is bookmarked!');
+    }
     render() {
         console.log(this.props.props);
         // Api.get_Recipes()
@@ -53965,12 +53969,12 @@ class IComponent extends React.Component {
             return React.createElement("div", null, "Log in first...");
         return React.createElement("div", null,
             React.createElement("div", null,
-                "Hello",
-                this.props.props.current_User.Username),
-            React.createElement("div", null, this.state.recipes.map(recipe => React.createElement("div", null,
-                recipe.Name,
-                " "))),
-            React.createElement("div", null, this.state.i));
+                React.createElement("img", { src: "http://s.eatthis-cdn.com/media/images/ext/336492655/fast-food.jpg", alt: "food", width: "428px", height: "428px" }),
+                "Welcome ",
+                this.props.props.current_User.Username,
+                "!"),
+            React.createElement("button", { onClick: (e) => { e.preventDefault(); this.clicked(); } }, " Bookmark"),
+            React.createElement("div", null, "Here you can find recipes!"));
     }
 }
 exports.default = IComponent;

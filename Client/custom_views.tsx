@@ -17,6 +17,7 @@ export default class IComponent extends React.Component<IComponentProps, Icompon
         this.state = {i : 0, j:0, z:0, recipes: Immutable.List<Models.Recipe>()}
     }
 
+
     componentWillMount(){
          var thread = setInterval(() => 
     {
@@ -36,27 +37,36 @@ export default class IComponent extends React.Component<IComponentProps, Icompon
         }
         return Immutable.List<Models.Recipe>(loaded_recipes)
     }
+    // prints out in the console everytime the button is clicked
+    clicked(){
+        console.log('the button was clicked: recipe is bookmarked!');
+    }
     
       
-    
-
-
-
     render(){
                 console.log(this.props.props)
                // Api.get_Recipes()
                 if(this.props.props.current_User == undefined) return <div>Log in first...</div>
                 return <div>
-                        <div>Hello{this.props.props.current_User.Username}</div>
-                        <div> 
-                            {this.state.recipes.map(recipe => <div>{recipe.Name} </div>)}
+                        <div>
+                            <img src="http://s.eatthis-cdn.com/media/images/ext/336492655/fast-food.jpg" alt="food" width="428px" height="428px"/>
+                            Welcome {this.props.props.current_User.Username}!
                         </div>
-                        <div>{this.state.i}</div>
+                        {/*makes a clickable button*/}
+                        <button onClick={ (e) => {e.preventDefault(); this.clicked(); }}> Bookmark</button>
+                        <div>
+                            Here you can find recipes!
+                        </div>
+                        {/*<div> 
+                            {this.state.recipes.map(recipe => <div>{recipe.Name} </div>)}
+                        </div>*/}
+                        {/*<div>{this.state.i}</div>*/}
                         </div>
 
             }
 
 }
+
 
 export let AppTest = (props:ViewUtils.EntityComponentProps<Models.HomePage>) => 
 
