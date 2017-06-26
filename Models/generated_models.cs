@@ -339,6 +339,29 @@ namespace PortableRecipes.Models
 
   
   
+  public partial class CategoryList: IEntity {
+    public CategoryList() {
+      
+    }
+    public int Id {get;set;}
+    
+    [Newtonsoft.Json.JsonProperty(ItemConverterType = typeof(Newtonsoft.Json.Converters.JavaScriptDateTimeConverter))] public DateTime CreatedDate{ get; set; }
+        
+    
+    static public Expression<Func<CategoryList,CategoryList>> FilterViewableAttributes(User current_User, Admin current_Admin) {
+      return self => self;
+    }
+    static public Func<CategoryList,CategoryList> FilterViewableAttributesLocal(User current_User, Admin current_Admin) {
+      return self => self;
+    }
+    static public CategoryList WithoutImages(CategoryList self) {
+      
+      return self;
+    }
+  }
+
+  
+  
   public partial class Rating: IEntity {
     public Rating() {
       Recipe_Ratings = new HashSet<Recipe_Rating>();
@@ -355,6 +378,29 @@ namespace PortableRecipes.Models
       return self => self;
     }
     static public Rating WithoutImages(Rating self) {
+      
+      return self;
+    }
+  }
+
+  
+  
+  public partial class Bookmarks: IEntity {
+    public Bookmarks() {
+      
+    }
+    public int Id {get;set;}
+    
+    [Newtonsoft.Json.JsonProperty(ItemConverterType = typeof(Newtonsoft.Json.Converters.JavaScriptDateTimeConverter))] public DateTime CreatedDate{ get; set; }
+        
+    
+    static public Expression<Func<Bookmarks,Bookmarks>> FilterViewableAttributes(User current_User, Admin current_Admin) {
+      return self => self;
+    }
+    static public Func<Bookmarks,Bookmarks> FilterViewableAttributesLocal(User current_User, Admin current_Admin) {
+      return self => self;
+    }
+    static public Bookmarks WithoutImages(Bookmarks self) {
       
       return self;
     }
@@ -457,10 +503,6 @@ namespace PortableRecipes.Models
 
   
   
-
-
-
-
 
   public partial class LoggableEntities {
   public User User {get;set;}

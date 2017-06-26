@@ -21,6 +21,33 @@
         "seeds": [ { "Id":1, "Test":"\"\"" } ]
     },
     {
+        "name": "Bookmarks",
+        "allow_maximisation": true,
+        "type": "page",
+        "attributes": [{ "type": "null", "name": "BookmarkViewAtt", "custom_rendering": "CustomViews.BookmarksView", "hidden_label": true }],
+        "permissions": {
+            "view": ["*"],
+            "edit": ["*"],
+            "delete": [],
+            "create": []
+        },
+        "seeds": [ { "Id":1 } ]
+    },
+        {
+        "name": "CategoryList",
+        "allow_maximisation": true,
+        "type": "page",
+        "attributes": [{ "type": "null", "name": "CategoriesViewAtt", "custom_rendering": "CustomViews.CategoriesView", "hidden_label": true }],
+        "permissions": {
+            "view": ["*"],
+            "edit": ["*"],
+            "delete": [],
+            "create": []
+        },
+        "seeds": [ { "Id":1 } ]
+    },
+    
+    {
             "name": "User",
             "can_login": true,
             "can_register": true,
@@ -377,26 +404,9 @@
             { "MealId": 2, "RecipeId": 16 },
             { "MealId": 2, "RecipeId": 17 }
           
-            ]},
+            ]}
         
 
-            {
-                "source": "HomePage",
-                "target":"Recipe",
-                "sort":"1-N"
-            },
-            { 
-                "source": "HomePage",
-                "target":"Categorie",
-                "sort":"1-N",
-                
-                "seeds": [
-                { "HomePageId": 1, "CategorieId": 1 },
-                { "HomePageId": 1, "CategorieId": 2 },
-                { "HomePageId": 1, "CategorieId": 3 }]
-                
-            }
-        
 
       
 ]

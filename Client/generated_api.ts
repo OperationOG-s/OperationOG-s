@@ -525,54 +525,6 @@ export async function reset_User_password(username:string, email:string) : Promi
     
   
   
-export async function get_HomePage_HomePage_Recipes(source:Models.HomePage, page_index:number, page_size:number, query_string:string = null) : Promise<RawPage<Models.Recipe>> {
-  let res = await fetch(`/api/v1/HomePage/${source.Id}/HomePage_Recipes?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return make_page<Models.Recipe>(json, e => { return {...e, }})
-}
-
-export async function get_HomePage_HomePage_Recipes_Recipe(source:Models.HomePage, page_index:number, page_size:number, id:number) : Promise<Models.Recipe> {
-  let res = await fetch(`/api/v1/HomePage/${source.Id}/HomePage_Recipes/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Recipe
-}
-
-export async function get_HomePage_HomePage_Recipes_Recipe_by_id(source:Models.HomePage, id:number) : Promise<Models.Recipe> {
-  let res = await fetch(`/api/v1/HomePage/${source.Id}/HomePage_Recipes/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Recipe
-}
-
-
-
-
-export async function get_HomePage_HomePage_Categories(source:Models.HomePage, page_index:number, page_size:number, query_string:string = null) : Promise<RawPage<Models.Categorie>> {
-  let res = await fetch(`/api/v1/HomePage/${source.Id}/HomePage_Categories?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return make_page<Models.Categorie>(json, e => { return {...e, }})
-}
-
-export async function get_HomePage_HomePage_Categories_Categorie(source:Models.HomePage, page_index:number, page_size:number, id:number) : Promise<Models.Categorie> {
-  let res = await fetch(`/api/v1/HomePage/${source.Id}/HomePage_Categories/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Categorie
-}
-
-export async function get_HomePage_HomePage_Categories_Categorie_by_id(source:Models.HomePage, id:number) : Promise<Models.Categorie> {
-  let res = await fetch(`/api/v1/HomePage/${source.Id}/HomePage_Categories/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Categorie
-}
-
-
-
-
 export async function create_HomePage() : Promise<Models.HomePage> {
   let res = await fetch(`/api/v1/HomePage/`,
     { method: 'post', credentials: 'include', headers:{'content-type': 'application/json',
@@ -801,30 +753,6 @@ export async function unlink_Recipe_Meal_Recipes(source:Models.Recipe, target:Mo
   if (!res.ok) throw Error(res.statusText)
   return
 }
-
-
-export async function get_Recipe_HomePage_Recipes(source:Models.Recipe, page_index:number, page_size:number, query_string:string = null) : Promise<RawPage<Models.HomePage>> {
-  let res = await fetch(`/api/v1/Recipe/${source.Id}/HomePage_Recipes?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return make_page<Models.HomePage>(json, e => { return {...e, }})
-}
-
-export async function get_Recipe_HomePage_Recipes_HomePage(source:Models.Recipe, page_index:number, page_size:number, id:number) : Promise<Models.HomePage> {
-  let res = await fetch(`/api/v1/Recipe/${source.Id}/HomePage_Recipes/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.HomePage
-}
-
-export async function get_Recipe_HomePage_Recipes_HomePage_by_id(source:Models.Recipe, id:number) : Promise<Models.HomePage> {
-  let res = await fetch(`/api/v1/Recipe/${source.Id}/HomePage_Recipes/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.HomePage
-}
-
-
 
 
 export async function create_Recipe() : Promise<Models.Recipe> {
@@ -1144,30 +1072,6 @@ export async function unlink_Categorie_Categorie_Meals(source:Models.Categorie, 
 }
 
 
-export async function get_Categorie_HomePage_Categories(source:Models.Categorie, page_index:number, page_size:number, query_string:string = null) : Promise<RawPage<Models.HomePage>> {
-  let res = await fetch(`/api/v1/Categorie/${source.Id}/HomePage_Categories?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return make_page<Models.HomePage>(json, e => { return {...e, }})
-}
-
-export async function get_Categorie_HomePage_Categories_HomePage(source:Models.Categorie, page_index:number, page_size:number, id:number) : Promise<Models.HomePage> {
-  let res = await fetch(`/api/v1/Categorie/${source.Id}/HomePage_Categories/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.HomePage
-}
-
-export async function get_Categorie_HomePage_Categories_HomePage_by_id(source:Models.Categorie, id:number) : Promise<Models.HomePage> {
-  let res = await fetch(`/api/v1/Categorie/${source.Id}/HomePage_Categories/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
-  if (!res.ok) throw Error(res.statusText)
-  let json = await res.json()
-  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.HomePage
-}
-
-
-
-
 export async function create_Categorie() : Promise<Models.Categorie> {
   let res = await fetch(`/api/v1/Categorie/`,
     { method: 'post', credentials: 'include', headers:{'content-type': 'application/json',
@@ -1305,6 +1209,52 @@ export async function get_Breakfasts(page_index:number, page_size:number, search
 
   
   
+export async function create_CategoryList() : Promise<Models.CategoryList> {
+  let res = await fetch(`/api/v1/CategoryList/`,
+    { method: 'post', credentials: 'include', headers:{'content-type': 'application/json',
+      'X-XSRF-TOKEN': (document.getElementsByName("__RequestVerificationToken")[0] as any).value } })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.CategoryList
+}
+
+export async function update_CategoryList(item:Models.CategoryList) : Promise<void> {
+  let res = await fetch(`/api/v1/CategoryList/`, { method: 'put',
+      body: JSON.stringify({...item, CreatedDate:undefined, }), credentials: 'include', headers:{'content-type': 'application/json', 'X-XSRF-TOKEN': (document.getElementsByName("__RequestVerificationToken")[0] as any).value } })
+  if (!res.ok) throw Error(res.statusText)
+  return
+}
+
+export async function delete_CategoryList(source:Models.CategoryList) : Promise<void> {
+  let res = await fetch(`/api/v1/CategoryList/${source.Id}`, { method: 'delete', credentials: 'include', headers:{'content-type': 'application/json', 'X-XSRF-TOKEN': (document.getElementsByName("__RequestVerificationToken")[0] as any).value} })
+  if (!res.ok) throw Error(res.statusText)
+  return
+}
+
+export async function get_CategoryList(id:number) : Promise<ItemWithEditable<Models.CategoryList>> {
+  let res = await fetch(`/api/v1/CategoryList/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return { Item: {...json.Item, CreatedDate: Moment.utc(json.Item.CreatedDate),  } as Models.CategoryList,
+           Editable: !!json.Editable, JustCreated:false }
+}
+
+export async function get_CategoryLists(page_index:number, page_size:number, search_query:string = null) : Promise<RawPage<Models.CategoryList>> {
+  let res = await fetch(`/api/v1/CategoryList?page_index=${page_index}&page_size=${page_size}${(search_query != null ? "&page_size=" + search_query : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return make_page<Models.CategoryList>(json, e => { return {...e, }})
+}
+
+
+
+
+
+
+
+  
+  
 export async function get_Rating_Recipe_Ratings(source:Models.Rating, page_index:number, page_size:number, query_string:string = null) : Promise<RawPage<Models.Recipe>> {
   let res = await fetch(`/api/v1/Rating/${source.Id}/Recipe_Ratings?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
   if (!res.ok) throw Error(res.statusText)
@@ -1391,6 +1341,52 @@ export async function get_Ratings(page_index:number, page_size:number, search_qu
   if (!res.ok) throw Error(res.statusText)
   let json = await res.json()
   return make_page<Models.Rating>(json, e => { return {...e, }})
+}
+
+
+
+
+
+
+
+  
+  
+export async function create_Bookmarks() : Promise<Models.Bookmarks> {
+  let res = await fetch(`/api/v1/Bookmarks/`,
+    { method: 'post', credentials: 'include', headers:{'content-type': 'application/json',
+      'X-XSRF-TOKEN': (document.getElementsByName("__RequestVerificationToken")[0] as any).value } })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Bookmarks
+}
+
+export async function update_Bookmarks(item:Models.Bookmarks) : Promise<void> {
+  let res = await fetch(`/api/v1/Bookmarks/`, { method: 'put',
+      body: JSON.stringify({...item, CreatedDate:undefined, }), credentials: 'include', headers:{'content-type': 'application/json', 'X-XSRF-TOKEN': (document.getElementsByName("__RequestVerificationToken")[0] as any).value } })
+  if (!res.ok) throw Error(res.statusText)
+  return
+}
+
+export async function delete_Bookmarks(source:Models.Bookmarks) : Promise<void> {
+  let res = await fetch(`/api/v1/Bookmarks/${source.Id}`, { method: 'delete', credentials: 'include', headers:{'content-type': 'application/json', 'X-XSRF-TOKEN': (document.getElementsByName("__RequestVerificationToken")[0] as any).value} })
+  if (!res.ok) throw Error(res.statusText)
+  return
+}
+
+export async function get_Bookmarks(id:number) : Promise<ItemWithEditable<Models.Bookmarks>> {
+  let res = await fetch(`/api/v1/Bookmarks/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return { Item: {...json.Item, CreatedDate: Moment.utc(json.Item.CreatedDate),  } as Models.Bookmarks,
+           Editable: !!json.Editable, JustCreated:false }
+}
+
+export async function get_Bookmarkss(page_index:number, page_size:number, search_query:string = null) : Promise<RawPage<Models.Bookmarks>> {
+  let res = await fetch(`/api/v1/Bookmarks?page_index=${page_index}&page_size=${page_size}${(search_query != null ? "&page_size=" + search_query : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return make_page<Models.Bookmarks>(json, e => { return {...e, }})
 }
 
 

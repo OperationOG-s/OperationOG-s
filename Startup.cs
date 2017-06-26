@@ -121,6 +121,11 @@ namespace PortableRecipes
         app.UseExceptionHandler("/Home/Error");
         loggerFactory.AddNLog();
       }
+      app.Use(async (context, next) =>
+      {
+        context.Response.Headers.Add("X-Frame-Options", "SAMEORIGIN");
+        await next();
+      });
       PortableRecipesContextSeeds.InitializePagesAndSingletons(dbContext);
 
       app.UseStaticFiles();

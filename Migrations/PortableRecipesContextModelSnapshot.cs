@@ -26,6 +26,8 @@ namespace PortableRecipes.Migrations
 
                     b.Property<string>("Language");
 
+                    b.Property<DateTime>("LastLoginAttempt");
+
                     b.Property<string>("PasswordHash");
 
                     b.Property<string>("PasswordSalt");
@@ -43,21 +45,19 @@ namespace PortableRecipes.Migrations
                     b.ToTable("Admin");
                 });
 
-            modelBuilder.Entity("PortableRecipes.Models.BookmarkedRecipes", b =>
+            modelBuilder.Entity("PortableRecipes.Models.Bookmarks", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreatedDate");
 
-                    b.Property<string>("Title");
-
                     b.HasKey("Id");
 
-                    b.ToTable("BookmarkedRecipes");
+                    b.ToTable("Bookmarks");
                 });
 
-            modelBuilder.Entity("PortableRecipes.Models.Categories", b =>
+            modelBuilder.Entity("PortableRecipes.Models.Categorie", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -69,9 +69,39 @@ namespace PortableRecipes.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categorie");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Categories");
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Categorie");
+                });
+
+            modelBuilder.Entity("PortableRecipes.Models.Categorie_Meal", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CategorieId");
+
+                    b.Property<int>("MealId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategorieId");
+
+                    b.HasIndex("MealId");
+
+                    b.ToTable("Categorie_Meal");
+                });
+
+            modelBuilder.Entity("PortableRecipes.Models.CategoryList", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CategoryList");
                 });
 
             modelBuilder.Entity("PortableRecipes.Models.HomePage", b =>
@@ -80,6 +110,8 @@ namespace PortableRecipes.Migrations
                         .ValueGeneratedOnAdd();
 
                     b.Property<DateTime>("CreatedDate");
+
+                    b.Property<string>("Test");
 
                     b.HasKey("Id");
 
@@ -103,7 +135,39 @@ namespace PortableRecipes.Migrations
                     b.HasDiscriminator<string>("Discriminator").HasValue("Meal");
                 });
 
-            modelBuilder.Entity("PortableRecipes.Models.Recipes", b =>
+            modelBuilder.Entity("PortableRecipes.Models.Meal_Recipe", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("MealId");
+
+                    b.Property<int>("RecipeId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MealId");
+
+                    b.HasIndex("RecipeId");
+
+                    b.ToTable("Meal_Recipe");
+                });
+
+            modelBuilder.Entity("PortableRecipes.Models.Rating", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("CreatedDate");
+
+                    b.Property<int>("rating");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Rating");
+                });
+
+            modelBuilder.Entity("PortableRecipes.Models.Recipe", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
@@ -120,23 +184,27 @@ namespace PortableRecipes.Migrations
 
                     b.Property<int>("PreparationTime");
 
-                    b.Property<int>("Rating");
-
                     b.HasKey("Id");
 
-                    b.ToTable("Recipes");
+                    b.ToTable("Recipe");
                 });
 
-            modelBuilder.Entity("PortableRecipes.Models.Recommended_Recipes", b =>
+            modelBuilder.Entity("PortableRecipes.Models.Recipe_Rating", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<DateTime>("CreatedDate");
+                    b.Property<int>("RatingId");
+
+                    b.Property<int>("RecipeId");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Recommended_Recipes");
+                    b.HasIndex("RatingId");
+
+                    b.HasIndex("RecipeId");
+
+                    b.ToTable("Recipe_Rating");
                 });
 
             modelBuilder.Entity("PortableRecipes.Models.Session", b =>
@@ -144,15 +212,27 @@ namespace PortableRecipes.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("AdditionalInfo");
+
                     b.Property<string>("Content");
 
                     b.Property<string>("CookieName");
 
                     b.Property<DateTime>("CreatedAt");
 
+                    b.Property<int?>("LoggedEntityId");
+
+                    b.Property<string>("LoggedEntityName");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CookieName");
+
+                    b.HasIndex("CreatedAt");
+
+                    b.HasIndex("LoggedEntityId");
+
+                    b.HasIndex("LoggedEntityName");
 
                     b.ToTable("Session");
                 });
@@ -167,6 +247,8 @@ namespace PortableRecipes.Migrations
                     b.Property<string>("Email");
 
                     b.Property<string>("Language");
+
+                    b.Property<DateTime>("LastLoginAttempt");
 
                     b.Property<string>("PasswordHash");
 
@@ -185,9 +267,27 @@ namespace PortableRecipes.Migrations
                     b.ToTable("User");
                 });
 
+            modelBuilder.Entity("PortableRecipes.Models.User_Recipe", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("RecipeId");
+
+                    b.Property<int>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RecipeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("User_Recipe");
+                });
+
             modelBuilder.Entity("PortableRecipes.Models.American", b =>
                 {
-                    b.HasBaseType("PortableRecipes.Models.Categories");
+                    b.HasBaseType("PortableRecipes.Models.Categorie");
 
                     b.Property<string>("Description");
 
@@ -198,7 +298,7 @@ namespace PortableRecipes.Migrations
 
             modelBuilder.Entity("PortableRecipes.Models.Asian", b =>
                 {
-                    b.HasBaseType("PortableRecipes.Models.Categories");
+                    b.HasBaseType("PortableRecipes.Models.Categorie");
 
                     b.Property<string>("Description");
 
@@ -209,7 +309,7 @@ namespace PortableRecipes.Migrations
 
             modelBuilder.Entity("PortableRecipes.Models.Mediterranean", b =>
                 {
-                    b.HasBaseType("PortableRecipes.Models.Categories");
+                    b.HasBaseType("PortableRecipes.Models.Categorie");
 
                     b.Property<string>("Description");
 
@@ -249,6 +349,58 @@ namespace PortableRecipes.Migrations
                     b.ToTable("Lunch");
 
                     b.HasDiscriminator().HasValue("Lunch");
+                });
+
+            modelBuilder.Entity("PortableRecipes.Models.Categorie_Meal", b =>
+                {
+                    b.HasOne("PortableRecipes.Models.Categorie", "Categorie")
+                        .WithMany("Categorie_Meals")
+                        .HasForeignKey("CategorieId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("PortableRecipes.Models.Meal", "Meal")
+                        .WithMany("Categorie_Meals")
+                        .HasForeignKey("MealId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("PortableRecipes.Models.Meal_Recipe", b =>
+                {
+                    b.HasOne("PortableRecipes.Models.Meal", "Meal")
+                        .WithMany("Meal_Recipes")
+                        .HasForeignKey("MealId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("PortableRecipes.Models.Recipe", "Recipe")
+                        .WithMany("Meal_Recipes")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("PortableRecipes.Models.Recipe_Rating", b =>
+                {
+                    b.HasOne("PortableRecipes.Models.Rating", "Rating")
+                        .WithMany("Recipe_Ratings")
+                        .HasForeignKey("RatingId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("PortableRecipes.Models.Recipe", "Recipe")
+                        .WithMany("Recipe_Ratings")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("PortableRecipes.Models.User_Recipe", b =>
+                {
+                    b.HasOne("PortableRecipes.Models.Recipe", "Recipe")
+                        .WithMany("User_Recipes")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("PortableRecipes.Models.User", "User")
+                        .WithMany("User_Recipes")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }

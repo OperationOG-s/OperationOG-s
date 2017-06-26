@@ -10,6 +10,11 @@ import * as ViewUtils from './generated_views/view_utils'
 type IComponentProps = {props:ViewUtils.EntityComponentProps<Models.HomePage>}
 type IcomponentState = {i : number, j : number, z:number, recipes : Immutable.List<Models.Recipe>}
 
+export async function get_recipe(id: number): Promise<{ recipe: Models.Recipe}> {
+  let res = await fetch(`/api/v1/CustomController/FindRecipe/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } })
+  let json = await res.json()
+  return { recipe:json }
+}
 export default class IComponent extends React.Component<IComponentProps, IcomponentState>{
     constructor(props: IComponentProps, context)
     {
@@ -19,6 +24,8 @@ export default class IComponent extends React.Component<IComponentProps, Icompon
 
 
     componentWillMount(){
+      get_recipe(7).then(result => console.log("the recipe is: ", result.recipe))
+      
          var thread = setInterval(() => 
     {
          this.setState({...this.state, i : this.state.i + 1})
@@ -87,3 +94,17 @@ export let AppTest = (props:ViewUtils.EntityComponentProps<Models.HomePage>) =>
     //             <div>hi</div>
     //         </div>
 }
+
+
+export let BookmarksView = (props:ViewUtils.EntityComponentProps<Models.Bookmarks>) => 
+  <div>
+      <div>
+        <div>test 1</div>
+        <button>test 1 click me </button>
+      </div>
+      <div>
+        <div>test 2</div>
+        <button>test 2 click me </button>
+      </div>
+  </div>
+export let CategoriesView = (props:ViewUtils.EntityComponentProps<Models.CategoryList>) => <div>hello categories!!</div>

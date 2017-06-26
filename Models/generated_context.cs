@@ -16,7 +16,11 @@ namespace PortableRecipes.Models{
     public DbSet<Categorie> Categorie { get; set; }
     public DbSet<Mediterranean> Mediterranean { get; set; }
     public DbSet<Breakfast> Breakfast { get; set; }
+    public DbSet<CategoryList> CategoryList { get; set; }
     public DbSet<Rating> Rating { get; set; }
+    public DbSet<Bookmarks> Bookmarks { get; set; }
+    
+    
     
     
     
@@ -55,6 +59,8 @@ namespace PortableRecipes.Models{
 
 
   
+    
+    
     
     
     

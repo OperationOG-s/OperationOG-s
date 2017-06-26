@@ -203,6 +203,20 @@ export let can_edit_Breakfast_Description = (current_User:Models.User, current_A
 
 
 
+export let can_view_CategoryList = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_create_CategoryList = (current_User:Models.User, current_Admin:Models.Admin) => false
+
+export let can_edit_CategoryList = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_delete_CategoryList = (current_User:Models.User, current_Admin:Models.Admin) => false
+  
+export let can_view_CategoryList_CategoriesViewAtt = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_edit_CategoryList_CategoriesViewAtt = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+
+
 export let can_view_Rating = (current_User:Models.User, current_Admin:Models.Admin) => current_User != null || current_Admin != null
 
 export let can_create_Rating = (current_User:Models.User, current_Admin:Models.Admin) => current_Admin != null
@@ -214,6 +228,20 @@ export let can_delete_Rating = (current_User:Models.User, current_Admin:Models.A
 export let can_view_Rating_rating = (current_User:Models.User, current_Admin:Models.Admin) => true
 
 export let can_edit_Rating_rating = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+
+
+export let can_view_Bookmarks = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_create_Bookmarks = (current_User:Models.User, current_Admin:Models.Admin) => false
+
+export let can_edit_Bookmarks = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_delete_Bookmarks = (current_User:Models.User, current_Admin:Models.Admin) => false
+  
+export let can_view_Bookmarks_BookmarkViewAtt = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_edit_Bookmarks_BookmarkViewAtt = (current_User:Models.User, current_Admin:Models.Admin) => true
 
 
 
@@ -252,24 +280,6 @@ export let can_create_Meal_Recipe = (current_User:Models.User, current_Admin:Mod
 export let can_edit_Meal_Recipe = (current_User:Models.User, current_Admin:Models.Admin) => true
 
 export let can_delete_Meal_Recipe = (current_User:Models.User, current_Admin:Models.Admin) => true
-  
-
-export let can_view_HomePage_Recipe = (current_User:Models.User, current_Admin:Models.Admin) => true
-
-export let can_create_HomePage_Recipe = (current_User:Models.User, current_Admin:Models.Admin) => true
-
-export let can_edit_HomePage_Recipe = (current_User:Models.User, current_Admin:Models.Admin) => true
-
-export let can_delete_HomePage_Recipe = (current_User:Models.User, current_Admin:Models.Admin) => true
-  
-
-export let can_view_HomePage_Categorie = (current_User:Models.User, current_Admin:Models.Admin) => true
-
-export let can_create_HomePage_Categorie = (current_User:Models.User, current_Admin:Models.Admin) => true
-
-export let can_edit_HomePage_Categorie = (current_User:Models.User, current_Admin:Models.Admin) => true
-
-export let can_delete_HomePage_Categorie = (current_User:Models.User, current_Admin:Models.Admin) => true
   
 
 

@@ -215,6 +215,20 @@ static public bool can_view_Breakfast(User current_User, Admin current_Admin) { 
     
 
     
+static public bool can_view_CategoryList(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_create_CategoryList(User current_User, Admin current_Admin) { return false; }
+
+    static public bool can_edit_CategoryList(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_delete_CategoryList(User current_User, Admin current_Admin) { return false; }
+      
+    static public bool can_view_CategoryList_CategoriesViewAtt(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_edit_CategoryList_CategoriesViewAtt(User current_User, Admin current_Admin) { return true; }
+    
+
+    
 static public bool can_view_Rating(User current_User, Admin current_Admin) { return current_User != null || current_Admin != null; }
 
     static public bool can_create_Rating(User current_User, Admin current_Admin) { return current_Admin != null; }
@@ -226,6 +240,20 @@ static public bool can_view_Rating(User current_User, Admin current_Admin) { ret
     static public bool can_view_Rating_rating(User current_User, Admin current_Admin) { return true; }
 
     static public bool can_edit_Rating_rating(User current_User, Admin current_Admin) { return true; }
+    
+
+    
+static public bool can_view_Bookmarks(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_create_Bookmarks(User current_User, Admin current_Admin) { return false; }
+
+    static public bool can_edit_Bookmarks(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_delete_Bookmarks(User current_User, Admin current_Admin) { return false; }
+      
+    static public bool can_view_Bookmarks_BookmarkViewAtt(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_edit_Bookmarks_BookmarkViewAtt(User current_User, Admin current_Admin) { return true; }
     
 
     
@@ -258,19 +286,5 @@ static public bool can_view_Meal_Recipe(User current_User, Admin current_Admin) 
     static public bool can_edit_Meal_Recipe(User current_User, Admin current_Admin) { return true; }
 
     static public bool can_delete_Meal_Recipe(User current_User, Admin current_Admin) { return true; }
-static public bool can_view_HomePage_Recipe(User current_User, Admin current_Admin) { return true; }
-
-    static public bool can_create_HomePage_Recipe(User current_User, Admin current_Admin) { return true; }
-
-    static public bool can_edit_HomePage_Recipe(User current_User, Admin current_Admin) { return true; }
-
-    static public bool can_delete_HomePage_Recipe(User current_User, Admin current_Admin) { return true; }
-static public bool can_view_HomePage_Categorie(User current_User, Admin current_Admin) { return true; }
-
-    static public bool can_create_HomePage_Categorie(User current_User, Admin current_Admin) { return true; }
-
-    static public bool can_edit_HomePage_Categorie(User current_User, Admin current_Admin) { return true; }
-
-    static public bool can_delete_HomePage_Categorie(User current_User, Admin current_Admin) { return true; }
   }
 }

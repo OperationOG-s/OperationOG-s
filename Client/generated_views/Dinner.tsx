@@ -13,6 +13,8 @@ import * as Draft from 'draft-js'
 import * as i18next from 'i18next'
 import * as Moment from 'moment'
 import * as HomePageViews from './HomePage'
+import * as CategoryListViews from './CategoryList'
+import * as BookmarksViews from './Bookmarks'
 import * as CategorieViews from './Categorie'
 import * as RecipeViews from './Recipe'
 import * as CustomViews from '../custom_views'
@@ -211,36 +213,31 @@ export function render_menu_Dinner(self:DinnerContext) {
                 </a>
               </div>
             }
+        {!Permissions.can_view_CategoryList(self.props.current_User, self.props.current_Admin) ? null :
+              <div className={`menu_entry page_link`}>
+                <a onClick={() => 
+                  Api.get_CategoryLists(0, 1).then(e =>
+                    e.Items.length > 0 && self.props.set_page(CategoryListViews.CategoryList_to_page(e.Items[0].Item.Id))
+                  )
+                }>
+                  {i18next.t('CategoryList')}
+                </a>
+              </div>
+            }
+        {!Permissions.can_view_Bookmarks(self.props.current_User, self.props.current_Admin) ? null :
+              <div className={`menu_entry page_link`}>
+                <a onClick={() => 
+                  Api.get_Bookmarkss(0, 1).then(e =>
+                    e.Items.length > 0 && self.props.set_page(BookmarksViews.Bookmarks_to_page(e.Items[0].Item.Id))
+                  )
+                }>
+                  {i18next.t('Bookmarks')}
+                </a>
+              </div>
+            }
           <div className="menu_entries">
           
-            {!Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
-                  <div className={`menu_entry${self.props.shown_relation == "HomePage_Recipe" ? " active" : ""}`}>
-                    <a onClick={() =>
-                        {
-                            Api.get_HomePages(0, 1).then(e =>
-                              e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id),
-                                () => self.props.set_shown_relation("HomePage_Recipe"))
-                            )
-                        }
-                      }>
-                      {i18next.t('HomePage_Recipes')}
-                    </a>
-                  </div>
-                }
-        {!Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
-                  <div className={`menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}`}>
-                    <a onClick={() =>
-                        {
-                            Api.get_HomePages(0, 1).then(e =>
-                              e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id),
-                                () => self.props.set_shown_relation("HomePage_Categorie"))
-                            )
-                        }
-                      }>
-                      {i18next.t('HomePage_Categories')}
-                    </a>
-                  </div>
-                }
+            
                 <div className="menu_entry menu_entry--with-sub">
                 
                 </div>  

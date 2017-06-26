@@ -378,61 +378,6 @@ using System.IO;
       return Ok();
     }
     [RestrictToUserType(new string[] {"User", "Admin"})]
-    [HttpGet("{Categorie_id}/HomePage_Categories")]
-    [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
-    public Page<HomePage> GetHomePage_Categories(int Categorie_id, [FromQuery] int page_index, [FromQuery] int page_size = 25 )
-    {
-      var session = HttpContext.Get<LoggableEntities>(_context);
-      var current_User = session == null ? null : session.User;
-      var current_Admin = session == null ? null : session.Admin;
-      var allowed_sources = ApiTokenValid ? _context.Categorie : _context.Categorie;
-      var source = allowed_sources.FirstOrDefault(s => s.Id == Categorie_id);
-      var can_create_by_token = ApiTokenValid || true;
-      var can_delete_by_token = ApiTokenValid || true || true;
-      var can_link_by_token = ApiTokenValid || true;
-      var can_view_by_token = ApiTokenValid || true;
-      if (source == null || !can_view_by_token) // test
-        return Enumerable.Empty<PortableRecipes.Models.HomePage>() // B
-              .AsQueryable()
-              .Select(PortableRecipes.Models.HomePage.FilterViewableAttributes(current_User, current_Admin))
-              .Select(t => Tuple.Create(t, false))
-              .Paginate(can_create_by_token, can_delete_by_token, can_link_by_token, page_index, page_size, PortableRecipes.Models.HomePage.WithoutImages, item => item , null);
-      var allowed_targets = ApiTokenValid ? _context.HomePage : _context.HomePage;
-      var editable_targets = ApiTokenValid ? _context.HomePage : (_context.HomePage);
-      var can_edit_by_token = ApiTokenValid || true;
-      var items = (from target in allowed_targets
-              select target).OrderBy(i => i.CreatedDate).AsQueryable();
-      
-      return items
-              .Select(PortableRecipes.Models.HomePage.FilterViewableAttributes(current_User, current_Admin))
-              .Select(t => Tuple.Create(t, can_edit_by_token && editable_targets.Any(et => et.Id == t.Id)))
-              .Paginate(can_create_by_token, can_delete_by_token, can_link_by_token, page_index, page_size, PortableRecipes.Models.HomePage.WithoutImages, item => item , null);
-    }
-
-    [HttpGet("{Categorie_id}/HomePage_Categories/{HomePage_id}")]
-    [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult /*HomePage*/ GetHomePage_CategorieById(int Categorie_id, int HomePage_id)
-    {
-      var session = HttpContext.Get<LoggableEntities>(_context);
-      var current_User = session == null ? null : session.User;
-      var current_Admin = session == null ? null : session.Admin;
-      var allowed_sources = ApiTokenValid ? _context.Categorie : _context.Categorie;
-      var source = allowed_sources.FirstOrDefault(s => s.Id == Categorie_id);
-      var can_view_by_token = ApiTokenValid || true;
-      if (source == null || !can_view_by_token)
-        return NotFound();
-      var allowed_targets = ApiTokenValid ? _context.HomePage : _context.HomePage;
-      var item = (from target in allowed_targets
-              select target).OrderBy(i => i.CreatedDate)
-              .Select(PortableRecipes.Models.HomePage.FilterViewableAttributes(current_User, current_Admin))
-              .FirstOrDefault(t => t.Id == HomePage_id);
-      if (item == null) return NotFound();
-      item = PortableRecipes.Models.HomePage.WithoutImages(item);
-      return Ok(item);
-    }
-
-    
-    [RestrictToUserType(new string[] {"User", "Admin"})]
     [HttpGet("{id}")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult /*ItemWithEditable<Categorie>*/ GetById(int id)

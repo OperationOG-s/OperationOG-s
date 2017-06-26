@@ -32,8 +32,12 @@ namespace PortableRecipes.Data
     static Mediterranean[] Mediterraneans = null;
      static Action seed_Breakfasts = null;
     static Breakfast[] Breakfasts = null;
+     static Action seed_CategoryLists = null;
+    static CategoryList[] CategoryLists = null;
      static Action seed_Ratings = null;
     static Rating[] Ratings = null;
+     static Action seed_Bookmarkss = null;
+    static Bookmarks[] Bookmarkss = null;
 
     public static void InitializePagesAndSingletons(PortableRecipesContext context) {
       context.Database.EnsureCreated();
@@ -47,6 +51,28 @@ namespace PortableRecipes.Data
         HomePages = context.HomePage.ToArray();
       }
       seed_HomePages = () => {};
+        
+      
+      if (!context.CategoryList.Any()) {
+        var root = new CategoryList() { CreatedDate = DateTime.Now,  };
+        CategoryLists = new [] {root};
+        context.CategoryList.Add(root);
+        context.SaveChanges();
+      } else {
+        CategoryLists = context.CategoryList.ToArray();
+      }
+      seed_CategoryLists = () => {};
+        
+      
+      if (!context.Bookmarks.Any()) {
+        var root = new Bookmarks() { CreatedDate = DateTime.Now,  };
+        Bookmarkss = new [] {root};
+        context.Bookmarks.Add(root);
+        context.SaveChanges();
+      } else {
+        Bookmarkss = context.Bookmarks.ToArray();
+      }
+      seed_Bookmarkss = () => {};
         
     }
 
@@ -321,6 +347,24 @@ namespace PortableRecipes.Data
         }
         Breakfasts = context.Breakfast.ToArray();
       };
+      seed_CategoryLists = () => {
+        
+        if (!context.CategoryList.Any())
+        {
+          var _CategoryList = new System.Collections.Generic.List<CategoryList>();
+          
+          
+            
+            _CategoryList.Add(new CategoryList { Id = 1, CreatedDate = DateTime.Now,   });
+
+          foreach (var x in _CategoryList)
+          {
+            context.CategoryList.Add(x);
+          }
+          context.SaveChanges();
+        }
+        CategoryLists = context.CategoryList.ToArray();
+      };
       seed_Ratings = () => {
         
         if (!context.Rating.Any())
@@ -336,6 +380,24 @@ namespace PortableRecipes.Data
         }
         Ratings = context.Rating.ToArray();
       };
+      seed_Bookmarkss = () => {
+        
+        if (!context.Bookmarks.Any())
+        {
+          var _Bookmarks = new System.Collections.Generic.List<Bookmarks>();
+          
+          
+            
+            _Bookmarks.Add(new Bookmarks { Id = 1, CreatedDate = DateTime.Now,   });
+
+          foreach (var x in _Bookmarks)
+          {
+            context.Bookmarks.Add(x);
+          }
+          context.SaveChanges();
+        }
+        Bookmarkss = context.Bookmarks.ToArray();
+      };
       seed_Americans();
       seed_Meals();
       seed_Asians();
@@ -348,7 +410,9 @@ namespace PortableRecipes.Data
       seed_Categories();
       seed_Mediterraneans();
       seed_Breakfasts();
+      seed_CategoryLists();
       seed_Ratings();
+      seed_Bookmarkss();
 
       if (!context.Categorie_Meal.Any())
       {

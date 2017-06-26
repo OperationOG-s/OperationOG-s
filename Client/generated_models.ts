@@ -96,10 +96,24 @@ export type Breakfast = {
     Kind:"Breakfast"
   }
   
+export type CategoryList = {
+    Id : number
+    CreatedDate:Moment.Moment
+    
+    
+  }
+  
 export type Rating = {
     Id : number
     CreatedDate:Moment.Moment
     rating : number
+    
+  }
+  
+export type Bookmarks = {
+    Id : number
+    CreatedDate:Moment.Moment
+    
     
   }
   
@@ -135,24 +149,6 @@ export type Meal_Recipe = {
     CreatedDate:Moment.Moment
     MealId : number
   RecipeId : number
-    
-  }
-  
-
-export type HomePage_Recipe = {
-    Id : number
-    CreatedDate:Moment.Moment
-    HomePageId : number
-  RecipeId : number
-    
-  }
-  
-
-export type HomePage_Categorie = {
-    Id : number
-    CreatedDate:Moment.Moment
-    HomePageId : number
-  CategorieId : number
     
   }
   

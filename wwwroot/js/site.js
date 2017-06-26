@@ -64,7 +64,7 @@ var app =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 400);
+/******/ 	return __webpack_require__(__webpack_require__.s = 403);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1900,7 +1900,7 @@ function loadLocale(name) {
             module && module.exports) {
         try {
             oldLocale = globalLocale._abbr;
-            __webpack_require__(406)("./" + name);
+            __webpack_require__(408)("./" + name);
             // because defineLocale currently also sets the global locale, we
             // want to undo that for lazy loaded locales
             getSetGlobalLocale(oldLocale);
@@ -4535,17 +4535,17 @@ return hooks;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(771)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(773)(module)))
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global    = __webpack_require__(6)
-  , core      = __webpack_require__(55)
-  , hide      = __webpack_require__(30)
-  , redefine  = __webpack_require__(31)
-  , ctx       = __webpack_require__(56)
+  , core      = __webpack_require__(57)
+  , hide      = __webpack_require__(32)
+  , redefine  = __webpack_require__(33)
+  , ctx       = __webpack_require__(58)
   , PROTOTYPE = 'prototype';
 
 var $export = function(type, name, source){
@@ -4854,7 +4854,7 @@ module.exports = invariant;
 
 
 
-var emptyFunction = __webpack_require__(26);
+var emptyFunction = __webpack_require__(27);
 
 /**
  * Similar to invariant but only logs a warning if the condition is not met.
@@ -4914,7 +4914,7 @@ module.exports = warning;
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(11);
+var isObject = __webpack_require__(12);
 module.exports = function(it){
   if(!isObject(it))throw TypeError(it + ' is not an object!');
   return it;
@@ -5107,11 +5107,11 @@ var _extends = _assign || function (target) { for (var i = 1; i < arguments.leng
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var BlockTree = __webpack_require__(221);
-var ContentState = __webpack_require__(155);
-var EditorBidiService = __webpack_require__(603);
-var Immutable = __webpack_require__(12);
-var SelectionState = __webpack_require__(95);
+var BlockTree = __webpack_require__(224);
+var ContentState = __webpack_require__(158);
+var EditorBidiService = __webpack_require__(605);
+var Immutable = __webpack_require__(13);
+var SelectionState = __webpack_require__(96);
 
 var OrderedSet = Immutable.OrderedSet;
 var Record = Immutable.Record;
@@ -5654,6 +5654,16 @@ module.exports = EditorState;
 
 /***/ }),
 /* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__(89);
+
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = function(it){
@@ -5661,7 +5671,7 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -10648,21 +10658,11 @@ module.exports = function(it){
 }));
 
 /***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = __webpack_require__(87);
-
-
-/***/ }),
 /* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var store      = __webpack_require__(113)('wks')
-  , uid        = __webpack_require__(74)
+var store      = __webpack_require__(115)('wks')
+  , uid        = __webpack_require__(75)
   , Symbol     = __webpack_require__(6).Symbol
   , USE_SYMBOL = typeof Symbol == 'function';
 
@@ -10687,8 +10687,8 @@ module.exports = !__webpack_require__(7)(function(){
 /***/ (function(module, exports, __webpack_require__) {
 
 var anObject       = __webpack_require__(5)
-  , IE8_DOM_DEFINE = __webpack_require__(201)
-  , toPrimitive    = __webpack_require__(49)
+  , IE8_DOM_DEFINE = __webpack_require__(204)
+  , toPrimitive    = __webpack_require__(50)
   , dP             = Object.defineProperty;
 
 exports.f = __webpack_require__(15) ? Object.defineProperty : function defineProperty(O, P, Attributes){
@@ -10722,8 +10722,8 @@ exports.f = __webpack_require__(15) ? Object.defineProperty : function definePro
 
 var _prodInvariant = __webpack_require__(8);
 
-var DOMProperty = __webpack_require__(64);
-var ReactDOMComponentFlags = __webpack_require__(374);
+var DOMProperty = __webpack_require__(66);
+var ReactDOMComponentFlags = __webpack_require__(377);
 
 var invariant = __webpack_require__(3);
 
@@ -10908,68 +10908,6 @@ module.exports = ReactDOMComponentTree;
 /* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// 7.1.15 ToLength
-var toInteger = __webpack_require__(62)
-  , min       = Math.min;
-module.exports = function(it){
-  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
-};
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- */
-
-
-
-var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
-
-/**
- * Simple, lightweight module assisting with the detection and context of
- * Worker. Helps avoid circular dependencies and allows code to reason about
- * whether or not they are in a Worker, even if they never include the main
- * `ReactWorker` dependency.
- */
-var ExecutionEnvironment = {
-
-  canUseDOM: canUseDOM,
-
-  canUseWorkers: typeof Worker !== 'undefined',
-
-  canUseEventListeners: canUseDOM && !!(window.addEventListener || window.attachEvent),
-
-  canUseViewport: canUseDOM && !!window.screen,
-
-  isInWorker: !canUseDOM // For now, this is true - might change in the future.
-
-};
-
-module.exports = ExecutionEnvironment;
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 7.1.13 ToObject(argument)
-var defined = __webpack_require__(43);
-module.exports = function(it){
-  return Object(defined(it));
-};
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports, __webpack_require__) {
-
 "use strict";
 
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
@@ -10982,7 +10920,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Moment = __webpack_require__(0);
-__webpack_require__(184);
+__webpack_require__(187);
 exports.parse_date = (e) => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); };
 exports.make_page = (res, parse_other_args) => {
     return {
@@ -11597,66 +11535,6 @@ function reset_User_password(username, email) {
     });
 }
 exports.reset_User_password = reset_User_password;
-function get_HomePage_HomePage_Recipes(source, page_index, page_size, query_string = null) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/HomePage/${source.Id}/HomePage_Recipes?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return exports.make_page(json, e => { return Object.assign({}, e); });
-    });
-}
-exports.get_HomePage_HomePage_Recipes = get_HomePage_HomePage_Recipes;
-function get_HomePage_HomePage_Recipes_Recipe(source, page_index, page_size, id) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/HomePage/${source.Id}/HomePage_Recipes/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
-    });
-}
-exports.get_HomePage_HomePage_Recipes_Recipe = get_HomePage_HomePage_Recipes_Recipe;
-function get_HomePage_HomePage_Recipes_Recipe_by_id(source, id) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/HomePage/${source.Id}/HomePage_Recipes/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
-    });
-}
-exports.get_HomePage_HomePage_Recipes_Recipe_by_id = get_HomePage_HomePage_Recipes_Recipe_by_id;
-function get_HomePage_HomePage_Categories(source, page_index, page_size, query_string = null) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/HomePage/${source.Id}/HomePage_Categories?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return exports.make_page(json, e => { return Object.assign({}, e); });
-    });
-}
-exports.get_HomePage_HomePage_Categories = get_HomePage_HomePage_Categories;
-function get_HomePage_HomePage_Categories_Categorie(source, page_index, page_size, id) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/HomePage/${source.Id}/HomePage_Categories/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
-    });
-}
-exports.get_HomePage_HomePage_Categories_Categorie = get_HomePage_HomePage_Categories_Categorie;
-function get_HomePage_HomePage_Categories_Categorie_by_id(source, id) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/HomePage/${source.Id}/HomePage_Categories/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
-    });
-}
-exports.get_HomePage_HomePage_Categories_Categorie_by_id = get_HomePage_HomePage_Categories_Categorie_by_id;
 function create_HomePage() {
     return __awaiter(this, void 0, void 0, function* () {
         let res = yield fetch(`/api/v1/HomePage/`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json',
@@ -11962,36 +11840,6 @@ function unlink_Recipe_Meal_Recipes(source, target) {
     });
 }
 exports.unlink_Recipe_Meal_Recipes = unlink_Recipe_Meal_Recipes;
-function get_Recipe_HomePage_Recipes(source, page_index, page_size, query_string = null) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipe/${source.Id}/HomePage_Recipes?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return exports.make_page(json, e => { return Object.assign({}, e); });
-    });
-}
-exports.get_Recipe_HomePage_Recipes = get_Recipe_HomePage_Recipes;
-function get_Recipe_HomePage_Recipes_HomePage(source, page_index, page_size, id) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipe/${source.Id}/HomePage_Recipes/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
-    });
-}
-exports.get_Recipe_HomePage_Recipes_HomePage = get_Recipe_HomePage_Recipes_HomePage;
-function get_Recipe_HomePage_Recipes_HomePage_by_id(source, id) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Recipe/${source.Id}/HomePage_Recipes/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
-    });
-}
-exports.get_Recipe_HomePage_Recipes_HomePage_by_id = get_Recipe_HomePage_Recipes_HomePage_by_id;
 function create_Recipe() {
     return __awaiter(this, void 0, void 0, function* () {
         let res = yield fetch(`/api/v1/Recipe/`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json',
@@ -12377,36 +12225,6 @@ function unlink_Categorie_Categorie_Meals(source, target) {
     });
 }
 exports.unlink_Categorie_Categorie_Meals = unlink_Categorie_Categorie_Meals;
-function get_Categorie_HomePage_Categories(source, page_index, page_size, query_string = null) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Categorie/${source.Id}/HomePage_Categories?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return exports.make_page(json, e => { return Object.assign({}, e); });
-    });
-}
-exports.get_Categorie_HomePage_Categories = get_Categorie_HomePage_Categories;
-function get_Categorie_HomePage_Categories_HomePage(source, page_index, page_size, id) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Categorie/${source.Id}/HomePage_Categories/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
-    });
-}
-exports.get_Categorie_HomePage_Categories_HomePage = get_Categorie_HomePage_Categories_HomePage;
-function get_Categorie_HomePage_Categories_HomePage_by_id(source, id) {
-    return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/Categorie/${source.Id}/HomePage_Categories/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
-        if (!res.ok)
-            throw Error(res.statusText);
-        let json = yield res.json();
-        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
-    });
-}
-exports.get_Categorie_HomePage_Categories_HomePage_by_id = get_Categorie_HomePage_Categories_HomePage_by_id;
 function create_Categorie() {
     return __awaiter(this, void 0, void 0, function* () {
         let res = yield fetch(`/api/v1/Categorie/`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json',
@@ -12557,6 +12375,57 @@ function get_Breakfasts(page_index, page_size, search_query = null) {
     });
 }
 exports.get_Breakfasts = get_Breakfasts;
+function create_CategoryList() {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/CategoryList/`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json',
+                'X-XSRF-TOKEN': document.getElementsByName("__RequestVerificationToken")[0].value } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
+    });
+}
+exports.create_CategoryList = create_CategoryList;
+function update_CategoryList(item) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/CategoryList/`, { method: 'put',
+            body: JSON.stringify(Object.assign({}, item, { CreatedDate: undefined })), credentials: 'include', headers: { 'content-type': 'application/json', 'X-XSRF-TOKEN': document.getElementsByName("__RequestVerificationToken")[0].value } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        return;
+    });
+}
+exports.update_CategoryList = update_CategoryList;
+function delete_CategoryList(source) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/CategoryList/${source.Id}`, { method: 'delete', credentials: 'include', headers: { 'content-type': 'application/json', 'X-XSRF-TOKEN': document.getElementsByName("__RequestVerificationToken")[0].value } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        return;
+    });
+}
+exports.delete_CategoryList = delete_CategoryList;
+function get_CategoryList(id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/CategoryList/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return { Item: Object.assign({}, json.Item, { CreatedDate: Moment.utc(json.Item.CreatedDate) }),
+            Editable: !!json.Editable, JustCreated: false };
+    });
+}
+exports.get_CategoryList = get_CategoryList;
+function get_CategoryLists(page_index, page_size, search_query = null) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/CategoryList?page_index=${page_index}&page_size=${page_size}${(search_query != null ? "&page_size=" + search_query : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return exports.make_page(json, e => { return Object.assign({}, e); });
+    });
+}
+exports.get_CategoryLists = get_CategoryLists;
 function get_Rating_Recipe_Ratings(source, page_index, page_size, query_string = null) {
     return __awaiter(this, void 0, void 0, function* () {
         let res = yield fetch(`/api/v1/Rating/${source.Id}/Recipe_Ratings?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
@@ -12676,10 +12545,113 @@ function get_Ratings(page_index, page_size, search_query = null) {
     });
 }
 exports.get_Ratings = get_Ratings;
+function create_Bookmarks() {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Bookmarks/`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json',
+                'X-XSRF-TOKEN': document.getElementsByName("__RequestVerificationToken")[0].value } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
+    });
+}
+exports.create_Bookmarks = create_Bookmarks;
+function update_Bookmarks(item) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Bookmarks/`, { method: 'put',
+            body: JSON.stringify(Object.assign({}, item, { CreatedDate: undefined })), credentials: 'include', headers: { 'content-type': 'application/json', 'X-XSRF-TOKEN': document.getElementsByName("__RequestVerificationToken")[0].value } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        return;
+    });
+}
+exports.update_Bookmarks = update_Bookmarks;
+function delete_Bookmarks(source) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Bookmarks/${source.Id}`, { method: 'delete', credentials: 'include', headers: { 'content-type': 'application/json', 'X-XSRF-TOKEN': document.getElementsByName("__RequestVerificationToken")[0].value } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        return;
+    });
+}
+exports.delete_Bookmarks = delete_Bookmarks;
+function get_Bookmarks(id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Bookmarks/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return { Item: Object.assign({}, json.Item, { CreatedDate: Moment.utc(json.Item.CreatedDate) }),
+            Editable: !!json.Editable, JustCreated: false };
+    });
+}
+exports.get_Bookmarks = get_Bookmarks;
+function get_Bookmarkss(page_index, page_size, search_query = null) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Bookmarks?page_index=${page_index}&page_size=${page_size}${(search_query != null ? "&page_size=" + search_query : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return exports.make_page(json, e => { return Object.assign({}, e); });
+    });
+}
+exports.get_Bookmarkss = get_Bookmarkss;
 
 
 /***/ }),
-/* 22 */
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.1.15 ToLength
+var toInteger = __webpack_require__(64)
+  , min       = Math.min;
+module.exports = function(it){
+  return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
+};
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ */
+
+
+
+var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.document.createElement);
+
+/**
+ * Simple, lightweight module assisting with the detection and context of
+ * Worker. Helps avoid circular dependencies and allows code to reason about
+ * whether or not they are in a Worker, even if they never include the main
+ * `ReactWorker` dependency.
+ */
+var ExecutionEnvironment = {
+
+  canUseDOM: canUseDOM,
+
+  canUseWorkers: typeof Worker !== 'undefined',
+
+  canUseEventListeners: canUseDOM && !!(window.addEventListener || window.attachEvent),
+
+  canUseViewport: canUseDOM && !!window.screen,
+
+  isInWorker: !canUseDOM // For now, this is true - might change in the future.
+
+};
+
+module.exports = ExecutionEnvironment;
+
+/***/ }),
+/* 21 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -12699,7 +12671,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setDefaultNamespace", function() { return setDefaultNamespace; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "t", function() { return t; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "use", function() { return use; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__i18next__ = __webpack_require__(682);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__i18next__ = __webpack_require__(684);
 
 
 /* harmony default export */ __webpack_exports__["default"] = (__WEBPACK_IMPORTED_MODULE_0__i18next__["a" /* default */]);
@@ -12721,7 +12693,7 @@ var t = __WEBPACK_IMPORTED_MODULE_0__i18next__["a" /* default */].t.bind(__WEBPA
 var use = __WEBPACK_IMPORTED_MODULE_0__i18next__["a" /* default */].use.bind(__WEBPACK_IMPORTED_MODULE_0__i18next__["a" /* default */]);
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -12735,13 +12707,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(13);
-const ReactDOM = __webpack_require__(84);
-const Immutable = __webpack_require__(27);
-const Api = __webpack_require__(21);
-const KeepAliveApi = __webpack_require__(404);
-const i18next = __webpack_require__(22);
-__webpack_require__(184);
+const React = __webpack_require__(11);
+const ReactDOM = __webpack_require__(86);
+const Immutable = __webpack_require__(36);
+const Api = __webpack_require__(18);
+const KeepAliveApi = __webpack_require__(406);
+const i18next = __webpack_require__(21);
+__webpack_require__(187);
 exports.any_of = (predicates) => (current_User, current_Admin) => predicates.map(p => p(current_User, current_Admin)).some(p => p);
 class AuthenticationMenu extends React.Component {
     constructor(props, context) {
@@ -12760,17 +12732,18 @@ class AuthenticationMenu extends React.Component {
         let restore_state = () => this.setState(current_state);
         let error = (message) => () => this.setState(Object.assign({}, this.state, { kind: "error", message: i18next.t(message), action: restore_state }));
         if (this.state.kind == "menu") {
-            return React.createElement("div", { className: "authentication-menu" },
-                React.createElement("a", { className: "authentication-menu__user-btn", onClick: () => {
-                        if (current_logged_in_entity)
-                            this.setState({ kind: "choose-logout-changepassword" });
-                        else
-                            this.setState({ kind: "choose-login-register" });
-                    } }),
+            return React.createElement("div", { className: "topbar__action-wrapper" },
                 current_logged_in_entity ?
                     React.createElement(LanguageSelector, { current_User: this.props.current_User, current_Admin: this.props.current_Admin, set_User: u => this.props.set_User(u), set_Admin: u => this.props.set_Admin(u) })
                     :
-                        null);
+                        null,
+                React.createElement("div", { className: "authentication-menu" },
+                    React.createElement("a", { className: "authentication-menu__user-btn", onClick: () => {
+                            if (current_logged_in_entity)
+                                this.setState({ kind: "choose-logout-changepassword" });
+                            else
+                                this.setState({ kind: "choose-login-register" });
+                        } })));
         }
         else if (this.state.kind == "choose-login-register") {
             return React.createElement("div", { className: "authentication-menu" },
@@ -13125,7 +13098,7 @@ function render_page_manager(target_element_id, initial_page, current_User, curr
         i18next.init({
             lng: current_User ? current_User.Language : current_Admin ? current_Admin.Language : "nl",
             fallbackLng: "en",
-            ns: ["common", "American", "Meal", "Asian", "Lunch", "User", "HomePage", "Recipe", "Admin", "Dinner", "Categorie", "Mediterranean", "Breakfast", "Rating"],
+            ns: ["common", "American", "Meal", "Asian", "Lunch", "User", "HomePage", "Recipe", "Admin", "Dinner", "Categorie", "Mediterranean", "Breakfast", "CategoryList", "Rating", "Bookmarks"],
             resources: resources
         }, (err, t) => {
             ReactDOM.render(React.createElement(PageManager, { initial_page: initial_page, current_User: current_User, current_Admin: current_Admin }), document.getElementById(target_element_id));
@@ -13136,7 +13109,146 @@ exports.render_page_manager = render_page_manager;
 
 
 /***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.1.13 ToObject(argument)
+var defined = __webpack_require__(44);
+module.exports = function(it){
+  return Object(defined(it));
+};
+
+/***/ }),
 /* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.can_view_American = (current_User, current_Admin) => current_User != null || current_Admin != null;
+exports.can_create_American = (current_User, current_Admin) => current_Admin != null;
+exports.can_edit_American = (current_User, current_Admin) => current_Admin != null;
+exports.can_delete_American = (current_User, current_Admin) => current_Admin != null;
+exports.can_view_American_Description = (current_User, current_Admin) => true;
+exports.can_edit_American_Description = (current_User, current_Admin) => true;
+exports.can_view_Meal = (current_User, current_Admin) => current_User != null || current_Admin != null;
+exports.can_create_Meal = (current_User, current_Admin) => current_Admin != null;
+exports.can_edit_Meal = (current_User, current_Admin) => current_Admin != null;
+exports.can_delete_Meal = (current_User, current_Admin) => current_Admin != null;
+exports.can_view_Asian = (current_User, current_Admin) => current_User != null || current_Admin != null;
+exports.can_create_Asian = (current_User, current_Admin) => current_Admin != null;
+exports.can_edit_Asian = (current_User, current_Admin) => current_Admin != null;
+exports.can_delete_Asian = (current_User, current_Admin) => current_Admin != null;
+exports.can_view_Asian_Description = (current_User, current_Admin) => true;
+exports.can_edit_Asian_Description = (current_User, current_Admin) => true;
+exports.can_view_Lunch = (current_User, current_Admin) => current_User != null || current_Admin != null;
+exports.can_create_Lunch = (current_User, current_Admin) => current_Admin != null;
+exports.can_edit_Lunch = (current_User, current_Admin) => current_Admin != null;
+exports.can_delete_Lunch = (current_User, current_Admin) => current_Admin != null;
+exports.can_view_Lunch_Description = (current_User, current_Admin) => true;
+exports.can_edit_Lunch_Description = (current_User, current_Admin) => true;
+exports.can_view_User = (current_User, current_Admin) => current_Admin != null || current_User != null;
+exports.can_create_User = (current_User, current_Admin) => current_Admin != null;
+exports.can_edit_User = (current_User, current_Admin) => current_Admin != null || current_User != null;
+exports.can_delete_User = (current_User, current_Admin) => current_Admin != null;
+exports.can_view_User_Username = (current_User, current_Admin) => true;
+exports.can_edit_User_Username = (current_User, current_Admin) => true;
+exports.can_view_User_Language = (current_User, current_Admin) => true;
+exports.can_edit_User_Language = (current_User, current_Admin) => true;
+exports.can_view_User_Email = (current_User, current_Admin) => true;
+exports.can_edit_User_Email = (current_User, current_Admin) => true;
+exports.can_view_HomePage = (current_User, current_Admin) => true;
+exports.can_create_HomePage = (current_User, current_Admin) => false;
+exports.can_edit_HomePage = (current_User, current_Admin) => true;
+exports.can_delete_HomePage = (current_User, current_Admin) => false;
+exports.can_view_HomePage_AppTest = (current_User, current_Admin) => true;
+exports.can_edit_HomePage_AppTest = (current_User, current_Admin) => true;
+exports.can_view_HomePage_Test = (current_User, current_Admin) => true;
+exports.can_edit_HomePage_Test = (current_User, current_Admin) => true;
+exports.can_view_Recipe = (current_User, current_Admin) => current_User != null || current_Admin != null;
+exports.can_create_Recipe = (current_User, current_Admin) => current_Admin != null;
+exports.can_edit_Recipe = (current_User, current_Admin) => current_Admin != null;
+exports.can_delete_Recipe = (current_User, current_Admin) => current_Admin != null;
+exports.can_view_Recipe_Picture = (current_User, current_Admin) => true;
+exports.can_edit_Recipe_Picture = (current_User, current_Admin) => true;
+exports.can_view_Recipe_Name = (current_User, current_Admin) => true;
+exports.can_edit_Recipe_Name = (current_User, current_Admin) => true;
+exports.can_view_Recipe_Ingredients = (current_User, current_Admin) => true;
+exports.can_edit_Recipe_Ingredients = (current_User, current_Admin) => true;
+exports.can_view_Recipe_Description = (current_User, current_Admin) => true;
+exports.can_edit_Recipe_Description = (current_User, current_Admin) => true;
+exports.can_view_Recipe_PreparationTime = (current_User, current_Admin) => true;
+exports.can_edit_Recipe_PreparationTime = (current_User, current_Admin) => true;
+exports.can_view_Admin = (current_User, current_Admin) => current_Admin != null;
+exports.can_create_Admin = (current_User, current_Admin) => current_Admin != null;
+exports.can_edit_Admin = (current_User, current_Admin) => current_Admin != null;
+exports.can_delete_Admin = (current_User, current_Admin) => current_Admin != null;
+exports.can_view_Admin_Username = (current_User, current_Admin) => true;
+exports.can_edit_Admin_Username = (current_User, current_Admin) => true;
+exports.can_view_Admin_Language = (current_User, current_Admin) => true;
+exports.can_edit_Admin_Language = (current_User, current_Admin) => true;
+exports.can_view_Admin_Email = (current_User, current_Admin) => true;
+exports.can_edit_Admin_Email = (current_User, current_Admin) => true;
+exports.can_view_Dinner = (current_User, current_Admin) => current_User != null || current_Admin != null;
+exports.can_create_Dinner = (current_User, current_Admin) => current_Admin != null;
+exports.can_edit_Dinner = (current_User, current_Admin) => current_Admin != null;
+exports.can_delete_Dinner = (current_User, current_Admin) => current_Admin != null;
+exports.can_view_Dinner_Description = (current_User, current_Admin) => true;
+exports.can_edit_Dinner_Description = (current_User, current_Admin) => true;
+exports.can_view_Categorie = (current_User, current_Admin) => current_User != null || current_Admin != null;
+exports.can_create_Categorie = (current_User, current_Admin) => current_Admin != null;
+exports.can_edit_Categorie = (current_User, current_Admin) => current_Admin != null;
+exports.can_delete_Categorie = (current_User, current_Admin) => current_Admin != null;
+exports.can_view_Mediterranean = (current_User, current_Admin) => current_User != null || current_Admin != null;
+exports.can_create_Mediterranean = (current_User, current_Admin) => current_Admin != null;
+exports.can_edit_Mediterranean = (current_User, current_Admin) => current_Admin != null;
+exports.can_delete_Mediterranean = (current_User, current_Admin) => current_Admin != null;
+exports.can_view_Mediterranean_Description = (current_User, current_Admin) => true;
+exports.can_edit_Mediterranean_Description = (current_User, current_Admin) => true;
+exports.can_view_Breakfast = (current_User, current_Admin) => current_User != null || current_Admin != null;
+exports.can_create_Breakfast = (current_User, current_Admin) => current_Admin != null;
+exports.can_edit_Breakfast = (current_User, current_Admin) => current_Admin != null;
+exports.can_delete_Breakfast = (current_User, current_Admin) => current_Admin != null;
+exports.can_view_Breakfast_Description = (current_User, current_Admin) => true;
+exports.can_edit_Breakfast_Description = (current_User, current_Admin) => true;
+exports.can_view_CategoryList = (current_User, current_Admin) => true;
+exports.can_create_CategoryList = (current_User, current_Admin) => false;
+exports.can_edit_CategoryList = (current_User, current_Admin) => true;
+exports.can_delete_CategoryList = (current_User, current_Admin) => false;
+exports.can_view_CategoryList_CategoriesViewAtt = (current_User, current_Admin) => true;
+exports.can_edit_CategoryList_CategoriesViewAtt = (current_User, current_Admin) => true;
+exports.can_view_Rating = (current_User, current_Admin) => current_User != null || current_Admin != null;
+exports.can_create_Rating = (current_User, current_Admin) => current_Admin != null;
+exports.can_edit_Rating = (current_User, current_Admin) => current_Admin != null;
+exports.can_delete_Rating = (current_User, current_Admin) => current_Admin != null;
+exports.can_view_Rating_rating = (current_User, current_Admin) => true;
+exports.can_edit_Rating_rating = (current_User, current_Admin) => true;
+exports.can_view_Bookmarks = (current_User, current_Admin) => true;
+exports.can_create_Bookmarks = (current_User, current_Admin) => false;
+exports.can_edit_Bookmarks = (current_User, current_Admin) => true;
+exports.can_delete_Bookmarks = (current_User, current_Admin) => false;
+exports.can_view_Bookmarks_BookmarkViewAtt = (current_User, current_Admin) => true;
+exports.can_edit_Bookmarks_BookmarkViewAtt = (current_User, current_Admin) => true;
+exports.can_view_Categorie_Meal = (current_User, current_Admin) => true;
+exports.can_create_Categorie_Meal = (current_User, current_Admin) => true;
+exports.can_edit_Categorie_Meal = (current_User, current_Admin) => true;
+exports.can_delete_Categorie_Meal = (current_User, current_Admin) => true;
+exports.can_view_User_Recipe = (current_User, current_Admin) => true;
+exports.can_create_User_Recipe = (current_User, current_Admin) => true;
+exports.can_edit_User_Recipe = (current_User, current_Admin) => true;
+exports.can_delete_User_Recipe = (current_User, current_Admin) => true;
+exports.can_view_Recipe_Rating = (current_User, current_Admin) => true;
+exports.can_create_Recipe_Rating = (current_User, current_Admin) => true;
+exports.can_edit_Recipe_Rating = (current_User, current_Admin) => true;
+exports.can_delete_Recipe_Rating = (current_User, current_Admin) => true;
+exports.can_view_Meal_Recipe = (current_User, current_Admin) => true;
+exports.can_create_Meal_Recipe = (current_User, current_Admin) => true;
+exports.can_edit_Meal_Recipe = (current_User, current_Admin) => true;
+exports.can_delete_Meal_Recipe = (current_User, current_Admin) => true;
+
+
+/***/ }),
+/* 25 */
 /***/ (function(module, exports) {
 
 var hasOwnProperty = {}.hasOwnProperty;
@@ -13145,7 +13257,7 @@ module.exports = function(it, key){
 };
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13164,21 +13276,21 @@ module.exports = function(it, key){
 
 
 
-var CharacterMetadata = __webpack_require__(45);
-var ContentStateInlineStyle = __webpack_require__(591);
-var DraftFeatureFlags = __webpack_require__(226);
-var Immutable = __webpack_require__(12);
+var CharacterMetadata = __webpack_require__(46);
+var ContentStateInlineStyle = __webpack_require__(593);
+var DraftFeatureFlags = __webpack_require__(229);
+var Immutable = __webpack_require__(13);
 
-var applyEntityToContentState = __webpack_require__(608);
-var getCharacterRemovalRange = __webpack_require__(629);
-var getContentStateFragment = __webpack_require__(118);
-var insertFragmentIntoContentState = __webpack_require__(634);
-var insertTextIntoContentState = __webpack_require__(635);
+var applyEntityToContentState = __webpack_require__(610);
+var getCharacterRemovalRange = __webpack_require__(631);
+var getContentStateFragment = __webpack_require__(120);
+var insertFragmentIntoContentState = __webpack_require__(636);
+var insertTextIntoContentState = __webpack_require__(637);
 var invariant = __webpack_require__(3);
-var modifyBlockForContentState = __webpack_require__(646);
-var removeEntitiesAtEdges = __webpack_require__(241);
-var removeRangeFromContentState = __webpack_require__(648);
-var splitBlockInContentState = __webpack_require__(650);
+var modifyBlockForContentState = __webpack_require__(648);
+var removeEntitiesAtEdges = __webpack_require__(244);
+var removeRangeFromContentState = __webpack_require__(650);
+var splitBlockInContentState = __webpack_require__(652);
 
 var OrderedSet = Immutable.OrderedSet;
 
@@ -13312,7 +13424,7 @@ module.exports = DraftModifier;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -13356,7 +13468,835 @@ emptyFunction.thatReturnsArgument = function (arg) {
 module.exports = emptyFunction;
 
 /***/ }),
-/* 27 */
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(11);
+const Api = __webpack_require__(18);
+const Permissions = __webpack_require__(24);
+const Utils = __webpack_require__(22);
+const i18next = __webpack_require__(21);
+const HomePageViews = __webpack_require__(30);
+const CategoryListViews = __webpack_require__(29);
+const CustomViews = __webpack_require__(131);
+function load_relations_Bookmarks(self, current_User, current_Admin, callback) {
+    callback && callback();
+}
+exports.load_relations_Bookmarks = load_relations_Bookmarks;
+function set_size_Bookmarks(self, new_size) {
+    self.props.set_size(new_size, () => {
+        if (new_size == "fullscreen")
+            self.props.push(exports.Bookmarks_to_page(self.props.entity.Id));
+    });
+}
+exports.set_size_Bookmarks = set_size_Bookmarks;
+function render_Bookmarks_BookmarkViewAtt_editable_minimised(self) {
+    if (!Permissions.can_edit_Bookmarks(self.props.current_User, self.props.current_Admin))
+        return render_Bookmarks_BookmarkViewAtt_minimised(self);
+    else
+        return !Permissions.can_view_Bookmarks_BookmarkViewAtt(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute bookmarkviewatt" },
+                React.createElement("div", { className: "model__attribute-content" }, CustomViews.BookmarksView(Object.assign({}, self.props))));
+}
+exports.render_Bookmarks_BookmarkViewAtt_editable_minimised = render_Bookmarks_BookmarkViewAtt_editable_minimised;
+function render_Bookmarks_BookmarkViewAtt_editable_maximised(self) {
+    if (!Permissions.can_edit_Bookmarks(self.props.current_User, self.props.current_Admin))
+        return render_Bookmarks_BookmarkViewAtt_maximised(self);
+    else
+        return !Permissions.can_view_Bookmarks_BookmarkViewAtt(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute bookmarkviewatt" },
+                React.createElement("div", { className: "model__attribute-content" }, CustomViews.BookmarksView(Object.assign({}, self.props))));
+}
+exports.render_Bookmarks_BookmarkViewAtt_editable_maximised = render_Bookmarks_BookmarkViewAtt_editable_maximised;
+function render_editable_attributes_minimised_Bookmarks(self) {
+    let attributes = (React.createElement("div", null, CustomViews.BookmarksView(Object.assign({}, self.props))));
+    return attributes;
+}
+exports.render_editable_attributes_minimised_Bookmarks = render_editable_attributes_minimised_Bookmarks;
+function render_editable_attributes_maximised_Bookmarks(self) {
+    let state = self.state();
+    let attributes = (React.createElement("div", null, CustomViews.BookmarksView(Object.assign({}, self.props))));
+    return attributes;
+}
+exports.render_editable_attributes_maximised_Bookmarks = render_editable_attributes_maximised_Bookmarks;
+function render_breadcrumb_Bookmarks(self) {
+    return React.createElement("div", { className: "breadcrumb-bookmarks" }, "Bookmarks");
+}
+exports.render_breadcrumb_Bookmarks = render_breadcrumb_Bookmarks;
+function render_menu_Bookmarks(self) {
+    let state = self.state();
+    return React.createElement("div", { className: "menu" },
+        React.createElement("img", { className: "logo", src: "/images/logo.png", alt: "Logo" }),
+        React.createElement("div", { className: "pages" },
+            !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
+            !Permissions.can_view_CategoryList(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_CategoryLists(0, 1).then(e => e.Items.length > 0 && self.props.set_page(CategoryListViews.CategoryList_to_page(e.Items[0].Item.Id))) }, i18next.t('CategoryList'))),
+            !Permissions.can_view_Bookmarks(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link active-page` },
+                    React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('Bookmarks'))),
+            React.createElement("div", { className: "menu_entries" },
+                React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
+}
+exports.render_menu_Bookmarks = render_menu_Bookmarks;
+function render_local_menu_Bookmarks(self) {
+    let state = self.state();
+    return React.createElement("div", { className: "local-menu" },
+        React.createElement("div", { className: "local_menu_entries" },
+            React.createElement("div", { className: `local_menu_entry${self.props.shown_relation == "none" ? " local_menu_entry--active" : ""}` },
+                React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('About this Bookmarks')))));
+}
+exports.render_local_menu_Bookmarks = render_local_menu_Bookmarks;
+function render_controls_Bookmarks(self) {
+    return React.createElement("div", { className: "control" },
+        self.props.allow_maximisation && self.props.set_size ? React.createElement("a", { className: `"bookmarks button button--toggle ${self.props.size != 'preview' ? 'button--toggle--open' : ''}`, onClick: () => {
+                set_size_Bookmarks(self, self.props.size == "preview" ? "large" : "preview");
+            } }) : null,
+        Permissions.can_delete_Bookmarks(self.props.current_User, self.props.current_Admin) && self.props.size == "fullscreen" ? React.createElement("a", { className: "button button--delete", onClick: () => confirm(i18next.t('Are you sure?')) &&
+                Api.delete_Bookmarks(self.props.entity).then(() => self.props.force_reload(() => self.props.pop())) }) : null,
+        self.props.unlink && self.props.mode != "view" ?
+            React.createElement("a", { className: "button button--unlink", onClick: () => self.props.unlink() })
+            :
+                null,
+        self.props.delete && self.props.mode != "view" ?
+            React.createElement("a", { className: "button button--delete", onClick: () => self.props.delete() })
+            :
+                null);
+}
+exports.render_controls_Bookmarks = render_controls_Bookmarks;
+function render_content_Bookmarks(self) {
+    let actions = [
+        self.props.allow_maximisation && self.props.set_size && self.props.size == "preview" ?
+            () => set_size_Bookmarks(self, self.props.size == "preview" ? "large" : "preview")
+            :
+                null,
+    ].filter(a => a != null);
+    let content = Permissions.can_view_Bookmarks(self.props.current_User, self.props.current_Admin) ?
+        self.props.size == "preview" ?
+            render_preview_Bookmarks(self)
+            : self.props.size == "large" ?
+                render_large_Bookmarks(self)
+                : self.props.size == "fullscreen" ?
+                    render_large_Bookmarks(self)
+                    : "Error: unauthorised access to entity."
+        : "Error: unauthorised access to entity.";
+    if (self.props.mode == "view" && actions.length == 1 && !false)
+        return React.createElement("a", { onClick: () => actions[0]() },
+            React.createElement("div", { className: `${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}` }, content));
+    else
+        return React.createElement("div", { className: `${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}` }, content);
+}
+exports.render_content_Bookmarks = render_content_Bookmarks;
+function render_Bookmarks_BookmarkViewAtt_minimised(self) {
+    return !Permissions.can_view_Bookmarks_BookmarkViewAtt(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute bookmarkviewatt" },
+        React.createElement("div", { className: "model__attribute-content" }, CustomViews.BookmarksView(Object.assign({}, self.props))));
+}
+exports.render_Bookmarks_BookmarkViewAtt_minimised = render_Bookmarks_BookmarkViewAtt_minimised;
+function render_Bookmarks_BookmarkViewAtt_maximised(self) {
+    return !Permissions.can_view_Bookmarks_BookmarkViewAtt(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute bookmarkviewatt" },
+        React.createElement("div", { className: "model__attribute-content" }, CustomViews.BookmarksView(Object.assign({}, self.props))));
+}
+exports.render_Bookmarks_BookmarkViewAtt_maximised = render_Bookmarks_BookmarkViewAtt_maximised;
+function render_preview_Bookmarks(self) {
+    let attributes = null;
+    if (self.props.mode == "view" || !Permissions.can_edit_Bookmarks(self.props.current_User, self.props.current_Admin))
+        attributes = (React.createElement("div", { className: "model__attributes" }, render_Bookmarks_BookmarkViewAtt_minimised(self)));
+    else
+        attributes = render_editable_attributes_minimised_Bookmarks(self);
+    return (React.createElement("div", { className: "block" }, attributes));
+}
+exports.render_preview_Bookmarks = render_preview_Bookmarks;
+function render_large_Bookmarks(self) {
+    let state = self.state();
+    let attributes = null;
+    if (self.props.mode == "view" || !Permissions.can_edit_Bookmarks(self.props.current_User, self.props.current_Admin))
+        attributes = (React.createElement("div", { className: "model__attributes" }, render_Bookmarks_BookmarkViewAtt_maximised(self)));
+    else
+        attributes = render_editable_attributes_maximised_Bookmarks(self);
+    return (React.createElement("div", { className: "block" },
+        self.props.nesting_depth == 0 && self.props.shown_relation != "all" && self.props.shown_relation != "none" ? null : attributes,
+        render_relations_Bookmarks(self)));
+}
+exports.render_large_Bookmarks = render_large_Bookmarks;
+function render_relations_Bookmarks(self) {
+    return React.createElement("div", { className: "relations" });
+}
+exports.render_relations_Bookmarks = render_relations_Bookmarks;
+function render_saving_animations_Bookmarks(self) {
+    return;
+}
+exports.render_saving_animations_Bookmarks = render_saving_animations_Bookmarks;
+class BookmarksComponent extends React.Component {
+    constructor(props, context) {
+        super(props, context);
+        this.thread = null;
+        this.state = { update_count: 0, };
+    }
+    get_self() {
+        return { state: () => this.state, props: this.props, setState: (ns, c) => this.setState(ns, c) };
+    }
+    componentWillReceiveProps(new_props) {
+        if (new_props.size == "breadcrumb")
+            return;
+        let current_logged_in_entity = this.props.current_User || this.props.current_Admin || null;
+        let new_logged_in_entity = new_props.current_User || new_props.current_Admin || null;
+        if (new_props.mode != this.props.mode || (new_props.size != this.props.size && (new_props.size == "large" || new_props.size == "fullscreen")) ||
+            new_props.logic_frame != this.props.logic_frame ||
+            (current_logged_in_entity && !new_logged_in_entity) ||
+            (!current_logged_in_entity && new_logged_in_entity) ||
+            (current_logged_in_entity && new_logged_in_entity && current_logged_in_entity.Id != new_logged_in_entity.Id)) {
+            load_relations_Bookmarks(this.get_self(), new_props.current_User, new_props.current_Admin);
+        }
+    }
+    componentWillMount() {
+        if (this.props.size == "breadcrumb")
+            return;
+        if (this.props.size != "preview") {
+            load_relations_Bookmarks(this.get_self(), this.props.current_User, this.props.current_Admin);
+        }
+        this.thread = setInterval(() => {
+        }, 500);
+    }
+    componentWillUnmount() {
+        clearInterval(this.thread);
+    }
+    render() {
+        if (this.props.size == "breadcrumb") {
+            return Permissions.can_view_Bookmarks(this.props.current_User, this.props.current_Admin) ?
+                render_breadcrumb_Bookmarks(this.get_self())
+                : null;
+        }
+        return React.createElement("div", { id: `Bookmarks_${this.props.entity.Id.toString()}_${this.state.update_count}`, className: `model bookmarks` },
+            render_saving_animations_Bookmarks(this.get_self()),
+            this.props.nesting_depth == 0 ? render_menu_Bookmarks(this.get_self()) : null,
+            React.createElement("div", { className: "content" },
+                this.props.nesting_depth == 0 && !!this.props.toggle_button ?
+                    React.createElement("div", { className: "topbar" },
+                        this.props.breadcrumbs(),
+                        React.createElement("div", { className: "topbar__buttons" },
+                            this.props.toggle_button ? this.props.toggle_button() : null,
+                            this.props.authentication_menu()))
+                    :
+                        null,
+                render_controls_Bookmarks(this.get_self()),
+                render_content_Bookmarks(this.get_self())));
+    }
+}
+exports.BookmarksComponent = BookmarksComponent;
+exports.Bookmarks = (props) => React.createElement(BookmarksComponent, Object.assign({}, props));
+exports.Bookmarks_to_page = (id) => {
+    let can_edit = Utils.any_of([Permissions.can_edit_Bookmarks]);
+    return Utils.scene_to_page(can_edit, exports.Bookmarks, Api.get_Bookmarks(id), Api.update_Bookmarks, "Bookmarks", "Bookmarks", `/Bookmarkss/${id}`);
+};
+exports.Bookmarks_to = (id, target_element_id, current_User, current_Admin) => {
+    Utils.render_page_manager(target_element_id, exports.Bookmarks_to_page(id), current_User, current_Admin);
+};
+
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(11);
+const Api = __webpack_require__(18);
+const Permissions = __webpack_require__(24);
+const Utils = __webpack_require__(22);
+const i18next = __webpack_require__(21);
+const HomePageViews = __webpack_require__(30);
+const BookmarksViews = __webpack_require__(28);
+const CustomViews = __webpack_require__(131);
+function load_relations_CategoryList(self, current_User, current_Admin, callback) {
+    callback && callback();
+}
+exports.load_relations_CategoryList = load_relations_CategoryList;
+function set_size_CategoryList(self, new_size) {
+    self.props.set_size(new_size, () => {
+        if (new_size == "fullscreen")
+            self.props.push(exports.CategoryList_to_page(self.props.entity.Id));
+    });
+}
+exports.set_size_CategoryList = set_size_CategoryList;
+function render_CategoryList_CategoriesViewAtt_editable_minimised(self) {
+    if (!Permissions.can_edit_CategoryList(self.props.current_User, self.props.current_Admin))
+        return render_CategoryList_CategoriesViewAtt_minimised(self);
+    else
+        return !Permissions.can_view_CategoryList_CategoriesViewAtt(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute categoriesviewatt" },
+                React.createElement("div", { className: "model__attribute-content" }, CustomViews.CategoriesView(Object.assign({}, self.props))));
+}
+exports.render_CategoryList_CategoriesViewAtt_editable_minimised = render_CategoryList_CategoriesViewAtt_editable_minimised;
+function render_CategoryList_CategoriesViewAtt_editable_maximised(self) {
+    if (!Permissions.can_edit_CategoryList(self.props.current_User, self.props.current_Admin))
+        return render_CategoryList_CategoriesViewAtt_maximised(self);
+    else
+        return !Permissions.can_view_CategoryList_CategoriesViewAtt(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute categoriesviewatt" },
+                React.createElement("div", { className: "model__attribute-content" }, CustomViews.CategoriesView(Object.assign({}, self.props))));
+}
+exports.render_CategoryList_CategoriesViewAtt_editable_maximised = render_CategoryList_CategoriesViewAtt_editable_maximised;
+function render_editable_attributes_minimised_CategoryList(self) {
+    let attributes = (React.createElement("div", null, CustomViews.CategoriesView(Object.assign({}, self.props))));
+    return attributes;
+}
+exports.render_editable_attributes_minimised_CategoryList = render_editable_attributes_minimised_CategoryList;
+function render_editable_attributes_maximised_CategoryList(self) {
+    let state = self.state();
+    let attributes = (React.createElement("div", null, CustomViews.CategoriesView(Object.assign({}, self.props))));
+    return attributes;
+}
+exports.render_editable_attributes_maximised_CategoryList = render_editable_attributes_maximised_CategoryList;
+function render_breadcrumb_CategoryList(self) {
+    return React.createElement("div", { className: "breadcrumb-categorylist" }, "CategoryList");
+}
+exports.render_breadcrumb_CategoryList = render_breadcrumb_CategoryList;
+function render_menu_CategoryList(self) {
+    let state = self.state();
+    return React.createElement("div", { className: "menu" },
+        React.createElement("img", { className: "logo", src: "/images/logo.png", alt: "Logo" }),
+        React.createElement("div", { className: "pages" },
+            !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
+            !Permissions.can_view_CategoryList(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link active-page` },
+                    React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('CategoryList'))),
+            !Permissions.can_view_Bookmarks(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_Bookmarkss(0, 1).then(e => e.Items.length > 0 && self.props.set_page(BookmarksViews.Bookmarks_to_page(e.Items[0].Item.Id))) }, i18next.t('Bookmarks'))),
+            React.createElement("div", { className: "menu_entries" },
+                React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
+}
+exports.render_menu_CategoryList = render_menu_CategoryList;
+function render_local_menu_CategoryList(self) {
+    let state = self.state();
+    return React.createElement("div", { className: "local-menu" },
+        React.createElement("div", { className: "local_menu_entries" },
+            React.createElement("div", { className: `local_menu_entry${self.props.shown_relation == "none" ? " local_menu_entry--active" : ""}` },
+                React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('About this CategoryList')))));
+}
+exports.render_local_menu_CategoryList = render_local_menu_CategoryList;
+function render_controls_CategoryList(self) {
+    return React.createElement("div", { className: "control" },
+        self.props.allow_maximisation && self.props.set_size ? React.createElement("a", { className: `"categorylist button button--toggle ${self.props.size != 'preview' ? 'button--toggle--open' : ''}`, onClick: () => {
+                set_size_CategoryList(self, self.props.size == "preview" ? "large" : "preview");
+            } }) : null,
+        Permissions.can_delete_CategoryList(self.props.current_User, self.props.current_Admin) && self.props.size == "fullscreen" ? React.createElement("a", { className: "button button--delete", onClick: () => confirm(i18next.t('Are you sure?')) &&
+                Api.delete_CategoryList(self.props.entity).then(() => self.props.force_reload(() => self.props.pop())) }) : null,
+        self.props.unlink && self.props.mode != "view" ?
+            React.createElement("a", { className: "button button--unlink", onClick: () => self.props.unlink() })
+            :
+                null,
+        self.props.delete && self.props.mode != "view" ?
+            React.createElement("a", { className: "button button--delete", onClick: () => self.props.delete() })
+            :
+                null);
+}
+exports.render_controls_CategoryList = render_controls_CategoryList;
+function render_content_CategoryList(self) {
+    let actions = [
+        self.props.allow_maximisation && self.props.set_size && self.props.size == "preview" ?
+            () => set_size_CategoryList(self, self.props.size == "preview" ? "large" : "preview")
+            :
+                null,
+    ].filter(a => a != null);
+    let content = Permissions.can_view_CategoryList(self.props.current_User, self.props.current_Admin) ?
+        self.props.size == "preview" ?
+            render_preview_CategoryList(self)
+            : self.props.size == "large" ?
+                render_large_CategoryList(self)
+                : self.props.size == "fullscreen" ?
+                    render_large_CategoryList(self)
+                    : "Error: unauthorised access to entity."
+        : "Error: unauthorised access to entity.";
+    if (self.props.mode == "view" && actions.length == 1 && !false)
+        return React.createElement("a", { onClick: () => actions[0]() },
+            React.createElement("div", { className: `${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}` }, content));
+    else
+        return React.createElement("div", { className: `${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}` }, content);
+}
+exports.render_content_CategoryList = render_content_CategoryList;
+function render_CategoryList_CategoriesViewAtt_minimised(self) {
+    return !Permissions.can_view_CategoryList_CategoriesViewAtt(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute categoriesviewatt" },
+        React.createElement("div", { className: "model__attribute-content" }, CustomViews.CategoriesView(Object.assign({}, self.props))));
+}
+exports.render_CategoryList_CategoriesViewAtt_minimised = render_CategoryList_CategoriesViewAtt_minimised;
+function render_CategoryList_CategoriesViewAtt_maximised(self) {
+    return !Permissions.can_view_CategoryList_CategoriesViewAtt(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute categoriesviewatt" },
+        React.createElement("div", { className: "model__attribute-content" }, CustomViews.CategoriesView(Object.assign({}, self.props))));
+}
+exports.render_CategoryList_CategoriesViewAtt_maximised = render_CategoryList_CategoriesViewAtt_maximised;
+function render_preview_CategoryList(self) {
+    let attributes = null;
+    if (self.props.mode == "view" || !Permissions.can_edit_CategoryList(self.props.current_User, self.props.current_Admin))
+        attributes = (React.createElement("div", { className: "model__attributes" }, render_CategoryList_CategoriesViewAtt_minimised(self)));
+    else
+        attributes = render_editable_attributes_minimised_CategoryList(self);
+    return (React.createElement("div", { className: "block" }, attributes));
+}
+exports.render_preview_CategoryList = render_preview_CategoryList;
+function render_large_CategoryList(self) {
+    let state = self.state();
+    let attributes = null;
+    if (self.props.mode == "view" || !Permissions.can_edit_CategoryList(self.props.current_User, self.props.current_Admin))
+        attributes = (React.createElement("div", { className: "model__attributes" }, render_CategoryList_CategoriesViewAtt_maximised(self)));
+    else
+        attributes = render_editable_attributes_maximised_CategoryList(self);
+    return (React.createElement("div", { className: "block" },
+        self.props.nesting_depth == 0 && self.props.shown_relation != "all" && self.props.shown_relation != "none" ? null : attributes,
+        render_relations_CategoryList(self)));
+}
+exports.render_large_CategoryList = render_large_CategoryList;
+function render_relations_CategoryList(self) {
+    return React.createElement("div", { className: "relations" });
+}
+exports.render_relations_CategoryList = render_relations_CategoryList;
+function render_saving_animations_CategoryList(self) {
+    return;
+}
+exports.render_saving_animations_CategoryList = render_saving_animations_CategoryList;
+class CategoryListComponent extends React.Component {
+    constructor(props, context) {
+        super(props, context);
+        this.thread = null;
+        this.state = { update_count: 0, };
+    }
+    get_self() {
+        return { state: () => this.state, props: this.props, setState: (ns, c) => this.setState(ns, c) };
+    }
+    componentWillReceiveProps(new_props) {
+        if (new_props.size == "breadcrumb")
+            return;
+        let current_logged_in_entity = this.props.current_User || this.props.current_Admin || null;
+        let new_logged_in_entity = new_props.current_User || new_props.current_Admin || null;
+        if (new_props.mode != this.props.mode || (new_props.size != this.props.size && (new_props.size == "large" || new_props.size == "fullscreen")) ||
+            new_props.logic_frame != this.props.logic_frame ||
+            (current_logged_in_entity && !new_logged_in_entity) ||
+            (!current_logged_in_entity && new_logged_in_entity) ||
+            (current_logged_in_entity && new_logged_in_entity && current_logged_in_entity.Id != new_logged_in_entity.Id)) {
+            load_relations_CategoryList(this.get_self(), new_props.current_User, new_props.current_Admin);
+        }
+    }
+    componentWillMount() {
+        if (this.props.size == "breadcrumb")
+            return;
+        if (this.props.size != "preview") {
+            load_relations_CategoryList(this.get_self(), this.props.current_User, this.props.current_Admin);
+        }
+        this.thread = setInterval(() => {
+        }, 500);
+    }
+    componentWillUnmount() {
+        clearInterval(this.thread);
+    }
+    render() {
+        if (this.props.size == "breadcrumb") {
+            return Permissions.can_view_CategoryList(this.props.current_User, this.props.current_Admin) ?
+                render_breadcrumb_CategoryList(this.get_self())
+                : null;
+        }
+        return React.createElement("div", { id: `CategoryList_${this.props.entity.Id.toString()}_${this.state.update_count}`, className: `model categorylist` },
+            render_saving_animations_CategoryList(this.get_self()),
+            this.props.nesting_depth == 0 ? render_menu_CategoryList(this.get_self()) : null,
+            React.createElement("div", { className: "content" },
+                this.props.nesting_depth == 0 && !!this.props.toggle_button ?
+                    React.createElement("div", { className: "topbar" },
+                        this.props.breadcrumbs(),
+                        React.createElement("div", { className: "topbar__buttons" },
+                            this.props.toggle_button ? this.props.toggle_button() : null,
+                            this.props.authentication_menu()))
+                    :
+                        null,
+                render_controls_CategoryList(this.get_self()),
+                render_content_CategoryList(this.get_self())));
+    }
+}
+exports.CategoryListComponent = CategoryListComponent;
+exports.CategoryList = (props) => React.createElement(CategoryListComponent, Object.assign({}, props));
+exports.CategoryList_to_page = (id) => {
+    let can_edit = Utils.any_of([Permissions.can_edit_CategoryList]);
+    return Utils.scene_to_page(can_edit, exports.CategoryList, Api.get_CategoryList(id), Api.update_CategoryList, "CategoryList", "CategoryList", `/CategoryLists/${id}`);
+};
+exports.CategoryList_to = (id, target_element_id, current_User, current_Admin) => {
+    Utils.render_page_manager(target_element_id, exports.CategoryList_to_page(id), current_User, current_Admin);
+};
+
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(11);
+const Api = __webpack_require__(18);
+const Components = __webpack_require__(42);
+const Permissions = __webpack_require__(24);
+const Utils = __webpack_require__(22);
+const i18next = __webpack_require__(21);
+const CategoryListViews = __webpack_require__(29);
+const BookmarksViews = __webpack_require__(28);
+const CustomViews = __webpack_require__(131);
+function load_relations_HomePage(self, current_User, current_Admin, callback) {
+    callback && callback();
+}
+exports.load_relations_HomePage = load_relations_HomePage;
+function set_size_HomePage(self, new_size) {
+    self.props.set_size(new_size, () => {
+        if (new_size == "fullscreen")
+            self.props.push(exports.HomePage_to_page(self.props.entity.Id));
+    });
+}
+exports.set_size_HomePage = set_size_HomePage;
+function render_HomePage_AppTest_editable_minimised(self) {
+    if (!Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin))
+        return render_HomePage_AppTest_minimised(self);
+    else
+        return !Permissions.can_view_HomePage_AppTest(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute apptest" },
+                React.createElement("div", { className: "model__attribute-content" }, CustomViews.AppTest(Object.assign({}, self.props))));
+}
+exports.render_HomePage_AppTest_editable_minimised = render_HomePage_AppTest_editable_minimised;
+function render_HomePage_Test_editable_minimised(self) {
+    if (!Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin))
+        return render_HomePage_Test_minimised(self);
+    else
+        return !Permissions.can_view_HomePage_Test(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute test" },
+                React.createElement("label", { className: "attribute-label attribute-label-test" }, i18next.t(`HomePage:Test`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_HomePage_Test(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Test, v => self.props.set_entity(Object.assign({}, self.props.entity, { Test: v })))));
+}
+exports.render_HomePage_Test_editable_minimised = render_HomePage_Test_editable_minimised;
+function render_HomePage_AppTest_editable_maximised(self) {
+    if (!Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin))
+        return render_HomePage_AppTest_maximised(self);
+    else
+        return !Permissions.can_view_HomePage_AppTest(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute apptest" },
+                React.createElement("div", { className: "model__attribute-content" }, CustomViews.AppTest(Object.assign({}, self.props))));
+}
+exports.render_HomePage_AppTest_editable_maximised = render_HomePage_AppTest_editable_maximised;
+function render_HomePage_Test_editable_maximised(self) {
+    if (!Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin))
+        return render_HomePage_Test_maximised(self);
+    else
+        return !Permissions.can_view_HomePage_Test(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute test" },
+                React.createElement("label", { className: "attribute-label attribute-label-test" }, i18next.t(`HomePage:Test`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_HomePage_Test(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Test, v => self.props.set_entity(Object.assign({}, self.props.entity, { Test: v })))));
+}
+exports.render_HomePage_Test_editable_maximised = render_HomePage_Test_editable_maximised;
+function render_editable_attributes_minimised_HomePage(self) {
+    let attributes = (React.createElement("div", null,
+        render_HomePage_Test_editable_minimised(self),
+        CustomViews.AppTest(Object.assign({}, self.props))));
+    return attributes;
+}
+exports.render_editable_attributes_minimised_HomePage = render_editable_attributes_minimised_HomePage;
+function render_editable_attributes_maximised_HomePage(self) {
+    let state = self.state();
+    let attributes = (React.createElement("div", null,
+        render_HomePage_Test_editable_maximised(self),
+        CustomViews.AppTest(Object.assign({}, self.props))));
+    return attributes;
+}
+exports.render_editable_attributes_maximised_HomePage = render_editable_attributes_maximised_HomePage;
+function render_breadcrumb_HomePage(self) {
+    return React.createElement("div", { className: "breadcrumb-homepage" }, "HomePage");
+}
+exports.render_breadcrumb_HomePage = render_breadcrumb_HomePage;
+function render_menu_HomePage(self) {
+    let state = self.state();
+    return React.createElement("div", { className: "menu" },
+        React.createElement("img", { className: "logo", src: "/images/logo.png", alt: "Logo" }),
+        React.createElement("div", { className: "pages" },
+            !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link active-page` },
+                    React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('HomePage'))),
+            !Permissions.can_view_CategoryList(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_CategoryLists(0, 1).then(e => e.Items.length > 0 && self.props.set_page(CategoryListViews.CategoryList_to_page(e.Items[0].Item.Id))) }, i18next.t('CategoryList'))),
+            !Permissions.can_view_Bookmarks(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_Bookmarkss(0, 1).then(e => e.Items.length > 0 && self.props.set_page(BookmarksViews.Bookmarks_to_page(e.Items[0].Item.Id))) }, i18next.t('Bookmarks'))),
+            React.createElement("div", { className: "menu_entries" },
+                React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
+}
+exports.render_menu_HomePage = render_menu_HomePage;
+function render_local_menu_HomePage(self) {
+    let state = self.state();
+    return React.createElement("div", { className: "local-menu" },
+        React.createElement("div", { className: "local_menu_entries" },
+            React.createElement("div", { className: `local_menu_entry${self.props.shown_relation == "none" ? " local_menu_entry--active" : ""}` },
+                React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('About this HomePage')))));
+}
+exports.render_local_menu_HomePage = render_local_menu_HomePage;
+function render_controls_HomePage(self) {
+    return React.createElement("div", { className: "control" },
+        self.props.allow_maximisation && self.props.set_size ? React.createElement("a", { className: `"homepage button button--toggle ${self.props.size != 'preview' ? 'button--toggle--open' : ''}`, onClick: () => {
+                set_size_HomePage(self, self.props.size == "preview" ? "large" : "preview");
+            } }) : null,
+        Permissions.can_delete_HomePage(self.props.current_User, self.props.current_Admin) && self.props.size == "fullscreen" ? React.createElement("a", { className: "button button--delete", onClick: () => confirm(i18next.t('Are you sure?')) &&
+                Api.delete_HomePage(self.props.entity).then(() => self.props.force_reload(() => self.props.pop())) }) : null,
+        self.props.unlink && self.props.mode != "view" ?
+            React.createElement("a", { className: "button button--unlink", onClick: () => self.props.unlink() })
+            :
+                null,
+        self.props.delete && self.props.mode != "view" ?
+            React.createElement("a", { className: "button button--delete", onClick: () => self.props.delete() })
+            :
+                null);
+}
+exports.render_controls_HomePage = render_controls_HomePage;
+function render_content_HomePage(self) {
+    let actions = [
+        self.props.allow_maximisation && self.props.set_size && self.props.size == "preview" ?
+            () => set_size_HomePage(self, self.props.size == "preview" ? "large" : "preview")
+            :
+                null,
+    ].filter(a => a != null);
+    let content = Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin) ?
+        self.props.size == "preview" ?
+            render_preview_HomePage(self)
+            : self.props.size == "large" ?
+                render_large_HomePage(self)
+                : self.props.size == "fullscreen" ?
+                    render_large_HomePage(self)
+                    : "Error: unauthorised access to entity."
+        : "Error: unauthorised access to entity.";
+    if (self.props.mode == "view" && actions.length == 1 && !false)
+        return React.createElement("a", { onClick: () => actions[0]() },
+            React.createElement("div", { className: `${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}` }, content));
+    else
+        return React.createElement("div", { className: `${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}` }, content);
+}
+exports.render_content_HomePage = render_content_HomePage;
+function render_HomePage_AppTest_minimised(self) {
+    return !Permissions.can_view_HomePage_AppTest(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute apptest" },
+        React.createElement("div", { className: "model__attribute-content" }, CustomViews.AppTest(Object.assign({}, self.props))));
+}
+exports.render_HomePage_AppTest_minimised = render_HomePage_AppTest_minimised;
+function render_HomePage_Test_minimised(self) {
+    return !Permissions.can_view_HomePage_Test(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute test" },
+        React.createElement("label", { className: "attribute-label attribute-label-test" }, i18next.t(`HomePage:Test`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_HomePage_Test(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Test, v => self.props.set_entity(Object.assign({}, self.props.entity, { Test: v })))));
+}
+exports.render_HomePage_Test_minimised = render_HomePage_Test_minimised;
+function render_HomePage_AppTest_maximised(self) {
+    return !Permissions.can_view_HomePage_AppTest(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute apptest" },
+        React.createElement("div", { className: "model__attribute-content" }, CustomViews.AppTest(Object.assign({}, self.props))));
+}
+exports.render_HomePage_AppTest_maximised = render_HomePage_AppTest_maximised;
+function render_HomePage_Test_maximised(self) {
+    return !Permissions.can_view_HomePage_Test(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute test" },
+        React.createElement("label", { className: "attribute-label attribute-label-test" }, i18next.t(`HomePage:Test`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_HomePage_Test(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Test, v => self.props.set_entity(Object.assign({}, self.props.entity, { Test: v })))));
+}
+exports.render_HomePage_Test_maximised = render_HomePage_Test_maximised;
+function render_preview_HomePage(self) {
+    let attributes = null;
+    if (self.props.mode == "view" || !Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin))
+        attributes = (React.createElement("div", { className: "model__attributes" },
+            render_HomePage_AppTest_minimised(self),
+            render_HomePage_Test_minimised(self)));
+    else
+        attributes = render_editable_attributes_minimised_HomePage(self);
+    return (React.createElement("div", { className: "block" }, attributes));
+}
+exports.render_preview_HomePage = render_preview_HomePage;
+function render_large_HomePage(self) {
+    let state = self.state();
+    let attributes = null;
+    if (self.props.mode == "view" || !Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin))
+        attributes = (React.createElement("div", { className: "model__attributes" },
+            render_HomePage_AppTest_maximised(self),
+            render_HomePage_Test_maximised(self)));
+    else
+        attributes = render_editable_attributes_maximised_HomePage(self);
+    return (React.createElement("div", { className: "block" },
+        self.props.nesting_depth == 0 && self.props.shown_relation != "all" && self.props.shown_relation != "none" ? null : attributes,
+        render_relations_HomePage(self)));
+}
+exports.render_large_HomePage = render_large_HomePage;
+function render_relations_HomePage(self) {
+    return React.createElement("div", { className: "relations" });
+}
+exports.render_relations_HomePage = render_relations_HomePage;
+function render_saving_animations_HomePage(self) {
+    return;
+}
+exports.render_saving_animations_HomePage = render_saving_animations_HomePage;
+class HomePageComponent extends React.Component {
+    constructor(props, context) {
+        super(props, context);
+        this.thread = null;
+        this.state = { update_count: 0, };
+    }
+    get_self() {
+        return { state: () => this.state, props: this.props, setState: (ns, c) => this.setState(ns, c) };
+    }
+    componentWillReceiveProps(new_props) {
+        if (new_props.size == "breadcrumb")
+            return;
+        let current_logged_in_entity = this.props.current_User || this.props.current_Admin || null;
+        let new_logged_in_entity = new_props.current_User || new_props.current_Admin || null;
+        if (new_props.mode != this.props.mode || (new_props.size != this.props.size && (new_props.size == "large" || new_props.size == "fullscreen")) ||
+            new_props.logic_frame != this.props.logic_frame ||
+            (current_logged_in_entity && !new_logged_in_entity) ||
+            (!current_logged_in_entity && new_logged_in_entity) ||
+            (current_logged_in_entity && new_logged_in_entity && current_logged_in_entity.Id != new_logged_in_entity.Id)) {
+            load_relations_HomePage(this.get_self(), new_props.current_User, new_props.current_Admin);
+        }
+    }
+    componentWillMount() {
+        if (this.props.size == "breadcrumb")
+            return;
+        if (this.props.size != "preview") {
+            load_relations_HomePage(this.get_self(), this.props.current_User, this.props.current_Admin);
+        }
+        this.thread = setInterval(() => {
+        }, 500);
+    }
+    componentWillUnmount() {
+        clearInterval(this.thread);
+    }
+    render() {
+        if (this.props.size == "breadcrumb") {
+            return Permissions.can_view_HomePage(this.props.current_User, this.props.current_Admin) ?
+                render_breadcrumb_HomePage(this.get_self())
+                : null;
+        }
+        return React.createElement("div", { id: `HomePage_${this.props.entity.Id.toString()}_${this.state.update_count}`, className: `model homepage` },
+            render_saving_animations_HomePage(this.get_self()),
+            this.props.nesting_depth == 0 ? render_menu_HomePage(this.get_self()) : null,
+            React.createElement("div", { className: "content" },
+                this.props.nesting_depth == 0 && !!this.props.toggle_button ?
+                    React.createElement("div", { className: "topbar" },
+                        this.props.breadcrumbs(),
+                        React.createElement("div", { className: "topbar__buttons" },
+                            this.props.toggle_button ? this.props.toggle_button() : null,
+                            this.props.authentication_menu()))
+                    :
+                        null,
+                render_controls_HomePage(this.get_self()),
+                render_content_HomePage(this.get_self())));
+    }
+}
+exports.HomePageComponent = HomePageComponent;
+exports.HomePage = (props) => React.createElement(HomePageComponent, Object.assign({}, props));
+exports.HomePage_to_page = (id) => {
+    let can_edit = Utils.any_of([Permissions.can_edit_HomePage]);
+    return Utils.scene_to_page(can_edit, exports.HomePage, Api.get_HomePage(id), Api.update_HomePage, "HomePage", "HomePage", `/HomePages/${id}`);
+};
+exports.HomePage_to = (id, target_element_id, current_User, current_Admin) => {
+    Utils.render_page_manager(target_element_id, exports.HomePage_to_page(id), current_User, current_Admin);
+};
+
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports) {
+
+module.exports = function(it){
+  if(typeof it != 'function')throw TypeError(it + ' is not a function!');
+  return it;
+};
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var dP         = __webpack_require__(16)
+  , createDesc = __webpack_require__(63);
+module.exports = __webpack_require__(15) ? function(object, key, value){
+  return dP.f(object, key, createDesc(1, value));
+} : function(object, key, value){
+  object[key] = value;
+  return object;
+};
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var global    = __webpack_require__(6)
+  , hide      = __webpack_require__(32)
+  , has       = __webpack_require__(25)
+  , SRC       = __webpack_require__(75)('src')
+  , TO_STRING = 'toString'
+  , $toString = Function[TO_STRING]
+  , TPL       = ('' + $toString).split(TO_STRING);
+
+__webpack_require__(57).inspectSource = function(it){
+  return $toString.call(it);
+};
+
+(module.exports = function(O, key, val, safe){
+  var isFunction = typeof val == 'function';
+  if(isFunction)has(val, 'name') || hide(val, 'name', key);
+  if(O[key] === val)return;
+  if(isFunction)has(val, SRC) || hide(val, SRC, O[key] ? '' + O[key] : TPL.join(String(key)));
+  if(O === global){
+    O[key] = val;
+  } else {
+    if(!safe){
+      delete O[key];
+      hide(O, key, val);
+    } else {
+      if(O[key])O[key] = val;
+      else hide(O, key, val);
+    }
+  }
+// add fake Function#toString for correct work wrapped methods / constructors with methods like LoDash isNative
+})(Function.prototype, TO_STRING, function toString(){
+  return typeof this == 'function' && this[SRC] || $toString.call(this);
+});
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var $export = __webpack_require__(1)
+  , fails   = __webpack_require__(7)
+  , defined = __webpack_require__(44)
+  , quot    = /"/g;
+// B.2.3.2.1 CreateHTML(string, tag, attribute, value)
+var createHTML = function(string, tag, attribute, value) {
+  var S  = String(defined(string))
+    , p1 = '<' + tag;
+  if(attribute !== '')p1 += ' ' + attribute + '="' + String(value).replace(quot, '&quot;') + '"';
+  return p1 + '>' + S + '</' + tag + '>';
+};
+module.exports = function(NAME, exec){
+  var O = {};
+  O[NAME] = exec(createHTML);
+  $export($export.P + $export.F * fails(function(){
+    var test = ''[NAME]('"');
+    return test !== test.toLowerCase() || test.split('"').length > 3;
+  }), 'String', O);
+};
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// to indexed object, toObject with fallback for non-array-like ES3 strings
+var IObject = __webpack_require__(93)
+  , defined = __webpack_require__(44);
+module.exports = function(it){
+  return IObject(defined(it));
+};
+
+/***/ }),
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -18340,226 +19280,7 @@ module.exports = emptyFunction;
 }));
 
 /***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.can_view_American = (current_User, current_Admin) => current_User != null || current_Admin != null;
-exports.can_create_American = (current_User, current_Admin) => current_Admin != null;
-exports.can_edit_American = (current_User, current_Admin) => current_Admin != null;
-exports.can_delete_American = (current_User, current_Admin) => current_Admin != null;
-exports.can_view_American_Description = (current_User, current_Admin) => true;
-exports.can_edit_American_Description = (current_User, current_Admin) => true;
-exports.can_view_Meal = (current_User, current_Admin) => current_User != null || current_Admin != null;
-exports.can_create_Meal = (current_User, current_Admin) => current_Admin != null;
-exports.can_edit_Meal = (current_User, current_Admin) => current_Admin != null;
-exports.can_delete_Meal = (current_User, current_Admin) => current_Admin != null;
-exports.can_view_Asian = (current_User, current_Admin) => current_User != null || current_Admin != null;
-exports.can_create_Asian = (current_User, current_Admin) => current_Admin != null;
-exports.can_edit_Asian = (current_User, current_Admin) => current_Admin != null;
-exports.can_delete_Asian = (current_User, current_Admin) => current_Admin != null;
-exports.can_view_Asian_Description = (current_User, current_Admin) => true;
-exports.can_edit_Asian_Description = (current_User, current_Admin) => true;
-exports.can_view_Lunch = (current_User, current_Admin) => current_User != null || current_Admin != null;
-exports.can_create_Lunch = (current_User, current_Admin) => current_Admin != null;
-exports.can_edit_Lunch = (current_User, current_Admin) => current_Admin != null;
-exports.can_delete_Lunch = (current_User, current_Admin) => current_Admin != null;
-exports.can_view_Lunch_Description = (current_User, current_Admin) => true;
-exports.can_edit_Lunch_Description = (current_User, current_Admin) => true;
-exports.can_view_User = (current_User, current_Admin) => current_Admin != null || current_User != null;
-exports.can_create_User = (current_User, current_Admin) => current_Admin != null;
-exports.can_edit_User = (current_User, current_Admin) => current_Admin != null || current_User != null;
-exports.can_delete_User = (current_User, current_Admin) => current_Admin != null;
-exports.can_view_User_Username = (current_User, current_Admin) => true;
-exports.can_edit_User_Username = (current_User, current_Admin) => true;
-exports.can_view_User_Language = (current_User, current_Admin) => true;
-exports.can_edit_User_Language = (current_User, current_Admin) => true;
-exports.can_view_User_Email = (current_User, current_Admin) => true;
-exports.can_edit_User_Email = (current_User, current_Admin) => true;
-exports.can_view_HomePage = (current_User, current_Admin) => true;
-exports.can_create_HomePage = (current_User, current_Admin) => false;
-exports.can_edit_HomePage = (current_User, current_Admin) => true;
-exports.can_delete_HomePage = (current_User, current_Admin) => false;
-exports.can_view_HomePage_AppTest = (current_User, current_Admin) => true;
-exports.can_edit_HomePage_AppTest = (current_User, current_Admin) => true;
-exports.can_view_HomePage_Test = (current_User, current_Admin) => true;
-exports.can_edit_HomePage_Test = (current_User, current_Admin) => true;
-exports.can_view_Recipe = (current_User, current_Admin) => current_User != null || current_Admin != null;
-exports.can_create_Recipe = (current_User, current_Admin) => current_Admin != null;
-exports.can_edit_Recipe = (current_User, current_Admin) => current_Admin != null;
-exports.can_delete_Recipe = (current_User, current_Admin) => current_Admin != null;
-exports.can_view_Recipe_Picture = (current_User, current_Admin) => true;
-exports.can_edit_Recipe_Picture = (current_User, current_Admin) => true;
-exports.can_view_Recipe_Name = (current_User, current_Admin) => true;
-exports.can_edit_Recipe_Name = (current_User, current_Admin) => true;
-exports.can_view_Recipe_Ingredients = (current_User, current_Admin) => true;
-exports.can_edit_Recipe_Ingredients = (current_User, current_Admin) => true;
-exports.can_view_Recipe_Description = (current_User, current_Admin) => true;
-exports.can_edit_Recipe_Description = (current_User, current_Admin) => true;
-exports.can_view_Recipe_PreparationTime = (current_User, current_Admin) => true;
-exports.can_edit_Recipe_PreparationTime = (current_User, current_Admin) => true;
-exports.can_view_Admin = (current_User, current_Admin) => current_Admin != null;
-exports.can_create_Admin = (current_User, current_Admin) => current_Admin != null;
-exports.can_edit_Admin = (current_User, current_Admin) => current_Admin != null;
-exports.can_delete_Admin = (current_User, current_Admin) => current_Admin != null;
-exports.can_view_Admin_Username = (current_User, current_Admin) => true;
-exports.can_edit_Admin_Username = (current_User, current_Admin) => true;
-exports.can_view_Admin_Language = (current_User, current_Admin) => true;
-exports.can_edit_Admin_Language = (current_User, current_Admin) => true;
-exports.can_view_Admin_Email = (current_User, current_Admin) => true;
-exports.can_edit_Admin_Email = (current_User, current_Admin) => true;
-exports.can_view_Dinner = (current_User, current_Admin) => current_User != null || current_Admin != null;
-exports.can_create_Dinner = (current_User, current_Admin) => current_Admin != null;
-exports.can_edit_Dinner = (current_User, current_Admin) => current_Admin != null;
-exports.can_delete_Dinner = (current_User, current_Admin) => current_Admin != null;
-exports.can_view_Dinner_Description = (current_User, current_Admin) => true;
-exports.can_edit_Dinner_Description = (current_User, current_Admin) => true;
-exports.can_view_Categorie = (current_User, current_Admin) => current_User != null || current_Admin != null;
-exports.can_create_Categorie = (current_User, current_Admin) => current_Admin != null;
-exports.can_edit_Categorie = (current_User, current_Admin) => current_Admin != null;
-exports.can_delete_Categorie = (current_User, current_Admin) => current_Admin != null;
-exports.can_view_Mediterranean = (current_User, current_Admin) => current_User != null || current_Admin != null;
-exports.can_create_Mediterranean = (current_User, current_Admin) => current_Admin != null;
-exports.can_edit_Mediterranean = (current_User, current_Admin) => current_Admin != null;
-exports.can_delete_Mediterranean = (current_User, current_Admin) => current_Admin != null;
-exports.can_view_Mediterranean_Description = (current_User, current_Admin) => true;
-exports.can_edit_Mediterranean_Description = (current_User, current_Admin) => true;
-exports.can_view_Breakfast = (current_User, current_Admin) => current_User != null || current_Admin != null;
-exports.can_create_Breakfast = (current_User, current_Admin) => current_Admin != null;
-exports.can_edit_Breakfast = (current_User, current_Admin) => current_Admin != null;
-exports.can_delete_Breakfast = (current_User, current_Admin) => current_Admin != null;
-exports.can_view_Breakfast_Description = (current_User, current_Admin) => true;
-exports.can_edit_Breakfast_Description = (current_User, current_Admin) => true;
-exports.can_view_Rating = (current_User, current_Admin) => current_User != null || current_Admin != null;
-exports.can_create_Rating = (current_User, current_Admin) => current_Admin != null;
-exports.can_edit_Rating = (current_User, current_Admin) => current_Admin != null;
-exports.can_delete_Rating = (current_User, current_Admin) => current_Admin != null;
-exports.can_view_Rating_rating = (current_User, current_Admin) => true;
-exports.can_edit_Rating_rating = (current_User, current_Admin) => true;
-exports.can_view_Categorie_Meal = (current_User, current_Admin) => true;
-exports.can_create_Categorie_Meal = (current_User, current_Admin) => true;
-exports.can_edit_Categorie_Meal = (current_User, current_Admin) => true;
-exports.can_delete_Categorie_Meal = (current_User, current_Admin) => true;
-exports.can_view_User_Recipe = (current_User, current_Admin) => true;
-exports.can_create_User_Recipe = (current_User, current_Admin) => true;
-exports.can_edit_User_Recipe = (current_User, current_Admin) => true;
-exports.can_delete_User_Recipe = (current_User, current_Admin) => true;
-exports.can_view_Recipe_Rating = (current_User, current_Admin) => true;
-exports.can_create_Recipe_Rating = (current_User, current_Admin) => true;
-exports.can_edit_Recipe_Rating = (current_User, current_Admin) => true;
-exports.can_delete_Recipe_Rating = (current_User, current_Admin) => true;
-exports.can_view_Meal_Recipe = (current_User, current_Admin) => true;
-exports.can_create_Meal_Recipe = (current_User, current_Admin) => true;
-exports.can_edit_Meal_Recipe = (current_User, current_Admin) => true;
-exports.can_delete_Meal_Recipe = (current_User, current_Admin) => true;
-exports.can_view_HomePage_Recipe = (current_User, current_Admin) => true;
-exports.can_create_HomePage_Recipe = (current_User, current_Admin) => true;
-exports.can_edit_HomePage_Recipe = (current_User, current_Admin) => true;
-exports.can_delete_HomePage_Recipe = (current_User, current_Admin) => true;
-exports.can_view_HomePage_Categorie = (current_User, current_Admin) => true;
-exports.can_create_HomePage_Categorie = (current_User, current_Admin) => true;
-exports.can_edit_HomePage_Categorie = (current_User, current_Admin) => true;
-exports.can_delete_HomePage_Categorie = (current_User, current_Admin) => true;
-
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports) {
-
-module.exports = function(it){
-  if(typeof it != 'function')throw TypeError(it + ' is not a function!');
-  return it;
-};
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var dP         = __webpack_require__(16)
-  , createDesc = __webpack_require__(61);
-module.exports = __webpack_require__(15) ? function(object, key, value){
-  return dP.f(object, key, createDesc(1, value));
-} : function(object, key, value){
-  object[key] = value;
-  return object;
-};
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var global    = __webpack_require__(6)
-  , hide      = __webpack_require__(30)
-  , has       = __webpack_require__(24)
-  , SRC       = __webpack_require__(74)('src')
-  , TO_STRING = 'toString'
-  , $toString = Function[TO_STRING]
-  , TPL       = ('' + $toString).split(TO_STRING);
-
-__webpack_require__(55).inspectSource = function(it){
-  return $toString.call(it);
-};
-
-(module.exports = function(O, key, val, safe){
-  var isFunction = typeof val == 'function';
-  if(isFunction)has(val, 'name') || hide(val, 'name', key);
-  if(O[key] === val)return;
-  if(isFunction)has(val, SRC) || hide(val, SRC, O[key] ? '' + O[key] : TPL.join(String(key)));
-  if(O === global){
-    O[key] = val;
-  } else {
-    if(!safe){
-      delete O[key];
-      hide(O, key, val);
-    } else {
-      if(O[key])O[key] = val;
-      else hide(O, key, val);
-    }
-  }
-// add fake Function#toString for correct work wrapped methods / constructors with methods like LoDash isNative
-})(Function.prototype, TO_STRING, function toString(){
-  return typeof this == 'function' && this[SRC] || $toString.call(this);
-});
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var $export = __webpack_require__(1)
-  , fails   = __webpack_require__(7)
-  , defined = __webpack_require__(43)
-  , quot    = /"/g;
-// B.2.3.2.1 CreateHTML(string, tag, attribute, value)
-var createHTML = function(string, tag, attribute, value) {
-  var S  = String(defined(string))
-    , p1 = '<' + tag;
-  if(attribute !== '')p1 += ' ' + attribute + '="' + String(value).replace(quot, '&quot;') + '"';
-  return p1 + '>' + S + '</' + tag + '>';
-};
-module.exports = function(NAME, exec){
-  var O = {};
-  O[NAME] = exec(createHTML);
-  $export($export.P + $export.F * fails(function(){
-    var test = ''[NAME]('"');
-    return test !== test.toLowerCase() || test.split('"').length > 3;
-  }), 'String', O);
-};
-
-/***/ }),
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// to indexed object, toObject with fallback for non-array-like ES3 strings
-var IObject = __webpack_require__(92)
-  , defined = __webpack_require__(43);
-module.exports = function(it){
-  return IObject(defined(it));
-};
-
-/***/ }),
-/* 34 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18576,9 +19297,9 @@ module.exports = function(it){
 
 
 
-var _prodInvariant = __webpack_require__(88);
+var _prodInvariant = __webpack_require__(90);
 
-var ReactCurrentOwner = __webpack_require__(53);
+var ReactCurrentOwner = __webpack_require__(54);
 
 var invariant = __webpack_require__(3);
 var warning = __webpack_require__(4);
@@ -18944,15 +19665,15 @@ module.exports = ReactComponentTreeHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 35 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var pIE            = __webpack_require__(93)
-  , createDesc     = __webpack_require__(61)
-  , toIObject      = __webpack_require__(33)
-  , toPrimitive    = __webpack_require__(49)
-  , has            = __webpack_require__(24)
-  , IE8_DOM_DEFINE = __webpack_require__(201)
+var pIE            = __webpack_require__(94)
+  , createDesc     = __webpack_require__(63)
+  , toIObject      = __webpack_require__(35)
+  , toPrimitive    = __webpack_require__(50)
+  , has            = __webpack_require__(25)
+  , IE8_DOM_DEFINE = __webpack_require__(204)
   , gOPD           = Object.getOwnPropertyDescriptor;
 
 exports.f = __webpack_require__(15) ? gOPD : function getOwnPropertyDescriptor(O, P){
@@ -18965,13 +19686,13 @@ exports.f = __webpack_require__(15) ? gOPD : function getOwnPropertyDescriptor(O
 };
 
 /***/ }),
-/* 36 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
-var has         = __webpack_require__(24)
-  , toObject    = __webpack_require__(20)
-  , IE_PROTO    = __webpack_require__(144)('IE_PROTO')
+var has         = __webpack_require__(25)
+  , toObject    = __webpack_require__(23)
+  , IE_PROTO    = __webpack_require__(147)('IE_PROTO')
   , ObjectProto = Object.prototype;
 
 module.exports = Object.getPrototypeOf || function(O){
@@ -18983,7 +19704,7 @@ module.exports = Object.getPrototypeOf || function(O){
 };
 
 /***/ }),
-/* 37 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19010,7 +19731,7 @@ var nullthrows = function nullthrows(x) {
 module.exports = nullthrows;
 
 /***/ }),
-/* 38 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19032,7 +19753,7 @@ module.exports = nullthrows;
 var debugTool = null;
 
 if (process.env.NODE_ENV !== 'production') {
-  var ReactDebugTool = __webpack_require__(713);
+  var ReactDebugTool = __webpack_require__(715);
   debugTool = ReactDebugTool;
 }
 
@@ -19040,15 +19761,15 @@ module.exports = { debugTool: debugTool };
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 39 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(13);
-const LazyImage = __webpack_require__(401);
-const RichTextEditor = __webpack_require__(402);
+const React = __webpack_require__(11);
+const LazyImage = __webpack_require__(404);
+const RichTextEditor = __webpack_require__(405);
 const Moment = __webpack_require__(0);
 function format_int(num, length) {
     return (num / Math.pow(10, length)).toFixed(length).substr(2);
@@ -19198,539 +19919,7 @@ exports.File = File;
 
 
 /***/ }),
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(13);
-const i18next = __webpack_require__(22);
-exports.Cancel = (props) => React.createElement("button", { className: "button button--cancel", onClick: () => props.onClick() }, i18next.t('Cancel'));
-exports.Add = (props) => React.createElement("button", { disabled: props.disabled, className: "button button--add", onClick: () => props.onClick() }, i18next.t(`Add existing ${props.target_name}`));
-exports.Create = (props) => React.createElement("button", { className: "button button--create", onClick: () => props.onClick() }, i18next.t(`Create new ${props.target_name}`));
-exports.Search = (props) => React.createElement("button", { className: "button button--search", onClick: () => props.onClick() }, i18next.t(`Search`));
-
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(13);
-const Immutable = __webpack_require__(27);
-const Api = __webpack_require__(21);
-const List = __webpack_require__(46);
-const Components = __webpack_require__(39);
-const Buttons = __webpack_require__(40);
-const Permissions = __webpack_require__(28);
-const Utils = __webpack_require__(23);
-const i18next = __webpack_require__(22);
-const RecipeViews = __webpack_require__(65);
-const CategorieViews = __webpack_require__(89);
-const CustomViews = __webpack_require__(403);
-function HomePage_HomePage_Recipe_can_create(self) {
-    let state = self.state();
-    return state.Recipe == "loading" ? false : state.Recipe.CanCreate;
-}
-exports.HomePage_HomePage_Recipe_can_create = HomePage_HomePage_Recipe_can_create;
-function HomePage_HomePage_Categorie_can_create(self) {
-    let state = self.state();
-    return state.Categorie == "loading" ? false : state.Categorie.CanCreate;
-}
-exports.HomePage_HomePage_Categorie_can_create = HomePage_HomePage_Categorie_can_create;
-function HomePage_HomePage_Recipe_can_delete(self) {
-    let state = self.state();
-    return state.Recipe == "loading" ? false : state.Recipe.CanDelete;
-}
-exports.HomePage_HomePage_Recipe_can_delete = HomePage_HomePage_Recipe_can_delete;
-function HomePage_HomePage_Categorie_can_delete(self) {
-    let state = self.state();
-    return state.Categorie == "loading" ? false : state.Categorie.CanDelete;
-}
-exports.HomePage_HomePage_Categorie_can_delete = HomePage_HomePage_Categorie_can_delete;
-function HomePage_HomePage_Recipe_page_index(self) {
-    let state = self.state();
-    return state.Recipe == "loading" ? 0 : state.Recipe.PageIndex;
-}
-exports.HomePage_HomePage_Recipe_page_index = HomePage_HomePage_Recipe_page_index;
-function HomePage_HomePage_Categorie_page_index(self) {
-    let state = self.state();
-    return state.Categorie == "loading" ? 0 : state.Categorie.PageIndex;
-}
-exports.HomePage_HomePage_Categorie_page_index = HomePage_HomePage_Categorie_page_index;
-function HomePage_HomePage_Recipe_page_size(self) {
-    let state = self.state();
-    return state.Recipe == "loading" ? 25 : state.Recipe.PageSize;
-}
-exports.HomePage_HomePage_Recipe_page_size = HomePage_HomePage_Recipe_page_size;
-function HomePage_HomePage_Categorie_page_size(self) {
-    let state = self.state();
-    return state.Categorie == "loading" ? 25 : state.Categorie.PageSize;
-}
-exports.HomePage_HomePage_Categorie_page_size = HomePage_HomePage_Categorie_page_size;
-function HomePage_HomePage_Recipe_search_query(self) {
-    let state = self.state();
-    return state.Recipe == "loading" ? null : state.Recipe.SearchQuery;
-}
-exports.HomePage_HomePage_Recipe_search_query = HomePage_HomePage_Recipe_search_query;
-function HomePage_HomePage_Categorie_search_query(self) {
-    let state = self.state();
-    return state.Categorie == "loading" ? null : state.Categorie.SearchQuery;
-}
-exports.HomePage_HomePage_Categorie_search_query = HomePage_HomePage_Categorie_search_query;
-function HomePage_HomePage_Recipe_num_pages(self) {
-    let state = self.state();
-    return state.Recipe == "loading" ? 1 : state.Recipe.NumPages;
-}
-exports.HomePage_HomePage_Recipe_num_pages = HomePage_HomePage_Recipe_num_pages;
-function HomePage_HomePage_Categorie_num_pages(self) {
-    let state = self.state();
-    return state.Categorie == "loading" ? 1 : state.Categorie.NumPages;
-}
-exports.HomePage_HomePage_Categorie_num_pages = HomePage_HomePage_Categorie_num_pages;
-function load_relation_HomePage_HomePage_Recipe(self, force_first_page, current_User, current_Admin, callback) {
-    let state = self.state();
-    let prelude = force_first_page && state.Recipe != "loading" ?
-        (c) => state.Recipe != "loading" && self.setState(Object.assign({}, state, { Recipe: Object.assign({}, state.Recipe, { PageIndex: 0 }) }), c)
-        :
-            (c) => c();
-    Permissions.can_view_Recipe(current_User, current_Admin) ?
-        prelude(() => Api.get_HomePage_HomePage_Recipes(self.props.entity, HomePage_HomePage_Recipe_page_index(self), HomePage_HomePage_Recipe_page_size(self), HomePage_HomePage_Recipe_search_query(self)).then(Recipes => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipe: Utils.raw_page_to_paginated_items((i, i_just_created) => {
-                let state = self.state();
-                return {
-                    element: i,
-                    size: state.Recipe != "loading" ?
-                        (state.Recipe.Items.has(i.Id) ?
-                            state.Recipe.Items.get(i.Id).size
-                            :
-                                "preview" /* i_just_created ? "large" : "preview" */)
-                        :
-                            "preview" /* i_just_created ? "large" : "preview" */,
-                    shown_relation: "all"
-                };
-            }, Recipes) }), callback)))
-        :
-            prelude(() => callback && callback());
-}
-exports.load_relation_HomePage_HomePage_Recipe = load_relation_HomePage_HomePage_Recipe;
-function load_relation_HomePage_HomePage_Categorie(self, force_first_page, current_User, current_Admin, callback) {
-    let state = self.state();
-    let prelude = force_first_page && state.Categorie != "loading" ?
-        (c) => state.Categorie != "loading" && self.setState(Object.assign({}, state, { Categorie: Object.assign({}, state.Categorie, { PageIndex: 0 }) }), c)
-        :
-            (c) => c();
-    Permissions.can_view_Categorie(current_User, current_Admin) ?
-        prelude(() => Api.get_HomePage_HomePage_Categories(self.props.entity, HomePage_HomePage_Categorie_page_index(self), HomePage_HomePage_Categorie_page_size(self), HomePage_HomePage_Categorie_search_query(self)).then(Categories => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Categorie: Utils.raw_page_to_paginated_items((i, i_just_created) => {
-                let state = self.state();
-                return {
-                    element: i,
-                    size: state.Categorie != "loading" ?
-                        (state.Categorie.Items.has(i.Id) ?
-                            state.Categorie.Items.get(i.Id).size
-                            :
-                                "preview" /* i_just_created ? "large" : "preview" */)
-                        :
-                            "preview" /* i_just_created ? "large" : "preview" */,
-                    shown_relation: "all"
-                };
-            }, Categories) }), callback)))
-        :
-            prelude(() => callback && callback());
-}
-exports.load_relation_HomePage_HomePage_Categorie = load_relation_HomePage_HomePage_Categorie;
-function load_relations_HomePage(self, current_User, current_Admin, callback) {
-    load_relation_HomePage_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_HomePage_HomePage_Recipe(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback()));
-}
-exports.load_relations_HomePage = load_relations_HomePage;
-function set_size_HomePage(self, new_size) {
-    self.props.set_size(new_size, () => {
-        if (new_size == "fullscreen")
-            self.props.push(exports.HomePage_to_page(self.props.entity.Id));
-    });
-}
-exports.set_size_HomePage = set_size_HomePage;
-function render_HomePage_AppTest_editable_minimised(self) {
-    if (!Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin))
-        return render_HomePage_AppTest_minimised(self);
-    else
-        return !Permissions.can_view_HomePage_AppTest(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
-            React.createElement("div", { className: "model__attribute apptest" },
-                React.createElement("div", { className: "model__attribute-content" }, CustomViews.AppTest(Object.assign({}, self.props))));
-}
-exports.render_HomePage_AppTest_editable_minimised = render_HomePage_AppTest_editable_minimised;
-function render_HomePage_Test_editable_minimised(self) {
-    if (!Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin))
-        return render_HomePage_Test_minimised(self);
-    else
-        return !Permissions.can_view_HomePage_Test(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
-            React.createElement("div", { className: "model__attribute test" },
-                React.createElement("label", { className: "attribute-label attribute-label-test" }, i18next.t(`HomePage:Test`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_HomePage_Test(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Test, v => self.props.set_entity(Object.assign({}, self.props.entity, { Test: v })))));
-}
-exports.render_HomePage_Test_editable_minimised = render_HomePage_Test_editable_minimised;
-function render_HomePage_AppTest_editable_maximised(self) {
-    if (!Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin))
-        return render_HomePage_AppTest_maximised(self);
-    else
-        return !Permissions.can_view_HomePage_AppTest(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
-            React.createElement("div", { className: "model__attribute apptest" },
-                React.createElement("div", { className: "model__attribute-content" }, CustomViews.AppTest(Object.assign({}, self.props))));
-}
-exports.render_HomePage_AppTest_editable_maximised = render_HomePage_AppTest_editable_maximised;
-function render_HomePage_Test_editable_maximised(self) {
-    if (!Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin))
-        return render_HomePage_Test_maximised(self);
-    else
-        return !Permissions.can_view_HomePage_Test(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
-            React.createElement("div", { className: "model__attribute test" },
-                React.createElement("label", { className: "attribute-label attribute-label-test" }, i18next.t(`HomePage:Test`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_HomePage_Test(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Test, v => self.props.set_entity(Object.assign({}, self.props.entity, { Test: v })))));
-}
-exports.render_HomePage_Test_editable_maximised = render_HomePage_Test_editable_maximised;
-function render_editable_attributes_minimised_HomePage(self) {
-    let attributes = (React.createElement("div", null,
-        render_HomePage_Test_editable_minimised(self),
-        CustomViews.AppTest(Object.assign({}, self.props))));
-    return attributes;
-}
-exports.render_editable_attributes_minimised_HomePage = render_editable_attributes_minimised_HomePage;
-function render_editable_attributes_maximised_HomePage(self) {
-    let state = self.state();
-    let attributes = (React.createElement("div", null,
-        render_HomePage_Test_editable_maximised(self),
-        CustomViews.AppTest(Object.assign({}, self.props))));
-    return attributes;
-}
-exports.render_editable_attributes_maximised_HomePage = render_editable_attributes_maximised_HomePage;
-function render_breadcrumb_HomePage(self) {
-    return React.createElement("div", { className: "breadcrumb-homepage" }, "HomePage");
-}
-exports.render_breadcrumb_HomePage = render_breadcrumb_HomePage;
-function render_menu_HomePage(self) {
-    let state = self.state();
-    return React.createElement("div", { className: "menu" },
-        React.createElement("img", { className: "logo", src: "/images/logo.png", alt: "Logo" }),
-        React.createElement("div", { className: "pages" },
-            !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin) ? null :
-                React.createElement("div", { className: `menu_entry page_link active-page` },
-                    React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('HomePage'))),
-            React.createElement("div", { className: "menu_entries" },
-                !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipe" ? " active" : ""}` },
-                        React.createElement("a", { onClick: () => {
-                                self.props.set_shown_relation("HomePage_Recipe");
-                            } }, i18next.t('HomePage_Recipes'))),
-                !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}` },
-                        React.createElement("a", { onClick: () => {
-                                self.props.set_shown_relation("HomePage_Categorie");
-                            } }, i18next.t('HomePage_Categories'))),
-                React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
-}
-exports.render_menu_HomePage = render_menu_HomePage;
-function render_local_menu_HomePage(self) {
-    let state = self.state();
-    return React.createElement("div", { className: "local-menu" },
-        React.createElement("div", { className: "local_menu_entries" },
-            React.createElement("div", { className: `local_menu_entry${self.props.shown_relation == "none" ? " local_menu_entry--active" : ""}` },
-                React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('About this HomePage')))));
-}
-exports.render_local_menu_HomePage = render_local_menu_HomePage;
-function render_controls_HomePage(self) {
-    return React.createElement("div", { className: "control" },
-        self.props.allow_maximisation && self.props.set_size ? React.createElement("a", { className: `"homepage button button--toggle ${self.props.size != 'preview' ? 'button--toggle--open' : ''}`, onClick: () => {
-                set_size_HomePage(self, self.props.size == "preview" ? "large" : "preview");
-            } }) : null,
-        Permissions.can_delete_HomePage(self.props.current_User, self.props.current_Admin) && self.props.size == "fullscreen" ? React.createElement("a", { className: "button button--delete", onClick: () => confirm(i18next.t('Are you sure?')) &&
-                Api.delete_HomePage(self.props.entity).then(() => self.props.force_reload(() => self.props.pop())) }) : null,
-        self.props.unlink && self.props.mode != "view" ?
-            React.createElement("a", { className: "button button--unlink", onClick: () => self.props.unlink() })
-            :
-                null,
-        self.props.delete && self.props.mode != "view" ?
-            React.createElement("a", { className: "button button--delete", onClick: () => self.props.delete() })
-            :
-                null);
-}
-exports.render_controls_HomePage = render_controls_HomePage;
-function render_content_HomePage(self) {
-    let actions = [
-        self.props.allow_maximisation && self.props.set_size && self.props.size == "preview" ?
-            () => set_size_HomePage(self, self.props.size == "preview" ? "large" : "preview")
-            :
-                null,
-    ].filter(a => a != null);
-    let content = Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin) ?
-        self.props.size == "preview" ?
-            render_preview_HomePage(self)
-            : self.props.size == "large" ?
-                render_large_HomePage(self)
-                : self.props.size == "fullscreen" ?
-                    render_large_HomePage(self)
-                    : "Error: unauthorised access to entity."
-        : "Error: unauthorised access to entity.";
-    if (self.props.mode == "view" && actions.length == 1 && !false)
-        return React.createElement("a", { onClick: () => actions[0]() },
-            React.createElement("div", { className: `${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}` }, content));
-    else
-        return React.createElement("div", { className: `${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}` }, content);
-}
-exports.render_content_HomePage = render_content_HomePage;
-function render_HomePage_AppTest_minimised(self) {
-    return !Permissions.can_view_HomePage_AppTest(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute apptest" },
-        React.createElement("div", { className: "model__attribute-content" }, CustomViews.AppTest(Object.assign({}, self.props))));
-}
-exports.render_HomePage_AppTest_minimised = render_HomePage_AppTest_minimised;
-function render_HomePage_Test_minimised(self) {
-    return !Permissions.can_view_HomePage_Test(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute test" },
-        React.createElement("label", { className: "attribute-label attribute-label-test" }, i18next.t(`HomePage:Test`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_HomePage_Test(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Test, v => self.props.set_entity(Object.assign({}, self.props.entity, { Test: v })))));
-}
-exports.render_HomePage_Test_minimised = render_HomePage_Test_minimised;
-function render_HomePage_AppTest_maximised(self) {
-    return !Permissions.can_view_HomePage_AppTest(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute apptest" },
-        React.createElement("div", { className: "model__attribute-content" }, CustomViews.AppTest(Object.assign({}, self.props))));
-}
-exports.render_HomePage_AppTest_maximised = render_HomePage_AppTest_maximised;
-function render_HomePage_Test_maximised(self) {
-    return !Permissions.can_view_HomePage_Test(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute test" },
-        React.createElement("label", { className: "attribute-label attribute-label-test" }, i18next.t(`HomePage:Test`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_HomePage_Test(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Test, v => self.props.set_entity(Object.assign({}, self.props.entity, { Test: v })))));
-}
-exports.render_HomePage_Test_maximised = render_HomePage_Test_maximised;
-function render_preview_HomePage(self) {
-    let attributes = null;
-    if (self.props.mode == "view" || !Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin))
-        attributes = (React.createElement("div", { className: "model__attributes" },
-            render_HomePage_AppTest_minimised(self),
-            render_HomePage_Test_minimised(self)));
-    else
-        attributes = render_editable_attributes_minimised_HomePage(self);
-    return (React.createElement("div", { className: "block" }, attributes));
-}
-exports.render_preview_HomePage = render_preview_HomePage;
-function render_large_HomePage(self) {
-    let state = self.state();
-    let attributes = null;
-    if (self.props.mode == "view" || !Permissions.can_edit_HomePage(self.props.current_User, self.props.current_Admin))
-        attributes = (React.createElement("div", { className: "model__attributes" },
-            render_HomePage_AppTest_maximised(self),
-            render_HomePage_Test_maximised(self)));
-    else
-        attributes = render_editable_attributes_maximised_HomePage(self);
-    return (React.createElement("div", { className: "block" },
-        self.props.nesting_depth == 0 && self.props.shown_relation != "all" && self.props.shown_relation != "none" ? null : attributes,
-        render_relations_HomePage(self)));
-}
-exports.render_large_HomePage = render_large_HomePage;
-function render_HomePage_HomePage_Recipe(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "HomePage_Recipe") || !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin))
-        return null;
-    let state = self.state();
-    return React.createElement("div", null, List.render_relation("homepage_homepage_recipe", "HomePage", "Recipe", "Recipes", self.props.nesting_depth > 0, false, false, false)(state.Recipe != "loading" ?
-        state.Recipe.IdsInServerOrder.map(id => state.Recipe != "loading" && state.Recipe.Items.get(id)) :
-        state.Recipe, HomePage_HomePage_Recipe_page_index(self), HomePage_HomePage_Recipe_num_pages(self), new_page_index => {
-        let state = self.state();
-        state.Recipe != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipe: Object.assign({}, state.Recipe, { PageIndex: new_page_index }) }), () => load_relation_HomePage_HomePage_Recipe(self, false, self.props.current_User, self.props.current_Admin));
-    }, (i, _) => {
-        let i_id = i.element.Id;
-        let state = self.state();
-        return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
-                        ${state.Recipe != "loading" && state.Recipe.JustCreated.has(i_id) && state.Recipe.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, RecipeViews.Recipe(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_HomePage_Recipe(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_HomePage_Recipe(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_HomePage_Recipe(self.props.current_User, self.props.current_Admin)) ?
-                    self.props.mode : "view", is_editable: state.Recipe != "loading" && state.Recipe.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
-                    let state = self.state();
-                    state.Recipe != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
-                }, nested_entity_names: self.props.nested_entity_names.push("Recipe"), set_size: (new_size, callback) => {
-                    let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
-                    let state = self.state();
-                    state.Recipe != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
-                }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
-                    let state = self.state();
-                    state.Recipe != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { dirty_Recipe: state.dirty_Recipe.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, unlink: undefined, delete: !Permissions.can_delete_Recipe(self.props.current_User, self.props.current_Admin) || !HomePage_HomePage_Recipe_can_delete(self) ?
-                    null
-                    :
-                        () => confirm(i18next.t('Are you sure?')) && Api.delete_Recipe(i.element).then(() => load_relation_HomePage_HomePage_Recipe(self, false, self.props.current_User, self.props.current_Admin)) }))));
-    }, () => React.createElement("div", null, Permissions.can_create_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_create_HomePage_Recipe(self.props.current_User, self.props.current_Admin) && HomePage_HomePage_Recipe_can_create(self) ? render_new_HomePage_HomePage_Recipe(self) : null)));
-}
-exports.render_HomePage_HomePage_Recipe = render_HomePage_HomePage_Recipe;
-function render_HomePage_HomePage_Categorie(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "HomePage_Categorie") || !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin))
-        return null;
-    let state = self.state();
-    return React.createElement("div", null, List.render_relation("homepage_homepage_categorie", "HomePage", "Categorie", "Categories", self.props.nesting_depth > 0, false, false, false)(state.Categorie != "loading" ?
-        state.Categorie.IdsInServerOrder.map(id => state.Categorie != "loading" && state.Categorie.Items.get(id)) :
-        state.Categorie, HomePage_HomePage_Categorie_page_index(self), HomePage_HomePage_Categorie_num_pages(self), new_page_index => {
-        let state = self.state();
-        state.Categorie != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Categorie: Object.assign({}, state.Categorie, { PageIndex: new_page_index }) }), () => load_relation_HomePage_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin));
-    }, (i, _) => {
-        let i_id = i.element.Id;
-        let state = self.state();
-        return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
-                        ${state.Categorie != "loading" && state.Categorie.JustCreated.has(i_id) && state.Categorie.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, CategorieViews.Categorie(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_HomePage_Categorie(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_HomePage_Categorie(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_HomePage_Categorie(self.props.current_User, self.props.current_Admin)) ?
-                    self.props.mode : "view", is_editable: state.Categorie != "loading" && state.Categorie.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
-                    let state = self.state();
-                    state.Categorie != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Categorie: Object.assign({}, state.Categorie, { Items: state.Categorie.Items.set(i_id, Object.assign({}, state.Categorie.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
-                }, nested_entity_names: self.props.nested_entity_names.push("Categorie"), set_size: (new_size, callback) => {
-                    let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
-                    let state = self.state();
-                    state.Categorie != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Categorie: Object.assign({}, state.Categorie, { Items: state.Categorie.Items.set(i_id, Object.assign({}, state.Categorie.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
-                }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
-                    let state = self.state();
-                    state.Categorie != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { dirty_Categorie: state.dirty_Categorie.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Categorie: Object.assign({}, state.Categorie, { Items: state.Categorie.Items.set(i_id, Object.assign({}, state.Categorie.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, unlink: undefined, delete: !Permissions.can_delete_Categorie(self.props.current_User, self.props.current_Admin) || !HomePage_HomePage_Categorie_can_delete(self) ?
-                    null
-                    :
-                        () => confirm(i18next.t('Are you sure?')) && Api.delete_Categorie(i.element).then(() => load_relation_HomePage_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin)) }))));
-    }, () => React.createElement("div", null, Permissions.can_create_Categorie(self.props.current_User, self.props.current_Admin) && Permissions.can_create_HomePage_Categorie(self.props.current_User, self.props.current_Admin) && HomePage_HomePage_Categorie_can_create(self) ? render_new_HomePage_HomePage_Categorie(self) : null)));
-}
-exports.render_HomePage_HomePage_Categorie = render_HomePage_HomePage_Categorie;
-function render_relations_HomePage(self) {
-    return React.createElement("div", { className: "relations" },
-        render_HomePage_HomePage_Recipe(self, "default"),
-        render_HomePage_HomePage_Categorie(self, "default"));
-}
-exports.render_relations_HomePage = render_relations_HomePage;
-function render_new_HomePage_HomePage_Recipe(self) {
-    let state = self.state();
-    return self.props.mode == "edit" ?
-        React.createElement("div", { className: "button__actions" },
-            React.createElement("div", { className: "new-recipe" },
-                React.createElement("button", { className: "new-recipe button button--new", onClick: () => Api.create_Recipe().then(e => {
-                        Api.update_Recipe(Object.assign({}, e, { Picture: "", Name: "", Ingredients: "", Description: "", PreparationTime: 0 })).then(() => load_relation_HomePage_HomePage_Recipe(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" }))));
-                    }) }, i18next.t('Create new Recipe'))))
-        :
-            null;
-}
-exports.render_new_HomePage_HomePage_Recipe = render_new_HomePage_HomePage_Recipe;
-function render_new_HomePage_HomePage_Categorie(self) {
-    let state = self.state();
-    return self.props.mode == "edit" ?
-        React.createElement("div", { className: "button__actions" },
-            React.createElement(Buttons.Create, { target_name: "Categorie", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "creating" })) }),
-            state.add_step_Categorie != "creating" ?
-                null
-                :
-                    React.createElement("div", { className: "overlay__item overlay__item--new" },
-                        React.createElement("div", { className: "new-american" },
-                            React.createElement("button", { className: "new-american button button--new", onClick: () => Api.create_American().then(e => {
-                                    Api.update_Categorie(Object.assign({}, e, { Kind: "American", Description: "" })).then(() => load_relation_HomePage_HomePage_Categorie(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" }))));
-                                }) }, i18next.t('Create new American'))),
-                        React.createElement("div", { className: "new-asian" },
-                            React.createElement("button", { className: "new-asian button button--new", onClick: () => Api.create_Asian().then(e => {
-                                    Api.update_Categorie(Object.assign({}, e, { Kind: "Asian", Description: "" })).then(() => load_relation_HomePage_HomePage_Categorie(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" }))));
-                                }) }, i18next.t('Create new Asian'))),
-                        React.createElement("div", { className: "new-mediterranean" },
-                            React.createElement("button", { className: "new-mediterranean button button--new", onClick: () => Api.create_Mediterranean().then(e => {
-                                    Api.update_Categorie(Object.assign({}, e, { Kind: "Mediterranean", Description: "" })).then(() => load_relation_HomePage_HomePage_Categorie(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" }))));
-                                }) }, i18next.t('Create new Mediterranean'))),
-                        React.createElement(Buttons.Cancel, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Categorie: "closed" })) })))
-        :
-            null;
-}
-exports.render_new_HomePage_HomePage_Categorie = render_new_HomePage_HomePage_Categorie;
-function render_saving_animations_HomePage(self) {
-    return self.state().dirty_Recipe.count() > 0 ?
-        React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" }) :
-        self.state().dirty_Categorie.count() > 0 ?
-            React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" })
-            : React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "cornflowerblue" }, className: "saved" });
-}
-exports.render_saving_animations_HomePage = render_saving_animations_HomePage;
-class HomePageComponent extends React.Component {
-    constructor(props, context) {
-        super(props, context);
-        this.thread = null;
-        this.state = { update_count: 0, add_step_Recipe: "closed", dirty_Recipe: Immutable.Map(), Recipe: "loading", add_step_Categorie: "closed", dirty_Categorie: Immutable.Map(), Categorie: "loading" };
-    }
-    get_self() {
-        return { state: () => this.state, props: this.props, setState: (ns, c) => this.setState(ns, c) };
-    }
-    componentWillReceiveProps(new_props) {
-        if (new_props.size == "breadcrumb")
-            return;
-        let current_logged_in_entity = this.props.current_User || this.props.current_Admin || null;
-        let new_logged_in_entity = new_props.current_User || new_props.current_Admin || null;
-        if (new_props.mode != this.props.mode || (new_props.size != this.props.size && (new_props.size == "large" || new_props.size == "fullscreen")) ||
-            new_props.logic_frame != this.props.logic_frame ||
-            (current_logged_in_entity && !new_logged_in_entity) ||
-            (!current_logged_in_entity && new_logged_in_entity) ||
-            (current_logged_in_entity && new_logged_in_entity && current_logged_in_entity.Id != new_logged_in_entity.Id)) {
-            load_relations_HomePage(this.get_self(), new_props.current_User, new_props.current_Admin);
-        }
-    }
-    componentWillMount() {
-        if (this.props.size == "breadcrumb")
-            return;
-        if (this.props.size != "preview") {
-            load_relations_HomePage(this.get_self(), this.props.current_User, this.props.current_Admin);
-        }
-        this.thread = setInterval(() => {
-            if (this.state.dirty_Recipe.count() > 0) {
-                let first = this.state.dirty_Recipe.first();
-                this.setState(Object.assign({}, this.state, { dirty_Recipe: this.state.dirty_Recipe.remove(first.Id) }), () => Api.update_Recipe(first));
-            }
-            else if (this.state.dirty_Categorie.count() > 0) {
-                let first = this.state.dirty_Categorie.first();
-                this.setState(Object.assign({}, this.state, { dirty_Categorie: this.state.dirty_Categorie.remove(first.Id) }), () => Api.update_Categorie(first));
-            }
-        }, 500);
-    }
-    componentWillUnmount() {
-        clearInterval(this.thread);
-    }
-    render() {
-        if (this.props.size == "breadcrumb") {
-            return Permissions.can_view_HomePage(this.props.current_User, this.props.current_Admin) ?
-                render_breadcrumb_HomePage(this.get_self())
-                : null;
-        }
-        return React.createElement("div", { id: `HomePage_${this.props.entity.Id.toString()}_${this.state.update_count}`, className: `model homepage` },
-            render_saving_animations_HomePage(this.get_self()),
-            this.props.nesting_depth == 0 ? render_menu_HomePage(this.get_self()) : null,
-            React.createElement("div", { className: "content" },
-                this.props.nesting_depth == 0 && !!this.props.toggle_button ?
-                    React.createElement("div", { className: "topbar" },
-                        this.props.breadcrumbs(),
-                        React.createElement("div", { className: "topbar__buttons" },
-                            this.props.toggle_button ? this.props.toggle_button() : null,
-                            this.props.authentication_menu()))
-                    :
-                        null,
-                render_controls_HomePage(this.get_self()),
-                render_content_HomePage(this.get_self())));
-    }
-}
-exports.HomePageComponent = HomePageComponent;
-exports.HomePage = (props) => React.createElement(HomePageComponent, Object.assign({}, props));
-exports.HomePage_to_page = (id) => {
-    let can_edit = Utils.any_of([Permissions.can_edit_HomePage, Permissions.can_edit_HomePage_Recipe, Permissions.can_edit_HomePage_Categorie, Permissions.can_edit_Recipe, Permissions.can_edit_Categorie]);
-    return Utils.scene_to_page(can_edit, exports.HomePage, Api.get_HomePage(id), Api.update_HomePage, "HomePage", "HomePage", `/HomePages/${id}`);
-};
-exports.HomePage_to = (id, target_element_id, current_User, current_Admin) => {
-    Utils.render_page_manager(target_element_id, exports.HomePage_to_page(id), current_User, current_Admin);
-};
-
-
-/***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports) {
 
 var toString = {}.toString;
@@ -19740,7 +19929,7 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 // 7.2.1 RequireObjectCoercible(argument)
@@ -19750,7 +19939,7 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var fails = __webpack_require__(7);
@@ -19762,7 +19951,7 @@ module.exports = function(method, arg){
 };
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19787,7 +19976,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var _require = __webpack_require__(12);
+var _require = __webpack_require__(13);
 
 var Map = _require.Map;
 var OrderedSet = _require.OrderedSet;
@@ -19880,7 +20069,702 @@ CharacterMetadata.EMPTY = EMPTY;
 module.exports = CharacterMetadata;
 
 /***/ }),
-/* 46 */
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(11);
+const i18next = __webpack_require__(21);
+exports.Cancel = (props) => React.createElement("button", { className: "button button--cancel", onClick: () => props.onClick() }, i18next.t('Cancel'));
+exports.Add = (props) => React.createElement("button", { disabled: props.disabled, className: "button button--add", onClick: () => props.onClick() }, i18next.t(`Add existing ${props.target_name}`));
+exports.Create = (props) => React.createElement("button", { className: "button button--create", onClick: () => props.onClick() }, i18next.t(`Create new ${props.target_name}`));
+exports.Search = (props) => React.createElement("button", { className: "button button--search", onClick: () => props.onClick() }, i18next.t(`Search`));
+
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 0 -> Array#forEach
+// 1 -> Array#map
+// 2 -> Array#filter
+// 3 -> Array#some
+// 4 -> Array#every
+// 5 -> Array#find
+// 6 -> Array#findIndex
+var ctx      = __webpack_require__(58)
+  , IObject  = __webpack_require__(93)
+  , toObject = __webpack_require__(23)
+  , toLength = __webpack_require__(19)
+  , asc      = __webpack_require__(411);
+module.exports = function(TYPE, $create){
+  var IS_MAP        = TYPE == 1
+    , IS_FILTER     = TYPE == 2
+    , IS_SOME       = TYPE == 3
+    , IS_EVERY      = TYPE == 4
+    , IS_FIND_INDEX = TYPE == 6
+    , NO_HOLES      = TYPE == 5 || IS_FIND_INDEX
+    , create        = $create || asc;
+  return function($this, callbackfn, that){
+    var O      = toObject($this)
+      , self   = IObject(O)
+      , f      = ctx(callbackfn, that, 3)
+      , length = toLength(self.length)
+      , index  = 0
+      , result = IS_MAP ? create($this, length) : IS_FILTER ? create($this, 0) : undefined
+      , val, res;
+    for(;length > index; index++)if(NO_HOLES || index in self){
+      val = self[index];
+      res = f(val, index, O);
+      if(TYPE){
+        if(IS_MAP)result[index] = res;            // map
+        else if(res)switch(TYPE){
+          case 3: return true;                    // some
+          case 5: return val;                     // find
+          case 6: return index;                   // findIndex
+          case 2: result.push(val);               // filter
+        } else if(IS_EVERY)return false;          // every
+      }
+    }
+    return IS_FIND_INDEX ? -1 : IS_SOME || IS_EVERY ? IS_EVERY : result;
+  };
+};
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// most Object methods by ES6 should accept primitives
+var $export = __webpack_require__(1)
+  , core    = __webpack_require__(57)
+  , fails   = __webpack_require__(7);
+module.exports = function(KEY, exec){
+  var fn  = (core.Object || {})[KEY] || Object[KEY]
+    , exp = {};
+  exp[KEY] = exec(fn);
+  $export($export.S + $export.F * fails(function(){ fn(1); }), 'Object', exp);
+};
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// 7.1.1 ToPrimitive(input [, PreferredType])
+var isObject = __webpack_require__(12);
+// instead of the ES6 spec version, we didn't implement @@toPrimitive case
+// and the second argument - flag - preferred type is a string
+module.exports = function(it, S){
+  if(!isObject(it))return it;
+  var fn, val;
+  if(S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it)))return val;
+  if(typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it)))return val;
+  if(!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it)))return val;
+  throw TypeError("Can't convert object to primitive value");
+};
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule generateRandomKey
+ * @typechecks
+ * 
+ */
+
+
+
+var seenKeys = {};
+var MULTIPLIER = Math.pow(2, 24);
+
+function generateRandomKey() {
+  var key = void 0;
+  while (key === undefined || seenKeys.hasOwnProperty(key) || !isNaN(+key)) {
+    key = Math.floor(Math.random() * MULTIPLIER).toString(32);
+  }
+  seenKeys[key] = true;
+  return key;
+}
+
+module.exports = generateRandomKey;
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ */
+
+
+
+var UserAgentData = __webpack_require__(658);
+var VersionRange = __webpack_require__(659);
+
+var mapObject = __webpack_require__(672);
+var memoizeStringOnly = __webpack_require__(254);
+
+/**
+ * Checks to see whether `name` and `version` satisfy `query`.
+ *
+ * @param {string} name Name of the browser, device, engine or platform
+ * @param {?string} version Version of the browser, engine or platform
+ * @param {string} query Query of form "Name [range expression]"
+ * @param {?function} normalizer Optional pre-processor for range expression
+ * @return {boolean}
+ */
+function compare(name, version, query, normalizer) {
+  // check for exact match with no version
+  if (name === query) {
+    return true;
+  }
+
+  // check for non-matching names
+  if (!query.startsWith(name)) {
+    return false;
+  }
+
+  // full comparison with version
+  var range = query.slice(name.length);
+  if (version) {
+    range = normalizer ? normalizer(range) : range;
+    return VersionRange.contains(range, version);
+  }
+
+  return false;
+}
+
+/**
+ * Normalizes `version` by stripping any "NT" prefix, but only on the Windows
+ * platform.
+ *
+ * Mimics the stripping performed by the `UserAgentWindowsPlatform` PHP class.
+ *
+ * @param {string} version
+ * @return {string}
+ */
+function normalizePlatformVersion(version) {
+  if (UserAgentData.platformName === 'Windows') {
+    return version.replace(/^\s*NT/, '');
+  }
+
+  return version;
+}
+
+/**
+ * Provides client-side access to the authoritative PHP-generated User Agent
+ * information supplied by the server.
+ */
+var UserAgent = {
+  /**
+   * Check if the User Agent browser matches `query`.
+   *
+   * `query` should be a string like "Chrome" or "Chrome > 33".
+   *
+   * Valid browser names include:
+   *
+   * - ACCESS NetFront
+   * - AOL
+   * - Amazon Silk
+   * - Android
+   * - BlackBerry
+   * - BlackBerry PlayBook
+   * - Chrome
+   * - Chrome for iOS
+   * - Chrome frame
+   * - Facebook PHP SDK
+   * - Facebook for iOS
+   * - Firefox
+   * - IE
+   * - IE Mobile
+   * - Mobile Safari
+   * - Motorola Internet Browser
+   * - Nokia
+   * - Openwave Mobile Browser
+   * - Opera
+   * - Opera Mini
+   * - Opera Mobile
+   * - Safari
+   * - UIWebView
+   * - Unknown
+   * - webOS
+   * - etc...
+   *
+   * An authoritative list can be found in the PHP `BrowserDetector` class and
+   * related classes in the same file (see calls to `new UserAgentBrowser` here:
+   * https://fburl.com/50728104).
+   *
+   * @note Function results are memoized
+   *
+   * @param {string} query Query of the form "Name [range expression]"
+   * @return {boolean}
+   */
+  isBrowser: function isBrowser(query) {
+    return compare(UserAgentData.browserName, UserAgentData.browserFullVersion, query);
+  },
+
+
+  /**
+   * Check if the User Agent browser uses a 32 or 64 bit architecture.
+   *
+   * @note Function results are memoized
+   *
+   * @param {string} query Query of the form "32" or "64".
+   * @return {boolean}
+   */
+  isBrowserArchitecture: function isBrowserArchitecture(query) {
+    return compare(UserAgentData.browserArchitecture, null, query);
+  },
+
+
+  /**
+   * Check if the User Agent device matches `query`.
+   *
+   * `query` should be a string like "iPhone" or "iPad".
+   *
+   * Valid device names include:
+   *
+   * - Kindle
+   * - Kindle Fire
+   * - Unknown
+   * - iPad
+   * - iPhone
+   * - iPod
+   * - etc...
+   *
+   * An authoritative list can be found in the PHP `DeviceDetector` class and
+   * related classes in the same file (see calls to `new UserAgentDevice` here:
+   * https://fburl.com/50728332).
+   *
+   * @note Function results are memoized
+   *
+   * @param {string} query Query of the form "Name"
+   * @return {boolean}
+   */
+  isDevice: function isDevice(query) {
+    return compare(UserAgentData.deviceName, null, query);
+  },
+
+
+  /**
+   * Check if the User Agent rendering engine matches `query`.
+   *
+   * `query` should be a string like "WebKit" or "WebKit >= 537".
+   *
+   * Valid engine names include:
+   *
+   * - Gecko
+   * - Presto
+   * - Trident
+   * - WebKit
+   * - etc...
+   *
+   * An authoritative list can be found in the PHP `RenderingEngineDetector`
+   * class related classes in the same file (see calls to `new
+   * UserAgentRenderingEngine` here: https://fburl.com/50728617).
+   *
+   * @note Function results are memoized
+   *
+   * @param {string} query Query of the form "Name [range expression]"
+   * @return {boolean}
+   */
+  isEngine: function isEngine(query) {
+    return compare(UserAgentData.engineName, UserAgentData.engineVersion, query);
+  },
+
+
+  /**
+   * Check if the User Agent platform matches `query`.
+   *
+   * `query` should be a string like "Windows" or "iOS 5 - 6".
+   *
+   * Valid platform names include:
+   *
+   * - Android
+   * - BlackBerry OS
+   * - Java ME
+   * - Linux
+   * - Mac OS X
+   * - Mac OS X Calendar
+   * - Mac OS X Internet Account
+   * - Symbian
+   * - SymbianOS
+   * - Windows
+   * - Windows Mobile
+   * - Windows Phone
+   * - iOS
+   * - iOS Facebook Integration Account
+   * - iOS Facebook Social Sharing UI
+   * - webOS
+   * - Chrome OS
+   * - etc...
+   *
+   * An authoritative list can be found in the PHP `PlatformDetector` class and
+   * related classes in the same file (see calls to `new UserAgentPlatform`
+   * here: https://fburl.com/50729226).
+   *
+   * @note Function results are memoized
+   *
+   * @param {string} query Query of the form "Name [range expression]"
+   * @return {boolean}
+   */
+  isPlatform: function isPlatform(query) {
+    return compare(UserAgentData.platformName, UserAgentData.platformFullVersion, query, normalizePlatformVersion);
+  },
+
+
+  /**
+   * Check if the User Agent platform is a 32 or 64 bit architecture.
+   *
+   * @note Function results are memoized
+   *
+   * @param {string} query Query of the form "32" or "64".
+   * @return {boolean}
+   */
+  isPlatformArchitecture: function isPlatformArchitecture(query) {
+    return compare(UserAgentData.platformArchitecture, null, query);
+  }
+};
+
+module.exports = mapObject(UserAgent, memoizeStringOnly);
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {/**
+ * Copyright 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ */
+
+
+
+var _prodInvariant = __webpack_require__(8),
+    _assign = __webpack_require__(9);
+
+var CallbackQueue = __webpack_require__(375);
+var PooledClass = __webpack_require__(78);
+var ReactFeatureFlags = __webpack_require__(380);
+var ReactReconciler = __webpack_require__(88);
+var Transaction = __webpack_require__(127);
+
+var invariant = __webpack_require__(3);
+
+var dirtyComponents = [];
+var updateBatchNumber = 0;
+var asapCallbackQueue = CallbackQueue.getPooled();
+var asapEnqueued = false;
+
+var batchingStrategy = null;
+
+function ensureInjected() {
+  !(ReactUpdates.ReactReconcileTransaction && batchingStrategy) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactUpdates: must inject a reconcile transaction class and batching strategy') : _prodInvariant('123') : void 0;
+}
+
+var NESTED_UPDATES = {
+  initialize: function () {
+    this.dirtyComponentsLength = dirtyComponents.length;
+  },
+  close: function () {
+    if (this.dirtyComponentsLength !== dirtyComponents.length) {
+      // Additional updates were enqueued by componentDidUpdate handlers or
+      // similar; before our own UPDATE_QUEUEING wrapper closes, we want to run
+      // these new updates so that if A's componentDidUpdate calls setState on
+      // B, B will update before the callback A's updater provided when calling
+      // setState.
+      dirtyComponents.splice(0, this.dirtyComponentsLength);
+      flushBatchedUpdates();
+    } else {
+      dirtyComponents.length = 0;
+    }
+  }
+};
+
+var UPDATE_QUEUEING = {
+  initialize: function () {
+    this.callbackQueue.reset();
+  },
+  close: function () {
+    this.callbackQueue.notifyAll();
+  }
+};
+
+var TRANSACTION_WRAPPERS = [NESTED_UPDATES, UPDATE_QUEUEING];
+
+function ReactUpdatesFlushTransaction() {
+  this.reinitializeTransaction();
+  this.dirtyComponentsLength = null;
+  this.callbackQueue = CallbackQueue.getPooled();
+  this.reconcileTransaction = ReactUpdates.ReactReconcileTransaction.getPooled(
+  /* useCreateElement */true);
+}
+
+_assign(ReactUpdatesFlushTransaction.prototype, Transaction, {
+  getTransactionWrappers: function () {
+    return TRANSACTION_WRAPPERS;
+  },
+
+  destructor: function () {
+    this.dirtyComponentsLength = null;
+    CallbackQueue.release(this.callbackQueue);
+    this.callbackQueue = null;
+    ReactUpdates.ReactReconcileTransaction.release(this.reconcileTransaction);
+    this.reconcileTransaction = null;
+  },
+
+  perform: function (method, scope, a) {
+    // Essentially calls `this.reconcileTransaction.perform(method, scope, a)`
+    // with this transaction's wrappers around it.
+    return Transaction.perform.call(this, this.reconcileTransaction.perform, this.reconcileTransaction, method, scope, a);
+  }
+});
+
+PooledClass.addPoolingTo(ReactUpdatesFlushTransaction);
+
+function batchedUpdates(callback, a, b, c, d, e) {
+  ensureInjected();
+  return batchingStrategy.batchedUpdates(callback, a, b, c, d, e);
+}
+
+/**
+ * Array comparator for ReactComponents by mount ordering.
+ *
+ * @param {ReactComponent} c1 first component you're comparing
+ * @param {ReactComponent} c2 second component you're comparing
+ * @return {number} Return value usable by Array.prototype.sort().
+ */
+function mountOrderComparator(c1, c2) {
+  return c1._mountOrder - c2._mountOrder;
+}
+
+function runBatchedUpdates(transaction) {
+  var len = transaction.dirtyComponentsLength;
+  !(len === dirtyComponents.length) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Expected flush transaction\'s stored dirty-components length (%s) to match dirty-components array length (%s).', len, dirtyComponents.length) : _prodInvariant('124', len, dirtyComponents.length) : void 0;
+
+  // Since reconciling a component higher in the owner hierarchy usually (not
+  // always -- see shouldComponentUpdate()) will reconcile children, reconcile
+  // them before their children by sorting the array.
+  dirtyComponents.sort(mountOrderComparator);
+
+  // Any updates enqueued while reconciling must be performed after this entire
+  // batch. Otherwise, if dirtyComponents is [A, B] where A has children B and
+  // C, B could update twice in a single batch if C's render enqueues an update
+  // to B (since B would have already updated, we should skip it, and the only
+  // way we can know to do so is by checking the batch counter).
+  updateBatchNumber++;
+
+  for (var i = 0; i < len; i++) {
+    // If a component is unmounted before pending changes apply, it will still
+    // be here, but we assume that it has cleared its _pendingCallbacks and
+    // that performUpdateIfNecessary is a noop.
+    var component = dirtyComponents[i];
+
+    // If performUpdateIfNecessary happens to enqueue any new updates, we
+    // shouldn't execute the callbacks until the next render happens, so
+    // stash the callbacks first
+    var callbacks = component._pendingCallbacks;
+    component._pendingCallbacks = null;
+
+    var markerName;
+    if (ReactFeatureFlags.logTopLevelRenders) {
+      var namedComponent = component;
+      // Duck type TopLevelWrapper. This is probably always true.
+      if (component._currentElement.type.isReactTopLevelWrapper) {
+        namedComponent = component._renderedComponent;
+      }
+      markerName = 'React update: ' + namedComponent.getName();
+      console.time(markerName);
+    }
+
+    ReactReconciler.performUpdateIfNecessary(component, transaction.reconcileTransaction, updateBatchNumber);
+
+    if (markerName) {
+      console.timeEnd(markerName);
+    }
+
+    if (callbacks) {
+      for (var j = 0; j < callbacks.length; j++) {
+        transaction.callbackQueue.enqueue(callbacks[j], component.getPublicInstance());
+      }
+    }
+  }
+}
+
+var flushBatchedUpdates = function () {
+  // ReactUpdatesFlushTransaction's wrappers will clear the dirtyComponents
+  // array and perform any updates enqueued by mount-ready handlers (i.e.,
+  // componentDidUpdate) but we need to check here too in order to catch
+  // updates enqueued by setState callbacks and asap calls.
+  while (dirtyComponents.length || asapEnqueued) {
+    if (dirtyComponents.length) {
+      var transaction = ReactUpdatesFlushTransaction.getPooled();
+      transaction.perform(runBatchedUpdates, null, transaction);
+      ReactUpdatesFlushTransaction.release(transaction);
+    }
+
+    if (asapEnqueued) {
+      asapEnqueued = false;
+      var queue = asapCallbackQueue;
+      asapCallbackQueue = CallbackQueue.getPooled();
+      queue.notifyAll();
+      CallbackQueue.release(queue);
+    }
+  }
+};
+
+/**
+ * Mark a component as needing a rerender, adding an optional callback to a
+ * list of functions which will be executed once the rerender occurs.
+ */
+function enqueueUpdate(component) {
+  ensureInjected();
+
+  // Various parts of our code (such as ReactCompositeComponent's
+  // _renderValidatedComponent) assume that calls to render aren't nested;
+  // verify that that's the case. (This is called by each top-level update
+  // function, like setState, forceUpdate, etc.; creation and
+  // destruction of top-level components is guarded in ReactMount.)
+
+  if (!batchingStrategy.isBatchingUpdates) {
+    batchingStrategy.batchedUpdates(enqueueUpdate, component);
+    return;
+  }
+
+  dirtyComponents.push(component);
+  if (component._updateBatchNumber == null) {
+    component._updateBatchNumber = updateBatchNumber + 1;
+  }
+}
+
+/**
+ * Enqueue a callback to be run at the end of the current batching cycle. Throws
+ * if no updates are currently being performed.
+ */
+function asap(callback, context) {
+  !batchingStrategy.isBatchingUpdates ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactUpdates.asap: Can\'t enqueue an asap callback in a context whereupdates are not being batched.') : _prodInvariant('125') : void 0;
+  asapCallbackQueue.enqueue(callback, context);
+  asapEnqueued = true;
+}
+
+var ReactUpdatesInjection = {
+  injectReconcileTransaction: function (ReconcileTransaction) {
+    !ReconcileTransaction ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactUpdates: must provide a reconcile transaction class') : _prodInvariant('126') : void 0;
+    ReactUpdates.ReactReconcileTransaction = ReconcileTransaction;
+  },
+
+  injectBatchingStrategy: function (_batchingStrategy) {
+    !_batchingStrategy ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactUpdates: must provide a batching strategy') : _prodInvariant('127') : void 0;
+    !(typeof _batchingStrategy.batchedUpdates === 'function') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactUpdates: must provide a batchedUpdates() function') : _prodInvariant('128') : void 0;
+    !(typeof _batchingStrategy.isBatchingUpdates === 'boolean') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactUpdates: must provide an isBatchingUpdates boolean attribute') : _prodInvariant('129') : void 0;
+    batchingStrategy = _batchingStrategy;
+  }
+};
+
+var ReactUpdates = {
+  /**
+   * React references `ReactReconcileTransaction` using this property in order
+   * to allow dependency injection.
+   *
+   * @internal
+   */
+  ReactReconcileTransaction: null,
+
+  batchedUpdates: batchedUpdates,
+  enqueueUpdate: enqueueUpdate,
+  flushBatchedUpdates: flushBatchedUpdates,
+  injection: ReactUpdatesInjection,
+  asap: asap
+};
+
+module.exports = ReactUpdates;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * 
+ */
+
+
+
+/**
+ * Keeps track of the current owner.
+ *
+ * The current owner is the component who should own any components that are
+ * currently being constructed.
+ */
+var ReactCurrentOwner = {
+  /**
+   * @internal
+   * @type {ReactComponent}
+   */
+  current: null
+};
+
+module.exports = ReactCurrentOwner;
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1,eval)("this");
+} catch(e) {
+	// This works if the window reference is available
+	if(typeof window === "object")
+		g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -19894,11 +20778,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(13);
-const Immutable = __webpack_require__(27);
-const Utils = __webpack_require__(23);
-const Buttons = __webpack_require__(40);
-const i18next = __webpack_require__(22);
+const React = __webpack_require__(11);
+const Immutable = __webpack_require__(36);
+const Utils = __webpack_require__(22);
+const Buttons = __webpack_require__(47);
+const i18next = __webpack_require__(21);
 exports.render_relation = (relation_name, source_name, target_name, target_plural, show_title, inline, cards, side_selector) => function (items, page_index, num_pages, page_selected, render_target, render_new_targets) {
     return React.createElement("div", { className: `${relation_name} ${inline ? "inline-relation" : ""} ${side_selector ? "column-view-menu" : ""}` }, items == "loading" ?
         React.createElement("div", { className: "loading" },
@@ -20139,698 +21023,18 @@ exports.AddToRelationDropdown = AddToRelationDropdown;
 
 
 /***/ }),
-/* 47 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 0 -> Array#forEach
-// 1 -> Array#map
-// 2 -> Array#filter
-// 3 -> Array#some
-// 4 -> Array#every
-// 5 -> Array#find
-// 6 -> Array#findIndex
-var ctx      = __webpack_require__(56)
-  , IObject  = __webpack_require__(92)
-  , toObject = __webpack_require__(20)
-  , toLength = __webpack_require__(18)
-  , asc      = __webpack_require__(409);
-module.exports = function(TYPE, $create){
-  var IS_MAP        = TYPE == 1
-    , IS_FILTER     = TYPE == 2
-    , IS_SOME       = TYPE == 3
-    , IS_EVERY      = TYPE == 4
-    , IS_FIND_INDEX = TYPE == 6
-    , NO_HOLES      = TYPE == 5 || IS_FIND_INDEX
-    , create        = $create || asc;
-  return function($this, callbackfn, that){
-    var O      = toObject($this)
-      , self   = IObject(O)
-      , f      = ctx(callbackfn, that, 3)
-      , length = toLength(self.length)
-      , index  = 0
-      , result = IS_MAP ? create($this, length) : IS_FILTER ? create($this, 0) : undefined
-      , val, res;
-    for(;length > index; index++)if(NO_HOLES || index in self){
-      val = self[index];
-      res = f(val, index, O);
-      if(TYPE){
-        if(IS_MAP)result[index] = res;            // map
-        else if(res)switch(TYPE){
-          case 3: return true;                    // some
-          case 5: return val;                     // find
-          case 6: return index;                   // findIndex
-          case 2: result.push(val);               // filter
-        } else if(IS_EVERY)return false;          // every
-      }
-    }
-    return IS_FIND_INDEX ? -1 : IS_SOME || IS_EVERY ? IS_EVERY : result;
-  };
-};
-
-/***/ }),
-/* 48 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// most Object methods by ES6 should accept primitives
-var $export = __webpack_require__(1)
-  , core    = __webpack_require__(55)
-  , fails   = __webpack_require__(7);
-module.exports = function(KEY, exec){
-  var fn  = (core.Object || {})[KEY] || Object[KEY]
-    , exp = {};
-  exp[KEY] = exec(fn);
-  $export($export.S + $export.F * fails(function(){ fn(1); }), 'Object', exp);
-};
-
-/***/ }),
-/* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 7.1.1 ToPrimitive(input [, PreferredType])
-var isObject = __webpack_require__(11);
-// instead of the ES6 spec version, we didn't implement @@toPrimitive case
-// and the second argument - flag - preferred type is a string
-module.exports = function(it, S){
-  if(!isObject(it))return it;
-  var fn, val;
-  if(S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it)))return val;
-  if(typeof (fn = it.valueOf) == 'function' && !isObject(val = fn.call(it)))return val;
-  if(!S && typeof (fn = it.toString) == 'function' && !isObject(val = fn.call(it)))return val;
-  throw TypeError("Can't convert object to primitive value");
-};
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule generateRandomKey
- * @typechecks
- * 
- */
-
-
-
-var seenKeys = {};
-var MULTIPLIER = Math.pow(2, 24);
-
-function generateRandomKey() {
-  var key = void 0;
-  while (key === undefined || seenKeys.hasOwnProperty(key) || !isNaN(+key)) {
-    key = Math.floor(Math.random() * MULTIPLIER).toString(32);
-  }
-  seenKeys[key] = true;
-  return key;
-}
-
-module.exports = generateRandomKey;
-
-/***/ }),
-/* 51 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- */
-
-
-
-var UserAgentData = __webpack_require__(656);
-var VersionRange = __webpack_require__(657);
-
-var mapObject = __webpack_require__(670);
-var memoizeStringOnly = __webpack_require__(251);
-
-/**
- * Checks to see whether `name` and `version` satisfy `query`.
- *
- * @param {string} name Name of the browser, device, engine or platform
- * @param {?string} version Version of the browser, engine or platform
- * @param {string} query Query of form "Name [range expression]"
- * @param {?function} normalizer Optional pre-processor for range expression
- * @return {boolean}
- */
-function compare(name, version, query, normalizer) {
-  // check for exact match with no version
-  if (name === query) {
-    return true;
-  }
-
-  // check for non-matching names
-  if (!query.startsWith(name)) {
-    return false;
-  }
-
-  // full comparison with version
-  var range = query.slice(name.length);
-  if (version) {
-    range = normalizer ? normalizer(range) : range;
-    return VersionRange.contains(range, version);
-  }
-
-  return false;
-}
-
-/**
- * Normalizes `version` by stripping any "NT" prefix, but only on the Windows
- * platform.
- *
- * Mimics the stripping performed by the `UserAgentWindowsPlatform` PHP class.
- *
- * @param {string} version
- * @return {string}
- */
-function normalizePlatformVersion(version) {
-  if (UserAgentData.platformName === 'Windows') {
-    return version.replace(/^\s*NT/, '');
-  }
-
-  return version;
-}
-
-/**
- * Provides client-side access to the authoritative PHP-generated User Agent
- * information supplied by the server.
- */
-var UserAgent = {
-  /**
-   * Check if the User Agent browser matches `query`.
-   *
-   * `query` should be a string like "Chrome" or "Chrome > 33".
-   *
-   * Valid browser names include:
-   *
-   * - ACCESS NetFront
-   * - AOL
-   * - Amazon Silk
-   * - Android
-   * - BlackBerry
-   * - BlackBerry PlayBook
-   * - Chrome
-   * - Chrome for iOS
-   * - Chrome frame
-   * - Facebook PHP SDK
-   * - Facebook for iOS
-   * - Firefox
-   * - IE
-   * - IE Mobile
-   * - Mobile Safari
-   * - Motorola Internet Browser
-   * - Nokia
-   * - Openwave Mobile Browser
-   * - Opera
-   * - Opera Mini
-   * - Opera Mobile
-   * - Safari
-   * - UIWebView
-   * - Unknown
-   * - webOS
-   * - etc...
-   *
-   * An authoritative list can be found in the PHP `BrowserDetector` class and
-   * related classes in the same file (see calls to `new UserAgentBrowser` here:
-   * https://fburl.com/50728104).
-   *
-   * @note Function results are memoized
-   *
-   * @param {string} query Query of the form "Name [range expression]"
-   * @return {boolean}
-   */
-  isBrowser: function isBrowser(query) {
-    return compare(UserAgentData.browserName, UserAgentData.browserFullVersion, query);
-  },
-
-
-  /**
-   * Check if the User Agent browser uses a 32 or 64 bit architecture.
-   *
-   * @note Function results are memoized
-   *
-   * @param {string} query Query of the form "32" or "64".
-   * @return {boolean}
-   */
-  isBrowserArchitecture: function isBrowserArchitecture(query) {
-    return compare(UserAgentData.browserArchitecture, null, query);
-  },
-
-
-  /**
-   * Check if the User Agent device matches `query`.
-   *
-   * `query` should be a string like "iPhone" or "iPad".
-   *
-   * Valid device names include:
-   *
-   * - Kindle
-   * - Kindle Fire
-   * - Unknown
-   * - iPad
-   * - iPhone
-   * - iPod
-   * - etc...
-   *
-   * An authoritative list can be found in the PHP `DeviceDetector` class and
-   * related classes in the same file (see calls to `new UserAgentDevice` here:
-   * https://fburl.com/50728332).
-   *
-   * @note Function results are memoized
-   *
-   * @param {string} query Query of the form "Name"
-   * @return {boolean}
-   */
-  isDevice: function isDevice(query) {
-    return compare(UserAgentData.deviceName, null, query);
-  },
-
-
-  /**
-   * Check if the User Agent rendering engine matches `query`.
-   *
-   * `query` should be a string like "WebKit" or "WebKit >= 537".
-   *
-   * Valid engine names include:
-   *
-   * - Gecko
-   * - Presto
-   * - Trident
-   * - WebKit
-   * - etc...
-   *
-   * An authoritative list can be found in the PHP `RenderingEngineDetector`
-   * class related classes in the same file (see calls to `new
-   * UserAgentRenderingEngine` here: https://fburl.com/50728617).
-   *
-   * @note Function results are memoized
-   *
-   * @param {string} query Query of the form "Name [range expression]"
-   * @return {boolean}
-   */
-  isEngine: function isEngine(query) {
-    return compare(UserAgentData.engineName, UserAgentData.engineVersion, query);
-  },
-
-
-  /**
-   * Check if the User Agent platform matches `query`.
-   *
-   * `query` should be a string like "Windows" or "iOS 5 - 6".
-   *
-   * Valid platform names include:
-   *
-   * - Android
-   * - BlackBerry OS
-   * - Java ME
-   * - Linux
-   * - Mac OS X
-   * - Mac OS X Calendar
-   * - Mac OS X Internet Account
-   * - Symbian
-   * - SymbianOS
-   * - Windows
-   * - Windows Mobile
-   * - Windows Phone
-   * - iOS
-   * - iOS Facebook Integration Account
-   * - iOS Facebook Social Sharing UI
-   * - webOS
-   * - Chrome OS
-   * - etc...
-   *
-   * An authoritative list can be found in the PHP `PlatformDetector` class and
-   * related classes in the same file (see calls to `new UserAgentPlatform`
-   * here: https://fburl.com/50729226).
-   *
-   * @note Function results are memoized
-   *
-   * @param {string} query Query of the form "Name [range expression]"
-   * @return {boolean}
-   */
-  isPlatform: function isPlatform(query) {
-    return compare(UserAgentData.platformName, UserAgentData.platformFullVersion, query, normalizePlatformVersion);
-  },
-
-
-  /**
-   * Check if the User Agent platform is a 32 or 64 bit architecture.
-   *
-   * @note Function results are memoized
-   *
-   * @param {string} query Query of the form "32" or "64".
-   * @return {boolean}
-   */
-  isPlatformArchitecture: function isPlatformArchitecture(query) {
-    return compare(UserAgentData.platformArchitecture, null, query);
-  }
-};
-
-module.exports = mapObject(UserAgent, memoizeStringOnly);
-
-/***/ }),
-/* 52 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- */
-
-
-
-var _prodInvariant = __webpack_require__(8),
-    _assign = __webpack_require__(9);
-
-var CallbackQueue = __webpack_require__(372);
-var PooledClass = __webpack_require__(77);
-var ReactFeatureFlags = __webpack_require__(377);
-var ReactReconciler = __webpack_require__(86);
-var Transaction = __webpack_require__(125);
-
-var invariant = __webpack_require__(3);
-
-var dirtyComponents = [];
-var updateBatchNumber = 0;
-var asapCallbackQueue = CallbackQueue.getPooled();
-var asapEnqueued = false;
-
-var batchingStrategy = null;
-
-function ensureInjected() {
-  !(ReactUpdates.ReactReconcileTransaction && batchingStrategy) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactUpdates: must inject a reconcile transaction class and batching strategy') : _prodInvariant('123') : void 0;
-}
-
-var NESTED_UPDATES = {
-  initialize: function () {
-    this.dirtyComponentsLength = dirtyComponents.length;
-  },
-  close: function () {
-    if (this.dirtyComponentsLength !== dirtyComponents.length) {
-      // Additional updates were enqueued by componentDidUpdate handlers or
-      // similar; before our own UPDATE_QUEUEING wrapper closes, we want to run
-      // these new updates so that if A's componentDidUpdate calls setState on
-      // B, B will update before the callback A's updater provided when calling
-      // setState.
-      dirtyComponents.splice(0, this.dirtyComponentsLength);
-      flushBatchedUpdates();
-    } else {
-      dirtyComponents.length = 0;
-    }
-  }
-};
-
-var UPDATE_QUEUEING = {
-  initialize: function () {
-    this.callbackQueue.reset();
-  },
-  close: function () {
-    this.callbackQueue.notifyAll();
-  }
-};
-
-var TRANSACTION_WRAPPERS = [NESTED_UPDATES, UPDATE_QUEUEING];
-
-function ReactUpdatesFlushTransaction() {
-  this.reinitializeTransaction();
-  this.dirtyComponentsLength = null;
-  this.callbackQueue = CallbackQueue.getPooled();
-  this.reconcileTransaction = ReactUpdates.ReactReconcileTransaction.getPooled(
-  /* useCreateElement */true);
-}
-
-_assign(ReactUpdatesFlushTransaction.prototype, Transaction, {
-  getTransactionWrappers: function () {
-    return TRANSACTION_WRAPPERS;
-  },
-
-  destructor: function () {
-    this.dirtyComponentsLength = null;
-    CallbackQueue.release(this.callbackQueue);
-    this.callbackQueue = null;
-    ReactUpdates.ReactReconcileTransaction.release(this.reconcileTransaction);
-    this.reconcileTransaction = null;
-  },
-
-  perform: function (method, scope, a) {
-    // Essentially calls `this.reconcileTransaction.perform(method, scope, a)`
-    // with this transaction's wrappers around it.
-    return Transaction.perform.call(this, this.reconcileTransaction.perform, this.reconcileTransaction, method, scope, a);
-  }
-});
-
-PooledClass.addPoolingTo(ReactUpdatesFlushTransaction);
-
-function batchedUpdates(callback, a, b, c, d, e) {
-  ensureInjected();
-  return batchingStrategy.batchedUpdates(callback, a, b, c, d, e);
-}
-
-/**
- * Array comparator for ReactComponents by mount ordering.
- *
- * @param {ReactComponent} c1 first component you're comparing
- * @param {ReactComponent} c2 second component you're comparing
- * @return {number} Return value usable by Array.prototype.sort().
- */
-function mountOrderComparator(c1, c2) {
-  return c1._mountOrder - c2._mountOrder;
-}
-
-function runBatchedUpdates(transaction) {
-  var len = transaction.dirtyComponentsLength;
-  !(len === dirtyComponents.length) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'Expected flush transaction\'s stored dirty-components length (%s) to match dirty-components array length (%s).', len, dirtyComponents.length) : _prodInvariant('124', len, dirtyComponents.length) : void 0;
-
-  // Since reconciling a component higher in the owner hierarchy usually (not
-  // always -- see shouldComponentUpdate()) will reconcile children, reconcile
-  // them before their children by sorting the array.
-  dirtyComponents.sort(mountOrderComparator);
-
-  // Any updates enqueued while reconciling must be performed after this entire
-  // batch. Otherwise, if dirtyComponents is [A, B] where A has children B and
-  // C, B could update twice in a single batch if C's render enqueues an update
-  // to B (since B would have already updated, we should skip it, and the only
-  // way we can know to do so is by checking the batch counter).
-  updateBatchNumber++;
-
-  for (var i = 0; i < len; i++) {
-    // If a component is unmounted before pending changes apply, it will still
-    // be here, but we assume that it has cleared its _pendingCallbacks and
-    // that performUpdateIfNecessary is a noop.
-    var component = dirtyComponents[i];
-
-    // If performUpdateIfNecessary happens to enqueue any new updates, we
-    // shouldn't execute the callbacks until the next render happens, so
-    // stash the callbacks first
-    var callbacks = component._pendingCallbacks;
-    component._pendingCallbacks = null;
-
-    var markerName;
-    if (ReactFeatureFlags.logTopLevelRenders) {
-      var namedComponent = component;
-      // Duck type TopLevelWrapper. This is probably always true.
-      if (component._currentElement.type.isReactTopLevelWrapper) {
-        namedComponent = component._renderedComponent;
-      }
-      markerName = 'React update: ' + namedComponent.getName();
-      console.time(markerName);
-    }
-
-    ReactReconciler.performUpdateIfNecessary(component, transaction.reconcileTransaction, updateBatchNumber);
-
-    if (markerName) {
-      console.timeEnd(markerName);
-    }
-
-    if (callbacks) {
-      for (var j = 0; j < callbacks.length; j++) {
-        transaction.callbackQueue.enqueue(callbacks[j], component.getPublicInstance());
-      }
-    }
-  }
-}
-
-var flushBatchedUpdates = function () {
-  // ReactUpdatesFlushTransaction's wrappers will clear the dirtyComponents
-  // array and perform any updates enqueued by mount-ready handlers (i.e.,
-  // componentDidUpdate) but we need to check here too in order to catch
-  // updates enqueued by setState callbacks and asap calls.
-  while (dirtyComponents.length || asapEnqueued) {
-    if (dirtyComponents.length) {
-      var transaction = ReactUpdatesFlushTransaction.getPooled();
-      transaction.perform(runBatchedUpdates, null, transaction);
-      ReactUpdatesFlushTransaction.release(transaction);
-    }
-
-    if (asapEnqueued) {
-      asapEnqueued = false;
-      var queue = asapCallbackQueue;
-      asapCallbackQueue = CallbackQueue.getPooled();
-      queue.notifyAll();
-      CallbackQueue.release(queue);
-    }
-  }
-};
-
-/**
- * Mark a component as needing a rerender, adding an optional callback to a
- * list of functions which will be executed once the rerender occurs.
- */
-function enqueueUpdate(component) {
-  ensureInjected();
-
-  // Various parts of our code (such as ReactCompositeComponent's
-  // _renderValidatedComponent) assume that calls to render aren't nested;
-  // verify that that's the case. (This is called by each top-level update
-  // function, like setState, forceUpdate, etc.; creation and
-  // destruction of top-level components is guarded in ReactMount.)
-
-  if (!batchingStrategy.isBatchingUpdates) {
-    batchingStrategy.batchedUpdates(enqueueUpdate, component);
-    return;
-  }
-
-  dirtyComponents.push(component);
-  if (component._updateBatchNumber == null) {
-    component._updateBatchNumber = updateBatchNumber + 1;
-  }
-}
-
-/**
- * Enqueue a callback to be run at the end of the current batching cycle. Throws
- * if no updates are currently being performed.
- */
-function asap(callback, context) {
-  !batchingStrategy.isBatchingUpdates ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactUpdates.asap: Can\'t enqueue an asap callback in a context whereupdates are not being batched.') : _prodInvariant('125') : void 0;
-  asapCallbackQueue.enqueue(callback, context);
-  asapEnqueued = true;
-}
-
-var ReactUpdatesInjection = {
-  injectReconcileTransaction: function (ReconcileTransaction) {
-    !ReconcileTransaction ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactUpdates: must provide a reconcile transaction class') : _prodInvariant('126') : void 0;
-    ReactUpdates.ReactReconcileTransaction = ReconcileTransaction;
-  },
-
-  injectBatchingStrategy: function (_batchingStrategy) {
-    !_batchingStrategy ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactUpdates: must provide a batching strategy') : _prodInvariant('127') : void 0;
-    !(typeof _batchingStrategy.batchedUpdates === 'function') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactUpdates: must provide a batchedUpdates() function') : _prodInvariant('128') : void 0;
-    !(typeof _batchingStrategy.isBatchingUpdates === 'boolean') ? process.env.NODE_ENV !== 'production' ? invariant(false, 'ReactUpdates: must provide an isBatchingUpdates boolean attribute') : _prodInvariant('129') : void 0;
-    batchingStrategy = _batchingStrategy;
-  }
-};
-
-var ReactUpdates = {
-  /**
-   * React references `ReactReconcileTransaction` using this property in order
-   * to allow dependency injection.
-   *
-   * @internal
-   */
-  ReactReconcileTransaction: null,
-
-  batchedUpdates: batchedUpdates,
-  enqueueUpdate: enqueueUpdate,
-  flushBatchedUpdates: flushBatchedUpdates,
-  injection: ReactUpdatesInjection,
-  asap: asap
-};
-
-module.exports = ReactUpdates;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ }),
-/* 53 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * 
- */
-
-
-
-/**
- * Keeps track of the current owner.
- *
- * The current owner is the component who should own any components that are
- * currently being constructed.
- */
-var ReactCurrentOwner = {
-  /**
-   * @internal
-   * @type {ReactComponent}
-   */
-  current: null
-};
-
-module.exports = ReactCurrentOwner;
-
-/***/ }),
-/* 54 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1,eval)("this");
-} catch(e) {
-	// This works if the window reference is available
-	if(typeof window === "object")
-		g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 55 */
+/* 57 */
 /***/ (function(module, exports) {
 
 var core = module.exports = {version: '2.4.0'};
 if(typeof __e == 'number')__e = core; // eslint-disable-line no-undef
 
 /***/ }),
-/* 56 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // optional / simple context binding
-var aFunction = __webpack_require__(29);
+var aFunction = __webpack_require__(31);
 module.exports = function(fn, that, length){
   aFunction(fn);
   if(that === undefined)return fn;
@@ -20851,13 +21055,13 @@ module.exports = function(fn, that, length){
 };
 
 /***/ }),
-/* 57 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Map     = __webpack_require__(217)
+var Map     = __webpack_require__(220)
   , $export = __webpack_require__(1)
-  , shared  = __webpack_require__(113)('metadata')
-  , store   = shared.store || (shared.store = new (__webpack_require__(220)));
+  , shared  = __webpack_require__(115)('metadata')
+  , store   = shared.store || (shared.store = new (__webpack_require__(223)));
 
 var getOrCreateMetadataMap = function(target, targetKey, create){
   var targetMetadata = store.get(target);
@@ -20907,50 +21111,50 @@ module.exports = {
 };
 
 /***/ }),
-/* 58 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 if(__webpack_require__(15)){
-  var LIBRARY             = __webpack_require__(67)
+  var LIBRARY             = __webpack_require__(68)
     , global              = __webpack_require__(6)
     , fails               = __webpack_require__(7)
     , $export             = __webpack_require__(1)
-    , $typed              = __webpack_require__(114)
-    , $buffer             = __webpack_require__(151)
-    , ctx                 = __webpack_require__(56)
-    , anInstance          = __webpack_require__(66)
-    , propertyDesc        = __webpack_require__(61)
-    , hide                = __webpack_require__(30)
-    , redefineAll         = __webpack_require__(71)
-    , toInteger           = __webpack_require__(62)
-    , toLength            = __webpack_require__(18)
-    , toIndex             = __webpack_require__(73)
-    , toPrimitive         = __webpack_require__(49)
-    , has                 = __webpack_require__(24)
-    , same                = __webpack_require__(214)
-    , classof             = __webpack_require__(91)
-    , isObject            = __webpack_require__(11)
-    , toObject            = __webpack_require__(20)
-    , isArrayIter         = __webpack_require__(136)
-    , create              = __webpack_require__(68)
-    , getPrototypeOf      = __webpack_require__(36)
-    , gOPN                = __webpack_require__(69).f
-    , getIterFn           = __webpack_require__(153)
-    , uid                 = __webpack_require__(74)
+    , $typed              = __webpack_require__(116)
+    , $buffer             = __webpack_require__(154)
+    , ctx                 = __webpack_require__(58)
+    , anInstance          = __webpack_require__(67)
+    , propertyDesc        = __webpack_require__(63)
+    , hide                = __webpack_require__(32)
+    , redefineAll         = __webpack_require__(72)
+    , toInteger           = __webpack_require__(64)
+    , toLength            = __webpack_require__(19)
+    , toIndex             = __webpack_require__(74)
+    , toPrimitive         = __webpack_require__(50)
+    , has                 = __webpack_require__(25)
+    , same                = __webpack_require__(217)
+    , classof             = __webpack_require__(92)
+    , isObject            = __webpack_require__(12)
+    , toObject            = __webpack_require__(23)
+    , isArrayIter         = __webpack_require__(139)
+    , create              = __webpack_require__(69)
+    , getPrototypeOf      = __webpack_require__(39)
+    , gOPN                = __webpack_require__(70).f
+    , getIterFn           = __webpack_require__(156)
+    , uid                 = __webpack_require__(75)
     , wks                 = __webpack_require__(14)
-    , createArrayMethod   = __webpack_require__(47)
-    , createArrayIncludes = __webpack_require__(104)
-    , speciesConstructor  = __webpack_require__(145)
-    , ArrayIterators      = __webpack_require__(154)
-    , Iterators           = __webpack_require__(81)
-    , $iterDetect         = __webpack_require__(110)
-    , setSpecies          = __webpack_require__(72)
-    , arrayFill           = __webpack_require__(129)
-    , arrayCopyWithin     = __webpack_require__(194)
+    , createArrayMethod   = __webpack_require__(48)
+    , createArrayIncludes = __webpack_require__(106)
+    , speciesConstructor  = __webpack_require__(148)
+    , ArrayIterators      = __webpack_require__(157)
+    , Iterators           = __webpack_require__(83)
+    , $iterDetect         = __webpack_require__(112)
+    , setSpecies          = __webpack_require__(73)
+    , arrayFill           = __webpack_require__(132)
+    , arrayCopyWithin     = __webpack_require__(197)
     , $DP                 = __webpack_require__(16)
-    , $GOPD               = __webpack_require__(35)
+    , $GOPD               = __webpack_require__(38)
     , dP                  = $DP.f
     , gOPD                = $GOPD.f
     , RangeError          = global.RangeError
@@ -21392,7 +21596,7 @@ if(__webpack_require__(15)){
 } else module.exports = function(){ /* empty */ };
 
 /***/ }),
-/* 59 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -21410,9 +21614,9 @@ if(__webpack_require__(15)){
 
 var _assign = __webpack_require__(9);
 
-var PooledClass = __webpack_require__(77);
+var PooledClass = __webpack_require__(78);
 
-var emptyFunction = __webpack_require__(26);
+var emptyFunction = __webpack_require__(27);
 var warning = __webpack_require__(4);
 
 var didWarnForAddedNewProperty = false;
@@ -21664,12 +21868,12 @@ function getPooledWarningPropertyDefinition(propName, getVal) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 60 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var META     = __webpack_require__(74)('meta')
-  , isObject = __webpack_require__(11)
-  , has      = __webpack_require__(24)
+var META     = __webpack_require__(75)('meta')
+  , isObject = __webpack_require__(12)
+  , has      = __webpack_require__(25)
   , setDesc  = __webpack_require__(16).f
   , id       = 0;
 var isExtensible = Object.isExtensible || function(){
@@ -21722,7 +21926,7 @@ var meta = module.exports = {
 };
 
 /***/ }),
-/* 61 */
+/* 63 */
 /***/ (function(module, exports) {
 
 module.exports = function(bitmap, value){
@@ -21735,7 +21939,7 @@ module.exports = function(bitmap, value){
 };
 
 /***/ }),
-/* 62 */
+/* 64 */
 /***/ (function(module, exports) {
 
 // 7.1.4 ToInteger
@@ -21746,7 +21950,7 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 63 */
+/* 65 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21833,7 +22037,7 @@ var Logger = function () {
 /* harmony default export */ __webpack_exports__["a"] = (new Logger());
 
 /***/ }),
-/* 64 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -22048,973 +22252,7 @@ module.exports = DOMProperty;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 65 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(13);
-const Immutable = __webpack_require__(27);
-const Api = __webpack_require__(21);
-const List = __webpack_require__(46);
-const Components = __webpack_require__(39);
-const Buttons = __webpack_require__(40);
-const Permissions = __webpack_require__(28);
-const Utils = __webpack_require__(23);
-const i18next = __webpack_require__(22);
-const HomePageViews = __webpack_require__(41);
-const UserViews = __webpack_require__(192);
-const RatingViews = __webpack_require__(191);
-const MealViews = __webpack_require__(90);
-function Recipe_User_Recipe_can_create(self) {
-    let state = self.state();
-    return state.User == "loading" ? false : state.User.CanCreate;
-}
-exports.Recipe_User_Recipe_can_create = Recipe_User_Recipe_can_create;
-function Recipe_Recipe_Rating_can_create(self) {
-    let state = self.state();
-    return state.Rating == "loading" ? false : state.Rating.CanCreate;
-}
-exports.Recipe_Recipe_Rating_can_create = Recipe_Recipe_Rating_can_create;
-function Recipe_Meal_Recipe_can_create(self) {
-    let state = self.state();
-    return state.Meal == "loading" ? false : state.Meal.CanCreate;
-}
-exports.Recipe_Meal_Recipe_can_create = Recipe_Meal_Recipe_can_create;
-function Recipe_HomePage_Recipe_can_create(self) {
-    let state = self.state();
-    return state.HomePage == "loading" ? false : state.HomePage.CanCreate;
-}
-exports.Recipe_HomePage_Recipe_can_create = Recipe_HomePage_Recipe_can_create;
-function Recipe_User_Recipe_can_delete(self) {
-    let state = self.state();
-    return state.User == "loading" ? false : state.User.CanDelete;
-}
-exports.Recipe_User_Recipe_can_delete = Recipe_User_Recipe_can_delete;
-function Recipe_Recipe_Rating_can_delete(self) {
-    let state = self.state();
-    return state.Rating == "loading" ? false : state.Rating.CanDelete;
-}
-exports.Recipe_Recipe_Rating_can_delete = Recipe_Recipe_Rating_can_delete;
-function Recipe_Meal_Recipe_can_delete(self) {
-    let state = self.state();
-    return state.Meal == "loading" ? false : state.Meal.CanDelete;
-}
-exports.Recipe_Meal_Recipe_can_delete = Recipe_Meal_Recipe_can_delete;
-function Recipe_HomePage_Recipe_can_delete(self) {
-    let state = self.state();
-    return state.HomePage == "loading" ? false : state.HomePage.CanDelete;
-}
-exports.Recipe_HomePage_Recipe_can_delete = Recipe_HomePage_Recipe_can_delete;
-function Recipe_User_Recipe_page_index(self) {
-    let state = self.state();
-    return state.User == "loading" ? 0 : state.User.PageIndex;
-}
-exports.Recipe_User_Recipe_page_index = Recipe_User_Recipe_page_index;
-function Recipe_Recipe_Rating_page_index(self) {
-    let state = self.state();
-    return state.Rating == "loading" ? 0 : state.Rating.PageIndex;
-}
-exports.Recipe_Recipe_Rating_page_index = Recipe_Recipe_Rating_page_index;
-function Recipe_Meal_Recipe_page_index(self) {
-    let state = self.state();
-    return state.Meal == "loading" ? 0 : state.Meal.PageIndex;
-}
-exports.Recipe_Meal_Recipe_page_index = Recipe_Meal_Recipe_page_index;
-function Recipe_HomePage_Recipe_page_index(self) {
-    let state = self.state();
-    return state.HomePage == "loading" ? 0 : state.HomePage.PageIndex;
-}
-exports.Recipe_HomePage_Recipe_page_index = Recipe_HomePage_Recipe_page_index;
-function Recipe_User_Recipe_page_size(self) {
-    let state = self.state();
-    return state.User == "loading" ? 25 : state.User.PageSize;
-}
-exports.Recipe_User_Recipe_page_size = Recipe_User_Recipe_page_size;
-function Recipe_Recipe_Rating_page_size(self) {
-    let state = self.state();
-    return state.Rating == "loading" ? 25 : state.Rating.PageSize;
-}
-exports.Recipe_Recipe_Rating_page_size = Recipe_Recipe_Rating_page_size;
-function Recipe_Meal_Recipe_page_size(self) {
-    let state = self.state();
-    return state.Meal == "loading" ? 25 : state.Meal.PageSize;
-}
-exports.Recipe_Meal_Recipe_page_size = Recipe_Meal_Recipe_page_size;
-function Recipe_HomePage_Recipe_page_size(self) {
-    let state = self.state();
-    return state.HomePage == "loading" ? 25 : state.HomePage.PageSize;
-}
-exports.Recipe_HomePage_Recipe_page_size = Recipe_HomePage_Recipe_page_size;
-function Recipe_User_Recipe_search_query(self) {
-    let state = self.state();
-    return state.User == "loading" ? null : state.User.SearchQuery;
-}
-exports.Recipe_User_Recipe_search_query = Recipe_User_Recipe_search_query;
-function Recipe_Recipe_Rating_search_query(self) {
-    let state = self.state();
-    return state.Rating == "loading" ? null : state.Rating.SearchQuery;
-}
-exports.Recipe_Recipe_Rating_search_query = Recipe_Recipe_Rating_search_query;
-function Recipe_Meal_Recipe_search_query(self) {
-    let state = self.state();
-    return state.Meal == "loading" ? null : state.Meal.SearchQuery;
-}
-exports.Recipe_Meal_Recipe_search_query = Recipe_Meal_Recipe_search_query;
-function Recipe_HomePage_Recipe_search_query(self) {
-    let state = self.state();
-    return state.HomePage == "loading" ? null : state.HomePage.SearchQuery;
-}
-exports.Recipe_HomePage_Recipe_search_query = Recipe_HomePage_Recipe_search_query;
-function Recipe_User_Recipe_num_pages(self) {
-    let state = self.state();
-    return state.User == "loading" ? 1 : state.User.NumPages;
-}
-exports.Recipe_User_Recipe_num_pages = Recipe_User_Recipe_num_pages;
-function Recipe_Recipe_Rating_num_pages(self) {
-    let state = self.state();
-    return state.Rating == "loading" ? 1 : state.Rating.NumPages;
-}
-exports.Recipe_Recipe_Rating_num_pages = Recipe_Recipe_Rating_num_pages;
-function Recipe_Meal_Recipe_num_pages(self) {
-    let state = self.state();
-    return state.Meal == "loading" ? 1 : state.Meal.NumPages;
-}
-exports.Recipe_Meal_Recipe_num_pages = Recipe_Meal_Recipe_num_pages;
-function Recipe_HomePage_Recipe_num_pages(self) {
-    let state = self.state();
-    return state.HomePage == "loading" ? 1 : state.HomePage.NumPages;
-}
-exports.Recipe_HomePage_Recipe_num_pages = Recipe_HomePage_Recipe_num_pages;
-function load_relation_Recipe_User_Recipe(self, force_first_page, current_User, current_Admin, callback) {
-    let state = self.state();
-    let prelude = force_first_page && state.User != "loading" ?
-        (c) => state.User != "loading" && self.setState(Object.assign({}, state, { User: Object.assign({}, state.User, { PageIndex: 0 }) }), c)
-        :
-            (c) => c();
-    Permissions.can_view_User(current_User, current_Admin) ?
-        prelude(() => Api.get_Recipe_User_Recipes(self.props.entity, Recipe_User_Recipe_page_index(self), Recipe_User_Recipe_page_size(self), Recipe_User_Recipe_search_query(self)).then(Users => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, User: Utils.raw_page_to_paginated_items((i, i_just_created) => {
-                let state = self.state();
-                return {
-                    element: i,
-                    size: state.User != "loading" ?
-                        (state.User.Items.has(i.Id) ?
-                            state.User.Items.get(i.Id).size
-                            :
-                                "preview" /* i_just_created ? "large" : "preview" */)
-                        :
-                            "preview" /* i_just_created ? "large" : "preview" */,
-                    shown_relation: "all"
-                };
-            }, Users) }), callback)))
-        :
-            prelude(() => callback && callback());
-}
-exports.load_relation_Recipe_User_Recipe = load_relation_Recipe_User_Recipe;
-function load_relation_Recipe_Recipe_Rating(self, force_first_page, current_User, current_Admin, callback) {
-    let state = self.state();
-    let prelude = force_first_page && state.Rating != "loading" ?
-        (c) => state.Rating != "loading" && self.setState(Object.assign({}, state, { Rating: Object.assign({}, state.Rating, { PageIndex: 0 }) }), c)
-        :
-            (c) => c();
-    Permissions.can_view_Rating(current_User, current_Admin) ?
-        prelude(() => Api.get_Recipe_Recipe_Ratings(self.props.entity, Recipe_Recipe_Rating_page_index(self), Recipe_Recipe_Rating_page_size(self), Recipe_Recipe_Rating_search_query(self)).then(Ratings => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Rating: Utils.raw_page_to_paginated_items((i, i_just_created) => {
-                let state = self.state();
-                return {
-                    element: i,
-                    size: state.Rating != "loading" ?
-                        (state.Rating.Items.has(i.Id) ?
-                            state.Rating.Items.get(i.Id).size
-                            :
-                                "preview" /* i_just_created ? "large" : "preview" */)
-                        :
-                            "preview" /* i_just_created ? "large" : "preview" */,
-                    shown_relation: "all"
-                };
-            }, Ratings) }), callback)))
-        :
-            prelude(() => callback && callback());
-}
-exports.load_relation_Recipe_Recipe_Rating = load_relation_Recipe_Recipe_Rating;
-function load_relation_Recipe_Meal_Recipe(self, force_first_page, current_User, current_Admin, callback) {
-    let state = self.state();
-    let prelude = force_first_page && state.Meal != "loading" ?
-        (c) => state.Meal != "loading" && self.setState(Object.assign({}, state, { Meal: Object.assign({}, state.Meal, { PageIndex: 0 }) }), c)
-        :
-            (c) => c();
-    Permissions.can_view_Meal(current_User, current_Admin) ?
-        prelude(() => Api.get_Recipe_Meal_Recipes(self.props.entity, Recipe_Meal_Recipe_page_index(self), Recipe_Meal_Recipe_page_size(self), Recipe_Meal_Recipe_search_query(self)).then(Meals => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Meal: Utils.raw_page_to_paginated_items((i, i_just_created) => {
-                let state = self.state();
-                return {
-                    element: i,
-                    size: state.Meal != "loading" ?
-                        (state.Meal.Items.has(i.Id) ?
-                            state.Meal.Items.get(i.Id).size
-                            :
-                                "preview" /* i_just_created ? "large" : "preview" */)
-                        :
-                            "preview" /* i_just_created ? "large" : "preview" */,
-                    shown_relation: "all"
-                };
-            }, Meals) }), callback)))
-        :
-            prelude(() => callback && callback());
-}
-exports.load_relation_Recipe_Meal_Recipe = load_relation_Recipe_Meal_Recipe;
-function load_relation_Recipe_HomePage_Recipe(self, force_first_page, current_User, current_Admin, callback) {
-    let state = self.state();
-    let prelude = force_first_page && state.HomePage != "loading" ?
-        (c) => state.HomePage != "loading" && self.setState(Object.assign({}, state, { HomePage: Object.assign({}, state.HomePage, { PageIndex: 0 }) }), c)
-        :
-            (c) => c();
-    Permissions.can_view_HomePage(current_User, current_Admin) ?
-        prelude(() => Api.get_Recipe_HomePage_Recipes(self.props.entity, Recipe_HomePage_Recipe_page_index(self), Recipe_HomePage_Recipe_page_size(self), Recipe_HomePage_Recipe_search_query(self)).then(HomePages => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, HomePage: Utils.raw_page_to_paginated_items((i, i_just_created) => {
-                let state = self.state();
-                return {
-                    element: i,
-                    size: state.HomePage != "loading" ?
-                        (state.HomePage.Items.has(i.Id) ?
-                            state.HomePage.Items.get(i.Id).size
-                            :
-                                "preview" /* i_just_created ? "large" : "preview" */)
-                        :
-                            "preview" /* i_just_created ? "large" : "preview" */,
-                    shown_relation: "all"
-                };
-            }, HomePages) }), callback)))
-        :
-            prelude(() => callback && callback());
-}
-exports.load_relation_Recipe_HomePage_Recipe = load_relation_Recipe_HomePage_Recipe;
-function load_relations_Recipe(self, current_User, current_Admin, callback) {
-    load_relation_Recipe_HomePage_Recipe(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_Recipe_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_Recipe_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_Recipe_User_Recipe(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback()))));
-}
-exports.load_relations_Recipe = load_relations_Recipe;
-function set_size_Recipe(self, new_size) {
-    self.props.set_size(new_size, () => {
-        if (new_size == "fullscreen")
-            self.props.push(exports.Recipe_to_page(self.props.entity.Id));
-    });
-}
-exports.set_size_Recipe = set_size_Recipe;
-function render_Recipe_Picture_editable_minimised(self) {
-    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
-        return render_Recipe_Picture_minimised(self);
-    else
-        return !Permissions.can_view_Recipe_Picture(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
-            React.createElement("div", { className: "model__attribute picture" },
-                React.createElement("label", { className: "attribute-label attribute-label-picture" }, i18next.t(`Recipe:Picture`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.Image(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Picture(self.props.current_User, self.props.current_Admin), self.props.mode, () => Api.get_Recipe_Picture(self.props.entity), (new_src) => Api.update_Recipe_Picture(self.props.entity, new_src))));
-}
-exports.render_Recipe_Picture_editable_minimised = render_Recipe_Picture_editable_minimised;
-function render_Recipe_Name_editable_minimised(self) {
-    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
-        return render_Recipe_Name_minimised(self);
-    else
-        return !Permissions.can_view_Recipe_Name(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
-            React.createElement("div", { className: "model__attribute name" },
-                React.createElement("label", { className: "attribute-label attribute-label-name" }, i18next.t(`Recipe:Name`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Name(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Name, v => self.props.set_entity(Object.assign({}, self.props.entity, { Name: v })))));
-}
-exports.render_Recipe_Name_editable_minimised = render_Recipe_Name_editable_minimised;
-function render_Recipe_Ingredients_editable_minimised(self) {
-    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
-        return render_Recipe_Ingredients_minimised(self);
-    else
-        return !Permissions.can_view_Recipe_Ingredients(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
-            React.createElement("div", { className: "model__attribute ingredients" },
-                React.createElement("label", { className: "attribute-label attribute-label-ingredients" }, i18next.t(`Recipe:Ingredients`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Ingredients(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Ingredients, v => self.props.set_entity(Object.assign({}, self.props.entity, { Ingredients: v })))));
-}
-exports.render_Recipe_Ingredients_editable_minimised = render_Recipe_Ingredients_editable_minimised;
-function render_Recipe_Description_editable_minimised(self) {
-    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
-        return render_Recipe_Description_minimised(self);
-    else
-        return !Permissions.can_view_Recipe_Description(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
-            React.createElement("div", { className: "model__attribute description" },
-                React.createElement("label", { className: "attribute-label attribute-label-description" }, i18next.t(`Recipe:Description`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Description(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Description, v => self.props.set_entity(Object.assign({}, self.props.entity, { Description: v })))));
-}
-exports.render_Recipe_Description_editable_minimised = render_Recipe_Description_editable_minimised;
-function render_Recipe_PreparationTime_editable_minimised(self) {
-    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
-        return render_Recipe_PreparationTime_minimised(self);
-    else
-        return !Permissions.can_view_Recipe_PreparationTime(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
-            React.createElement("div", { className: "model__attribute preparationtime" },
-                React.createElement("label", { className: "attribute-label attribute-label-preparationtime" }, i18next.t(`Recipe:PreparationTime`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.Number(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_PreparationTime(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.PreparationTime, v => self.props.set_entity(Object.assign({}, self.props.entity, { PreparationTime: v })))));
-}
-exports.render_Recipe_PreparationTime_editable_minimised = render_Recipe_PreparationTime_editable_minimised;
-function render_Recipe_Picture_editable_maximised(self) {
-    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
-        return render_Recipe_Picture_maximised(self);
-    else
-        return !Permissions.can_view_Recipe_Picture(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
-            React.createElement("div", { className: "model__attribute picture" },
-                React.createElement("label", { className: "attribute-label attribute-label-picture" }, i18next.t(`Recipe:Picture`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.Image(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Picture(self.props.current_User, self.props.current_Admin), self.props.mode, () => Api.get_Recipe_Picture(self.props.entity), (new_src) => Api.update_Recipe_Picture(self.props.entity, new_src))));
-}
-exports.render_Recipe_Picture_editable_maximised = render_Recipe_Picture_editable_maximised;
-function render_Recipe_Name_editable_maximised(self) {
-    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
-        return render_Recipe_Name_maximised(self);
-    else
-        return !Permissions.can_view_Recipe_Name(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
-            React.createElement("div", { className: "model__attribute name" },
-                React.createElement("label", { className: "attribute-label attribute-label-name" }, i18next.t(`Recipe:Name`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Name(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Name, v => self.props.set_entity(Object.assign({}, self.props.entity, { Name: v })))));
-}
-exports.render_Recipe_Name_editable_maximised = render_Recipe_Name_editable_maximised;
-function render_Recipe_Ingredients_editable_maximised(self) {
-    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
-        return render_Recipe_Ingredients_maximised(self);
-    else
-        return !Permissions.can_view_Recipe_Ingredients(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
-            React.createElement("div", { className: "model__attribute ingredients" },
-                React.createElement("label", { className: "attribute-label attribute-label-ingredients" }, i18next.t(`Recipe:Ingredients`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Ingredients(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Ingredients, v => self.props.set_entity(Object.assign({}, self.props.entity, { Ingredients: v })))));
-}
-exports.render_Recipe_Ingredients_editable_maximised = render_Recipe_Ingredients_editable_maximised;
-function render_Recipe_Description_editable_maximised(self) {
-    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
-        return render_Recipe_Description_maximised(self);
-    else
-        return !Permissions.can_view_Recipe_Description(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
-            React.createElement("div", { className: "model__attribute description" },
-                React.createElement("label", { className: "attribute-label attribute-label-description" }, i18next.t(`Recipe:Description`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Description(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Description, v => self.props.set_entity(Object.assign({}, self.props.entity, { Description: v })))));
-}
-exports.render_Recipe_Description_editable_maximised = render_Recipe_Description_editable_maximised;
-function render_Recipe_PreparationTime_editable_maximised(self) {
-    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
-        return render_Recipe_PreparationTime_maximised(self);
-    else
-        return !Permissions.can_view_Recipe_PreparationTime(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
-            React.createElement("div", { className: "model__attribute preparationtime" },
-                React.createElement("label", { className: "attribute-label attribute-label-preparationtime" }, i18next.t(`Recipe:PreparationTime`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.Number(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_PreparationTime(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.PreparationTime, v => self.props.set_entity(Object.assign({}, self.props.entity, { PreparationTime: v })))));
-}
-exports.render_Recipe_PreparationTime_editable_maximised = render_Recipe_PreparationTime_editable_maximised;
-function render_editable_attributes_minimised_Recipe(self) {
-    let attributes = (React.createElement("div", null,
-        render_Recipe_Picture_editable_minimised(self),
-        render_Recipe_Name_editable_minimised(self),
-        render_Recipe_Ingredients_editable_minimised(self),
-        render_Recipe_Description_editable_minimised(self),
-        render_Recipe_PreparationTime_editable_minimised(self)));
-    return attributes;
-}
-exports.render_editable_attributes_minimised_Recipe = render_editable_attributes_minimised_Recipe;
-function render_editable_attributes_maximised_Recipe(self) {
-    let state = self.state();
-    let attributes = (React.createElement("div", null,
-        render_Recipe_Picture_editable_maximised(self),
-        render_Recipe_Name_editable_maximised(self),
-        render_Recipe_Ingredients_editable_maximised(self),
-        render_Recipe_Description_editable_maximised(self),
-        render_Recipe_PreparationTime_editable_maximised(self)));
-    return attributes;
-}
-exports.render_editable_attributes_maximised_Recipe = render_editable_attributes_maximised_Recipe;
-function render_breadcrumb_Recipe(self) {
-    return React.createElement("div", { className: "breadcrumb-recipe" }, "Recipe");
-}
-exports.render_breadcrumb_Recipe = render_breadcrumb_Recipe;
-function render_menu_Recipe(self) {
-    let state = self.state();
-    return React.createElement("div", { className: "menu" },
-        React.createElement("img", { className: "logo", src: "/images/logo.png", alt: "Logo" }),
-        React.createElement("div", { className: "pages" },
-            !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin) ? null :
-                React.createElement("div", { className: `menu_entry page_link` },
-                    React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
-            React.createElement("div", { className: "menu_entries" },
-                !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry active` },
-                        React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipe")));
-                            } }, i18next.t('HomePage_Recipes'))),
-                !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}` },
-                        React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categorie")));
-                            } }, i18next.t('HomePage_Categories'))),
-                React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
-}
-exports.render_menu_Recipe = render_menu_Recipe;
-function render_local_menu_Recipe(self) {
-    let state = self.state();
-    return React.createElement("div", { className: "local-menu" },
-        React.createElement("div", { className: "local_menu_entries" },
-            React.createElement("div", { className: `local_menu_entry${self.props.shown_relation == "none" ? " local_menu_entry--active" : ""}` },
-                React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('About this Recipe'))),
-            !Permissions.can_view_Rating(self.props.current_User, self.props.current_Admin) ? null :
-                React.createElement("div", { key: "Recipe_Rating", className: `local_menu_entry${self.props.shown_relation == "Recipe_Rating" ? " local_menu_entry--active" : ""}` },
-                    React.createElement("a", { onClick: () => load_relation_Recipe_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin, () => self.props.set_shown_relation("Recipe_Rating")) }, i18next.t('Recipe_Ratings')))));
-}
-exports.render_local_menu_Recipe = render_local_menu_Recipe;
-function render_controls_Recipe(self) {
-    return React.createElement("div", { className: "control" },
-        self.props.allow_maximisation && self.props.set_size ? React.createElement("a", { className: `"recipe button button--toggle ${self.props.size != 'preview' ? 'button--toggle--open' : ''}`, onClick: () => {
-                set_size_Recipe(self, self.props.size == "preview" ? "large" : "preview");
-            } }) : null,
-        self.props.allow_fullscreen && self.props.set_size ? React.createElement("a", { className: "recipe button button--fullscreen", onClick: () => set_size_Recipe(self, self.props.size == "fullscreen" ? "large" : "fullscreen") }) : null,
-        Permissions.can_delete_Recipe(self.props.current_User, self.props.current_Admin) && self.props.size == "fullscreen" ? React.createElement("a", { className: "button button--delete", onClick: () => confirm(i18next.t('Are you sure?')) &&
-                Api.delete_Recipe(self.props.entity).then(() => self.props.force_reload(() => self.props.pop())) }) : null,
-        self.props.size == "fullscreen" && self.props.pages_count > 0 ? React.createElement("a", { className: "recipe button button--close", onClick: () => self.props.pop() }) : null,
-        self.props.unlink && self.props.mode != "view" ?
-            React.createElement("a", { className: "button button--unlink", onClick: () => self.props.unlink() })
-            :
-                null,
-        self.props.delete && self.props.mode != "view" ?
-            React.createElement("a", { className: "button button--delete", onClick: () => self.props.delete() })
-            :
-                null);
-}
-exports.render_controls_Recipe = render_controls_Recipe;
-function render_content_Recipe(self) {
-    let actions = [
-        self.props.allow_maximisation && self.props.set_size && self.props.size == "preview" ?
-            () => set_size_Recipe(self, self.props.size == "preview" ? "large" : "preview")
-            :
-                null, self.props.allow_fullscreen && self.props.set_size && self.props.size == "preview" ?
-            () => set_size_Recipe(self, self.props.size == "fullscreen" ? "large" : "fullscreen")
-            :
-                null,
-    ].filter(a => a != null);
-    let content = Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ?
-        self.props.size == "preview" ?
-            render_preview_Recipe(self)
-            : self.props.size == "large" ?
-                render_large_Recipe(self)
-                : self.props.size == "fullscreen" ?
-                    render_large_Recipe(self)
-                    : "Error: unauthorised access to entity."
-        : "Error: unauthorised access to entity.";
-    if (self.props.mode == "view" && actions.length == 1 && !false)
-        return React.createElement("a", { onClick: () => actions[0]() },
-            React.createElement("div", { className: `${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}` }, content));
-    else
-        return React.createElement("div", { className: `${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}` }, content);
-}
-exports.render_content_Recipe = render_content_Recipe;
-function render_Recipe_Picture_minimised(self) {
-    return !Permissions.can_view_Recipe_Picture(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute picture" },
-        React.createElement("label", { className: "attribute-label attribute-label-picture" }, i18next.t(`Recipe:Picture`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.Image(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Picture(self.props.current_User, self.props.current_Admin), self.props.mode, () => Api.get_Recipe_Picture(self.props.entity), (new_src) => Api.update_Recipe_Picture(self.props.entity, new_src))));
-}
-exports.render_Recipe_Picture_minimised = render_Recipe_Picture_minimised;
-function render_Recipe_Name_minimised(self) {
-    return !Permissions.can_view_Recipe_Name(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute name" },
-        React.createElement("label", { className: "attribute-label attribute-label-name" }, i18next.t(`Recipe:Name`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Name(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Name, v => self.props.set_entity(Object.assign({}, self.props.entity, { Name: v })))));
-}
-exports.render_Recipe_Name_minimised = render_Recipe_Name_minimised;
-function render_Recipe_Ingredients_minimised(self) {
-    return !Permissions.can_view_Recipe_Ingredients(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute ingredients" },
-        React.createElement("label", { className: "attribute-label attribute-label-ingredients" }, i18next.t(`Recipe:Ingredients`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Ingredients(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Ingredients, v => self.props.set_entity(Object.assign({}, self.props.entity, { Ingredients: v })))));
-}
-exports.render_Recipe_Ingredients_minimised = render_Recipe_Ingredients_minimised;
-function render_Recipe_Description_minimised(self) {
-    return !Permissions.can_view_Recipe_Description(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute description" },
-        React.createElement("label", { className: "attribute-label attribute-label-description" }, i18next.t(`Recipe:Description`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Description(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Description, v => self.props.set_entity(Object.assign({}, self.props.entity, { Description: v })))));
-}
-exports.render_Recipe_Description_minimised = render_Recipe_Description_minimised;
-function render_Recipe_PreparationTime_minimised(self) {
-    return !Permissions.can_view_Recipe_PreparationTime(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute preparationtime" },
-        React.createElement("label", { className: "attribute-label attribute-label-preparationtime" }, i18next.t(`Recipe:PreparationTime`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.Number(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_PreparationTime(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.PreparationTime, v => self.props.set_entity(Object.assign({}, self.props.entity, { PreparationTime: v })))));
-}
-exports.render_Recipe_PreparationTime_minimised = render_Recipe_PreparationTime_minimised;
-function render_Recipe_Picture_maximised(self) {
-    return !Permissions.can_view_Recipe_Picture(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute picture" },
-        React.createElement("label", { className: "attribute-label attribute-label-picture" }, i18next.t(`Recipe:Picture`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.Image(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Picture(self.props.current_User, self.props.current_Admin), self.props.mode, () => Api.get_Recipe_Picture(self.props.entity), (new_src) => Api.update_Recipe_Picture(self.props.entity, new_src))));
-}
-exports.render_Recipe_Picture_maximised = render_Recipe_Picture_maximised;
-function render_Recipe_Name_maximised(self) {
-    return !Permissions.can_view_Recipe_Name(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute name" },
-        React.createElement("label", { className: "attribute-label attribute-label-name" }, i18next.t(`Recipe:Name`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Name(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Name, v => self.props.set_entity(Object.assign({}, self.props.entity, { Name: v })))));
-}
-exports.render_Recipe_Name_maximised = render_Recipe_Name_maximised;
-function render_Recipe_Ingredients_maximised(self) {
-    return !Permissions.can_view_Recipe_Ingredients(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute ingredients" },
-        React.createElement("label", { className: "attribute-label attribute-label-ingredients" }, i18next.t(`Recipe:Ingredients`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Ingredients(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Ingredients, v => self.props.set_entity(Object.assign({}, self.props.entity, { Ingredients: v })))));
-}
-exports.render_Recipe_Ingredients_maximised = render_Recipe_Ingredients_maximised;
-function render_Recipe_Description_maximised(self) {
-    return !Permissions.can_view_Recipe_Description(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute description" },
-        React.createElement("label", { className: "attribute-label attribute-label-description" }, i18next.t(`Recipe:Description`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Description(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Description, v => self.props.set_entity(Object.assign({}, self.props.entity, { Description: v })))));
-}
-exports.render_Recipe_Description_maximised = render_Recipe_Description_maximised;
-function render_Recipe_PreparationTime_maximised(self) {
-    return !Permissions.can_view_Recipe_PreparationTime(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute preparationtime" },
-        React.createElement("label", { className: "attribute-label attribute-label-preparationtime" }, i18next.t(`Recipe:PreparationTime`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.Number(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_PreparationTime(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.PreparationTime, v => self.props.set_entity(Object.assign({}, self.props.entity, { PreparationTime: v })))));
-}
-exports.render_Recipe_PreparationTime_maximised = render_Recipe_PreparationTime_maximised;
-function render_preview_Recipe(self) {
-    let attributes = null;
-    if (self.props.mode == "view" || !Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
-        attributes = (React.createElement("div", { className: "model__attributes" },
-            render_Recipe_Picture_minimised(self),
-            render_Recipe_Name_minimised(self),
-            render_Recipe_Ingredients_minimised(self),
-            render_Recipe_Description_minimised(self),
-            render_Recipe_PreparationTime_minimised(self)));
-    else
-        attributes = render_editable_attributes_minimised_Recipe(self);
-    return (React.createElement("div", { className: "block" }, attributes));
-}
-exports.render_preview_Recipe = render_preview_Recipe;
-function render_large_Recipe(self) {
-    let state = self.state();
-    let attributes = null;
-    if (self.props.mode == "view" || !Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
-        attributes = (React.createElement("div", { className: "model__attributes" },
-            render_Recipe_Picture_maximised(self),
-            render_Recipe_Name_maximised(self),
-            render_Recipe_Ingredients_maximised(self),
-            render_Recipe_Description_maximised(self),
-            render_Recipe_PreparationTime_maximised(self)));
-    else
-        attributes = render_editable_attributes_maximised_Recipe(self);
-    return (React.createElement("div", { className: "block" },
-        self.props.nesting_depth == 0 && self.props.shown_relation != "all" && self.props.shown_relation != "none" ? null : attributes,
-        render_relations_Recipe(self)));
-}
-exports.render_large_Recipe = render_large_Recipe;
-function render_Recipe_User_Recipe(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "User_Recipe") || !Permissions.can_view_User(self.props.current_User, self.props.current_Admin))
-        return null;
-    let state = self.state();
-    return React.createElement("div", null, List.render_relation("recipe_user_recipe", "Recipe", "User", "Users", self.props.nesting_depth > 0, false, false, false)(state.User != "loading" ?
-        state.User.IdsInServerOrder.map(id => state.User != "loading" && state.User.Items.get(id)) :
-        state.User, Recipe_User_Recipe_page_index(self), Recipe_User_Recipe_num_pages(self), new_page_index => {
-        let state = self.state();
-        state.User != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, User: Object.assign({}, state.User, { PageIndex: new_page_index }) }), () => load_relation_Recipe_User_Recipe(self, false, self.props.current_User, self.props.current_Admin));
-    }, (i, _) => {
-        let i_id = i.element.Id;
-        let state = self.state();
-        return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
-                        ${state.User != "loading" && state.User.JustCreated.has(i_id) && state.User.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, UserViews.User(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_User_Recipe(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_User_Recipe(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_User_Recipe(self.props.current_User, self.props.current_Admin)) ?
-                    self.props.mode : "view", is_editable: state.User != "loading" && state.User.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
-                    let state = self.state();
-                    state.User != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { User: Object.assign({}, state.User, { Items: state.User.Items.set(i_id, Object.assign({}, state.User.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
-                }, nested_entity_names: self.props.nested_entity_names.push("User"), set_size: (new_size, callback) => {
-                    let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
-                    let state = self.state();
-                    state.User != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { User: Object.assign({}, state.User, { Items: state.User.Items.set(i_id, Object.assign({}, state.User.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
-                }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
-                    let state = self.state();
-                    state.User != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { dirty_User: state.dirty_User.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, User: Object.assign({}, state.User, { Items: state.User.Items.set(i_id, Object.assign({}, state.User.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, delete: undefined, unlink: !Permissions.can_delete_User_Recipe(self.props.current_User, self.props.current_Admin) ?
-                    null
-                    :
-                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_User_User_Recipes(i.element, self.props.entity).then(() => load_relation_Recipe_User_Recipe(self, false, self.props.current_User, self.props.current_Admin)) }))));
-    }, () => React.createElement("div", null,
-        Permissions.can_create_User(self.props.current_User, self.props.current_Admin) && Permissions.can_create_User_Recipe(self.props.current_User, self.props.current_Admin) && Recipe_User_Recipe_can_create(self) ? render_new_Recipe_User_Recipe(self) : null,
-        Permissions.can_create_User_Recipe(self.props.current_User, self.props.current_Admin) ? render_add_existing_Recipe_User_Recipe(self) : null)));
-}
-exports.render_Recipe_User_Recipe = render_Recipe_User_Recipe;
-function render_Recipe_Recipe_Rating(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Recipe_Rating") || !Permissions.can_view_Rating(self.props.current_User, self.props.current_Admin))
-        return null;
-    let state = self.state();
-    return React.createElement("div", null, List.render_relation("recipe_recipe_rating", "Recipe", "Rating", "Ratings", self.props.nesting_depth > 0, false, false, false)(state.Rating != "loading" ?
-        state.Rating.IdsInServerOrder.map(id => state.Rating != "loading" && state.Rating.Items.get(id)) :
-        state.Rating, Recipe_Recipe_Rating_page_index(self), Recipe_Recipe_Rating_num_pages(self), new_page_index => {
-        let state = self.state();
-        state.Rating != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Rating: Object.assign({}, state.Rating, { PageIndex: new_page_index }) }), () => load_relation_Recipe_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin));
-    }, (i, _) => {
-        let i_id = i.element.Id;
-        let state = self.state();
-        return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
-                        ${state.Rating != "loading" && state.Rating.JustCreated.has(i_id) && state.Rating.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, RatingViews.Rating(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Recipe_Rating(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_Recipe_Rating(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_Recipe_Rating(self.props.current_User, self.props.current_Admin)) ?
-                    self.props.mode : "view", is_editable: state.Rating != "loading" && state.Rating.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
-                    let state = self.state();
-                    state.Rating != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Rating: Object.assign({}, state.Rating, { Items: state.Rating.Items.set(i_id, Object.assign({}, state.Rating.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
-                }, nested_entity_names: self.props.nested_entity_names.push("Rating"), set_size: (new_size, callback) => {
-                    let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
-                    let state = self.state();
-                    state.Rating != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Rating: Object.assign({}, state.Rating, { Items: state.Rating.Items.set(i_id, Object.assign({}, state.Rating.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
-                }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
-                    let state = self.state();
-                    state.Rating != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { dirty_Rating: state.dirty_Rating.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Rating: Object.assign({}, state.Rating, { Items: state.Rating.Items.set(i_id, Object.assign({}, state.Rating.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, delete: undefined, unlink: !Permissions.can_delete_Recipe_Rating(self.props.current_User, self.props.current_Admin) ?
-                    null
-                    :
-                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Recipe_Recipe_Ratings(self.props.entity, i.element).then(() => load_relation_Recipe_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin)) }))));
-    }, () => React.createElement("div", null,
-        Permissions.can_create_Rating(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Recipe_Rating(self.props.current_User, self.props.current_Admin) && Recipe_Recipe_Rating_can_create(self) ? render_new_Recipe_Recipe_Rating(self) : null,
-        Permissions.can_create_Recipe_Rating(self.props.current_User, self.props.current_Admin) ? render_add_existing_Recipe_Recipe_Rating(self) : null)));
-}
-exports.render_Recipe_Recipe_Rating = render_Recipe_Recipe_Rating;
-function render_Recipe_Meal_Recipe(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Meal_Recipe") || !Permissions.can_view_Meal(self.props.current_User, self.props.current_Admin))
-        return null;
-    let state = self.state();
-    return React.createElement("div", null, List.render_relation("recipe_meal_recipe", "Recipe", "Meal", "Meals", self.props.nesting_depth > 0, false, false, false)(state.Meal != "loading" ?
-        state.Meal.IdsInServerOrder.map(id => state.Meal != "loading" && state.Meal.Items.get(id)) :
-        state.Meal, Recipe_Meal_Recipe_page_index(self), Recipe_Meal_Recipe_num_pages(self), new_page_index => {
-        let state = self.state();
-        state.Meal != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Meal: Object.assign({}, state.Meal, { PageIndex: new_page_index }) }), () => load_relation_Recipe_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin));
-    }, (i, _) => {
-        let i_id = i.element.Id;
-        let state = self.state();
-        return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
-                        ${state.Meal != "loading" && state.Meal.JustCreated.has(i_id) && state.Meal.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, MealViews.Meal(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Meal_Recipe(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_Meal_Recipe(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_Meal_Recipe(self.props.current_User, self.props.current_Admin)) ?
-                    self.props.mode : "view", is_editable: state.Meal != "loading" && state.Meal.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
-                    let state = self.state();
-                    state.Meal != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Meal: Object.assign({}, state.Meal, { Items: state.Meal.Items.set(i_id, Object.assign({}, state.Meal.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
-                }, nested_entity_names: self.props.nested_entity_names.push("Meal"), set_size: (new_size, callback) => {
-                    let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
-                    let state = self.state();
-                    state.Meal != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Meal: Object.assign({}, state.Meal, { Items: state.Meal.Items.set(i_id, Object.assign({}, state.Meal.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
-                }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
-                    let state = self.state();
-                    state.Meal != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { dirty_Meal: state.dirty_Meal.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Meal: Object.assign({}, state.Meal, { Items: state.Meal.Items.set(i_id, Object.assign({}, state.Meal.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, delete: undefined, unlink: !Permissions.can_delete_Meal_Recipe(self.props.current_User, self.props.current_Admin) ?
-                    null
-                    :
-                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Meal_Meal_Recipes(i.element, self.props.entity).then(() => load_relation_Recipe_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin)) }))));
-    }, () => React.createElement("div", null,
-        Permissions.can_create_Meal(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Meal_Recipe(self.props.current_User, self.props.current_Admin) && Recipe_Meal_Recipe_can_create(self) ? render_new_Recipe_Meal_Recipe(self) : null,
-        Permissions.can_create_Meal_Recipe(self.props.current_User, self.props.current_Admin) ? render_add_existing_Recipe_Meal_Recipe(self) : null)));
-}
-exports.render_Recipe_Meal_Recipe = render_Recipe_Meal_Recipe;
-function render_Recipe_HomePage_Recipe(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "HomePage_Recipe") || !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin))
-        return null;
-    let state = self.state();
-    return React.createElement("div", null, List.render_relation("recipe_homepage_recipe", "Recipe", "HomePage", "HomePages", self.props.nesting_depth > 0, false, false, false)(state.HomePage != "loading" ?
-        state.HomePage.IdsInServerOrder.map(id => state.HomePage != "loading" && state.HomePage.Items.get(id)) :
-        state.HomePage, Recipe_HomePage_Recipe_page_index(self), Recipe_HomePage_Recipe_num_pages(self), new_page_index => {
-        let state = self.state();
-        state.HomePage != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, HomePage: Object.assign({}, state.HomePage, { PageIndex: new_page_index }) }), () => load_relation_Recipe_HomePage_Recipe(self, false, self.props.current_User, self.props.current_Admin));
-    }, (i, _) => {
-        let i_id = i.element.Id;
-        let state = self.state();
-        return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
-                        ${state.HomePage != "loading" && state.HomePage.JustCreated.has(i_id) && state.HomePage.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, HomePageViews.HomePage(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_HomePage_Recipe(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_HomePage_Recipe(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_HomePage_Recipe(self.props.current_User, self.props.current_Admin)) ?
-                    self.props.mode : "view", is_editable: state.HomePage != "loading" && state.HomePage.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
-                    let state = self.state();
-                    state.HomePage != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { HomePage: Object.assign({}, state.HomePage, { Items: state.HomePage.Items.set(i_id, Object.assign({}, state.HomePage.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
-                }, nested_entity_names: self.props.nested_entity_names.push("HomePage"), set_size: (new_size, callback) => {
-                    let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
-                    let state = self.state();
-                    state.HomePage != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { HomePage: Object.assign({}, state.HomePage, { Items: state.HomePage.Items.set(i_id, Object.assign({}, state.HomePage.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
-                }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
-                    let state = self.state();
-                    state.HomePage != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { dirty_HomePage: state.dirty_HomePage.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, HomePage: Object.assign({}, state.HomePage, { Items: state.HomePage.Items.set(i_id, Object.assign({}, state.HomePage.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, unlink: undefined, delete: !Permissions.can_delete_HomePage(self.props.current_User, self.props.current_Admin) || !Recipe_HomePage_Recipe_can_delete(self) ?
-                    null
-                    :
-                        () => confirm(i18next.t('Are you sure?')) && Api.delete_HomePage(i.element).then(() => load_relation_Recipe_HomePage_Recipe(self, false, self.props.current_User, self.props.current_Admin)) }))));
-    }, () => React.createElement("div", null)));
-}
-exports.render_Recipe_HomePage_Recipe = render_Recipe_HomePage_Recipe;
-function render_relations_Recipe(self) {
-    return React.createElement("div", { className: "relations" }, render_Recipe_Recipe_Rating(self, "default"));
-}
-exports.render_relations_Recipe = render_relations_Recipe;
-function render_add_existing_Recipe_User_Recipe(self) {
-    let state = self.state();
-    return self.props.mode == "edit" ?
-        React.createElement("div", { className: "button__actions" }, state.add_step_User != "open" ?
-            React.createElement(Buttons.Add, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_User: "open" })), target_name: "User" })
-            :
-                React.createElement(List.AddToRelation, {
-                    relation_name: "recipe_user_recipe",
-                    source_name: "Recipe",
-                    target_name: "User",
-                    target_plural: "Users",
-                    page_size: 25,
-                    render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
-                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_User: "saving" }), () => Api.link_Recipe_User_Recipes(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_User: "closed" }), () => load_relation_Recipe_User_Recipe(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
-                        React.createElement("div", { className: "group__title", disabled: true }, UserViews.User(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("User"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
-                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_User: "closed" })),
-                    get_items: [
-                        { name: "User", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Recipe_User_Recipes(self.props.entity, i, s); }) },
-                    ]
-                }))
-        :
-            null;
-}
-exports.render_add_existing_Recipe_User_Recipe = render_add_existing_Recipe_User_Recipe;
-function render_add_existing_Recipe_Recipe_Rating(self) {
-    let state = self.state();
-    return self.props.mode == "edit" ?
-        React.createElement("div", { className: "button__actions" }, state.add_step_Rating != "open" ?
-            React.createElement(Buttons.Add, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Rating: "open" })), target_name: "Rating" })
-            :
-                React.createElement(List.AddToRelation, {
-                    relation_name: "recipe_recipe_rating",
-                    source_name: "Recipe",
-                    target_name: "Rating",
-                    target_plural: "Ratings",
-                    page_size: 25,
-                    render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
-                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Rating: "saving" }), () => Api.link_Recipe_Recipe_Ratings(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Rating: "closed" }), () => load_relation_Recipe_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
-                        React.createElement("div", { className: "group__title", disabled: true }, RatingViews.Rating(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Rating"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
-                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Rating: "closed" })),
-                    get_items: [
-                        { name: "Rating", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Recipe_Recipe_Ratings(self.props.entity, i, s); }) },
-                    ]
-                }))
-        :
-            null;
-}
-exports.render_add_existing_Recipe_Recipe_Rating = render_add_existing_Recipe_Recipe_Rating;
-function render_add_existing_Recipe_Meal_Recipe(self) {
-    let state = self.state();
-    return self.props.mode == "edit" ?
-        React.createElement("div", { className: "button__actions" }, state.add_step_Meal != "open" ?
-            React.createElement(Buttons.Add, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "open" })), target_name: "Meal" })
-            :
-                React.createElement(List.AddToRelation, {
-                    relation_name: "recipe_meal_recipe",
-                    source_name: "Recipe",
-                    target_name: "Meal",
-                    target_plural: "Meals",
-                    page_size: 25,
-                    render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
-                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "saving" }), () => Api.link_Recipe_Meal_Recipes(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }), () => load_relation_Recipe_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
-                        React.createElement("div", { className: "group__title", disabled: true }, MealViews.Meal(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Meal"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
-                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" })),
-                    get_items: [
-                        { name: "Lunch", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Recipe_Meal_Recipes_Lunch(self.props.entity, i, s); }) },
-                        { name: "Dinner", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Recipe_Meal_Recipes_Dinner(self.props.entity, i, s); }) },
-                        { name: "Breakfast", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Recipe_Meal_Recipes_Breakfast(self.props.entity, i, s); }) }
-                    ]
-                }))
-        :
-            null;
-}
-exports.render_add_existing_Recipe_Meal_Recipe = render_add_existing_Recipe_Meal_Recipe;
-function render_new_Recipe_User_Recipe(self) {
-    let state = self.state();
-    return state.create_step_User != "none" ?
-        React.createElement("div", { className: "overlay__item overlay__item--new" },
-            React.createElement("label", null,
-                i18next.t('Username'),
-                React.createElement("input", { type: "text", value: state.create_step_User.username, onChange: (e) => state.create_step_User != "none" &&
-                        self.setState(Object.assign({}, self.state(), { create_step_User: Object.assign({}, state.create_step_User, { username: e.target.value }) })) })),
-            React.createElement("label", null,
-                i18next.t('Email'),
-                React.createElement("input", { type: "email", value: state.create_step_User.email, onChange: (e) => state.create_step_User != "none" &&
-                        self.setState(Object.assign({}, self.state(), { create_step_User: Object.assign({}, state.create_step_User, { email: e.target.value }) })) })),
-            React.createElement("label", null,
-                i18next.t('Email confirmation'),
-                React.createElement("input", { type: "email", value: state.create_step_User.email_confirmation, onChange: (e) => state.create_step_User != "none" &&
-                        self.setState(Object.assign({}, self.state(), { create_step_User: Object.assign({}, state.create_step_User, { email_confirmation: e.target.value }) })) })),
-            state.create_step_User.validation == "validating" ?
-                React.createElement("div", { className: "loading" }, i18next.t('Validating'))
-                :
-                    React.createElement(Buttons.Create, { onClick: () => state.create_step_User != "none" &&
-                            Api.validate_User(state.create_step_User.username, state.create_step_User.email, state.create_step_User.email_confirmation).then(is_valid => {
-                                if (state.create_step_User != "none" && is_valid) {
-                                    Api.register_User(state.create_step_User.username, state.create_step_User.email, state.create_step_User.email_confirmation).then(() => load_relation_Recipe_User_Recipe(self, false, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { create_step_User: "none" }))));
-                                }
-                                else {
-                                    state.create_step_User != "none" &&
-                                        self.setState(Object.assign({}, self.state(), { create_step_User: Object.assign({}, state.create_step_User, { validation: "invalid" }) }), () => alert(i18next.t('The username and email combination is invalid or it might already be in use. Please try a different combination.')));
-                                }
-                            }).catch(() => state.create_step_User != "none" &&
-                                self.setState(Object.assign({}, self.state(), { create_step_User: Object.assign({}, state.create_step_User, { validation: "invalid" }) }), () => alert(i18next.t('The username and email combination is invalid or it might already be in use. Please try a different combination.')))), target_name: "User" }),
-            React.createElement(Buttons.Cancel, { onClick: () => self.setState(Object.assign({}, self.state(), { create_step_User: "none" })) }))
-        : self.props.mode == "edit" ?
-            React.createElement("div", { className: "button__actions" },
-                React.createElement("div", { className: "new-user" },
-                    React.createElement("button", { className: "new-user button button--new", onClick: () => self.setState(Object.assign({}, self.state(), { create_step_User: { validation: "invalid", username: "", email: "", email_confirmation: "" } })) }, i18next.t('Create new User'))))
-            :
-                null;
-}
-exports.render_new_Recipe_User_Recipe = render_new_Recipe_User_Recipe;
-function render_new_Recipe_Recipe_Rating(self) {
-    let state = self.state();
-    return self.props.mode == "edit" ?
-        React.createElement("div", { className: "button__actions" },
-            React.createElement("div", { className: "new-rating" },
-                React.createElement("button", { className: "new-rating button button--new", onClick: () => Api.create_linked_Recipe_Recipe_Ratings_Rating(self.props.entity).then(e => {
-                        e.length > 0 &&
-                            Api.update_Rating(Object.assign({}, e[0], { rating: 0 })).then(() => load_relation_Recipe_Recipe_Rating(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Rating: "closed" }))));
-                    }) }, i18next.t('Create new Rating'))))
-        :
-            null;
-}
-exports.render_new_Recipe_Recipe_Rating = render_new_Recipe_Recipe_Rating;
-function render_new_Recipe_Meal_Recipe(self) {
-    let state = self.state();
-    return self.props.mode == "edit" ?
-        React.createElement("div", { className: "button__actions" },
-            React.createElement(Buttons.Create, { target_name: "Meal", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "creating" })) }),
-            state.add_step_Meal != "creating" ?
-                null
-                :
-                    React.createElement("div", { className: "overlay__item overlay__item--new" },
-                        React.createElement("div", { className: "new-lunch" },
-                            React.createElement("button", { className: "new-lunch button button--new", onClick: () => Api.create_linked_Recipe_Meal_Recipes_Lunch(self.props.entity).then(e => {
-                                    e.length > 0 &&
-                                        Api.update_Lunch(Object.assign({}, e[0], { Kind: "Lunch", Description: "" })).then(() => load_relation_Recipe_Meal_Recipe(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
-                                }) }, i18next.t('Create new Lunch'))),
-                        React.createElement("div", { className: "new-dinner" },
-                            React.createElement("button", { className: "new-dinner button button--new", onClick: () => Api.create_linked_Recipe_Meal_Recipes_Dinner(self.props.entity).then(e => {
-                                    e.length > 0 &&
-                                        Api.update_Dinner(Object.assign({}, e[0], { Kind: "Dinner", Description: "" })).then(() => load_relation_Recipe_Meal_Recipe(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
-                                }) }, i18next.t('Create new Dinner'))),
-                        React.createElement("div", { className: "new-breakfast" },
-                            React.createElement("button", { className: "new-breakfast button button--new", onClick: () => Api.create_linked_Recipe_Meal_Recipes_Breakfast(self.props.entity).then(e => {
-                                    e.length > 0 &&
-                                        Api.update_Breakfast(Object.assign({}, e[0], { Kind: "Breakfast", Description: "" })).then(() => load_relation_Recipe_Meal_Recipe(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
-                                }) }, i18next.t('Create new Breakfast'))),
-                        React.createElement(Buttons.Cancel, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" })) })))
-        :
-            null;
-}
-exports.render_new_Recipe_Meal_Recipe = render_new_Recipe_Meal_Recipe;
-function render_saving_animations_Recipe(self) {
-    return self.state().dirty_User.count() > 0 ?
-        React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" }) :
-        self.state().dirty_Rating.count() > 0 ?
-            React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" }) :
-            self.state().dirty_Meal.count() > 0 ?
-                React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" }) :
-                self.state().dirty_HomePage.count() > 0 ?
-                    React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" })
-                    : React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "cornflowerblue" }, className: "saved" });
-}
-exports.render_saving_animations_Recipe = render_saving_animations_Recipe;
-class RecipeComponent extends React.Component {
-    constructor(props, context) {
-        super(props, context);
-        this.thread = null;
-        this.state = { update_count: 0, add_step_User: "closed", create_step_User: "none", dirty_User: Immutable.Map(), User: "loading", add_step_Rating: "closed", dirty_Rating: Immutable.Map(), Rating: "loading", add_step_Meal: "closed", dirty_Meal: Immutable.Map(), Meal: "loading", add_step_HomePage: "closed", dirty_HomePage: Immutable.Map(), HomePage: "loading" };
-    }
-    get_self() {
-        return { state: () => this.state, props: this.props, setState: (ns, c) => this.setState(ns, c) };
-    }
-    componentWillReceiveProps(new_props) {
-        if (new_props.size == "breadcrumb")
-            return;
-        let current_logged_in_entity = this.props.current_User || this.props.current_Admin || null;
-        let new_logged_in_entity = new_props.current_User || new_props.current_Admin || null;
-        if (new_props.mode != this.props.mode || (new_props.size != this.props.size && (new_props.size == "large" || new_props.size == "fullscreen")) ||
-            new_props.logic_frame != this.props.logic_frame ||
-            (current_logged_in_entity && !new_logged_in_entity) ||
-            (!current_logged_in_entity && new_logged_in_entity) ||
-            (current_logged_in_entity && new_logged_in_entity && current_logged_in_entity.Id != new_logged_in_entity.Id)) {
-            load_relations_Recipe(this.get_self(), new_props.current_User, new_props.current_Admin);
-        }
-    }
-    componentWillMount() {
-        if (this.props.size == "breadcrumb")
-            return;
-        if (this.props.size != "preview") {
-            load_relations_Recipe(this.get_self(), this.props.current_User, this.props.current_Admin);
-        }
-        this.thread = setInterval(() => {
-            if (this.state.dirty_User.count() > 0) {
-                let first = this.state.dirty_User.first();
-                this.setState(Object.assign({}, this.state, { dirty_User: this.state.dirty_User.remove(first.Id) }), () => Api.update_User(first));
-            }
-            else if (this.state.dirty_Rating.count() > 0) {
-                let first = this.state.dirty_Rating.first();
-                this.setState(Object.assign({}, this.state, { dirty_Rating: this.state.dirty_Rating.remove(first.Id) }), () => Api.update_Rating(first));
-            }
-            else if (this.state.dirty_Meal.count() > 0) {
-                let first = this.state.dirty_Meal.first();
-                this.setState(Object.assign({}, this.state, { dirty_Meal: this.state.dirty_Meal.remove(first.Id) }), () => Api.update_Meal(first));
-            }
-            else if (this.state.dirty_HomePage.count() > 0) {
-                let first = this.state.dirty_HomePage.first();
-                this.setState(Object.assign({}, this.state, { dirty_HomePage: this.state.dirty_HomePage.remove(first.Id) }), () => Api.update_HomePage(first));
-            }
-        }, 500);
-    }
-    componentWillUnmount() {
-        clearInterval(this.thread);
-    }
-    render() {
-        if (this.props.size == "breadcrumb") {
-            return Permissions.can_view_Recipe(this.props.current_User, this.props.current_Admin) ?
-                render_breadcrumb_Recipe(this.get_self())
-                : null;
-        }
-        return React.createElement("div", { id: `Recipe_${this.props.entity.Id.toString()}_${this.state.update_count}`, className: `model recipe` },
-            render_saving_animations_Recipe(this.get_self()),
-            this.props.nesting_depth == 0 ? render_menu_Recipe(this.get_self()) : null,
-            React.createElement("div", { className: "content" },
-                this.props.nesting_depth == 0 && !!this.props.toggle_button ?
-                    React.createElement("div", { className: "topbar" },
-                        this.props.breadcrumbs(),
-                        React.createElement("div", { className: "topbar__buttons" },
-                            this.props.toggle_button ? this.props.toggle_button() : null,
-                            this.props.authentication_menu()))
-                    :
-                        null,
-                this.props.nesting_depth == 0 ? render_local_menu_Recipe(this.get_self()) : null,
-                render_controls_Recipe(this.get_self()),
-                render_content_Recipe(this.get_self())));
-    }
-}
-exports.RecipeComponent = RecipeComponent;
-exports.Recipe = (props) => React.createElement(RecipeComponent, Object.assign({}, props));
-exports.Recipe_to_page = (id) => {
-    let can_edit = Utils.any_of([Permissions.can_edit_Recipe, Permissions.can_edit_User_Recipe, Permissions.can_edit_Recipe_Rating, Permissions.can_edit_Meal_Recipe, Permissions.can_edit_HomePage_Recipe, Permissions.can_edit_User, Permissions.can_edit_Rating, Permissions.can_edit_Meal, Permissions.can_edit_HomePage]);
-    return Utils.scene_to_page(can_edit, exports.Recipe, Api.get_Recipe(id), Api.update_Recipe, "Recipe", "Recipe", `/Recipes/${id}`);
-};
-exports.Recipe_to = (id, target_element_id, current_User, current_Admin) => {
-    Utils.render_page_manager(target_element_id, exports.Recipe_to_page(id), current_User, current_Admin);
-};
-
-
-/***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports) {
 
 module.exports = function(it, Constructor, name, forbiddenField){
@@ -23024,33 +22262,33 @@ module.exports = function(it, Constructor, name, forbiddenField){
 };
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports) {
 
 module.exports = false;
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 var anObject    = __webpack_require__(5)
-  , dPs         = __webpack_require__(207)
-  , enumBugKeys = __webpack_require__(132)
-  , IE_PROTO    = __webpack_require__(144)('IE_PROTO')
+  , dPs         = __webpack_require__(210)
+  , enumBugKeys = __webpack_require__(135)
+  , IE_PROTO    = __webpack_require__(147)('IE_PROTO')
   , Empty       = function(){ /* empty */ }
   , PROTOTYPE   = 'prototype';
 
 // Create object with fake `null` prototype: use iframe Object with cleared prototype
 var createDict = function(){
   // Thrash, waste and sodomy: IE GC bug
-  var iframe = __webpack_require__(131)('iframe')
+  var iframe = __webpack_require__(134)('iframe')
     , i      = enumBugKeys.length
     , lt     = '<'
     , gt     = '>'
     , iframeDocument;
   iframe.style.display = 'none';
-  __webpack_require__(134).appendChild(iframe);
+  __webpack_require__(137).appendChild(iframe);
   iframe.src = 'javascript:'; // eslint-disable-line no-script-url
   // createDict = iframe.contentWindow.Object;
   // html.removeChild(iframe);
@@ -23077,41 +22315,41 @@ module.exports = Object.create || function create(O, Properties){
 
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
-var $keys      = __webpack_require__(209)
-  , hiddenKeys = __webpack_require__(132).concat('length', 'prototype');
+var $keys      = __webpack_require__(212)
+  , hiddenKeys = __webpack_require__(135).concat('length', 'prototype');
 
 exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O){
   return $keys(O, hiddenKeys);
 };
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
-var $keys       = __webpack_require__(209)
-  , enumBugKeys = __webpack_require__(132);
+var $keys       = __webpack_require__(212)
+  , enumBugKeys = __webpack_require__(135);
 
 module.exports = Object.keys || function keys(O){
   return $keys(O, enumBugKeys);
 };
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var redefine = __webpack_require__(31);
+var redefine = __webpack_require__(33);
 module.exports = function(target, src, safe){
   for(var key in src)redefine(target, key, src[key], safe);
   return target;
 };
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23130,10 +22368,10 @@ module.exports = function(KEY){
 };
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var toInteger = __webpack_require__(62)
+var toInteger = __webpack_require__(64)
   , max       = Math.max
   , min       = Math.min;
 module.exports = function(index, length){
@@ -23142,7 +22380,7 @@ module.exports = function(index, length){
 };
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports) {
 
 var id = 0
@@ -23152,7 +22390,7 @@ module.exports = function(key){
 };
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23176,9 +22414,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Immutable = __webpack_require__(12);
+var Immutable = __webpack_require__(13);
 
-var findRangesImmutable = __webpack_require__(117);
+var findRangesImmutable = __webpack_require__(119);
 
 var List = Immutable.List;
 var Map = Immutable.Map;
@@ -23278,7 +22516,7 @@ function haveEqualEntity(charA, charB) {
 module.exports = ContentBlock;
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23499,7 +22737,7 @@ module.exports = UnicodeUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23617,7 +22855,7 @@ module.exports = PooledClass;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -23635,13 +22873,13 @@ module.exports = PooledClass;
 
 var _assign = __webpack_require__(9);
 
-var ReactCurrentOwner = __webpack_require__(53);
+var ReactCurrentOwner = __webpack_require__(54);
 
 var warning = __webpack_require__(4);
-var canDefineProperty = __webpack_require__(128);
+var canDefineProperty = __webpack_require__(130);
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 
-var REACT_ELEMENT_TYPE = __webpack_require__(394);
+var REACT_ELEMENT_TYPE = __webpack_require__(397);
 
 var RESERVED_PROPS = {
   key: true,
@@ -23964,27 +23202,892 @@ module.exports = ReactElement;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 79 */
+/* 80 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(11);
+const Immutable = __webpack_require__(36);
+const Api = __webpack_require__(18);
+const List = __webpack_require__(56);
+const Components = __webpack_require__(42);
+const Buttons = __webpack_require__(47);
+const Permissions = __webpack_require__(24);
+const Utils = __webpack_require__(22);
+const i18next = __webpack_require__(21);
+const HomePageViews = __webpack_require__(30);
+const CategoryListViews = __webpack_require__(29);
+const BookmarksViews = __webpack_require__(28);
+const UserViews = __webpack_require__(195);
+const RatingViews = __webpack_require__(194);
+const MealViews = __webpack_require__(91);
+function Recipe_User_Recipe_can_create(self) {
+    let state = self.state();
+    return state.User == "loading" ? false : state.User.CanCreate;
+}
+exports.Recipe_User_Recipe_can_create = Recipe_User_Recipe_can_create;
+function Recipe_Recipe_Rating_can_create(self) {
+    let state = self.state();
+    return state.Rating == "loading" ? false : state.Rating.CanCreate;
+}
+exports.Recipe_Recipe_Rating_can_create = Recipe_Recipe_Rating_can_create;
+function Recipe_Meal_Recipe_can_create(self) {
+    let state = self.state();
+    return state.Meal == "loading" ? false : state.Meal.CanCreate;
+}
+exports.Recipe_Meal_Recipe_can_create = Recipe_Meal_Recipe_can_create;
+function Recipe_User_Recipe_can_delete(self) {
+    let state = self.state();
+    return state.User == "loading" ? false : state.User.CanDelete;
+}
+exports.Recipe_User_Recipe_can_delete = Recipe_User_Recipe_can_delete;
+function Recipe_Recipe_Rating_can_delete(self) {
+    let state = self.state();
+    return state.Rating == "loading" ? false : state.Rating.CanDelete;
+}
+exports.Recipe_Recipe_Rating_can_delete = Recipe_Recipe_Rating_can_delete;
+function Recipe_Meal_Recipe_can_delete(self) {
+    let state = self.state();
+    return state.Meal == "loading" ? false : state.Meal.CanDelete;
+}
+exports.Recipe_Meal_Recipe_can_delete = Recipe_Meal_Recipe_can_delete;
+function Recipe_User_Recipe_page_index(self) {
+    let state = self.state();
+    return state.User == "loading" ? 0 : state.User.PageIndex;
+}
+exports.Recipe_User_Recipe_page_index = Recipe_User_Recipe_page_index;
+function Recipe_Recipe_Rating_page_index(self) {
+    let state = self.state();
+    return state.Rating == "loading" ? 0 : state.Rating.PageIndex;
+}
+exports.Recipe_Recipe_Rating_page_index = Recipe_Recipe_Rating_page_index;
+function Recipe_Meal_Recipe_page_index(self) {
+    let state = self.state();
+    return state.Meal == "loading" ? 0 : state.Meal.PageIndex;
+}
+exports.Recipe_Meal_Recipe_page_index = Recipe_Meal_Recipe_page_index;
+function Recipe_User_Recipe_page_size(self) {
+    let state = self.state();
+    return state.User == "loading" ? 25 : state.User.PageSize;
+}
+exports.Recipe_User_Recipe_page_size = Recipe_User_Recipe_page_size;
+function Recipe_Recipe_Rating_page_size(self) {
+    let state = self.state();
+    return state.Rating == "loading" ? 25 : state.Rating.PageSize;
+}
+exports.Recipe_Recipe_Rating_page_size = Recipe_Recipe_Rating_page_size;
+function Recipe_Meal_Recipe_page_size(self) {
+    let state = self.state();
+    return state.Meal == "loading" ? 25 : state.Meal.PageSize;
+}
+exports.Recipe_Meal_Recipe_page_size = Recipe_Meal_Recipe_page_size;
+function Recipe_User_Recipe_search_query(self) {
+    let state = self.state();
+    return state.User == "loading" ? null : state.User.SearchQuery;
+}
+exports.Recipe_User_Recipe_search_query = Recipe_User_Recipe_search_query;
+function Recipe_Recipe_Rating_search_query(self) {
+    let state = self.state();
+    return state.Rating == "loading" ? null : state.Rating.SearchQuery;
+}
+exports.Recipe_Recipe_Rating_search_query = Recipe_Recipe_Rating_search_query;
+function Recipe_Meal_Recipe_search_query(self) {
+    let state = self.state();
+    return state.Meal == "loading" ? null : state.Meal.SearchQuery;
+}
+exports.Recipe_Meal_Recipe_search_query = Recipe_Meal_Recipe_search_query;
+function Recipe_User_Recipe_num_pages(self) {
+    let state = self.state();
+    return state.User == "loading" ? 1 : state.User.NumPages;
+}
+exports.Recipe_User_Recipe_num_pages = Recipe_User_Recipe_num_pages;
+function Recipe_Recipe_Rating_num_pages(self) {
+    let state = self.state();
+    return state.Rating == "loading" ? 1 : state.Rating.NumPages;
+}
+exports.Recipe_Recipe_Rating_num_pages = Recipe_Recipe_Rating_num_pages;
+function Recipe_Meal_Recipe_num_pages(self) {
+    let state = self.state();
+    return state.Meal == "loading" ? 1 : state.Meal.NumPages;
+}
+exports.Recipe_Meal_Recipe_num_pages = Recipe_Meal_Recipe_num_pages;
+function load_relation_Recipe_User_Recipe(self, force_first_page, current_User, current_Admin, callback) {
+    let state = self.state();
+    let prelude = force_first_page && state.User != "loading" ?
+        (c) => state.User != "loading" && self.setState(Object.assign({}, state, { User: Object.assign({}, state.User, { PageIndex: 0 }) }), c)
+        :
+            (c) => c();
+    Permissions.can_view_User(current_User, current_Admin) ?
+        prelude(() => Api.get_Recipe_User_Recipes(self.props.entity, Recipe_User_Recipe_page_index(self), Recipe_User_Recipe_page_size(self), Recipe_User_Recipe_search_query(self)).then(Users => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, User: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+                let state = self.state();
+                return {
+                    element: i,
+                    size: state.User != "loading" ?
+                        (state.User.Items.has(i.Id) ?
+                            state.User.Items.get(i.Id).size
+                            :
+                                "preview" /* i_just_created ? "large" : "preview" */)
+                        :
+                            "preview" /* i_just_created ? "large" : "preview" */,
+                    shown_relation: "all"
+                };
+            }, Users) }), callback)))
+        :
+            prelude(() => callback && callback());
+}
+exports.load_relation_Recipe_User_Recipe = load_relation_Recipe_User_Recipe;
+function load_relation_Recipe_Recipe_Rating(self, force_first_page, current_User, current_Admin, callback) {
+    let state = self.state();
+    let prelude = force_first_page && state.Rating != "loading" ?
+        (c) => state.Rating != "loading" && self.setState(Object.assign({}, state, { Rating: Object.assign({}, state.Rating, { PageIndex: 0 }) }), c)
+        :
+            (c) => c();
+    Permissions.can_view_Rating(current_User, current_Admin) ?
+        prelude(() => Api.get_Recipe_Recipe_Ratings(self.props.entity, Recipe_Recipe_Rating_page_index(self), Recipe_Recipe_Rating_page_size(self), Recipe_Recipe_Rating_search_query(self)).then(Ratings => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Rating: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+                let state = self.state();
+                return {
+                    element: i,
+                    size: state.Rating != "loading" ?
+                        (state.Rating.Items.has(i.Id) ?
+                            state.Rating.Items.get(i.Id).size
+                            :
+                                "preview" /* i_just_created ? "large" : "preview" */)
+                        :
+                            "preview" /* i_just_created ? "large" : "preview" */,
+                    shown_relation: "all"
+                };
+            }, Ratings) }), callback)))
+        :
+            prelude(() => callback && callback());
+}
+exports.load_relation_Recipe_Recipe_Rating = load_relation_Recipe_Recipe_Rating;
+function load_relation_Recipe_Meal_Recipe(self, force_first_page, current_User, current_Admin, callback) {
+    let state = self.state();
+    let prelude = force_first_page && state.Meal != "loading" ?
+        (c) => state.Meal != "loading" && self.setState(Object.assign({}, state, { Meal: Object.assign({}, state.Meal, { PageIndex: 0 }) }), c)
+        :
+            (c) => c();
+    Permissions.can_view_Meal(current_User, current_Admin) ?
+        prelude(() => Api.get_Recipe_Meal_Recipes(self.props.entity, Recipe_Meal_Recipe_page_index(self), Recipe_Meal_Recipe_page_size(self), Recipe_Meal_Recipe_search_query(self)).then(Meals => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Meal: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+                let state = self.state();
+                return {
+                    element: i,
+                    size: state.Meal != "loading" ?
+                        (state.Meal.Items.has(i.Id) ?
+                            state.Meal.Items.get(i.Id).size
+                            :
+                                "preview" /* i_just_created ? "large" : "preview" */)
+                        :
+                            "preview" /* i_just_created ? "large" : "preview" */,
+                    shown_relation: "all"
+                };
+            }, Meals) }), callback)))
+        :
+            prelude(() => callback && callback());
+}
+exports.load_relation_Recipe_Meal_Recipe = load_relation_Recipe_Meal_Recipe;
+function load_relations_Recipe(self, current_User, current_Admin, callback) {
+    load_relation_Recipe_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_Recipe_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_Recipe_User_Recipe(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback())));
+}
+exports.load_relations_Recipe = load_relations_Recipe;
+function set_size_Recipe(self, new_size) {
+    self.props.set_size(new_size, () => {
+        if (new_size == "fullscreen")
+            self.props.push(exports.Recipe_to_page(self.props.entity.Id));
+    });
+}
+exports.set_size_Recipe = set_size_Recipe;
+function render_Recipe_Picture_editable_minimised(self) {
+    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
+        return render_Recipe_Picture_minimised(self);
+    else
+        return !Permissions.can_view_Recipe_Picture(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute picture" },
+                React.createElement("label", { className: "attribute-label attribute-label-picture" }, i18next.t(`Recipe:Picture`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.Image(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Picture(self.props.current_User, self.props.current_Admin), self.props.mode, () => Api.get_Recipe_Picture(self.props.entity), (new_src) => Api.update_Recipe_Picture(self.props.entity, new_src))));
+}
+exports.render_Recipe_Picture_editable_minimised = render_Recipe_Picture_editable_minimised;
+function render_Recipe_Name_editable_minimised(self) {
+    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
+        return render_Recipe_Name_minimised(self);
+    else
+        return !Permissions.can_view_Recipe_Name(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute name" },
+                React.createElement("label", { className: "attribute-label attribute-label-name" }, i18next.t(`Recipe:Name`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Name(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Name, v => self.props.set_entity(Object.assign({}, self.props.entity, { Name: v })))));
+}
+exports.render_Recipe_Name_editable_minimised = render_Recipe_Name_editable_minimised;
+function render_Recipe_Ingredients_editable_minimised(self) {
+    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
+        return render_Recipe_Ingredients_minimised(self);
+    else
+        return !Permissions.can_view_Recipe_Ingredients(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute ingredients" },
+                React.createElement("label", { className: "attribute-label attribute-label-ingredients" }, i18next.t(`Recipe:Ingredients`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Ingredients(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Ingredients, v => self.props.set_entity(Object.assign({}, self.props.entity, { Ingredients: v })))));
+}
+exports.render_Recipe_Ingredients_editable_minimised = render_Recipe_Ingredients_editable_minimised;
+function render_Recipe_Description_editable_minimised(self) {
+    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
+        return render_Recipe_Description_minimised(self);
+    else
+        return !Permissions.can_view_Recipe_Description(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute description" },
+                React.createElement("label", { className: "attribute-label attribute-label-description" }, i18next.t(`Recipe:Description`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Description(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Description, v => self.props.set_entity(Object.assign({}, self.props.entity, { Description: v })))));
+}
+exports.render_Recipe_Description_editable_minimised = render_Recipe_Description_editable_minimised;
+function render_Recipe_PreparationTime_editable_minimised(self) {
+    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
+        return render_Recipe_PreparationTime_minimised(self);
+    else
+        return !Permissions.can_view_Recipe_PreparationTime(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute preparationtime" },
+                React.createElement("label", { className: "attribute-label attribute-label-preparationtime" }, i18next.t(`Recipe:PreparationTime`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.Number(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_PreparationTime(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.PreparationTime, v => self.props.set_entity(Object.assign({}, self.props.entity, { PreparationTime: v })))));
+}
+exports.render_Recipe_PreparationTime_editable_minimised = render_Recipe_PreparationTime_editable_minimised;
+function render_Recipe_Picture_editable_maximised(self) {
+    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
+        return render_Recipe_Picture_maximised(self);
+    else
+        return !Permissions.can_view_Recipe_Picture(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute picture" },
+                React.createElement("label", { className: "attribute-label attribute-label-picture" }, i18next.t(`Recipe:Picture`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.Image(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Picture(self.props.current_User, self.props.current_Admin), self.props.mode, () => Api.get_Recipe_Picture(self.props.entity), (new_src) => Api.update_Recipe_Picture(self.props.entity, new_src))));
+}
+exports.render_Recipe_Picture_editable_maximised = render_Recipe_Picture_editable_maximised;
+function render_Recipe_Name_editable_maximised(self) {
+    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
+        return render_Recipe_Name_maximised(self);
+    else
+        return !Permissions.can_view_Recipe_Name(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute name" },
+                React.createElement("label", { className: "attribute-label attribute-label-name" }, i18next.t(`Recipe:Name`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Name(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Name, v => self.props.set_entity(Object.assign({}, self.props.entity, { Name: v })))));
+}
+exports.render_Recipe_Name_editable_maximised = render_Recipe_Name_editable_maximised;
+function render_Recipe_Ingredients_editable_maximised(self) {
+    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
+        return render_Recipe_Ingredients_maximised(self);
+    else
+        return !Permissions.can_view_Recipe_Ingredients(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute ingredients" },
+                React.createElement("label", { className: "attribute-label attribute-label-ingredients" }, i18next.t(`Recipe:Ingredients`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Ingredients(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Ingredients, v => self.props.set_entity(Object.assign({}, self.props.entity, { Ingredients: v })))));
+}
+exports.render_Recipe_Ingredients_editable_maximised = render_Recipe_Ingredients_editable_maximised;
+function render_Recipe_Description_editable_maximised(self) {
+    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
+        return render_Recipe_Description_maximised(self);
+    else
+        return !Permissions.can_view_Recipe_Description(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute description" },
+                React.createElement("label", { className: "attribute-label attribute-label-description" }, i18next.t(`Recipe:Description`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Description(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Description, v => self.props.set_entity(Object.assign({}, self.props.entity, { Description: v })))));
+}
+exports.render_Recipe_Description_editable_maximised = render_Recipe_Description_editable_maximised;
+function render_Recipe_PreparationTime_editable_maximised(self) {
+    if (!Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
+        return render_Recipe_PreparationTime_maximised(self);
+    else
+        return !Permissions.can_view_Recipe_PreparationTime(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute preparationtime" },
+                React.createElement("label", { className: "attribute-label attribute-label-preparationtime" }, i18next.t(`Recipe:PreparationTime`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.Number(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_PreparationTime(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.PreparationTime, v => self.props.set_entity(Object.assign({}, self.props.entity, { PreparationTime: v })))));
+}
+exports.render_Recipe_PreparationTime_editable_maximised = render_Recipe_PreparationTime_editable_maximised;
+function render_editable_attributes_minimised_Recipe(self) {
+    let attributes = (React.createElement("div", null,
+        render_Recipe_Picture_editable_minimised(self),
+        render_Recipe_Name_editable_minimised(self),
+        render_Recipe_Ingredients_editable_minimised(self),
+        render_Recipe_Description_editable_minimised(self),
+        render_Recipe_PreparationTime_editable_minimised(self)));
+    return attributes;
+}
+exports.render_editable_attributes_minimised_Recipe = render_editable_attributes_minimised_Recipe;
+function render_editable_attributes_maximised_Recipe(self) {
+    let state = self.state();
+    let attributes = (React.createElement("div", null,
+        render_Recipe_Picture_editable_maximised(self),
+        render_Recipe_Name_editable_maximised(self),
+        render_Recipe_Ingredients_editable_maximised(self),
+        render_Recipe_Description_editable_maximised(self),
+        render_Recipe_PreparationTime_editable_maximised(self)));
+    return attributes;
+}
+exports.render_editable_attributes_maximised_Recipe = render_editable_attributes_maximised_Recipe;
+function render_breadcrumb_Recipe(self) {
+    return React.createElement("div", { className: "breadcrumb-recipe" }, "Recipe");
+}
+exports.render_breadcrumb_Recipe = render_breadcrumb_Recipe;
+function render_menu_Recipe(self) {
+    let state = self.state();
+    return React.createElement("div", { className: "menu" },
+        React.createElement("img", { className: "logo", src: "/images/logo.png", alt: "Logo" }),
+        React.createElement("div", { className: "pages" },
+            !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
+            !Permissions.can_view_CategoryList(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_CategoryLists(0, 1).then(e => e.Items.length > 0 && self.props.set_page(CategoryListViews.CategoryList_to_page(e.Items[0].Item.Id))) }, i18next.t('CategoryList'))),
+            !Permissions.can_view_Bookmarks(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_Bookmarkss(0, 1).then(e => e.Items.length > 0 && self.props.set_page(BookmarksViews.Bookmarks_to_page(e.Items[0].Item.Id))) }, i18next.t('Bookmarks'))),
+            React.createElement("div", { className: "menu_entries" },
+                React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
+}
+exports.render_menu_Recipe = render_menu_Recipe;
+function render_local_menu_Recipe(self) {
+    let state = self.state();
+    return React.createElement("div", { className: "local-menu" },
+        React.createElement("div", { className: "local_menu_entries" },
+            React.createElement("div", { className: `local_menu_entry${self.props.shown_relation == "none" ? " local_menu_entry--active" : ""}` },
+                React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('About this Recipe'))),
+            !Permissions.can_view_Rating(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { key: "Recipe_Rating", className: `local_menu_entry${self.props.shown_relation == "Recipe_Rating" ? " local_menu_entry--active" : ""}` },
+                    React.createElement("a", { onClick: () => load_relation_Recipe_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin, () => self.props.set_shown_relation("Recipe_Rating")) }, i18next.t('Recipe_Ratings')))));
+}
+exports.render_local_menu_Recipe = render_local_menu_Recipe;
+function render_controls_Recipe(self) {
+    return React.createElement("div", { className: "control" },
+        self.props.allow_maximisation && self.props.set_size ? React.createElement("a", { className: `"recipe button button--toggle ${self.props.size != 'preview' ? 'button--toggle--open' : ''}`, onClick: () => {
+                set_size_Recipe(self, self.props.size == "preview" ? "large" : "preview");
+            } }) : null,
+        self.props.allow_fullscreen && self.props.set_size ? React.createElement("a", { className: "recipe button button--fullscreen", onClick: () => set_size_Recipe(self, self.props.size == "fullscreen" ? "large" : "fullscreen") }) : null,
+        Permissions.can_delete_Recipe(self.props.current_User, self.props.current_Admin) && self.props.size == "fullscreen" ? React.createElement("a", { className: "button button--delete", onClick: () => confirm(i18next.t('Are you sure?')) &&
+                Api.delete_Recipe(self.props.entity).then(() => self.props.force_reload(() => self.props.pop())) }) : null,
+        self.props.size == "fullscreen" && self.props.pages_count > 0 ? React.createElement("a", { className: "recipe button button--close", onClick: () => self.props.pop() }) : null,
+        self.props.unlink && self.props.mode != "view" ?
+            React.createElement("a", { className: "button button--unlink", onClick: () => self.props.unlink() })
+            :
+                null,
+        self.props.delete && self.props.mode != "view" ?
+            React.createElement("a", { className: "button button--delete", onClick: () => self.props.delete() })
+            :
+                null);
+}
+exports.render_controls_Recipe = render_controls_Recipe;
+function render_content_Recipe(self) {
+    let actions = [
+        self.props.allow_maximisation && self.props.set_size && self.props.size == "preview" ?
+            () => set_size_Recipe(self, self.props.size == "preview" ? "large" : "preview")
+            :
+                null, self.props.allow_fullscreen && self.props.set_size && self.props.size == "preview" ?
+            () => set_size_Recipe(self, self.props.size == "fullscreen" ? "large" : "fullscreen")
+            :
+                null,
+    ].filter(a => a != null);
+    let content = Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ?
+        self.props.size == "preview" ?
+            render_preview_Recipe(self)
+            : self.props.size == "large" ?
+                render_large_Recipe(self)
+                : self.props.size == "fullscreen" ?
+                    render_large_Recipe(self)
+                    : "Error: unauthorised access to entity."
+        : "Error: unauthorised access to entity.";
+    if (self.props.mode == "view" && actions.length == 1 && !false)
+        return React.createElement("a", { onClick: () => actions[0]() },
+            React.createElement("div", { className: `${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}` }, content));
+    else
+        return React.createElement("div", { className: `${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}` }, content);
+}
+exports.render_content_Recipe = render_content_Recipe;
+function render_Recipe_Picture_minimised(self) {
+    return !Permissions.can_view_Recipe_Picture(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute picture" },
+        React.createElement("label", { className: "attribute-label attribute-label-picture" }, i18next.t(`Recipe:Picture`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.Image(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Picture(self.props.current_User, self.props.current_Admin), self.props.mode, () => Api.get_Recipe_Picture(self.props.entity), (new_src) => Api.update_Recipe_Picture(self.props.entity, new_src))));
+}
+exports.render_Recipe_Picture_minimised = render_Recipe_Picture_minimised;
+function render_Recipe_Name_minimised(self) {
+    return !Permissions.can_view_Recipe_Name(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute name" },
+        React.createElement("label", { className: "attribute-label attribute-label-name" }, i18next.t(`Recipe:Name`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Name(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Name, v => self.props.set_entity(Object.assign({}, self.props.entity, { Name: v })))));
+}
+exports.render_Recipe_Name_minimised = render_Recipe_Name_minimised;
+function render_Recipe_Ingredients_minimised(self) {
+    return !Permissions.can_view_Recipe_Ingredients(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute ingredients" },
+        React.createElement("label", { className: "attribute-label attribute-label-ingredients" }, i18next.t(`Recipe:Ingredients`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Ingredients(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Ingredients, v => self.props.set_entity(Object.assign({}, self.props.entity, { Ingredients: v })))));
+}
+exports.render_Recipe_Ingredients_minimised = render_Recipe_Ingredients_minimised;
+function render_Recipe_Description_minimised(self) {
+    return !Permissions.can_view_Recipe_Description(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute description" },
+        React.createElement("label", { className: "attribute-label attribute-label-description" }, i18next.t(`Recipe:Description`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Description(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Description, v => self.props.set_entity(Object.assign({}, self.props.entity, { Description: v })))));
+}
+exports.render_Recipe_Description_minimised = render_Recipe_Description_minimised;
+function render_Recipe_PreparationTime_minimised(self) {
+    return !Permissions.can_view_Recipe_PreparationTime(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute preparationtime" },
+        React.createElement("label", { className: "attribute-label attribute-label-preparationtime" }, i18next.t(`Recipe:PreparationTime`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.Number(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_PreparationTime(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.PreparationTime, v => self.props.set_entity(Object.assign({}, self.props.entity, { PreparationTime: v })))));
+}
+exports.render_Recipe_PreparationTime_minimised = render_Recipe_PreparationTime_minimised;
+function render_Recipe_Picture_maximised(self) {
+    return !Permissions.can_view_Recipe_Picture(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute picture" },
+        React.createElement("label", { className: "attribute-label attribute-label-picture" }, i18next.t(`Recipe:Picture`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.Image(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Picture(self.props.current_User, self.props.current_Admin), self.props.mode, () => Api.get_Recipe_Picture(self.props.entity), (new_src) => Api.update_Recipe_Picture(self.props.entity, new_src))));
+}
+exports.render_Recipe_Picture_maximised = render_Recipe_Picture_maximised;
+function render_Recipe_Name_maximised(self) {
+    return !Permissions.can_view_Recipe_Name(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute name" },
+        React.createElement("label", { className: "attribute-label attribute-label-name" }, i18next.t(`Recipe:Name`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Name(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Name, v => self.props.set_entity(Object.assign({}, self.props.entity, { Name: v })))));
+}
+exports.render_Recipe_Name_maximised = render_Recipe_Name_maximised;
+function render_Recipe_Ingredients_maximised(self) {
+    return !Permissions.can_view_Recipe_Ingredients(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute ingredients" },
+        React.createElement("label", { className: "attribute-label attribute-label-ingredients" }, i18next.t(`Recipe:Ingredients`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Ingredients(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Ingredients, v => self.props.set_entity(Object.assign({}, self.props.entity, { Ingredients: v })))));
+}
+exports.render_Recipe_Ingredients_maximised = render_Recipe_Ingredients_maximised;
+function render_Recipe_Description_maximised(self) {
+    return !Permissions.can_view_Recipe_Description(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute description" },
+        React.createElement("label", { className: "attribute-label attribute-label-description" }, i18next.t(`Recipe:Description`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.String(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_Description(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.Description, v => self.props.set_entity(Object.assign({}, self.props.entity, { Description: v })))));
+}
+exports.render_Recipe_Description_maximised = render_Recipe_Description_maximised;
+function render_Recipe_PreparationTime_maximised(self) {
+    return !Permissions.can_view_Recipe_PreparationTime(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute preparationtime" },
+        React.createElement("label", { className: "attribute-label attribute-label-preparationtime" }, i18next.t(`Recipe:PreparationTime`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.Number(self.props.is_editable && Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Recipe_PreparationTime(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.PreparationTime, v => self.props.set_entity(Object.assign({}, self.props.entity, { PreparationTime: v })))));
+}
+exports.render_Recipe_PreparationTime_maximised = render_Recipe_PreparationTime_maximised;
+function render_preview_Recipe(self) {
+    let attributes = null;
+    if (self.props.mode == "view" || !Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
+        attributes = (React.createElement("div", { className: "model__attributes" },
+            render_Recipe_Picture_minimised(self),
+            render_Recipe_Name_minimised(self),
+            render_Recipe_Ingredients_minimised(self),
+            render_Recipe_Description_minimised(self),
+            render_Recipe_PreparationTime_minimised(self)));
+    else
+        attributes = render_editable_attributes_minimised_Recipe(self);
+    return (React.createElement("div", { className: "block" }, attributes));
+}
+exports.render_preview_Recipe = render_preview_Recipe;
+function render_large_Recipe(self) {
+    let state = self.state();
+    let attributes = null;
+    if (self.props.mode == "view" || !Permissions.can_edit_Recipe(self.props.current_User, self.props.current_Admin))
+        attributes = (React.createElement("div", { className: "model__attributes" },
+            render_Recipe_Picture_maximised(self),
+            render_Recipe_Name_maximised(self),
+            render_Recipe_Ingredients_maximised(self),
+            render_Recipe_Description_maximised(self),
+            render_Recipe_PreparationTime_maximised(self)));
+    else
+        attributes = render_editable_attributes_maximised_Recipe(self);
+    return (React.createElement("div", { className: "block" },
+        self.props.nesting_depth == 0 && self.props.shown_relation != "all" && self.props.shown_relation != "none" ? null : attributes,
+        render_relations_Recipe(self)));
+}
+exports.render_large_Recipe = render_large_Recipe;
+function render_Recipe_User_Recipe(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "User_Recipe") || !Permissions.can_view_User(self.props.current_User, self.props.current_Admin))
+        return null;
+    let state = self.state();
+    return React.createElement("div", null, List.render_relation("recipe_user_recipe", "Recipe", "User", "Users", self.props.nesting_depth > 0, false, false, false)(state.User != "loading" ?
+        state.User.IdsInServerOrder.map(id => state.User != "loading" && state.User.Items.get(id)) :
+        state.User, Recipe_User_Recipe_page_index(self), Recipe_User_Recipe_num_pages(self), new_page_index => {
+        let state = self.state();
+        state.User != "loading" &&
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, User: Object.assign({}, state.User, { PageIndex: new_page_index }) }), () => load_relation_Recipe_User_Recipe(self, false, self.props.current_User, self.props.current_Admin));
+    }, (i, _) => {
+        let i_id = i.element.Id;
+        let state = self.state();
+        return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
+                        ${state.User != "loading" && state.User.JustCreated.has(i_id) && state.User.JustCreated.get(i_id) ? "newly-created" : ""}` },
+            React.createElement("div", { key: i_id }, UserViews.User(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_User_Recipe(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_User_Recipe(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_User_Recipe(self.props.current_User, self.props.current_Admin)) ?
+                    self.props.mode : "view", is_editable: state.User != "loading" && state.User.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
+                    let state = self.state();
+                    state.User != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { User: Object.assign({}, state.User, { Items: state.User.Items.set(i_id, Object.assign({}, state.User.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
+                }, nested_entity_names: self.props.nested_entity_names.push("User"), set_size: (new_size, callback) => {
+                    let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
+                    let state = self.state();
+                    state.User != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { User: Object.assign({}, state.User, { Items: state.User.Items.set(i_id, Object.assign({}, state.User.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
+                }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
+                    let state = self.state();
+                    state.User != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { dirty_User: state.dirty_User.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, User: Object.assign({}, state.User, { Items: state.User.Items.set(i_id, Object.assign({}, state.User.Items.get(i_id), { element: new_entity })) }) }), callback);
+                }, delete: undefined, unlink: !Permissions.can_delete_User_Recipe(self.props.current_User, self.props.current_Admin) ?
+                    null
+                    :
+                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_User_User_Recipes(i.element, self.props.entity).then(() => load_relation_Recipe_User_Recipe(self, false, self.props.current_User, self.props.current_Admin)) }))));
+    }, () => React.createElement("div", null,
+        Permissions.can_create_User(self.props.current_User, self.props.current_Admin) && Permissions.can_create_User_Recipe(self.props.current_User, self.props.current_Admin) && Recipe_User_Recipe_can_create(self) ? render_new_Recipe_User_Recipe(self) : null,
+        Permissions.can_create_User_Recipe(self.props.current_User, self.props.current_Admin) ? render_add_existing_Recipe_User_Recipe(self) : null)));
+}
+exports.render_Recipe_User_Recipe = render_Recipe_User_Recipe;
+function render_Recipe_Recipe_Rating(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Recipe_Rating") || !Permissions.can_view_Rating(self.props.current_User, self.props.current_Admin))
+        return null;
+    let state = self.state();
+    return React.createElement("div", null, List.render_relation("recipe_recipe_rating", "Recipe", "Rating", "Ratings", self.props.nesting_depth > 0, false, false, false)(state.Rating != "loading" ?
+        state.Rating.IdsInServerOrder.map(id => state.Rating != "loading" && state.Rating.Items.get(id)) :
+        state.Rating, Recipe_Recipe_Rating_page_index(self), Recipe_Recipe_Rating_num_pages(self), new_page_index => {
+        let state = self.state();
+        state.Rating != "loading" &&
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Rating: Object.assign({}, state.Rating, { PageIndex: new_page_index }) }), () => load_relation_Recipe_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin));
+    }, (i, _) => {
+        let i_id = i.element.Id;
+        let state = self.state();
+        return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
+                        ${state.Rating != "loading" && state.Rating.JustCreated.has(i_id) && state.Rating.JustCreated.get(i_id) ? "newly-created" : ""}` },
+            React.createElement("div", { key: i_id }, RatingViews.Rating(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Recipe_Rating(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_Recipe_Rating(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_Recipe_Rating(self.props.current_User, self.props.current_Admin)) ?
+                    self.props.mode : "view", is_editable: state.Rating != "loading" && state.Rating.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
+                    let state = self.state();
+                    state.Rating != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Rating: Object.assign({}, state.Rating, { Items: state.Rating.Items.set(i_id, Object.assign({}, state.Rating.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
+                }, nested_entity_names: self.props.nested_entity_names.push("Rating"), set_size: (new_size, callback) => {
+                    let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
+                    let state = self.state();
+                    state.Rating != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Rating: Object.assign({}, state.Rating, { Items: state.Rating.Items.set(i_id, Object.assign({}, state.Rating.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
+                }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
+                    let state = self.state();
+                    state.Rating != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { dirty_Rating: state.dirty_Rating.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Rating: Object.assign({}, state.Rating, { Items: state.Rating.Items.set(i_id, Object.assign({}, state.Rating.Items.get(i_id), { element: new_entity })) }) }), callback);
+                }, delete: undefined, unlink: !Permissions.can_delete_Recipe_Rating(self.props.current_User, self.props.current_Admin) ?
+                    null
+                    :
+                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Recipe_Recipe_Ratings(self.props.entity, i.element).then(() => load_relation_Recipe_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin)) }))));
+    }, () => React.createElement("div", null,
+        Permissions.can_create_Rating(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Recipe_Rating(self.props.current_User, self.props.current_Admin) && Recipe_Recipe_Rating_can_create(self) ? render_new_Recipe_Recipe_Rating(self) : null,
+        Permissions.can_create_Recipe_Rating(self.props.current_User, self.props.current_Admin) ? render_add_existing_Recipe_Recipe_Rating(self) : null)));
+}
+exports.render_Recipe_Recipe_Rating = render_Recipe_Recipe_Rating;
+function render_Recipe_Meal_Recipe(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Meal_Recipe") || !Permissions.can_view_Meal(self.props.current_User, self.props.current_Admin))
+        return null;
+    let state = self.state();
+    return React.createElement("div", null, List.render_relation("recipe_meal_recipe", "Recipe", "Meal", "Meals", self.props.nesting_depth > 0, false, false, false)(state.Meal != "loading" ?
+        state.Meal.IdsInServerOrder.map(id => state.Meal != "loading" && state.Meal.Items.get(id)) :
+        state.Meal, Recipe_Meal_Recipe_page_index(self), Recipe_Meal_Recipe_num_pages(self), new_page_index => {
+        let state = self.state();
+        state.Meal != "loading" &&
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Meal: Object.assign({}, state.Meal, { PageIndex: new_page_index }) }), () => load_relation_Recipe_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin));
+    }, (i, _) => {
+        let i_id = i.element.Id;
+        let state = self.state();
+        return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
+                        ${state.Meal != "loading" && state.Meal.JustCreated.has(i_id) && state.Meal.JustCreated.get(i_id) ? "newly-created" : ""}` },
+            React.createElement("div", { key: i_id }, MealViews.Meal(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Meal_Recipe(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_Meal_Recipe(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_Meal_Recipe(self.props.current_User, self.props.current_Admin)) ?
+                    self.props.mode : "view", is_editable: state.Meal != "loading" && state.Meal.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
+                    let state = self.state();
+                    state.Meal != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Meal: Object.assign({}, state.Meal, { Items: state.Meal.Items.set(i_id, Object.assign({}, state.Meal.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
+                }, nested_entity_names: self.props.nested_entity_names.push("Meal"), set_size: (new_size, callback) => {
+                    let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
+                    let state = self.state();
+                    state.Meal != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Meal: Object.assign({}, state.Meal, { Items: state.Meal.Items.set(i_id, Object.assign({}, state.Meal.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
+                }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
+                    let state = self.state();
+                    state.Meal != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { dirty_Meal: state.dirty_Meal.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Meal: Object.assign({}, state.Meal, { Items: state.Meal.Items.set(i_id, Object.assign({}, state.Meal.Items.get(i_id), { element: new_entity })) }) }), callback);
+                }, delete: undefined, unlink: !Permissions.can_delete_Meal_Recipe(self.props.current_User, self.props.current_Admin) ?
+                    null
+                    :
+                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Meal_Meal_Recipes(i.element, self.props.entity).then(() => load_relation_Recipe_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin)) }))));
+    }, () => React.createElement("div", null,
+        Permissions.can_create_Meal(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Meal_Recipe(self.props.current_User, self.props.current_Admin) && Recipe_Meal_Recipe_can_create(self) ? render_new_Recipe_Meal_Recipe(self) : null,
+        Permissions.can_create_Meal_Recipe(self.props.current_User, self.props.current_Admin) ? render_add_existing_Recipe_Meal_Recipe(self) : null)));
+}
+exports.render_Recipe_Meal_Recipe = render_Recipe_Meal_Recipe;
+function render_relations_Recipe(self) {
+    return React.createElement("div", { className: "relations" }, render_Recipe_Recipe_Rating(self, "default"));
+}
+exports.render_relations_Recipe = render_relations_Recipe;
+function render_add_existing_Recipe_User_Recipe(self) {
+    let state = self.state();
+    return self.props.mode == "edit" ?
+        React.createElement("div", { className: "button__actions" }, state.add_step_User != "open" ?
+            React.createElement(Buttons.Add, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_User: "open" })), target_name: "User" })
+            :
+                React.createElement(List.AddToRelation, {
+                    relation_name: "recipe_user_recipe",
+                    source_name: "Recipe",
+                    target_name: "User",
+                    target_plural: "Users",
+                    page_size: 25,
+                    render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
+                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_User: "saving" }), () => Api.link_Recipe_User_Recipes(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_User: "closed" }), () => load_relation_Recipe_User_Recipe(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
+                        React.createElement("div", { className: "group__title", disabled: true }, UserViews.User(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("User"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
+                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_User: "closed" })),
+                    get_items: [
+                        { name: "User", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Recipe_User_Recipes(self.props.entity, i, s); }) },
+                    ]
+                }))
+        :
+            null;
+}
+exports.render_add_existing_Recipe_User_Recipe = render_add_existing_Recipe_User_Recipe;
+function render_add_existing_Recipe_Recipe_Rating(self) {
+    let state = self.state();
+    return self.props.mode == "edit" ?
+        React.createElement("div", { className: "button__actions" }, state.add_step_Rating != "open" ?
+            React.createElement(Buttons.Add, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Rating: "open" })), target_name: "Rating" })
+            :
+                React.createElement(List.AddToRelation, {
+                    relation_name: "recipe_recipe_rating",
+                    source_name: "Recipe",
+                    target_name: "Rating",
+                    target_plural: "Ratings",
+                    page_size: 25,
+                    render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
+                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Rating: "saving" }), () => Api.link_Recipe_Recipe_Ratings(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Rating: "closed" }), () => load_relation_Recipe_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
+                        React.createElement("div", { className: "group__title", disabled: true }, RatingViews.Rating(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Rating"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
+                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Rating: "closed" })),
+                    get_items: [
+                        { name: "Rating", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Recipe_Recipe_Ratings(self.props.entity, i, s); }) },
+                    ]
+                }))
+        :
+            null;
+}
+exports.render_add_existing_Recipe_Recipe_Rating = render_add_existing_Recipe_Recipe_Rating;
+function render_add_existing_Recipe_Meal_Recipe(self) {
+    let state = self.state();
+    return self.props.mode == "edit" ?
+        React.createElement("div", { className: "button__actions" }, state.add_step_Meal != "open" ?
+            React.createElement(Buttons.Add, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "open" })), target_name: "Meal" })
+            :
+                React.createElement(List.AddToRelation, {
+                    relation_name: "recipe_meal_recipe",
+                    source_name: "Recipe",
+                    target_name: "Meal",
+                    target_plural: "Meals",
+                    page_size: 25,
+                    render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
+                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "saving" }), () => Api.link_Recipe_Meal_Recipes(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }), () => load_relation_Recipe_Meal_Recipe(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
+                        React.createElement("div", { className: "group__title", disabled: true }, MealViews.Meal(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Meal"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
+                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" })),
+                    get_items: [
+                        { name: "Lunch", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Recipe_Meal_Recipes_Lunch(self.props.entity, i, s); }) },
+                        { name: "Dinner", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Recipe_Meal_Recipes_Dinner(self.props.entity, i, s); }) },
+                        { name: "Breakfast", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Recipe_Meal_Recipes_Breakfast(self.props.entity, i, s); }) }
+                    ]
+                }))
+        :
+            null;
+}
+exports.render_add_existing_Recipe_Meal_Recipe = render_add_existing_Recipe_Meal_Recipe;
+function render_new_Recipe_User_Recipe(self) {
+    let state = self.state();
+    return state.create_step_User != "none" ?
+        React.createElement("div", { className: "overlay__item overlay__item--new" },
+            React.createElement("label", null,
+                i18next.t('Username'),
+                React.createElement("input", { type: "text", value: state.create_step_User.username, onChange: (e) => state.create_step_User != "none" &&
+                        self.setState(Object.assign({}, self.state(), { create_step_User: Object.assign({}, state.create_step_User, { username: e.target.value }) })) })),
+            React.createElement("label", null,
+                i18next.t('Email'),
+                React.createElement("input", { type: "email", value: state.create_step_User.email, onChange: (e) => state.create_step_User != "none" &&
+                        self.setState(Object.assign({}, self.state(), { create_step_User: Object.assign({}, state.create_step_User, { email: e.target.value }) })) })),
+            React.createElement("label", null,
+                i18next.t('Email confirmation'),
+                React.createElement("input", { type: "email", value: state.create_step_User.email_confirmation, onChange: (e) => state.create_step_User != "none" &&
+                        self.setState(Object.assign({}, self.state(), { create_step_User: Object.assign({}, state.create_step_User, { email_confirmation: e.target.value }) })) })),
+            state.create_step_User.validation == "validating" ?
+                React.createElement("div", { className: "loading" }, i18next.t('Validating'))
+                :
+                    React.createElement(Buttons.Create, { onClick: () => state.create_step_User != "none" &&
+                            Api.validate_User(state.create_step_User.username, state.create_step_User.email, state.create_step_User.email_confirmation).then(is_valid => {
+                                if (state.create_step_User != "none" && is_valid) {
+                                    Api.register_User(state.create_step_User.username, state.create_step_User.email, state.create_step_User.email_confirmation).then(() => load_relation_Recipe_User_Recipe(self, false, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { create_step_User: "none" }))));
+                                }
+                                else {
+                                    state.create_step_User != "none" &&
+                                        self.setState(Object.assign({}, self.state(), { create_step_User: Object.assign({}, state.create_step_User, { validation: "invalid" }) }), () => alert(i18next.t('The username and email combination is invalid or it might already be in use. Please try a different combination.')));
+                                }
+                            }).catch(() => state.create_step_User != "none" &&
+                                self.setState(Object.assign({}, self.state(), { create_step_User: Object.assign({}, state.create_step_User, { validation: "invalid" }) }), () => alert(i18next.t('The username and email combination is invalid or it might already be in use. Please try a different combination.')))), target_name: "User" }),
+            React.createElement(Buttons.Cancel, { onClick: () => self.setState(Object.assign({}, self.state(), { create_step_User: "none" })) }))
+        : self.props.mode == "edit" ?
+            React.createElement("div", { className: "button__actions" },
+                React.createElement("div", { className: "new-user" },
+                    React.createElement("button", { className: "new-user button button--new", onClick: () => self.setState(Object.assign({}, self.state(), { create_step_User: { validation: "invalid", username: "", email: "", email_confirmation: "" } })) }, i18next.t('Create new User'))))
+            :
+                null;
+}
+exports.render_new_Recipe_User_Recipe = render_new_Recipe_User_Recipe;
+function render_new_Recipe_Recipe_Rating(self) {
+    let state = self.state();
+    return self.props.mode == "edit" ?
+        React.createElement("div", { className: "button__actions" },
+            React.createElement("div", { className: "new-rating" },
+                React.createElement("button", { className: "new-rating button button--new", onClick: () => Api.create_linked_Recipe_Recipe_Ratings_Rating(self.props.entity).then(e => {
+                        e.length > 0 &&
+                            Api.update_Rating(Object.assign({}, e[0], { rating: 0 })).then(() => load_relation_Recipe_Recipe_Rating(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Rating: "closed" }))));
+                    }) }, i18next.t('Create new Rating'))))
+        :
+            null;
+}
+exports.render_new_Recipe_Recipe_Rating = render_new_Recipe_Recipe_Rating;
+function render_new_Recipe_Meal_Recipe(self) {
+    let state = self.state();
+    return self.props.mode == "edit" ?
+        React.createElement("div", { className: "button__actions" },
+            React.createElement(Buttons.Create, { target_name: "Meal", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "creating" })) }),
+            state.add_step_Meal != "creating" ?
+                null
+                :
+                    React.createElement("div", { className: "overlay__item overlay__item--new" },
+                        React.createElement("div", { className: "new-lunch" },
+                            React.createElement("button", { className: "new-lunch button button--new", onClick: () => Api.create_linked_Recipe_Meal_Recipes_Lunch(self.props.entity).then(e => {
+                                    e.length > 0 &&
+                                        Api.update_Lunch(Object.assign({}, e[0], { Kind: "Lunch", Description: "" })).then(() => load_relation_Recipe_Meal_Recipe(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
+                                }) }, i18next.t('Create new Lunch'))),
+                        React.createElement("div", { className: "new-dinner" },
+                            React.createElement("button", { className: "new-dinner button button--new", onClick: () => Api.create_linked_Recipe_Meal_Recipes_Dinner(self.props.entity).then(e => {
+                                    e.length > 0 &&
+                                        Api.update_Dinner(Object.assign({}, e[0], { Kind: "Dinner", Description: "" })).then(() => load_relation_Recipe_Meal_Recipe(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
+                                }) }, i18next.t('Create new Dinner'))),
+                        React.createElement("div", { className: "new-breakfast" },
+                            React.createElement("button", { className: "new-breakfast button button--new", onClick: () => Api.create_linked_Recipe_Meal_Recipes_Breakfast(self.props.entity).then(e => {
+                                    e.length > 0 &&
+                                        Api.update_Breakfast(Object.assign({}, e[0], { Kind: "Breakfast", Description: "" })).then(() => load_relation_Recipe_Meal_Recipe(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" }))));
+                                }) }, i18next.t('Create new Breakfast'))),
+                        React.createElement(Buttons.Cancel, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Meal: "closed" })) })))
+        :
+            null;
+}
+exports.render_new_Recipe_Meal_Recipe = render_new_Recipe_Meal_Recipe;
+function render_saving_animations_Recipe(self) {
+    return self.state().dirty_User.count() > 0 ?
+        React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" }) :
+        self.state().dirty_Rating.count() > 0 ?
+            React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" }) :
+            self.state().dirty_Meal.count() > 0 ?
+                React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" })
+                : React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "cornflowerblue" }, className: "saved" });
+}
+exports.render_saving_animations_Recipe = render_saving_animations_Recipe;
+class RecipeComponent extends React.Component {
+    constructor(props, context) {
+        super(props, context);
+        this.thread = null;
+        this.state = { update_count: 0, add_step_User: "closed", create_step_User: "none", dirty_User: Immutable.Map(), User: "loading", add_step_Rating: "closed", dirty_Rating: Immutable.Map(), Rating: "loading", add_step_Meal: "closed", dirty_Meal: Immutable.Map(), Meal: "loading" };
+    }
+    get_self() {
+        return { state: () => this.state, props: this.props, setState: (ns, c) => this.setState(ns, c) };
+    }
+    componentWillReceiveProps(new_props) {
+        if (new_props.size == "breadcrumb")
+            return;
+        let current_logged_in_entity = this.props.current_User || this.props.current_Admin || null;
+        let new_logged_in_entity = new_props.current_User || new_props.current_Admin || null;
+        if (new_props.mode != this.props.mode || (new_props.size != this.props.size && (new_props.size == "large" || new_props.size == "fullscreen")) ||
+            new_props.logic_frame != this.props.logic_frame ||
+            (current_logged_in_entity && !new_logged_in_entity) ||
+            (!current_logged_in_entity && new_logged_in_entity) ||
+            (current_logged_in_entity && new_logged_in_entity && current_logged_in_entity.Id != new_logged_in_entity.Id)) {
+            load_relations_Recipe(this.get_self(), new_props.current_User, new_props.current_Admin);
+        }
+    }
+    componentWillMount() {
+        if (this.props.size == "breadcrumb")
+            return;
+        if (this.props.size != "preview") {
+            load_relations_Recipe(this.get_self(), this.props.current_User, this.props.current_Admin);
+        }
+        this.thread = setInterval(() => {
+            if (this.state.dirty_User.count() > 0) {
+                let first = this.state.dirty_User.first();
+                this.setState(Object.assign({}, this.state, { dirty_User: this.state.dirty_User.remove(first.Id) }), () => Api.update_User(first));
+            }
+            else if (this.state.dirty_Rating.count() > 0) {
+                let first = this.state.dirty_Rating.first();
+                this.setState(Object.assign({}, this.state, { dirty_Rating: this.state.dirty_Rating.remove(first.Id) }), () => Api.update_Rating(first));
+            }
+            else if (this.state.dirty_Meal.count() > 0) {
+                let first = this.state.dirty_Meal.first();
+                this.setState(Object.assign({}, this.state, { dirty_Meal: this.state.dirty_Meal.remove(first.Id) }), () => Api.update_Meal(first));
+            }
+        }, 500);
+    }
+    componentWillUnmount() {
+        clearInterval(this.thread);
+    }
+    render() {
+        if (this.props.size == "breadcrumb") {
+            return Permissions.can_view_Recipe(this.props.current_User, this.props.current_Admin) ?
+                render_breadcrumb_Recipe(this.get_self())
+                : null;
+        }
+        return React.createElement("div", { id: `Recipe_${this.props.entity.Id.toString()}_${this.state.update_count}`, className: `model recipe` },
+            render_saving_animations_Recipe(this.get_self()),
+            this.props.nesting_depth == 0 ? render_menu_Recipe(this.get_self()) : null,
+            React.createElement("div", { className: "content" },
+                this.props.nesting_depth == 0 && !!this.props.toggle_button ?
+                    React.createElement("div", { className: "topbar" },
+                        this.props.breadcrumbs(),
+                        React.createElement("div", { className: "topbar__buttons" },
+                            this.props.toggle_button ? this.props.toggle_button() : null,
+                            this.props.authentication_menu()))
+                    :
+                        null,
+                this.props.nesting_depth == 0 ? render_local_menu_Recipe(this.get_self()) : null,
+                render_controls_Recipe(this.get_self()),
+                render_content_Recipe(this.get_self())));
+    }
+}
+exports.RecipeComponent = RecipeComponent;
+exports.Recipe = (props) => React.createElement(RecipeComponent, Object.assign({}, props));
+exports.Recipe_to_page = (id) => {
+    let can_edit = Utils.any_of([Permissions.can_edit_Recipe, Permissions.can_edit_User_Recipe, Permissions.can_edit_Recipe_Rating, Permissions.can_edit_Meal_Recipe, Permissions.can_edit_User, Permissions.can_edit_Rating, Permissions.can_edit_Meal]);
+    return Utils.scene_to_page(can_edit, exports.Recipe, Api.get_Recipe(id), Api.update_Recipe, "Recipe", "Recipe", `/Recipes/${id}`);
+};
+exports.Recipe_to = (id, target_element_id, current_User, current_Admin) => {
+    Utils.render_page_manager(target_element_id, exports.Recipe_to_page(id), current_User, current_Admin);
+};
+
+
+/***/ }),
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 22.1.3.31 Array.prototype[@@unscopables]
 var UNSCOPABLES = __webpack_require__(14)('unscopables')
   , ArrayProto  = Array.prototype;
-if(ArrayProto[UNSCOPABLES] == undefined)__webpack_require__(30)(ArrayProto, UNSCOPABLES, {});
+if(ArrayProto[UNSCOPABLES] == undefined)__webpack_require__(32)(ArrayProto, UNSCOPABLES, {});
 module.exports = function(key){
   ArrayProto[UNSCOPABLES][key] = true;
 };
 
 /***/ }),
-/* 80 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var ctx         = __webpack_require__(56)
-  , call        = __webpack_require__(203)
-  , isArrayIter = __webpack_require__(136)
+var ctx         = __webpack_require__(58)
+  , call        = __webpack_require__(206)
+  , isArrayIter = __webpack_require__(139)
   , anObject    = __webpack_require__(5)
-  , toLength    = __webpack_require__(18)
-  , getIterFn   = __webpack_require__(153)
+  , toLength    = __webpack_require__(19)
+  , getIterFn   = __webpack_require__(156)
   , BREAK       = {}
   , RETURN      = {};
 var exports = module.exports = function(iterable, entries, fn, that, ITERATOR){
@@ -24006,17 +24109,17 @@ exports.BREAK  = BREAK;
 exports.RETURN = RETURN;
 
 /***/ }),
-/* 81 */
+/* 83 */
 /***/ (function(module, exports) {
 
 module.exports = {};
 
 /***/ }),
-/* 82 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var def = __webpack_require__(16).f
-  , has = __webpack_require__(24)
+  , has = __webpack_require__(25)
   , TAG = __webpack_require__(14)('toStringTag');
 
 module.exports = function(it, tag, stat){
@@ -24024,13 +24127,13 @@ module.exports = function(it, tag, stat){
 };
 
 /***/ }),
-/* 83 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(1)
-  , defined = __webpack_require__(43)
+  , defined = __webpack_require__(44)
   , fails   = __webpack_require__(7)
-  , spaces  = __webpack_require__(149)
+  , spaces  = __webpack_require__(152)
   , space   = '[' + spaces + ']'
   , non     = '\u200b\u0085'
   , ltrim   = RegExp('^' + space + space + '*')
@@ -24059,17 +24162,17 @@ var trim = exporter.trim = function(string, TYPE){
 module.exports = exporter;
 
 /***/ }),
-/* 84 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-module.exports = __webpack_require__(698);
+module.exports = __webpack_require__(700);
 
 
 /***/ }),
-/* 85 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24085,11 +24188,11 @@ module.exports = __webpack_require__(698);
 
 
 
-var DOMNamespaces = __webpack_require__(169);
-var setInnerHTML = __webpack_require__(127);
+var DOMNamespaces = __webpack_require__(172);
+var setInnerHTML = __webpack_require__(129);
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(176);
-var setTextContent = __webpack_require__(391);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(179);
+var setTextContent = __webpack_require__(394);
 
 var ELEMENT_NODE_TYPE = 1;
 var DOCUMENT_FRAGMENT_NODE_TYPE = 11;
@@ -24192,7 +24295,7 @@ DOMLazyTree.queueText = queueText;
 module.exports = DOMLazyTree;
 
 /***/ }),
-/* 86 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24208,8 +24311,8 @@ module.exports = DOMLazyTree;
 
 
 
-var ReactRef = __webpack_require__(727);
-var ReactInstrumentation = __webpack_require__(38);
+var ReactRef = __webpack_require__(729);
+var ReactInstrumentation = __webpack_require__(41);
 
 var warning = __webpack_require__(4);
 
@@ -24364,7 +24467,7 @@ module.exports = ReactReconciler;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 87 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24382,24 +24485,24 @@ module.exports = ReactReconciler;
 
 var _assign = __webpack_require__(9);
 
-var ReactBaseClasses = __webpack_require__(393);
-var ReactChildren = __webpack_require__(757);
-var ReactDOMFactories = __webpack_require__(758);
-var ReactElement = __webpack_require__(78);
-var ReactPropTypes = __webpack_require__(760);
-var ReactVersion = __webpack_require__(762);
+var ReactBaseClasses = __webpack_require__(396);
+var ReactChildren = __webpack_require__(759);
+var ReactDOMFactories = __webpack_require__(760);
+var ReactElement = __webpack_require__(79);
+var ReactPropTypes = __webpack_require__(762);
+var ReactVersion = __webpack_require__(764);
 
-var createReactClass = __webpack_require__(764);
-var onlyChild = __webpack_require__(766);
+var createReactClass = __webpack_require__(766);
+var onlyChild = __webpack_require__(768);
 
 var createElement = ReactElement.createElement;
 var createFactory = ReactElement.createFactory;
 var cloneElement = ReactElement.cloneElement;
 
 if (process.env.NODE_ENV !== 'production') {
-  var lowPriorityWarning = __webpack_require__(183);
-  var canDefineProperty = __webpack_require__(128);
-  var ReactElementValidator = __webpack_require__(395);
+  var lowPriorityWarning = __webpack_require__(186);
+  var canDefineProperty = __webpack_require__(130);
+  var ReactElementValidator = __webpack_require__(398);
   var didWarnPropTypesDeprecated = false;
   createElement = ReactElementValidator.createElement;
   createFactory = ReactElementValidator.createFactory;
@@ -24502,7 +24605,7 @@ module.exports = React;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 88 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24546,47 +24649,18 @@ function reactProdInvariant(code) {
 module.exports = reactProdInvariant;
 
 /***/ }),
-/* 89 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const Api = __webpack_require__(21);
-const Permissions = __webpack_require__(28);
-const Utils = __webpack_require__(23);
-const AmericanViews = __webpack_require__(185);
-const AsianViews = __webpack_require__(186);
-const MediterraneanViews = __webpack_require__(190);
-exports.Categorie = (props) => props.entity.Kind == "American" ?
-    AmericanViews.American(Object.assign({}, props, { set_entity: (e, c) => props.set_entity(e, c), entity: props.entity }))
-    : props.entity.Kind == "Asian" ?
-        AsianViews.Asian(Object.assign({}, props, { set_entity: (e, c) => props.set_entity(e, c), entity: props.entity }))
-        : props.entity.Kind == "Mediterranean" ?
-            MediterraneanViews.Mediterranean(Object.assign({}, props, { set_entity: (e, c) => props.set_entity(e, c), entity: props.entity }))
-            : null;
-exports.Categorie_to_page = (id) => {
-    let can_edit = Utils.any_of([Permissions.can_edit_Categorie, Permissions.can_edit_Categorie_Meal, Permissions.can_edit_HomePage_Categorie, Permissions.can_edit_Meal, Permissions.can_edit_HomePage]);
-    return Utils.scene_to_page(can_edit, exports.Categorie, Api.get_Categorie(id), Api.update_Categorie, "Categorie", "Categorie", `/Categories/${id}`);
-};
-exports.Categorie_to = (id, target_element_id, current_User, current_Admin) => {
-    Utils.render_page_manager(target_element_id, exports.Categorie_to_page(id), current_User, current_Admin);
-};
-
-
-/***/ }),
-/* 90 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-const Api = __webpack_require__(21);
-const Permissions = __webpack_require__(28);
-const Utils = __webpack_require__(23);
-const LunchViews = __webpack_require__(189);
-const DinnerViews = __webpack_require__(188);
-const BreakfastViews = __webpack_require__(187);
+const Api = __webpack_require__(18);
+const Permissions = __webpack_require__(24);
+const Utils = __webpack_require__(22);
+const LunchViews = __webpack_require__(192);
+const DinnerViews = __webpack_require__(191);
+const BreakfastViews = __webpack_require__(190);
 exports.Meal = (props) => props.entity.Kind == "Lunch" ?
     LunchViews.Lunch(Object.assign({}, props, { set_entity: (e, c) => props.set_entity(e, c), entity: props.entity }))
     : props.entity.Kind == "Dinner" ?
@@ -24604,11 +24678,11 @@ exports.Meal_to = (id, target_element_id, current_User, current_Admin) => {
 
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // getting tag from 19.1.3.6 Object.prototype.toString()
-var cof = __webpack_require__(42)
+var cof = __webpack_require__(43)
   , TAG = __webpack_require__(14)('toStringTag')
   // ES3 wrong here
   , ARG = cof(function(){ return arguments; }()) == 'Arguments';
@@ -24632,23 +24706,23 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for non-array-like ES3 and non-enumerable old V8 strings
-var cof = __webpack_require__(42);
+var cof = __webpack_require__(43);
 module.exports = Object('z').propertyIsEnumerable(0) ? Object : function(it){
   return cof(it) == 'String' ? it.split('') : Object(it);
 };
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports) {
 
 exports.f = {}.propertyIsEnumerable;
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24666,7 +24740,7 @@ exports.f = {}.propertyIsEnumerable;
 
 
 
-var Immutable = __webpack_require__(12);
+var Immutable = __webpack_require__(13);
 
 var OrderedMap = Immutable.OrderedMap;
 
@@ -24682,7 +24756,7 @@ var BlockMapBuilder = {
 module.exports = BlockMapBuilder;
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24707,7 +24781,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Immutable = __webpack_require__(12);
+var Immutable = __webpack_require__(13);
 
 var Record = Immutable.Record;
 
@@ -24822,7 +24896,7 @@ var SelectionState = function (_SelectionStateRecord) {
 module.exports = SelectionState;
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24840,7 +24914,7 @@ module.exports = SelectionState;
 
 
 
-var DraftModifier = __webpack_require__(25);
+var DraftModifier = __webpack_require__(26);
 
 /**
  * For a collapsed selection state, remove text based on the specified strategy.
@@ -24870,7 +24944,7 @@ function removeTextWithStrategy(editorState, strategy, direction) {
 module.exports = removeTextWithStrategy;
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -24917,7 +24991,7 @@ function replace(str) {
 module.exports = cx;
 
 /***/ }),
-/* 98 */
+/* 99 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -24986,7 +25060,7 @@ var EventEmitter = function () {
 /* harmony default export */ __webpack_exports__["a"] = (EventEmitter);
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -25102,7 +25176,7 @@ function escape(data) {
 }
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25120,12 +25194,12 @@ function escape(data) {
 
 var _prodInvariant = __webpack_require__(8);
 
-var EventPluginRegistry = __webpack_require__(122);
-var EventPluginUtils = __webpack_require__(170);
-var ReactErrorUtils = __webpack_require__(174);
+var EventPluginRegistry = __webpack_require__(124);
+var EventPluginUtils = __webpack_require__(173);
+var ReactErrorUtils = __webpack_require__(177);
 
-var accumulateInto = __webpack_require__(384);
-var forEachAccumulated = __webpack_require__(385);
+var accumulateInto = __webpack_require__(387);
+var forEachAccumulated = __webpack_require__(388);
 var invariant = __webpack_require__(3);
 
 /**
@@ -25382,7 +25456,7 @@ module.exports = EventPluginHub;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25398,11 +25472,11 @@ module.exports = EventPluginHub;
 
 
 
-var EventPluginHub = __webpack_require__(100);
-var EventPluginUtils = __webpack_require__(170);
+var EventPluginHub = __webpack_require__(101);
+var EventPluginUtils = __webpack_require__(173);
 
-var accumulateInto = __webpack_require__(384);
-var forEachAccumulated = __webpack_require__(385);
+var accumulateInto = __webpack_require__(387);
+var forEachAccumulated = __webpack_require__(388);
 var warning = __webpack_require__(4);
 
 var getListener = EventPluginHub.getListener;
@@ -25522,7 +25596,7 @@ module.exports = EventPropagators;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25573,7 +25647,7 @@ var ReactInstanceMap = {
 module.exports = ReactInstanceMap;
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25589,9 +25663,9 @@ module.exports = ReactInstanceMap;
 
 
 
-var SyntheticEvent = __webpack_require__(59);
+var SyntheticEvent = __webpack_require__(61);
 
-var getEventTarget = __webpack_require__(179);
+var getEventTarget = __webpack_require__(182);
 
 /**
  * @interface UIEvent
@@ -25637,14 +25711,43 @@ SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 module.exports = SyntheticUIEvent;
 
 /***/ }),
-/* 104 */
+/* 105 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const Api = __webpack_require__(18);
+const Permissions = __webpack_require__(24);
+const Utils = __webpack_require__(22);
+const AmericanViews = __webpack_require__(188);
+const AsianViews = __webpack_require__(189);
+const MediterraneanViews = __webpack_require__(193);
+exports.Categorie = (props) => props.entity.Kind == "American" ?
+    AmericanViews.American(Object.assign({}, props, { set_entity: (e, c) => props.set_entity(e, c), entity: props.entity }))
+    : props.entity.Kind == "Asian" ?
+        AsianViews.Asian(Object.assign({}, props, { set_entity: (e, c) => props.set_entity(e, c), entity: props.entity }))
+        : props.entity.Kind == "Mediterranean" ?
+            MediterraneanViews.Mediterranean(Object.assign({}, props, { set_entity: (e, c) => props.set_entity(e, c), entity: props.entity }))
+            : null;
+exports.Categorie_to_page = (id) => {
+    let can_edit = Utils.any_of([Permissions.can_edit_Categorie, Permissions.can_edit_Categorie_Meal, Permissions.can_edit_Meal]);
+    return Utils.scene_to_page(can_edit, exports.Categorie, Api.get_Categorie(id), Api.update_Categorie, "Categorie", "Categorie", `/Categories/${id}`);
+};
+exports.Categorie_to = (id, target_element_id, current_User, current_Admin) => {
+    Utils.render_page_manager(target_element_id, exports.Categorie_to_page(id), current_User, current_Admin);
+};
+
+
+/***/ }),
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // false -> Array#indexOf
 // true  -> Array#includes
-var toIObject = __webpack_require__(33)
-  , toLength  = __webpack_require__(18)
-  , toIndex   = __webpack_require__(73);
+var toIObject = __webpack_require__(35)
+  , toLength  = __webpack_require__(19)
+  , toIndex   = __webpack_require__(74);
 module.exports = function(IS_INCLUDES){
   return function($this, el, fromIndex){
     var O      = toIObject($this)
@@ -25663,23 +25766,23 @@ module.exports = function(IS_INCLUDES){
 };
 
 /***/ }),
-/* 105 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var global            = __webpack_require__(6)
   , $export           = __webpack_require__(1)
-  , redefine          = __webpack_require__(31)
-  , redefineAll       = __webpack_require__(71)
-  , meta              = __webpack_require__(60)
-  , forOf             = __webpack_require__(80)
-  , anInstance        = __webpack_require__(66)
-  , isObject          = __webpack_require__(11)
+  , redefine          = __webpack_require__(33)
+  , redefineAll       = __webpack_require__(72)
+  , meta              = __webpack_require__(62)
+  , forOf             = __webpack_require__(82)
+  , anInstance        = __webpack_require__(67)
+  , isObject          = __webpack_require__(12)
   , fails             = __webpack_require__(7)
-  , $iterDetect       = __webpack_require__(110)
-  , setToStringTag    = __webpack_require__(82)
-  , inheritIfRequired = __webpack_require__(135);
+  , $iterDetect       = __webpack_require__(112)
+  , setToStringTag    = __webpack_require__(84)
+  , inheritIfRequired = __webpack_require__(138);
 
 module.exports = function(NAME, wrapper, methods, common, IS_MAP, IS_WEAK){
   var Base  = global[NAME]
@@ -25754,15 +25857,15 @@ module.exports = function(NAME, wrapper, methods, common, IS_MAP, IS_WEAK){
 };
 
 /***/ }),
-/* 106 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var hide     = __webpack_require__(30)
-  , redefine = __webpack_require__(31)
+var hide     = __webpack_require__(32)
+  , redefine = __webpack_require__(33)
   , fails    = __webpack_require__(7)
-  , defined  = __webpack_require__(43)
+  , defined  = __webpack_require__(44)
   , wks      = __webpack_require__(14);
 
 module.exports = function(KEY, length, exec){
@@ -25788,7 +25891,7 @@ module.exports = function(KEY, length, exec){
 };
 
 /***/ }),
-/* 107 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25807,7 +25910,7 @@ module.exports = function(){
 };
 
 /***/ }),
-/* 108 */
+/* 110 */
 /***/ (function(module, exports) {
 
 // fast apply, http://jsperf.lnkit.com/fast-apply/5
@@ -25828,12 +25931,12 @@ module.exports = function(fn, args, that){
 };
 
 /***/ }),
-/* 109 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.2.8 IsRegExp(argument)
-var isObject = __webpack_require__(11)
-  , cof      = __webpack_require__(42)
+var isObject = __webpack_require__(12)
+  , cof      = __webpack_require__(43)
   , MATCH    = __webpack_require__(14)('match');
 module.exports = function(it){
   var isRegExp;
@@ -25841,7 +25944,7 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 110 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var ITERATOR     = __webpack_require__(14)('iterator')
@@ -25867,11 +25970,11 @@ module.exports = function(exec, skipClosing){
 };
 
 /***/ }),
-/* 111 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Forced replacement prototype accessors methods
-module.exports = __webpack_require__(67)|| !__webpack_require__(7)(function(){
+module.exports = __webpack_require__(68)|| !__webpack_require__(7)(function(){
   var K = Math.random();
   // In FF throws only define methods
   __defineSetter__.call(null, K, function(){ /* empty */});
@@ -25879,13 +25982,13 @@ module.exports = __webpack_require__(67)|| !__webpack_require__(7)(function(){
 });
 
 /***/ }),
-/* 112 */
+/* 114 */
 /***/ (function(module, exports) {
 
 exports.f = Object.getOwnPropertySymbols;
 
 /***/ }),
-/* 113 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(6)
@@ -25896,12 +25999,12 @@ module.exports = function(key){
 };
 
 /***/ }),
-/* 114 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global = __webpack_require__(6)
-  , hide   = __webpack_require__(30)
-  , uid    = __webpack_require__(74)
+  , hide   = __webpack_require__(32)
+  , uid    = __webpack_require__(75)
   , TYPED  = uid('typed_array')
   , VIEW   = uid('view')
   , ABV    = !!(global.ArrayBuffer && global.DataView)
@@ -25927,7 +26030,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 115 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -25950,8 +26053,8 @@ var _extends = _assign || function (target) { for (var i = 1; i < arguments.leng
  * 
  */
 
-var DraftEntityInstance = __webpack_require__(225);
-var Immutable = __webpack_require__(12);
+var DraftEntityInstance = __webpack_require__(228);
+var Immutable = __webpack_require__(13);
 
 var invariant = __webpack_require__(3);
 
@@ -26128,7 +26231,7 @@ module.exports = DraftEntity;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 116 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26171,7 +26274,7 @@ var DraftOffsetKey = {
 module.exports = DraftOffsetKey;
 
 /***/ }),
-/* 117 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26219,7 +26322,7 @@ function findRangesImmutable(haystack, areEqualFn, filterFn, foundFn) {
 module.exports = findRangesImmutable;
 
 /***/ }),
-/* 118 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26238,8 +26341,8 @@ module.exports = findRangesImmutable;
 
 
 
-var generateRandomKey = __webpack_require__(50);
-var removeEntitiesAtEdges = __webpack_require__(241);
+var generateRandomKey = __webpack_require__(51);
+var removeEntitiesAtEdges = __webpack_require__(244);
 
 function getContentStateFragment(contentState, selectionState) {
   var startKey = selectionState.getStartKey();
@@ -26296,7 +26399,7 @@ function getContentStateFragment(contentState, selectionState) {
 module.exports = getContentStateFragment;
 
 /***/ }),
-/* 119 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26326,7 +26429,7 @@ function isEventHandled(value) {
 module.exports = isEventHandled;
 
 /***/ }),
-/* 120 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26352,7 +26455,7 @@ module.exports = emptyObject;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 121 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26396,7 +26499,7 @@ function getActiveElement(doc) /*?DOMElement*/{
 module.exports = getActiveElement;
 
 /***/ }),
-/* 122 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26655,7 +26758,7 @@ module.exports = EventPluginRegistry;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 123 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -26673,12 +26776,12 @@ module.exports = EventPluginRegistry;
 
 var _assign = __webpack_require__(9);
 
-var EventPluginRegistry = __webpack_require__(122);
-var ReactEventEmitterMixin = __webpack_require__(717);
-var ViewportMetrics = __webpack_require__(383);
+var EventPluginRegistry = __webpack_require__(124);
+var ReactEventEmitterMixin = __webpack_require__(719);
+var ViewportMetrics = __webpack_require__(386);
 
-var getVendorPrefixedEventName = __webpack_require__(752);
-var isEventSupported = __webpack_require__(180);
+var getVendorPrefixedEventName = __webpack_require__(754);
+var isEventSupported = __webpack_require__(183);
 
 /**
  * Summary of `ReactBrowserEventEmitter` event handling:
@@ -26984,7 +27087,7 @@ var ReactBrowserEventEmitter = _assign({}, ReactEventEmitterMixin, {
 module.exports = ReactBrowserEventEmitter;
 
 /***/ }),
-/* 124 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27000,10 +27103,10 @@ module.exports = ReactBrowserEventEmitter;
 
 
 
-var SyntheticUIEvent = __webpack_require__(103);
-var ViewportMetrics = __webpack_require__(383);
+var SyntheticUIEvent = __webpack_require__(104);
+var ViewportMetrics = __webpack_require__(386);
 
-var getEventModifierState = __webpack_require__(178);
+var getEventModifierState = __webpack_require__(181);
 
 /**
  * @interface MouseEvent
@@ -27061,7 +27164,7 @@ SyntheticUIEvent.augmentClass(SyntheticMouseEvent, MouseEventInterface);
 module.exports = SyntheticMouseEvent;
 
 /***/ }),
-/* 125 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27295,7 +27398,7 @@ module.exports = TransactionImpl;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 126 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27422,7 +27525,7 @@ function escapeTextContentForBrowser(text) {
 module.exports = escapeTextContentForBrowser;
 
 /***/ }),
-/* 127 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27438,13 +27541,13 @@ module.exports = escapeTextContentForBrowser;
 
 
 
-var ExecutionEnvironment = __webpack_require__(19);
-var DOMNamespaces = __webpack_require__(169);
+var ExecutionEnvironment = __webpack_require__(20);
+var DOMNamespaces = __webpack_require__(172);
 
 var WHITESPACE_TEST = /^[ \r\n\t\f]/;
 var NONVISIBLE_TEST = /<(!--|link|noscript|meta|script|style)[ \r\n\t\f\/>]/;
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(176);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(179);
 
 // SVG temp container for IE lacking innerHTML
 var reusableSVGContainer;
@@ -27525,7 +27628,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = setInnerHTML;
 
 /***/ }),
-/* 128 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27557,15 +27660,105 @@ module.exports = canDefineProperty;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 129 */
+/* 131 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(11);
+const Immutable = __webpack_require__(36);
+const Api = __webpack_require__(18);
+function get_recipe(id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/CustomController/FindRecipe/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let json = yield res.json();
+        return { recipe: json };
+    });
+}
+exports.get_recipe = get_recipe;
+class IComponent extends React.Component {
+    constructor(props, context) {
+        super(props, context);
+        this.state = { i: 0, j: 0, z: 0, recipes: Immutable.List() };
+    }
+    componentWillMount() {
+        get_recipe(7).then(result => console.log("the recipe is: ", result.recipe));
+        var thread = setInterval(() => {
+            this.setState(Object.assign({}, this.state, { i: this.state.i + 1 }));
+        }, 1000);
+        this.get_recipes().then(online_recipes => this.setState(Object.assign({}, this.state, { recipes: online_recipes })));
+    }
+    get_recipes() {
+        return __awaiter(this, void 0, void 0, function* () {
+            let recipes_page = yield Api.get_Recipes(0, 100);
+            let loaded_recipes = Immutable.List(recipes_page.Items.map(r => r.Item));
+            for (let i = 1; i < recipes_page.NumPages; i++) {
+                let recipes = yield Api.get_Recipes(i, 100);
+                loaded_recipes = loaded_recipes.concat(Immutable.List(recipes.Items.map(r => r.Item))).toList();
+            }
+            return Immutable.List(loaded_recipes);
+        });
+    }
+    // prints out in the console everytime the button is clicked
+    clicked() {
+        console.log('the button was clicked: recipe is bookmarked!');
+    }
+    render() {
+        console.log(this.props.props);
+        // Api.get_Recipes()
+        if (this.props.props.current_User == undefined)
+            return React.createElement("div", null, "Log in first...");
+        return React.createElement("div", null,
+            React.createElement("div", null,
+                React.createElement("img", { src: "http://s.eatthis-cdn.com/media/images/ext/336492655/fast-food.jpg", alt: "food", width: "428px", height: "428px" }),
+                "Welcome ",
+                this.props.props.current_User.Username,
+                "!"),
+            React.createElement("button", { onClick: (e) => { e.preventDefault(); this.clicked(); } }, " Bookmark"),
+            React.createElement("div", null, "Here you can find recipes!"));
+    }
+}
+exports.default = IComponent;
+exports.AppTest = (props) => {
+    return React.createElement(IComponent, { props: props });
+    // let i = 1
+    // var thread = setInterval(() => {
+    //     i = i + 1
+    //     console.log(i)},1000)
+    // return <div>
+    //             <div>{i}</div>
+    //             <div>hi</div>
+    //         </div>
+};
+exports.BookmarksView = (props) => React.createElement("div", null,
+    React.createElement("div", null,
+        React.createElement("div", null, "test 1"),
+        React.createElement("button", null, "test 1 click me ")),
+    React.createElement("div", null,
+        React.createElement("div", null, "test 2"),
+        React.createElement("button", null, "test 2 click me ")));
+exports.CategoriesView = (props) => React.createElement("div", null, "hello categories!!");
+
+
+/***/ }),
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 // 22.1.3.6 Array.prototype.fill(value, start = 0, end = this.length)
 
-var toObject = __webpack_require__(20)
-  , toIndex  = __webpack_require__(73)
-  , toLength = __webpack_require__(18);
+var toObject = __webpack_require__(23)
+  , toIndex  = __webpack_require__(74)
+  , toLength = __webpack_require__(19);
 module.exports = function fill(value /*, start = 0, end = @length */){
   var O      = toObject(this)
     , length = toLength(O.length)
@@ -27578,13 +27771,13 @@ module.exports = function fill(value /*, start = 0, end = @length */){
 };
 
 /***/ }),
-/* 130 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $defineProperty = __webpack_require__(16)
-  , createDesc      = __webpack_require__(61);
+  , createDesc      = __webpack_require__(63);
 
 module.exports = function(object, index, value){
   if(index in object)$defineProperty.f(object, index, createDesc(0, value));
@@ -27592,10 +27785,10 @@ module.exports = function(object, index, value){
 };
 
 /***/ }),
-/* 131 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(11)
+var isObject = __webpack_require__(12)
   , document = __webpack_require__(6).document
   // in old IE typeof document.createElement is 'object'
   , is = isObject(document) && isObject(document.createElement);
@@ -27604,7 +27797,7 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 132 */
+/* 135 */
 /***/ (function(module, exports) {
 
 // IE 8- don't enum bug keys
@@ -27613,7 +27806,7 @@ module.exports = (
 ).split(',');
 
 /***/ }),
-/* 133 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var MATCH = __webpack_require__(14)('match');
@@ -27630,17 +27823,17 @@ module.exports = function(KEY){
 };
 
 /***/ }),
-/* 134 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(6).document && document.documentElement;
 
 /***/ }),
-/* 135 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject       = __webpack_require__(11)
-  , setPrototypeOf = __webpack_require__(143).set;
+var isObject       = __webpack_require__(12)
+  , setPrototypeOf = __webpack_require__(146).set;
 module.exports = function(that, target, C){
   var P, S = target.constructor;
   if(S !== C && typeof S == 'function' && (P = S.prototype) !== C.prototype && isObject(P) && setPrototypeOf){
@@ -27649,11 +27842,11 @@ module.exports = function(that, target, C){
 };
 
 /***/ }),
-/* 136 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // check on default Array iterator
-var Iterators  = __webpack_require__(81)
+var Iterators  = __webpack_require__(83)
   , ITERATOR   = __webpack_require__(14)('iterator')
   , ArrayProto = Array.prototype;
 
@@ -27662,28 +27855,28 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 137 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.2.2 IsArray(argument)
-var cof = __webpack_require__(42);
+var cof = __webpack_require__(43);
 module.exports = Array.isArray || function isArray(arg){
   return cof(arg) == 'Array';
 };
 
 /***/ }),
-/* 138 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var create         = __webpack_require__(68)
-  , descriptor     = __webpack_require__(61)
-  , setToStringTag = __webpack_require__(82)
+var create         = __webpack_require__(69)
+  , descriptor     = __webpack_require__(63)
+  , setToStringTag = __webpack_require__(84)
   , IteratorPrototype = {};
 
 // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
-__webpack_require__(30)(IteratorPrototype, __webpack_require__(14)('iterator'), function(){ return this; });
+__webpack_require__(32)(IteratorPrototype, __webpack_require__(14)('iterator'), function(){ return this; });
 
 module.exports = function(Constructor, NAME, next){
   Constructor.prototype = create(IteratorPrototype, {next: descriptor(1, next)});
@@ -27691,20 +27884,20 @@ module.exports = function(Constructor, NAME, next){
 };
 
 /***/ }),
-/* 139 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var LIBRARY        = __webpack_require__(67)
+var LIBRARY        = __webpack_require__(68)
   , $export        = __webpack_require__(1)
-  , redefine       = __webpack_require__(31)
-  , hide           = __webpack_require__(30)
-  , has            = __webpack_require__(24)
-  , Iterators      = __webpack_require__(81)
-  , $iterCreate    = __webpack_require__(138)
-  , setToStringTag = __webpack_require__(82)
-  , getPrototypeOf = __webpack_require__(36)
+  , redefine       = __webpack_require__(33)
+  , hide           = __webpack_require__(32)
+  , has            = __webpack_require__(25)
+  , Iterators      = __webpack_require__(83)
+  , $iterCreate    = __webpack_require__(141)
+  , setToStringTag = __webpack_require__(84)
+  , getPrototypeOf = __webpack_require__(39)
   , ITERATOR       = __webpack_require__(14)('iterator')
   , BUGGY          = !([].keys && 'next' in [].keys()) // Safari has buggy iterators w/o `next`
   , FF_ITERATOR    = '@@iterator'
@@ -27767,7 +27960,7 @@ module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED
 };
 
 /***/ }),
-/* 140 */
+/* 143 */
 /***/ (function(module, exports) {
 
 // 20.2.2.14 Math.expm1(x)
@@ -27782,7 +27975,7 @@ module.exports = (!$expm1
 } : $expm1;
 
 /***/ }),
-/* 141 */
+/* 144 */
 /***/ (function(module, exports) {
 
 // 20.2.2.28 Math.sign(x)
@@ -27791,15 +27984,15 @@ module.exports = Math.sign || function sign(x){
 };
 
 /***/ }),
-/* 142 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global    = __webpack_require__(6)
-  , macrotask = __webpack_require__(150).set
+  , macrotask = __webpack_require__(153).set
   , Observer  = global.MutationObserver || global.WebKitMutationObserver
   , process   = global.process
   , Promise   = global.Promise
-  , isNode    = __webpack_require__(42)(process) == 'process';
+  , isNode    = __webpack_require__(43)(process) == 'process';
 
 module.exports = function(){
   var head, last, notify;
@@ -27864,12 +28057,12 @@ module.exports = function(){
 };
 
 /***/ }),
-/* 143 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Works with __proto__ only. Old v8 can't work with null proto objects.
 /* eslint-disable no-proto */
-var isObject = __webpack_require__(11)
+var isObject = __webpack_require__(12)
   , anObject = __webpack_require__(5);
 var check = function(O, proto){
   anObject(O);
@@ -27879,7 +28072,7 @@ module.exports = {
   set: Object.setPrototypeOf || ('__proto__' in {} ? // eslint-disable-line
     function(test, buggy, set){
       try {
-        set = __webpack_require__(56)(Function.call, __webpack_require__(35).f(Object.prototype, '__proto__').set, 2);
+        set = __webpack_require__(58)(Function.call, __webpack_require__(38).f(Object.prototype, '__proto__').set, 2);
         set(test, []);
         buggy = !(test instanceof Array);
       } catch(e){ buggy = true; }
@@ -27894,22 +28087,22 @@ module.exports = {
 };
 
 /***/ }),
-/* 144 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var shared = __webpack_require__(113)('keys')
-  , uid    = __webpack_require__(74);
+var shared = __webpack_require__(115)('keys')
+  , uid    = __webpack_require__(75);
 module.exports = function(key){
   return shared[key] || (shared[key] = uid(key));
 };
 
 /***/ }),
-/* 145 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.3.20 SpeciesConstructor(O, defaultConstructor)
 var anObject  = __webpack_require__(5)
-  , aFunction = __webpack_require__(29)
+  , aFunction = __webpack_require__(31)
   , SPECIES   = __webpack_require__(14)('species');
 module.exports = function(O, D){
   var C = anObject(O).constructor, S;
@@ -27917,11 +28110,11 @@ module.exports = function(O, D){
 };
 
 /***/ }),
-/* 146 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var toInteger = __webpack_require__(62)
-  , defined   = __webpack_require__(43);
+var toInteger = __webpack_require__(64)
+  , defined   = __webpack_require__(44);
 // true  -> String#at
 // false -> String#codePointAt
 module.exports = function(TO_STRING){
@@ -27939,12 +28132,12 @@ module.exports = function(TO_STRING){
 };
 
 /***/ }),
-/* 147 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // helper for String#{startsWith, endsWith, includes}
-var isRegExp = __webpack_require__(109)
-  , defined  = __webpack_require__(43);
+var isRegExp = __webpack_require__(111)
+  , defined  = __webpack_require__(44);
 
 module.exports = function(that, searchString, NAME){
   if(isRegExp(searchString))throw TypeError('String#' + NAME + " doesn't accept regex!");
@@ -27952,13 +28145,13 @@ module.exports = function(that, searchString, NAME){
 };
 
 /***/ }),
-/* 148 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var toInteger = __webpack_require__(62)
-  , defined   = __webpack_require__(43);
+var toInteger = __webpack_require__(64)
+  , defined   = __webpack_require__(44);
 
 module.exports = function repeat(count){
   var str = String(defined(this))
@@ -27970,20 +28163,20 @@ module.exports = function repeat(count){
 };
 
 /***/ }),
-/* 149 */
+/* 152 */
 /***/ (function(module, exports) {
 
 module.exports = '\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003' +
   '\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF';
 
 /***/ }),
-/* 150 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var ctx                = __webpack_require__(56)
-  , invoke             = __webpack_require__(108)
-  , html               = __webpack_require__(134)
-  , cel                = __webpack_require__(131)
+var ctx                = __webpack_require__(58)
+  , invoke             = __webpack_require__(110)
+  , html               = __webpack_require__(137)
+  , cel                = __webpack_require__(134)
   , global             = __webpack_require__(6)
   , process            = global.process
   , setTask            = global.setImmediate
@@ -28019,7 +28212,7 @@ if(!setTask || !clearTask){
     delete queue[id];
   };
   // Node.js 0.8-
-  if(__webpack_require__(42)(process) == 'process'){
+  if(__webpack_require__(43)(process) == 'process'){
     defer = function(id){
       process.nextTick(ctx(run, id, 1));
     };
@@ -28057,25 +28250,25 @@ module.exports = {
 };
 
 /***/ }),
-/* 151 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var global         = __webpack_require__(6)
   , DESCRIPTORS    = __webpack_require__(15)
-  , LIBRARY        = __webpack_require__(67)
-  , $typed         = __webpack_require__(114)
-  , hide           = __webpack_require__(30)
-  , redefineAll    = __webpack_require__(71)
+  , LIBRARY        = __webpack_require__(68)
+  , $typed         = __webpack_require__(116)
+  , hide           = __webpack_require__(32)
+  , redefineAll    = __webpack_require__(72)
   , fails          = __webpack_require__(7)
-  , anInstance     = __webpack_require__(66)
-  , toInteger      = __webpack_require__(62)
-  , toLength       = __webpack_require__(18)
-  , gOPN           = __webpack_require__(69).f
+  , anInstance     = __webpack_require__(67)
+  , toInteger      = __webpack_require__(64)
+  , toLength       = __webpack_require__(19)
+  , gOPN           = __webpack_require__(70).f
   , dP             = __webpack_require__(16).f
-  , arrayFill      = __webpack_require__(129)
-  , setToStringTag = __webpack_require__(82)
+  , arrayFill      = __webpack_require__(132)
+  , setToStringTag = __webpack_require__(84)
   , ARRAY_BUFFER   = 'ArrayBuffer'
   , DATA_VIEW      = 'DataView'
   , PROTOTYPE      = 'prototype'
@@ -28336,13 +28529,13 @@ exports[ARRAY_BUFFER] = $ArrayBuffer;
 exports[DATA_VIEW] = $DataView;
 
 /***/ }),
-/* 152 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global         = __webpack_require__(6)
-  , core           = __webpack_require__(55)
-  , LIBRARY        = __webpack_require__(67)
-  , wksExt         = __webpack_require__(216)
+  , core           = __webpack_require__(57)
+  , LIBRARY        = __webpack_require__(68)
+  , wksExt         = __webpack_require__(219)
   , defineProperty = __webpack_require__(16).f;
 module.exports = function(name){
   var $Symbol = core.Symbol || (core.Symbol = LIBRARY ? {} : global.Symbol || {});
@@ -28350,34 +28543,34 @@ module.exports = function(name){
 };
 
 /***/ }),
-/* 153 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var classof   = __webpack_require__(91)
+var classof   = __webpack_require__(92)
   , ITERATOR  = __webpack_require__(14)('iterator')
-  , Iterators = __webpack_require__(81);
-module.exports = __webpack_require__(55).getIteratorMethod = function(it){
+  , Iterators = __webpack_require__(83);
+module.exports = __webpack_require__(57).getIteratorMethod = function(it){
   if(it != undefined)return it[ITERATOR]
     || it['@@iterator']
     || Iterators[classof(it)];
 };
 
 /***/ }),
-/* 154 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var addToUnscopables = __webpack_require__(79)
-  , step             = __webpack_require__(204)
-  , Iterators        = __webpack_require__(81)
-  , toIObject        = __webpack_require__(33);
+var addToUnscopables = __webpack_require__(81)
+  , step             = __webpack_require__(207)
+  , Iterators        = __webpack_require__(83)
+  , toIObject        = __webpack_require__(35);
 
 // 22.1.3.4 Array.prototype.entries()
 // 22.1.3.13 Array.prototype.keys()
 // 22.1.3.29 Array.prototype.values()
 // 22.1.3.30 Array.prototype[@@iterator]()
-module.exports = __webpack_require__(139)(Array, 'Array', function(iterated, kind){
+module.exports = __webpack_require__(142)(Array, 'Array', function(iterated, kind){
   this._t = toIObject(iterated); // target
   this._i = 0;                   // next index
   this._k = kind;                // kind
@@ -28403,7 +28596,7 @@ addToUnscopables('values');
 addToUnscopables('entries');
 
 /***/ }),
-/* 155 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28428,15 +28621,15 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var BlockMapBuilder = __webpack_require__(94);
-var CharacterMetadata = __webpack_require__(45);
-var ContentBlock = __webpack_require__(75);
-var DraftEntity = __webpack_require__(115);
-var Immutable = __webpack_require__(12);
-var SelectionState = __webpack_require__(95);
+var BlockMapBuilder = __webpack_require__(95);
+var CharacterMetadata = __webpack_require__(46);
+var ContentBlock = __webpack_require__(76);
+var DraftEntity = __webpack_require__(117);
+var Immutable = __webpack_require__(13);
+var SelectionState = __webpack_require__(96);
 
-var generateRandomKey = __webpack_require__(50);
-var sanitizeDraftText = __webpack_require__(161);
+var generateRandomKey = __webpack_require__(51);
+var sanitizeDraftText = __webpack_require__(164);
 
 var List = Immutable.List;
 var Record = Immutable.Record;
@@ -28601,7 +28794,7 @@ var ContentState = function (_ContentStateRecord) {
 module.exports = ContentState;
 
 /***/ }),
-/* 156 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28619,13 +28812,13 @@ module.exports = ContentState;
 
 
 
-var _require = __webpack_require__(12);
+var _require = __webpack_require__(13);
 
 var Map = _require.Map;
 
-var React = __webpack_require__(13);
+var React = __webpack_require__(11);
 
-var cx = __webpack_require__(97);
+var cx = __webpack_require__(98);
 
 var UL_WRAP = React.createElement('ul', { className: cx('public/DraftStyleDefault/ul') });
 var OL_WRAP = React.createElement('ol', { className: cx('public/DraftStyleDefault/ol') });
@@ -28677,7 +28870,7 @@ var DefaultDraftBlockRenderMap = Map({
 module.exports = DefaultDraftBlockRenderMap;
 
 /***/ }),
-/* 157 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28696,7 +28889,7 @@ module.exports = DefaultDraftBlockRenderMap;
 
 
 
-var UserAgent = __webpack_require__(51);
+var UserAgent = __webpack_require__(52);
 
 var isOSX = UserAgent.isPlatform('Mac OS X');
 
@@ -28722,7 +28915,7 @@ var KeyBindingUtil = {
 module.exports = KeyBindingUtil;
 
 /***/ }),
-/* 158 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28741,7 +28934,7 @@ module.exports = KeyBindingUtil;
 
 
 
-var getSelectionOffsetKeyForNode = __webpack_require__(235);
+var getSelectionOffsetKeyForNode = __webpack_require__(238);
 
 /**
  * Get the key from the node's nearest offset-aware ancestor.
@@ -28761,7 +28954,7 @@ function findAncestorOffsetKey(node) {
 module.exports = findAncestorOffsetKey;
 
 /***/ }),
-/* 159 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28822,7 +29015,7 @@ function filterKey(entityMap, entityKey) {
 module.exports = getEntityKeyForSelection;
 
 /***/ }),
-/* 160 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28880,7 +29073,7 @@ function moveSelectionBackward(editorState, maxDistance) {
 module.exports = moveSelectionBackward;
 
 /***/ }),
-/* 161 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28907,7 +29100,7 @@ function sanitizeDraftText(input) {
 module.exports = sanitizeDraftText;
 
 /***/ }),
-/* 162 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28949,7 +29142,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 163 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28966,7 +29159,7 @@ module.exports = {
  * @typechecks
  */
 
-var getStyleProperty = __webpack_require__(664);
+var getStyleProperty = __webpack_require__(666);
 
 /**
  * @param {DOMNode} element [description]
@@ -29019,7 +29212,7 @@ var Style = {
 module.exports = Style;
 
 /***/ }),
-/* 164 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29134,7 +29327,7 @@ module.exports = UnicodeBidiDirection;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 165 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29151,7 +29344,7 @@ module.exports = UnicodeBidiDirection;
  * 
  */
 
-var isTextNode = __webpack_require__(668);
+var isTextNode = __webpack_require__(670);
 
 /*eslint-disable no-bitwise */
 
@@ -29179,7 +29372,7 @@ function containsNode(outerNode, innerNode) {
 module.exports = containsNode;
 
 /***/ }),
-/* 166 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29196,8 +29389,8 @@ module.exports = containsNode;
 
 
 
-var getDocumentScrollElement = __webpack_require__(660);
-var getUnboundedScrollPosition = __webpack_require__(249);
+var getDocumentScrollElement = __webpack_require__(662);
+var getUnboundedScrollPosition = __webpack_require__(252);
 
 /**
  * Gets the scroll position of the supplied element or window.
@@ -29232,7 +29425,7 @@ function getScrollPosition(scrollable) {
 module.exports = getScrollPosition;
 
 /***/ }),
-/* 167 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29305,7 +29498,7 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ }),
-/* 168 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29321,14 +29514,14 @@ module.exports = shallowEqual;
 
 
 
-var DOMLazyTree = __webpack_require__(85);
-var Danger = __webpack_require__(690);
+var DOMLazyTree = __webpack_require__(87);
+var Danger = __webpack_require__(692);
 var ReactDOMComponentTree = __webpack_require__(17);
-var ReactInstrumentation = __webpack_require__(38);
+var ReactInstrumentation = __webpack_require__(41);
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(176);
-var setInnerHTML = __webpack_require__(127);
-var setTextContent = __webpack_require__(391);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(179);
+var setInnerHTML = __webpack_require__(129);
+var setTextContent = __webpack_require__(394);
 
 function getNodeAfter(parentNode, node) {
   // Special case for text components, which return [open, close] comments
@@ -29537,7 +29730,7 @@ module.exports = DOMChildrenOperations;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 169 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29562,7 +29755,7 @@ var DOMNamespaces = {
 module.exports = DOMNamespaces;
 
 /***/ }),
-/* 170 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29580,7 +29773,7 @@ module.exports = DOMNamespaces;
 
 var _prodInvariant = __webpack_require__(8);
 
-var ReactErrorUtils = __webpack_require__(174);
+var ReactErrorUtils = __webpack_require__(177);
 
 var invariant = __webpack_require__(3);
 var warning = __webpack_require__(4);
@@ -29794,7 +29987,7 @@ module.exports = EventPluginUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 171 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29858,7 +30051,7 @@ var KeyEscapeUtils = {
 module.exports = KeyEscapeUtils;
 
 /***/ }),
-/* 172 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29876,10 +30069,10 @@ module.exports = KeyEscapeUtils;
 
 var _prodInvariant = __webpack_require__(8);
 
-var ReactPropTypesSecret = __webpack_require__(382);
-var propTypesFactory = __webpack_require__(369);
+var ReactPropTypesSecret = __webpack_require__(385);
+var propTypesFactory = __webpack_require__(372);
 
-var React = __webpack_require__(87);
+var React = __webpack_require__(89);
 var PropTypes = propTypesFactory(React.isValidElement);
 
 var invariant = __webpack_require__(3);
@@ -30002,7 +30195,7 @@ module.exports = LinkedValueUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 173 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30052,7 +30245,7 @@ module.exports = ReactComponentEnvironment;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 174 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30134,7 +30327,7 @@ module.exports = ReactErrorUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 175 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30152,10 +30345,10 @@ module.exports = ReactErrorUtils;
 
 var _prodInvariant = __webpack_require__(8);
 
-var ReactCurrentOwner = __webpack_require__(53);
-var ReactInstanceMap = __webpack_require__(102);
-var ReactInstrumentation = __webpack_require__(38);
-var ReactUpdates = __webpack_require__(52);
+var ReactCurrentOwner = __webpack_require__(54);
+var ReactInstanceMap = __webpack_require__(103);
+var ReactInstrumentation = __webpack_require__(41);
+var ReactUpdates = __webpack_require__(53);
 
 var invariant = __webpack_require__(3);
 var warning = __webpack_require__(4);
@@ -30374,7 +30567,7 @@ module.exports = ReactUpdateQueue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 176 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30411,7 +30604,7 @@ var createMicrosoftUnsafeLocalFunction = function (func) {
 module.exports = createMicrosoftUnsafeLocalFunction;
 
 /***/ }),
-/* 177 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30466,7 +30659,7 @@ function getEventCharCode(nativeEvent) {
 module.exports = getEventCharCode;
 
 /***/ }),
-/* 178 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30514,7 +30707,7 @@ function getEventModifierState(nativeEvent) {
 module.exports = getEventModifierState;
 
 /***/ }),
-/* 179 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30554,7 +30747,7 @@ function getEventTarget(nativeEvent) {
 module.exports = getEventTarget;
 
 /***/ }),
-/* 180 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30570,7 +30763,7 @@ module.exports = getEventTarget;
 
 
 
-var ExecutionEnvironment = __webpack_require__(19);
+var ExecutionEnvironment = __webpack_require__(20);
 
 var useHasFeature;
 if (ExecutionEnvironment.canUseDOM) {
@@ -30619,7 +30812,7 @@ function isEventSupported(eventNameSuffix, capture) {
 module.exports = isEventSupported;
 
 /***/ }),
-/* 181 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30666,7 +30859,7 @@ function shouldUpdateReactComponent(prevElement, nextElement) {
 module.exports = shouldUpdateReactComponent;
 
 /***/ }),
-/* 182 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30684,7 +30877,7 @@ module.exports = shouldUpdateReactComponent;
 
 var _assign = __webpack_require__(9);
 
-var emptyFunction = __webpack_require__(26);
+var emptyFunction = __webpack_require__(27);
 var warning = __webpack_require__(4);
 
 var validateDOMNesting = emptyFunction;
@@ -31043,7 +31236,7 @@ module.exports = validateDOMNesting;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 183 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31114,7 +31307,7 @@ module.exports = lowPriorityWarning;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 184 */
+/* 187 */
 /***/ (function(module, exports) {
 
 (function(self) {
@@ -31581,7 +31774,7 @@ module.exports = lowPriorityWarning;
 
 
 /***/ }),
-/* 185 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31595,77 +31788,49 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(13);
-const Immutable = __webpack_require__(27);
-const Api = __webpack_require__(21);
-const List = __webpack_require__(46);
-const Components = __webpack_require__(39);
-const Buttons = __webpack_require__(40);
-const Permissions = __webpack_require__(28);
-const Utils = __webpack_require__(23);
-const i18next = __webpack_require__(22);
-const HomePageViews = __webpack_require__(41);
-const MealViews = __webpack_require__(90);
+const React = __webpack_require__(11);
+const Immutable = __webpack_require__(36);
+const Api = __webpack_require__(18);
+const List = __webpack_require__(56);
+const Components = __webpack_require__(42);
+const Buttons = __webpack_require__(47);
+const Permissions = __webpack_require__(24);
+const Utils = __webpack_require__(22);
+const i18next = __webpack_require__(21);
+const HomePageViews = __webpack_require__(30);
+const CategoryListViews = __webpack_require__(29);
+const BookmarksViews = __webpack_require__(28);
+const MealViews = __webpack_require__(91);
 function American_Categorie_Meal_can_create(self) {
     let state = self.state();
     return state.Meal == "loading" ? false : state.Meal.CanCreate;
 }
 exports.American_Categorie_Meal_can_create = American_Categorie_Meal_can_create;
-function American_HomePage_Categorie_can_create(self) {
-    let state = self.state();
-    return state.HomePage == "loading" ? false : state.HomePage.CanCreate;
-}
-exports.American_HomePage_Categorie_can_create = American_HomePage_Categorie_can_create;
 function American_Categorie_Meal_can_delete(self) {
     let state = self.state();
     return state.Meal == "loading" ? false : state.Meal.CanDelete;
 }
 exports.American_Categorie_Meal_can_delete = American_Categorie_Meal_can_delete;
-function American_HomePage_Categorie_can_delete(self) {
-    let state = self.state();
-    return state.HomePage == "loading" ? false : state.HomePage.CanDelete;
-}
-exports.American_HomePage_Categorie_can_delete = American_HomePage_Categorie_can_delete;
 function American_Categorie_Meal_page_index(self) {
     let state = self.state();
     return state.Meal == "loading" ? 0 : state.Meal.PageIndex;
 }
 exports.American_Categorie_Meal_page_index = American_Categorie_Meal_page_index;
-function American_HomePage_Categorie_page_index(self) {
-    let state = self.state();
-    return state.HomePage == "loading" ? 0 : state.HomePage.PageIndex;
-}
-exports.American_HomePage_Categorie_page_index = American_HomePage_Categorie_page_index;
 function American_Categorie_Meal_page_size(self) {
     let state = self.state();
     return state.Meal == "loading" ? 25 : state.Meal.PageSize;
 }
 exports.American_Categorie_Meal_page_size = American_Categorie_Meal_page_size;
-function American_HomePage_Categorie_page_size(self) {
-    let state = self.state();
-    return state.HomePage == "loading" ? 25 : state.HomePage.PageSize;
-}
-exports.American_HomePage_Categorie_page_size = American_HomePage_Categorie_page_size;
 function American_Categorie_Meal_search_query(self) {
     let state = self.state();
     return state.Meal == "loading" ? null : state.Meal.SearchQuery;
 }
 exports.American_Categorie_Meal_search_query = American_Categorie_Meal_search_query;
-function American_HomePage_Categorie_search_query(self) {
-    let state = self.state();
-    return state.HomePage == "loading" ? null : state.HomePage.SearchQuery;
-}
-exports.American_HomePage_Categorie_search_query = American_HomePage_Categorie_search_query;
 function American_Categorie_Meal_num_pages(self) {
     let state = self.state();
     return state.Meal == "loading" ? 1 : state.Meal.NumPages;
 }
 exports.American_Categorie_Meal_num_pages = American_Categorie_Meal_num_pages;
-function American_HomePage_Categorie_num_pages(self) {
-    let state = self.state();
-    return state.HomePage == "loading" ? 1 : state.HomePage.NumPages;
-}
-exports.American_HomePage_Categorie_num_pages = American_HomePage_Categorie_num_pages;
 function load_relation_American_Categorie_Meal(self, force_first_page, current_User, current_Admin, callback) {
     let state = self.state();
     let prelude = force_first_page && state.Meal != "loading" ?
@@ -31691,33 +31856,8 @@ function load_relation_American_Categorie_Meal(self, force_first_page, current_U
             prelude(() => callback && callback());
 }
 exports.load_relation_American_Categorie_Meal = load_relation_American_Categorie_Meal;
-function load_relation_American_HomePage_Categorie(self, force_first_page, current_User, current_Admin, callback) {
-    let state = self.state();
-    let prelude = force_first_page && state.HomePage != "loading" ?
-        (c) => state.HomePage != "loading" && self.setState(Object.assign({}, state, { HomePage: Object.assign({}, state.HomePage, { PageIndex: 0 }) }), c)
-        :
-            (c) => c();
-    Permissions.can_view_HomePage(current_User, current_Admin) ?
-        prelude(() => Api.get_Categorie_HomePage_Categories(self.props.entity, American_HomePage_Categorie_page_index(self), American_HomePage_Categorie_page_size(self), American_HomePage_Categorie_search_query(self)).then(HomePages => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, HomePage: Utils.raw_page_to_paginated_items((i, i_just_created) => {
-                let state = self.state();
-                return {
-                    element: i,
-                    size: state.HomePage != "loading" ?
-                        (state.HomePage.Items.has(i.Id) ?
-                            state.HomePage.Items.get(i.Id).size
-                            :
-                                "preview" /* i_just_created ? "large" : "preview" */)
-                        :
-                            "preview" /* i_just_created ? "large" : "preview" */,
-                    shown_relation: "all"
-                };
-            }, HomePages) }), callback)))
-        :
-            prelude(() => callback && callback());
-}
-exports.load_relation_American_HomePage_Categorie = load_relation_American_HomePage_Categorie;
 function load_relations_American(self, current_User, current_Admin, callback) {
-    load_relation_American_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_American_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback()));
+    load_relation_American_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback());
 }
 exports.load_relations_American = load_relations_American;
 function set_size_American(self, new_size) {
@@ -31770,17 +31910,13 @@ function render_menu_American(self) {
             !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin) ? null :
                 React.createElement("div", { className: `menu_entry page_link` },
                     React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
+            !Permissions.can_view_CategoryList(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_CategoryLists(0, 1).then(e => e.Items.length > 0 && self.props.set_page(CategoryListViews.CategoryList_to_page(e.Items[0].Item.Id))) }, i18next.t('CategoryList'))),
+            !Permissions.can_view_Bookmarks(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_Bookmarkss(0, 1).then(e => e.Items.length > 0 && self.props.set_page(BookmarksViews.Bookmarks_to_page(e.Items[0].Item.Id))) }, i18next.t('Bookmarks'))),
             React.createElement("div", { className: "menu_entries" },
-                !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipe" ? " active" : ""}` },
-                        React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipe")));
-                            } }, i18next.t('HomePage_Recipes'))),
-                !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}` },
-                        React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categorie")));
-                            } }, i18next.t('HomePage_Categories'))),
                 React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
 }
 exports.render_menu_American = render_menu_American;
@@ -31913,44 +32049,6 @@ function render_American_Categorie_Meal(self, context) {
         Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin) ? render_add_existing_American_Categorie_Meal(self) : null)));
 }
 exports.render_American_Categorie_Meal = render_American_Categorie_Meal;
-function render_American_HomePage_Categorie(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "HomePage_Categorie") || !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin))
-        return null;
-    let state = self.state();
-    return React.createElement("div", null, List.render_relation("american_homepage_categorie", "Categorie", "HomePage", "HomePages", self.props.nesting_depth > 0, false, false, false)(state.HomePage != "loading" ?
-        state.HomePage.IdsInServerOrder.map(id => state.HomePage != "loading" && state.HomePage.Items.get(id)) :
-        state.HomePage, American_HomePage_Categorie_page_index(self), American_HomePage_Categorie_num_pages(self), new_page_index => {
-        let state = self.state();
-        state.HomePage != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, HomePage: Object.assign({}, state.HomePage, { PageIndex: new_page_index }) }), () => load_relation_American_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin));
-    }, (i, _) => {
-        let i_id = i.element.Id;
-        let state = self.state();
-        return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
-                        ${state.HomePage != "loading" && state.HomePage.JustCreated.has(i_id) && state.HomePage.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, HomePageViews.HomePage(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_HomePage_Categorie(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_HomePage_Categorie(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_HomePage_Categorie(self.props.current_User, self.props.current_Admin)) ?
-                    self.props.mode : "view", is_editable: state.HomePage != "loading" && state.HomePage.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
-                    let state = self.state();
-                    state.HomePage != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { HomePage: Object.assign({}, state.HomePage, { Items: state.HomePage.Items.set(i_id, Object.assign({}, state.HomePage.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
-                }, nested_entity_names: self.props.nested_entity_names.push("HomePage"), set_size: (new_size, callback) => {
-                    let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
-                    let state = self.state();
-                    state.HomePage != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { HomePage: Object.assign({}, state.HomePage, { Items: state.HomePage.Items.set(i_id, Object.assign({}, state.HomePage.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
-                }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
-                    let state = self.state();
-                    state.HomePage != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { dirty_HomePage: state.dirty_HomePage.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, HomePage: Object.assign({}, state.HomePage, { Items: state.HomePage.Items.set(i_id, Object.assign({}, state.HomePage.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, unlink: undefined, delete: !Permissions.can_delete_HomePage(self.props.current_User, self.props.current_Admin) || !American_HomePage_Categorie_can_delete(self) ?
-                    null
-                    :
-                        () => confirm(i18next.t('Are you sure?')) && Api.delete_HomePage(i.element).then(() => load_relation_American_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin)) }))));
-    }, () => React.createElement("div", null)));
-}
-exports.render_American_HomePage_Categorie = render_American_HomePage_Categorie;
 function render_relations_American(self) {
     return React.createElement("div", { className: "relations" }, render_American_Categorie_Meal(self, "default"));
 }
@@ -32012,17 +32110,15 @@ function render_new_American_Categorie_Meal(self) {
 exports.render_new_American_Categorie_Meal = render_new_American_Categorie_Meal;
 function render_saving_animations_American(self) {
     return self.state().dirty_Meal.count() > 0 ?
-        React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" }) :
-        self.state().dirty_HomePage.count() > 0 ?
-            React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" })
-            : React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "cornflowerblue" }, className: "saved" });
+        React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" })
+        : React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "cornflowerblue" }, className: "saved" });
 }
 exports.render_saving_animations_American = render_saving_animations_American;
 class AmericanComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.thread = null;
-        this.state = { update_count: 0, add_step_Meal: "closed", dirty_Meal: Immutable.Map(), Meal: "loading", add_step_HomePage: "closed", dirty_HomePage: Immutable.Map(), HomePage: "loading" };
+        this.state = { update_count: 0, add_step_Meal: "closed", dirty_Meal: Immutable.Map(), Meal: "loading" };
     }
     get_self() {
         return { state: () => this.state, props: this.props, setState: (ns, c) => this.setState(ns, c) };
@@ -32050,10 +32146,6 @@ class AmericanComponent extends React.Component {
             if (this.state.dirty_Meal.count() > 0) {
                 let first = this.state.dirty_Meal.first();
                 this.setState(Object.assign({}, this.state, { dirty_Meal: this.state.dirty_Meal.remove(first.Id) }), () => Api.update_Meal(first));
-            }
-            else if (this.state.dirty_HomePage.count() > 0) {
-                let first = this.state.dirty_HomePage.first();
-                this.setState(Object.assign({}, this.state, { dirty_HomePage: this.state.dirty_HomePage.remove(first.Id) }), () => Api.update_HomePage(first));
             }
         }, 500);
     }
@@ -32086,7 +32178,7 @@ class AmericanComponent extends React.Component {
 exports.AmericanComponent = AmericanComponent;
 exports.American = (props) => React.createElement(AmericanComponent, Object.assign({}, props));
 exports.American_to_page = (id) => {
-    let can_edit = Utils.any_of([Permissions.can_edit_American, Permissions.can_edit_Categorie_Meal, Permissions.can_edit_HomePage_Categorie, Permissions.can_edit_Meal, Permissions.can_edit_HomePage]);
+    let can_edit = Utils.any_of([Permissions.can_edit_American, Permissions.can_edit_Categorie_Meal, Permissions.can_edit_Meal]);
     return Utils.scene_to_page(can_edit, exports.American, Api.get_American(id), Api.update_American, "American", "American", `/Americans/${id}`);
 };
 exports.American_to = (id, target_element_id, current_User, current_Admin) => {
@@ -32095,7 +32187,7 @@ exports.American_to = (id, target_element_id, current_User, current_Admin) => {
 
 
 /***/ }),
-/* 186 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32109,77 +32201,49 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(13);
-const Immutable = __webpack_require__(27);
-const Api = __webpack_require__(21);
-const List = __webpack_require__(46);
-const Components = __webpack_require__(39);
-const Buttons = __webpack_require__(40);
-const Permissions = __webpack_require__(28);
-const Utils = __webpack_require__(23);
-const i18next = __webpack_require__(22);
-const HomePageViews = __webpack_require__(41);
-const MealViews = __webpack_require__(90);
+const React = __webpack_require__(11);
+const Immutable = __webpack_require__(36);
+const Api = __webpack_require__(18);
+const List = __webpack_require__(56);
+const Components = __webpack_require__(42);
+const Buttons = __webpack_require__(47);
+const Permissions = __webpack_require__(24);
+const Utils = __webpack_require__(22);
+const i18next = __webpack_require__(21);
+const HomePageViews = __webpack_require__(30);
+const CategoryListViews = __webpack_require__(29);
+const BookmarksViews = __webpack_require__(28);
+const MealViews = __webpack_require__(91);
 function Asian_Categorie_Meal_can_create(self) {
     let state = self.state();
     return state.Meal == "loading" ? false : state.Meal.CanCreate;
 }
 exports.Asian_Categorie_Meal_can_create = Asian_Categorie_Meal_can_create;
-function Asian_HomePage_Categorie_can_create(self) {
-    let state = self.state();
-    return state.HomePage == "loading" ? false : state.HomePage.CanCreate;
-}
-exports.Asian_HomePage_Categorie_can_create = Asian_HomePage_Categorie_can_create;
 function Asian_Categorie_Meal_can_delete(self) {
     let state = self.state();
     return state.Meal == "loading" ? false : state.Meal.CanDelete;
 }
 exports.Asian_Categorie_Meal_can_delete = Asian_Categorie_Meal_can_delete;
-function Asian_HomePage_Categorie_can_delete(self) {
-    let state = self.state();
-    return state.HomePage == "loading" ? false : state.HomePage.CanDelete;
-}
-exports.Asian_HomePage_Categorie_can_delete = Asian_HomePage_Categorie_can_delete;
 function Asian_Categorie_Meal_page_index(self) {
     let state = self.state();
     return state.Meal == "loading" ? 0 : state.Meal.PageIndex;
 }
 exports.Asian_Categorie_Meal_page_index = Asian_Categorie_Meal_page_index;
-function Asian_HomePage_Categorie_page_index(self) {
-    let state = self.state();
-    return state.HomePage == "loading" ? 0 : state.HomePage.PageIndex;
-}
-exports.Asian_HomePage_Categorie_page_index = Asian_HomePage_Categorie_page_index;
 function Asian_Categorie_Meal_page_size(self) {
     let state = self.state();
     return state.Meal == "loading" ? 25 : state.Meal.PageSize;
 }
 exports.Asian_Categorie_Meal_page_size = Asian_Categorie_Meal_page_size;
-function Asian_HomePage_Categorie_page_size(self) {
-    let state = self.state();
-    return state.HomePage == "loading" ? 25 : state.HomePage.PageSize;
-}
-exports.Asian_HomePage_Categorie_page_size = Asian_HomePage_Categorie_page_size;
 function Asian_Categorie_Meal_search_query(self) {
     let state = self.state();
     return state.Meal == "loading" ? null : state.Meal.SearchQuery;
 }
 exports.Asian_Categorie_Meal_search_query = Asian_Categorie_Meal_search_query;
-function Asian_HomePage_Categorie_search_query(self) {
-    let state = self.state();
-    return state.HomePage == "loading" ? null : state.HomePage.SearchQuery;
-}
-exports.Asian_HomePage_Categorie_search_query = Asian_HomePage_Categorie_search_query;
 function Asian_Categorie_Meal_num_pages(self) {
     let state = self.state();
     return state.Meal == "loading" ? 1 : state.Meal.NumPages;
 }
 exports.Asian_Categorie_Meal_num_pages = Asian_Categorie_Meal_num_pages;
-function Asian_HomePage_Categorie_num_pages(self) {
-    let state = self.state();
-    return state.HomePage == "loading" ? 1 : state.HomePage.NumPages;
-}
-exports.Asian_HomePage_Categorie_num_pages = Asian_HomePage_Categorie_num_pages;
 function load_relation_Asian_Categorie_Meal(self, force_first_page, current_User, current_Admin, callback) {
     let state = self.state();
     let prelude = force_first_page && state.Meal != "loading" ?
@@ -32205,33 +32269,8 @@ function load_relation_Asian_Categorie_Meal(self, force_first_page, current_User
             prelude(() => callback && callback());
 }
 exports.load_relation_Asian_Categorie_Meal = load_relation_Asian_Categorie_Meal;
-function load_relation_Asian_HomePage_Categorie(self, force_first_page, current_User, current_Admin, callback) {
-    let state = self.state();
-    let prelude = force_first_page && state.HomePage != "loading" ?
-        (c) => state.HomePage != "loading" && self.setState(Object.assign({}, state, { HomePage: Object.assign({}, state.HomePage, { PageIndex: 0 }) }), c)
-        :
-            (c) => c();
-    Permissions.can_view_HomePage(current_User, current_Admin) ?
-        prelude(() => Api.get_Categorie_HomePage_Categories(self.props.entity, Asian_HomePage_Categorie_page_index(self), Asian_HomePage_Categorie_page_size(self), Asian_HomePage_Categorie_search_query(self)).then(HomePages => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, HomePage: Utils.raw_page_to_paginated_items((i, i_just_created) => {
-                let state = self.state();
-                return {
-                    element: i,
-                    size: state.HomePage != "loading" ?
-                        (state.HomePage.Items.has(i.Id) ?
-                            state.HomePage.Items.get(i.Id).size
-                            :
-                                "preview" /* i_just_created ? "large" : "preview" */)
-                        :
-                            "preview" /* i_just_created ? "large" : "preview" */,
-                    shown_relation: "all"
-                };
-            }, HomePages) }), callback)))
-        :
-            prelude(() => callback && callback());
-}
-exports.load_relation_Asian_HomePage_Categorie = load_relation_Asian_HomePage_Categorie;
 function load_relations_Asian(self, current_User, current_Admin, callback) {
-    load_relation_Asian_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_Asian_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback()));
+    load_relation_Asian_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback());
 }
 exports.load_relations_Asian = load_relations_Asian;
 function set_size_Asian(self, new_size) {
@@ -32284,17 +32323,13 @@ function render_menu_Asian(self) {
             !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin) ? null :
                 React.createElement("div", { className: `menu_entry page_link` },
                     React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
+            !Permissions.can_view_CategoryList(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_CategoryLists(0, 1).then(e => e.Items.length > 0 && self.props.set_page(CategoryListViews.CategoryList_to_page(e.Items[0].Item.Id))) }, i18next.t('CategoryList'))),
+            !Permissions.can_view_Bookmarks(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_Bookmarkss(0, 1).then(e => e.Items.length > 0 && self.props.set_page(BookmarksViews.Bookmarks_to_page(e.Items[0].Item.Id))) }, i18next.t('Bookmarks'))),
             React.createElement("div", { className: "menu_entries" },
-                !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipe" ? " active" : ""}` },
-                        React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipe")));
-                            } }, i18next.t('HomePage_Recipes'))),
-                !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}` },
-                        React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categorie")));
-                            } }, i18next.t('HomePage_Categories'))),
                 React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
 }
 exports.render_menu_Asian = render_menu_Asian;
@@ -32427,44 +32462,6 @@ function render_Asian_Categorie_Meal(self, context) {
         Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin) ? render_add_existing_Asian_Categorie_Meal(self) : null)));
 }
 exports.render_Asian_Categorie_Meal = render_Asian_Categorie_Meal;
-function render_Asian_HomePage_Categorie(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "HomePage_Categorie") || !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin))
-        return null;
-    let state = self.state();
-    return React.createElement("div", null, List.render_relation("asian_homepage_categorie", "Categorie", "HomePage", "HomePages", self.props.nesting_depth > 0, false, false, false)(state.HomePage != "loading" ?
-        state.HomePage.IdsInServerOrder.map(id => state.HomePage != "loading" && state.HomePage.Items.get(id)) :
-        state.HomePage, Asian_HomePage_Categorie_page_index(self), Asian_HomePage_Categorie_num_pages(self), new_page_index => {
-        let state = self.state();
-        state.HomePage != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, HomePage: Object.assign({}, state.HomePage, { PageIndex: new_page_index }) }), () => load_relation_Asian_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin));
-    }, (i, _) => {
-        let i_id = i.element.Id;
-        let state = self.state();
-        return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
-                        ${state.HomePage != "loading" && state.HomePage.JustCreated.has(i_id) && state.HomePage.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, HomePageViews.HomePage(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_HomePage_Categorie(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_HomePage_Categorie(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_HomePage_Categorie(self.props.current_User, self.props.current_Admin)) ?
-                    self.props.mode : "view", is_editable: state.HomePage != "loading" && state.HomePage.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
-                    let state = self.state();
-                    state.HomePage != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { HomePage: Object.assign({}, state.HomePage, { Items: state.HomePage.Items.set(i_id, Object.assign({}, state.HomePage.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
-                }, nested_entity_names: self.props.nested_entity_names.push("HomePage"), set_size: (new_size, callback) => {
-                    let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
-                    let state = self.state();
-                    state.HomePage != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { HomePage: Object.assign({}, state.HomePage, { Items: state.HomePage.Items.set(i_id, Object.assign({}, state.HomePage.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
-                }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
-                    let state = self.state();
-                    state.HomePage != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { dirty_HomePage: state.dirty_HomePage.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, HomePage: Object.assign({}, state.HomePage, { Items: state.HomePage.Items.set(i_id, Object.assign({}, state.HomePage.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, unlink: undefined, delete: !Permissions.can_delete_HomePage(self.props.current_User, self.props.current_Admin) || !Asian_HomePage_Categorie_can_delete(self) ?
-                    null
-                    :
-                        () => confirm(i18next.t('Are you sure?')) && Api.delete_HomePage(i.element).then(() => load_relation_Asian_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin)) }))));
-    }, () => React.createElement("div", null)));
-}
-exports.render_Asian_HomePage_Categorie = render_Asian_HomePage_Categorie;
 function render_relations_Asian(self) {
     return React.createElement("div", { className: "relations" }, render_Asian_Categorie_Meal(self, "default"));
 }
@@ -32526,17 +32523,15 @@ function render_new_Asian_Categorie_Meal(self) {
 exports.render_new_Asian_Categorie_Meal = render_new_Asian_Categorie_Meal;
 function render_saving_animations_Asian(self) {
     return self.state().dirty_Meal.count() > 0 ?
-        React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" }) :
-        self.state().dirty_HomePage.count() > 0 ?
-            React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" })
-            : React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "cornflowerblue" }, className: "saved" });
+        React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" })
+        : React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "cornflowerblue" }, className: "saved" });
 }
 exports.render_saving_animations_Asian = render_saving_animations_Asian;
 class AsianComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.thread = null;
-        this.state = { update_count: 0, add_step_Meal: "closed", dirty_Meal: Immutable.Map(), Meal: "loading", add_step_HomePage: "closed", dirty_HomePage: Immutable.Map(), HomePage: "loading" };
+        this.state = { update_count: 0, add_step_Meal: "closed", dirty_Meal: Immutable.Map(), Meal: "loading" };
     }
     get_self() {
         return { state: () => this.state, props: this.props, setState: (ns, c) => this.setState(ns, c) };
@@ -32564,10 +32559,6 @@ class AsianComponent extends React.Component {
             if (this.state.dirty_Meal.count() > 0) {
                 let first = this.state.dirty_Meal.first();
                 this.setState(Object.assign({}, this.state, { dirty_Meal: this.state.dirty_Meal.remove(first.Id) }), () => Api.update_Meal(first));
-            }
-            else if (this.state.dirty_HomePage.count() > 0) {
-                let first = this.state.dirty_HomePage.first();
-                this.setState(Object.assign({}, this.state, { dirty_HomePage: this.state.dirty_HomePage.remove(first.Id) }), () => Api.update_HomePage(first));
             }
         }, 500);
     }
@@ -32600,7 +32591,7 @@ class AsianComponent extends React.Component {
 exports.AsianComponent = AsianComponent;
 exports.Asian = (props) => React.createElement(AsianComponent, Object.assign({}, props));
 exports.Asian_to_page = (id) => {
-    let can_edit = Utils.any_of([Permissions.can_edit_Asian, Permissions.can_edit_Categorie_Meal, Permissions.can_edit_HomePage_Categorie, Permissions.can_edit_Meal, Permissions.can_edit_HomePage]);
+    let can_edit = Utils.any_of([Permissions.can_edit_Asian, Permissions.can_edit_Categorie_Meal, Permissions.can_edit_Meal]);
     return Utils.scene_to_page(can_edit, exports.Asian, Api.get_Asian(id), Api.update_Asian, "Asian", "Asian", `/Asians/${id}`);
 };
 exports.Asian_to = (id, target_element_id, current_User, current_Admin) => {
@@ -32609,7 +32600,7 @@ exports.Asian_to = (id, target_element_id, current_User, current_Admin) => {
 
 
 /***/ }),
-/* 187 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32623,18 +32614,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(13);
-const Immutable = __webpack_require__(27);
-const Api = __webpack_require__(21);
-const List = __webpack_require__(46);
-const Components = __webpack_require__(39);
-const Buttons = __webpack_require__(40);
-const Permissions = __webpack_require__(28);
-const Utils = __webpack_require__(23);
-const i18next = __webpack_require__(22);
-const HomePageViews = __webpack_require__(41);
-const CategorieViews = __webpack_require__(89);
-const RecipeViews = __webpack_require__(65);
+const React = __webpack_require__(11);
+const Immutable = __webpack_require__(36);
+const Api = __webpack_require__(18);
+const List = __webpack_require__(56);
+const Components = __webpack_require__(42);
+const Buttons = __webpack_require__(47);
+const Permissions = __webpack_require__(24);
+const Utils = __webpack_require__(22);
+const i18next = __webpack_require__(21);
+const HomePageViews = __webpack_require__(30);
+const CategoryListViews = __webpack_require__(29);
+const BookmarksViews = __webpack_require__(28);
+const CategorieViews = __webpack_require__(105);
+const RecipeViews = __webpack_require__(80);
 function Breakfast_Categorie_Meal_can_create(self) {
     let state = self.state();
     return state.Categorie == "loading" ? false : state.Categorie.CanCreate;
@@ -32799,17 +32792,13 @@ function render_menu_Breakfast(self) {
             !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin) ? null :
                 React.createElement("div", { className: `menu_entry page_link` },
                     React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
+            !Permissions.can_view_CategoryList(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_CategoryLists(0, 1).then(e => e.Items.length > 0 && self.props.set_page(CategoryListViews.CategoryList_to_page(e.Items[0].Item.Id))) }, i18next.t('CategoryList'))),
+            !Permissions.can_view_Bookmarks(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_Bookmarkss(0, 1).then(e => e.Items.length > 0 && self.props.set_page(BookmarksViews.Bookmarks_to_page(e.Items[0].Item.Id))) }, i18next.t('Bookmarks'))),
             React.createElement("div", { className: "menu_entries" },
-                !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipe" ? " active" : ""}` },
-                        React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipe")));
-                            } }, i18next.t('HomePage_Recipes'))),
-                !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}` },
-                        React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categorie")));
-                            } }, i18next.t('HomePage_Categories'))),
                 React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
 }
 exports.render_menu_Breakfast = render_menu_Breakfast;
@@ -33163,7 +33152,7 @@ exports.Breakfast_to = (id, target_element_id, current_User, current_Admin) => {
 
 
 /***/ }),
-/* 188 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33177,18 +33166,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(13);
-const Immutable = __webpack_require__(27);
-const Api = __webpack_require__(21);
-const List = __webpack_require__(46);
-const Components = __webpack_require__(39);
-const Buttons = __webpack_require__(40);
-const Permissions = __webpack_require__(28);
-const Utils = __webpack_require__(23);
-const i18next = __webpack_require__(22);
-const HomePageViews = __webpack_require__(41);
-const CategorieViews = __webpack_require__(89);
-const RecipeViews = __webpack_require__(65);
+const React = __webpack_require__(11);
+const Immutable = __webpack_require__(36);
+const Api = __webpack_require__(18);
+const List = __webpack_require__(56);
+const Components = __webpack_require__(42);
+const Buttons = __webpack_require__(47);
+const Permissions = __webpack_require__(24);
+const Utils = __webpack_require__(22);
+const i18next = __webpack_require__(21);
+const HomePageViews = __webpack_require__(30);
+const CategoryListViews = __webpack_require__(29);
+const BookmarksViews = __webpack_require__(28);
+const CategorieViews = __webpack_require__(105);
+const RecipeViews = __webpack_require__(80);
 function Dinner_Categorie_Meal_can_create(self) {
     let state = self.state();
     return state.Categorie == "loading" ? false : state.Categorie.CanCreate;
@@ -33353,17 +33344,13 @@ function render_menu_Dinner(self) {
             !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin) ? null :
                 React.createElement("div", { className: `menu_entry page_link` },
                     React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
+            !Permissions.can_view_CategoryList(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_CategoryLists(0, 1).then(e => e.Items.length > 0 && self.props.set_page(CategoryListViews.CategoryList_to_page(e.Items[0].Item.Id))) }, i18next.t('CategoryList'))),
+            !Permissions.can_view_Bookmarks(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_Bookmarkss(0, 1).then(e => e.Items.length > 0 && self.props.set_page(BookmarksViews.Bookmarks_to_page(e.Items[0].Item.Id))) }, i18next.t('Bookmarks'))),
             React.createElement("div", { className: "menu_entries" },
-                !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipe" ? " active" : ""}` },
-                        React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipe")));
-                            } }, i18next.t('HomePage_Recipes'))),
-                !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}` },
-                        React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categorie")));
-                            } }, i18next.t('HomePage_Categories'))),
                 React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
 }
 exports.render_menu_Dinner = render_menu_Dinner;
@@ -33717,7 +33704,7 @@ exports.Dinner_to = (id, target_element_id, current_User, current_Admin) => {
 
 
 /***/ }),
-/* 189 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33731,18 +33718,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(13);
-const Immutable = __webpack_require__(27);
-const Api = __webpack_require__(21);
-const List = __webpack_require__(46);
-const Components = __webpack_require__(39);
-const Buttons = __webpack_require__(40);
-const Permissions = __webpack_require__(28);
-const Utils = __webpack_require__(23);
-const i18next = __webpack_require__(22);
-const HomePageViews = __webpack_require__(41);
-const CategorieViews = __webpack_require__(89);
-const RecipeViews = __webpack_require__(65);
+const React = __webpack_require__(11);
+const Immutable = __webpack_require__(36);
+const Api = __webpack_require__(18);
+const List = __webpack_require__(56);
+const Components = __webpack_require__(42);
+const Buttons = __webpack_require__(47);
+const Permissions = __webpack_require__(24);
+const Utils = __webpack_require__(22);
+const i18next = __webpack_require__(21);
+const HomePageViews = __webpack_require__(30);
+const CategoryListViews = __webpack_require__(29);
+const BookmarksViews = __webpack_require__(28);
+const CategorieViews = __webpack_require__(105);
+const RecipeViews = __webpack_require__(80);
 function Lunch_Categorie_Meal_can_create(self) {
     let state = self.state();
     return state.Categorie == "loading" ? false : state.Categorie.CanCreate;
@@ -33907,17 +33896,13 @@ function render_menu_Lunch(self) {
             !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin) ? null :
                 React.createElement("div", { className: `menu_entry page_link` },
                     React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
+            !Permissions.can_view_CategoryList(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_CategoryLists(0, 1).then(e => e.Items.length > 0 && self.props.set_page(CategoryListViews.CategoryList_to_page(e.Items[0].Item.Id))) }, i18next.t('CategoryList'))),
+            !Permissions.can_view_Bookmarks(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_Bookmarkss(0, 1).then(e => e.Items.length > 0 && self.props.set_page(BookmarksViews.Bookmarks_to_page(e.Items[0].Item.Id))) }, i18next.t('Bookmarks'))),
             React.createElement("div", { className: "menu_entries" },
-                !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipe" ? " active" : ""}` },
-                        React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipe")));
-                            } }, i18next.t('HomePage_Recipes'))),
-                !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}` },
-                        React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categorie")));
-                            } }, i18next.t('HomePage_Categories'))),
                 React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
 }
 exports.render_menu_Lunch = render_menu_Lunch;
@@ -34271,7 +34256,7 @@ exports.Lunch_to = (id, target_element_id, current_User, current_Admin) => {
 
 
 /***/ }),
-/* 190 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34285,77 +34270,49 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(13);
-const Immutable = __webpack_require__(27);
-const Api = __webpack_require__(21);
-const List = __webpack_require__(46);
-const Components = __webpack_require__(39);
-const Buttons = __webpack_require__(40);
-const Permissions = __webpack_require__(28);
-const Utils = __webpack_require__(23);
-const i18next = __webpack_require__(22);
-const HomePageViews = __webpack_require__(41);
-const MealViews = __webpack_require__(90);
+const React = __webpack_require__(11);
+const Immutable = __webpack_require__(36);
+const Api = __webpack_require__(18);
+const List = __webpack_require__(56);
+const Components = __webpack_require__(42);
+const Buttons = __webpack_require__(47);
+const Permissions = __webpack_require__(24);
+const Utils = __webpack_require__(22);
+const i18next = __webpack_require__(21);
+const HomePageViews = __webpack_require__(30);
+const CategoryListViews = __webpack_require__(29);
+const BookmarksViews = __webpack_require__(28);
+const MealViews = __webpack_require__(91);
 function Mediterranean_Categorie_Meal_can_create(self) {
     let state = self.state();
     return state.Meal == "loading" ? false : state.Meal.CanCreate;
 }
 exports.Mediterranean_Categorie_Meal_can_create = Mediterranean_Categorie_Meal_can_create;
-function Mediterranean_HomePage_Categorie_can_create(self) {
-    let state = self.state();
-    return state.HomePage == "loading" ? false : state.HomePage.CanCreate;
-}
-exports.Mediterranean_HomePage_Categorie_can_create = Mediterranean_HomePage_Categorie_can_create;
 function Mediterranean_Categorie_Meal_can_delete(self) {
     let state = self.state();
     return state.Meal == "loading" ? false : state.Meal.CanDelete;
 }
 exports.Mediterranean_Categorie_Meal_can_delete = Mediterranean_Categorie_Meal_can_delete;
-function Mediterranean_HomePage_Categorie_can_delete(self) {
-    let state = self.state();
-    return state.HomePage == "loading" ? false : state.HomePage.CanDelete;
-}
-exports.Mediterranean_HomePage_Categorie_can_delete = Mediterranean_HomePage_Categorie_can_delete;
 function Mediterranean_Categorie_Meal_page_index(self) {
     let state = self.state();
     return state.Meal == "loading" ? 0 : state.Meal.PageIndex;
 }
 exports.Mediterranean_Categorie_Meal_page_index = Mediterranean_Categorie_Meal_page_index;
-function Mediterranean_HomePage_Categorie_page_index(self) {
-    let state = self.state();
-    return state.HomePage == "loading" ? 0 : state.HomePage.PageIndex;
-}
-exports.Mediterranean_HomePage_Categorie_page_index = Mediterranean_HomePage_Categorie_page_index;
 function Mediterranean_Categorie_Meal_page_size(self) {
     let state = self.state();
     return state.Meal == "loading" ? 25 : state.Meal.PageSize;
 }
 exports.Mediterranean_Categorie_Meal_page_size = Mediterranean_Categorie_Meal_page_size;
-function Mediterranean_HomePage_Categorie_page_size(self) {
-    let state = self.state();
-    return state.HomePage == "loading" ? 25 : state.HomePage.PageSize;
-}
-exports.Mediterranean_HomePage_Categorie_page_size = Mediterranean_HomePage_Categorie_page_size;
 function Mediterranean_Categorie_Meal_search_query(self) {
     let state = self.state();
     return state.Meal == "loading" ? null : state.Meal.SearchQuery;
 }
 exports.Mediterranean_Categorie_Meal_search_query = Mediterranean_Categorie_Meal_search_query;
-function Mediterranean_HomePage_Categorie_search_query(self) {
-    let state = self.state();
-    return state.HomePage == "loading" ? null : state.HomePage.SearchQuery;
-}
-exports.Mediterranean_HomePage_Categorie_search_query = Mediterranean_HomePage_Categorie_search_query;
 function Mediterranean_Categorie_Meal_num_pages(self) {
     let state = self.state();
     return state.Meal == "loading" ? 1 : state.Meal.NumPages;
 }
 exports.Mediterranean_Categorie_Meal_num_pages = Mediterranean_Categorie_Meal_num_pages;
-function Mediterranean_HomePage_Categorie_num_pages(self) {
-    let state = self.state();
-    return state.HomePage == "loading" ? 1 : state.HomePage.NumPages;
-}
-exports.Mediterranean_HomePage_Categorie_num_pages = Mediterranean_HomePage_Categorie_num_pages;
 function load_relation_Mediterranean_Categorie_Meal(self, force_first_page, current_User, current_Admin, callback) {
     let state = self.state();
     let prelude = force_first_page && state.Meal != "loading" ?
@@ -34381,33 +34338,8 @@ function load_relation_Mediterranean_Categorie_Meal(self, force_first_page, curr
             prelude(() => callback && callback());
 }
 exports.load_relation_Mediterranean_Categorie_Meal = load_relation_Mediterranean_Categorie_Meal;
-function load_relation_Mediterranean_HomePage_Categorie(self, force_first_page, current_User, current_Admin, callback) {
-    let state = self.state();
-    let prelude = force_first_page && state.HomePage != "loading" ?
-        (c) => state.HomePage != "loading" && self.setState(Object.assign({}, state, { HomePage: Object.assign({}, state.HomePage, { PageIndex: 0 }) }), c)
-        :
-            (c) => c();
-    Permissions.can_view_HomePage(current_User, current_Admin) ?
-        prelude(() => Api.get_Categorie_HomePage_Categories(self.props.entity, Mediterranean_HomePage_Categorie_page_index(self), Mediterranean_HomePage_Categorie_page_size(self), Mediterranean_HomePage_Categorie_search_query(self)).then(HomePages => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, HomePage: Utils.raw_page_to_paginated_items((i, i_just_created) => {
-                let state = self.state();
-                return {
-                    element: i,
-                    size: state.HomePage != "loading" ?
-                        (state.HomePage.Items.has(i.Id) ?
-                            state.HomePage.Items.get(i.Id).size
-                            :
-                                "preview" /* i_just_created ? "large" : "preview" */)
-                        :
-                            "preview" /* i_just_created ? "large" : "preview" */,
-                    shown_relation: "all"
-                };
-            }, HomePages) }), callback)))
-        :
-            prelude(() => callback && callback());
-}
-exports.load_relation_Mediterranean_HomePage_Categorie = load_relation_Mediterranean_HomePage_Categorie;
 function load_relations_Mediterranean(self, current_User, current_Admin, callback) {
-    load_relation_Mediterranean_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_Mediterranean_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback()));
+    load_relation_Mediterranean_Categorie_Meal(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback());
 }
 exports.load_relations_Mediterranean = load_relations_Mediterranean;
 function set_size_Mediterranean(self, new_size) {
@@ -34460,17 +34392,13 @@ function render_menu_Mediterranean(self) {
             !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin) ? null :
                 React.createElement("div", { className: `menu_entry page_link` },
                     React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
+            !Permissions.can_view_CategoryList(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_CategoryLists(0, 1).then(e => e.Items.length > 0 && self.props.set_page(CategoryListViews.CategoryList_to_page(e.Items[0].Item.Id))) }, i18next.t('CategoryList'))),
+            !Permissions.can_view_Bookmarks(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_Bookmarkss(0, 1).then(e => e.Items.length > 0 && self.props.set_page(BookmarksViews.Bookmarks_to_page(e.Items[0].Item.Id))) }, i18next.t('Bookmarks'))),
             React.createElement("div", { className: "menu_entries" },
-                !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipe" ? " active" : ""}` },
-                        React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipe")));
-                            } }, i18next.t('HomePage_Recipes'))),
-                !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}` },
-                        React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categorie")));
-                            } }, i18next.t('HomePage_Categories'))),
                 React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
 }
 exports.render_menu_Mediterranean = render_menu_Mediterranean;
@@ -34603,44 +34531,6 @@ function render_Mediterranean_Categorie_Meal(self, context) {
         Permissions.can_create_Categorie_Meal(self.props.current_User, self.props.current_Admin) ? render_add_existing_Mediterranean_Categorie_Meal(self) : null)));
 }
 exports.render_Mediterranean_Categorie_Meal = render_Mediterranean_Categorie_Meal;
-function render_Mediterranean_HomePage_Categorie(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "HomePage_Categorie") || !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin))
-        return null;
-    let state = self.state();
-    return React.createElement("div", null, List.render_relation("mediterranean_homepage_categorie", "Categorie", "HomePage", "HomePages", self.props.nesting_depth > 0, false, false, false)(state.HomePage != "loading" ?
-        state.HomePage.IdsInServerOrder.map(id => state.HomePage != "loading" && state.HomePage.Items.get(id)) :
-        state.HomePage, Mediterranean_HomePage_Categorie_page_index(self), Mediterranean_HomePage_Categorie_num_pages(self), new_page_index => {
-        let state = self.state();
-        state.HomePage != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, HomePage: Object.assign({}, state.HomePage, { PageIndex: new_page_index }) }), () => load_relation_Mediterranean_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin));
-    }, (i, _) => {
-        let i_id = i.element.Id;
-        let state = self.state();
-        return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
-                        ${state.HomePage != "loading" && state.HomePage.JustCreated.has(i_id) && state.HomePage.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, HomePageViews.HomePage(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_HomePage_Categorie(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_HomePage_Categorie(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_HomePage_Categorie(self.props.current_User, self.props.current_Admin)) ?
-                    self.props.mode : "view", is_editable: state.HomePage != "loading" && state.HomePage.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
-                    let state = self.state();
-                    state.HomePage != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { HomePage: Object.assign({}, state.HomePage, { Items: state.HomePage.Items.set(i_id, Object.assign({}, state.HomePage.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
-                }, nested_entity_names: self.props.nested_entity_names.push("HomePage"), set_size: (new_size, callback) => {
-                    let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
-                    let state = self.state();
-                    state.HomePage != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { HomePage: Object.assign({}, state.HomePage, { Items: state.HomePage.Items.set(i_id, Object.assign({}, state.HomePage.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
-                }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
-                    let state = self.state();
-                    state.HomePage != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { dirty_HomePage: state.dirty_HomePage.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, HomePage: Object.assign({}, state.HomePage, { Items: state.HomePage.Items.set(i_id, Object.assign({}, state.HomePage.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, unlink: undefined, delete: !Permissions.can_delete_HomePage(self.props.current_User, self.props.current_Admin) || !Mediterranean_HomePage_Categorie_can_delete(self) ?
-                    null
-                    :
-                        () => confirm(i18next.t('Are you sure?')) && Api.delete_HomePage(i.element).then(() => load_relation_Mediterranean_HomePage_Categorie(self, false, self.props.current_User, self.props.current_Admin)) }))));
-    }, () => React.createElement("div", null)));
-}
-exports.render_Mediterranean_HomePage_Categorie = render_Mediterranean_HomePage_Categorie;
 function render_relations_Mediterranean(self) {
     return React.createElement("div", { className: "relations" }, render_Mediterranean_Categorie_Meal(self, "default"));
 }
@@ -34702,17 +34592,15 @@ function render_new_Mediterranean_Categorie_Meal(self) {
 exports.render_new_Mediterranean_Categorie_Meal = render_new_Mediterranean_Categorie_Meal;
 function render_saving_animations_Mediterranean(self) {
     return self.state().dirty_Meal.count() > 0 ?
-        React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" }) :
-        self.state().dirty_HomePage.count() > 0 ?
-            React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" })
-            : React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "cornflowerblue" }, className: "saved" });
+        React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" })
+        : React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "cornflowerblue" }, className: "saved" });
 }
 exports.render_saving_animations_Mediterranean = render_saving_animations_Mediterranean;
 class MediterraneanComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.thread = null;
-        this.state = { update_count: 0, add_step_Meal: "closed", dirty_Meal: Immutable.Map(), Meal: "loading", add_step_HomePage: "closed", dirty_HomePage: Immutable.Map(), HomePage: "loading" };
+        this.state = { update_count: 0, add_step_Meal: "closed", dirty_Meal: Immutable.Map(), Meal: "loading" };
     }
     get_self() {
         return { state: () => this.state, props: this.props, setState: (ns, c) => this.setState(ns, c) };
@@ -34740,10 +34628,6 @@ class MediterraneanComponent extends React.Component {
             if (this.state.dirty_Meal.count() > 0) {
                 let first = this.state.dirty_Meal.first();
                 this.setState(Object.assign({}, this.state, { dirty_Meal: this.state.dirty_Meal.remove(first.Id) }), () => Api.update_Meal(first));
-            }
-            else if (this.state.dirty_HomePage.count() > 0) {
-                let first = this.state.dirty_HomePage.first();
-                this.setState(Object.assign({}, this.state, { dirty_HomePage: this.state.dirty_HomePage.remove(first.Id) }), () => Api.update_HomePage(first));
             }
         }, 500);
     }
@@ -34776,7 +34660,7 @@ class MediterraneanComponent extends React.Component {
 exports.MediterraneanComponent = MediterraneanComponent;
 exports.Mediterranean = (props) => React.createElement(MediterraneanComponent, Object.assign({}, props));
 exports.Mediterranean_to_page = (id) => {
-    let can_edit = Utils.any_of([Permissions.can_edit_Mediterranean, Permissions.can_edit_Categorie_Meal, Permissions.can_edit_HomePage_Categorie, Permissions.can_edit_Meal, Permissions.can_edit_HomePage]);
+    let can_edit = Utils.any_of([Permissions.can_edit_Mediterranean, Permissions.can_edit_Categorie_Meal, Permissions.can_edit_Meal]);
     return Utils.scene_to_page(can_edit, exports.Mediterranean, Api.get_Mediterranean(id), Api.update_Mediterranean, "Mediterranean", "Mediterranean", `/Mediterraneans/${id}`);
 };
 exports.Mediterranean_to = (id, target_element_id, current_User, current_Admin) => {
@@ -34785,7 +34669,7 @@ exports.Mediterranean_to = (id, target_element_id, current_User, current_Admin) 
 
 
 /***/ }),
-/* 191 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34799,17 +34683,19 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(13);
-const Immutable = __webpack_require__(27);
-const Api = __webpack_require__(21);
-const List = __webpack_require__(46);
-const Components = __webpack_require__(39);
-const Buttons = __webpack_require__(40);
-const Permissions = __webpack_require__(28);
-const Utils = __webpack_require__(23);
-const i18next = __webpack_require__(22);
-const HomePageViews = __webpack_require__(41);
-const RecipeViews = __webpack_require__(65);
+const React = __webpack_require__(11);
+const Immutable = __webpack_require__(36);
+const Api = __webpack_require__(18);
+const List = __webpack_require__(56);
+const Components = __webpack_require__(42);
+const Buttons = __webpack_require__(47);
+const Permissions = __webpack_require__(24);
+const Utils = __webpack_require__(22);
+const i18next = __webpack_require__(21);
+const HomePageViews = __webpack_require__(30);
+const CategoryListViews = __webpack_require__(29);
+const BookmarksViews = __webpack_require__(28);
+const RecipeViews = __webpack_require__(80);
 function Rating_Recipe_Rating_can_create(self) {
     let state = self.state();
     return state.Recipe == "loading" ? false : state.Recipe.CanCreate;
@@ -34919,17 +34805,13 @@ function render_menu_Rating(self) {
             !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin) ? null :
                 React.createElement("div", { className: `menu_entry page_link` },
                     React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
+            !Permissions.can_view_CategoryList(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_CategoryLists(0, 1).then(e => e.Items.length > 0 && self.props.set_page(CategoryListViews.CategoryList_to_page(e.Items[0].Item.Id))) }, i18next.t('CategoryList'))),
+            !Permissions.can_view_Bookmarks(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_Bookmarkss(0, 1).then(e => e.Items.length > 0 && self.props.set_page(BookmarksViews.Bookmarks_to_page(e.Items[0].Item.Id))) }, i18next.t('Bookmarks'))),
             React.createElement("div", { className: "menu_entries" },
-                !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipe" ? " active" : ""}` },
-                        React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipe")));
-                            } }, i18next.t('HomePage_Recipes'))),
-                !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}` },
-                        React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categorie")));
-                            } }, i18next.t('HomePage_Categories'))),
                 React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
 }
 exports.render_menu_Rating = render_menu_Rating;
@@ -35179,7 +35061,7 @@ exports.Rating_to = (id, target_element_id, current_User, current_Admin) => {
 
 
 /***/ }),
-/* 192 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35193,18 +35075,20 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(13);
-const Immutable = __webpack_require__(27);
-const Api = __webpack_require__(21);
-const List = __webpack_require__(46);
-const Components = __webpack_require__(39);
-const Buttons = __webpack_require__(40);
-const Permissions = __webpack_require__(28);
-const Utils = __webpack_require__(23);
-const i18next = __webpack_require__(22);
+const React = __webpack_require__(11);
+const Immutable = __webpack_require__(36);
+const Api = __webpack_require__(18);
+const List = __webpack_require__(56);
+const Components = __webpack_require__(42);
+const Buttons = __webpack_require__(47);
+const Permissions = __webpack_require__(24);
+const Utils = __webpack_require__(22);
+const i18next = __webpack_require__(21);
 const Moment = __webpack_require__(0);
-const HomePageViews = __webpack_require__(41);
-const RecipeViews = __webpack_require__(65);
+const HomePageViews = __webpack_require__(30);
+const CategoryListViews = __webpack_require__(29);
+const BookmarksViews = __webpack_require__(28);
+const RecipeViews = __webpack_require__(80);
 function User_User_Recipe_can_create(self) {
     let state = self.state();
     return state.Recipe == "loading" ? false : state.Recipe.CanCreate;
@@ -35368,17 +35252,13 @@ function render_menu_User(self) {
             !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin) ? null :
                 React.createElement("div", { className: `menu_entry page_link` },
                     React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
+            !Permissions.can_view_CategoryList(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_CategoryLists(0, 1).then(e => e.Items.length > 0 && self.props.set_page(CategoryListViews.CategoryList_to_page(e.Items[0].Item.Id))) }, i18next.t('CategoryList'))),
+            !Permissions.can_view_Bookmarks(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_Bookmarkss(0, 1).then(e => e.Items.length > 0 && self.props.set_page(BookmarksViews.Bookmarks_to_page(e.Items[0].Item.Id))) }, i18next.t('Bookmarks'))),
             React.createElement("div", { className: "menu_entries" },
-                !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipe" ? " active" : ""}` },
-                        React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipe")));
-                            } }, i18next.t('HomePage_Recipes'))),
-                !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}` },
-                        React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categorie")));
-                            } }, i18next.t('HomePage_Categories'))),
                 React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
 }
 exports.render_menu_User = render_menu_User;
@@ -35663,25 +35543,25 @@ exports.User_to = (id, target_element_id, current_User, current_Admin) => {
 
 
 /***/ }),
-/* 193 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var cof = __webpack_require__(42);
+var cof = __webpack_require__(43);
 module.exports = function(it, msg){
   if(typeof it != 'number' && cof(it) != 'Number')throw TypeError(msg);
   return +it;
 };
 
 /***/ }),
-/* 194 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 // 22.1.3.3 Array.prototype.copyWithin(target, start, end = this.length)
 
-var toObject = __webpack_require__(20)
-  , toIndex  = __webpack_require__(73)
-  , toLength = __webpack_require__(18);
+var toObject = __webpack_require__(23)
+  , toIndex  = __webpack_require__(74)
+  , toLength = __webpack_require__(19);
 
 module.exports = [].copyWithin || function copyWithin(target/*= 0*/, start/*= 0, end = @length*/){
   var O     = toObject(this)
@@ -35705,10 +35585,10 @@ module.exports = [].copyWithin || function copyWithin(target/*= 0*/, start/*= 0,
 };
 
 /***/ }),
-/* 195 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var forOf = __webpack_require__(80);
+var forOf = __webpack_require__(82);
 
 module.exports = function(iter, ITERATOR){
   var result = [];
@@ -35718,13 +35598,13 @@ module.exports = function(iter, ITERATOR){
 
 
 /***/ }),
-/* 196 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var aFunction = __webpack_require__(29)
-  , toObject  = __webpack_require__(20)
-  , IObject   = __webpack_require__(92)
-  , toLength  = __webpack_require__(18);
+var aFunction = __webpack_require__(31)
+  , toObject  = __webpack_require__(23)
+  , IObject   = __webpack_require__(93)
+  , toLength  = __webpack_require__(19);
 
 module.exports = function(that, callbackfn, aLen, memo, isRight){
   aFunction(callbackfn);
@@ -35751,14 +35631,14 @@ module.exports = function(that, callbackfn, aLen, memo, isRight){
 };
 
 /***/ }),
-/* 197 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var aFunction  = __webpack_require__(29)
-  , isObject   = __webpack_require__(11)
-  , invoke     = __webpack_require__(108)
+var aFunction  = __webpack_require__(31)
+  , isObject   = __webpack_require__(12)
+  , invoke     = __webpack_require__(110)
   , arraySlice = [].slice
   , factories  = {};
 
@@ -35781,23 +35661,23 @@ module.exports = Function.bind || function bind(that /*, args... */){
 };
 
 /***/ }),
-/* 198 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var dP          = __webpack_require__(16).f
-  , create      = __webpack_require__(68)
-  , redefineAll = __webpack_require__(71)
-  , ctx         = __webpack_require__(56)
-  , anInstance  = __webpack_require__(66)
-  , defined     = __webpack_require__(43)
-  , forOf       = __webpack_require__(80)
-  , $iterDefine = __webpack_require__(139)
-  , step        = __webpack_require__(204)
-  , setSpecies  = __webpack_require__(72)
+  , create      = __webpack_require__(69)
+  , redefineAll = __webpack_require__(72)
+  , ctx         = __webpack_require__(58)
+  , anInstance  = __webpack_require__(67)
+  , defined     = __webpack_require__(44)
+  , forOf       = __webpack_require__(82)
+  , $iterDefine = __webpack_require__(142)
+  , step        = __webpack_require__(207)
+  , setSpecies  = __webpack_require__(73)
   , DESCRIPTORS = __webpack_require__(15)
-  , fastKey     = __webpack_require__(60).fastKey
+  , fastKey     = __webpack_require__(62).fastKey
   , SIZE        = DESCRIPTORS ? '_s' : 'size';
 
 var getEntry = function(that, key){
@@ -35929,12 +35809,12 @@ module.exports = {
 };
 
 /***/ }),
-/* 199 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
-var classof = __webpack_require__(91)
-  , from    = __webpack_require__(195);
+var classof = __webpack_require__(92)
+  , from    = __webpack_require__(198);
 module.exports = function(NAME){
   return function toJSON(){
     if(classof(this) != NAME)throw TypeError(NAME + "#toJSON isn't generic");
@@ -35943,19 +35823,19 @@ module.exports = function(NAME){
 };
 
 /***/ }),
-/* 200 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var redefineAll       = __webpack_require__(71)
-  , getWeak           = __webpack_require__(60).getWeak
+var redefineAll       = __webpack_require__(72)
+  , getWeak           = __webpack_require__(62).getWeak
   , anObject          = __webpack_require__(5)
-  , isObject          = __webpack_require__(11)
-  , anInstance        = __webpack_require__(66)
-  , forOf             = __webpack_require__(80)
-  , createArrayMethod = __webpack_require__(47)
-  , $has              = __webpack_require__(24)
+  , isObject          = __webpack_require__(12)
+  , anInstance        = __webpack_require__(67)
+  , forOf             = __webpack_require__(82)
+  , createArrayMethod = __webpack_require__(48)
+  , $has              = __webpack_require__(25)
   , arrayFind         = createArrayMethod(5)
   , arrayFindIndex    = createArrayMethod(6)
   , id                = 0;
@@ -36032,26 +35912,26 @@ module.exports = {
 };
 
 /***/ }),
-/* 201 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = !__webpack_require__(15) && !__webpack_require__(7)(function(){
-  return Object.defineProperty(__webpack_require__(131)('div'), 'a', {get: function(){ return 7; }}).a != 7;
+  return Object.defineProperty(__webpack_require__(134)('div'), 'a', {get: function(){ return 7; }}).a != 7;
 });
 
 /***/ }),
-/* 202 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.3 Number.isInteger(number)
-var isObject = __webpack_require__(11)
+var isObject = __webpack_require__(12)
   , floor    = Math.floor;
 module.exports = function isInteger(it){
   return !isObject(it) && isFinite(it) && floor(it) === it;
 };
 
 /***/ }),
-/* 203 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // call something on iterator step with safe closing on error
@@ -36068,7 +35948,7 @@ module.exports = function(iterator, fn, value, entries){
 };
 
 /***/ }),
-/* 204 */
+/* 207 */
 /***/ (function(module, exports) {
 
 module.exports = function(done, value){
@@ -36076,7 +35956,7 @@ module.exports = function(done, value){
 };
 
 /***/ }),
-/* 205 */
+/* 208 */
 /***/ (function(module, exports) {
 
 // 20.2.2.20 Math.log1p(x)
@@ -36085,17 +35965,17 @@ module.exports = Math.log1p || function log1p(x){
 };
 
 /***/ }),
-/* 206 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // 19.1.2.1 Object.assign(target, source, ...)
-var getKeys  = __webpack_require__(70)
-  , gOPS     = __webpack_require__(112)
-  , pIE      = __webpack_require__(93)
-  , toObject = __webpack_require__(20)
-  , IObject  = __webpack_require__(92)
+var getKeys  = __webpack_require__(71)
+  , gOPS     = __webpack_require__(114)
+  , pIE      = __webpack_require__(94)
+  , toObject = __webpack_require__(23)
+  , IObject  = __webpack_require__(93)
   , $assign  = Object.assign;
 
 // should work with symbols and should have deterministic property order (V8 bug)
@@ -36124,12 +36004,12 @@ module.exports = !$assign || __webpack_require__(7)(function(){
 } : $assign;
 
 /***/ }),
-/* 207 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var dP       = __webpack_require__(16)
   , anObject = __webpack_require__(5)
-  , getKeys  = __webpack_require__(70);
+  , getKeys  = __webpack_require__(71);
 
 module.exports = __webpack_require__(15) ? Object.defineProperties : function defineProperties(O, Properties){
   anObject(O);
@@ -36142,12 +36022,12 @@ module.exports = __webpack_require__(15) ? Object.defineProperties : function de
 };
 
 /***/ }),
-/* 208 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
-var toIObject = __webpack_require__(33)
-  , gOPN      = __webpack_require__(69).f
+var toIObject = __webpack_require__(35)
+  , gOPN      = __webpack_require__(70).f
   , toString  = {}.toString;
 
 var windowNames = typeof window == 'object' && window && Object.getOwnPropertyNames
@@ -36167,13 +36047,13 @@ module.exports.f = function getOwnPropertyNames(it){
 
 
 /***/ }),
-/* 209 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var has          = __webpack_require__(24)
-  , toIObject    = __webpack_require__(33)
-  , arrayIndexOf = __webpack_require__(104)(false)
-  , IE_PROTO     = __webpack_require__(144)('IE_PROTO');
+var has          = __webpack_require__(25)
+  , toIObject    = __webpack_require__(35)
+  , arrayIndexOf = __webpack_require__(106)(false)
+  , IE_PROTO     = __webpack_require__(147)('IE_PROTO');
 
 module.exports = function(object, names){
   var O      = toIObject(object)
@@ -36189,12 +36069,12 @@ module.exports = function(object, names){
 };
 
 /***/ }),
-/* 210 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getKeys   = __webpack_require__(70)
-  , toIObject = __webpack_require__(33)
-  , isEnum    = __webpack_require__(93).f;
+var getKeys   = __webpack_require__(71)
+  , toIObject = __webpack_require__(35)
+  , isEnum    = __webpack_require__(94).f;
 module.exports = function(isEntries){
   return function(it){
     var O      = toIObject(it)
@@ -36210,12 +36090,12 @@ module.exports = function(isEntries){
 };
 
 /***/ }),
-/* 211 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // all object keys, includes non-enumerable and symbols
-var gOPN     = __webpack_require__(69)
-  , gOPS     = __webpack_require__(112)
+var gOPN     = __webpack_require__(70)
+  , gOPS     = __webpack_require__(114)
   , anObject = __webpack_require__(5)
   , Reflect  = __webpack_require__(6).Reflect;
 module.exports = Reflect && Reflect.ownKeys || function ownKeys(it){
@@ -36225,25 +36105,25 @@ module.exports = Reflect && Reflect.ownKeys || function ownKeys(it){
 };
 
 /***/ }),
-/* 212 */
+/* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $parseFloat = __webpack_require__(6).parseFloat
-  , $trim       = __webpack_require__(83).trim;
+  , $trim       = __webpack_require__(85).trim;
 
-module.exports = 1 / $parseFloat(__webpack_require__(149) + '-0') !== -Infinity ? function parseFloat(str){
+module.exports = 1 / $parseFloat(__webpack_require__(152) + '-0') !== -Infinity ? function parseFloat(str){
   var string = $trim(String(str), 3)
     , result = $parseFloat(string);
   return result === 0 && string.charAt(0) == '-' ? -0 : result;
 } : $parseFloat;
 
 /***/ }),
-/* 213 */
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $parseInt = __webpack_require__(6).parseInt
-  , $trim     = __webpack_require__(83).trim
-  , ws        = __webpack_require__(149)
+  , $trim     = __webpack_require__(85).trim
+  , ws        = __webpack_require__(152)
   , hex       = /^[\-+]?0[xX]/;
 
 module.exports = $parseInt(ws + '08') !== 8 || $parseInt(ws + '0x16') !== 22 ? function parseInt(str, radix){
@@ -36252,7 +36132,7 @@ module.exports = $parseInt(ws + '08') !== 8 || $parseInt(ws + '0x16') !== 22 ? f
 } : $parseInt;
 
 /***/ }),
-/* 214 */
+/* 217 */
 /***/ (function(module, exports) {
 
 // 7.2.9 SameValue(x, y)
@@ -36261,13 +36141,13 @@ module.exports = Object.is || function is(x, y){
 };
 
 /***/ }),
-/* 215 */
+/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/tc39/proposal-string-pad-start-end
-var toLength = __webpack_require__(18)
-  , repeat   = __webpack_require__(148)
-  , defined  = __webpack_require__(43);
+var toLength = __webpack_require__(19)
+  , repeat   = __webpack_require__(151)
+  , defined  = __webpack_require__(44);
 
 module.exports = function(that, maxLength, fillString, left){
   var S            = String(defined(that))
@@ -36283,21 +36163,21 @@ module.exports = function(that, maxLength, fillString, left){
 
 
 /***/ }),
-/* 216 */
+/* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports.f = __webpack_require__(14);
 
 /***/ }),
-/* 217 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var strong = __webpack_require__(198);
+var strong = __webpack_require__(201);
 
 // 23.1 Map Objects
-module.exports = __webpack_require__(105)('Map', function(get){
+module.exports = __webpack_require__(107)('Map', function(get){
   return function Map(){ return get(this, arguments.length > 0 ? arguments[0] : undefined); };
 }, {
   // 23.1.3.6 Map.prototype.get(key)
@@ -36312,25 +36192,25 @@ module.exports = __webpack_require__(105)('Map', function(get){
 }, strong, true);
 
 /***/ }),
-/* 218 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 21.2.5.3 get RegExp.prototype.flags()
 if(__webpack_require__(15) && /./g.flags != 'g')__webpack_require__(16).f(RegExp.prototype, 'flags', {
   configurable: true,
-  get: __webpack_require__(107)
+  get: __webpack_require__(109)
 });
 
 /***/ }),
-/* 219 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var strong = __webpack_require__(198);
+var strong = __webpack_require__(201);
 
 // 23.2 Set Objects
-module.exports = __webpack_require__(105)('Set', function(get){
+module.exports = __webpack_require__(107)('Set', function(get){
   return function Set(){ return get(this, arguments.length > 0 ? arguments[0] : undefined); };
 }, {
   // 23.2.3.1 Set.prototype.add(value)
@@ -36340,17 +36220,17 @@ module.exports = __webpack_require__(105)('Set', function(get){
 }, strong);
 
 /***/ }),
-/* 220 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var each         = __webpack_require__(47)(0)
-  , redefine     = __webpack_require__(31)
-  , meta         = __webpack_require__(60)
-  , assign       = __webpack_require__(206)
-  , weak         = __webpack_require__(200)
-  , isObject     = __webpack_require__(11)
+var each         = __webpack_require__(48)(0)
+  , redefine     = __webpack_require__(33)
+  , meta         = __webpack_require__(62)
+  , assign       = __webpack_require__(209)
+  , weak         = __webpack_require__(203)
+  , isObject     = __webpack_require__(12)
   , getWeak      = meta.getWeak
   , isExtensible = Object.isExtensible
   , uncaughtFrozenStore = weak.ufstore
@@ -36379,7 +36259,7 @@ var methods = {
 };
 
 // 23.3 WeakMap Objects
-var $WeakMap = module.exports = __webpack_require__(105)('WeakMap', wrapper, methods, weak, true, true);
+var $WeakMap = module.exports = __webpack_require__(107)('WeakMap', wrapper, methods, weak, true, true);
 
 // IE11 WeakMap frozen keys fix
 if(new $WeakMap().set((Object.freeze || Object)(tmp), 7).get(tmp) != 7){
@@ -36402,7 +36282,7 @@ if(new $WeakMap().set((Object.freeze || Object)(tmp), 7).get(tmp) != 7){
 }
 
 /***/ }),
-/* 221 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36420,10 +36300,10 @@ if(new $WeakMap().set((Object.freeze || Object)(tmp), 7).get(tmp) != 7){
 
 
 
-var Immutable = __webpack_require__(12);
+var Immutable = __webpack_require__(13);
 
-var emptyFunction = __webpack_require__(26);
-var findRangesImmutable = __webpack_require__(117);
+var emptyFunction = __webpack_require__(27);
+var findRangesImmutable = __webpack_require__(119);
 
 var List = Immutable.List;
 var Repeat = Immutable.Repeat;
@@ -36520,7 +36400,7 @@ function areEqual(a, b) {
 module.exports = BlockTree;
 
 /***/ }),
-/* 222 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36562,7 +36442,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 223 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36579,30 +36459,30 @@ module.exports = {
 
 
 
-var AtomicBlockUtils = __webpack_require__(589);
-var BlockMapBuilder = __webpack_require__(94);
-var CharacterMetadata = __webpack_require__(45);
-var CompositeDraftDecorator = __webpack_require__(590);
-var ContentBlock = __webpack_require__(75);
-var ContentState = __webpack_require__(155);
-var DefaultDraftBlockRenderMap = __webpack_require__(156);
-var DefaultDraftInlineStyle = __webpack_require__(222);
-var DraftEditor = __webpack_require__(592);
-var DraftEditorBlock = __webpack_require__(224);
-var DraftEntity = __webpack_require__(115);
-var DraftModifier = __webpack_require__(25);
-var DraftEntityInstance = __webpack_require__(225);
+var AtomicBlockUtils = __webpack_require__(591);
+var BlockMapBuilder = __webpack_require__(95);
+var CharacterMetadata = __webpack_require__(46);
+var CompositeDraftDecorator = __webpack_require__(592);
+var ContentBlock = __webpack_require__(76);
+var ContentState = __webpack_require__(158);
+var DefaultDraftBlockRenderMap = __webpack_require__(159);
+var DefaultDraftInlineStyle = __webpack_require__(225);
+var DraftEditor = __webpack_require__(594);
+var DraftEditorBlock = __webpack_require__(227);
+var DraftEntity = __webpack_require__(117);
+var DraftModifier = __webpack_require__(26);
+var DraftEntityInstance = __webpack_require__(228);
 var EditorState = __webpack_require__(10);
-var KeyBindingUtil = __webpack_require__(157);
-var RichTextEditorUtil = __webpack_require__(604);
-var SelectionState = __webpack_require__(95);
+var KeyBindingUtil = __webpack_require__(160);
+var RichTextEditorUtil = __webpack_require__(606);
+var SelectionState = __webpack_require__(96);
 
-var convertFromDraftStateToRaw = __webpack_require__(609);
-var convertFromHTMLToContentBlocks = __webpack_require__(229);
-var convertFromRawToDraftState = __webpack_require__(610);
-var generateRandomKey = __webpack_require__(50);
-var getDefaultKeyBinding = __webpack_require__(230);
-var getVisibleSelectionRect = __webpack_require__(633);
+var convertFromDraftStateToRaw = __webpack_require__(611);
+var convertFromHTMLToContentBlocks = __webpack_require__(232);
+var convertFromRawToDraftState = __webpack_require__(612);
+var generateRandomKey = __webpack_require__(51);
+var getDefaultKeyBinding = __webpack_require__(233);
+var getVisibleSelectionRect = __webpack_require__(635);
 
 var DraftPublic = {
   Editor: DraftEditor,
@@ -36638,7 +36518,7 @@ var DraftPublic = {
 module.exports = DraftPublic;
 
 /***/ }),
-/* 224 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36667,22 +36547,22 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var DraftEditorLeaf = __webpack_require__(597);
-var DraftOffsetKey = __webpack_require__(116);
-var React = __webpack_require__(13);
-var ReactDOM = __webpack_require__(84);
-var Scroll = __webpack_require__(244);
+var DraftEditorLeaf = __webpack_require__(599);
+var DraftOffsetKey = __webpack_require__(118);
+var React = __webpack_require__(11);
+var ReactDOM = __webpack_require__(86);
+var Scroll = __webpack_require__(247);
 
-var Style = __webpack_require__(163);
-var UnicodeBidi = __webpack_require__(245);
-var UnicodeBidiDirection = __webpack_require__(164);
+var Style = __webpack_require__(166);
+var UnicodeBidi = __webpack_require__(248);
+var UnicodeBidiDirection = __webpack_require__(167);
 
-var cx = __webpack_require__(97);
-var getElementPosition = __webpack_require__(661);
-var getScrollPosition = __webpack_require__(166);
-var getViewportDimensions = __webpack_require__(665);
+var cx = __webpack_require__(98);
+var getElementPosition = __webpack_require__(663);
+var getScrollPosition = __webpack_require__(169);
+var getViewportDimensions = __webpack_require__(667);
 var invariant = __webpack_require__(3);
-var nullthrows = __webpack_require__(37);
+var nullthrows = __webpack_require__(40);
 
 var SCROLL_BUFFER = 10;
 
@@ -36853,7 +36733,7 @@ module.exports = DraftEditorBlock;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 225 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36877,7 +36757,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Immutable = __webpack_require__(12);
+var Immutable = __webpack_require__(13);
 
 var Record = Immutable.Record;
 
@@ -36927,7 +36807,7 @@ var DraftEntityInstance = function (_DraftEntityInstanceR) {
 module.exports = DraftEntityInstance;
 
 /***/ }),
-/* 226 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36953,7 +36833,7 @@ var DraftFeatureFlags = {
 module.exports = DraftFeatureFlags;
 
 /***/ }),
-/* 227 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36972,7 +36852,7 @@ module.exports = DraftFeatureFlags;
 
 
 
-var TokenizeUtil = __webpack_require__(653);
+var TokenizeUtil = __webpack_require__(655);
 
 var punctuation = TokenizeUtil.getPunctuation();
 
@@ -37010,7 +36890,7 @@ var DraftRemovableWord = {
 module.exports = DraftRemovableWord;
 
 /***/ }),
-/* 228 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37042,7 +36922,7 @@ var DraftStringKey = {
 module.exports = DraftStringKey;
 
 /***/ }),
-/* 229 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37061,20 +36941,20 @@ module.exports = DraftStringKey;
 
 
 
-var CharacterMetadata = __webpack_require__(45);
-var ContentBlock = __webpack_require__(75);
-var DefaultDraftBlockRenderMap = __webpack_require__(156);
-var DraftEntity = __webpack_require__(115);
-var Immutable = __webpack_require__(12);
-var URI = __webpack_require__(654);
+var CharacterMetadata = __webpack_require__(46);
+var ContentBlock = __webpack_require__(76);
+var DefaultDraftBlockRenderMap = __webpack_require__(159);
+var DraftEntity = __webpack_require__(117);
+var Immutable = __webpack_require__(13);
+var URI = __webpack_require__(656);
 
-var generateRandomKey = __webpack_require__(50);
-var getSafeBodyFromHTML = __webpack_require__(234);
+var generateRandomKey = __webpack_require__(51);
+var getSafeBodyFromHTML = __webpack_require__(237);
 var invariant = __webpack_require__(3);
-var nullthrows = __webpack_require__(37);
-var sanitizeDraftText = __webpack_require__(161);
+var nullthrows = __webpack_require__(40);
+var sanitizeDraftText = __webpack_require__(164);
 
-var _require = __webpack_require__(12);
+var _require = __webpack_require__(13);
 
 var Set = _require.Set;
 var List = Immutable.List;
@@ -37564,7 +37444,7 @@ module.exports = convertFromHTMLtoContentBlocks;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 230 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37583,9 +37463,9 @@ module.exports = convertFromHTMLtoContentBlocks;
 
 
 
-var KeyBindingUtil = __webpack_require__(157);
-var Keys = __webpack_require__(162);
-var UserAgent = __webpack_require__(51);
+var KeyBindingUtil = __webpack_require__(160);
+var Keys = __webpack_require__(165);
+var UserAgent = __webpack_require__(52);
 
 var isOSX = UserAgent.isPlatform('Mac OS X');
 var isWindows = UserAgent.isPlatform('Windows');
@@ -37694,7 +37574,7 @@ function getDefaultKeyBinding(e) {
 module.exports = getDefaultKeyBinding;
 
 /***/ }),
-/* 231 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37713,11 +37593,11 @@ module.exports = getDefaultKeyBinding;
 
 
 
-var findAncestorOffsetKey = __webpack_require__(158);
-var getSelectionOffsetKeyForNode = __webpack_require__(235);
-var getUpdatedSelectionState = __webpack_require__(237);
+var findAncestorOffsetKey = __webpack_require__(161);
+var getSelectionOffsetKeyForNode = __webpack_require__(238);
+var getUpdatedSelectionState = __webpack_require__(240);
 var invariant = __webpack_require__(3);
-var nullthrows = __webpack_require__(37);
+var nullthrows = __webpack_require__(40);
 
 /**
  * Convert the current selection range to an anchor/focus pair of offset keys
@@ -37880,7 +37760,7 @@ module.exports = getDraftEditorSelectionWithNodes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 232 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37898,7 +37778,7 @@ module.exports = getDraftEditorSelectionWithNodes;
 
 
 
-var getContentStateFragment = __webpack_require__(118);
+var getContentStateFragment = __webpack_require__(120);
 
 function getFragmentFromSelection(editorState) {
   var selectionState = editorState.getSelection();
@@ -37913,7 +37793,7 @@ function getFragmentFromSelection(editorState) {
 module.exports = getFragmentFromSelection;
 
 /***/ }),
-/* 233 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37932,7 +37812,7 @@ module.exports = getFragmentFromSelection;
 
 
 
-var UserAgent = __webpack_require__(51);
+var UserAgent = __webpack_require__(52);
 
 var invariant = __webpack_require__(3);
 
@@ -37983,7 +37863,7 @@ module.exports = getRangeClientRects;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 234 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38001,7 +37881,7 @@ module.exports = getRangeClientRects;
 
 
 
-var UserAgent = __webpack_require__(51);
+var UserAgent = __webpack_require__(52);
 
 var invariant = __webpack_require__(3);
 
@@ -38028,7 +37908,7 @@ module.exports = getSafeBodyFromHTML;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 235 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38071,7 +37951,7 @@ function getSelectionOffsetKeyForNode(node) {
 module.exports = getSelectionOffsetKeyForNode;
 
 /***/ }),
-/* 236 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38150,10 +38030,10 @@ function readFile(file, callback) {
 }
 
 module.exports = getTextContentFromFiles;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(54)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(55)))
 
 /***/ }),
-/* 237 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38171,9 +38051,9 @@ module.exports = getTextContentFromFiles;
 
 
 
-var DraftOffsetKey = __webpack_require__(116);
+var DraftOffsetKey = __webpack_require__(118);
 
-var nullthrows = __webpack_require__(37);
+var nullthrows = __webpack_require__(40);
 
 function getUpdatedSelectionState(editorState, anchorKey, anchorOffset, focusKey, focusOffset) {
   var selection = nullthrows(editorState.getSelection());
@@ -38235,7 +38115,7 @@ module.exports = getUpdatedSelectionState;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 238 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38276,7 +38156,7 @@ function insertIntoList(targetList, toInsert, offset) {
 module.exports = insertIntoList;
 
 /***/ }),
-/* 239 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38330,7 +38210,7 @@ function isSelectionAtLeafStart(editorState) {
 module.exports = isSelectionAtLeafStart;
 
 /***/ }),
-/* 240 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38380,7 +38260,7 @@ function moveSelectionForward(editorState, maxDistance) {
 module.exports = moveSelectionForward;
 
 /***/ }),
-/* 241 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38398,9 +38278,9 @@ module.exports = moveSelectionForward;
 
 
 
-var CharacterMetadata = __webpack_require__(45);
+var CharacterMetadata = __webpack_require__(46);
 
-var findRangesImmutable = __webpack_require__(117);
+var findRangesImmutable = __webpack_require__(119);
 var invariant = __webpack_require__(3);
 
 function removeEntitiesAtEdges(contentState, selectionState) {
@@ -38488,7 +38368,7 @@ module.exports = removeEntitiesAtEdges;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 242 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38507,10 +38387,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
  * @typechecks
  */
 
-var PhotosMimeType = __webpack_require__(652);
+var PhotosMimeType = __webpack_require__(654);
 
-var createArrayFromMixed = __webpack_require__(247);
-var emptyFunction = __webpack_require__(26);
+var createArrayFromMixed = __webpack_require__(250);
+var emptyFunction = __webpack_require__(27);
 
 var CR_LF_REGEX = new RegExp('\r\n', 'g');
 var LF_ONLY = '\n';
@@ -38715,7 +38595,7 @@ var DataTransfer = function () {
 module.exports = DataTransfer;
 
 /***/ }),
-/* 243 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38739,7 +38619,7 @@ module.exports = DataTransfer;
  * @typechecks
  */
 
-var emptyFunction = __webpack_require__(26);
+var emptyFunction = __webpack_require__(27);
 
 /**
  * Upstream version of event listener. Does not take into account specific
@@ -38805,7 +38685,7 @@ module.exports = EventListener;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 244 */
+/* 247 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38896,7 +38776,7 @@ var Scroll = {
 module.exports = Scroll;
 
 /***/ }),
-/* 245 */
+/* 248 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38922,7 +38802,7 @@ module.exports = Scroll;
 
 
 
-var UnicodeBidiDirection = __webpack_require__(164);
+var UnicodeBidiDirection = __webpack_require__(167);
 
 var invariant = __webpack_require__(3);
 
@@ -39059,7 +38939,7 @@ module.exports = UnicodeBidi;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 246 */
+/* 249 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39096,7 +38976,7 @@ function camelize(string) {
 module.exports = camelize;
 
 /***/ }),
-/* 247 */
+/* 250 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39229,7 +39109,7 @@ module.exports = createArrayFromMixed;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 248 */
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39261,7 +39141,7 @@ function focusNode(node) {
 module.exports = focusNode;
 
 /***/ }),
-/* 249 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39305,7 +39185,7 @@ function getUnboundedScrollPosition(scrollable) {
 module.exports = getUnboundedScrollPosition;
 
 /***/ }),
-/* 250 */
+/* 253 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39343,7 +39223,7 @@ function hyphenate(string) {
 module.exports = hyphenate;
 
 /***/ }),
-/* 251 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39378,7 +39258,7 @@ function memoizeStringOnly(callback) {
 module.exports = memoizeStringOnly;
 
 /***/ }),
-/* 252 */
+/* 255 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -39386,7 +39266,7 @@ module.exports = memoizeStringOnly;
 /* harmony export (immutable) */ __webpack_exports__["b"] = convertJSONOptions;
 /* harmony export (immutable) */ __webpack_exports__["d"] = convertTOptions;
 /* harmony export (immutable) */ __webpack_exports__["c"] = appendBackwardsAPI;
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__logger__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__logger__ = __webpack_require__(65);
 
 
 function convertInterpolation(options) {
@@ -39529,7 +39409,7 @@ function appendBackwardsAPI(i18n) {
 }
 
 /***/ }),
-/* 253 */
+/* 256 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -39552,7 +39432,7 @@ function appendBackwardsAPI(i18n) {
 });
 
 /***/ }),
-/* 254 */
+/* 257 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -39630,7 +39510,7 @@ return af;
 
 
 /***/ }),
-/* 255 */
+/* 258 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -39694,7 +39574,7 @@ return arDz;
 
 
 /***/ }),
-/* 256 */
+/* 259 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -39758,7 +39638,7 @@ return arKw;
 
 
 /***/ }),
-/* 257 */
+/* 260 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -39889,7 +39769,7 @@ return arLy;
 
 
 /***/ }),
-/* 258 */
+/* 261 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -39954,7 +39834,7 @@ return arMa;
 
 
 /***/ }),
-/* 259 */
+/* 262 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -40064,7 +39944,7 @@ return arSa;
 
 
 /***/ }),
-/* 260 */
+/* 263 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -40128,7 +40008,7 @@ return arTn;
 
 
 /***/ }),
-/* 261 */
+/* 264 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -40275,7 +40155,7 @@ return ar;
 
 
 /***/ }),
-/* 262 */
+/* 265 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -40385,7 +40265,7 @@ return az;
 
 
 /***/ }),
-/* 263 */
+/* 266 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -40524,7 +40404,7 @@ return be;
 
 
 /***/ }),
-/* 264 */
+/* 267 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -40619,7 +40499,7 @@ return bg;
 
 
 /***/ }),
-/* 265 */
+/* 268 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -40743,7 +40623,7 @@ return bn;
 
 
 /***/ }),
-/* 266 */
+/* 269 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -40867,7 +40747,7 @@ return bo;
 
 
 /***/ }),
-/* 267 */
+/* 270 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -40980,7 +40860,7 @@ return br;
 
 
 /***/ }),
-/* 268 */
+/* 271 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -41128,7 +41008,7 @@ return bs;
 
 
 /***/ }),
-/* 269 */
+/* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -41221,7 +41101,7 @@ return ca;
 
 
 /***/ }),
-/* 270 */
+/* 273 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -41398,7 +41278,7 @@ return cs;
 
 
 /***/ }),
-/* 271 */
+/* 274 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -41466,7 +41346,7 @@ return cv;
 
 
 /***/ }),
-/* 272 */
+/* 275 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -41552,7 +41432,7 @@ return cy;
 
 
 /***/ }),
-/* 273 */
+/* 276 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -41617,7 +41497,7 @@ return da;
 
 
 /***/ }),
-/* 274 */
+/* 277 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -41701,7 +41581,7 @@ return deAt;
 
 
 /***/ }),
-/* 275 */
+/* 278 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -41784,7 +41664,7 @@ return deCh;
 
 
 /***/ }),
-/* 276 */
+/* 279 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -41867,7 +41747,7 @@ return de;
 
 
 /***/ }),
-/* 277 */
+/* 280 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -41972,7 +41852,7 @@ return dv;
 
 
 /***/ }),
-/* 278 */
+/* 281 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -42077,7 +41957,7 @@ return el;
 
 
 /***/ }),
-/* 279 */
+/* 282 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -42149,7 +42029,7 @@ return enAu;
 
 
 /***/ }),
-/* 280 */
+/* 283 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -42217,7 +42097,7 @@ return enCa;
 
 
 /***/ }),
-/* 281 */
+/* 284 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -42289,7 +42169,7 @@ return enGb;
 
 
 /***/ }),
-/* 282 */
+/* 285 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -42361,7 +42241,7 @@ return enIe;
 
 
 /***/ }),
-/* 283 */
+/* 286 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -42433,7 +42313,7 @@ return enNz;
 
 
 /***/ }),
-/* 284 */
+/* 287 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -42511,7 +42391,7 @@ return eo;
 
 
 /***/ }),
-/* 285 */
+/* 288 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -42598,7 +42478,7 @@ return esDo;
 
 
 /***/ }),
-/* 286 */
+/* 289 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -42686,7 +42566,7 @@ return es;
 
 
 /***/ }),
-/* 287 */
+/* 290 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -42771,7 +42651,7 @@ return et;
 
 
 /***/ }),
-/* 288 */
+/* 291 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -42842,7 +42722,7 @@ return eu;
 
 
 /***/ }),
-/* 289 */
+/* 292 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -42954,7 +42834,7 @@ return fa;
 
 
 /***/ }),
-/* 290 */
+/* 293 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -43066,7 +42946,7 @@ return fi;
 
 
 /***/ }),
-/* 291 */
+/* 294 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -43131,7 +43011,7 @@ return fo;
 
 
 /***/ }),
-/* 292 */
+/* 295 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -43210,7 +43090,7 @@ return frCa;
 
 
 /***/ }),
-/* 293 */
+/* 296 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -43293,7 +43173,7 @@ return frCh;
 
 
 /***/ }),
-/* 294 */
+/* 297 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -43381,7 +43261,7 @@ return fr;
 
 
 /***/ }),
-/* 295 */
+/* 298 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -43461,7 +43341,7 @@ return fy;
 
 
 /***/ }),
-/* 296 */
+/* 299 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -43542,7 +43422,7 @@ return gd;
 
 
 /***/ }),
-/* 297 */
+/* 300 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -43624,7 +43504,7 @@ return gl;
 
 
 /***/ }),
-/* 298 */
+/* 301 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -43751,7 +43631,7 @@ return gomLatn;
 
 
 /***/ }),
-/* 299 */
+/* 302 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -43855,7 +43735,7 @@ return he;
 
 
 /***/ }),
-/* 300 */
+/* 303 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -43984,7 +43864,7 @@ return hi;
 
 
 /***/ }),
-/* 301 */
+/* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -44134,7 +44014,7 @@ return hr;
 
 
 /***/ }),
-/* 302 */
+/* 305 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -44248,7 +44128,7 @@ return hu;
 
 
 /***/ }),
-/* 303 */
+/* 306 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -44348,7 +44228,7 @@ return hyAm;
 
 
 /***/ }),
-/* 304 */
+/* 307 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -44436,7 +44316,7 @@ return id;
 
 
 /***/ }),
-/* 305 */
+/* 308 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -44568,7 +44448,7 @@ return is;
 
 
 /***/ }),
-/* 306 */
+/* 309 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -44643,7 +44523,7 @@ return it;
 
 
 /***/ }),
-/* 307 */
+/* 310 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -44728,7 +44608,7 @@ return ja;
 
 
 /***/ }),
-/* 308 */
+/* 311 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -44816,7 +44696,7 @@ return jv;
 
 
 /***/ }),
-/* 309 */
+/* 312 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -44910,7 +44790,7 @@ return ka;
 
 
 /***/ }),
-/* 310 */
+/* 313 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -45002,7 +44882,7 @@ return kk;
 
 
 /***/ }),
-/* 311 */
+/* 314 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -45065,7 +44945,7 @@ return km;
 
 
 /***/ }),
-/* 312 */
+/* 315 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -45196,7 +45076,7 @@ return kn;
 
 
 /***/ }),
-/* 313 */
+/* 316 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -45270,7 +45150,7 @@ return ko;
 
 
 /***/ }),
-/* 314 */
+/* 317 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -45363,7 +45243,7 @@ return ky;
 
 
 /***/ }),
-/* 315 */
+/* 318 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -45505,7 +45385,7 @@ return lb;
 
 
 /***/ }),
-/* 316 */
+/* 319 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -45580,7 +45460,7 @@ return lo;
 
 
 /***/ }),
-/* 317 */
+/* 320 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -45702,7 +45582,7 @@ return lt;
 
 
 /***/ }),
-/* 318 */
+/* 321 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -45804,7 +45684,7 @@ return lv;
 
 
 /***/ }),
-/* 319 */
+/* 322 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -45920,7 +45800,7 @@ return me;
 
 
 /***/ }),
-/* 320 */
+/* 323 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -45989,7 +45869,7 @@ return mi;
 
 
 /***/ }),
-/* 321 */
+/* 324 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -46084,7 +45964,7 @@ return mk;
 
 
 /***/ }),
-/* 322 */
+/* 325 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -46170,7 +46050,7 @@ return ml;
 
 
 /***/ }),
-/* 323 */
+/* 326 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -46334,7 +46214,7 @@ return mr;
 
 
 /***/ }),
-/* 324 */
+/* 327 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -46422,7 +46302,7 @@ return msMy;
 
 
 /***/ }),
-/* 325 */
+/* 328 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -46509,7 +46389,7 @@ return ms;
 
 
 /***/ }),
-/* 326 */
+/* 329 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -46610,7 +46490,7 @@ return my;
 
 
 /***/ }),
-/* 327 */
+/* 330 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -46678,7 +46558,7 @@ return nb;
 
 
 /***/ }),
-/* 328 */
+/* 331 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -46806,7 +46686,7 @@ return ne;
 
 
 /***/ }),
-/* 329 */
+/* 332 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -46899,7 +46779,7 @@ return nlBe;
 
 
 /***/ }),
-/* 330 */
+/* 333 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -46992,7 +46872,7 @@ return nl;
 
 
 /***/ }),
-/* 331 */
+/* 334 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -47057,7 +46937,7 @@ return nn;
 
 
 /***/ }),
-/* 332 */
+/* 335 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -47186,7 +47066,7 @@ return paIn;
 
 
 /***/ }),
-/* 333 */
+/* 336 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -47298,7 +47178,7 @@ return pl;
 
 
 /***/ }),
-/* 334 */
+/* 337 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -47364,7 +47244,7 @@ return ptBr;
 
 
 /***/ }),
-/* 335 */
+/* 338 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -47434,7 +47314,7 @@ return pt;
 
 
 /***/ }),
-/* 336 */
+/* 339 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -47514,7 +47394,7 @@ return ro;
 
 
 /***/ }),
-/* 337 */
+/* 340 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -47702,7 +47582,7 @@ return ru;
 
 
 /***/ }),
-/* 338 */
+/* 341 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -47805,7 +47685,7 @@ return sd;
 
 
 /***/ }),
-/* 339 */
+/* 342 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -47871,7 +47751,7 @@ return se;
 
 
 /***/ }),
-/* 340 */
+/* 343 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -47947,7 +47827,7 @@ return si;
 
 
 /***/ }),
-/* 341 */
+/* 344 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -48102,7 +47982,7 @@ return sk;
 
 
 /***/ }),
-/* 342 */
+/* 345 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -48269,7 +48149,7 @@ return sl;
 
 
 /***/ }),
-/* 343 */
+/* 346 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -48344,7 +48224,7 @@ return sq;
 
 
 /***/ }),
-/* 344 */
+/* 347 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -48459,7 +48339,7 @@ return srCyrl;
 
 
 /***/ }),
-/* 345 */
+/* 348 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -48574,7 +48454,7 @@ return sr;
 
 
 /***/ }),
-/* 346 */
+/* 349 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -48668,7 +48548,7 @@ return ss;
 
 
 /***/ }),
-/* 347 */
+/* 350 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -48742,7 +48622,7 @@ return sv;
 
 
 /***/ }),
-/* 348 */
+/* 351 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -48806,7 +48686,7 @@ return sw;
 
 
 /***/ }),
-/* 349 */
+/* 352 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -48941,7 +48821,7 @@ return ta;
 
 
 /***/ }),
-/* 350 */
+/* 353 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -49035,7 +48915,7 @@ return te;
 
 
 /***/ }),
-/* 351 */
+/* 354 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -49108,7 +48988,7 @@ return tet;
 
 
 /***/ }),
-/* 352 */
+/* 355 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -49180,7 +49060,7 @@ return th;
 
 
 /***/ }),
-/* 353 */
+/* 356 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -49247,7 +49127,7 @@ return tlPh;
 
 
 /***/ }),
-/* 354 */
+/* 357 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -49372,7 +49252,7 @@ return tlh;
 
 
 /***/ }),
-/* 355 */
+/* 358 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -49467,7 +49347,7 @@ return tr;
 
 
 /***/ }),
-/* 356 */
+/* 359 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -49563,7 +49443,7 @@ return tzl;
 
 
 /***/ }),
-/* 357 */
+/* 360 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -49626,7 +49506,7 @@ return tzmLatn;
 
 
 /***/ }),
-/* 358 */
+/* 361 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -49689,7 +49569,7 @@ return tzm;
 
 
 /***/ }),
-/* 359 */
+/* 362 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -49845,7 +49725,7 @@ return uk;
 
 
 /***/ }),
-/* 360 */
+/* 363 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -49949,7 +49829,7 @@ return ur;
 
 
 /***/ }),
-/* 361 */
+/* 364 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50012,7 +49892,7 @@ return uzLatn;
 
 
 /***/ }),
-/* 362 */
+/* 365 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50075,7 +49955,7 @@ return uz;
 
 
 /***/ }),
-/* 363 */
+/* 366 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50159,7 +50039,7 @@ return vi;
 
 
 /***/ }),
-/* 364 */
+/* 367 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50232,7 +50112,7 @@ return xPseudo;
 
 
 /***/ }),
-/* 365 */
+/* 368 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50297,7 +50177,7 @@ return yo;
 
 
 /***/ }),
-/* 366 */
+/* 369 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50413,7 +50293,7 @@ return zhCn;
 
 
 /***/ }),
-/* 367 */
+/* 370 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50523,7 +50403,7 @@ return zhHk;
 
 
 /***/ }),
-/* 368 */
+/* 371 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -50632,7 +50512,7 @@ return zhTw;
 
 
 /***/ }),
-/* 369 */
+/* 372 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50651,7 +50531,7 @@ return zhTw;
 // Therefore we re-export development-only version with all the PropTypes checks here.
 // However if one is migrating to the `prop-types` npm library, they will go through the
 // `index.js` entry point, and it will branch depending on the environment.
-var factory = __webpack_require__(684);
+var factory = __webpack_require__(686);
 module.exports = function(isValidElement) {
   // It is still allowed in 15.5.
   var throwOnDirectAccess = false;
@@ -50660,7 +50540,7 @@ module.exports = function(isValidElement) {
 
 
 /***/ }),
-/* 370 */
+/* 373 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50681,7 +50561,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 371 */
+/* 374 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50840,7 +50720,7 @@ var CSSProperty = {
 module.exports = CSSProperty;
 
 /***/ }),
-/* 372 */
+/* 375 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50861,7 +50741,7 @@ var _prodInvariant = __webpack_require__(8);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var PooledClass = __webpack_require__(77);
+var PooledClass = __webpack_require__(78);
 
 var invariant = __webpack_require__(3);
 
@@ -50965,7 +50845,7 @@ module.exports = PooledClass.addPoolingTo(CallbackQueue);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 373 */
+/* 376 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -50981,11 +50861,11 @@ module.exports = PooledClass.addPoolingTo(CallbackQueue);
 
 
 
-var DOMProperty = __webpack_require__(64);
+var DOMProperty = __webpack_require__(66);
 var ReactDOMComponentTree = __webpack_require__(17);
-var ReactInstrumentation = __webpack_require__(38);
+var ReactInstrumentation = __webpack_require__(41);
 
-var quoteAttributeValueForBrowser = __webpack_require__(753);
+var quoteAttributeValueForBrowser = __webpack_require__(755);
 var warning = __webpack_require__(4);
 
 var VALID_ATTRIBUTE_NAME_REGEX = new RegExp('^[' + DOMProperty.ATTRIBUTE_NAME_START_CHAR + '][' + DOMProperty.ATTRIBUTE_NAME_CHAR + ']*$');
@@ -51206,7 +51086,7 @@ module.exports = DOMPropertyOperations;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 374 */
+/* 377 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51229,7 +51109,7 @@ var ReactDOMComponentFlags = {
 module.exports = ReactDOMComponentFlags;
 
 /***/ }),
-/* 375 */
+/* 378 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51247,9 +51127,9 @@ module.exports = ReactDOMComponentFlags;
 
 var _assign = __webpack_require__(9);
 
-var LinkedValueUtils = __webpack_require__(172);
+var LinkedValueUtils = __webpack_require__(175);
 var ReactDOMComponentTree = __webpack_require__(17);
-var ReactUpdates = __webpack_require__(52);
+var ReactUpdates = __webpack_require__(53);
 
 var warning = __webpack_require__(4);
 
@@ -51435,7 +51315,7 @@ module.exports = ReactDOMSelect;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 376 */
+/* 379 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51470,7 +51350,7 @@ ReactEmptyComponent.injection = ReactEmptyComponentInjection;
 module.exports = ReactEmptyComponent;
 
 /***/ }),
-/* 377 */
+/* 380 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51497,7 +51377,7 @@ var ReactFeatureFlags = {
 module.exports = ReactFeatureFlags;
 
 /***/ }),
-/* 378 */
+/* 381 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51571,7 +51451,7 @@ module.exports = ReactHostComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 379 */
+/* 382 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51587,11 +51467,11 @@ module.exports = ReactHostComponent;
 
 
 
-var ReactDOMSelection = __webpack_require__(708);
+var ReactDOMSelection = __webpack_require__(710);
 
-var containsNode = __webpack_require__(165);
-var focusNode = __webpack_require__(248);
-var getActiveElement = __webpack_require__(121);
+var containsNode = __webpack_require__(168);
+var focusNode = __webpack_require__(251);
+var getActiveElement = __webpack_require__(123);
 
 function isInDocument(node) {
   return containsNode(document.documentElement, node);
@@ -51699,7 +51579,7 @@ var ReactInputSelection = {
 module.exports = ReactInputSelection;
 
 /***/ }),
-/* 380 */
+/* 383 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -51717,27 +51597,27 @@ module.exports = ReactInputSelection;
 
 var _prodInvariant = __webpack_require__(8);
 
-var DOMLazyTree = __webpack_require__(85);
-var DOMProperty = __webpack_require__(64);
-var React = __webpack_require__(87);
-var ReactBrowserEventEmitter = __webpack_require__(123);
-var ReactCurrentOwner = __webpack_require__(53);
+var DOMLazyTree = __webpack_require__(87);
+var DOMProperty = __webpack_require__(66);
+var React = __webpack_require__(89);
+var ReactBrowserEventEmitter = __webpack_require__(125);
+var ReactCurrentOwner = __webpack_require__(54);
 var ReactDOMComponentTree = __webpack_require__(17);
-var ReactDOMContainerInfo = __webpack_require__(700);
-var ReactDOMFeatureFlags = __webpack_require__(702);
-var ReactFeatureFlags = __webpack_require__(377);
-var ReactInstanceMap = __webpack_require__(102);
-var ReactInstrumentation = __webpack_require__(38);
-var ReactMarkupChecksum = __webpack_require__(722);
-var ReactReconciler = __webpack_require__(86);
-var ReactUpdateQueue = __webpack_require__(175);
-var ReactUpdates = __webpack_require__(52);
+var ReactDOMContainerInfo = __webpack_require__(702);
+var ReactDOMFeatureFlags = __webpack_require__(704);
+var ReactFeatureFlags = __webpack_require__(380);
+var ReactInstanceMap = __webpack_require__(103);
+var ReactInstrumentation = __webpack_require__(41);
+var ReactMarkupChecksum = __webpack_require__(724);
+var ReactReconciler = __webpack_require__(88);
+var ReactUpdateQueue = __webpack_require__(178);
+var ReactUpdates = __webpack_require__(53);
 
-var emptyObject = __webpack_require__(120);
-var instantiateReactComponent = __webpack_require__(389);
+var emptyObject = __webpack_require__(122);
+var instantiateReactComponent = __webpack_require__(392);
 var invariant = __webpack_require__(3);
-var setInnerHTML = __webpack_require__(127);
-var shouldUpdateReactComponent = __webpack_require__(181);
+var setInnerHTML = __webpack_require__(129);
+var shouldUpdateReactComponent = __webpack_require__(184);
 var warning = __webpack_require__(4);
 
 var ATTR_NAME = DOMProperty.ID_ATTRIBUTE_NAME;
@@ -52243,7 +52123,7 @@ module.exports = ReactMount;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 381 */
+/* 384 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52262,7 +52142,7 @@ module.exports = ReactMount;
 
 var _prodInvariant = __webpack_require__(8);
 
-var React = __webpack_require__(87);
+var React = __webpack_require__(89);
 
 var invariant = __webpack_require__(3);
 
@@ -52289,7 +52169,7 @@ module.exports = ReactNodeTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 382 */
+/* 385 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52311,7 +52191,7 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 module.exports = ReactPropTypesSecret;
 
 /***/ }),
-/* 383 */
+/* 386 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52341,7 +52221,7 @@ var ViewportMetrics = {
 module.exports = ViewportMetrics;
 
 /***/ }),
-/* 384 */
+/* 387 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52405,7 +52285,7 @@ module.exports = accumulateInto;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 385 */
+/* 388 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52441,7 +52321,7 @@ function forEachAccumulated(arr, cb, scope) {
 module.exports = forEachAccumulated;
 
 /***/ }),
-/* 386 */
+/* 389 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52457,7 +52337,7 @@ module.exports = forEachAccumulated;
 
 
 
-var ReactNodeTypes = __webpack_require__(381);
+var ReactNodeTypes = __webpack_require__(384);
 
 function getHostComponentFromComposite(inst) {
   var type;
@@ -52476,7 +52356,7 @@ function getHostComponentFromComposite(inst) {
 module.exports = getHostComponentFromComposite;
 
 /***/ }),
-/* 387 */
+/* 390 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52492,7 +52372,7 @@ module.exports = getHostComponentFromComposite;
 
 
 
-var ExecutionEnvironment = __webpack_require__(19);
+var ExecutionEnvironment = __webpack_require__(20);
 
 var contentKey = null;
 
@@ -52514,7 +52394,7 @@ function getTextContentAccessor() {
 module.exports = getTextContentAccessor;
 
 /***/ }),
-/* 388 */
+/* 391 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52642,7 +52522,7 @@ var inputValueTracking = {
 module.exports = inputValueTracking;
 
 /***/ }),
-/* 389 */
+/* 392 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52661,11 +52541,11 @@ module.exports = inputValueTracking;
 var _prodInvariant = __webpack_require__(8),
     _assign = __webpack_require__(9);
 
-var ReactCompositeComponent = __webpack_require__(697);
-var ReactEmptyComponent = __webpack_require__(376);
-var ReactHostComponent = __webpack_require__(378);
+var ReactCompositeComponent = __webpack_require__(699);
+var ReactEmptyComponent = __webpack_require__(379);
+var ReactHostComponent = __webpack_require__(381);
 
-var getNextDebugID = __webpack_require__(765);
+var getNextDebugID = __webpack_require__(767);
 var invariant = __webpack_require__(3);
 var warning = __webpack_require__(4);
 
@@ -52777,7 +52657,7 @@ module.exports = instantiateReactComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 390 */
+/* 393 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52833,7 +52713,7 @@ function isTextInputElement(elem) {
 module.exports = isTextInputElement;
 
 /***/ }),
-/* 391 */
+/* 394 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52849,9 +52729,9 @@ module.exports = isTextInputElement;
 
 
 
-var ExecutionEnvironment = __webpack_require__(19);
-var escapeTextContentForBrowser = __webpack_require__(126);
-var setInnerHTML = __webpack_require__(127);
+var ExecutionEnvironment = __webpack_require__(20);
+var escapeTextContentForBrowser = __webpack_require__(128);
+var setInnerHTML = __webpack_require__(129);
 
 /**
  * Set the textContent property of a node, ensuring that whitespace is preserved
@@ -52890,7 +52770,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = setTextContent;
 
 /***/ }),
-/* 392 */
+/* 395 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -52908,12 +52788,12 @@ module.exports = setTextContent;
 
 var _prodInvariant = __webpack_require__(8);
 
-var ReactCurrentOwner = __webpack_require__(53);
-var REACT_ELEMENT_TYPE = __webpack_require__(716);
+var ReactCurrentOwner = __webpack_require__(54);
+var REACT_ELEMENT_TYPE = __webpack_require__(718);
 
-var getIteratorFn = __webpack_require__(750);
+var getIteratorFn = __webpack_require__(752);
 var invariant = __webpack_require__(3);
-var KeyEscapeUtils = __webpack_require__(171);
+var KeyEscapeUtils = __webpack_require__(174);
 var warning = __webpack_require__(4);
 
 var SEPARATOR = '.';
@@ -53072,7 +52952,7 @@ module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 393 */
+/* 396 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53088,15 +52968,15 @@ module.exports = traverseAllChildren;
 
 
 
-var _prodInvariant = __webpack_require__(88),
+var _prodInvariant = __webpack_require__(90),
     _assign = __webpack_require__(9);
 
-var ReactNoopUpdateQueue = __webpack_require__(396);
+var ReactNoopUpdateQueue = __webpack_require__(399);
 
-var canDefineProperty = __webpack_require__(128);
-var emptyObject = __webpack_require__(120);
+var canDefineProperty = __webpack_require__(130);
+var emptyObject = __webpack_require__(122);
 var invariant = __webpack_require__(3);
-var lowPriorityWarning = __webpack_require__(183);
+var lowPriorityWarning = __webpack_require__(186);
 
 /**
  * Base class helpers for the updating state of a component.
@@ -53221,7 +53101,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 394 */
+/* 397 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53246,7 +53126,7 @@ var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol['for'] && Symbol
 module.exports = REACT_ELEMENT_TYPE;
 
 /***/ }),
-/* 395 */
+/* 398 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53269,16 +53149,16 @@ module.exports = REACT_ELEMENT_TYPE;
 
 
 
-var ReactCurrentOwner = __webpack_require__(53);
-var ReactComponentTreeHook = __webpack_require__(34);
-var ReactElement = __webpack_require__(78);
+var ReactCurrentOwner = __webpack_require__(54);
+var ReactComponentTreeHook = __webpack_require__(37);
+var ReactElement = __webpack_require__(79);
 
-var checkReactTypeSpec = __webpack_require__(763);
+var checkReactTypeSpec = __webpack_require__(765);
 
-var canDefineProperty = __webpack_require__(128);
-var getIteratorFn = __webpack_require__(397);
+var canDefineProperty = __webpack_require__(130);
+var getIteratorFn = __webpack_require__(400);
 var warning = __webpack_require__(4);
-var lowPriorityWarning = __webpack_require__(183);
+var lowPriorityWarning = __webpack_require__(186);
 
 function getDeclarationErrorAddendum() {
   if (ReactCurrentOwner.current) {
@@ -53507,7 +53387,7 @@ module.exports = ReactElementValidator;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 396 */
+/* 399 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53608,7 +53488,7 @@ module.exports = ReactNoopUpdateQueue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 397 */
+/* 400 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53654,7 +53534,7 @@ function getIteratorFn(maybeIterable) {
 module.exports = getIteratorFn;
 
 /***/ }),
-/* 398 */
+/* 401 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53663,33 +53543,35 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(185));
-__export(__webpack_require__(90));
-__export(__webpack_require__(186));
+__export(__webpack_require__(188));
+__export(__webpack_require__(91));
 __export(__webpack_require__(189));
 __export(__webpack_require__(192));
-__export(__webpack_require__(41));
-__export(__webpack_require__(65));
-__export(__webpack_require__(405));
-__export(__webpack_require__(188));
-__export(__webpack_require__(89));
-__export(__webpack_require__(190));
-__export(__webpack_require__(187));
+__export(__webpack_require__(195));
+__export(__webpack_require__(30));
+__export(__webpack_require__(80));
+__export(__webpack_require__(407));
 __export(__webpack_require__(191));
+__export(__webpack_require__(105));
+__export(__webpack_require__(193));
+__export(__webpack_require__(190));
+__export(__webpack_require__(29));
+__export(__webpack_require__(194));
+__export(__webpack_require__(28));
 
 
 /***/ }),
-/* 399 */
+/* 402 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {
 
-__webpack_require__(587);
+__webpack_require__(589);
 
-__webpack_require__(768);
+__webpack_require__(770);
 
-__webpack_require__(407);
+__webpack_require__(409);
 
 if (global._babelPolyfill) {
   throw new Error("only one instance of babel-polyfill is allowed");
@@ -53711,10 +53593,10 @@ define(String.prototype, "padRight", "".padEnd);
 "pop,reverse,shift,keys,values,entries,indexOf,every,some,forEach,map,filter,find,findIndex,includes,join,slice,concat,push,splice,unshift,sort,lastIndexOf,reduce,reduceRight,copyWithin,fill".split(",").forEach(function (key) {
   [][key] && define(Array, key, Function.call.bind([][key]));
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(54)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(55)))
 
 /***/ }),
-/* 400 */
+/* 403 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53723,19 +53605,19 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(399);
-__export(__webpack_require__(398));
+__webpack_require__(402);
+__export(__webpack_require__(401));
 
 
 /***/ }),
-/* 401 */
+/* 404 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(13);
-const i18next = __webpack_require__(22);
+const React = __webpack_require__(11);
+const i18next = __webpack_require__(21);
 class LazyImage extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -53776,15 +53658,15 @@ exports.LazyImage = LazyImage;
 
 
 /***/ }),
-/* 402 */
+/* 405 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(13);
-const draft_js_1 = __webpack_require__(223);
-const Draft = __webpack_require__(223);
+const React = __webpack_require__(11);
+const draft_js_1 = __webpack_require__(226);
+const Draft = __webpack_require__(226);
 class RichTextEditor extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -53919,7 +53801,7 @@ class SlideEditorButtonsBar extends React.Component {
 
 
 /***/ }),
-/* 403 */
+/* 406 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -53933,80 +53815,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(13);
-const Immutable = __webpack_require__(27);
-const Api = __webpack_require__(21);
-class IComponent extends React.Component {
-    constructor(props, context) {
-        super(props, context);
-        this.state = { i: 0, j: 0, z: 0, recipes: Immutable.List() };
-    }
-    componentWillMount() {
-        var thread = setInterval(() => {
-            this.setState(Object.assign({}, this.state, { i: this.state.i + 1 }));
-        }, 1000);
-        this.get_recipes().then(online_recipes => this.setState(Object.assign({}, this.state, { recipes: online_recipes })));
-    }
-    get_recipes() {
-        return __awaiter(this, void 0, void 0, function* () {
-            let recipes_page = yield Api.get_Recipes(0, 100);
-            let loaded_recipes = Immutable.List(recipes_page.Items.map(r => r.Item));
-            for (let i = 1; i < recipes_page.NumPages; i++) {
-                let recipes = yield Api.get_Recipes(i, 100);
-                loaded_recipes = loaded_recipes.concat(Immutable.List(recipes.Items.map(r => r.Item))).toList();
-            }
-            return Immutable.List(loaded_recipes);
-        });
-    }
-    // prints out in the console everytime the button is clicked
-    clicked() {
-        console.log('the button was clicked: recipe is bookmarked!');
-    }
-    render() {
-        console.log(this.props.props);
-        // Api.get_Recipes()
-        if (this.props.props.current_User == undefined)
-            return React.createElement("div", null, "Log in first...");
-        return React.createElement("div", null,
-            React.createElement("div", null,
-                React.createElement("img", { src: "http://s.eatthis-cdn.com/media/images/ext/336492655/fast-food.jpg", alt: "food", width: "428px", height: "428px" }),
-                "Welcome ",
-                this.props.props.current_User.Username,
-                "!"),
-            React.createElement("button", { onClick: (e) => { e.preventDefault(); this.clicked(); } }, " Bookmark"),
-            React.createElement("div", null, "Here you can find recipes!"));
-    }
-}
-exports.default = IComponent;
-exports.AppTest = (props) => {
-    return React.createElement(IComponent, { props: props });
-    // let i = 1
-    // var thread = setInterval(() => {
-    //     i = i + 1
-    //     console.log(i)},1000)
-    // return <div>
-    //             <div>{i}</div>
-    //             <div>hi</div>
-    //         </div>
-};
-
-
-/***/ }),
-/* 404 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(184);
+__webpack_require__(187);
 function ping() {
     return __awaiter(this, void 0, void 0, function* () {
         let res = yield fetch(`/api/v1/keep_alive/ping`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
@@ -54037,21 +53846,23 @@ exports.ping_as_Admin = ping_as_Admin;
 
 
 /***/ }),
-/* 405 */
+/* 407 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(13);
-const Immutable = __webpack_require__(27);
-const Api = __webpack_require__(21);
-const Components = __webpack_require__(39);
-const Permissions = __webpack_require__(28);
-const Utils = __webpack_require__(23);
-const i18next = __webpack_require__(22);
+const React = __webpack_require__(11);
+const Immutable = __webpack_require__(36);
+const Api = __webpack_require__(18);
+const Components = __webpack_require__(42);
+const Permissions = __webpack_require__(24);
+const Utils = __webpack_require__(22);
+const i18next = __webpack_require__(21);
 const Moment = __webpack_require__(0);
-const HomePageViews = __webpack_require__(41);
+const HomePageViews = __webpack_require__(30);
+const CategoryListViews = __webpack_require__(29);
+const BookmarksViews = __webpack_require__(28);
 function load_relations_Admin(self, current_User, current_Admin, callback) {
     callback && callback();
 }
@@ -54160,17 +53971,13 @@ function render_menu_Admin(self) {
             !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin) ? null :
                 React.createElement("div", { className: `menu_entry page_link` },
                     React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
+            !Permissions.can_view_CategoryList(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_CategoryLists(0, 1).then(e => e.Items.length > 0 && self.props.set_page(CategoryListViews.CategoryList_to_page(e.Items[0].Item.Id))) }, i18next.t('CategoryList'))),
+            !Permissions.can_view_Bookmarks(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_Bookmarkss(0, 1).then(e => e.Items.length > 0 && self.props.set_page(BookmarksViews.Bookmarks_to_page(e.Items[0].Item.Id))) }, i18next.t('Bookmarks'))),
             React.createElement("div", { className: "menu_entries" },
-                !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Recipe" ? " active" : ""}` },
-                        React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Recipe")));
-                            } }, i18next.t('HomePage_Recipes'))),
-                !Permissions.can_view_Categorie(self.props.current_User, self.props.current_Admin) ? null :
-                    React.createElement("div", { className: `menu_entry${self.props.shown_relation == "HomePage_Categorie" ? " active" : ""}` },
-                        React.createElement("a", { onClick: () => {
-                                Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id), () => self.props.set_shown_relation("HomePage_Categorie")));
-                            } }, i18next.t('HomePage_Categories'))),
                 React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
 }
 exports.render_menu_Admin = render_menu_Admin;
@@ -54369,240 +54176,240 @@ exports.Admin_to = (id, target_element_id, current_User, current_Admin) => {
 
 
 /***/ }),
-/* 406 */
+/* 408 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 254,
-	"./af.js": 254,
-	"./ar": 261,
-	"./ar-dz": 255,
-	"./ar-dz.js": 255,
-	"./ar-kw": 256,
-	"./ar-kw.js": 256,
-	"./ar-ly": 257,
-	"./ar-ly.js": 257,
-	"./ar-ma": 258,
-	"./ar-ma.js": 258,
-	"./ar-sa": 259,
-	"./ar-sa.js": 259,
-	"./ar-tn": 260,
-	"./ar-tn.js": 260,
-	"./ar.js": 261,
-	"./az": 262,
-	"./az.js": 262,
-	"./be": 263,
-	"./be.js": 263,
-	"./bg": 264,
-	"./bg.js": 264,
-	"./bn": 265,
-	"./bn.js": 265,
-	"./bo": 266,
-	"./bo.js": 266,
-	"./br": 267,
-	"./br.js": 267,
-	"./bs": 268,
-	"./bs.js": 268,
-	"./ca": 269,
-	"./ca.js": 269,
-	"./cs": 270,
-	"./cs.js": 270,
-	"./cv": 271,
-	"./cv.js": 271,
-	"./cy": 272,
-	"./cy.js": 272,
-	"./da": 273,
-	"./da.js": 273,
-	"./de": 276,
-	"./de-at": 274,
-	"./de-at.js": 274,
-	"./de-ch": 275,
-	"./de-ch.js": 275,
-	"./de.js": 276,
-	"./dv": 277,
-	"./dv.js": 277,
-	"./el": 278,
-	"./el.js": 278,
-	"./en-au": 279,
-	"./en-au.js": 279,
-	"./en-ca": 280,
-	"./en-ca.js": 280,
-	"./en-gb": 281,
-	"./en-gb.js": 281,
-	"./en-ie": 282,
-	"./en-ie.js": 282,
-	"./en-nz": 283,
-	"./en-nz.js": 283,
-	"./eo": 284,
-	"./eo.js": 284,
-	"./es": 286,
-	"./es-do": 285,
-	"./es-do.js": 285,
-	"./es.js": 286,
-	"./et": 287,
-	"./et.js": 287,
-	"./eu": 288,
-	"./eu.js": 288,
-	"./fa": 289,
-	"./fa.js": 289,
-	"./fi": 290,
-	"./fi.js": 290,
-	"./fo": 291,
-	"./fo.js": 291,
-	"./fr": 294,
-	"./fr-ca": 292,
-	"./fr-ca.js": 292,
-	"./fr-ch": 293,
-	"./fr-ch.js": 293,
-	"./fr.js": 294,
-	"./fy": 295,
-	"./fy.js": 295,
-	"./gd": 296,
-	"./gd.js": 296,
-	"./gl": 297,
-	"./gl.js": 297,
-	"./gom-latn": 298,
-	"./gom-latn.js": 298,
-	"./he": 299,
-	"./he.js": 299,
-	"./hi": 300,
-	"./hi.js": 300,
-	"./hr": 301,
-	"./hr.js": 301,
-	"./hu": 302,
-	"./hu.js": 302,
-	"./hy-am": 303,
-	"./hy-am.js": 303,
-	"./id": 304,
-	"./id.js": 304,
-	"./is": 305,
-	"./is.js": 305,
-	"./it": 306,
-	"./it.js": 306,
-	"./ja": 307,
-	"./ja.js": 307,
-	"./jv": 308,
-	"./jv.js": 308,
-	"./ka": 309,
-	"./ka.js": 309,
-	"./kk": 310,
-	"./kk.js": 310,
-	"./km": 311,
-	"./km.js": 311,
-	"./kn": 312,
-	"./kn.js": 312,
-	"./ko": 313,
-	"./ko.js": 313,
-	"./ky": 314,
-	"./ky.js": 314,
-	"./lb": 315,
-	"./lb.js": 315,
-	"./lo": 316,
-	"./lo.js": 316,
-	"./lt": 317,
-	"./lt.js": 317,
-	"./lv": 318,
-	"./lv.js": 318,
-	"./me": 319,
-	"./me.js": 319,
-	"./mi": 320,
-	"./mi.js": 320,
-	"./mk": 321,
-	"./mk.js": 321,
-	"./ml": 322,
-	"./ml.js": 322,
-	"./mr": 323,
-	"./mr.js": 323,
-	"./ms": 325,
-	"./ms-my": 324,
-	"./ms-my.js": 324,
-	"./ms.js": 325,
-	"./my": 326,
-	"./my.js": 326,
-	"./nb": 327,
-	"./nb.js": 327,
-	"./ne": 328,
-	"./ne.js": 328,
-	"./nl": 330,
-	"./nl-be": 329,
-	"./nl-be.js": 329,
-	"./nl.js": 330,
-	"./nn": 331,
-	"./nn.js": 331,
-	"./pa-in": 332,
-	"./pa-in.js": 332,
-	"./pl": 333,
-	"./pl.js": 333,
-	"./pt": 335,
-	"./pt-br": 334,
-	"./pt-br.js": 334,
-	"./pt.js": 335,
-	"./ro": 336,
-	"./ro.js": 336,
-	"./ru": 337,
-	"./ru.js": 337,
-	"./sd": 338,
-	"./sd.js": 338,
-	"./se": 339,
-	"./se.js": 339,
-	"./si": 340,
-	"./si.js": 340,
-	"./sk": 341,
-	"./sk.js": 341,
-	"./sl": 342,
-	"./sl.js": 342,
-	"./sq": 343,
-	"./sq.js": 343,
-	"./sr": 345,
-	"./sr-cyrl": 344,
-	"./sr-cyrl.js": 344,
-	"./sr.js": 345,
-	"./ss": 346,
-	"./ss.js": 346,
-	"./sv": 347,
-	"./sv.js": 347,
-	"./sw": 348,
-	"./sw.js": 348,
-	"./ta": 349,
-	"./ta.js": 349,
-	"./te": 350,
-	"./te.js": 350,
-	"./tet": 351,
-	"./tet.js": 351,
-	"./th": 352,
-	"./th.js": 352,
-	"./tl-ph": 353,
-	"./tl-ph.js": 353,
-	"./tlh": 354,
-	"./tlh.js": 354,
-	"./tr": 355,
-	"./tr.js": 355,
-	"./tzl": 356,
-	"./tzl.js": 356,
-	"./tzm": 358,
-	"./tzm-latn": 357,
-	"./tzm-latn.js": 357,
-	"./tzm.js": 358,
-	"./uk": 359,
-	"./uk.js": 359,
-	"./ur": 360,
-	"./ur.js": 360,
-	"./uz": 362,
-	"./uz-latn": 361,
-	"./uz-latn.js": 361,
-	"./uz.js": 362,
-	"./vi": 363,
-	"./vi.js": 363,
-	"./x-pseudo": 364,
-	"./x-pseudo.js": 364,
-	"./yo": 365,
-	"./yo.js": 365,
-	"./zh-cn": 366,
-	"./zh-cn.js": 366,
-	"./zh-hk": 367,
-	"./zh-hk.js": 367,
-	"./zh-tw": 368,
-	"./zh-tw.js": 368
+	"./af": 257,
+	"./af.js": 257,
+	"./ar": 264,
+	"./ar-dz": 258,
+	"./ar-dz.js": 258,
+	"./ar-kw": 259,
+	"./ar-kw.js": 259,
+	"./ar-ly": 260,
+	"./ar-ly.js": 260,
+	"./ar-ma": 261,
+	"./ar-ma.js": 261,
+	"./ar-sa": 262,
+	"./ar-sa.js": 262,
+	"./ar-tn": 263,
+	"./ar-tn.js": 263,
+	"./ar.js": 264,
+	"./az": 265,
+	"./az.js": 265,
+	"./be": 266,
+	"./be.js": 266,
+	"./bg": 267,
+	"./bg.js": 267,
+	"./bn": 268,
+	"./bn.js": 268,
+	"./bo": 269,
+	"./bo.js": 269,
+	"./br": 270,
+	"./br.js": 270,
+	"./bs": 271,
+	"./bs.js": 271,
+	"./ca": 272,
+	"./ca.js": 272,
+	"./cs": 273,
+	"./cs.js": 273,
+	"./cv": 274,
+	"./cv.js": 274,
+	"./cy": 275,
+	"./cy.js": 275,
+	"./da": 276,
+	"./da.js": 276,
+	"./de": 279,
+	"./de-at": 277,
+	"./de-at.js": 277,
+	"./de-ch": 278,
+	"./de-ch.js": 278,
+	"./de.js": 279,
+	"./dv": 280,
+	"./dv.js": 280,
+	"./el": 281,
+	"./el.js": 281,
+	"./en-au": 282,
+	"./en-au.js": 282,
+	"./en-ca": 283,
+	"./en-ca.js": 283,
+	"./en-gb": 284,
+	"./en-gb.js": 284,
+	"./en-ie": 285,
+	"./en-ie.js": 285,
+	"./en-nz": 286,
+	"./en-nz.js": 286,
+	"./eo": 287,
+	"./eo.js": 287,
+	"./es": 289,
+	"./es-do": 288,
+	"./es-do.js": 288,
+	"./es.js": 289,
+	"./et": 290,
+	"./et.js": 290,
+	"./eu": 291,
+	"./eu.js": 291,
+	"./fa": 292,
+	"./fa.js": 292,
+	"./fi": 293,
+	"./fi.js": 293,
+	"./fo": 294,
+	"./fo.js": 294,
+	"./fr": 297,
+	"./fr-ca": 295,
+	"./fr-ca.js": 295,
+	"./fr-ch": 296,
+	"./fr-ch.js": 296,
+	"./fr.js": 297,
+	"./fy": 298,
+	"./fy.js": 298,
+	"./gd": 299,
+	"./gd.js": 299,
+	"./gl": 300,
+	"./gl.js": 300,
+	"./gom-latn": 301,
+	"./gom-latn.js": 301,
+	"./he": 302,
+	"./he.js": 302,
+	"./hi": 303,
+	"./hi.js": 303,
+	"./hr": 304,
+	"./hr.js": 304,
+	"./hu": 305,
+	"./hu.js": 305,
+	"./hy-am": 306,
+	"./hy-am.js": 306,
+	"./id": 307,
+	"./id.js": 307,
+	"./is": 308,
+	"./is.js": 308,
+	"./it": 309,
+	"./it.js": 309,
+	"./ja": 310,
+	"./ja.js": 310,
+	"./jv": 311,
+	"./jv.js": 311,
+	"./ka": 312,
+	"./ka.js": 312,
+	"./kk": 313,
+	"./kk.js": 313,
+	"./km": 314,
+	"./km.js": 314,
+	"./kn": 315,
+	"./kn.js": 315,
+	"./ko": 316,
+	"./ko.js": 316,
+	"./ky": 317,
+	"./ky.js": 317,
+	"./lb": 318,
+	"./lb.js": 318,
+	"./lo": 319,
+	"./lo.js": 319,
+	"./lt": 320,
+	"./lt.js": 320,
+	"./lv": 321,
+	"./lv.js": 321,
+	"./me": 322,
+	"./me.js": 322,
+	"./mi": 323,
+	"./mi.js": 323,
+	"./mk": 324,
+	"./mk.js": 324,
+	"./ml": 325,
+	"./ml.js": 325,
+	"./mr": 326,
+	"./mr.js": 326,
+	"./ms": 328,
+	"./ms-my": 327,
+	"./ms-my.js": 327,
+	"./ms.js": 328,
+	"./my": 329,
+	"./my.js": 329,
+	"./nb": 330,
+	"./nb.js": 330,
+	"./ne": 331,
+	"./ne.js": 331,
+	"./nl": 333,
+	"./nl-be": 332,
+	"./nl-be.js": 332,
+	"./nl.js": 333,
+	"./nn": 334,
+	"./nn.js": 334,
+	"./pa-in": 335,
+	"./pa-in.js": 335,
+	"./pl": 336,
+	"./pl.js": 336,
+	"./pt": 338,
+	"./pt-br": 337,
+	"./pt-br.js": 337,
+	"./pt.js": 338,
+	"./ro": 339,
+	"./ro.js": 339,
+	"./ru": 340,
+	"./ru.js": 340,
+	"./sd": 341,
+	"./sd.js": 341,
+	"./se": 342,
+	"./se.js": 342,
+	"./si": 343,
+	"./si.js": 343,
+	"./sk": 344,
+	"./sk.js": 344,
+	"./sl": 345,
+	"./sl.js": 345,
+	"./sq": 346,
+	"./sq.js": 346,
+	"./sr": 348,
+	"./sr-cyrl": 347,
+	"./sr-cyrl.js": 347,
+	"./sr.js": 348,
+	"./ss": 349,
+	"./ss.js": 349,
+	"./sv": 350,
+	"./sv.js": 350,
+	"./sw": 351,
+	"./sw.js": 351,
+	"./ta": 352,
+	"./ta.js": 352,
+	"./te": 353,
+	"./te.js": 353,
+	"./tet": 354,
+	"./tet.js": 354,
+	"./th": 355,
+	"./th.js": 355,
+	"./tl-ph": 356,
+	"./tl-ph.js": 356,
+	"./tlh": 357,
+	"./tlh.js": 357,
+	"./tr": 358,
+	"./tr.js": 358,
+	"./tzl": 359,
+	"./tzl.js": 359,
+	"./tzm": 361,
+	"./tzm-latn": 360,
+	"./tzm-latn.js": 360,
+	"./tzm.js": 361,
+	"./uk": 362,
+	"./uk.js": 362,
+	"./ur": 363,
+	"./ur.js": 363,
+	"./uz": 365,
+	"./uz-latn": 364,
+	"./uz-latn.js": 364,
+	"./uz.js": 365,
+	"./vi": 366,
+	"./vi.js": 366,
+	"./x-pseudo": 367,
+	"./x-pseudo.js": 367,
+	"./yo": 368,
+	"./yo.js": 368,
+	"./zh-cn": 369,
+	"./zh-cn.js": 369,
+	"./zh-hk": 370,
+	"./zh-hk.js": 370,
+	"./zh-tw": 371,
+	"./zh-tw.js": 371
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -54618,21 +54425,21 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 406;
+webpackContext.id = 408;
 
 /***/ }),
-/* 407 */
+/* 409 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(416);
-module.exports = __webpack_require__(55).RegExp.escape;
+__webpack_require__(418);
+module.exports = __webpack_require__(57).RegExp.escape;
 
 /***/ }),
-/* 408 */
+/* 410 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(11)
-  , isArray  = __webpack_require__(137)
+var isObject = __webpack_require__(12)
+  , isArray  = __webpack_require__(140)
   , SPECIES  = __webpack_require__(14)('species');
 
 module.exports = function(original){
@@ -54649,24 +54456,24 @@ module.exports = function(original){
 };
 
 /***/ }),
-/* 409 */
+/* 411 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 9.4.2.3 ArraySpeciesCreate(originalArray, length)
-var speciesConstructor = __webpack_require__(408);
+var speciesConstructor = __webpack_require__(410);
 
 module.exports = function(original, length){
   return new (speciesConstructor(original))(length);
 };
 
 /***/ }),
-/* 410 */
+/* 412 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var anObject    = __webpack_require__(5)
-  , toPrimitive = __webpack_require__(49)
+  , toPrimitive = __webpack_require__(50)
   , NUMBER      = 'number';
 
 module.exports = function(hint){
@@ -54675,13 +54482,13 @@ module.exports = function(hint){
 };
 
 /***/ }),
-/* 411 */
+/* 413 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // all enumerable object keys, includes symbols
-var getKeys = __webpack_require__(70)
-  , gOPS    = __webpack_require__(112)
-  , pIE     = __webpack_require__(93);
+var getKeys = __webpack_require__(71)
+  , gOPS    = __webpack_require__(114)
+  , pIE     = __webpack_require__(94);
 module.exports = function(it){
   var result     = getKeys(it)
     , getSymbols = gOPS.f;
@@ -54695,11 +54502,11 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 412 */
+/* 414 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var getKeys   = __webpack_require__(70)
-  , toIObject = __webpack_require__(33);
+var getKeys   = __webpack_require__(71)
+  , toIObject = __webpack_require__(35);
 module.exports = function(object, el){
   var O      = toIObject(object)
     , keys   = getKeys(O)
@@ -54710,14 +54517,14 @@ module.exports = function(object, el){
 };
 
 /***/ }),
-/* 413 */
+/* 415 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var path      = __webpack_require__(414)
-  , invoke    = __webpack_require__(108)
-  , aFunction = __webpack_require__(29);
+var path      = __webpack_require__(416)
+  , invoke    = __webpack_require__(110)
+  , aFunction = __webpack_require__(31);
 module.exports = function(/* ...pargs */){
   var fn     = aFunction(this)
     , length = arguments.length
@@ -54739,13 +54546,13 @@ module.exports = function(/* ...pargs */){
 };
 
 /***/ }),
-/* 414 */
+/* 416 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(6);
 
 /***/ }),
-/* 415 */
+/* 417 */
 /***/ (function(module, exports) {
 
 module.exports = function(regExp, replace){
@@ -54758,53 +54565,26 @@ module.exports = function(regExp, replace){
 };
 
 /***/ }),
-/* 416 */
+/* 418 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/benjamingr/RexExp.escape
 var $export = __webpack_require__(1)
-  , $re     = __webpack_require__(415)(/[\\^$*+?.()|[\]{}]/g, '\\$&');
+  , $re     = __webpack_require__(417)(/[\\^$*+?.()|[\]{}]/g, '\\$&');
 
 $export($export.S, 'RegExp', {escape: function escape(it){ return $re(it); }});
 
 
 /***/ }),
-/* 417 */
+/* 419 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 22.1.3.3 Array.prototype.copyWithin(target, start, end = this.length)
 var $export = __webpack_require__(1);
 
-$export($export.P, 'Array', {copyWithin: __webpack_require__(194)});
+$export($export.P, 'Array', {copyWithin: __webpack_require__(197)});
 
-__webpack_require__(79)('copyWithin');
-
-/***/ }),
-/* 418 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var $export = __webpack_require__(1)
-  , $every  = __webpack_require__(47)(4);
-
-$export($export.P + $export.F * !__webpack_require__(44)([].every, true), 'Array', {
-  // 22.1.3.5 / 15.4.4.16 Array.prototype.every(callbackfn [, thisArg])
-  every: function every(callbackfn /* , thisArg */){
-    return $every(this, callbackfn, arguments[1]);
-  }
-});
-
-/***/ }),
-/* 419 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 22.1.3.6 Array.prototype.fill(value, start = 0, end = this.length)
-var $export = __webpack_require__(1);
-
-$export($export.P, 'Array', {fill: __webpack_require__(129)});
-
-__webpack_require__(79)('fill');
+__webpack_require__(81)('copyWithin');
 
 /***/ }),
 /* 420 */
@@ -54813,12 +54593,12 @@ __webpack_require__(79)('fill');
 "use strict";
 
 var $export = __webpack_require__(1)
-  , $filter = __webpack_require__(47)(2);
+  , $every  = __webpack_require__(48)(4);
 
-$export($export.P + $export.F * !__webpack_require__(44)([].filter, true), 'Array', {
-  // 22.1.3.7 / 15.4.4.20 Array.prototype.filter(callbackfn [, thisArg])
-  filter: function filter(callbackfn /* , thisArg */){
-    return $filter(this, callbackfn, arguments[1]);
+$export($export.P + $export.F * !__webpack_require__(45)([].every, true), 'Array', {
+  // 22.1.3.5 / 15.4.4.16 Array.prototype.every(callbackfn [, thisArg])
+  every: function every(callbackfn /* , thisArg */){
+    return $every(this, callbackfn, arguments[1]);
   }
 });
 
@@ -54826,11 +54606,38 @@ $export($export.P + $export.F * !__webpack_require__(44)([].filter, true), 'Arra
 /* 421 */
 /***/ (function(module, exports, __webpack_require__) {
 
+// 22.1.3.6 Array.prototype.fill(value, start = 0, end = this.length)
+var $export = __webpack_require__(1);
+
+$export($export.P, 'Array', {fill: __webpack_require__(132)});
+
+__webpack_require__(81)('fill');
+
+/***/ }),
+/* 422 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $export = __webpack_require__(1)
+  , $filter = __webpack_require__(48)(2);
+
+$export($export.P + $export.F * !__webpack_require__(45)([].filter, true), 'Array', {
+  // 22.1.3.7 / 15.4.4.20 Array.prototype.filter(callbackfn [, thisArg])
+  filter: function filter(callbackfn /* , thisArg */){
+    return $filter(this, callbackfn, arguments[1]);
+  }
+});
+
+/***/ }),
+/* 423 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 // 22.1.3.9 Array.prototype.findIndex(predicate, thisArg = undefined)
 var $export = __webpack_require__(1)
-  , $find   = __webpack_require__(47)(6)
+  , $find   = __webpack_require__(48)(6)
   , KEY     = 'findIndex'
   , forced  = true;
 // Shouldn't skip holes
@@ -54840,17 +54647,17 @@ $export($export.P + $export.F * forced, 'Array', {
     return $find(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
   }
 });
-__webpack_require__(79)(KEY);
+__webpack_require__(81)(KEY);
 
 /***/ }),
-/* 422 */
+/* 424 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // 22.1.3.8 Array.prototype.find(predicate, thisArg = undefined)
 var $export = __webpack_require__(1)
-  , $find   = __webpack_require__(47)(5)
+  , $find   = __webpack_require__(48)(5)
   , KEY     = 'find'
   , forced  = true;
 // Shouldn't skip holes
@@ -54860,17 +54667,17 @@ $export($export.P + $export.F * forced, 'Array', {
     return $find(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
   }
 });
-__webpack_require__(79)(KEY);
+__webpack_require__(81)(KEY);
 
 /***/ }),
-/* 423 */
+/* 425 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export  = __webpack_require__(1)
-  , $forEach = __webpack_require__(47)(0)
-  , STRICT   = __webpack_require__(44)([].forEach, true);
+  , $forEach = __webpack_require__(48)(0)
+  , STRICT   = __webpack_require__(45)([].forEach, true);
 
 $export($export.P + $export.F * !STRICT, 'Array', {
   // 22.1.3.10 / 15.4.4.18 Array.prototype.forEach(callbackfn [, thisArg])
@@ -54880,21 +54687,21 @@ $export($export.P + $export.F * !STRICT, 'Array', {
 });
 
 /***/ }),
-/* 424 */
+/* 426 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var ctx            = __webpack_require__(56)
+var ctx            = __webpack_require__(58)
   , $export        = __webpack_require__(1)
-  , toObject       = __webpack_require__(20)
-  , call           = __webpack_require__(203)
-  , isArrayIter    = __webpack_require__(136)
-  , toLength       = __webpack_require__(18)
-  , createProperty = __webpack_require__(130)
-  , getIterFn      = __webpack_require__(153);
+  , toObject       = __webpack_require__(23)
+  , call           = __webpack_require__(206)
+  , isArrayIter    = __webpack_require__(139)
+  , toLength       = __webpack_require__(19)
+  , createProperty = __webpack_require__(133)
+  , getIterFn      = __webpack_require__(156);
 
-$export($export.S + $export.F * !__webpack_require__(110)(function(iter){ Array.from(iter); }), 'Array', {
+$export($export.S + $export.F * !__webpack_require__(112)(function(iter){ Array.from(iter); }), 'Array', {
   // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
   from: function from(arrayLike/*, mapfn = undefined, thisArg = undefined*/){
     var O       = toObject(arrayLike)
@@ -54924,17 +54731,17 @@ $export($export.S + $export.F * !__webpack_require__(110)(function(iter){ Array.
 
 
 /***/ }),
-/* 425 */
+/* 427 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export       = __webpack_require__(1)
-  , $indexOf      = __webpack_require__(104)(false)
+  , $indexOf      = __webpack_require__(106)(false)
   , $native       = [].indexOf
   , NEGATIVE_ZERO = !!$native && 1 / [1].indexOf(1, -0) < 0;
 
-$export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(44)($native)), 'Array', {
+$export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(45)($native)), 'Array', {
   // 22.1.3.11 / 15.4.4.14 Array.prototype.indexOf(searchElement [, fromIndex])
   indexOf: function indexOf(searchElement /*, fromIndex = 0 */){
     return NEGATIVE_ZERO
@@ -54945,46 +54752,46 @@ $export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(44)($nati
 });
 
 /***/ }),
-/* 426 */
+/* 428 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 22.1.2.2 / 15.4.3.2 Array.isArray(arg)
 var $export = __webpack_require__(1);
 
-$export($export.S, 'Array', {isArray: __webpack_require__(137)});
+$export($export.S, 'Array', {isArray: __webpack_require__(140)});
 
 /***/ }),
-/* 427 */
+/* 429 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // 22.1.3.13 Array.prototype.join(separator)
 var $export   = __webpack_require__(1)
-  , toIObject = __webpack_require__(33)
+  , toIObject = __webpack_require__(35)
   , arrayJoin = [].join;
 
 // fallback for not array-like strings
-$export($export.P + $export.F * (__webpack_require__(92) != Object || !__webpack_require__(44)(arrayJoin)), 'Array', {
+$export($export.P + $export.F * (__webpack_require__(93) != Object || !__webpack_require__(45)(arrayJoin)), 'Array', {
   join: function join(separator){
     return arrayJoin.call(toIObject(this), separator === undefined ? ',' : separator);
   }
 });
 
 /***/ }),
-/* 428 */
+/* 430 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export       = __webpack_require__(1)
-  , toIObject     = __webpack_require__(33)
-  , toInteger     = __webpack_require__(62)
-  , toLength      = __webpack_require__(18)
+  , toIObject     = __webpack_require__(35)
+  , toInteger     = __webpack_require__(64)
+  , toLength      = __webpack_require__(19)
   , $native       = [].lastIndexOf
   , NEGATIVE_ZERO = !!$native && 1 / [1].lastIndexOf(1, -0) < 0;
 
-$export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(44)($native)), 'Array', {
+$export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(45)($native)), 'Array', {
   // 22.1.3.14 / 15.4.4.15 Array.prototype.lastIndexOf(searchElement [, fromIndex])
   lastIndexOf: function lastIndexOf(searchElement /*, fromIndex = @[*-1] */){
     // convert -0 to +0
@@ -55000,15 +54807,15 @@ $export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(44)($nati
 });
 
 /***/ }),
-/* 429 */
+/* 431 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export = __webpack_require__(1)
-  , $map    = __webpack_require__(47)(1);
+  , $map    = __webpack_require__(48)(1);
 
-$export($export.P + $export.F * !__webpack_require__(44)([].map, true), 'Array', {
+$export($export.P + $export.F * !__webpack_require__(45)([].map, true), 'Array', {
   // 22.1.3.15 / 15.4.4.19 Array.prototype.map(callbackfn [, thisArg])
   map: function map(callbackfn /* , thisArg */){
     return $map(this, callbackfn, arguments[1]);
@@ -55016,13 +54823,13 @@ $export($export.P + $export.F * !__webpack_require__(44)([].map, true), 'Array',
 });
 
 /***/ }),
-/* 430 */
+/* 432 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export        = __webpack_require__(1)
-  , createProperty = __webpack_require__(130);
+  , createProperty = __webpack_require__(133);
 
 // WebKit Array.of isn't generic
 $export($export.S + $export.F * __webpack_require__(7)(function(){
@@ -55041,15 +54848,15 @@ $export($export.S + $export.F * __webpack_require__(7)(function(){
 });
 
 /***/ }),
-/* 431 */
+/* 433 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export = __webpack_require__(1)
-  , $reduce = __webpack_require__(196);
+  , $reduce = __webpack_require__(199);
 
-$export($export.P + $export.F * !__webpack_require__(44)([].reduceRight, true), 'Array', {
+$export($export.P + $export.F * !__webpack_require__(45)([].reduceRight, true), 'Array', {
   // 22.1.3.19 / 15.4.4.22 Array.prototype.reduceRight(callbackfn [, initialValue])
   reduceRight: function reduceRight(callbackfn /* , initialValue */){
     return $reduce(this, callbackfn, arguments.length, arguments[1], true);
@@ -55057,15 +54864,15 @@ $export($export.P + $export.F * !__webpack_require__(44)([].reduceRight, true), 
 });
 
 /***/ }),
-/* 432 */
+/* 434 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export = __webpack_require__(1)
-  , $reduce = __webpack_require__(196);
+  , $reduce = __webpack_require__(199);
 
-$export($export.P + $export.F * !__webpack_require__(44)([].reduce, true), 'Array', {
+$export($export.P + $export.F * !__webpack_require__(45)([].reduce, true), 'Array', {
   // 22.1.3.18 / 15.4.4.21 Array.prototype.reduce(callbackfn [, initialValue])
   reduce: function reduce(callbackfn /* , initialValue */){
     return $reduce(this, callbackfn, arguments.length, arguments[1], false);
@@ -55073,16 +54880,16 @@ $export($export.P + $export.F * !__webpack_require__(44)([].reduce, true), 'Arra
 });
 
 /***/ }),
-/* 433 */
+/* 435 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export    = __webpack_require__(1)
-  , html       = __webpack_require__(134)
-  , cof        = __webpack_require__(42)
-  , toIndex    = __webpack_require__(73)
-  , toLength   = __webpack_require__(18)
+  , html       = __webpack_require__(137)
+  , cof        = __webpack_require__(43)
+  , toIndex    = __webpack_require__(74)
+  , toLength   = __webpack_require__(19)
   , arraySlice = [].slice;
 
 // fallback for not array-like ES3 strings and DOM objects
@@ -55107,15 +54914,15 @@ $export($export.P + $export.F * __webpack_require__(7)(function(){
 });
 
 /***/ }),
-/* 434 */
+/* 436 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export = __webpack_require__(1)
-  , $some   = __webpack_require__(47)(3);
+  , $some   = __webpack_require__(48)(3);
 
-$export($export.P + $export.F * !__webpack_require__(44)([].some, true), 'Array', {
+$export($export.P + $export.F * !__webpack_require__(45)([].some, true), 'Array', {
   // 22.1.3.23 / 15.4.4.17 Array.prototype.some(callbackfn [, thisArg])
   some: function some(callbackfn /* , thisArg */){
     return $some(this, callbackfn, arguments[1]);
@@ -55123,14 +54930,14 @@ $export($export.P + $export.F * !__webpack_require__(44)([].some, true), 'Array'
 });
 
 /***/ }),
-/* 435 */
+/* 437 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export   = __webpack_require__(1)
-  , aFunction = __webpack_require__(29)
-  , toObject  = __webpack_require__(20)
+  , aFunction = __webpack_require__(31)
+  , toObject  = __webpack_require__(23)
   , fails     = __webpack_require__(7)
   , $sort     = [].sort
   , test      = [1, 2, 3];
@@ -55142,7 +54949,7 @@ $export($export.P + $export.F * (fails(function(){
   // V8 bug
   test.sort(null);
   // Old WebKit
-}) || !__webpack_require__(44)($sort)), 'Array', {
+}) || !__webpack_require__(45)($sort)), 'Array', {
   // 22.1.3.25 Array.prototype.sort(comparefn)
   sort: function sort(comparefn){
     return comparefn === undefined
@@ -55152,13 +54959,13 @@ $export($export.P + $export.F * (fails(function(){
 });
 
 /***/ }),
-/* 436 */
+/* 438 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(72)('Array');
+__webpack_require__(73)('Array');
 
 /***/ }),
-/* 437 */
+/* 439 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.3.3.1 / 15.9.4.4 Date.now()
@@ -55167,7 +54974,7 @@ var $export = __webpack_require__(1);
 $export($export.S, 'Date', {now: function(){ return new Date().getTime(); }});
 
 /***/ }),
-/* 438 */
+/* 440 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -55201,14 +55008,14 @@ $export($export.P + $export.F * (fails(function(){
 });
 
 /***/ }),
-/* 439 */
+/* 441 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export     = __webpack_require__(1)
-  , toObject    = __webpack_require__(20)
-  , toPrimitive = __webpack_require__(49);
+  , toObject    = __webpack_require__(23)
+  , toPrimitive = __webpack_require__(50);
 
 $export($export.P + $export.F * __webpack_require__(7)(function(){
   return new Date(NaN).toJSON() !== null || Date.prototype.toJSON.call({toISOString: function(){ return 1; }}) !== 1;
@@ -55221,16 +55028,16 @@ $export($export.P + $export.F * __webpack_require__(7)(function(){
 });
 
 /***/ }),
-/* 440 */
+/* 442 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var TO_PRIMITIVE = __webpack_require__(14)('toPrimitive')
   , proto        = Date.prototype;
 
-if(!(TO_PRIMITIVE in proto))__webpack_require__(30)(proto, TO_PRIMITIVE, __webpack_require__(410));
+if(!(TO_PRIMITIVE in proto))__webpack_require__(32)(proto, TO_PRIMITIVE, __webpack_require__(412));
 
 /***/ }),
-/* 441 */
+/* 443 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var DateProto    = Date.prototype
@@ -55239,29 +55046,29 @@ var DateProto    = Date.prototype
   , $toString    = DateProto[TO_STRING]
   , getTime      = DateProto.getTime;
 if(new Date(NaN) + '' != INVALID_DATE){
-  __webpack_require__(31)(DateProto, TO_STRING, function toString(){
+  __webpack_require__(33)(DateProto, TO_STRING, function toString(){
     var value = getTime.call(this);
     return value === value ? $toString.call(this) : INVALID_DATE;
   });
 }
 
 /***/ }),
-/* 442 */
+/* 444 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.2.3.2 / 15.3.4.5 Function.prototype.bind(thisArg, args...)
 var $export = __webpack_require__(1);
 
-$export($export.P, 'Function', {bind: __webpack_require__(197)});
+$export($export.P, 'Function', {bind: __webpack_require__(200)});
 
 /***/ }),
-/* 443 */
+/* 445 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var isObject       = __webpack_require__(11)
-  , getPrototypeOf = __webpack_require__(36)
+var isObject       = __webpack_require__(12)
+  , getPrototypeOf = __webpack_require__(39)
   , HAS_INSTANCE   = __webpack_require__(14)('hasInstance')
   , FunctionProto  = Function.prototype;
 // 19.2.3.6 Function.prototype[@@hasInstance](V)
@@ -55274,12 +55081,12 @@ if(!(HAS_INSTANCE in FunctionProto))__webpack_require__(16).f(FunctionProto, HAS
 }});
 
 /***/ }),
-/* 444 */
+/* 446 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var dP         = __webpack_require__(16).f
-  , createDesc = __webpack_require__(61)
-  , has        = __webpack_require__(24)
+  , createDesc = __webpack_require__(63)
+  , has        = __webpack_require__(25)
   , FProto     = Function.prototype
   , nameRE     = /^\s*function ([^ (]*)/
   , NAME       = 'name';
@@ -55304,12 +55111,12 @@ NAME in FProto || __webpack_require__(15) && dP(FProto, NAME, {
 });
 
 /***/ }),
-/* 445 */
+/* 447 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.3 Math.acosh(x)
 var $export = __webpack_require__(1)
-  , log1p   = __webpack_require__(205)
+  , log1p   = __webpack_require__(208)
   , sqrt    = Math.sqrt
   , $acosh  = Math.acosh;
 
@@ -55327,7 +55134,7 @@ $export($export.S + $export.F * !($acosh
 });
 
 /***/ }),
-/* 446 */
+/* 448 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.5 Math.asinh(x)
@@ -55342,7 +55149,7 @@ function asinh(x){
 $export($export.S + $export.F * !($asinh && 1 / $asinh(0) > 0), 'Math', {asinh: asinh});
 
 /***/ }),
-/* 447 */
+/* 449 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.7 Math.atanh(x)
@@ -55357,12 +55164,12 @@ $export($export.S + $export.F * !($atanh && 1 / $atanh(-0) < 0), 'Math', {
 });
 
 /***/ }),
-/* 448 */
+/* 450 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.9 Math.cbrt(x)
 var $export = __webpack_require__(1)
-  , sign    = __webpack_require__(141);
+  , sign    = __webpack_require__(144);
 
 $export($export.S, 'Math', {
   cbrt: function cbrt(x){
@@ -55371,7 +55178,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 449 */
+/* 451 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.11 Math.clz32(x)
@@ -55384,7 +55191,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 450 */
+/* 452 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.12 Math.cosh(x)
@@ -55398,22 +55205,22 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 451 */
+/* 453 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.14 Math.expm1(x)
 var $export = __webpack_require__(1)
-  , $expm1  = __webpack_require__(140);
+  , $expm1  = __webpack_require__(143);
 
 $export($export.S + $export.F * ($expm1 != Math.expm1), 'Math', {expm1: $expm1});
 
 /***/ }),
-/* 452 */
+/* 454 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.16 Math.fround(x)
 var $export   = __webpack_require__(1)
-  , sign      = __webpack_require__(141)
+  , sign      = __webpack_require__(144)
   , pow       = Math.pow
   , EPSILON   = pow(2, -52)
   , EPSILON32 = pow(2, -23)
@@ -55439,7 +55246,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 453 */
+/* 455 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.17 Math.hypot([value1[, value2[, … ]]])
@@ -55469,7 +55276,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 454 */
+/* 456 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.18 Math.imul(x, y)
@@ -55491,7 +55298,7 @@ $export($export.S + $export.F * __webpack_require__(7)(function(){
 });
 
 /***/ }),
-/* 455 */
+/* 457 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.21 Math.log10(x)
@@ -55504,16 +55311,16 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 456 */
+/* 458 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.20 Math.log1p(x)
 var $export = __webpack_require__(1);
 
-$export($export.S, 'Math', {log1p: __webpack_require__(205)});
+$export($export.S, 'Math', {log1p: __webpack_require__(208)});
 
 /***/ }),
-/* 457 */
+/* 459 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.22 Math.log2(x)
@@ -55526,21 +55333,21 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 458 */
+/* 460 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.28 Math.sign(x)
 var $export = __webpack_require__(1);
 
-$export($export.S, 'Math', {sign: __webpack_require__(141)});
+$export($export.S, 'Math', {sign: __webpack_require__(144)});
 
 /***/ }),
-/* 459 */
+/* 461 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.30 Math.sinh(x)
 var $export = __webpack_require__(1)
-  , expm1   = __webpack_require__(140)
+  , expm1   = __webpack_require__(143)
   , exp     = Math.exp;
 
 // V8 near Chromium 38 has a problem with very small numbers
@@ -55555,12 +55362,12 @@ $export($export.S + $export.F * __webpack_require__(7)(function(){
 });
 
 /***/ }),
-/* 460 */
+/* 462 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.33 Math.tanh(x)
 var $export = __webpack_require__(1)
-  , expm1   = __webpack_require__(140)
+  , expm1   = __webpack_require__(143)
   , exp     = Math.exp;
 
 $export($export.S, 'Math', {
@@ -55572,7 +55379,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 461 */
+/* 463 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.2.2.34 Math.trunc(x)
@@ -55585,27 +55392,27 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 462 */
+/* 464 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var global            = __webpack_require__(6)
-  , has               = __webpack_require__(24)
-  , cof               = __webpack_require__(42)
-  , inheritIfRequired = __webpack_require__(135)
-  , toPrimitive       = __webpack_require__(49)
+  , has               = __webpack_require__(25)
+  , cof               = __webpack_require__(43)
+  , inheritIfRequired = __webpack_require__(138)
+  , toPrimitive       = __webpack_require__(50)
   , fails             = __webpack_require__(7)
-  , gOPN              = __webpack_require__(69).f
-  , gOPD              = __webpack_require__(35).f
+  , gOPN              = __webpack_require__(70).f
+  , gOPD              = __webpack_require__(38).f
   , dP                = __webpack_require__(16).f
-  , $trim             = __webpack_require__(83).trim
+  , $trim             = __webpack_require__(85).trim
   , NUMBER            = 'Number'
   , $Number           = global[NUMBER]
   , Base              = $Number
   , proto             = $Number.prototype
   // Opera ~12 has broken Object#toString
-  , BROKEN_COF        = cof(__webpack_require__(68)(proto)) == NUMBER
+  , BROKEN_COF        = cof(__webpack_require__(69)(proto)) == NUMBER
   , TRIM              = 'trim' in String.prototype;
 
 // 7.1.3 ToNumber(argument)
@@ -55656,11 +55463,11 @@ if(!$Number(' 0o1') || !$Number('0b1') || $Number('+0x1')){
   }
   $Number.prototype = proto;
   proto.constructor = $Number;
-  __webpack_require__(31)(global, NUMBER, $Number);
+  __webpack_require__(33)(global, NUMBER, $Number);
 }
 
 /***/ }),
-/* 463 */
+/* 465 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.1 Number.EPSILON
@@ -55669,7 +55476,7 @@ var $export = __webpack_require__(1);
 $export($export.S, 'Number', {EPSILON: Math.pow(2, -52)});
 
 /***/ }),
-/* 464 */
+/* 466 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.2 Number.isFinite(number)
@@ -55683,16 +55490,16 @@ $export($export.S, 'Number', {
 });
 
 /***/ }),
-/* 465 */
+/* 467 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.3 Number.isInteger(number)
 var $export = __webpack_require__(1);
 
-$export($export.S, 'Number', {isInteger: __webpack_require__(202)});
+$export($export.S, 'Number', {isInteger: __webpack_require__(205)});
 
 /***/ }),
-/* 466 */
+/* 468 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.4 Number.isNaN(number)
@@ -55705,12 +55512,12 @@ $export($export.S, 'Number', {
 });
 
 /***/ }),
-/* 467 */
+/* 469 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.5 Number.isSafeInteger(number)
 var $export   = __webpack_require__(1)
-  , isInteger = __webpack_require__(202)
+  , isInteger = __webpack_require__(205)
   , abs       = Math.abs;
 
 $export($export.S, 'Number', {
@@ -55720,7 +55527,7 @@ $export($export.S, 'Number', {
 });
 
 /***/ }),
-/* 468 */
+/* 470 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.6 Number.MAX_SAFE_INTEGER
@@ -55729,7 +55536,7 @@ var $export = __webpack_require__(1);
 $export($export.S, 'Number', {MAX_SAFE_INTEGER: 0x1fffffffffffff});
 
 /***/ }),
-/* 469 */
+/* 471 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 20.1.2.10 Number.MIN_SAFE_INTEGER
@@ -55738,33 +55545,33 @@ var $export = __webpack_require__(1);
 $export($export.S, 'Number', {MIN_SAFE_INTEGER: -0x1fffffffffffff});
 
 /***/ }),
-/* 470 */
+/* 472 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export     = __webpack_require__(1)
-  , $parseFloat = __webpack_require__(212);
+  , $parseFloat = __webpack_require__(215);
 // 20.1.2.12 Number.parseFloat(string)
 $export($export.S + $export.F * (Number.parseFloat != $parseFloat), 'Number', {parseFloat: $parseFloat});
 
 /***/ }),
-/* 471 */
+/* 473 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export   = __webpack_require__(1)
-  , $parseInt = __webpack_require__(213);
+  , $parseInt = __webpack_require__(216);
 // 20.1.2.13 Number.parseInt(string, radix)
 $export($export.S + $export.F * (Number.parseInt != $parseInt), 'Number', {parseInt: $parseInt});
 
 /***/ }),
-/* 472 */
+/* 474 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export      = __webpack_require__(1)
-  , toInteger    = __webpack_require__(62)
-  , aNumberValue = __webpack_require__(193)
-  , repeat       = __webpack_require__(148)
+  , toInteger    = __webpack_require__(64)
+  , aNumberValue = __webpack_require__(196)
+  , repeat       = __webpack_require__(151)
   , $toFixed     = 1..toFixed
   , floor        = Math.floor
   , data         = [0, 0, 0, 0, 0, 0]
@@ -55875,14 +55682,14 @@ $export($export.P + $export.F * (!!$toFixed && (
 });
 
 /***/ }),
-/* 473 */
+/* 475 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export      = __webpack_require__(1)
   , $fails       = __webpack_require__(7)
-  , aNumberValue = __webpack_require__(193)
+  , aNumberValue = __webpack_require__(196)
   , $toPrecision = 1..toPrecision;
 
 $export($export.P + $export.F * ($fails(function(){
@@ -55899,32 +55706,32 @@ $export($export.P + $export.F * ($fails(function(){
 });
 
 /***/ }),
-/* 474 */
+/* 476 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.3.1 Object.assign(target, source)
 var $export = __webpack_require__(1);
 
-$export($export.S + $export.F, 'Object', {assign: __webpack_require__(206)});
+$export($export.S + $export.F, 'Object', {assign: __webpack_require__(209)});
 
 /***/ }),
-/* 475 */
+/* 477 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(1)
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
-$export($export.S, 'Object', {create: __webpack_require__(68)});
+$export($export.S, 'Object', {create: __webpack_require__(69)});
 
 /***/ }),
-/* 476 */
+/* 478 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(1);
 // 19.1.2.3 / 15.2.3.7 Object.defineProperties(O, Properties)
-$export($export.S + $export.F * !__webpack_require__(15), 'Object', {defineProperties: __webpack_require__(207)});
+$export($export.S + $export.F * !__webpack_require__(15), 'Object', {defineProperties: __webpack_require__(210)});
 
 /***/ }),
-/* 477 */
+/* 479 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(1);
@@ -55932,53 +55739,30 @@ var $export = __webpack_require__(1);
 $export($export.S + $export.F * !__webpack_require__(15), 'Object', {defineProperty: __webpack_require__(16).f});
 
 /***/ }),
-/* 478 */
+/* 480 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.5 Object.freeze(O)
-var isObject = __webpack_require__(11)
-  , meta     = __webpack_require__(60).onFreeze;
+var isObject = __webpack_require__(12)
+  , meta     = __webpack_require__(62).onFreeze;
 
-__webpack_require__(48)('freeze', function($freeze){
+__webpack_require__(49)('freeze', function($freeze){
   return function freeze(it){
     return $freeze && isObject(it) ? $freeze(meta(it)) : it;
   };
 });
 
 /***/ }),
-/* 479 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
-var toIObject                 = __webpack_require__(33)
-  , $getOwnPropertyDescriptor = __webpack_require__(35).f;
-
-__webpack_require__(48)('getOwnPropertyDescriptor', function(){
-  return function getOwnPropertyDescriptor(it, key){
-    return $getOwnPropertyDescriptor(toIObject(it), key);
-  };
-});
-
-/***/ }),
-/* 480 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 19.1.2.7 Object.getOwnPropertyNames(O)
-__webpack_require__(48)('getOwnPropertyNames', function(){
-  return __webpack_require__(208).f;
-});
-
-/***/ }),
 /* 481 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// 19.1.2.9 Object.getPrototypeOf(O)
-var toObject        = __webpack_require__(20)
-  , $getPrototypeOf = __webpack_require__(36);
+// 19.1.2.6 Object.getOwnPropertyDescriptor(O, P)
+var toIObject                 = __webpack_require__(35)
+  , $getOwnPropertyDescriptor = __webpack_require__(38).f;
 
-__webpack_require__(48)('getPrototypeOf', function(){
-  return function getPrototypeOf(it){
-    return $getPrototypeOf(toObject(it));
+__webpack_require__(49)('getOwnPropertyDescriptor', function(){
+  return function getOwnPropertyDescriptor(it, key){
+    return $getOwnPropertyDescriptor(toIObject(it), key);
   };
 });
 
@@ -55986,25 +55770,22 @@ __webpack_require__(48)('getPrototypeOf', function(){
 /* 482 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// 19.1.2.11 Object.isExtensible(O)
-var isObject = __webpack_require__(11);
-
-__webpack_require__(48)('isExtensible', function($isExtensible){
-  return function isExtensible(it){
-    return isObject(it) ? $isExtensible ? $isExtensible(it) : true : false;
-  };
+// 19.1.2.7 Object.getOwnPropertyNames(O)
+__webpack_require__(49)('getOwnPropertyNames', function(){
+  return __webpack_require__(211).f;
 });
 
 /***/ }),
 /* 483 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// 19.1.2.12 Object.isFrozen(O)
-var isObject = __webpack_require__(11);
+// 19.1.2.9 Object.getPrototypeOf(O)
+var toObject        = __webpack_require__(23)
+  , $getPrototypeOf = __webpack_require__(39);
 
-__webpack_require__(48)('isFrozen', function($isFrozen){
-  return function isFrozen(it){
-    return isObject(it) ? $isFrozen ? $isFrozen(it) : false : true;
+__webpack_require__(49)('getPrototypeOf', function(){
+  return function getPrototypeOf(it){
+    return $getPrototypeOf(toObject(it));
   };
 });
 
@@ -56012,12 +55793,12 @@ __webpack_require__(48)('isFrozen', function($isFrozen){
 /* 484 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// 19.1.2.13 Object.isSealed(O)
-var isObject = __webpack_require__(11);
+// 19.1.2.11 Object.isExtensible(O)
+var isObject = __webpack_require__(12);
 
-__webpack_require__(48)('isSealed', function($isSealed){
-  return function isSealed(it){
-    return isObject(it) ? $isSealed ? $isSealed(it) : false : true;
+__webpack_require__(49)('isExtensible', function($isExtensible){
+  return function isExtensible(it){
+    return isObject(it) ? $isExtensible ? $isExtensible(it) : true : false;
   };
 });
 
@@ -56025,21 +55806,25 @@ __webpack_require__(48)('isSealed', function($isSealed){
 /* 485 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// 19.1.3.10 Object.is(value1, value2)
-var $export = __webpack_require__(1);
-$export($export.S, 'Object', {is: __webpack_require__(214)});
+// 19.1.2.12 Object.isFrozen(O)
+var isObject = __webpack_require__(12);
+
+__webpack_require__(49)('isFrozen', function($isFrozen){
+  return function isFrozen(it){
+    return isObject(it) ? $isFrozen ? $isFrozen(it) : false : true;
+  };
+});
 
 /***/ }),
 /* 486 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// 19.1.2.14 Object.keys(O)
-var toObject = __webpack_require__(20)
-  , $keys    = __webpack_require__(70);
+// 19.1.2.13 Object.isSealed(O)
+var isObject = __webpack_require__(12);
 
-__webpack_require__(48)('keys', function(){
-  return function keys(it){
-    return $keys(toObject(it));
+__webpack_require__(49)('isSealed', function($isSealed){
+  return function isSealed(it){
+    return isObject(it) ? $isSealed ? $isSealed(it) : false : true;
   };
 });
 
@@ -56047,27 +55832,21 @@ __webpack_require__(48)('keys', function(){
 /* 487 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// 19.1.2.15 Object.preventExtensions(O)
-var isObject = __webpack_require__(11)
-  , meta     = __webpack_require__(60).onFreeze;
-
-__webpack_require__(48)('preventExtensions', function($preventExtensions){
-  return function preventExtensions(it){
-    return $preventExtensions && isObject(it) ? $preventExtensions(meta(it)) : it;
-  };
-});
+// 19.1.3.10 Object.is(value1, value2)
+var $export = __webpack_require__(1);
+$export($export.S, 'Object', {is: __webpack_require__(217)});
 
 /***/ }),
 /* 488 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// 19.1.2.17 Object.seal(O)
-var isObject = __webpack_require__(11)
-  , meta     = __webpack_require__(60).onFreeze;
+// 19.1.2.14 Object.keys(O)
+var toObject = __webpack_require__(23)
+  , $keys    = __webpack_require__(71);
 
-__webpack_require__(48)('seal', function($seal){
-  return function seal(it){
-    return $seal && isObject(it) ? $seal(meta(it)) : it;
+__webpack_require__(49)('keys', function(){
+  return function keys(it){
+    return $keys(toObject(it));
   };
 });
 
@@ -56075,62 +55854,90 @@ __webpack_require__(48)('seal', function($seal){
 /* 489 */
 /***/ (function(module, exports, __webpack_require__) {
 
-// 19.1.3.19 Object.setPrototypeOf(O, proto)
-var $export = __webpack_require__(1);
-$export($export.S, 'Object', {setPrototypeOf: __webpack_require__(143).set});
+// 19.1.2.15 Object.preventExtensions(O)
+var isObject = __webpack_require__(12)
+  , meta     = __webpack_require__(62).onFreeze;
+
+__webpack_require__(49)('preventExtensions', function($preventExtensions){
+  return function preventExtensions(it){
+    return $preventExtensions && isObject(it) ? $preventExtensions(meta(it)) : it;
+  };
+});
 
 /***/ }),
 /* 490 */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
+// 19.1.2.17 Object.seal(O)
+var isObject = __webpack_require__(12)
+  , meta     = __webpack_require__(62).onFreeze;
 
-// 19.1.3.6 Object.prototype.toString()
-var classof = __webpack_require__(91)
-  , test    = {};
-test[__webpack_require__(14)('toStringTag')] = 'z';
-if(test + '' != '[object z]'){
-  __webpack_require__(31)(Object.prototype, 'toString', function toString(){
-    return '[object ' + classof(this) + ']';
-  }, true);
-}
+__webpack_require__(49)('seal', function($seal){
+  return function seal(it){
+    return $seal && isObject(it) ? $seal(meta(it)) : it;
+  };
+});
 
 /***/ }),
 /* 491 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var $export     = __webpack_require__(1)
-  , $parseFloat = __webpack_require__(212);
-// 18.2.4 parseFloat(string)
-$export($export.G + $export.F * (parseFloat != $parseFloat), {parseFloat: $parseFloat});
+// 19.1.3.19 Object.setPrototypeOf(O, proto)
+var $export = __webpack_require__(1);
+$export($export.S, 'Object', {setPrototypeOf: __webpack_require__(146).set});
 
 /***/ }),
 /* 492 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var $export   = __webpack_require__(1)
-  , $parseInt = __webpack_require__(213);
-// 18.2.5 parseInt(string, radix)
-$export($export.G + $export.F * (parseInt != $parseInt), {parseInt: $parseInt});
+"use strict";
+
+// 19.1.3.6 Object.prototype.toString()
+var classof = __webpack_require__(92)
+  , test    = {};
+test[__webpack_require__(14)('toStringTag')] = 'z';
+if(test + '' != '[object z]'){
+  __webpack_require__(33)(Object.prototype, 'toString', function toString(){
+    return '[object ' + classof(this) + ']';
+  }, true);
+}
 
 /***/ }),
 /* 493 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var $export     = __webpack_require__(1)
+  , $parseFloat = __webpack_require__(215);
+// 18.2.4 parseFloat(string)
+$export($export.G + $export.F * (parseFloat != $parseFloat), {parseFloat: $parseFloat});
+
+/***/ }),
+/* 494 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var $export   = __webpack_require__(1)
+  , $parseInt = __webpack_require__(216);
+// 18.2.5 parseInt(string, radix)
+$export($export.G + $export.F * (parseInt != $parseInt), {parseInt: $parseInt});
+
+/***/ }),
+/* 495 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
-var LIBRARY            = __webpack_require__(67)
+var LIBRARY            = __webpack_require__(68)
   , global             = __webpack_require__(6)
-  , ctx                = __webpack_require__(56)
-  , classof            = __webpack_require__(91)
+  , ctx                = __webpack_require__(58)
+  , classof            = __webpack_require__(92)
   , $export            = __webpack_require__(1)
-  , isObject           = __webpack_require__(11)
-  , aFunction          = __webpack_require__(29)
-  , anInstance         = __webpack_require__(66)
-  , forOf              = __webpack_require__(80)
-  , speciesConstructor = __webpack_require__(145)
-  , task               = __webpack_require__(150).set
-  , microtask          = __webpack_require__(142)()
+  , isObject           = __webpack_require__(12)
+  , aFunction          = __webpack_require__(31)
+  , anInstance         = __webpack_require__(67)
+  , forOf              = __webpack_require__(82)
+  , speciesConstructor = __webpack_require__(148)
+  , task               = __webpack_require__(153).set
+  , microtask          = __webpack_require__(145)()
   , PROMISE            = 'Promise'
   , TypeError          = global.TypeError
   , process            = global.process
@@ -56322,7 +56129,7 @@ if(!USE_NATIVE){
     this._h = 0;              // <- rejection state, 0 - default, 1 - handled, 2 - unhandled
     this._n = false;          // <- notify
   };
-  Internal.prototype = __webpack_require__(71)($Promise.prototype, {
+  Internal.prototype = __webpack_require__(72)($Promise.prototype, {
     // 25.4.5.3 Promise.prototype.then(onFulfilled, onRejected)
     then: function then(onFulfilled, onRejected){
       var reaction    = newPromiseCapability(speciesConstructor(this, $Promise));
@@ -56348,9 +56155,9 @@ if(!USE_NATIVE){
 }
 
 $export($export.G + $export.W + $export.F * !USE_NATIVE, {Promise: $Promise});
-__webpack_require__(82)($Promise, PROMISE);
-__webpack_require__(72)(PROMISE);
-Wrapper = __webpack_require__(55)[PROMISE];
+__webpack_require__(84)($Promise, PROMISE);
+__webpack_require__(73)(PROMISE);
+Wrapper = __webpack_require__(57)[PROMISE];
 
 // statics
 $export($export.S + $export.F * !USE_NATIVE, PROMISE, {
@@ -56373,7 +56180,7 @@ $export($export.S + $export.F * (LIBRARY || !USE_NATIVE), PROMISE, {
     return capability.promise;
   }
 });
-$export($export.S + $export.F * !(USE_NATIVE && __webpack_require__(110)(function(iter){
+$export($export.S + $export.F * !(USE_NATIVE && __webpack_require__(112)(function(iter){
   $Promise.all(iter)['catch'](empty);
 })), PROMISE, {
   // 25.4.4.1 Promise.all(iterable)
@@ -56419,12 +56226,12 @@ $export($export.S + $export.F * !(USE_NATIVE && __webpack_require__(110)(functio
 });
 
 /***/ }),
-/* 494 */
+/* 496 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.1 Reflect.apply(target, thisArgument, argumentsList)
 var $export   = __webpack_require__(1)
-  , aFunction = __webpack_require__(29)
+  , aFunction = __webpack_require__(31)
   , anObject  = __webpack_require__(5)
   , rApply    = (__webpack_require__(6).Reflect || {}).apply
   , fApply    = Function.apply;
@@ -56440,17 +56247,17 @@ $export($export.S + $export.F * !__webpack_require__(7)(function(){
 });
 
 /***/ }),
-/* 495 */
+/* 497 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.2 Reflect.construct(target, argumentsList [, newTarget])
 var $export    = __webpack_require__(1)
-  , create     = __webpack_require__(68)
-  , aFunction  = __webpack_require__(29)
+  , create     = __webpack_require__(69)
+  , aFunction  = __webpack_require__(31)
   , anObject   = __webpack_require__(5)
-  , isObject   = __webpack_require__(11)
+  , isObject   = __webpack_require__(12)
   , fails      = __webpack_require__(7)
-  , bind       = __webpack_require__(197)
+  , bind       = __webpack_require__(200)
   , rConstruct = (__webpack_require__(6).Reflect || {}).construct;
 
 // MS Edge supports only 2 arguments and argumentsList argument is optional
@@ -56492,14 +56299,14 @@ $export($export.S + $export.F * (NEW_TARGET_BUG || ARGS_BUG), 'Reflect', {
 });
 
 /***/ }),
-/* 496 */
+/* 498 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.3 Reflect.defineProperty(target, propertyKey, attributes)
 var dP          = __webpack_require__(16)
   , $export     = __webpack_require__(1)
   , anObject    = __webpack_require__(5)
-  , toPrimitive = __webpack_require__(49);
+  , toPrimitive = __webpack_require__(50);
 
 // MS Edge has broken Reflect.defineProperty - throwing instead of returning false
 $export($export.S + $export.F * __webpack_require__(7)(function(){
@@ -56519,12 +56326,12 @@ $export($export.S + $export.F * __webpack_require__(7)(function(){
 });
 
 /***/ }),
-/* 497 */
+/* 499 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.4 Reflect.deleteProperty(target, propertyKey)
 var $export  = __webpack_require__(1)
-  , gOPD     = __webpack_require__(35).f
+  , gOPD     = __webpack_require__(38).f
   , anObject = __webpack_require__(5);
 
 $export($export.S, 'Reflect', {
@@ -56535,7 +56342,7 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ }),
-/* 498 */
+/* 500 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -56550,7 +56357,7 @@ var Enumerate = function(iterated){
     , key;
   for(key in iterated)keys.push(key);
 };
-__webpack_require__(138)(Enumerate, 'Object', function(){
+__webpack_require__(141)(Enumerate, 'Object', function(){
   var that = this
     , keys = that._k
     , key;
@@ -56567,11 +56374,11 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ }),
-/* 499 */
+/* 501 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.7 Reflect.getOwnPropertyDescriptor(target, propertyKey)
-var gOPD     = __webpack_require__(35)
+var gOPD     = __webpack_require__(38)
   , $export  = __webpack_require__(1)
   , anObject = __webpack_require__(5);
 
@@ -56582,12 +56389,12 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ }),
-/* 500 */
+/* 502 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.8 Reflect.getPrototypeOf(target)
 var $export  = __webpack_require__(1)
-  , getProto = __webpack_require__(36)
+  , getProto = __webpack_require__(39)
   , anObject = __webpack_require__(5);
 
 $export($export.S, 'Reflect', {
@@ -56597,15 +56404,15 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ }),
-/* 501 */
+/* 503 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.6 Reflect.get(target, propertyKey [, receiver])
-var gOPD           = __webpack_require__(35)
-  , getPrototypeOf = __webpack_require__(36)
-  , has            = __webpack_require__(24)
+var gOPD           = __webpack_require__(38)
+  , getPrototypeOf = __webpack_require__(39)
+  , has            = __webpack_require__(25)
   , $export        = __webpack_require__(1)
-  , isObject       = __webpack_require__(11)
+  , isObject       = __webpack_require__(12)
   , anObject       = __webpack_require__(5);
 
 function get(target, propertyKey/*, receiver*/){
@@ -56623,7 +56430,7 @@ function get(target, propertyKey/*, receiver*/){
 $export($export.S, 'Reflect', {get: get});
 
 /***/ }),
-/* 502 */
+/* 504 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.9 Reflect.has(target, propertyKey)
@@ -56636,7 +56443,7 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ }),
-/* 503 */
+/* 505 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.10 Reflect.isExtensible(target)
@@ -56652,16 +56459,16 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ }),
-/* 504 */
+/* 506 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.11 Reflect.ownKeys(target)
 var $export = __webpack_require__(1);
 
-$export($export.S, 'Reflect', {ownKeys: __webpack_require__(211)});
+$export($export.S, 'Reflect', {ownKeys: __webpack_require__(214)});
 
 /***/ }),
-/* 505 */
+/* 507 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.12 Reflect.preventExtensions(target)
@@ -56682,12 +56489,12 @@ $export($export.S, 'Reflect', {
 });
 
 /***/ }),
-/* 506 */
+/* 508 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.14 Reflect.setPrototypeOf(target, proto)
 var $export  = __webpack_require__(1)
-  , setProto = __webpack_require__(143);
+  , setProto = __webpack_require__(146);
 
 if(setProto)$export($export.S, 'Reflect', {
   setPrototypeOf: function setPrototypeOf(target, proto){
@@ -56702,18 +56509,18 @@ if(setProto)$export($export.S, 'Reflect', {
 });
 
 /***/ }),
-/* 507 */
+/* 509 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 26.1.13 Reflect.set(target, propertyKey, V [, receiver])
 var dP             = __webpack_require__(16)
-  , gOPD           = __webpack_require__(35)
-  , getPrototypeOf = __webpack_require__(36)
-  , has            = __webpack_require__(24)
+  , gOPD           = __webpack_require__(38)
+  , getPrototypeOf = __webpack_require__(39)
+  , has            = __webpack_require__(25)
   , $export        = __webpack_require__(1)
-  , createDesc     = __webpack_require__(61)
+  , createDesc     = __webpack_require__(63)
   , anObject       = __webpack_require__(5)
-  , isObject       = __webpack_require__(11);
+  , isObject       = __webpack_require__(12);
 
 function set(target, propertyKey, V/*, receiver*/){
   var receiver = arguments.length < 4 ? target : arguments[3]
@@ -56738,15 +56545,15 @@ function set(target, propertyKey, V/*, receiver*/){
 $export($export.S, 'Reflect', {set: set});
 
 /***/ }),
-/* 508 */
+/* 510 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global            = __webpack_require__(6)
-  , inheritIfRequired = __webpack_require__(135)
+  , inheritIfRequired = __webpack_require__(138)
   , dP                = __webpack_require__(16).f
-  , gOPN              = __webpack_require__(69).f
-  , isRegExp          = __webpack_require__(109)
-  , $flags            = __webpack_require__(107)
+  , gOPN              = __webpack_require__(70).f
+  , isRegExp          = __webpack_require__(111)
+  , $flags            = __webpack_require__(109)
   , $RegExp           = global.RegExp
   , Base              = $RegExp
   , proto             = $RegExp.prototype
@@ -56780,17 +56587,17 @@ if(__webpack_require__(15) && (!CORRECT_NEW || __webpack_require__(7)(function()
   for(var keys = gOPN(Base), i = 0; keys.length > i; )proxy(keys[i++]);
   proto.constructor = $RegExp;
   $RegExp.prototype = proto;
-  __webpack_require__(31)(global, 'RegExp', $RegExp);
+  __webpack_require__(33)(global, 'RegExp', $RegExp);
 }
 
-__webpack_require__(72)('RegExp');
+__webpack_require__(73)('RegExp');
 
 /***/ }),
-/* 509 */
+/* 511 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // @@match logic
-__webpack_require__(106)('match', 1, function(defined, MATCH, $match){
+__webpack_require__(108)('match', 1, function(defined, MATCH, $match){
   // 21.1.3.11 String.prototype.match(regexp)
   return [function match(regexp){
     'use strict';
@@ -56801,11 +56608,11 @@ __webpack_require__(106)('match', 1, function(defined, MATCH, $match){
 });
 
 /***/ }),
-/* 510 */
+/* 512 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // @@replace logic
-__webpack_require__(106)('replace', 2, function(defined, REPLACE, $replace){
+__webpack_require__(108)('replace', 2, function(defined, REPLACE, $replace){
   // 21.1.3.14 String.prototype.replace(searchValue, replaceValue)
   return [function replace(searchValue, replaceValue){
     'use strict';
@@ -56818,11 +56625,11 @@ __webpack_require__(106)('replace', 2, function(defined, REPLACE, $replace){
 });
 
 /***/ }),
-/* 511 */
+/* 513 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // @@search logic
-__webpack_require__(106)('search', 1, function(defined, SEARCH, $search){
+__webpack_require__(108)('search', 1, function(defined, SEARCH, $search){
   // 21.1.3.15 String.prototype.search(regexp)
   return [function search(regexp){
     'use strict';
@@ -56833,13 +56640,13 @@ __webpack_require__(106)('search', 1, function(defined, SEARCH, $search){
 });
 
 /***/ }),
-/* 512 */
+/* 514 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // @@split logic
-__webpack_require__(106)('split', 2, function(defined, SPLIT, $split){
+__webpack_require__(108)('split', 2, function(defined, SPLIT, $split){
   'use strict';
-  var isRegExp   = __webpack_require__(109)
+  var isRegExp   = __webpack_require__(111)
     , _split     = $split
     , $push      = [].push
     , $SPLIT     = 'split'
@@ -56908,20 +56715,20 @@ __webpack_require__(106)('split', 2, function(defined, SPLIT, $split){
 });
 
 /***/ }),
-/* 513 */
+/* 515 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-__webpack_require__(218);
+__webpack_require__(221);
 var anObject    = __webpack_require__(5)
-  , $flags      = __webpack_require__(107)
+  , $flags      = __webpack_require__(109)
   , DESCRIPTORS = __webpack_require__(15)
   , TO_STRING   = 'toString'
   , $toString   = /./[TO_STRING];
 
 var define = function(fn){
-  __webpack_require__(31)(RegExp.prototype, TO_STRING, fn, true);
+  __webpack_require__(33)(RegExp.prototype, TO_STRING, fn, true);
 };
 
 // 21.2.5.14 RegExp.prototype.toString()
@@ -56939,41 +56746,15 @@ if(__webpack_require__(7)(function(){ return $toString.call({source: 'a', flags:
 }
 
 /***/ }),
-/* 514 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// B.2.3.2 String.prototype.anchor(name)
-__webpack_require__(32)('anchor', function(createHTML){
-  return function anchor(name){
-    return createHTML(this, 'a', 'name', name);
-  }
-});
-
-/***/ }),
-/* 515 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// B.2.3.3 String.prototype.big()
-__webpack_require__(32)('big', function(createHTML){
-  return function big(){
-    return createHTML(this, 'big', '', '');
-  }
-});
-
-/***/ }),
 /* 516 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-// B.2.3.4 String.prototype.blink()
-__webpack_require__(32)('blink', function(createHTML){
-  return function blink(){
-    return createHTML(this, 'blink', '', '');
+// B.2.3.2 String.prototype.anchor(name)
+__webpack_require__(34)('anchor', function(createHTML){
+  return function anchor(name){
+    return createHTML(this, 'a', 'name', name);
   }
 });
 
@@ -56983,10 +56764,10 @@ __webpack_require__(32)('blink', function(createHTML){
 
 "use strict";
 
-// B.2.3.5 String.prototype.bold()
-__webpack_require__(32)('bold', function(createHTML){
-  return function bold(){
-    return createHTML(this, 'b', '', '');
+// B.2.3.3 String.prototype.big()
+__webpack_require__(34)('big', function(createHTML){
+  return function big(){
+    return createHTML(this, 'big', '', '');
   }
 });
 
@@ -56996,12 +56777,10 @@ __webpack_require__(32)('bold', function(createHTML){
 
 "use strict";
 
-var $export = __webpack_require__(1)
-  , $at     = __webpack_require__(146)(false);
-$export($export.P, 'String', {
-  // 21.1.3.3 String.prototype.codePointAt(pos)
-  codePointAt: function codePointAt(pos){
-    return $at(this, pos);
+// B.2.3.4 String.prototype.blink()
+__webpack_require__(34)('blink', function(createHTML){
+  return function blink(){
+    return createHTML(this, 'blink', '', '');
   }
 });
 
@@ -57010,15 +56789,43 @@ $export($export.P, 'String', {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+// B.2.3.5 String.prototype.bold()
+__webpack_require__(34)('bold', function(createHTML){
+  return function bold(){
+    return createHTML(this, 'b', '', '');
+  }
+});
+
+/***/ }),
+/* 520 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var $export = __webpack_require__(1)
+  , $at     = __webpack_require__(149)(false);
+$export($export.P, 'String', {
+  // 21.1.3.3 String.prototype.codePointAt(pos)
+  codePointAt: function codePointAt(pos){
+    return $at(this, pos);
+  }
+});
+
+/***/ }),
+/* 521 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 // 21.1.3.6 String.prototype.endsWith(searchString [, endPosition])
 
 var $export   = __webpack_require__(1)
-  , toLength  = __webpack_require__(18)
-  , context   = __webpack_require__(147)
+  , toLength  = __webpack_require__(19)
+  , context   = __webpack_require__(150)
   , ENDS_WITH = 'endsWith'
   , $endsWith = ''[ENDS_WITH];
 
-$export($export.P + $export.F * __webpack_require__(133)(ENDS_WITH), 'String', {
+$export($export.P + $export.F * __webpack_require__(136)(ENDS_WITH), 'String', {
   endsWith: function endsWith(searchString /*, endPosition = @length */){
     var that = context(this, searchString, ENDS_WITH)
       , endPosition = arguments.length > 1 ? arguments[1] : undefined
@@ -57032,41 +56839,15 @@ $export($export.P + $export.F * __webpack_require__(133)(ENDS_WITH), 'String', {
 });
 
 /***/ }),
-/* 520 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// B.2.3.6 String.prototype.fixed()
-__webpack_require__(32)('fixed', function(createHTML){
-  return function fixed(){
-    return createHTML(this, 'tt', '', '');
-  }
-});
-
-/***/ }),
-/* 521 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// B.2.3.7 String.prototype.fontcolor(color)
-__webpack_require__(32)('fontcolor', function(createHTML){
-  return function fontcolor(color){
-    return createHTML(this, 'font', 'color', color);
-  }
-});
-
-/***/ }),
 /* 522 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-// B.2.3.8 String.prototype.fontsize(size)
-__webpack_require__(32)('fontsize', function(createHTML){
-  return function fontsize(size){
-    return createHTML(this, 'font', 'size', size);
+// B.2.3.6 String.prototype.fixed()
+__webpack_require__(34)('fixed', function(createHTML){
+  return function fixed(){
+    return createHTML(this, 'tt', '', '');
   }
 });
 
@@ -57074,8 +56855,34 @@ __webpack_require__(32)('fontsize', function(createHTML){
 /* 523 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+// B.2.3.7 String.prototype.fontcolor(color)
+__webpack_require__(34)('fontcolor', function(createHTML){
+  return function fontcolor(color){
+    return createHTML(this, 'font', 'color', color);
+  }
+});
+
+/***/ }),
+/* 524 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// B.2.3.8 String.prototype.fontsize(size)
+__webpack_require__(34)('fontsize', function(createHTML){
+  return function fontsize(size){
+    return createHTML(this, 'font', 'size', size);
+  }
+});
+
+/***/ }),
+/* 525 */
+/***/ (function(module, exports, __webpack_require__) {
+
 var $export        = __webpack_require__(1)
-  , toIndex        = __webpack_require__(73)
+  , toIndex        = __webpack_require__(74)
   , fromCharCode   = String.fromCharCode
   , $fromCodePoint = String.fromCodePoint;
 
@@ -57099,17 +56906,17 @@ $export($export.S + $export.F * (!!$fromCodePoint && $fromCodePoint.length != 1)
 });
 
 /***/ }),
-/* 524 */
+/* 526 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 // 21.1.3.7 String.prototype.includes(searchString, position = 0)
 
 var $export  = __webpack_require__(1)
-  , context  = __webpack_require__(147)
+  , context  = __webpack_require__(150)
   , INCLUDES = 'includes';
 
-$export($export.P + $export.F * __webpack_require__(133)(INCLUDES), 'String', {
+$export($export.P + $export.F * __webpack_require__(136)(INCLUDES), 'String', {
   includes: function includes(searchString /*, position = 0 */){
     return !!~context(this, searchString, INCLUDES)
       .indexOf(searchString, arguments.length > 1 ? arguments[1] : undefined);
@@ -57117,28 +56924,28 @@ $export($export.P + $export.F * __webpack_require__(133)(INCLUDES), 'String', {
 });
 
 /***/ }),
-/* 525 */
+/* 527 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // B.2.3.9 String.prototype.italics()
-__webpack_require__(32)('italics', function(createHTML){
+__webpack_require__(34)('italics', function(createHTML){
   return function italics(){
     return createHTML(this, 'i', '', '');
   }
 });
 
 /***/ }),
-/* 526 */
+/* 528 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var $at  = __webpack_require__(146)(true);
+var $at  = __webpack_require__(149)(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
-__webpack_require__(139)(String, 'String', function(iterated){
+__webpack_require__(142)(String, 'String', function(iterated){
   this._t = String(iterated); // target
   this._i = 0;                // next index
 // 21.1.5.2.1 %StringIteratorPrototype%.next()
@@ -57153,25 +56960,25 @@ __webpack_require__(139)(String, 'String', function(iterated){
 });
 
 /***/ }),
-/* 527 */
+/* 529 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // B.2.3.10 String.prototype.link(url)
-__webpack_require__(32)('link', function(createHTML){
+__webpack_require__(34)('link', function(createHTML){
   return function link(url){
     return createHTML(this, 'a', 'href', url);
   }
 });
 
 /***/ }),
-/* 528 */
+/* 530 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export   = __webpack_require__(1)
-  , toIObject = __webpack_require__(33)
-  , toLength  = __webpack_require__(18);
+  , toIObject = __webpack_require__(35)
+  , toLength  = __webpack_require__(19);
 
 $export($export.S, 'String', {
   // 21.1.2.4 String.raw(callSite, ...substitutions)
@@ -57189,43 +56996,43 @@ $export($export.S, 'String', {
 });
 
 /***/ }),
-/* 529 */
+/* 531 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(1);
 
 $export($export.P, 'String', {
   // 21.1.3.13 String.prototype.repeat(count)
-  repeat: __webpack_require__(148)
+  repeat: __webpack_require__(151)
 });
 
 /***/ }),
-/* 530 */
+/* 532 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // B.2.3.11 String.prototype.small()
-__webpack_require__(32)('small', function(createHTML){
+__webpack_require__(34)('small', function(createHTML){
   return function small(){
     return createHTML(this, 'small', '', '');
   }
 });
 
 /***/ }),
-/* 531 */
+/* 533 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 // 21.1.3.18 String.prototype.startsWith(searchString [, position ])
 
 var $export     = __webpack_require__(1)
-  , toLength    = __webpack_require__(18)
-  , context     = __webpack_require__(147)
+  , toLength    = __webpack_require__(19)
+  , context     = __webpack_require__(150)
   , STARTS_WITH = 'startsWith'
   , $startsWith = ''[STARTS_WITH];
 
-$export($export.P + $export.F * __webpack_require__(133)(STARTS_WITH), 'String', {
+$export($export.P + $export.F * __webpack_require__(136)(STARTS_WITH), 'String', {
   startsWith: function startsWith(searchString /*, position = 0 */){
     var that   = context(this, searchString, STARTS_WITH)
       , index  = toLength(Math.min(arguments.length > 1 ? arguments[1] : undefined, that.length))
@@ -57237,41 +57044,15 @@ $export($export.P + $export.F * __webpack_require__(133)(STARTS_WITH), 'String',
 });
 
 /***/ }),
-/* 532 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// B.2.3.12 String.prototype.strike()
-__webpack_require__(32)('strike', function(createHTML){
-  return function strike(){
-    return createHTML(this, 'strike', '', '');
-  }
-});
-
-/***/ }),
-/* 533 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-// B.2.3.13 String.prototype.sub()
-__webpack_require__(32)('sub', function(createHTML){
-  return function sub(){
-    return createHTML(this, 'sub', '', '');
-  }
-});
-
-/***/ }),
 /* 534 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-// B.2.3.14 String.prototype.sup()
-__webpack_require__(32)('sup', function(createHTML){
-  return function sup(){
-    return createHTML(this, 'sup', '', '');
+// B.2.3.12 String.prototype.strike()
+__webpack_require__(34)('strike', function(createHTML){
+  return function strike(){
+    return createHTML(this, 'strike', '', '');
   }
 });
 
@@ -57281,11 +57062,11 @@ __webpack_require__(32)('sup', function(createHTML){
 
 "use strict";
 
-// 21.1.3.25 String.prototype.trim()
-__webpack_require__(83)('trim', function($trim){
-  return function trim(){
-    return $trim(this, 3);
-  };
+// B.2.3.13 String.prototype.sub()
+__webpack_require__(34)('sub', function(createHTML){
+  return function sub(){
+    return createHTML(this, 'sub', '', '');
+  }
 });
 
 /***/ }),
@@ -57294,32 +57075,58 @@ __webpack_require__(83)('trim', function($trim){
 
 "use strict";
 
+// B.2.3.14 String.prototype.sup()
+__webpack_require__(34)('sup', function(createHTML){
+  return function sup(){
+    return createHTML(this, 'sup', '', '');
+  }
+});
+
+/***/ }),
+/* 537 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+// 21.1.3.25 String.prototype.trim()
+__webpack_require__(85)('trim', function($trim){
+  return function trim(){
+    return $trim(this, 3);
+  };
+});
+
+/***/ }),
+/* 538 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
 // ECMAScript 6 symbols shim
 var global         = __webpack_require__(6)
-  , has            = __webpack_require__(24)
+  , has            = __webpack_require__(25)
   , DESCRIPTORS    = __webpack_require__(15)
   , $export        = __webpack_require__(1)
-  , redefine       = __webpack_require__(31)
-  , META           = __webpack_require__(60).KEY
+  , redefine       = __webpack_require__(33)
+  , META           = __webpack_require__(62).KEY
   , $fails         = __webpack_require__(7)
-  , shared         = __webpack_require__(113)
-  , setToStringTag = __webpack_require__(82)
-  , uid            = __webpack_require__(74)
+  , shared         = __webpack_require__(115)
+  , setToStringTag = __webpack_require__(84)
+  , uid            = __webpack_require__(75)
   , wks            = __webpack_require__(14)
-  , wksExt         = __webpack_require__(216)
-  , wksDefine      = __webpack_require__(152)
-  , keyOf          = __webpack_require__(412)
-  , enumKeys       = __webpack_require__(411)
-  , isArray        = __webpack_require__(137)
+  , wksExt         = __webpack_require__(219)
+  , wksDefine      = __webpack_require__(155)
+  , keyOf          = __webpack_require__(414)
+  , enumKeys       = __webpack_require__(413)
+  , isArray        = __webpack_require__(140)
   , anObject       = __webpack_require__(5)
-  , toIObject      = __webpack_require__(33)
-  , toPrimitive    = __webpack_require__(49)
-  , createDesc     = __webpack_require__(61)
-  , _create        = __webpack_require__(68)
-  , gOPNExt        = __webpack_require__(208)
-  , $GOPD          = __webpack_require__(35)
+  , toIObject      = __webpack_require__(35)
+  , toPrimitive    = __webpack_require__(50)
+  , createDesc     = __webpack_require__(63)
+  , _create        = __webpack_require__(69)
+  , gOPNExt        = __webpack_require__(211)
+  , $GOPD          = __webpack_require__(38)
   , $DP            = __webpack_require__(16)
-  , $keys          = __webpack_require__(70)
+  , $keys          = __webpack_require__(71)
   , gOPD           = $GOPD.f
   , dP             = $DP.f
   , gOPN           = gOPNExt.f
@@ -57442,11 +57249,11 @@ if(!USE_NATIVE){
 
   $GOPD.f = $getOwnPropertyDescriptor;
   $DP.f   = $defineProperty;
-  __webpack_require__(69).f = gOPNExt.f = $getOwnPropertyNames;
-  __webpack_require__(93).f  = $propertyIsEnumerable;
-  __webpack_require__(112).f = $getOwnPropertySymbols;
+  __webpack_require__(70).f = gOPNExt.f = $getOwnPropertyNames;
+  __webpack_require__(94).f  = $propertyIsEnumerable;
+  __webpack_require__(114).f = $getOwnPropertySymbols;
 
-  if(DESCRIPTORS && !__webpack_require__(67)){
+  if(DESCRIPTORS && !__webpack_require__(68)){
     redefine(ObjectProto, 'propertyIsEnumerable', $propertyIsEnumerable, true);
   }
 
@@ -57521,7 +57328,7 @@ $JSON && $export($export.S + $export.F * (!USE_NATIVE || $fails(function(){
 });
 
 // 19.4.3.4 Symbol.prototype[@@toPrimitive](hint)
-$Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(30)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
+$Symbol[PROTOTYPE][TO_PRIMITIVE] || __webpack_require__(32)($Symbol[PROTOTYPE], TO_PRIMITIVE, $Symbol[PROTOTYPE].valueOf);
 // 19.4.3.5 Symbol.prototype[@@toStringTag]
 setToStringTag($Symbol, 'Symbol');
 // 20.2.1.9 Math[@@toStringTag]
@@ -57530,20 +57337,20 @@ setToStringTag(Math, 'Math', true);
 setToStringTag(global.JSON, 'JSON', true);
 
 /***/ }),
-/* 537 */
+/* 539 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export      = __webpack_require__(1)
-  , $typed       = __webpack_require__(114)
-  , buffer       = __webpack_require__(151)
+  , $typed       = __webpack_require__(116)
+  , buffer       = __webpack_require__(154)
   , anObject     = __webpack_require__(5)
-  , toIndex      = __webpack_require__(73)
-  , toLength     = __webpack_require__(18)
-  , isObject     = __webpack_require__(11)
+  , toIndex      = __webpack_require__(74)
+  , toLength     = __webpack_require__(19)
+  , isObject     = __webpack_require__(12)
   , ArrayBuffer  = __webpack_require__(6).ArrayBuffer
-  , speciesConstructor = __webpack_require__(145)
+  , speciesConstructor = __webpack_require__(148)
   , $ArrayBuffer = buffer.ArrayBuffer
   , $DataView    = buffer.DataView
   , $isView      = $typed.ABV && ArrayBuffer.isView
@@ -57579,43 +57386,23 @@ $export($export.P + $export.U + $export.F * __webpack_require__(7)(function(){
   }
 });
 
-__webpack_require__(72)(ARRAY_BUFFER);
-
-/***/ }),
-/* 538 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var $export = __webpack_require__(1);
-$export($export.G + $export.W + $export.F * !__webpack_require__(114).ABV, {
-  DataView: __webpack_require__(151).DataView
-});
-
-/***/ }),
-/* 539 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(58)('Float32', 4, function(init){
-  return function Float32Array(data, byteOffset, length){
-    return init(this, data, byteOffset, length);
-  };
-});
+__webpack_require__(73)(ARRAY_BUFFER);
 
 /***/ }),
 /* 540 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(58)('Float64', 8, function(init){
-  return function Float64Array(data, byteOffset, length){
-    return init(this, data, byteOffset, length);
-  };
+var $export = __webpack_require__(1);
+$export($export.G + $export.W + $export.F * !__webpack_require__(116).ABV, {
+  DataView: __webpack_require__(154).DataView
 });
 
 /***/ }),
 /* 541 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(58)('Int16', 2, function(init){
-  return function Int16Array(data, byteOffset, length){
+__webpack_require__(60)('Float32', 4, function(init){
+  return function Float32Array(data, byteOffset, length){
     return init(this, data, byteOffset, length);
   };
 });
@@ -57624,8 +57411,8 @@ __webpack_require__(58)('Int16', 2, function(init){
 /* 542 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(58)('Int32', 4, function(init){
-  return function Int32Array(data, byteOffset, length){
+__webpack_require__(60)('Float64', 8, function(init){
+  return function Float64Array(data, byteOffset, length){
     return init(this, data, byteOffset, length);
   };
 });
@@ -57634,8 +57421,8 @@ __webpack_require__(58)('Int32', 4, function(init){
 /* 543 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(58)('Int8', 1, function(init){
-  return function Int8Array(data, byteOffset, length){
+__webpack_require__(60)('Int16', 2, function(init){
+  return function Int16Array(data, byteOffset, length){
     return init(this, data, byteOffset, length);
   };
 });
@@ -57644,8 +57431,8 @@ __webpack_require__(58)('Int8', 1, function(init){
 /* 544 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(58)('Uint16', 2, function(init){
-  return function Uint16Array(data, byteOffset, length){
+__webpack_require__(60)('Int32', 4, function(init){
+  return function Int32Array(data, byteOffset, length){
     return init(this, data, byteOffset, length);
   };
 });
@@ -57654,8 +57441,8 @@ __webpack_require__(58)('Uint16', 2, function(init){
 /* 545 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(58)('Uint32', 4, function(init){
-  return function Uint32Array(data, byteOffset, length){
+__webpack_require__(60)('Int8', 1, function(init){
+  return function Int8Array(data, byteOffset, length){
     return init(this, data, byteOffset, length);
   };
 });
@@ -57664,8 +57451,8 @@ __webpack_require__(58)('Uint32', 4, function(init){
 /* 546 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(58)('Uint8', 1, function(init){
-  return function Uint8Array(data, byteOffset, length){
+__webpack_require__(60)('Uint16', 2, function(init){
+  return function Uint16Array(data, byteOffset, length){
     return init(this, data, byteOffset, length);
   };
 });
@@ -57674,22 +57461,42 @@ __webpack_require__(58)('Uint8', 1, function(init){
 /* 547 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(58)('Uint8', 1, function(init){
+__webpack_require__(60)('Uint32', 4, function(init){
+  return function Uint32Array(data, byteOffset, length){
+    return init(this, data, byteOffset, length);
+  };
+});
+
+/***/ }),
+/* 548 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(60)('Uint8', 1, function(init){
+  return function Uint8Array(data, byteOffset, length){
+    return init(this, data, byteOffset, length);
+  };
+});
+
+/***/ }),
+/* 549 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(60)('Uint8', 1, function(init){
   return function Uint8ClampedArray(data, byteOffset, length){
     return init(this, data, byteOffset, length);
   };
 }, true);
 
 /***/ }),
-/* 548 */
+/* 550 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var weak = __webpack_require__(200);
+var weak = __webpack_require__(203);
 
 // 23.4 WeakSet Objects
-__webpack_require__(105)('WeakSet', function(get){
+__webpack_require__(107)('WeakSet', function(get){
   return function WeakSet(){ return get(this, arguments.length > 0 ? arguments[0] : undefined); };
 }, {
   // 23.4.3.1 WeakSet.prototype.add(value)
@@ -57699,14 +57506,14 @@ __webpack_require__(105)('WeakSet', function(get){
 }, weak, false, true);
 
 /***/ }),
-/* 549 */
+/* 551 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // https://github.com/tc39/Array.prototype.includes
 var $export   = __webpack_require__(1)
-  , $includes = __webpack_require__(104)(true);
+  , $includes = __webpack_require__(106)(true);
 
 $export($export.P, 'Array', {
   includes: function includes(el /*, fromIndex = 0 */){
@@ -57714,17 +57521,17 @@ $export($export.P, 'Array', {
   }
 });
 
-__webpack_require__(79)('includes');
+__webpack_require__(81)('includes');
 
 /***/ }),
-/* 550 */
+/* 552 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/rwaldron/tc39-notes/blob/master/es6/2014-09/sept-25.md#510-globalasap-for-enqueuing-a-microtask
 var $export   = __webpack_require__(1)
-  , microtask = __webpack_require__(142)()
+  , microtask = __webpack_require__(145)()
   , process   = __webpack_require__(6).process
-  , isNode    = __webpack_require__(42)(process) == 'process';
+  , isNode    = __webpack_require__(43)(process) == 'process';
 
 $export($export.G, {
   asap: function asap(fn){
@@ -57734,12 +57541,12 @@ $export($export.G, {
 });
 
 /***/ }),
-/* 551 */
+/* 553 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/ljharb/proposal-is-error
 var $export = __webpack_require__(1)
-  , cof     = __webpack_require__(42);
+  , cof     = __webpack_require__(43);
 
 $export($export.S, 'Error', {
   isError: function isError(it){
@@ -57748,16 +57555,16 @@ $export($export.S, 'Error', {
 });
 
 /***/ }),
-/* 552 */
+/* 554 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
 var $export  = __webpack_require__(1);
 
-$export($export.P + $export.R, 'Map', {toJSON: __webpack_require__(199)('Map')});
+$export($export.P + $export.R, 'Map', {toJSON: __webpack_require__(202)('Map')});
 
 /***/ }),
-/* 553 */
+/* 555 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://gist.github.com/BrendanEich/4294d5c212a6d2254703
@@ -57773,7 +57580,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 554 */
+/* 556 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://gist.github.com/BrendanEich/4294d5c212a6d2254703
@@ -57794,7 +57601,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 555 */
+/* 557 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://gist.github.com/BrendanEich/4294d5c212a6d2254703
@@ -57810,7 +57617,7 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 556 */
+/* 558 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://gist.github.com/BrendanEich/4294d5c212a6d2254703
@@ -57831,48 +57638,48 @@ $export($export.S, 'Math', {
 });
 
 /***/ }),
-/* 557 */
+/* 559 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export         = __webpack_require__(1)
-  , toObject        = __webpack_require__(20)
-  , aFunction       = __webpack_require__(29)
+  , toObject        = __webpack_require__(23)
+  , aFunction       = __webpack_require__(31)
   , $defineProperty = __webpack_require__(16);
 
 // B.2.2.2 Object.prototype.__defineGetter__(P, getter)
-__webpack_require__(15) && $export($export.P + __webpack_require__(111), 'Object', {
+__webpack_require__(15) && $export($export.P + __webpack_require__(113), 'Object', {
   __defineGetter__: function __defineGetter__(P, getter){
     $defineProperty.f(toObject(this), P, {get: aFunction(getter), enumerable: true, configurable: true});
   }
 });
 
 /***/ }),
-/* 558 */
+/* 560 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export         = __webpack_require__(1)
-  , toObject        = __webpack_require__(20)
-  , aFunction       = __webpack_require__(29)
+  , toObject        = __webpack_require__(23)
+  , aFunction       = __webpack_require__(31)
   , $defineProperty = __webpack_require__(16);
 
 // B.2.2.3 Object.prototype.__defineSetter__(P, setter)
-__webpack_require__(15) && $export($export.P + __webpack_require__(111), 'Object', {
+__webpack_require__(15) && $export($export.P + __webpack_require__(113), 'Object', {
   __defineSetter__: function __defineSetter__(P, setter){
     $defineProperty.f(toObject(this), P, {set: aFunction(setter), enumerable: true, configurable: true});
   }
 });
 
 /***/ }),
-/* 559 */
+/* 561 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/tc39/proposal-object-values-entries
 var $export  = __webpack_require__(1)
-  , $entries = __webpack_require__(210)(true);
+  , $entries = __webpack_require__(213)(true);
 
 $export($export.S, 'Object', {
   entries: function entries(it){
@@ -57881,15 +57688,15 @@ $export($export.S, 'Object', {
 });
 
 /***/ }),
-/* 560 */
+/* 562 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/tc39/proposal-object-getownpropertydescriptors
 var $export        = __webpack_require__(1)
-  , ownKeys        = __webpack_require__(211)
-  , toIObject      = __webpack_require__(33)
-  , gOPD           = __webpack_require__(35)
-  , createProperty = __webpack_require__(130);
+  , ownKeys        = __webpack_require__(214)
+  , toIObject      = __webpack_require__(35)
+  , gOPD           = __webpack_require__(38)
+  , createProperty = __webpack_require__(133);
 
 $export($export.S, 'Object', {
   getOwnPropertyDescriptors: function getOwnPropertyDescriptors(object){
@@ -57905,19 +57712,19 @@ $export($export.S, 'Object', {
 });
 
 /***/ }),
-/* 561 */
+/* 563 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export                  = __webpack_require__(1)
-  , toObject                 = __webpack_require__(20)
-  , toPrimitive              = __webpack_require__(49)
-  , getPrototypeOf           = __webpack_require__(36)
-  , getOwnPropertyDescriptor = __webpack_require__(35).f;
+  , toObject                 = __webpack_require__(23)
+  , toPrimitive              = __webpack_require__(50)
+  , getPrototypeOf           = __webpack_require__(39)
+  , getOwnPropertyDescriptor = __webpack_require__(38).f;
 
 // B.2.2.4 Object.prototype.__lookupGetter__(P)
-__webpack_require__(15) && $export($export.P + __webpack_require__(111), 'Object', {
+__webpack_require__(15) && $export($export.P + __webpack_require__(113), 'Object', {
   __lookupGetter__: function __lookupGetter__(P){
     var O = toObject(this)
       , K = toPrimitive(P, true)
@@ -57929,19 +57736,19 @@ __webpack_require__(15) && $export($export.P + __webpack_require__(111), 'Object
 });
 
 /***/ }),
-/* 562 */
+/* 564 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $export                  = __webpack_require__(1)
-  , toObject                 = __webpack_require__(20)
-  , toPrimitive              = __webpack_require__(49)
-  , getPrototypeOf           = __webpack_require__(36)
-  , getOwnPropertyDescriptor = __webpack_require__(35).f;
+  , toObject                 = __webpack_require__(23)
+  , toPrimitive              = __webpack_require__(50)
+  , getPrototypeOf           = __webpack_require__(39)
+  , getOwnPropertyDescriptor = __webpack_require__(38).f;
 
 // B.2.2.5 Object.prototype.__lookupSetter__(P)
-__webpack_require__(15) && $export($export.P + __webpack_require__(111), 'Object', {
+__webpack_require__(15) && $export($export.P + __webpack_require__(113), 'Object', {
   __lookupSetter__: function __lookupSetter__(P){
     var O = toObject(this)
       , K = toPrimitive(P, true)
@@ -57953,12 +57760,12 @@ __webpack_require__(15) && $export($export.P + __webpack_require__(111), 'Object
 });
 
 /***/ }),
-/* 563 */
+/* 565 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/tc39/proposal-object-values-entries
 var $export = __webpack_require__(1)
-  , $values = __webpack_require__(210)(false);
+  , $values = __webpack_require__(213)(false);
 
 $export($export.S, 'Object', {
   values: function values(it){
@@ -57967,7 +57774,7 @@ $export($export.S, 'Object', {
 });
 
 /***/ }),
-/* 564 */
+/* 566 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -57975,15 +57782,15 @@ $export($export.S, 'Object', {
 // https://github.com/zenparsing/es-observable
 var $export     = __webpack_require__(1)
   , global      = __webpack_require__(6)
-  , core        = __webpack_require__(55)
-  , microtask   = __webpack_require__(142)()
+  , core        = __webpack_require__(57)
+  , microtask   = __webpack_require__(145)()
   , OBSERVABLE  = __webpack_require__(14)('observable')
-  , aFunction   = __webpack_require__(29)
+  , aFunction   = __webpack_require__(31)
   , anObject    = __webpack_require__(5)
-  , anInstance  = __webpack_require__(66)
-  , redefineAll = __webpack_require__(71)
-  , hide        = __webpack_require__(30)
-  , forOf       = __webpack_require__(80)
+  , anInstance  = __webpack_require__(67)
+  , redefineAll = __webpack_require__(72)
+  , hide        = __webpack_require__(32)
+  , forOf       = __webpack_require__(82)
   , RETURN      = forOf.RETURN;
 
 var getMethod = function(fn){
@@ -58169,13 +57976,13 @@ hide($Observable.prototype, OBSERVABLE, function(){ return this; });
 
 $export($export.G, {Observable: $Observable});
 
-__webpack_require__(72)('Observable');
+__webpack_require__(73)('Observable');
 
 /***/ }),
-/* 565 */
+/* 567 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata                  = __webpack_require__(57)
+var metadata                  = __webpack_require__(59)
   , anObject                  = __webpack_require__(5)
   , toMetaKey                 = metadata.key
   , ordinaryDefineOwnMetadata = metadata.set;
@@ -58185,10 +57992,10 @@ metadata.exp({defineMetadata: function defineMetadata(metadataKey, metadataValue
 }});
 
 /***/ }),
-/* 566 */
+/* 568 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata               = __webpack_require__(57)
+var metadata               = __webpack_require__(59)
   , anObject               = __webpack_require__(5)
   , toMetaKey              = metadata.key
   , getOrCreateMetadataMap = metadata.map
@@ -58205,14 +58012,14 @@ metadata.exp({deleteMetadata: function deleteMetadata(metadataKey, target /*, ta
 }});
 
 /***/ }),
-/* 567 */
+/* 569 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Set                     = __webpack_require__(219)
-  , from                    = __webpack_require__(195)
-  , metadata                = __webpack_require__(57)
+var Set                     = __webpack_require__(222)
+  , from                    = __webpack_require__(198)
+  , metadata                = __webpack_require__(59)
   , anObject                = __webpack_require__(5)
-  , getPrototypeOf          = __webpack_require__(36)
+  , getPrototypeOf          = __webpack_require__(39)
   , ordinaryOwnMetadataKeys = metadata.keys
   , toMetaKey               = metadata.key;
 
@@ -58229,12 +58036,12 @@ metadata.exp({getMetadataKeys: function getMetadataKeys(target /*, targetKey */)
 }});
 
 /***/ }),
-/* 568 */
+/* 570 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata               = __webpack_require__(57)
+var metadata               = __webpack_require__(59)
   , anObject               = __webpack_require__(5)
-  , getPrototypeOf         = __webpack_require__(36)
+  , getPrototypeOf         = __webpack_require__(39)
   , ordinaryHasOwnMetadata = metadata.has
   , ordinaryGetOwnMetadata = metadata.get
   , toMetaKey              = metadata.key;
@@ -58251,10 +58058,10 @@ metadata.exp({getMetadata: function getMetadata(metadataKey, target /*, targetKe
 }});
 
 /***/ }),
-/* 569 */
+/* 571 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata                = __webpack_require__(57)
+var metadata                = __webpack_require__(59)
   , anObject                = __webpack_require__(5)
   , ordinaryOwnMetadataKeys = metadata.keys
   , toMetaKey               = metadata.key;
@@ -58264,10 +58071,10 @@ metadata.exp({getOwnMetadataKeys: function getOwnMetadataKeys(target /*, targetK
 }});
 
 /***/ }),
-/* 570 */
+/* 572 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata               = __webpack_require__(57)
+var metadata               = __webpack_require__(59)
   , anObject               = __webpack_require__(5)
   , ordinaryGetOwnMetadata = metadata.get
   , toMetaKey              = metadata.key;
@@ -58278,12 +58085,12 @@ metadata.exp({getOwnMetadata: function getOwnMetadata(metadataKey, target /*, ta
 }});
 
 /***/ }),
-/* 571 */
+/* 573 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata               = __webpack_require__(57)
+var metadata               = __webpack_require__(59)
   , anObject               = __webpack_require__(5)
-  , getPrototypeOf         = __webpack_require__(36)
+  , getPrototypeOf         = __webpack_require__(39)
   , ordinaryHasOwnMetadata = metadata.has
   , toMetaKey              = metadata.key;
 
@@ -58299,10 +58106,10 @@ metadata.exp({hasMetadata: function hasMetadata(metadataKey, target /*, targetKe
 }});
 
 /***/ }),
-/* 572 */
+/* 574 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata               = __webpack_require__(57)
+var metadata               = __webpack_require__(59)
   , anObject               = __webpack_require__(5)
   , ordinaryHasOwnMetadata = metadata.has
   , toMetaKey              = metadata.key;
@@ -58313,12 +58120,12 @@ metadata.exp({hasOwnMetadata: function hasOwnMetadata(metadataKey, target /*, ta
 }});
 
 /***/ }),
-/* 573 */
+/* 575 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var metadata                  = __webpack_require__(57)
+var metadata                  = __webpack_require__(59)
   , anObject                  = __webpack_require__(5)
-  , aFunction                 = __webpack_require__(29)
+  , aFunction                 = __webpack_require__(31)
   , toMetaKey                 = metadata.key
   , ordinaryDefineOwnMetadata = metadata.set;
 
@@ -58333,23 +58140,23 @@ metadata.exp({metadata: function metadata(metadataKey, metadataValue){
 }});
 
 /***/ }),
-/* 574 */
+/* 576 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
 var $export  = __webpack_require__(1);
 
-$export($export.P + $export.R, 'Set', {toJSON: __webpack_require__(199)('Set')});
+$export($export.P + $export.R, 'Set', {toJSON: __webpack_require__(202)('Set')});
 
 /***/ }),
-/* 575 */
+/* 577 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // https://github.com/mathiasbynens/String.prototype.at
 var $export = __webpack_require__(1)
-  , $at     = __webpack_require__(146)(true);
+  , $at     = __webpack_require__(149)(true);
 
 $export($export.P, 'String', {
   at: function at(pos){
@@ -58358,17 +58165,17 @@ $export($export.P, 'String', {
 });
 
 /***/ }),
-/* 576 */
+/* 578 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // https://tc39.github.io/String.prototype.matchAll/
 var $export     = __webpack_require__(1)
-  , defined     = __webpack_require__(43)
-  , toLength    = __webpack_require__(18)
-  , isRegExp    = __webpack_require__(109)
-  , getFlags    = __webpack_require__(107)
+  , defined     = __webpack_require__(44)
+  , toLength    = __webpack_require__(19)
+  , isRegExp    = __webpack_require__(111)
+  , getFlags    = __webpack_require__(109)
   , RegExpProto = RegExp.prototype;
 
 var $RegExpStringIterator = function(regexp, string){
@@ -58376,7 +58183,7 @@ var $RegExpStringIterator = function(regexp, string){
   this._s = string;
 };
 
-__webpack_require__(138)($RegExpStringIterator, 'RegExp String', function next(){
+__webpack_require__(141)($RegExpStringIterator, 'RegExp String', function next(){
   var match = this._r.exec(this._s);
   return {value: match, done: match === null};
 });
@@ -58394,14 +58201,14 @@ $export($export.P, 'String', {
 });
 
 /***/ }),
-/* 577 */
+/* 579 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // https://github.com/tc39/proposal-string-pad-start-end
 var $export = __webpack_require__(1)
-  , $pad    = __webpack_require__(215);
+  , $pad    = __webpack_require__(218);
 
 $export($export.P, 'String', {
   padEnd: function padEnd(maxLength /*, fillString = ' ' */){
@@ -58410,14 +58217,14 @@ $export($export.P, 'String', {
 });
 
 /***/ }),
-/* 578 */
+/* 580 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // https://github.com/tc39/proposal-string-pad-start-end
 var $export = __webpack_require__(1)
-  , $pad    = __webpack_require__(215);
+  , $pad    = __webpack_require__(218);
 
 $export($export.P, 'String', {
   padStart: function padStart(maxLength /*, fillString = ' ' */){
@@ -58426,45 +58233,45 @@ $export($export.P, 'String', {
 });
 
 /***/ }),
-/* 579 */
+/* 581 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // https://github.com/sebmarkbage/ecmascript-string-left-right-trim
-__webpack_require__(83)('trimLeft', function($trim){
+__webpack_require__(85)('trimLeft', function($trim){
   return function trimLeft(){
     return $trim(this, 1);
   };
 }, 'trimStart');
 
 /***/ }),
-/* 580 */
+/* 582 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 // https://github.com/sebmarkbage/ecmascript-string-left-right-trim
-__webpack_require__(83)('trimRight', function($trim){
+__webpack_require__(85)('trimRight', function($trim){
   return function trimRight(){
     return $trim(this, 2);
   };
 }, 'trimEnd');
 
 /***/ }),
-/* 581 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(152)('asyncIterator');
-
-/***/ }),
-/* 582 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(152)('observable');
-
-/***/ }),
 /* 583 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(155)('asyncIterator');
+
+/***/ }),
+/* 584 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(155)('observable');
+
+/***/ }),
+/* 585 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/ljharb/proposal-global
@@ -58473,14 +58280,14 @@ var $export = __webpack_require__(1);
 $export($export.S, 'System', {global: __webpack_require__(6)});
 
 /***/ }),
-/* 584 */
+/* 586 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var $iterators    = __webpack_require__(154)
-  , redefine      = __webpack_require__(31)
+var $iterators    = __webpack_require__(157)
+  , redefine      = __webpack_require__(33)
   , global        = __webpack_require__(6)
-  , hide          = __webpack_require__(30)
-  , Iterators     = __webpack_require__(81)
+  , hide          = __webpack_require__(32)
+  , Iterators     = __webpack_require__(83)
   , wks           = __webpack_require__(14)
   , ITERATOR      = wks('iterator')
   , TO_STRING_TAG = wks('toStringTag')
@@ -58500,25 +58307,25 @@ for(var collections = ['NodeList', 'DOMTokenList', 'MediaList', 'StyleSheetList'
 }
 
 /***/ }),
-/* 585 */
+/* 587 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(1)
-  , $task   = __webpack_require__(150);
+  , $task   = __webpack_require__(153);
 $export($export.G + $export.B, {
   setImmediate:   $task.set,
   clearImmediate: $task.clear
 });
 
 /***/ }),
-/* 586 */
+/* 588 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // ie9- setTimeout & setInterval additional parameters fix
 var global     = __webpack_require__(6)
   , $export    = __webpack_require__(1)
-  , invoke     = __webpack_require__(108)
-  , partial    = __webpack_require__(413)
+  , invoke     = __webpack_require__(110)
+  , partial    = __webpack_require__(415)
   , navigator  = global.navigator
   , MSIE       = !!navigator && /MSIE .\./.test(navigator.userAgent); // <- dirty ie9- check
 var wrap = function(set){
@@ -58536,37 +58343,35 @@ $export($export.G + $export.B + $export.F * MSIE, {
 });
 
 /***/ }),
-/* 587 */
+/* 589 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(536);
-__webpack_require__(475);
+__webpack_require__(538);
 __webpack_require__(477);
-__webpack_require__(476);
 __webpack_require__(479);
-__webpack_require__(481);
-__webpack_require__(486);
-__webpack_require__(480);
 __webpack_require__(478);
-__webpack_require__(488);
-__webpack_require__(487);
+__webpack_require__(481);
 __webpack_require__(483);
-__webpack_require__(484);
+__webpack_require__(488);
 __webpack_require__(482);
-__webpack_require__(474);
-__webpack_require__(485);
-__webpack_require__(489);
+__webpack_require__(480);
 __webpack_require__(490);
-__webpack_require__(442);
-__webpack_require__(444);
-__webpack_require__(443);
-__webpack_require__(492);
+__webpack_require__(489);
+__webpack_require__(485);
+__webpack_require__(486);
+__webpack_require__(484);
+__webpack_require__(476);
+__webpack_require__(487);
 __webpack_require__(491);
-__webpack_require__(462);
-__webpack_require__(472);
-__webpack_require__(473);
-__webpack_require__(463);
+__webpack_require__(492);
+__webpack_require__(444);
+__webpack_require__(446);
+__webpack_require__(445);
+__webpack_require__(494);
+__webpack_require__(493);
 __webpack_require__(464);
+__webpack_require__(474);
+__webpack_require__(475);
 __webpack_require__(465);
 __webpack_require__(466);
 __webpack_require__(467);
@@ -58574,8 +58379,8 @@ __webpack_require__(468);
 __webpack_require__(469);
 __webpack_require__(470);
 __webpack_require__(471);
-__webpack_require__(445);
-__webpack_require__(446);
+__webpack_require__(472);
+__webpack_require__(473);
 __webpack_require__(447);
 __webpack_require__(448);
 __webpack_require__(449);
@@ -58591,133 +58396,135 @@ __webpack_require__(458);
 __webpack_require__(459);
 __webpack_require__(460);
 __webpack_require__(461);
-__webpack_require__(523);
+__webpack_require__(462);
+__webpack_require__(463);
+__webpack_require__(525);
+__webpack_require__(530);
+__webpack_require__(537);
 __webpack_require__(528);
-__webpack_require__(535);
-__webpack_require__(526);
-__webpack_require__(518);
-__webpack_require__(519);
-__webpack_require__(524);
-__webpack_require__(529);
-__webpack_require__(531);
-__webpack_require__(514);
-__webpack_require__(515);
-__webpack_require__(516);
-__webpack_require__(517);
 __webpack_require__(520);
 __webpack_require__(521);
-__webpack_require__(522);
-__webpack_require__(525);
-__webpack_require__(527);
-__webpack_require__(530);
-__webpack_require__(532);
+__webpack_require__(526);
+__webpack_require__(531);
 __webpack_require__(533);
+__webpack_require__(516);
+__webpack_require__(517);
+__webpack_require__(518);
+__webpack_require__(519);
+__webpack_require__(522);
+__webpack_require__(523);
+__webpack_require__(524);
+__webpack_require__(527);
+__webpack_require__(529);
+__webpack_require__(532);
 __webpack_require__(534);
-__webpack_require__(437);
+__webpack_require__(535);
+__webpack_require__(536);
 __webpack_require__(439);
-__webpack_require__(438);
 __webpack_require__(441);
 __webpack_require__(440);
+__webpack_require__(443);
+__webpack_require__(442);
+__webpack_require__(428);
 __webpack_require__(426);
-__webpack_require__(424);
-__webpack_require__(430);
-__webpack_require__(427);
-__webpack_require__(433);
-__webpack_require__(435);
-__webpack_require__(423);
+__webpack_require__(432);
 __webpack_require__(429);
+__webpack_require__(435);
+__webpack_require__(437);
+__webpack_require__(425);
+__webpack_require__(431);
+__webpack_require__(422);
+__webpack_require__(436);
 __webpack_require__(420);
 __webpack_require__(434);
-__webpack_require__(418);
-__webpack_require__(432);
-__webpack_require__(431);
-__webpack_require__(425);
-__webpack_require__(428);
-__webpack_require__(417);
+__webpack_require__(433);
+__webpack_require__(427);
+__webpack_require__(430);
 __webpack_require__(419);
-__webpack_require__(422);
 __webpack_require__(421);
-__webpack_require__(436);
-__webpack_require__(154);
-__webpack_require__(508);
-__webpack_require__(513);
-__webpack_require__(218);
-__webpack_require__(509);
+__webpack_require__(424);
+__webpack_require__(423);
+__webpack_require__(438);
+__webpack_require__(157);
 __webpack_require__(510);
+__webpack_require__(515);
+__webpack_require__(221);
 __webpack_require__(511);
 __webpack_require__(512);
-__webpack_require__(493);
-__webpack_require__(217);
-__webpack_require__(219);
+__webpack_require__(513);
+__webpack_require__(514);
+__webpack_require__(495);
 __webpack_require__(220);
-__webpack_require__(548);
-__webpack_require__(537);
-__webpack_require__(538);
-__webpack_require__(543);
-__webpack_require__(546);
-__webpack_require__(547);
-__webpack_require__(541);
-__webpack_require__(544);
-__webpack_require__(542);
-__webpack_require__(545);
+__webpack_require__(222);
+__webpack_require__(223);
+__webpack_require__(550);
 __webpack_require__(539);
 __webpack_require__(540);
-__webpack_require__(494);
-__webpack_require__(495);
+__webpack_require__(545);
+__webpack_require__(548);
+__webpack_require__(549);
+__webpack_require__(543);
+__webpack_require__(546);
+__webpack_require__(544);
+__webpack_require__(547);
+__webpack_require__(541);
+__webpack_require__(542);
 __webpack_require__(496);
 __webpack_require__(497);
 __webpack_require__(498);
-__webpack_require__(501);
 __webpack_require__(499);
 __webpack_require__(500);
-__webpack_require__(502);
 __webpack_require__(503);
+__webpack_require__(501);
+__webpack_require__(502);
 __webpack_require__(504);
 __webpack_require__(505);
-__webpack_require__(507);
 __webpack_require__(506);
-__webpack_require__(549);
-__webpack_require__(575);
-__webpack_require__(578);
+__webpack_require__(507);
+__webpack_require__(509);
+__webpack_require__(508);
+__webpack_require__(551);
 __webpack_require__(577);
-__webpack_require__(579);
 __webpack_require__(580);
-__webpack_require__(576);
+__webpack_require__(579);
 __webpack_require__(581);
 __webpack_require__(582);
+__webpack_require__(578);
+__webpack_require__(583);
+__webpack_require__(584);
+__webpack_require__(562);
+__webpack_require__(565);
+__webpack_require__(561);
+__webpack_require__(559);
 __webpack_require__(560);
 __webpack_require__(563);
-__webpack_require__(559);
-__webpack_require__(557);
-__webpack_require__(558);
-__webpack_require__(561);
-__webpack_require__(562);
-__webpack_require__(552);
-__webpack_require__(574);
-__webpack_require__(583);
-__webpack_require__(551);
+__webpack_require__(564);
+__webpack_require__(554);
+__webpack_require__(576);
+__webpack_require__(585);
 __webpack_require__(553);
 __webpack_require__(555);
-__webpack_require__(554);
+__webpack_require__(557);
 __webpack_require__(556);
-__webpack_require__(565);
-__webpack_require__(566);
-__webpack_require__(568);
+__webpack_require__(558);
 __webpack_require__(567);
+__webpack_require__(568);
 __webpack_require__(570);
 __webpack_require__(569);
-__webpack_require__(571);
 __webpack_require__(572);
+__webpack_require__(571);
 __webpack_require__(573);
-__webpack_require__(550);
-__webpack_require__(564);
+__webpack_require__(574);
+__webpack_require__(575);
+__webpack_require__(552);
+__webpack_require__(566);
+__webpack_require__(588);
+__webpack_require__(587);
 __webpack_require__(586);
-__webpack_require__(585);
-__webpack_require__(584);
-module.exports = __webpack_require__(55);
+module.exports = __webpack_require__(57);
 
 /***/ }),
-/* 588 */
+/* 590 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58735,7 +58542,7 @@ module.exports = __webpack_require__(55);
 
 var _assign = __webpack_require__(9);
 
-var emptyObject = __webpack_require__(120);
+var emptyObject = __webpack_require__(122);
 var _invariant = __webpack_require__(3);
 
 if (process.env.NODE_ENV !== 'production') {
@@ -59597,7 +59404,7 @@ module.exports = factory;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 589 */
+/* 591 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59616,16 +59423,16 @@ module.exports = factory;
 
 
 
-var BlockMapBuilder = __webpack_require__(94);
-var CharacterMetadata = __webpack_require__(45);
-var ContentBlock = __webpack_require__(75);
-var DraftModifier = __webpack_require__(25);
+var BlockMapBuilder = __webpack_require__(95);
+var CharacterMetadata = __webpack_require__(46);
+var ContentBlock = __webpack_require__(76);
+var DraftModifier = __webpack_require__(26);
 var EditorState = __webpack_require__(10);
-var SelectionState = __webpack_require__(95);
-var Immutable = __webpack_require__(12);
+var SelectionState = __webpack_require__(96);
+var Immutable = __webpack_require__(13);
 
-var generateRandomKey = __webpack_require__(50);
-var moveBlockInContentState = __webpack_require__(647);
+var generateRandomKey = __webpack_require__(51);
+var moveBlockInContentState = __webpack_require__(649);
 
 var List = Immutable.List;
 var Repeat = Immutable.Repeat;
@@ -59712,7 +59519,7 @@ var AtomicBlockUtils = {
 module.exports = AtomicBlockUtils;
 
 /***/ }),
-/* 590 */
+/* 592 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59733,7 +59540,7 @@ module.exports = AtomicBlockUtils;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Immutable = __webpack_require__(12);
+var Immutable = __webpack_require__(13);
 
 var List = Immutable.List;
 
@@ -59832,7 +59639,7 @@ function occupySlice(targetArr, start, end, componentKey) {
 module.exports = CompositeDraftDecorator;
 
 /***/ }),
-/* 591 */
+/* 593 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59851,9 +59658,9 @@ module.exports = CompositeDraftDecorator;
 
 
 
-var CharacterMetadata = __webpack_require__(45);
+var CharacterMetadata = __webpack_require__(46);
 
-var _require = __webpack_require__(12);
+var _require = __webpack_require__(13);
 
 var Map = _require.Map;
 
@@ -59912,7 +59719,7 @@ function modifyInlineStyle(contentState, selectionState, inlineStyle, addOrRemov
 module.exports = ContentStateInlineStyle;
 
 /***/ }),
-/* 592 */
+/* 594 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59942,29 +59749,29 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var DefaultDraftBlockRenderMap = __webpack_require__(156);
-var DefaultDraftInlineStyle = __webpack_require__(222);
-var DraftEditorCompositionHandler = __webpack_require__(593);
-var DraftEditorContents = __webpack_require__(594);
-var DraftEditorDragHandler = __webpack_require__(595);
-var DraftEditorEditHandler = __webpack_require__(596);
-var DraftEditorPlaceholder = __webpack_require__(598);
+var DefaultDraftBlockRenderMap = __webpack_require__(159);
+var DefaultDraftInlineStyle = __webpack_require__(225);
+var DraftEditorCompositionHandler = __webpack_require__(595);
+var DraftEditorContents = __webpack_require__(596);
+var DraftEditorDragHandler = __webpack_require__(597);
+var DraftEditorEditHandler = __webpack_require__(598);
+var DraftEditorPlaceholder = __webpack_require__(600);
 
 var EditorState = __webpack_require__(10);
-var React = __webpack_require__(13);
-var ReactDOM = __webpack_require__(84);
-var Scroll = __webpack_require__(244);
-var Style = __webpack_require__(163);
-var UserAgent = __webpack_require__(51);
+var React = __webpack_require__(11);
+var ReactDOM = __webpack_require__(86);
+var Scroll = __webpack_require__(247);
+var Style = __webpack_require__(166);
+var UserAgent = __webpack_require__(52);
 
-var cx = __webpack_require__(97);
-var emptyFunction = __webpack_require__(26);
-var generateRandomKey = __webpack_require__(50);
-var getDefaultKeyBinding = __webpack_require__(230);
+var cx = __webpack_require__(98);
+var emptyFunction = __webpack_require__(27);
+var generateRandomKey = __webpack_require__(51);
+var getDefaultKeyBinding = __webpack_require__(233);
 
-var getScrollPosition = __webpack_require__(166);
+var getScrollPosition = __webpack_require__(169);
 var invariant = __webpack_require__(3);
-var nullthrows = __webpack_require__(37);
+var nullthrows = __webpack_require__(40);
 
 var isIE = UserAgent.isBrowser('IE');
 
@@ -60373,7 +60180,7 @@ module.exports = DraftEditor;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 593 */
+/* 595 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60391,12 +60198,12 @@ module.exports = DraftEditor;
 
 
 
-var DraftModifier = __webpack_require__(25);
+var DraftModifier = __webpack_require__(26);
 var EditorState = __webpack_require__(10);
-var Keys = __webpack_require__(162);
+var Keys = __webpack_require__(165);
 
-var getEntityKeyForSelection = __webpack_require__(159);
-var isSelectionAtLeafStart = __webpack_require__(239);
+var getEntityKeyForSelection = __webpack_require__(162);
+var isSelectionAtLeafStart = __webpack_require__(242);
 
 /**
  * Millisecond delay to allow `compositionstart` to fire again upon
@@ -60548,7 +60355,7 @@ var DraftEditorCompositionHandler = {
 module.exports = DraftEditorCompositionHandler;
 
 /***/ }),
-/* 594 */
+/* 596 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60577,14 +60384,14 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var DraftEditorBlock = __webpack_require__(224);
-var DraftOffsetKey = __webpack_require__(116);
+var DraftEditorBlock = __webpack_require__(227);
+var DraftOffsetKey = __webpack_require__(118);
 var EditorState = __webpack_require__(10);
-var React = __webpack_require__(13);
+var React = __webpack_require__(11);
 
-var cx = __webpack_require__(97);
-var joinClasses = __webpack_require__(669);
-var nullthrows = __webpack_require__(37);
+var cx = __webpack_require__(98);
+var joinClasses = __webpack_require__(671);
+var nullthrows = __webpack_require__(40);
 
 /**
  * `DraftEditorContents` is the container component for all block components
@@ -60799,7 +60606,7 @@ function getListItemClasses(type, depth, shouldResetCount, direction) {
 module.exports = DraftEditorContents;
 
 /***/ }),
-/* 595 */
+/* 597 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60818,16 +60625,16 @@ module.exports = DraftEditorContents;
 
 
 
-var DataTransfer = __webpack_require__(242);
-var DraftModifier = __webpack_require__(25);
+var DataTransfer = __webpack_require__(245);
+var DraftModifier = __webpack_require__(26);
 var EditorState = __webpack_require__(10);
 
-var findAncestorOffsetKey = __webpack_require__(158);
-var getTextContentFromFiles = __webpack_require__(236);
-var getUpdatedSelectionState = __webpack_require__(237);
-var nullthrows = __webpack_require__(37);
+var findAncestorOffsetKey = __webpack_require__(161);
+var getTextContentFromFiles = __webpack_require__(239);
+var getUpdatedSelectionState = __webpack_require__(240);
+var nullthrows = __webpack_require__(40);
 
-var isEventHandled = __webpack_require__(119);
+var isEventHandled = __webpack_require__(121);
 
 /**
  * Get a SelectionState for the supplied mouse event.
@@ -60921,7 +60728,7 @@ function insertTextAtSelection(editorState, selection, text) {
 module.exports = DraftEditorDragHandler;
 
 /***/ }),
-/* 596 */
+/* 598 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60939,18 +60746,18 @@ module.exports = DraftEditorDragHandler;
 
 
 
-var onBeforeInput = __webpack_require__(614);
-var onBlur = __webpack_require__(615);
-var onCompositionStart = __webpack_require__(616);
-var onCopy = __webpack_require__(617);
-var onCut = __webpack_require__(618);
-var onDragOver = __webpack_require__(619);
-var onDragStart = __webpack_require__(620);
-var onFocus = __webpack_require__(621);
-var onInput = __webpack_require__(622);
-var onKeyDown = __webpack_require__(623);
-var onPaste = __webpack_require__(624);
-var onSelect = __webpack_require__(625);
+var onBeforeInput = __webpack_require__(616);
+var onBlur = __webpack_require__(617);
+var onCompositionStart = __webpack_require__(618);
+var onCopy = __webpack_require__(619);
+var onCut = __webpack_require__(620);
+var onDragOver = __webpack_require__(621);
+var onDragStart = __webpack_require__(622);
+var onFocus = __webpack_require__(623);
+var onInput = __webpack_require__(624);
+var onKeyDown = __webpack_require__(625);
+var onPaste = __webpack_require__(626);
+var onSelect = __webpack_require__(627);
 
 var DraftEditorEditHandler = {
   onBeforeInput: onBeforeInput,
@@ -60970,7 +60777,7 @@ var DraftEditorEditHandler = {
 module.exports = DraftEditorEditHandler;
 
 /***/ }),
-/* 597 */
+/* 599 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -60997,13 +60804,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var ContentBlock = __webpack_require__(75);
-var DraftEditorTextNode = __webpack_require__(599);
-var React = __webpack_require__(13);
-var ReactDOM = __webpack_require__(84);
+var ContentBlock = __webpack_require__(76);
+var DraftEditorTextNode = __webpack_require__(601);
+var React = __webpack_require__(11);
+var ReactDOM = __webpack_require__(86);
 
 var invariant = __webpack_require__(3);
-var setDraftEditorSelection = __webpack_require__(649);
+var setDraftEditorSelection = __webpack_require__(651);
 
 /**
  * All leaf nodes in the editor are spans with single text nodes. Leaf
@@ -61144,7 +60951,7 @@ module.exports = DraftEditorLeaf;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 598 */
+/* 600 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61169,9 +60976,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var React = __webpack_require__(13);
+var React = __webpack_require__(11);
 
-var cx = __webpack_require__(97);
+var cx = __webpack_require__(98);
 
 /**
  * This component is responsible for rendering placeholder text for the
@@ -61219,7 +61026,7 @@ var DraftEditorPlaceholder = function (_React$Component) {
 module.exports = DraftEditorPlaceholder;
 
 /***/ }),
-/* 599 */
+/* 601 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61244,9 +61051,9 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var React = __webpack_require__(13);
-var ReactDOM = __webpack_require__(84);
-var UserAgent = __webpack_require__(51);
+var React = __webpack_require__(11);
+var ReactDOM = __webpack_require__(86);
+var UserAgent = __webpack_require__(52);
 
 var invariant = __webpack_require__(3);
 
@@ -61337,7 +61144,7 @@ module.exports = DraftEditorTextNode;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 600 */
+/* 602 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61442,7 +61249,7 @@ var DraftEntitySegments = {
 module.exports = DraftEntitySegments;
 
 /***/ }),
-/* 601 */
+/* 603 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61466,7 +61273,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 602 */
+/* 604 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61485,14 +61292,14 @@ module.exports = {
 
 
 
-var CharacterMetadata = __webpack_require__(45);
-var ContentBlock = __webpack_require__(75);
-var Immutable = __webpack_require__(12);
+var CharacterMetadata = __webpack_require__(46);
+var ContentBlock = __webpack_require__(76);
+var Immutable = __webpack_require__(13);
 
-var convertFromHTMLtoContentBlocks = __webpack_require__(229);
-var generateRandomKey = __webpack_require__(50);
-var getSafeBodyFromHTML = __webpack_require__(234);
-var sanitizeDraftText = __webpack_require__(161);
+var convertFromHTMLtoContentBlocks = __webpack_require__(232);
+var generateRandomKey = __webpack_require__(51);
+var getSafeBodyFromHTML = __webpack_require__(237);
+var sanitizeDraftText = __webpack_require__(164);
 
 var List = Immutable.List;
 var Repeat = Immutable.Repeat;
@@ -61518,7 +61325,7 @@ var DraftPasteProcessor = {
 module.exports = DraftPasteProcessor;
 
 /***/ }),
-/* 603 */
+/* 605 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61537,10 +61344,10 @@ module.exports = DraftPasteProcessor;
 
 
 
-var Immutable = __webpack_require__(12);
-var UnicodeBidiService = __webpack_require__(655);
+var Immutable = __webpack_require__(13);
+var UnicodeBidiService = __webpack_require__(657);
 
-var nullthrows = __webpack_require__(37);
+var nullthrows = __webpack_require__(40);
 
 var OrderedMap = Immutable.OrderedMap;
 
@@ -61572,7 +61379,7 @@ var EditorBidiService = {
 module.exports = EditorBidiService;
 
 /***/ }),
-/* 604 */
+/* 606 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61591,12 +61398,12 @@ module.exports = EditorBidiService;
 
 
 
-var DraftModifier = __webpack_require__(25);
+var DraftModifier = __webpack_require__(26);
 var EditorState = __webpack_require__(10);
-var SelectionState = __webpack_require__(95);
+var SelectionState = __webpack_require__(96);
 
-var adjustBlockDepthForContentState = __webpack_require__(606);
-var nullthrows = __webpack_require__(37);
+var adjustBlockDepthForContentState = __webpack_require__(608);
+var nullthrows = __webpack_require__(40);
 
 var RichTextEditorUtil = {
   currentBlockContainsLink: function currentBlockContainsLink(editorState) {
@@ -61883,7 +61690,7 @@ var RichTextEditorUtil = {
 module.exports = RichTextEditorUtil;
 
 /***/ }),
-/* 605 */
+/* 607 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -61901,11 +61708,11 @@ module.exports = RichTextEditorUtil;
 
 
 
-var DraftModifier = __webpack_require__(25);
+var DraftModifier = __webpack_require__(26);
 var EditorState = __webpack_require__(10);
 
-var getContentStateFragment = __webpack_require__(118);
-var nullthrows = __webpack_require__(37);
+var getContentStateFragment = __webpack_require__(120);
+var nullthrows = __webpack_require__(40);
 
 var clipboard = null;
 
@@ -61958,7 +61765,7 @@ var SecondaryClipboard = {
 module.exports = SecondaryClipboard;
 
 /***/ }),
-/* 606 */
+/* 608 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62003,7 +61810,7 @@ function adjustBlockDepthForContentState(contentState, selectionState, adjustmen
 module.exports = adjustBlockDepthForContentState;
 
 /***/ }),
-/* 607 */
+/* 609 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62022,7 +61829,7 @@ module.exports = adjustBlockDepthForContentState;
 
 
 
-var CharacterMetadata = __webpack_require__(45);
+var CharacterMetadata = __webpack_require__(46);
 
 function applyEntityToContentBlock(contentBlock, start, end, entityKey) {
   var characterList = contentBlock.getCharacterList();
@@ -62036,7 +61843,7 @@ function applyEntityToContentBlock(contentBlock, start, end, entityKey) {
 module.exports = applyEntityToContentBlock;
 
 /***/ }),
-/* 608 */
+/* 610 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62055,9 +61862,9 @@ module.exports = applyEntityToContentBlock;
 
 
 
-var Immutable = __webpack_require__(12);
+var Immutable = __webpack_require__(13);
 
-var applyEntityToContentBlock = __webpack_require__(607);
+var applyEntityToContentBlock = __webpack_require__(609);
 
 function applyEntityToContentState(contentState, selectionState, entityKey) {
   var blockMap = contentState.getBlockMap();
@@ -62086,7 +61893,7 @@ function applyEntityToContentState(contentState, selectionState, entityKey) {
 module.exports = applyEntityToContentState;
 
 /***/ }),
-/* 609 */
+/* 611 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62104,10 +61911,10 @@ module.exports = applyEntityToContentState;
 
 
 
-var DraftStringKey = __webpack_require__(228);
+var DraftStringKey = __webpack_require__(231);
 
-var encodeEntityRanges = __webpack_require__(626);
-var encodeInlineStyleRanges = __webpack_require__(627);
+var encodeEntityRanges = __webpack_require__(628);
+var encodeInlineStyleRanges = __webpack_require__(629);
 
 function convertFromDraftStateToRaw(contentState) {
   var entityStorageKey = 0;
@@ -62158,7 +61965,7 @@ function convertFromDraftStateToRaw(contentState) {
 module.exports = convertFromDraftStateToRaw;
 
 /***/ }),
-/* 610 */
+/* 612 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62180,15 +61987,15 @@ var _assign = __webpack_require__(9);
 
 var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-var ContentBlock = __webpack_require__(75);
-var ContentState = __webpack_require__(155);
-var DraftEntity = __webpack_require__(115);
+var ContentBlock = __webpack_require__(76);
+var ContentState = __webpack_require__(158);
+var DraftEntity = __webpack_require__(117);
 
-var createCharacterList = __webpack_require__(611);
-var decodeEntityRanges = __webpack_require__(612);
-var decodeInlineStyleRanges = __webpack_require__(613);
-var generateRandomKey = __webpack_require__(50);
-var Immutable = __webpack_require__(12);
+var createCharacterList = __webpack_require__(613);
+var decodeEntityRanges = __webpack_require__(614);
+var decodeInlineStyleRanges = __webpack_require__(615);
+var generateRandomKey = __webpack_require__(51);
+var Immutable = __webpack_require__(13);
 
 var Map = Immutable.Map;
 
@@ -62248,7 +62055,7 @@ function convertFromRawToDraftState(rawState) {
 module.exports = convertFromRawToDraftState;
 
 /***/ }),
-/* 611 */
+/* 613 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62267,8 +62074,8 @@ module.exports = convertFromRawToDraftState;
 
 
 
-var CharacterMetadata = __webpack_require__(45);
-var Immutable = __webpack_require__(12);
+var CharacterMetadata = __webpack_require__(46);
+var Immutable = __webpack_require__(13);
 
 var List = Immutable.List;
 
@@ -62284,7 +62091,7 @@ function createCharacterList(inlineStyles, entities) {
 module.exports = createCharacterList;
 
 /***/ }),
-/* 612 */
+/* 614 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62303,7 +62110,7 @@ module.exports = createCharacterList;
 
 
 
-var UnicodeUtils = __webpack_require__(76);
+var UnicodeUtils = __webpack_require__(77);
 
 var substr = UnicodeUtils.substr;
 
@@ -62330,7 +62137,7 @@ function decodeEntityRanges(text, ranges) {
 module.exports = decodeEntityRanges;
 
 /***/ }),
-/* 613 */
+/* 615 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62349,9 +62156,9 @@ module.exports = decodeEntityRanges;
 
 
 
-var UnicodeUtils = __webpack_require__(76);
+var UnicodeUtils = __webpack_require__(77);
 
-var _require = __webpack_require__(12);
+var _require = __webpack_require__(13);
 
 var OrderedSet = _require.OrderedSet;
 var substr = UnicodeUtils.substr;
@@ -62380,7 +62187,7 @@ function decodeInlineStyleRanges(text, ranges) {
 module.exports = decodeInlineStyleRanges;
 
 /***/ }),
-/* 614 */
+/* 616 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62398,17 +62205,17 @@ module.exports = decodeInlineStyleRanges;
 
 
 
-var BlockTree = __webpack_require__(221);
-var DraftModifier = __webpack_require__(25);
+var BlockTree = __webpack_require__(224);
+var DraftModifier = __webpack_require__(26);
 var EditorState = __webpack_require__(10);
-var UserAgent = __webpack_require__(51);
+var UserAgent = __webpack_require__(52);
 
-var getEntityKeyForSelection = __webpack_require__(159);
-var isSelectionAtLeafStart = __webpack_require__(239);
-var nullthrows = __webpack_require__(37);
-var setImmediate = __webpack_require__(673);
+var getEntityKeyForSelection = __webpack_require__(162);
+var isSelectionAtLeafStart = __webpack_require__(242);
+var nullthrows = __webpack_require__(40);
+var setImmediate = __webpack_require__(675);
 
-var isEventHandled = __webpack_require__(119);
+var isEventHandled = __webpack_require__(121);
 
 // When nothing is focused, Firefox regards two characters, `'` and `/`, as
 // commands that should open and focus the "quickfind" search bar. This should
@@ -62522,7 +62329,7 @@ function editOnBeforeInput(editor, e) {
 module.exports = editOnBeforeInput;
 
 /***/ }),
-/* 615 */
+/* 617 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62541,9 +62348,9 @@ module.exports = editOnBeforeInput;
 
 
 var EditorState = __webpack_require__(10);
-var UserAgent = __webpack_require__(51);
+var UserAgent = __webpack_require__(52);
 
-var getActiveElement = __webpack_require__(121);
+var getActiveElement = __webpack_require__(123);
 
 var isWebKit = UserAgent.isEngine('WebKit');
 
@@ -62570,10 +62377,10 @@ function editOnBlur(editor, e) {
 }
 
 module.exports = editOnBlur;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(54)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(55)))
 
 /***/ }),
-/* 616 */
+/* 618 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62607,7 +62414,7 @@ function editOnCompositionStart(editor, e) {
 module.exports = editOnCompositionStart;
 
 /***/ }),
-/* 617 */
+/* 619 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62625,7 +62432,7 @@ module.exports = editOnCompositionStart;
 
 
 
-var getFragmentFromSelection = __webpack_require__(232);
+var getFragmentFromSelection = __webpack_require__(235);
 
 /**
  * If we have a selection, create a ContentState fragment and store
@@ -62648,7 +62455,7 @@ function editOnCopy(editor, e) {
 module.exports = editOnCopy;
 
 /***/ }),
-/* 618 */
+/* 620 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62666,12 +62473,12 @@ module.exports = editOnCopy;
 
 
 
-var DraftModifier = __webpack_require__(25);
+var DraftModifier = __webpack_require__(26);
 var EditorState = __webpack_require__(10);
-var Style = __webpack_require__(163);
+var Style = __webpack_require__(166);
 
-var getFragmentFromSelection = __webpack_require__(232);
-var getScrollPosition = __webpack_require__(166);
+var getFragmentFromSelection = __webpack_require__(235);
+var getScrollPosition = __webpack_require__(169);
 
 /**
  * On `cut` events, native behavior is allowed to occur so that the system
@@ -62724,7 +62531,7 @@ function removeFragment(editorState) {
 module.exports = editOnCut;
 
 /***/ }),
-/* 619 */
+/* 621 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62754,7 +62561,7 @@ function editOnDragOver(editor, e) {
 module.exports = editOnDragOver;
 
 /***/ }),
-/* 620 */
+/* 622 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62783,7 +62590,7 @@ function editOnDragStart(editor) {
 module.exports = editOnDragStart;
 
 /***/ }),
-/* 621 */
+/* 623 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62825,7 +62632,7 @@ function editOnFocus(editor, e) {
 module.exports = editOnFocus;
 
 /***/ }),
-/* 622 */
+/* 624 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -62843,14 +62650,14 @@ module.exports = editOnFocus;
 
 
 
-var DraftFeatureFlags = __webpack_require__(226);
-var DraftModifier = __webpack_require__(25);
-var DraftOffsetKey = __webpack_require__(116);
+var DraftFeatureFlags = __webpack_require__(229);
+var DraftModifier = __webpack_require__(26);
+var DraftOffsetKey = __webpack_require__(118);
 var EditorState = __webpack_require__(10);
-var UserAgent = __webpack_require__(51);
+var UserAgent = __webpack_require__(52);
 
-var findAncestorOffsetKey = __webpack_require__(158);
-var nullthrows = __webpack_require__(37);
+var findAncestorOffsetKey = __webpack_require__(161);
+var nullthrows = __webpack_require__(40);
 
 var isGecko = UserAgent.isEngine('Gecko');
 
@@ -62999,10 +62806,10 @@ function editOnInput(editor) {
 }
 
 module.exports = editOnInput;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(54)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(55)))
 
 /***/ }),
-/* 623 */
+/* 625 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63020,25 +62827,25 @@ module.exports = editOnInput;
 
 
 
-var DraftModifier = __webpack_require__(25);
+var DraftModifier = __webpack_require__(26);
 var EditorState = __webpack_require__(10);
-var KeyBindingUtil = __webpack_require__(157);
-var Keys = __webpack_require__(162);
-var SecondaryClipboard = __webpack_require__(605);
-var UserAgent = __webpack_require__(51);
+var KeyBindingUtil = __webpack_require__(160);
+var Keys = __webpack_require__(165);
+var SecondaryClipboard = __webpack_require__(607);
+var UserAgent = __webpack_require__(52);
 
-var keyCommandBackspaceToStartOfLine = __webpack_require__(636);
-var keyCommandBackspaceWord = __webpack_require__(637);
-var keyCommandDeleteWord = __webpack_require__(638);
-var keyCommandInsertNewline = __webpack_require__(639);
-var keyCommandPlainBackspace = __webpack_require__(642);
-var keyCommandPlainDelete = __webpack_require__(643);
-var keyCommandMoveSelectionToEndOfBlock = __webpack_require__(640);
-var keyCommandMoveSelectionToStartOfBlock = __webpack_require__(641);
-var keyCommandTransposeCharacters = __webpack_require__(644);
-var keyCommandUndo = __webpack_require__(645);
+var keyCommandBackspaceToStartOfLine = __webpack_require__(638);
+var keyCommandBackspaceWord = __webpack_require__(639);
+var keyCommandDeleteWord = __webpack_require__(640);
+var keyCommandInsertNewline = __webpack_require__(641);
+var keyCommandPlainBackspace = __webpack_require__(644);
+var keyCommandPlainDelete = __webpack_require__(645);
+var keyCommandMoveSelectionToEndOfBlock = __webpack_require__(642);
+var keyCommandMoveSelectionToStartOfBlock = __webpack_require__(643);
+var keyCommandTransposeCharacters = __webpack_require__(646);
+var keyCommandUndo = __webpack_require__(647);
 
-var isEventHandled = __webpack_require__(119);
+var isEventHandled = __webpack_require__(121);
 
 var isOptionKeyCommand = KeyBindingUtil.isOptionKeyCommand;
 
@@ -63156,7 +62963,7 @@ function editOnKeyDown(editor, e) {
 module.exports = editOnKeyDown;
 
 /***/ }),
-/* 624 */
+/* 626 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63174,17 +62981,17 @@ module.exports = editOnKeyDown;
 
 
 
-var BlockMapBuilder = __webpack_require__(94);
-var CharacterMetadata = __webpack_require__(45);
-var DataTransfer = __webpack_require__(242);
-var DraftModifier = __webpack_require__(25);
-var DraftPasteProcessor = __webpack_require__(602);
+var BlockMapBuilder = __webpack_require__(95);
+var CharacterMetadata = __webpack_require__(46);
+var DataTransfer = __webpack_require__(245);
+var DraftModifier = __webpack_require__(26);
+var DraftPasteProcessor = __webpack_require__(604);
 var EditorState = __webpack_require__(10);
 
-var getEntityKeyForSelection = __webpack_require__(159);
-var getTextContentFromFiles = __webpack_require__(236);
-var isEventHandled = __webpack_require__(119);
-var splitTextIntoTextBlocks = __webpack_require__(651);
+var getEntityKeyForSelection = __webpack_require__(162);
+var getTextContentFromFiles = __webpack_require__(239);
+var isEventHandled = __webpack_require__(121);
+var splitTextIntoTextBlocks = __webpack_require__(653);
 
 /**
  * Paste content.
@@ -63322,7 +63129,7 @@ function areTextBlocksAndClipboardEqual(textBlocks, blockMap) {
 module.exports = editOnPaste;
 
 /***/ }),
-/* 625 */
+/* 627 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63341,9 +63148,9 @@ module.exports = editOnPaste;
 
 
 var EditorState = __webpack_require__(10);
-var ReactDOM = __webpack_require__(84);
+var ReactDOM = __webpack_require__(86);
 
-var getDraftEditorSelection = __webpack_require__(630);
+var getDraftEditorSelection = __webpack_require__(632);
 var invariant = __webpack_require__(3);
 
 function editOnSelect(editor) {
@@ -63372,7 +63179,7 @@ module.exports = editOnSelect;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 626 */
+/* 628 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63391,8 +63198,8 @@ module.exports = editOnSelect;
 
 
 
-var DraftStringKey = __webpack_require__(228);
-var UnicodeUtils = __webpack_require__(76);
+var DraftStringKey = __webpack_require__(231);
+var UnicodeUtils = __webpack_require__(77);
 
 var strlen = UnicodeUtils.strlen;
 
@@ -63420,7 +63227,7 @@ function encodeEntityRanges(block, storageMap) {
 module.exports = encodeEntityRanges;
 
 /***/ }),
-/* 627 */
+/* 629 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63438,9 +63245,9 @@ module.exports = encodeEntityRanges;
 
 
 
-var UnicodeUtils = __webpack_require__(76);
+var UnicodeUtils = __webpack_require__(77);
 
-var findRangesImmutable = __webpack_require__(117);
+var findRangesImmutable = __webpack_require__(119);
 
 var areEqual = function areEqual(a, b) {
   return a === b;
@@ -63494,7 +63301,7 @@ function encodeInlineStyleRanges(block) {
 module.exports = encodeInlineStyleRanges;
 
 /***/ }),
-/* 628 */
+/* 630 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63513,9 +63320,9 @@ module.exports = encodeInlineStyleRanges;
  * 
  */
 
-var UnicodeUtils = __webpack_require__(76);
+var UnicodeUtils = __webpack_require__(77);
 
-var getRangeClientRects = __webpack_require__(233);
+var getRangeClientRects = __webpack_require__(236);
 var invariant = __webpack_require__(3);
 
 /**
@@ -63693,7 +63500,7 @@ module.exports = expandRangeToStartOfLine;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 629 */
+/* 631 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63712,9 +63519,9 @@ module.exports = expandRangeToStartOfLine;
 
 
 
-var DraftEntitySegments = __webpack_require__(600);
+var DraftEntitySegments = __webpack_require__(602);
 
-var getRangesForDraftEntity = __webpack_require__(632);
+var getRangesForDraftEntity = __webpack_require__(634);
 var invariant = __webpack_require__(3);
 
 /**
@@ -63815,7 +63622,7 @@ module.exports = getCharacterRemovalRange;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 630 */
+/* 632 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63834,7 +63641,7 @@ module.exports = getCharacterRemovalRange;
 
 
 
-var getDraftEditorSelectionWithNodes = __webpack_require__(231);
+var getDraftEditorSelectionWithNodes = __webpack_require__(234);
 
 /**
  * Convert the current selection range to an anchor/focus pair of offset keys
@@ -63855,10 +63662,10 @@ function getDraftEditorSelection(editorState, root) {
 }
 
 module.exports = getDraftEditorSelection;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(54)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(55)))
 
 /***/ }),
-/* 631 */
+/* 633 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63877,7 +63684,7 @@ module.exports = getDraftEditorSelection;
 
 
 
-var getRangeClientRects = __webpack_require__(233);
+var getRangeClientRects = __webpack_require__(236);
 
 /**
  * Like range.getBoundingClientRect() but normalizes for browser bugs.
@@ -63935,7 +63742,7 @@ function getRangeBoundingClientRect(range) {
 module.exports = getRangeBoundingClientRect;
 
 /***/ }),
-/* 632 */
+/* 634 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -63981,7 +63788,7 @@ module.exports = getRangesForDraftEntity;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 633 */
+/* 635 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64000,7 +63807,7 @@ module.exports = getRangesForDraftEntity;
 
 
 
-var getRangeBoundingClientRect = __webpack_require__(631);
+var getRangeBoundingClientRect = __webpack_require__(633);
 
 /**
  * Return the bounding ClientRect for the visible DOM selection, if any.
@@ -64034,7 +63841,7 @@ function getVisibleSelectionRect(global) {
 module.exports = getVisibleSelectionRect;
 
 /***/ }),
-/* 634 */
+/* 636 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64053,10 +63860,10 @@ module.exports = getVisibleSelectionRect;
 
 
 
-var BlockMapBuilder = __webpack_require__(94);
+var BlockMapBuilder = __webpack_require__(95);
 
-var generateRandomKey = __webpack_require__(50);
-var insertIntoList = __webpack_require__(238);
+var generateRandomKey = __webpack_require__(51);
+var insertIntoList = __webpack_require__(241);
 var invariant = __webpack_require__(3);
 
 function insertFragmentIntoContentState(contentState, selectionState, fragment) {
@@ -64167,7 +63974,7 @@ module.exports = insertFragmentIntoContentState;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 635 */
+/* 637 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64186,9 +63993,9 @@ module.exports = insertFragmentIntoContentState;
 
 
 
-var Immutable = __webpack_require__(12);
+var Immutable = __webpack_require__(13);
 
-var insertIntoList = __webpack_require__(238);
+var insertIntoList = __webpack_require__(241);
 var invariant = __webpack_require__(3);
 
 var Repeat = Immutable.Repeat;
@@ -64228,7 +64035,7 @@ module.exports = insertTextIntoContentState;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 636 */
+/* 638 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64248,10 +64055,10 @@ module.exports = insertTextIntoContentState;
 
 var EditorState = __webpack_require__(10);
 
-var expandRangeToStartOfLine = __webpack_require__(628);
-var getDraftEditorSelectionWithNodes = __webpack_require__(231);
-var moveSelectionBackward = __webpack_require__(160);
-var removeTextWithStrategy = __webpack_require__(96);
+var expandRangeToStartOfLine = __webpack_require__(630);
+var getDraftEditorSelectionWithNodes = __webpack_require__(234);
+var moveSelectionBackward = __webpack_require__(163);
+var removeTextWithStrategy = __webpack_require__(97);
 
 function keyCommandBackspaceToStartOfLine(editorState) {
   var afterRemoval = removeTextWithStrategy(editorState, function (strategyState) {
@@ -64275,10 +64082,10 @@ function keyCommandBackspaceToStartOfLine(editorState) {
 }
 
 module.exports = keyCommandBackspaceToStartOfLine;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(54)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(55)))
 
 /***/ }),
-/* 637 */
+/* 639 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64296,11 +64103,11 @@ module.exports = keyCommandBackspaceToStartOfLine;
 
 
 
-var DraftRemovableWord = __webpack_require__(227);
+var DraftRemovableWord = __webpack_require__(230);
 var EditorState = __webpack_require__(10);
 
-var moveSelectionBackward = __webpack_require__(160);
-var removeTextWithStrategy = __webpack_require__(96);
+var moveSelectionBackward = __webpack_require__(163);
+var removeTextWithStrategy = __webpack_require__(97);
 
 /**
  * Delete the word that is left of the cursor, as well as any spaces or
@@ -64331,7 +64138,7 @@ function keyCommandBackspaceWord(editorState) {
 module.exports = keyCommandBackspaceWord;
 
 /***/ }),
-/* 638 */
+/* 640 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64349,11 +64156,11 @@ module.exports = keyCommandBackspaceWord;
 
 
 
-var DraftRemovableWord = __webpack_require__(227);
+var DraftRemovableWord = __webpack_require__(230);
 var EditorState = __webpack_require__(10);
 
-var moveSelectionForward = __webpack_require__(240);
-var removeTextWithStrategy = __webpack_require__(96);
+var moveSelectionForward = __webpack_require__(243);
+var removeTextWithStrategy = __webpack_require__(97);
 
 /**
  * Delete the word that is right of the cursor, as well as any spaces or
@@ -64382,7 +64189,7 @@ function keyCommandDeleteWord(editorState) {
 module.exports = keyCommandDeleteWord;
 
 /***/ }),
-/* 639 */
+/* 641 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64400,7 +64207,7 @@ module.exports = keyCommandDeleteWord;
 
 
 
-var DraftModifier = __webpack_require__(25);
+var DraftModifier = __webpack_require__(26);
 var EditorState = __webpack_require__(10);
 
 function keyCommandInsertNewline(editorState) {
@@ -64411,7 +64218,7 @@ function keyCommandInsertNewline(editorState) {
 module.exports = keyCommandInsertNewline;
 
 /***/ }),
-/* 640 */
+/* 642 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64454,7 +64261,7 @@ function keyCommandMoveSelectionToEndOfBlock(editorState) {
 module.exports = keyCommandMoveSelectionToEndOfBlock;
 
 /***/ }),
-/* 641 */
+/* 643 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64497,7 +64304,7 @@ function keyCommandMoveSelectionToStartOfBlock(editorState) {
 module.exports = keyCommandMoveSelectionToStartOfBlock;
 
 /***/ }),
-/* 642 */
+/* 644 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64516,10 +64323,10 @@ module.exports = keyCommandMoveSelectionToStartOfBlock;
 
 
 var EditorState = __webpack_require__(10);
-var UnicodeUtils = __webpack_require__(76);
+var UnicodeUtils = __webpack_require__(77);
 
-var moveSelectionBackward = __webpack_require__(160);
-var removeTextWithStrategy = __webpack_require__(96);
+var moveSelectionBackward = __webpack_require__(163);
+var removeTextWithStrategy = __webpack_require__(97);
 
 /**
  * Remove the selected range. If the cursor is collapsed, remove the preceding
@@ -64547,7 +64354,7 @@ function keyCommandPlainBackspace(editorState) {
 module.exports = keyCommandPlainBackspace;
 
 /***/ }),
-/* 643 */
+/* 645 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64566,10 +64373,10 @@ module.exports = keyCommandPlainBackspace;
 
 
 var EditorState = __webpack_require__(10);
-var UnicodeUtils = __webpack_require__(76);
+var UnicodeUtils = __webpack_require__(77);
 
-var moveSelectionForward = __webpack_require__(240);
-var removeTextWithStrategy = __webpack_require__(96);
+var moveSelectionForward = __webpack_require__(243);
+var removeTextWithStrategy = __webpack_require__(97);
 
 /**
  * Remove the selected range. If the cursor is collapsed, remove the following
@@ -64598,7 +64405,7 @@ function keyCommandPlainDelete(editorState) {
 module.exports = keyCommandPlainDelete;
 
 /***/ }),
-/* 644 */
+/* 646 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64616,10 +64423,10 @@ module.exports = keyCommandPlainDelete;
 
 
 
-var DraftModifier = __webpack_require__(25);
+var DraftModifier = __webpack_require__(26);
 var EditorState = __webpack_require__(10);
 
-var getContentStateFragment = __webpack_require__(118);
+var getContentStateFragment = __webpack_require__(120);
 
 /**
  * Transpose the characters on either side of a collapsed cursor, or
@@ -64682,7 +64489,7 @@ function keyCommandTransposeCharacters(editorState) {
 module.exports = keyCommandTransposeCharacters;
 
 /***/ }),
-/* 645 */
+/* 647 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64736,7 +64543,7 @@ function keyCommandUndo(e, editorState, updateFn) {
 module.exports = keyCommandUndo;
 
 /***/ }),
-/* 646 */
+/* 648 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64755,7 +64562,7 @@ module.exports = keyCommandUndo;
 
 
 
-var Immutable = __webpack_require__(12);
+var Immutable = __webpack_require__(13);
 
 var Map = Immutable.Map;
 
@@ -64780,7 +64587,7 @@ function modifyBlockForContentState(contentState, selectionState, operation) {
 module.exports = modifyBlockForContentState;
 
 /***/ }),
-/* 647 */
+/* 649 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64845,7 +64652,7 @@ module.exports = moveBlockInContentState;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 648 */
+/* 650 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64863,7 +64670,7 @@ module.exports = moveBlockInContentState;
 
 
 
-var Immutable = __webpack_require__(12);
+var Immutable = __webpack_require__(13);
 
 function removeRangeFromContentState(contentState, selectionState) {
   if (selectionState.isCollapsed()) {
@@ -64942,7 +64749,7 @@ function removeFromList(targetList, startOffset, endOffset) {
 module.exports = removeRangeFromContentState;
 
 /***/ }),
-/* 649 */
+/* 651 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -64961,9 +64768,9 @@ module.exports = removeRangeFromContentState;
 
 
 
-var DraftJsDebugLogging = __webpack_require__(601);
-var containsNode = __webpack_require__(165);
-var getActiveElement = __webpack_require__(121);
+var DraftJsDebugLogging = __webpack_require__(603);
+var containsNode = __webpack_require__(168);
+var getActiveElement = __webpack_require__(123);
 var invariant = __webpack_require__(3);
 
 function getAnonymizedDOM(node) {
@@ -65147,10 +64954,10 @@ function addPointToSelection(selection, node, offset, selectionState) {
 }
 
 module.exports = setDraftEditorSelection;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(54)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(55)))
 
 /***/ }),
-/* 650 */
+/* 652 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65169,9 +64976,9 @@ module.exports = setDraftEditorSelection;
 
 
 
-var Immutable = __webpack_require__(12);
+var Immutable = __webpack_require__(13);
 
-var generateRandomKey = __webpack_require__(50);
+var generateRandomKey = __webpack_require__(51);
 var invariant = __webpack_require__(3);
 
 var Map = Immutable.Map;
@@ -65226,7 +65033,7 @@ module.exports = splitBlockInContentState;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 651 */
+/* 653 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65253,7 +65060,7 @@ function splitTextIntoTextBlocks(text) {
 module.exports = splitTextIntoTextBlocks;
 
 /***/ }),
-/* 652 */
+/* 654 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65287,7 +65094,7 @@ function getParts(mimeString) {
 module.exports = PhotosMimeType;
 
 /***/ }),
-/* 653 */
+/* 655 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65330,7 +65137,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 654 */
+/* 656 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65366,7 +65173,7 @@ var URI = function () {
 module.exports = URI;
 
 /***/ }),
-/* 655 */
+/* 657 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65416,8 +65223,8 @@ module.exports = URI;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var UnicodeBidi = __webpack_require__(245);
-var UnicodeBidiDirection = __webpack_require__(164);
+var UnicodeBidi = __webpack_require__(248);
+var UnicodeBidiDirection = __webpack_require__(167);
 
 var invariant = __webpack_require__(3);
 
@@ -65473,7 +65280,7 @@ module.exports = UnicodeBidiService;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 656 */
+/* 658 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65500,7 +65307,7 @@ module.exports = UnicodeBidiService;
 
 
 
-var UAParser = __webpack_require__(770);
+var UAParser = __webpack_require__(772);
 
 var UNKNOWN = 'Unknown';
 
@@ -65561,7 +65368,7 @@ var uaData = {
 module.exports = uaData;
 
 /***/ }),
-/* 657 */
+/* 659 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65950,7 +65757,7 @@ module.exports = VersionRange;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 658 */
+/* 660 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -65967,7 +65774,7 @@ module.exports = VersionRange;
 
 
 
-var camelize = __webpack_require__(246);
+var camelize = __webpack_require__(249);
 
 var msPattern = /^-ms-/;
 
@@ -65995,7 +65802,7 @@ function camelizeStyleName(string) {
 module.exports = camelizeStyleName;
 
 /***/ }),
-/* 659 */
+/* 661 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66014,10 +65821,10 @@ module.exports = camelizeStyleName;
 
 /*eslint-disable fb-www/unsafe-html*/
 
-var ExecutionEnvironment = __webpack_require__(19);
+var ExecutionEnvironment = __webpack_require__(20);
 
-var createArrayFromMixed = __webpack_require__(247);
-var getMarkupWrap = __webpack_require__(663);
+var createArrayFromMixed = __webpack_require__(250);
+var getMarkupWrap = __webpack_require__(665);
 var invariant = __webpack_require__(3);
 
 /**
@@ -66085,7 +65892,7 @@ module.exports = createNodesFromMarkup;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 660 */
+/* 662 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66121,7 +65928,7 @@ function getDocumentScrollElement(doc) {
 module.exports = getDocumentScrollElement;
 
 /***/ }),
-/* 661 */
+/* 663 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66138,7 +65945,7 @@ module.exports = getDocumentScrollElement;
  * @typechecks
  */
 
-var getElementRect = __webpack_require__(662);
+var getElementRect = __webpack_require__(664);
 
 /**
  * Gets an element's position in pixels relative to the viewport. The returned
@@ -66160,7 +65967,7 @@ function getElementPosition(element) {
 module.exports = getElementPosition;
 
 /***/ }),
-/* 662 */
+/* 664 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66177,7 +65984,7 @@ module.exports = getElementPosition;
  * @typechecks
  */
 
-var containsNode = __webpack_require__(165);
+var containsNode = __webpack_require__(168);
 
 /**
  * Gets an element's bounding rect in pixels relative to the viewport.
@@ -66216,7 +66023,7 @@ function getElementRect(elem) {
 module.exports = getElementRect;
 
 /***/ }),
-/* 663 */
+/* 665 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66234,7 +66041,7 @@ module.exports = getElementRect;
 
 /*eslint-disable fb-www/unsafe-html */
 
-var ExecutionEnvironment = __webpack_require__(19);
+var ExecutionEnvironment = __webpack_require__(20);
 
 var invariant = __webpack_require__(3);
 
@@ -66317,7 +66124,7 @@ module.exports = getMarkupWrap;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 664 */
+/* 666 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66334,8 +66141,8 @@ module.exports = getMarkupWrap;
  * @typechecks
  */
 
-var camelize = __webpack_require__(246);
-var hyphenate = __webpack_require__(250);
+var camelize = __webpack_require__(249);
+var hyphenate = __webpack_require__(253);
 
 function asString(value) /*?string*/{
   return value == null ? value : String(value);
@@ -66376,7 +66183,7 @@ function getStyleProperty( /*DOMNode*/node, /*string*/name) /*?string*/{
 module.exports = getStyleProperty;
 
 /***/ }),
-/* 665 */
+/* 667 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66441,7 +66248,7 @@ getViewportDimensions.withoutScrollbars = function () {
 module.exports = getViewportDimensions;
 
 /***/ }),
-/* 666 */
+/* 668 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66458,7 +66265,7 @@ module.exports = getViewportDimensions;
 
 
 
-var hyphenate = __webpack_require__(250);
+var hyphenate = __webpack_require__(253);
 
 var msPattern = /^ms-/;
 
@@ -66485,7 +66292,7 @@ function hyphenateStyleName(string) {
 module.exports = hyphenateStyleName;
 
 /***/ }),
-/* 667 */
+/* 669 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66515,7 +66322,7 @@ function isNode(object) {
 module.exports = isNode;
 
 /***/ }),
-/* 668 */
+/* 670 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66532,7 +66339,7 @@ module.exports = isNode;
  * @typechecks
  */
 
-var isNode = __webpack_require__(667);
+var isNode = __webpack_require__(669);
 
 /**
  * @param {*} object The object to check.
@@ -66545,7 +66352,7 @@ function isTextNode(object) {
 module.exports = isTextNode;
 
 /***/ }),
-/* 669 */
+/* 671 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66590,7 +66397,7 @@ function joinClasses(className /*, ... */) {
 module.exports = joinClasses;
 
 /***/ }),
-/* 670 */
+/* 672 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66646,7 +66453,7 @@ function mapObject(object, callback, context) {
 module.exports = mapObject;
 
 /***/ }),
-/* 671 */
+/* 673 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66663,7 +66470,7 @@ module.exports = mapObject;
 
 
 
-var ExecutionEnvironment = __webpack_require__(19);
+var ExecutionEnvironment = __webpack_require__(20);
 
 var performance;
 
@@ -66674,7 +66481,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = performance || {};
 
 /***/ }),
-/* 672 */
+/* 674 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66691,7 +66498,7 @@ module.exports = performance || {};
  * @typechecks
  */
 
-var performance = __webpack_require__(671);
+var performance = __webpack_require__(673);
 
 var performanceNow;
 
@@ -66713,7 +66520,7 @@ if (performance.now) {
 module.exports = performanceNow;
 
 /***/ }),
-/* 673 */
+/* 675 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -66732,18 +66539,18 @@ module.exports = performanceNow;
 // setimmediate adds setImmediate to the global. We want to make sure we export
 // the actual function.
 
-__webpack_require__(769);
+__webpack_require__(771);
 module.exports = global.setImmediate;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(54)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(55)))
 
 /***/ }),
-/* 674 */
+/* 676 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__logger__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__EventEmitter__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__logger__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__EventEmitter__ = __webpack_require__(99);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
@@ -67045,13 +66852,13 @@ var Connector = function (_EventEmitter) {
 /* harmony default export */ __webpack_exports__["a"] = (Connector);
 
 /***/ }),
-/* 675 */
+/* 677 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__logger__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__EventEmitter__ = __webpack_require__(98);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__logger__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__EventEmitter__ = __webpack_require__(99);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
@@ -67124,12 +66931,12 @@ var Connector = function (_EventEmitter) {
 /* harmony default export */ __webpack_exports__["a"] = (Connector);
 
 /***/ }),
-/* 676 */
+/* 678 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__logger__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__logger__ = __webpack_require__(65);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -67294,11 +67101,11 @@ var Interpolator = function () {
 /* harmony default export */ __webpack_exports__["a"] = (Interpolator);
 
 /***/ }),
-/* 677 */
+/* 679 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__logger__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__logger__ = __webpack_require__(65);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 
@@ -67428,11 +67235,11 @@ var LanguageUtil = function () {
 /* harmony default export */ __webpack_exports__["a"] = (LanguageUtil);
 
 /***/ }),
-/* 678 */
+/* 680 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__logger__ = __webpack_require__(63);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__logger__ = __webpack_require__(65);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -67624,12 +67431,12 @@ var PluralResolver = function () {
 /* harmony default export */ __webpack_exports__["a"] = (PluralResolver);
 
 /***/ }),
-/* 679 */
+/* 681 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__EventEmitter__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__EventEmitter__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils__ = __webpack_require__(100);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _defaults(obj, defaults) { var keys = Object.getOwnPropertyNames(defaults); for (var i = 0; i < keys.length; i++) { var key = keys[i]; var value = Object.getOwnPropertyDescriptor(defaults, key); if (value && value.configurable && obj[key] === undefined) { Object.defineProperty(obj, key, value); } } return obj; }
@@ -67774,15 +67581,15 @@ var ResourceStore = function (_EventEmitter) {
 /* harmony default export */ __webpack_exports__["a"] = (ResourceStore);
 
 /***/ }),
-/* 680 */
+/* 682 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__logger__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__EventEmitter__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__postProcessor__ = __webpack_require__(253);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__compatibility_v1__ = __webpack_require__(252);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__logger__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__EventEmitter__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__postProcessor__ = __webpack_require__(256);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__compatibility_v1__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils__ = __webpack_require__(100);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -68083,7 +67890,7 @@ var Translator = function (_EventEmitter) {
 /* harmony default export */ __webpack_exports__["a"] = (Translator);
 
 /***/ }),
-/* 681 */
+/* 683 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -68162,22 +67969,22 @@ function transformOptions(options) {
 }
 
 /***/ }),
-/* 682 */
+/* 684 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__logger__ = __webpack_require__(63);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__EventEmitter__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ResourceStore__ = __webpack_require__(679);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Translator__ = __webpack_require__(680);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__LanguageUtils__ = __webpack_require__(677);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__PluralResolver__ = __webpack_require__(678);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Interpolator__ = __webpack_require__(676);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__BackendConnector__ = __webpack_require__(674);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__CacheConnector__ = __webpack_require__(675);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__defaults__ = __webpack_require__(681);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__postProcessor__ = __webpack_require__(253);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__compatibility_v1__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__logger__ = __webpack_require__(65);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__EventEmitter__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ResourceStore__ = __webpack_require__(681);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Translator__ = __webpack_require__(682);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__LanguageUtils__ = __webpack_require__(679);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__PluralResolver__ = __webpack_require__(680);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Interpolator__ = __webpack_require__(678);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__BackendConnector__ = __webpack_require__(676);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__CacheConnector__ = __webpack_require__(677);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__defaults__ = __webpack_require__(683);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__postProcessor__ = __webpack_require__(256);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__compatibility_v1__ = __webpack_require__(255);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -68571,7 +68378,7 @@ var I18n = function (_EventEmitter) {
 /* harmony default export */ __webpack_exports__["a"] = (new I18n());
 
 /***/ }),
-/* 683 */
+/* 685 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68589,7 +68396,7 @@ var I18n = function (_EventEmitter) {
 if (process.env.NODE_ENV !== 'production') {
   var invariant = __webpack_require__(3);
   var warning = __webpack_require__(4);
-  var ReactPropTypesSecret = __webpack_require__(370);
+  var ReactPropTypesSecret = __webpack_require__(373);
   var loggedTypeFailures = {};
 }
 
@@ -68640,7 +68447,7 @@ module.exports = checkPropTypes;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 684 */
+/* 686 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -68655,12 +68462,12 @@ module.exports = checkPropTypes;
 
 
 
-var emptyFunction = __webpack_require__(26);
+var emptyFunction = __webpack_require__(27);
 var invariant = __webpack_require__(3);
 var warning = __webpack_require__(4);
 
-var ReactPropTypesSecret = __webpack_require__(370);
-var checkPropTypes = __webpack_require__(683);
+var ReactPropTypesSecret = __webpack_require__(373);
+var checkPropTypes = __webpack_require__(685);
 
 module.exports = function(isValidElement, throwOnDirectAccess) {
   /* global Symbol */
@@ -69160,7 +68967,7 @@ module.exports = function(isValidElement, throwOnDirectAccess) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 685 */
+/* 687 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69239,7 +69046,7 @@ var ARIADOMPropertyConfig = {
 module.exports = ARIADOMPropertyConfig;
 
 /***/ }),
-/* 686 */
+/* 688 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69257,7 +69064,7 @@ module.exports = ARIADOMPropertyConfig;
 
 var ReactDOMComponentTree = __webpack_require__(17);
 
-var focusNode = __webpack_require__(248);
+var focusNode = __webpack_require__(251);
 
 var AutoFocusUtils = {
   focusDOMComponent: function () {
@@ -69268,7 +69075,7 @@ var AutoFocusUtils = {
 module.exports = AutoFocusUtils;
 
 /***/ }),
-/* 687 */
+/* 689 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69284,11 +69091,11 @@ module.exports = AutoFocusUtils;
 
 
 
-var EventPropagators = __webpack_require__(101);
-var ExecutionEnvironment = __webpack_require__(19);
-var FallbackCompositionState = __webpack_require__(693);
-var SyntheticCompositionEvent = __webpack_require__(736);
-var SyntheticInputEvent = __webpack_require__(739);
+var EventPropagators = __webpack_require__(102);
+var ExecutionEnvironment = __webpack_require__(20);
+var FallbackCompositionState = __webpack_require__(695);
+var SyntheticCompositionEvent = __webpack_require__(738);
+var SyntheticInputEvent = __webpack_require__(741);
 
 var END_KEYCODES = [9, 13, 27, 32]; // Tab, Return, Esc, Space
 var START_KEYCODE = 229;
@@ -69657,7 +69464,7 @@ var BeforeInputEventPlugin = {
 module.exports = BeforeInputEventPlugin;
 
 /***/ }),
-/* 688 */
+/* 690 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69673,14 +69480,14 @@ module.exports = BeforeInputEventPlugin;
 
 
 
-var CSSProperty = __webpack_require__(371);
-var ExecutionEnvironment = __webpack_require__(19);
-var ReactInstrumentation = __webpack_require__(38);
+var CSSProperty = __webpack_require__(374);
+var ExecutionEnvironment = __webpack_require__(20);
+var ReactInstrumentation = __webpack_require__(41);
 
-var camelizeStyleName = __webpack_require__(658);
-var dangerousStyleValue = __webpack_require__(746);
-var hyphenateStyleName = __webpack_require__(666);
-var memoizeStringOnly = __webpack_require__(251);
+var camelizeStyleName = __webpack_require__(660);
+var dangerousStyleValue = __webpack_require__(748);
+var hyphenateStyleName = __webpack_require__(668);
+var memoizeStringOnly = __webpack_require__(254);
 var warning = __webpack_require__(4);
 
 var processStyleName = memoizeStringOnly(function (styleName) {
@@ -69878,7 +69685,7 @@ module.exports = CSSPropertyOperations;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 689 */
+/* 691 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -69894,17 +69701,17 @@ module.exports = CSSPropertyOperations;
 
 
 
-var EventPluginHub = __webpack_require__(100);
-var EventPropagators = __webpack_require__(101);
-var ExecutionEnvironment = __webpack_require__(19);
+var EventPluginHub = __webpack_require__(101);
+var EventPropagators = __webpack_require__(102);
+var ExecutionEnvironment = __webpack_require__(20);
 var ReactDOMComponentTree = __webpack_require__(17);
-var ReactUpdates = __webpack_require__(52);
-var SyntheticEvent = __webpack_require__(59);
+var ReactUpdates = __webpack_require__(53);
+var SyntheticEvent = __webpack_require__(61);
 
-var inputValueTracking = __webpack_require__(388);
-var getEventTarget = __webpack_require__(179);
-var isEventSupported = __webpack_require__(180);
-var isTextInputElement = __webpack_require__(390);
+var inputValueTracking = __webpack_require__(391);
+var getEventTarget = __webpack_require__(182);
+var isEventSupported = __webpack_require__(183);
+var isTextInputElement = __webpack_require__(393);
 
 var eventTypes = {
   change: {
@@ -70195,7 +70002,7 @@ var ChangeEventPlugin = {
 module.exports = ChangeEventPlugin;
 
 /***/ }),
-/* 690 */
+/* 692 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70213,11 +70020,11 @@ module.exports = ChangeEventPlugin;
 
 var _prodInvariant = __webpack_require__(8);
 
-var DOMLazyTree = __webpack_require__(85);
-var ExecutionEnvironment = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(87);
+var ExecutionEnvironment = __webpack_require__(20);
 
-var createNodesFromMarkup = __webpack_require__(659);
-var emptyFunction = __webpack_require__(26);
+var createNodesFromMarkup = __webpack_require__(661);
+var emptyFunction = __webpack_require__(27);
 var invariant = __webpack_require__(3);
 
 var Danger = {
@@ -70247,7 +70054,7 @@ module.exports = Danger;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 691 */
+/* 693 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70278,7 +70085,7 @@ var DefaultEventPluginOrder = ['ResponderEventPlugin', 'SimpleEventPlugin', 'Tap
 module.exports = DefaultEventPluginOrder;
 
 /***/ }),
-/* 692 */
+/* 694 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70294,9 +70101,9 @@ module.exports = DefaultEventPluginOrder;
 
 
 
-var EventPropagators = __webpack_require__(101);
+var EventPropagators = __webpack_require__(102);
 var ReactDOMComponentTree = __webpack_require__(17);
-var SyntheticMouseEvent = __webpack_require__(124);
+var SyntheticMouseEvent = __webpack_require__(126);
 
 var eventTypes = {
   mouseEnter: {
@@ -70381,7 +70188,7 @@ var EnterLeaveEventPlugin = {
 module.exports = EnterLeaveEventPlugin;
 
 /***/ }),
-/* 693 */
+/* 695 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70399,9 +70206,9 @@ module.exports = EnterLeaveEventPlugin;
 
 var _assign = __webpack_require__(9);
 
-var PooledClass = __webpack_require__(77);
+var PooledClass = __webpack_require__(78);
 
-var getTextContentAccessor = __webpack_require__(387);
+var getTextContentAccessor = __webpack_require__(390);
 
 /**
  * This helper class stores information about text content of a target node,
@@ -70481,7 +70288,7 @@ PooledClass.addPoolingTo(FallbackCompositionState);
 module.exports = FallbackCompositionState;
 
 /***/ }),
-/* 694 */
+/* 696 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70497,7 +70304,7 @@ module.exports = FallbackCompositionState;
 
 
 
-var DOMProperty = __webpack_require__(64);
+var DOMProperty = __webpack_require__(66);
 
 var MUST_USE_PROPERTY = DOMProperty.injection.MUST_USE_PROPERTY;
 var HAS_BOOLEAN_VALUE = DOMProperty.injection.HAS_BOOLEAN_VALUE;
@@ -70722,7 +70529,7 @@ var HTMLDOMPropertyConfig = {
 module.exports = HTMLDOMPropertyConfig;
 
 /***/ }),
-/* 695 */
+/* 697 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70738,12 +70545,12 @@ module.exports = HTMLDOMPropertyConfig;
 
 
 
-var ReactReconciler = __webpack_require__(86);
+var ReactReconciler = __webpack_require__(88);
 
-var instantiateReactComponent = __webpack_require__(389);
-var KeyEscapeUtils = __webpack_require__(171);
-var shouldUpdateReactComponent = __webpack_require__(181);
-var traverseAllChildren = __webpack_require__(392);
+var instantiateReactComponent = __webpack_require__(392);
+var KeyEscapeUtils = __webpack_require__(174);
+var shouldUpdateReactComponent = __webpack_require__(184);
+var traverseAllChildren = __webpack_require__(395);
 var warning = __webpack_require__(4);
 
 var ReactComponentTreeHook;
@@ -70754,7 +70561,7 @@ if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 't
   // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
   // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = __webpack_require__(34);
+  ReactComponentTreeHook = __webpack_require__(37);
 }
 
 function instantiateChild(childInstances, child, name, selfDebugID) {
@@ -70762,7 +70569,7 @@ function instantiateChild(childInstances, child, name, selfDebugID) {
   var keyUnique = childInstances[name] === undefined;
   if (process.env.NODE_ENV !== 'production') {
     if (!ReactComponentTreeHook) {
-      ReactComponentTreeHook = __webpack_require__(34);
+      ReactComponentTreeHook = __webpack_require__(37);
     }
     if (!keyUnique) {
       process.env.NODE_ENV !== 'production' ? warning(false, 'flattenChildren(...): Encountered two children with the same key, ' + '`%s`. Child keys must be unique; when two children share a key, only ' + 'the first child will be used.%s', KeyEscapeUtils.unescape(name), ReactComponentTreeHook.getStackAddendumByID(selfDebugID)) : void 0;
@@ -70881,7 +70688,7 @@ module.exports = ReactChildReconciler;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 696 */
+/* 698 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70897,8 +70704,8 @@ module.exports = ReactChildReconciler;
 
 
 
-var DOMChildrenOperations = __webpack_require__(168);
-var ReactDOMIDOperations = __webpack_require__(703);
+var DOMChildrenOperations = __webpack_require__(171);
+var ReactDOMIDOperations = __webpack_require__(705);
 
 /**
  * Abstracts away all functionality of the reconciler that requires knowledge of
@@ -70914,7 +70721,7 @@ var ReactComponentBrowserEnvironment = {
 module.exports = ReactComponentBrowserEnvironment;
 
 /***/ }),
-/* 697 */
+/* 699 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -70933,23 +70740,23 @@ module.exports = ReactComponentBrowserEnvironment;
 var _prodInvariant = __webpack_require__(8),
     _assign = __webpack_require__(9);
 
-var React = __webpack_require__(87);
-var ReactComponentEnvironment = __webpack_require__(173);
-var ReactCurrentOwner = __webpack_require__(53);
-var ReactErrorUtils = __webpack_require__(174);
-var ReactInstanceMap = __webpack_require__(102);
-var ReactInstrumentation = __webpack_require__(38);
-var ReactNodeTypes = __webpack_require__(381);
-var ReactReconciler = __webpack_require__(86);
+var React = __webpack_require__(89);
+var ReactComponentEnvironment = __webpack_require__(176);
+var ReactCurrentOwner = __webpack_require__(54);
+var ReactErrorUtils = __webpack_require__(177);
+var ReactInstanceMap = __webpack_require__(103);
+var ReactInstrumentation = __webpack_require__(41);
+var ReactNodeTypes = __webpack_require__(384);
+var ReactReconciler = __webpack_require__(88);
 
 if (process.env.NODE_ENV !== 'production') {
-  var checkReactTypeSpec = __webpack_require__(745);
+  var checkReactTypeSpec = __webpack_require__(747);
 }
 
-var emptyObject = __webpack_require__(120);
+var emptyObject = __webpack_require__(122);
 var invariant = __webpack_require__(3);
-var shallowEqual = __webpack_require__(167);
-var shouldUpdateReactComponent = __webpack_require__(181);
+var shallowEqual = __webpack_require__(170);
+var shouldUpdateReactComponent = __webpack_require__(184);
 var warning = __webpack_require__(4);
 
 var CompositeTypes = {
@@ -71820,7 +71627,7 @@ module.exports = ReactCompositeComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 698 */
+/* 700 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71839,15 +71646,15 @@ module.exports = ReactCompositeComponent;
 
 
 var ReactDOMComponentTree = __webpack_require__(17);
-var ReactDefaultInjection = __webpack_require__(715);
-var ReactMount = __webpack_require__(380);
-var ReactReconciler = __webpack_require__(86);
-var ReactUpdates = __webpack_require__(52);
-var ReactVersion = __webpack_require__(730);
+var ReactDefaultInjection = __webpack_require__(717);
+var ReactMount = __webpack_require__(383);
+var ReactReconciler = __webpack_require__(88);
+var ReactUpdates = __webpack_require__(53);
+var ReactVersion = __webpack_require__(732);
 
-var findDOMNode = __webpack_require__(747);
-var getHostComponentFromComposite = __webpack_require__(386);
-var renderSubtreeIntoContainer = __webpack_require__(754);
+var findDOMNode = __webpack_require__(749);
+var getHostComponentFromComposite = __webpack_require__(389);
+var renderSubtreeIntoContainer = __webpack_require__(756);
 var warning = __webpack_require__(4);
 
 ReactDefaultInjection.inject();
@@ -71888,7 +71695,7 @@ if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== 'undefined' && typeof __REACT_DEVT
 }
 
 if (process.env.NODE_ENV !== 'production') {
-  var ExecutionEnvironment = __webpack_require__(19);
+  var ExecutionEnvironment = __webpack_require__(20);
   if (ExecutionEnvironment.canUseDOM && window.top === window.self) {
     // First check if devtools is not installed
     if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ === 'undefined') {
@@ -71923,10 +71730,10 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 if (process.env.NODE_ENV !== 'production') {
-  var ReactInstrumentation = __webpack_require__(38);
-  var ReactDOMUnknownPropertyHook = __webpack_require__(712);
-  var ReactDOMNullInputValuePropHook = __webpack_require__(706);
-  var ReactDOMInvalidARIAHook = __webpack_require__(705);
+  var ReactInstrumentation = __webpack_require__(41);
+  var ReactDOMUnknownPropertyHook = __webpack_require__(714);
+  var ReactDOMNullInputValuePropHook = __webpack_require__(708);
+  var ReactDOMInvalidARIAHook = __webpack_require__(707);
 
   ReactInstrumentation.debugTool.addHook(ReactDOMUnknownPropertyHook);
   ReactInstrumentation.debugTool.addHook(ReactDOMNullInputValuePropHook);
@@ -71937,7 +71744,7 @@ module.exports = ReactDOM;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 699 */
+/* 701 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -71958,32 +71765,32 @@ module.exports = ReactDOM;
 var _prodInvariant = __webpack_require__(8),
     _assign = __webpack_require__(9);
 
-var AutoFocusUtils = __webpack_require__(686);
-var CSSPropertyOperations = __webpack_require__(688);
-var DOMLazyTree = __webpack_require__(85);
-var DOMNamespaces = __webpack_require__(169);
-var DOMProperty = __webpack_require__(64);
-var DOMPropertyOperations = __webpack_require__(373);
-var EventPluginHub = __webpack_require__(100);
-var EventPluginRegistry = __webpack_require__(122);
-var ReactBrowserEventEmitter = __webpack_require__(123);
-var ReactDOMComponentFlags = __webpack_require__(374);
+var AutoFocusUtils = __webpack_require__(688);
+var CSSPropertyOperations = __webpack_require__(690);
+var DOMLazyTree = __webpack_require__(87);
+var DOMNamespaces = __webpack_require__(172);
+var DOMProperty = __webpack_require__(66);
+var DOMPropertyOperations = __webpack_require__(376);
+var EventPluginHub = __webpack_require__(101);
+var EventPluginRegistry = __webpack_require__(124);
+var ReactBrowserEventEmitter = __webpack_require__(125);
+var ReactDOMComponentFlags = __webpack_require__(377);
 var ReactDOMComponentTree = __webpack_require__(17);
-var ReactDOMInput = __webpack_require__(704);
-var ReactDOMOption = __webpack_require__(707);
-var ReactDOMSelect = __webpack_require__(375);
-var ReactDOMTextarea = __webpack_require__(710);
-var ReactInstrumentation = __webpack_require__(38);
-var ReactMultiChild = __webpack_require__(723);
-var ReactServerRenderingTransaction = __webpack_require__(728);
+var ReactDOMInput = __webpack_require__(706);
+var ReactDOMOption = __webpack_require__(709);
+var ReactDOMSelect = __webpack_require__(378);
+var ReactDOMTextarea = __webpack_require__(712);
+var ReactInstrumentation = __webpack_require__(41);
+var ReactMultiChild = __webpack_require__(725);
+var ReactServerRenderingTransaction = __webpack_require__(730);
 
-var emptyFunction = __webpack_require__(26);
-var escapeTextContentForBrowser = __webpack_require__(126);
+var emptyFunction = __webpack_require__(27);
+var escapeTextContentForBrowser = __webpack_require__(128);
 var invariant = __webpack_require__(3);
-var isEventSupported = __webpack_require__(180);
-var shallowEqual = __webpack_require__(167);
-var inputValueTracking = __webpack_require__(388);
-var validateDOMNesting = __webpack_require__(182);
+var isEventSupported = __webpack_require__(183);
+var shallowEqual = __webpack_require__(170);
+var inputValueTracking = __webpack_require__(391);
+var validateDOMNesting = __webpack_require__(185);
 var warning = __webpack_require__(4);
 
 var Flags = ReactDOMComponentFlags;
@@ -72953,7 +72760,7 @@ module.exports = ReactDOMComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 700 */
+/* 702 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -72969,7 +72776,7 @@ module.exports = ReactDOMComponent;
 
 
 
-var validateDOMNesting = __webpack_require__(182);
+var validateDOMNesting = __webpack_require__(185);
 
 var DOC_NODE_TYPE = 9;
 
@@ -72992,7 +72799,7 @@ module.exports = ReactDOMContainerInfo;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 701 */
+/* 703 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73010,7 +72817,7 @@ module.exports = ReactDOMContainerInfo;
 
 var _assign = __webpack_require__(9);
 
-var DOMLazyTree = __webpack_require__(85);
+var DOMLazyTree = __webpack_require__(87);
 var ReactDOMComponentTree = __webpack_require__(17);
 
 var ReactDOMEmptyComponent = function (instantiate) {
@@ -73057,7 +72864,7 @@ _assign(ReactDOMEmptyComponent.prototype, {
 module.exports = ReactDOMEmptyComponent;
 
 /***/ }),
-/* 702 */
+/* 704 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73081,7 +72888,7 @@ var ReactDOMFeatureFlags = {
 module.exports = ReactDOMFeatureFlags;
 
 /***/ }),
-/* 703 */
+/* 705 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73097,7 +72904,7 @@ module.exports = ReactDOMFeatureFlags;
 
 
 
-var DOMChildrenOperations = __webpack_require__(168);
+var DOMChildrenOperations = __webpack_require__(171);
 var ReactDOMComponentTree = __webpack_require__(17);
 
 /**
@@ -73119,7 +72926,7 @@ var ReactDOMIDOperations = {
 module.exports = ReactDOMIDOperations;
 
 /***/ }),
-/* 704 */
+/* 706 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73138,10 +72945,10 @@ module.exports = ReactDOMIDOperations;
 var _prodInvariant = __webpack_require__(8),
     _assign = __webpack_require__(9);
 
-var DOMPropertyOperations = __webpack_require__(373);
-var LinkedValueUtils = __webpack_require__(172);
+var DOMPropertyOperations = __webpack_require__(376);
+var LinkedValueUtils = __webpack_require__(175);
 var ReactDOMComponentTree = __webpack_require__(17);
-var ReactUpdates = __webpack_require__(52);
+var ReactUpdates = __webpack_require__(53);
 
 var invariant = __webpack_require__(3);
 var warning = __webpack_require__(4);
@@ -73412,7 +73219,7 @@ module.exports = ReactDOMInput;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 705 */
+/* 707 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73428,8 +73235,8 @@ module.exports = ReactDOMInput;
 
 
 
-var DOMProperty = __webpack_require__(64);
-var ReactComponentTreeHook = __webpack_require__(34);
+var DOMProperty = __webpack_require__(66);
+var ReactComponentTreeHook = __webpack_require__(37);
 
 var warning = __webpack_require__(4);
 
@@ -73511,7 +73318,7 @@ module.exports = ReactDOMInvalidARIAHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 706 */
+/* 708 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73527,7 +73334,7 @@ module.exports = ReactDOMInvalidARIAHook;
 
 
 
-var ReactComponentTreeHook = __webpack_require__(34);
+var ReactComponentTreeHook = __webpack_require__(37);
 
 var warning = __webpack_require__(4);
 
@@ -73560,7 +73367,7 @@ module.exports = ReactDOMNullInputValuePropHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 707 */
+/* 709 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73578,9 +73385,9 @@ module.exports = ReactDOMNullInputValuePropHook;
 
 var _assign = __webpack_require__(9);
 
-var React = __webpack_require__(87);
+var React = __webpack_require__(89);
 var ReactDOMComponentTree = __webpack_require__(17);
-var ReactDOMSelect = __webpack_require__(375);
+var ReactDOMSelect = __webpack_require__(378);
 
 var warning = __webpack_require__(4);
 var didWarnInvalidOptionChildren = false;
@@ -73688,7 +73495,7 @@ module.exports = ReactDOMOption;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 708 */
+/* 710 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73704,10 +73511,10 @@ module.exports = ReactDOMOption;
 
 
 
-var ExecutionEnvironment = __webpack_require__(19);
+var ExecutionEnvironment = __webpack_require__(20);
 
-var getNodeForCharacterOffset = __webpack_require__(751);
-var getTextContentAccessor = __webpack_require__(387);
+var getNodeForCharacterOffset = __webpack_require__(753);
+var getTextContentAccessor = __webpack_require__(390);
 
 /**
  * While `isCollapsed` is available on the Selection object and `collapsed`
@@ -73905,7 +73712,7 @@ var ReactDOMSelection = {
 module.exports = ReactDOMSelection;
 
 /***/ }),
-/* 709 */
+/* 711 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -73924,13 +73731,13 @@ module.exports = ReactDOMSelection;
 var _prodInvariant = __webpack_require__(8),
     _assign = __webpack_require__(9);
 
-var DOMChildrenOperations = __webpack_require__(168);
-var DOMLazyTree = __webpack_require__(85);
+var DOMChildrenOperations = __webpack_require__(171);
+var DOMLazyTree = __webpack_require__(87);
 var ReactDOMComponentTree = __webpack_require__(17);
 
-var escapeTextContentForBrowser = __webpack_require__(126);
+var escapeTextContentForBrowser = __webpack_require__(128);
 var invariant = __webpack_require__(3);
-var validateDOMNesting = __webpack_require__(182);
+var validateDOMNesting = __webpack_require__(185);
 
 /**
  * Text nodes violate a couple assumptions that React makes about components:
@@ -74073,7 +73880,7 @@ module.exports = ReactDOMTextComponent;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 710 */
+/* 712 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -74092,9 +73899,9 @@ module.exports = ReactDOMTextComponent;
 var _prodInvariant = __webpack_require__(8),
     _assign = __webpack_require__(9);
 
-var LinkedValueUtils = __webpack_require__(172);
+var LinkedValueUtils = __webpack_require__(175);
 var ReactDOMComponentTree = __webpack_require__(17);
-var ReactUpdates = __webpack_require__(52);
+var ReactUpdates = __webpack_require__(53);
 
 var invariant = __webpack_require__(3);
 var warning = __webpack_require__(4);
@@ -74239,7 +74046,7 @@ module.exports = ReactDOMTextarea;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 711 */
+/* 713 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -74381,7 +74188,7 @@ module.exports = {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 712 */
+/* 714 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -74397,9 +74204,9 @@ module.exports = {
 
 
 
-var DOMProperty = __webpack_require__(64);
-var EventPluginRegistry = __webpack_require__(122);
-var ReactComponentTreeHook = __webpack_require__(34);
+var DOMProperty = __webpack_require__(66);
+var EventPluginRegistry = __webpack_require__(124);
+var ReactComponentTreeHook = __webpack_require__(37);
 
 var warning = __webpack_require__(4);
 
@@ -74499,7 +74306,7 @@ module.exports = ReactDOMUnknownPropertyHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 713 */
+/* 715 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -74516,12 +74323,12 @@ module.exports = ReactDOMUnknownPropertyHook;
 
 
 
-var ReactInvalidSetStateWarningHook = __webpack_require__(721);
-var ReactHostOperationHistoryHook = __webpack_require__(719);
-var ReactComponentTreeHook = __webpack_require__(34);
-var ExecutionEnvironment = __webpack_require__(19);
+var ReactInvalidSetStateWarningHook = __webpack_require__(723);
+var ReactHostOperationHistoryHook = __webpack_require__(721);
+var ReactComponentTreeHook = __webpack_require__(37);
+var ExecutionEnvironment = __webpack_require__(20);
 
-var performanceNow = __webpack_require__(672);
+var performanceNow = __webpack_require__(674);
 var warning = __webpack_require__(4);
 
 var hooks = [];
@@ -74866,7 +74673,7 @@ module.exports = ReactDebugTool;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 714 */
+/* 716 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -74884,10 +74691,10 @@ module.exports = ReactDebugTool;
 
 var _assign = __webpack_require__(9);
 
-var ReactUpdates = __webpack_require__(52);
-var Transaction = __webpack_require__(125);
+var ReactUpdates = __webpack_require__(53);
+var Transaction = __webpack_require__(127);
 
-var emptyFunction = __webpack_require__(26);
+var emptyFunction = __webpack_require__(27);
 
 var RESET_BATCHED_UPDATES = {
   initialize: emptyFunction,
@@ -74939,7 +74746,7 @@ var ReactDefaultBatchingStrategy = {
 module.exports = ReactDefaultBatchingStrategy;
 
 /***/ }),
-/* 715 */
+/* 717 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -74955,25 +74762,25 @@ module.exports = ReactDefaultBatchingStrategy;
 
 
 
-var ARIADOMPropertyConfig = __webpack_require__(685);
-var BeforeInputEventPlugin = __webpack_require__(687);
-var ChangeEventPlugin = __webpack_require__(689);
-var DefaultEventPluginOrder = __webpack_require__(691);
-var EnterLeaveEventPlugin = __webpack_require__(692);
-var HTMLDOMPropertyConfig = __webpack_require__(694);
-var ReactComponentBrowserEnvironment = __webpack_require__(696);
-var ReactDOMComponent = __webpack_require__(699);
+var ARIADOMPropertyConfig = __webpack_require__(687);
+var BeforeInputEventPlugin = __webpack_require__(689);
+var ChangeEventPlugin = __webpack_require__(691);
+var DefaultEventPluginOrder = __webpack_require__(693);
+var EnterLeaveEventPlugin = __webpack_require__(694);
+var HTMLDOMPropertyConfig = __webpack_require__(696);
+var ReactComponentBrowserEnvironment = __webpack_require__(698);
+var ReactDOMComponent = __webpack_require__(701);
 var ReactDOMComponentTree = __webpack_require__(17);
-var ReactDOMEmptyComponent = __webpack_require__(701);
-var ReactDOMTreeTraversal = __webpack_require__(711);
-var ReactDOMTextComponent = __webpack_require__(709);
-var ReactDefaultBatchingStrategy = __webpack_require__(714);
-var ReactEventListener = __webpack_require__(718);
-var ReactInjection = __webpack_require__(720);
-var ReactReconcileTransaction = __webpack_require__(726);
-var SVGDOMPropertyConfig = __webpack_require__(731);
-var SelectEventPlugin = __webpack_require__(732);
-var SimpleEventPlugin = __webpack_require__(733);
+var ReactDOMEmptyComponent = __webpack_require__(703);
+var ReactDOMTreeTraversal = __webpack_require__(713);
+var ReactDOMTextComponent = __webpack_require__(711);
+var ReactDefaultBatchingStrategy = __webpack_require__(716);
+var ReactEventListener = __webpack_require__(720);
+var ReactInjection = __webpack_require__(722);
+var ReactReconcileTransaction = __webpack_require__(728);
+var SVGDOMPropertyConfig = __webpack_require__(733);
+var SelectEventPlugin = __webpack_require__(734);
+var SimpleEventPlugin = __webpack_require__(735);
 
 var alreadyInjected = false;
 
@@ -75030,7 +74837,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 716 */
+/* 718 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75055,7 +74862,7 @@ var REACT_ELEMENT_TYPE = typeof Symbol === 'function' && Symbol['for'] && Symbol
 module.exports = REACT_ELEMENT_TYPE;
 
 /***/ }),
-/* 717 */
+/* 719 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75071,7 +74878,7 @@ module.exports = REACT_ELEMENT_TYPE;
 
 
 
-var EventPluginHub = __webpack_require__(100);
+var EventPluginHub = __webpack_require__(101);
 
 function runEventQueueInBatch(events) {
   EventPluginHub.enqueueEvents(events);
@@ -75092,7 +74899,7 @@ var ReactEventEmitterMixin = {
 module.exports = ReactEventEmitterMixin;
 
 /***/ }),
-/* 718 */
+/* 720 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75110,14 +74917,14 @@ module.exports = ReactEventEmitterMixin;
 
 var _assign = __webpack_require__(9);
 
-var EventListener = __webpack_require__(243);
-var ExecutionEnvironment = __webpack_require__(19);
-var PooledClass = __webpack_require__(77);
+var EventListener = __webpack_require__(246);
+var ExecutionEnvironment = __webpack_require__(20);
+var PooledClass = __webpack_require__(78);
 var ReactDOMComponentTree = __webpack_require__(17);
-var ReactUpdates = __webpack_require__(52);
+var ReactUpdates = __webpack_require__(53);
 
-var getEventTarget = __webpack_require__(179);
-var getUnboundedScrollPosition = __webpack_require__(249);
+var getEventTarget = __webpack_require__(182);
+var getUnboundedScrollPosition = __webpack_require__(252);
 
 /**
  * Find the deepest React component completely containing the root of the
@@ -75252,7 +75059,7 @@ var ReactEventListener = {
 module.exports = ReactEventListener;
 
 /***/ }),
-/* 719 */
+/* 721 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75291,7 +75098,7 @@ var ReactHostOperationHistoryHook = {
 module.exports = ReactHostOperationHistoryHook;
 
 /***/ }),
-/* 720 */
+/* 722 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75307,14 +75114,14 @@ module.exports = ReactHostOperationHistoryHook;
 
 
 
-var DOMProperty = __webpack_require__(64);
-var EventPluginHub = __webpack_require__(100);
-var EventPluginUtils = __webpack_require__(170);
-var ReactComponentEnvironment = __webpack_require__(173);
-var ReactEmptyComponent = __webpack_require__(376);
-var ReactBrowserEventEmitter = __webpack_require__(123);
-var ReactHostComponent = __webpack_require__(378);
-var ReactUpdates = __webpack_require__(52);
+var DOMProperty = __webpack_require__(66);
+var EventPluginHub = __webpack_require__(101);
+var EventPluginUtils = __webpack_require__(173);
+var ReactComponentEnvironment = __webpack_require__(176);
+var ReactEmptyComponent = __webpack_require__(379);
+var ReactBrowserEventEmitter = __webpack_require__(125);
+var ReactHostComponent = __webpack_require__(381);
+var ReactUpdates = __webpack_require__(53);
 
 var ReactInjection = {
   Component: ReactComponentEnvironment.injection,
@@ -75330,7 +75137,7 @@ var ReactInjection = {
 module.exports = ReactInjection;
 
 /***/ }),
-/* 721 */
+/* 723 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75373,7 +75180,7 @@ module.exports = ReactInvalidSetStateWarningHook;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 722 */
+/* 724 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75389,7 +75196,7 @@ module.exports = ReactInvalidSetStateWarningHook;
 
 
 
-var adler32 = __webpack_require__(744);
+var adler32 = __webpack_require__(746);
 
 var TAG_END = /\/?>/;
 var COMMENT_START = /^<\!\-\-/;
@@ -75428,7 +75235,7 @@ var ReactMarkupChecksum = {
 module.exports = ReactMarkupChecksum;
 
 /***/ }),
-/* 723 */
+/* 725 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75446,16 +75253,16 @@ module.exports = ReactMarkupChecksum;
 
 var _prodInvariant = __webpack_require__(8);
 
-var ReactComponentEnvironment = __webpack_require__(173);
-var ReactInstanceMap = __webpack_require__(102);
-var ReactInstrumentation = __webpack_require__(38);
+var ReactComponentEnvironment = __webpack_require__(176);
+var ReactInstanceMap = __webpack_require__(103);
+var ReactInstrumentation = __webpack_require__(41);
 
-var ReactCurrentOwner = __webpack_require__(53);
-var ReactReconciler = __webpack_require__(86);
-var ReactChildReconciler = __webpack_require__(695);
+var ReactCurrentOwner = __webpack_require__(54);
+var ReactReconciler = __webpack_require__(88);
+var ReactChildReconciler = __webpack_require__(697);
 
-var emptyFunction = __webpack_require__(26);
-var flattenChildren = __webpack_require__(748);
+var emptyFunction = __webpack_require__(27);
+var flattenChildren = __webpack_require__(750);
 var invariant = __webpack_require__(3);
 
 /**
@@ -75880,7 +75687,7 @@ module.exports = ReactMultiChild;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 724 */
+/* 726 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -75979,7 +75786,7 @@ module.exports = ReactOwner;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 725 */
+/* 727 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -76010,7 +75817,7 @@ module.exports = ReactPropTypeLocationNames;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 726 */
+/* 728 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -76028,13 +75835,13 @@ module.exports = ReactPropTypeLocationNames;
 
 var _assign = __webpack_require__(9);
 
-var CallbackQueue = __webpack_require__(372);
-var PooledClass = __webpack_require__(77);
-var ReactBrowserEventEmitter = __webpack_require__(123);
-var ReactInputSelection = __webpack_require__(379);
-var ReactInstrumentation = __webpack_require__(38);
-var Transaction = __webpack_require__(125);
-var ReactUpdateQueue = __webpack_require__(175);
+var CallbackQueue = __webpack_require__(375);
+var PooledClass = __webpack_require__(78);
+var ReactBrowserEventEmitter = __webpack_require__(125);
+var ReactInputSelection = __webpack_require__(382);
+var ReactInstrumentation = __webpack_require__(41);
+var Transaction = __webpack_require__(127);
+var ReactUpdateQueue = __webpack_require__(178);
 
 /**
  * Ensures that, when possible, the selection range (currently selected text
@@ -76194,7 +76001,7 @@ module.exports = ReactReconcileTransaction;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 727 */
+/* 729 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -76211,7 +76018,7 @@ module.exports = ReactReconcileTransaction;
 
 
 
-var ReactOwner = __webpack_require__(724);
+var ReactOwner = __webpack_require__(726);
 
 var ReactRef = {};
 
@@ -76288,7 +76095,7 @@ ReactRef.detachRefs = function (instance, element) {
 module.exports = ReactRef;
 
 /***/ }),
-/* 728 */
+/* 730 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -76306,10 +76113,10 @@ module.exports = ReactRef;
 
 var _assign = __webpack_require__(9);
 
-var PooledClass = __webpack_require__(77);
-var Transaction = __webpack_require__(125);
-var ReactInstrumentation = __webpack_require__(38);
-var ReactServerUpdateQueue = __webpack_require__(729);
+var PooledClass = __webpack_require__(78);
+var Transaction = __webpack_require__(127);
+var ReactInstrumentation = __webpack_require__(41);
+var ReactServerUpdateQueue = __webpack_require__(731);
 
 /**
  * Executed within the scope of the `Transaction` instance. Consider these as
@@ -76384,7 +76191,7 @@ module.exports = ReactServerRenderingTransaction;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 729 */
+/* 731 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -76403,7 +76210,7 @@ module.exports = ReactServerRenderingTransaction;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var ReactUpdateQueue = __webpack_require__(175);
+var ReactUpdateQueue = __webpack_require__(178);
 
 var warning = __webpack_require__(4);
 
@@ -76529,7 +76336,7 @@ module.exports = ReactServerUpdateQueue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 730 */
+/* 732 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -76548,7 +76355,7 @@ module.exports = ReactServerUpdateQueue;
 module.exports = '15.6.1';
 
 /***/ }),
-/* 731 */
+/* 733 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -76855,7 +76662,7 @@ Object.keys(ATTRS).forEach(function (key) {
 module.exports = SVGDOMPropertyConfig;
 
 /***/ }),
-/* 732 */
+/* 734 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -76871,15 +76678,15 @@ module.exports = SVGDOMPropertyConfig;
 
 
 
-var EventPropagators = __webpack_require__(101);
-var ExecutionEnvironment = __webpack_require__(19);
+var EventPropagators = __webpack_require__(102);
+var ExecutionEnvironment = __webpack_require__(20);
 var ReactDOMComponentTree = __webpack_require__(17);
-var ReactInputSelection = __webpack_require__(379);
-var SyntheticEvent = __webpack_require__(59);
+var ReactInputSelection = __webpack_require__(382);
+var SyntheticEvent = __webpack_require__(61);
 
-var getActiveElement = __webpack_require__(121);
-var isTextInputElement = __webpack_require__(390);
-var shallowEqual = __webpack_require__(167);
+var getActiveElement = __webpack_require__(123);
+var isTextInputElement = __webpack_require__(393);
+var shallowEqual = __webpack_require__(170);
 
 var skipSelectionChangeEvent = ExecutionEnvironment.canUseDOM && 'documentMode' in document && document.documentMode <= 11;
 
@@ -77048,7 +76855,7 @@ var SelectEventPlugin = {
 module.exports = SelectEventPlugin;
 
 /***/ }),
-/* 733 */
+/* 735 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77067,23 +76874,23 @@ module.exports = SelectEventPlugin;
 
 var _prodInvariant = __webpack_require__(8);
 
-var EventListener = __webpack_require__(243);
-var EventPropagators = __webpack_require__(101);
+var EventListener = __webpack_require__(246);
+var EventPropagators = __webpack_require__(102);
 var ReactDOMComponentTree = __webpack_require__(17);
-var SyntheticAnimationEvent = __webpack_require__(734);
-var SyntheticClipboardEvent = __webpack_require__(735);
-var SyntheticEvent = __webpack_require__(59);
-var SyntheticFocusEvent = __webpack_require__(738);
-var SyntheticKeyboardEvent = __webpack_require__(740);
-var SyntheticMouseEvent = __webpack_require__(124);
-var SyntheticDragEvent = __webpack_require__(737);
-var SyntheticTouchEvent = __webpack_require__(741);
-var SyntheticTransitionEvent = __webpack_require__(742);
-var SyntheticUIEvent = __webpack_require__(103);
-var SyntheticWheelEvent = __webpack_require__(743);
+var SyntheticAnimationEvent = __webpack_require__(736);
+var SyntheticClipboardEvent = __webpack_require__(737);
+var SyntheticEvent = __webpack_require__(61);
+var SyntheticFocusEvent = __webpack_require__(740);
+var SyntheticKeyboardEvent = __webpack_require__(742);
+var SyntheticMouseEvent = __webpack_require__(126);
+var SyntheticDragEvent = __webpack_require__(739);
+var SyntheticTouchEvent = __webpack_require__(743);
+var SyntheticTransitionEvent = __webpack_require__(744);
+var SyntheticUIEvent = __webpack_require__(104);
+var SyntheticWheelEvent = __webpack_require__(745);
 
-var emptyFunction = __webpack_require__(26);
-var getEventCharCode = __webpack_require__(177);
+var emptyFunction = __webpack_require__(27);
+var getEventCharCode = __webpack_require__(180);
 var invariant = __webpack_require__(3);
 
 /**
@@ -77280,7 +77087,7 @@ module.exports = SimpleEventPlugin;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 734 */
+/* 736 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77296,7 +77103,7 @@ module.exports = SimpleEventPlugin;
 
 
 
-var SyntheticEvent = __webpack_require__(59);
+var SyntheticEvent = __webpack_require__(61);
 
 /**
  * @interface Event
@@ -77324,7 +77131,7 @@ SyntheticEvent.augmentClass(SyntheticAnimationEvent, AnimationEventInterface);
 module.exports = SyntheticAnimationEvent;
 
 /***/ }),
-/* 735 */
+/* 737 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77340,7 +77147,7 @@ module.exports = SyntheticAnimationEvent;
 
 
 
-var SyntheticEvent = __webpack_require__(59);
+var SyntheticEvent = __webpack_require__(61);
 
 /**
  * @interface Event
@@ -77367,7 +77174,7 @@ SyntheticEvent.augmentClass(SyntheticClipboardEvent, ClipboardEventInterface);
 module.exports = SyntheticClipboardEvent;
 
 /***/ }),
-/* 736 */
+/* 738 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77383,7 +77190,7 @@ module.exports = SyntheticClipboardEvent;
 
 
 
-var SyntheticEvent = __webpack_require__(59);
+var SyntheticEvent = __webpack_require__(61);
 
 /**
  * @interface Event
@@ -77408,7 +77215,7 @@ SyntheticEvent.augmentClass(SyntheticCompositionEvent, CompositionEventInterface
 module.exports = SyntheticCompositionEvent;
 
 /***/ }),
-/* 737 */
+/* 739 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77424,7 +77231,7 @@ module.exports = SyntheticCompositionEvent;
 
 
 
-var SyntheticMouseEvent = __webpack_require__(124);
+var SyntheticMouseEvent = __webpack_require__(126);
 
 /**
  * @interface DragEvent
@@ -77449,7 +77256,7 @@ SyntheticMouseEvent.augmentClass(SyntheticDragEvent, DragEventInterface);
 module.exports = SyntheticDragEvent;
 
 /***/ }),
-/* 738 */
+/* 740 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77465,7 +77272,7 @@ module.exports = SyntheticDragEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(103);
+var SyntheticUIEvent = __webpack_require__(104);
 
 /**
  * @interface FocusEvent
@@ -77490,7 +77297,7 @@ SyntheticUIEvent.augmentClass(SyntheticFocusEvent, FocusEventInterface);
 module.exports = SyntheticFocusEvent;
 
 /***/ }),
-/* 739 */
+/* 741 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77506,7 +77313,7 @@ module.exports = SyntheticFocusEvent;
 
 
 
-var SyntheticEvent = __webpack_require__(59);
+var SyntheticEvent = __webpack_require__(61);
 
 /**
  * @interface Event
@@ -77532,7 +77339,7 @@ SyntheticEvent.augmentClass(SyntheticInputEvent, InputEventInterface);
 module.exports = SyntheticInputEvent;
 
 /***/ }),
-/* 740 */
+/* 742 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77548,11 +77355,11 @@ module.exports = SyntheticInputEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(103);
+var SyntheticUIEvent = __webpack_require__(104);
 
-var getEventCharCode = __webpack_require__(177);
-var getEventKey = __webpack_require__(749);
-var getEventModifierState = __webpack_require__(178);
+var getEventCharCode = __webpack_require__(180);
+var getEventKey = __webpack_require__(751);
+var getEventModifierState = __webpack_require__(181);
 
 /**
  * @interface KeyboardEvent
@@ -77621,7 +77428,7 @@ SyntheticUIEvent.augmentClass(SyntheticKeyboardEvent, KeyboardEventInterface);
 module.exports = SyntheticKeyboardEvent;
 
 /***/ }),
-/* 741 */
+/* 743 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77637,9 +77444,9 @@ module.exports = SyntheticKeyboardEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(103);
+var SyntheticUIEvent = __webpack_require__(104);
 
-var getEventModifierState = __webpack_require__(178);
+var getEventModifierState = __webpack_require__(181);
 
 /**
  * @interface TouchEvent
@@ -77671,7 +77478,7 @@ SyntheticUIEvent.augmentClass(SyntheticTouchEvent, TouchEventInterface);
 module.exports = SyntheticTouchEvent;
 
 /***/ }),
-/* 742 */
+/* 744 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77687,7 +77494,7 @@ module.exports = SyntheticTouchEvent;
 
 
 
-var SyntheticEvent = __webpack_require__(59);
+var SyntheticEvent = __webpack_require__(61);
 
 /**
  * @interface Event
@@ -77715,7 +77522,7 @@ SyntheticEvent.augmentClass(SyntheticTransitionEvent, TransitionEventInterface);
 module.exports = SyntheticTransitionEvent;
 
 /***/ }),
-/* 743 */
+/* 745 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77731,7 +77538,7 @@ module.exports = SyntheticTransitionEvent;
 
 
 
-var SyntheticMouseEvent = __webpack_require__(124);
+var SyntheticMouseEvent = __webpack_require__(126);
 
 /**
  * @interface WheelEvent
@@ -77771,7 +77578,7 @@ SyntheticMouseEvent.augmentClass(SyntheticWheelEvent, WheelEventInterface);
 module.exports = SyntheticWheelEvent;
 
 /***/ }),
-/* 744 */
+/* 746 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77820,7 +77627,7 @@ function adler32(data) {
 module.exports = adler32;
 
 /***/ }),
-/* 745 */
+/* 747 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77838,8 +77645,8 @@ module.exports = adler32;
 
 var _prodInvariant = __webpack_require__(8);
 
-var ReactPropTypeLocationNames = __webpack_require__(725);
-var ReactPropTypesSecret = __webpack_require__(382);
+var ReactPropTypeLocationNames = __webpack_require__(727);
+var ReactPropTypesSecret = __webpack_require__(385);
 
 var invariant = __webpack_require__(3);
 var warning = __webpack_require__(4);
@@ -77852,7 +77659,7 @@ if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 't
   // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
   // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = __webpack_require__(34);
+  ReactComponentTreeHook = __webpack_require__(37);
 }
 
 var loggedTypeFailures = {};
@@ -77894,7 +77701,7 @@ function checkReactTypeSpec(typeSpecs, values, location, componentName, element,
 
         if (process.env.NODE_ENV !== 'production') {
           if (!ReactComponentTreeHook) {
-            ReactComponentTreeHook = __webpack_require__(34);
+            ReactComponentTreeHook = __webpack_require__(37);
           }
           if (debugID !== null) {
             componentStackInfo = ReactComponentTreeHook.getStackAddendumByID(debugID);
@@ -77913,7 +77720,7 @@ module.exports = checkReactTypeSpec;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 746 */
+/* 748 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -77929,7 +77736,7 @@ module.exports = checkReactTypeSpec;
 
 
 
-var CSSProperty = __webpack_require__(371);
+var CSSProperty = __webpack_require__(374);
 var warning = __webpack_require__(4);
 
 var isUnitlessNumber = CSSProperty.isUnitlessNumber;
@@ -77998,7 +77805,7 @@ module.exports = dangerousStyleValue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 747 */
+/* 749 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78016,11 +77823,11 @@ module.exports = dangerousStyleValue;
 
 var _prodInvariant = __webpack_require__(8);
 
-var ReactCurrentOwner = __webpack_require__(53);
+var ReactCurrentOwner = __webpack_require__(54);
 var ReactDOMComponentTree = __webpack_require__(17);
-var ReactInstanceMap = __webpack_require__(102);
+var ReactInstanceMap = __webpack_require__(103);
 
-var getHostComponentFromComposite = __webpack_require__(386);
+var getHostComponentFromComposite = __webpack_require__(389);
 var invariant = __webpack_require__(3);
 var warning = __webpack_require__(4);
 
@@ -78064,7 +77871,7 @@ module.exports = findDOMNode;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 748 */
+/* 750 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78081,8 +77888,8 @@ module.exports = findDOMNode;
 
 
 
-var KeyEscapeUtils = __webpack_require__(171);
-var traverseAllChildren = __webpack_require__(392);
+var KeyEscapeUtils = __webpack_require__(174);
+var traverseAllChildren = __webpack_require__(395);
 var warning = __webpack_require__(4);
 
 var ReactComponentTreeHook;
@@ -78093,7 +77900,7 @@ if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 't
   // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
   // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = __webpack_require__(34);
+  ReactComponentTreeHook = __webpack_require__(37);
 }
 
 /**
@@ -78109,7 +77916,7 @@ function flattenSingleChildIntoContext(traverseContext, child, name, selfDebugID
     var keyUnique = result[name] === undefined;
     if (process.env.NODE_ENV !== 'production') {
       if (!ReactComponentTreeHook) {
-        ReactComponentTreeHook = __webpack_require__(34);
+        ReactComponentTreeHook = __webpack_require__(37);
       }
       if (!keyUnique) {
         process.env.NODE_ENV !== 'production' ? warning(false, 'flattenChildren(...): Encountered two children with the same key, ' + '`%s`. Child keys must be unique; when two children share a key, only ' + 'the first child will be used.%s', KeyEscapeUtils.unescape(name), ReactComponentTreeHook.getStackAddendumByID(selfDebugID)) : void 0;
@@ -78146,7 +77953,7 @@ module.exports = flattenChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 749 */
+/* 751 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78162,7 +77969,7 @@ module.exports = flattenChildren;
 
 
 
-var getEventCharCode = __webpack_require__(177);
+var getEventCharCode = __webpack_require__(180);
 
 /**
  * Normalization of deprecated HTML5 `key` values
@@ -78263,7 +78070,7 @@ function getEventKey(nativeEvent) {
 module.exports = getEventKey;
 
 /***/ }),
-/* 750 */
+/* 752 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78309,7 +78116,7 @@ function getIteratorFn(maybeIterable) {
 module.exports = getIteratorFn;
 
 /***/ }),
-/* 751 */
+/* 753 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78388,7 +78195,7 @@ function getNodeForCharacterOffset(root, offset) {
 module.exports = getNodeForCharacterOffset;
 
 /***/ }),
-/* 752 */
+/* 754 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78404,7 +78211,7 @@ module.exports = getNodeForCharacterOffset;
 
 
 
-var ExecutionEnvironment = __webpack_require__(19);
+var ExecutionEnvironment = __webpack_require__(20);
 
 /**
  * Generate a mapping of standard vendor prefixes using the defined style property and event name.
@@ -78494,7 +78301,7 @@ function getVendorPrefixedEventName(eventName) {
 module.exports = getVendorPrefixedEventName;
 
 /***/ }),
-/* 753 */
+/* 755 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78510,7 +78317,7 @@ module.exports = getVendorPrefixedEventName;
 
 
 
-var escapeTextContentForBrowser = __webpack_require__(126);
+var escapeTextContentForBrowser = __webpack_require__(128);
 
 /**
  * Escapes attribute value to prevent scripting attacks.
@@ -78525,7 +78332,7 @@ function quoteAttributeValueForBrowser(value) {
 module.exports = quoteAttributeValueForBrowser;
 
 /***/ }),
-/* 754 */
+/* 756 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78541,12 +78348,12 @@ module.exports = quoteAttributeValueForBrowser;
 
 
 
-var ReactMount = __webpack_require__(380);
+var ReactMount = __webpack_require__(383);
 
 module.exports = ReactMount.renderSubtreeIntoContainer;
 
 /***/ }),
-/* 755 */
+/* 757 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78610,7 +78417,7 @@ var KeyEscapeUtils = {
 module.exports = KeyEscapeUtils;
 
 /***/ }),
-/* 756 */
+/* 758 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78627,7 +78434,7 @@ module.exports = KeyEscapeUtils;
 
 
 
-var _prodInvariant = __webpack_require__(88);
+var _prodInvariant = __webpack_require__(90);
 
 var invariant = __webpack_require__(3);
 
@@ -78728,7 +78535,7 @@ module.exports = PooledClass;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 757 */
+/* 759 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78744,11 +78551,11 @@ module.exports = PooledClass;
 
 
 
-var PooledClass = __webpack_require__(756);
-var ReactElement = __webpack_require__(78);
+var PooledClass = __webpack_require__(758);
+var ReactElement = __webpack_require__(79);
 
-var emptyFunction = __webpack_require__(26);
-var traverseAllChildren = __webpack_require__(767);
+var emptyFunction = __webpack_require__(27);
+var traverseAllChildren = __webpack_require__(769);
 
 var twoArgumentPooler = PooledClass.twoArgumentPooler;
 var fourArgumentPooler = PooledClass.fourArgumentPooler;
@@ -78924,7 +78731,7 @@ var ReactChildren = {
 module.exports = ReactChildren;
 
 /***/ }),
-/* 758 */
+/* 760 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -78940,7 +78747,7 @@ module.exports = ReactChildren;
 
 
 
-var ReactElement = __webpack_require__(78);
+var ReactElement = __webpack_require__(79);
 
 /**
  * Create a factory that creates HTML tag elements.
@@ -78949,7 +78756,7 @@ var ReactElement = __webpack_require__(78);
  */
 var createDOMFactory = ReactElement.createFactory;
 if (process.env.NODE_ENV !== 'production') {
-  var ReactElementValidator = __webpack_require__(395);
+  var ReactElementValidator = __webpack_require__(398);
   createDOMFactory = ReactElementValidator.createFactory;
 }
 
@@ -79099,7 +78906,7 @@ module.exports = ReactDOMFactories;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 759 */
+/* 761 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79130,7 +78937,7 @@ module.exports = ReactPropTypeLocationNames;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 760 */
+/* 762 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79146,15 +78953,15 @@ module.exports = ReactPropTypeLocationNames;
 
 
 
-var _require = __webpack_require__(78),
+var _require = __webpack_require__(79),
     isValidElement = _require.isValidElement;
 
-var factory = __webpack_require__(369);
+var factory = __webpack_require__(372);
 
 module.exports = factory(isValidElement);
 
 /***/ }),
-/* 761 */
+/* 763 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79176,7 +78983,7 @@ var ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';
 module.exports = ReactPropTypesSecret;
 
 /***/ }),
-/* 762 */
+/* 764 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79195,7 +79002,7 @@ module.exports = ReactPropTypesSecret;
 module.exports = '15.6.1';
 
 /***/ }),
-/* 763 */
+/* 765 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79211,10 +79018,10 @@ module.exports = '15.6.1';
 
 
 
-var _prodInvariant = __webpack_require__(88);
+var _prodInvariant = __webpack_require__(90);
 
-var ReactPropTypeLocationNames = __webpack_require__(759);
-var ReactPropTypesSecret = __webpack_require__(761);
+var ReactPropTypeLocationNames = __webpack_require__(761);
+var ReactPropTypesSecret = __webpack_require__(763);
 
 var invariant = __webpack_require__(3);
 var warning = __webpack_require__(4);
@@ -79227,7 +79034,7 @@ if (typeof process !== 'undefined' && process.env && process.env.NODE_ENV === 't
   // https://github.com/facebook/react/issues/7240
   // Remove the inline requires when we don't need them anymore:
   // https://github.com/facebook/react/pull/7178
-  ReactComponentTreeHook = __webpack_require__(34);
+  ReactComponentTreeHook = __webpack_require__(37);
 }
 
 var loggedTypeFailures = {};
@@ -79269,7 +79076,7 @@ function checkReactTypeSpec(typeSpecs, values, location, componentName, element,
 
         if (process.env.NODE_ENV !== 'production') {
           if (!ReactComponentTreeHook) {
-            ReactComponentTreeHook = __webpack_require__(34);
+            ReactComponentTreeHook = __webpack_require__(37);
           }
           if (debugID !== null) {
             componentStackInfo = ReactComponentTreeHook.getStackAddendumByID(debugID);
@@ -79288,7 +79095,7 @@ module.exports = checkReactTypeSpec;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 764 */
+/* 766 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79304,19 +79111,19 @@ module.exports = checkReactTypeSpec;
 
 
 
-var _require = __webpack_require__(393),
+var _require = __webpack_require__(396),
     Component = _require.Component;
 
-var _require2 = __webpack_require__(78),
+var _require2 = __webpack_require__(79),
     isValidElement = _require2.isValidElement;
 
-var ReactNoopUpdateQueue = __webpack_require__(396);
-var factory = __webpack_require__(588);
+var ReactNoopUpdateQueue = __webpack_require__(399);
+var factory = __webpack_require__(590);
 
 module.exports = factory(Component, isValidElement, ReactNoopUpdateQueue);
 
 /***/ }),
-/* 765 */
+/* 767 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79342,7 +79149,7 @@ function getNextDebugID() {
 module.exports = getNextDebugID;
 
 /***/ }),
-/* 766 */
+/* 768 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79357,9 +79164,9 @@ module.exports = getNextDebugID;
  */
 
 
-var _prodInvariant = __webpack_require__(88);
+var _prodInvariant = __webpack_require__(90);
 
-var ReactElement = __webpack_require__(78);
+var ReactElement = __webpack_require__(79);
 
 var invariant = __webpack_require__(3);
 
@@ -79386,7 +79193,7 @@ module.exports = onlyChild;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 767 */
+/* 769 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -79402,14 +79209,14 @@ module.exports = onlyChild;
 
 
 
-var _prodInvariant = __webpack_require__(88);
+var _prodInvariant = __webpack_require__(90);
 
-var ReactCurrentOwner = __webpack_require__(53);
-var REACT_ELEMENT_TYPE = __webpack_require__(394);
+var ReactCurrentOwner = __webpack_require__(54);
+var REACT_ELEMENT_TYPE = __webpack_require__(397);
 
-var getIteratorFn = __webpack_require__(397);
+var getIteratorFn = __webpack_require__(400);
 var invariant = __webpack_require__(3);
-var KeyEscapeUtils = __webpack_require__(755);
+var KeyEscapeUtils = __webpack_require__(757);
 var warning = __webpack_require__(4);
 
 var SEPARATOR = '.';
@@ -79568,7 +79375,7 @@ module.exports = traverseAllChildren;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 768 */
+/* 770 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {/**
@@ -80308,10 +80115,10 @@ module.exports = traverseAllChildren;
   typeof self === "object" ? self : this
 );
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(54)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(55)))
 
 /***/ }),
-/* 769 */
+/* 771 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -80501,10 +80308,10 @@ module.exports = traverseAllChildren;
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(54), __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(55), __webpack_require__(2)))
 
 /***/ }),
-/* 770 */
+/* 772 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -81425,7 +81232,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
         exports.UAParser = UAParser;
     } else {
         // requirejs env (optional)
-        if ("function" === FUNC_TYPE && __webpack_require__(772)) {
+        if ("function" === FUNC_TYPE && __webpack_require__(774)) {
             !(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
                 return UAParser;
             }.call(exports, __webpack_require__, exports, module),
@@ -81461,7 +81268,7 @@ var __WEBPACK_AMD_DEFINE_RESULT__;/**
 
 
 /***/ }),
-/* 771 */
+/* 773 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -81489,7 +81296,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 772 */
+/* 774 */
 /***/ (function(module, exports) {
 
 /* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
