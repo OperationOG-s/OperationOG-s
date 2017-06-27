@@ -29,7 +29,7 @@ public class CustomController : Controller
   }
 
   [RestrictToUserType(new string[] {"*"})]
-  [HttpPut("FindRecipe/{id}")]
+  [HttpGet("FindRecipe/{id}")]
   public Recipe FindRecipe(int id)
   {
     //var recipe = _context.Recipe.FirstOrDefault(elem => elem.Id == id);
@@ -40,8 +40,19 @@ public class CustomController : Controller
     if(recipe == null) throw new Exception("Recipe not found");
     return recipe;
   }
-
   
+ [RestrictToUserType(new string[] {"*"})]
+  [HttpGet("FindMeals/{idCategorie}/{idMeals}")]
+  public Categorie_Meal FindMeals(int idCategorie, int idMeals)
+  {
+    //var recipe = _context.Recipe.FirstOrDefault(elem => elem.Id == id);
+    var findmeals = (from _findmeals in _context.Categorie_Meal
+                  where (_findmeals.CategorieId == idCategorie) //&& GGGG(_findmeals.MealId== idMeals) //(idMeals == 1)  && (idMeals == 2) && (idMeals == 3)
+                  select _findmeals).FirstOrDefault();
+
+   if(findmeals  == null) throw new Exception("category not found");
+    return findmeals ;
+  }
 
 
 

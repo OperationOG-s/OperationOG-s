@@ -27685,17 +27685,78 @@ function get_recipe(id) {
     });
 }
 exports.get_recipe = get_recipe;
+function get_meals(id, idMeals) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/CustomController/FindMeals/${id}/${idMeals}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let json = yield res.json();
+        return { meals: json };
+    });
+}
+exports.get_meals = get_meals;
 class IComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
         this.state = { i: 0, j: 0, z: 0, recipes: Immutable.List() };
     }
     componentWillMount() {
-        get_recipe(7).then(result => console.log("the recipe is: ", result.recipe));
-        var thread = setInterval(() => {
-            this.setState(Object.assign({}, this.state, { i: this.state.i + 1 }));
-        }, 1000);
+        //   get_recipe(7).then(result => console.log("the recipe is: ", result.recipe))
+        //      var thread = setInterval(() => 
+        // {
+        //      this.setState({...this.state, i : this.state.i + 1})
+        //     }, 1000)  
+        //     this.get_recipes().then(online_recipes => this.setState({...this.state, recipes:online_recipes})  )       
+        // }
+    }
+    // async get_recipes(){
+    //     let recipes_page = await Api.get_Recipes(0,100)
+    //     let loaded_recipes = Immutable.List<Models.Recipe>(recipes_page.Items.map(r => r.Item))
+    //     for(let i = 1; i < recipes_page.NumPages; i++){
+    //         let recipes = await Api.get_Recipes(i,100)
+    //         loaded_recipes = loaded_recipes.concat(Immutable.List<Models.Recipe>(recipes.Items.map(r => r.Item))).toList()
+    //     }
+    //     return Immutable.List<Models.Recipe>(loaded_recipes)
+    // }
+    // prints out in the console everytime the button is clicked
+    // clicked(){
+    //     console.log('the button was clicked:Y recipe is bookmarked!');
+    // }
+    render() {
+        console.log(this.props.props);
+        // Api.get_Recipes()
+        if (this.props.props.current_User == undefined)
+            return React.createElement("div", null, "Log in first...");
+        return React.createElement("div", null,
+            React.createElement("div", null,
+                React.createElement("img", { src: "http://s.eatthis-cdn.com/media/images/ext/336492655/fast-food.jpg", alt: "food", width: "428px", height: "428px" }),
+                "Welcome ",
+                this.props.props.current_User.Username,
+                "!"),
+            React.createElement("div", null, "Here you can find recipes!"));
+    }
+}
+exports.default = IComponent;
+////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////
+class CategoryComponent extends React.Component {
+    constructor(props, context) {
+        super(props, context);
+        this.state = { categories: Immutable.List(), recipes: Immutable.List() };
+    }
+    componentWillMount() {
+        get_recipe(7).then(result => this.setState(Object.assign({}, this.state, { recipe: result })));
+        this.get_categories().then(online_categories => this.setState(Object.assign({}, this.state, { categories: online_categories })));
         this.get_recipes().then(online_recipes => this.setState(Object.assign({}, this.state, { recipes: online_recipes })));
+    }
+    get_categories() {
+        return __awaiter(this, void 0, void 0, function* () {
+            let category_page = yield Api.get_Categories(0, 4);
+            let loaded_category = Immutable.List(category_page.Items.map(r => r.Item));
+            for (let i = 1; i < category_page.NumPages; i++) {
+                let category = yield Api.get_Categories(i, 100);
+                loaded_category = loaded_category.concat(Immutable.List(category.Items.map(r => r.Item))).toList();
+            }
+            return Immutable.List(loaded_category);
+        });
     }
     get_recipes() {
         return __awaiter(this, void 0, void 0, function* () {
@@ -27708,36 +27769,25 @@ class IComponent extends React.Component {
             return Immutable.List(loaded_recipes);
         });
     }
-    // prints out in the console everytime the button is clicked
     clicked() {
         console.log('the button was clicked: recipe is bookmarked!');
     }
     render() {
         console.log(this.props.props);
-        // Api.get_Recipes()
-        if (this.props.props.current_User == undefined)
-            return React.createElement("div", null, "Log in first...");
+        //get_recipe(7).then(result => console.log("the recipe is: ", result.recipe))
+        //<button onClick={ (e) => {e.preventDefault(); this.clicked(); }}> Bookmark</button>
+        get_meals(1, 1).then(result => console.log("the meal is: ", result.meals));
         return React.createElement("div", null,
+            React.createElement("div", null, this.state.categories.map(category => React.createElement("div", null,
+                React.createElement("button", null, category.Kind)))),
             React.createElement("div", null,
-                React.createElement("img", { src: "http://s.eatthis-cdn.com/media/images/ext/336492655/fast-food.jpg", alt: "food", width: "428px", height: "428px" }),
-                "Welcome ",
-                this.props.props.current_User.Username,
-                "!"),
-            React.createElement("button", { onClick: (e) => { e.preventDefault(); this.clicked(); } }, " Bookmark"),
-            React.createElement("div", null, "Here you can find recipes!"));
+                " ",
+                this.state.recipes.map(recipe => React.createElement("div", null, recipe.Name))),
+            React.createElement("div", null));
     }
 }
-exports.default = IComponent;
 exports.AppTest = (props) => {
     return React.createElement(IComponent, { props: props });
-    // let i = 1
-    // var thread = setInterval(() => {
-    //     i = i + 1
-    //     console.log(i)},1000)
-    // return <div>
-    //             <div>{i}</div>
-    //             <div>hi</div>
-    //         </div>
 };
 exports.BookmarksView = (props) => React.createElement("div", null,
     React.createElement("div", null,
@@ -27746,7 +27796,9 @@ exports.BookmarksView = (props) => React.createElement("div", null,
     React.createElement("div", null,
         React.createElement("div", null, "test 2"),
         React.createElement("button", null, "test 2 click me ")));
-exports.CategoriesView = (props) => React.createElement("div", null, "hello categories!!");
+exports.CategoriesView = (props) => {
+    return React.createElement(CategoryComponent, { props: props });
+};
 
 
 /***/ }),
