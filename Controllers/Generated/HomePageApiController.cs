@@ -210,6 +210,22 @@ using System.IO;
         !_context.Meal.Any(s => s.Id == l.MealId)));
       _context.SaveChanges();
     
+
+      _context.Categorie_Recipe.RemoveRange(_context.Categorie_Recipe.Where(l =>
+        l.CategorieId == null ||
+        l.RecipeId == null ||
+        !_context.Categorie.Any(s => s.Id == l.CategorieId) ||
+        !_context.Recipe.Any(s => s.Id == l.RecipeId)));
+      _context.SaveChanges();
+    
+
+      _context.Categorie_Recipe.RemoveRange(_context.Categorie_Recipe.Where(l =>
+        l.RecipeId == null ||
+        l.CategorieId == null ||
+        !_context.Recipe.Any(s => s.Id == l.RecipeId) ||
+        !_context.Categorie.Any(s => s.Id == l.CategorieId)));
+      _context.SaveChanges();
+    
     }
     */
     

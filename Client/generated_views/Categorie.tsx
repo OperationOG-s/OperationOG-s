@@ -16,6 +16,7 @@ import * as HomePageViews from './HomePage'
 import * as CategoryListViews from './CategoryList'
 import * as BookmarksViews from './Bookmarks'
 import * as MealViews from './Meal'
+import * as RecipeViews from './Recipe'
 import * as AmericanViews from './American'
 import * as AsianViews from './Asian'
 import * as MediterraneanViews from './Mediterranean'
@@ -36,7 +37,7 @@ export let Categorie = (props:Utils.EntityComponentProps<Models.Categorie>) : JS
        : null
 
 export let Categorie_to_page = (id:number) => {
-  let can_edit = Utils.any_of([Permissions.can_edit_Categorie, Permissions.can_edit_Categorie_Meal, Permissions.can_edit_Meal])
+  let can_edit = Utils.any_of([Permissions.can_edit_Categorie, Permissions.can_edit_Categorie_Meal, Permissions.can_edit_Categorie_Recipe, Permissions.can_edit_Meal, Permissions.can_edit_Recipe])
   return Utils.scene_to_page<Models.Categorie>(can_edit, Categorie, Api.get_Categorie(id), Api.update_Categorie, "Categorie", "Categorie", `/Categories/${id}`)
 }
 

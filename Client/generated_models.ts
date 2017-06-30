@@ -153,3 +153,12 @@ export type Meal_Recipe = {
   }
   
 
+export type Categorie_Recipe = {
+    Id : number
+    CreatedDate:Moment.Moment
+    CategorieId : number
+  RecipeId : number
+    
+  }
+  
+

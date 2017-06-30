@@ -282,4 +282,13 @@ export let can_edit_Meal_Recipe = (current_User:Models.User, current_Admin:Model
 export let can_delete_Meal_Recipe = (current_User:Models.User, current_Admin:Models.Admin) => true
   
 
+export let can_view_Categorie_Recipe = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_create_Categorie_Recipe = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_edit_Categorie_Recipe = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_delete_Categorie_Recipe = (current_User:Models.User, current_Admin:Models.Admin) => true
+  
+
 

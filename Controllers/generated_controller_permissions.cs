@@ -286,5 +286,12 @@ static public bool can_view_Meal_Recipe(User current_User, Admin current_Admin) 
     static public bool can_edit_Meal_Recipe(User current_User, Admin current_Admin) { return true; }
 
     static public bool can_delete_Meal_Recipe(User current_User, Admin current_Admin) { return true; }
+static public bool can_view_Categorie_Recipe(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_create_Categorie_Recipe(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_edit_Categorie_Recipe(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_delete_Categorie_Recipe(User current_User, Admin current_Admin) { return true; }
   }
 }

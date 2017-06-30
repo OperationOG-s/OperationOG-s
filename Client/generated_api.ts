@@ -755,6 +755,90 @@ export async function unlink_Recipe_Meal_Recipes(source:Models.Recipe, target:Mo
 }
 
 
+export async function get_Recipe_Categorie_Recipes(source:Models.Recipe, page_index:number, page_size:number, query_string:string = null) : Promise<RawPage<Models.Categorie>> {
+  let res = await fetch(`/api/v1/Recipe/${source.Id}/Categorie_Recipes?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return make_page<Models.Categorie>(json, e => { return {...e, }})
+}
+
+export async function get_Recipe_Categorie_Recipes_Categorie(source:Models.Recipe, page_index:number, page_size:number, id:number) : Promise<Models.Categorie> {
+  let res = await fetch(`/api/v1/Recipe/${source.Id}/Categorie_Recipes/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Categorie
+}
+
+export async function get_Recipe_Categorie_Recipes_Categorie_by_id(source:Models.Recipe, id:number) : Promise<Models.Categorie> {
+  let res = await fetch(`/api/v1/Recipe/${source.Id}/Categorie_Recipes/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Categorie
+}
+
+
+export async function get_unlinked_Recipe_Categorie_Recipes(source:Models.Recipe, page_index:number, page_size:number) : Promise<RawPage<Models.Categorie>> {
+  let res = await fetch(`/api/v1/Recipe/${source.Id}/unlinked/Categorie_Recipes?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return make_page<Models.Categorie>(json, e => { return {...e, }})
+}
+export async function get_unlinked_Recipe_Categorie_Recipes_American(source:Models.Recipe, page_index:number, page_size:number) : Promise<RawPage<Models.American>> {
+  let res = await fetch(`/api/v1/Recipe/${source.Id}/unlinked/Categorie_Recipes/American?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return make_page<Models.American>(json, e => { return {...e, }})
+}
+
+export async function get_unlinked_Recipe_Categorie_Recipes_Asian(source:Models.Recipe, page_index:number, page_size:number) : Promise<RawPage<Models.Asian>> {
+  let res = await fetch(`/api/v1/Recipe/${source.Id}/unlinked/Categorie_Recipes/Asian?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return make_page<Models.Asian>(json, e => { return {...e, }})
+}
+
+export async function get_unlinked_Recipe_Categorie_Recipes_Mediterranean(source:Models.Recipe, page_index:number, page_size:number) : Promise<RawPage<Models.Mediterranean>> {
+  let res = await fetch(`/api/v1/Recipe/${source.Id}/unlinked/Categorie_Recipes/Mediterranean?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return make_page<Models.Mediterranean>(json, e => { return {...e, }})
+}
+
+    
+export async function create_linked_Recipe_Categorie_Recipes_American(source:Models.Recipe) : Promise<Models.American[]> {
+  let res = await fetch(`/api/v1/Recipe/${source.Id}/Categorie_Recipes_American`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return json.map(e => { return {...e, CreatedDate: Moment.utc(e.CreatedDate),  }}) as Models.American[]
+}
+
+export async function create_linked_Recipe_Categorie_Recipes_Asian(source:Models.Recipe) : Promise<Models.Asian[]> {
+  let res = await fetch(`/api/v1/Recipe/${source.Id}/Categorie_Recipes_Asian`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return json.map(e => { return {...e, CreatedDate: Moment.utc(e.CreatedDate),  }}) as Models.Asian[]
+}
+
+export async function create_linked_Recipe_Categorie_Recipes_Mediterranean(source:Models.Recipe) : Promise<Models.Mediterranean[]> {
+  let res = await fetch(`/api/v1/Recipe/${source.Id}/Categorie_Recipes_Mediterranean`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return json.map(e => { return {...e, CreatedDate: Moment.utc(e.CreatedDate),  }}) as Models.Mediterranean[]
+}
+
+export async function link_Recipe_Categorie_Recipes(source:Models.Recipe, target:Models.Categorie) : Promise<void> {
+  let res = await fetch(`/api/v1/Recipe/${source.Id}/Categorie_Recipes/${target.Id}`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  return
+}
+
+export async function unlink_Recipe_Categorie_Recipes(source:Models.Recipe, target:Models.Categorie) : Promise<void> {
+  let res = await fetch(`/api/v1/Recipe/${source.Id}/Categorie_Recipes/${target.Id}`, { method: 'delete', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  return
+}
+
+
 export async function create_Recipe() : Promise<Models.Recipe> {
   let res = await fetch(`/api/v1/Recipe/`,
     { method: 'post', credentials: 'include', headers:{'content-type': 'application/json',
@@ -1067,6 +1151,56 @@ export async function link_Categorie_Categorie_Meals(source:Models.Categorie, ta
 
 export async function unlink_Categorie_Categorie_Meals(source:Models.Categorie, target:Models.Meal) : Promise<void> {
   let res = await fetch(`/api/v1/Categorie/${source.Id}/Categorie_Meals/${target.Id}`, { method: 'delete', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  return
+}
+
+
+export async function get_Categorie_Categorie_Recipes(source:Models.Categorie, page_index:number, page_size:number, query_string:string = null) : Promise<RawPage<Models.Recipe>> {
+  let res = await fetch(`/api/v1/Categorie/${source.Id}/Categorie_Recipes?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return make_page<Models.Recipe>(json, e => { return {...e, }})
+}
+
+export async function get_Categorie_Categorie_Recipes_Recipe(source:Models.Categorie, page_index:number, page_size:number, id:number) : Promise<Models.Recipe> {
+  let res = await fetch(`/api/v1/Categorie/${source.Id}/Categorie_Recipes/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Recipe
+}
+
+export async function get_Categorie_Categorie_Recipes_Recipe_by_id(source:Models.Categorie, id:number) : Promise<Models.Recipe> {
+  let res = await fetch(`/api/v1/Categorie/${source.Id}/Categorie_Recipes/${id}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return {...json, CreatedDate: Moment.utc(json.CreatedDate),  } as Models.Recipe
+}
+
+
+export async function get_unlinked_Categorie_Categorie_Recipes(source:Models.Categorie, page_index:number, page_size:number) : Promise<RawPage<Models.Recipe>> {
+  let res = await fetch(`/api/v1/Categorie/${source.Id}/unlinked/Categorie_Recipes?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return make_page<Models.Recipe>(json, e => { return {...e, }})
+}
+
+    
+export async function create_linked_Categorie_Categorie_Recipes_Recipe(source:Models.Categorie) : Promise<Models.Recipe[]> {
+  let res = await fetch(`/api/v1/Categorie/${source.Id}/Categorie_Recipes_Recipe`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  let json = await res.json()
+  return json.map(e => { return {...e, CreatedDate: Moment.utc(e.CreatedDate),  }}) as Models.Recipe[]
+}
+
+export async function link_Categorie_Categorie_Recipes(source:Models.Categorie, target:Models.Recipe) : Promise<void> {
+  let res = await fetch(`/api/v1/Categorie/${source.Id}/Categorie_Recipes/${target.Id}`, { method: 'post', credentials: 'include', headers:{'content-type': 'application/json'} })
+  if (!res.ok) throw Error(res.statusText)
+  return
+}
+
+export async function unlink_Categorie_Categorie_Recipes(source:Models.Categorie, target:Models.Recipe) : Promise<void> {
+  let res = await fetch(`/api/v1/Categorie/${source.Id}/Categorie_Recipes/${target.Id}`, { method: 'delete', credentials: 'include', headers:{'content-type': 'application/json'} })
   if (!res.ok) throw Error(res.statusText)
   return
 }

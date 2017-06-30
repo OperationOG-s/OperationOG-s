@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;  
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using SendGrid;
@@ -13,16 +13,16 @@ using PortableRecipes;
 using PortableRecipes.Models;
 using PortableRecipes.Filters;
 // olaa 
-public class Tuple <T,U>
-{
-   public T Item1;
-   public U Item2;
-  public Tuple(T Item1, U Item2)
-  {
-    this.Item1 = Item1;
-    this.Item2 = Item2;
-  }
-}
+// public class Tuple <T,U>
+// {
+//    public T Item1;
+//    public U Item2;
+//   public Tuple(T Item1, U Item2)
+//   {
+//     this.Item1 = Item1;
+//     this.Item2 = Item2;
+//   }
+// }
 
 [Route("api/v1/CustomController")]
 public class CustomController : Controller
@@ -95,40 +95,40 @@ public class CustomController : Controller
     return findcorrectrecipe.ToArray();
   }
 
-  [RestrictToUserType(new string[] {"*"})]
-  [HttpGet("GetRecommendedRecipes/{Userid}")]
+  // [RestrictToUserType(new string[] {"*"})]
+  // [HttpGet("GetRecommendedRecipes/{Userid}")]
 
-  public Recipe[] GetRecommendedRecipes(int Userid)
-  {
-    var user = _context.User.FirstOrDefault(_user => _user.Id == Userid);
-    if (user == null)
-      throw new Exception ("Cannot find User");
-    var recommendedrecipes = (from recipe_user in _context.User_Recipe
-                              where recipe_user.UserId == Userid 
-                              from recipe in _context.Recipe
-                              where recipe.Id == recipe_user.RecipeId
-                              from Recipe_Rating in _context.Recipe_Rating
-                              where Recipe_Rating.RecipeId == recipe.Id
-                              from Rating in _context.Rating 
-                              where Rating.Id == Recipe_Rating.Rating.Id
-                              select new Tuple <Rating, Recipe>(Rating,recipe)
-                              ).OrderByDescending(Item => Item.Item1.rating);
+  // public Recipe[] GetRecommendedRecipes(int Userid)
+  // {
+  //   var user = _context.User.FirstOrDefault(_user => _user.Id == Userid);
+  //   if (user == null)
+  //     throw new Exception ("Cannot find User");
+  //   var recommendedrecipes = (from recipe_user in _context.User_Recipe
+  //                             where recipe_user.UserId == Userid 
+  //                             from recipe in _context.Recipe
+  //                             where recipe.Id == recipe_user.RecipeId
+  //                             from Recipe_Rating in _context.Recipe_Rating
+  //                             where Recipe_Rating.RecipeId == recipe.Id
+  //                             from Rating in _context.Rating 
+  //                             where Rating.Id == Recipe_Rating.Rating.Id
+  //                             select new Tuple <Rating, Recipe>(Rating,recipe)
+  //                             ).OrderByDescending(Item => Item.Item1.rating);
 
-    var itemstoreturn = new List<Recipe> ();
-      int count = 0;
-      foreach (var recipe in recommendedrecipes ){
-        count = count + 1;
-        if(count > 3){
-          break;
-        }
-        itemstoreturn.Add(recipe.Item2);
-      }
+  //   var itemstoreturn = new List<Recipe> ();
+  //     int count = 0;
+  //     foreach (var recipe in recommendedrecipes ){
+  //       count = count + 1;
+  //       if(count > 3){
+  //         break;
+  //       }
+  //       itemstoreturn.Add(recipe.Item2);
+  //     }
 
-    return itemstoreturn.ToArray();
-  _context.SaveChanges
+  //   return itemstoreturn.ToArray();
+  // 
 
 
-  }
+  // }
 
 
 

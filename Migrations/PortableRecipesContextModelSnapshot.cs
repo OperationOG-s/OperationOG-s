@@ -92,6 +92,24 @@ namespace PortableRecipes.Migrations
                     b.ToTable("Categorie_Meal");
                 });
 
+            modelBuilder.Entity("PortableRecipes.Models.Categorie_Recipe", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CategorieId");
+
+                    b.Property<int>("RecipeId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategorieId");
+
+                    b.HasIndex("RecipeId");
+
+                    b.ToTable("Categorie_Recipe");
+                });
+
             modelBuilder.Entity("PortableRecipes.Models.CategoryList", b =>
                 {
                     b.Property<int>("Id")
@@ -361,6 +379,19 @@ namespace PortableRecipes.Migrations
                     b.HasOne("PortableRecipes.Models.Meal", "Meal")
                         .WithMany("Categorie_Meals")
                         .HasForeignKey("MealId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("PortableRecipes.Models.Categorie_Recipe", b =>
+                {
+                    b.HasOne("PortableRecipes.Models.Categorie", "Categorie")
+                        .WithMany("Categorie_Recipes")
+                        .HasForeignKey("CategorieId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("PortableRecipes.Models.Recipe", "Recipe")
+                        .WithMany("Categorie_Recipes")
+                        .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

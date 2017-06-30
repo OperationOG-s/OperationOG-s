@@ -175,11 +175,13 @@ namespace PortableRecipes.Models
       User_Recipes = new HashSet<User_Recipe>();
       Recipe_Ratings = new HashSet<Recipe_Rating>();
       Meal_Recipes = new HashSet<Meal_Recipe>();
+      Categorie_Recipes = new HashSet<Categorie_Recipe>();
     }
     public int Id {get;set;}
     [Newtonsoft.Json.JsonIgnore] public virtual ICollection<User_Recipe> User_Recipes {get;set;}
     [Newtonsoft.Json.JsonIgnore] public virtual ICollection<Recipe_Rating> Recipe_Ratings {get;set;}
     [Newtonsoft.Json.JsonIgnore] public virtual ICollection<Meal_Recipe> Meal_Recipes {get;set;}
+    [Newtonsoft.Json.JsonIgnore] public virtual ICollection<Categorie_Recipe> Categorie_Recipes {get;set;}
     [Newtonsoft.Json.JsonProperty(ItemConverterType = typeof(Newtonsoft.Json.Converters.JavaScriptDateTimeConverter))] public DateTime CreatedDate{ get; set; }
         public string Picture {get;set;}
     public string Name {get;set;}
@@ -274,9 +276,11 @@ namespace PortableRecipes.Models
   public partial class Categorie: IEntity {
     public Categorie() {
       Categorie_Meals = new HashSet<Categorie_Meal>();
+      Categorie_Recipes = new HashSet<Categorie_Recipe>();
     }
     public int Id {get;set;}
     [Newtonsoft.Json.JsonIgnore] public virtual ICollection<Categorie_Meal> Categorie_Meals {get;set;}
+    [Newtonsoft.Json.JsonIgnore] public virtual ICollection<Categorie_Recipe> Categorie_Recipes {get;set;}
     [Newtonsoft.Json.JsonProperty(ItemConverterType = typeof(Newtonsoft.Json.Converters.JavaScriptDateTimeConverter))] public DateTime CreatedDate{ get; set; }
     public string Kind {get { return this is American ? "American": this is Asian ? "Asian": this is Mediterranean ? "Mediterranean" : null; } }
     
@@ -496,6 +500,30 @@ namespace PortableRecipes.Models
       return self => self;
     }
     static public Func<Meal_Recipe,Meal_Recipe> FilterViewableAttributesLocal(User current_User, Admin current_Admin) {
+      return self => self;
+    }
+    
+  }
+
+  
+  
+
+  public partial class Categorie_Recipe {
+    public Categorie_Recipe() {
+      
+    }
+    public int Id {get;set;}
+    
+    
+        [Newtonsoft.Json.JsonIgnore] public virtual Categorie Categorie {get;set;}
+    public int CategorieId {get;set;}
+    [Newtonsoft.Json.JsonIgnore] public virtual Recipe Recipe {get;set;}
+    public int RecipeId {get;set;}
+    
+    static public Expression<Func<Categorie_Recipe,Categorie_Recipe>> FilterViewableAttributes(User current_User, Admin current_Admin) {
+      return self => self;
+    }
+    static public Func<Categorie_Recipe,Categorie_Recipe> FilterViewableAttributesLocal(User current_User, Admin current_Admin) {
       return self => self;
     }
     
