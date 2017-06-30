@@ -12,7 +12,7 @@ using SendGrid.Helpers.Mail;
 using PortableRecipes;
 using PortableRecipes.Models;
 using PortableRecipes.Filters;
-
+// olaa 
 public class Tuple <T,U>
 {
    public T Item1;
@@ -21,10 +21,6 @@ public class Tuple <T,U>
   {
     this.Item1 = Item1;
     this.Item2 = Item2;
-
-
-
-    
   }
 }
 
@@ -129,10 +125,11 @@ public class CustomController : Controller
       }
 
     return itemstoreturn.ToArray();
-
+  _context.SaveChanges
 
 
   }
+
 
 
 
