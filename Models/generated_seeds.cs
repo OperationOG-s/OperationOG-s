@@ -238,7 +238,7 @@ namespace PortableRecipes.Data
             _Recipe.Add(new Recipe { Id = 9, CreatedDate = DateTime.Now, Picture = "", Name = "Chicken French", Ingredients = "1/4 cup all-purpose flour, or as needed salt and black pepper to taste , 2 eggs beaten, 1 tablespoon white sugar , 1 tablespoon grated Parmesan cheese, 2 tablespoons olive oil, 4 skinless, boneless chicken breast halves, 1/4 cup butter, 2 teaspoons minced garlic, 1/4 cup dry sherry, 1/4 cup lemon juice, 2 teaspoons low-sodium chicken base", Description = "1. Mix together the flour, salt, and pepper in a shallow bowl. 2. In another bowl, whisk beaten eggs, sugar, and Parmesan cheese until the mixture is thoroughly blended and the sugar has dissolved. 3. Heat olive oil in a large skillet over medium heat until the oil shimmers. 4. Dip the chicken breasts into the flour mixture, then into the egg mixture, and gently lay them into the skillet. 5. Pan-fry the chicken breasts until golden brown and no longer pink in the middle, about 6 minutes on each side. 6. Remove from the skillet and set aside. 7. In the same skillet over medium-low heat, melt the butter, and stir in garlic, sherry, lemon juice, and chicken base. 8. Bring the sauce to a simmer, and stir until smooth and slightly thickened, about 5 minutes. 9. Be sure to dissolve any brown flavor bits from the bottom of the skillet as you stir. 10. Return the chicken breasts to the sauce, and gently simmer until no longer pink in the center, about 15 minutes. 11. To serve, place a chicken breast on a plate, and top with sauce.", PreparationTime = 30,   });
 
             
-            _Recipe.Add(new Recipe { Id = 10, CreatedDate = DateTime.Now, Picture = "", Name = "Baked Eggs", Ingredients = "4 rashers of streaky bacon, 1 tbsp oil, 4 eggs, 4 tbsp, cream, 4 tbsp grated cheese of your choice, 4 slices of bread, toasted, buttered and cut into dippers to eat with them", Description = "1. Turn oven to 180°C and boil the kettle 2. Fry bacon rashers until really crispy, allow to cool and then break into pieces 3. Put 4 ramekins in front of you. Divide the eggs, bacon, cream, cheese, chives and seasoning into each. 4. Place ramekins into a roasting tray and quarter to half fill with water. Place in oven for 10-15 min until baked through.", PreparationTime = 15,   });
+            _Recipe.Add(new Recipe { Id = 10, CreatedDate = DateTime.Now, Picture = "", Name = "Asian Baked Eggs", Ingredients = "4 rashers of streaky bacon, 1 tbsp oil, 4 eggs, 4 tbsp, cream, 4 tbsp grated cheese of your choice, 4 slices of bread, toasted, buttered and cut into dippers to eat with them", Description = "1. Turn oven to 180°C and boil the kettle 2. Fry bacon rashers until really crispy, allow to cool and then break into pieces 3. Put 4 ramekins in front of you. Divide the eggs, bacon, cream, cheese, chives and seasoning into each. 4. Place ramekins into a roasting tray and quarter to half fill with water. Place in oven for 10-15 min until baked through.", PreparationTime = 15,   });
 
             
             _Recipe.Add(new Recipe { Id = 11, CreatedDate = DateTime.Now, Picture = "", Name = "Asian Oatmeal Breakfast Bowl", Ingredients = " 1/2 teaspoon sesame seeds, 1 ounce low-fat cream cheese, at room temperature, 1 tablespoon hot-pepper paste, such as gochujang, 1 cup low-sodium chicken broth, 1/3 cup old-fashioned rolled oats, Salt, optional, Cooking spray, 1 large egg, 1 spring onion, sliced, 1 sheet nori, cut into thin ribbons with kitchen shears", Description = " Swirl the sesame seeds in a small nonstick skillet over medium heat until they begin to brown and toast, 3 to 4 minutes. Transfer to a small bowl; set aside. Stir together the cream cheese, hot-pepper paste and 1 tablespoon water with a rubber spatula in another small bowl until combined. Refrigerate until ready to use. Bring the chicken broth, oats, 1 cup water and a pinch of salt, if using, to a simmer in a small saucepan over medium-high heat and cook, stirring frequently, until the oats soften and breakdown and the mixture is the consistency of a loose porridge, 15 to 20 minutes. Pour into a cereal bowl, cover and keep warm. Generously spray the skillet with cooking spray, and set over medium-high heat. Crack the egg into a mug or small bowl, and carefully slide it into the hot skillet. Cook until the white is set and brown and crispy on the bottom and edges and the yolk is still runny, 2 to 3 minutes. Use a spatula to help slide the egg on top of the oatmeal. Then arrange neat piles of the cream cheese-pepper sauce, spring onions and nori on top of the oatmeal. Sprinkle with the toasted sesame seeds. Then take a photo!", PreparationTime = 30,   });
@@ -251,6 +251,12 @@ namespace PortableRecipes.Data
 
             
             _Recipe.Add(new Recipe { Id = 14, CreatedDate = DateTime.Now, Picture = "", Name = " Quick and Easy Kimchi Salad", Ingredients = " 1 small head cabbage, shredded 1/4 cup rock salt 1 small carrot, cut into thin strips 3 tablespoons vinegar 2 tablespoons vegetable oil 1 tablespoon white sugar, or to taste 1 teaspoon sesame oil 1 teaspoon toasted sesame seeds, ground 1/2 teaspoon cayenne pepper, or to taste 1/4 teaspoon sal", Description = "  Combine cabbage and rock salt together in a bowl. Let stand 15 minutes, stirring often. Rinse lightly and drain. Mix cabbage, carrot, vinegar, vegetable oil, sugar, sesame oil, sesame seeds, cayenne pepper, and salt together in a bowl. Refrigerate until chilled, at least 30 minutes.", PreparationTime = 65,   });
+
+            
+            _Recipe.Add(new Recipe { Id = 15, CreatedDate = DateTime.Now, Picture = "", Name = "Philly Cheesesteak", Ingredients = "1 loaf Italian bread or 1 loaf French bread or 2 large hoagie rolls or 2 large sub rolls. 1⁄2 lb deli roast beef (very rare, sliced wafer thin, or you can use a frozen Rib-Eye roast shaved on an electric slicer). 1 white onion (thinly sliced). 1 green bell pepper (thinly sliced) (optional). 2 teaspoons garlic (minced). 1⁄2 lb provolone cheese (thinly sliced). extra virgin olive oil (for grilling).salt and pepper, for taste.marinara sauce (optional topping) or ketchup (optional topping)", Description = "Heat a griddle or a large saute pan over medium-high heat.When hot, cover bottom with olive oil.    Add the onions and bell pepper and cook, stirring, until carmelized, which will take about 6 to 8 minutes. Add the garlic, salt and pepper, and cook for about 30 seconds.Then, push the mixture off to one side of the griddle.Add the meat to the hot part of the griddle.Cook, continuously flipping the meat over and slightly chopping the meat into slightly smaller pieces with 2 spatulas, until the meat is not pink, which should take about 2 minutes. Mix the meat and the carmelized onions and bell pepper together. Divide into 2 portions, and top both portions with the cheese to melt.If using Italian or French bread, cut the bread in half, crosswise, and slice lengthwise to open for the 2 sandwiches.Hollow out some of the soft white bread part from inside and place face down on top of the meat and cheese. When the cheese is melted, and with 1 or 2 spatulas, flip the sandwiches over and add topping, such as marinara sauce or ketchup, if desired, and serve immediately.", PreparationTime = 15,   });
+
+            
+            _Recipe.Add(new Recipe { Id = 16, CreatedDate = DateTime.Now, Picture = "", Name = "chicken with roasted vegetables", Ingredients = "250g baby new potatoes (thinly sliced),1 large courgette (diagonally sliced),1 red onion (cut into wedges), 1 yellow pepper (seeded and cut into chunks),6 firm plum tomatoes (halved),12 black olives (pitted).2 skinless boneless chicken breast fillets (about 150g/5oz each),3 tbsp olive oil,1 rounded tbsp green pesto", Description = "1. Preheat the oven to 200C/ Gas 6/fan oven 180C. Spread the potatoes, courgette, onion, pepper and tomatoes in a shallow roasting tin and scatter over the olives. Season with salt and coarsely ground black pepper. Slash the flesh of each chicken breast 3-4 times using a sharp knife, then lay the chicken on top of the vegetables. 3. Mix the olive oil and pesto together until well blended and spoon evenly over the chicken. Cover the tin with foil and cook for 30 minutes.4. Remove the foil from the tin. Return to the oven and cook for a further 10 minutes until the vegetables are juicy and look tempting to eat and the chicken is cooked through (the juices should run clear when pierced with a skewer).", PreparationTime = 105,   });
 
           foreach (var x in _Recipe)
           {
@@ -482,15 +488,15 @@ namespace PortableRecipes.Data
 
             new Meal_Recipe { MealId = 3, RecipeId = 9 },
 
-            new Meal_Recipe { MealId = 3, RecipeId = 12 },
+            new Meal_Recipe { MealId = 1, RecipeId = 12 },
 
             new Meal_Recipe { MealId = 3, RecipeId = 7 },
 
-            new Meal_Recipe { MealId = 3, RecipeId = 6 },
+            new Meal_Recipe { MealId = 1, RecipeId = 6 },
 
-            new Meal_Recipe { MealId = 3, RecipeId = 4 },
+            new Meal_Recipe { MealId = 2, RecipeId = 4 },
 
-            new Meal_Recipe { MealId = 3, RecipeId = 2 },
+            new Meal_Recipe { MealId = 2, RecipeId = 2 },
 
             new Meal_Recipe { MealId = 1, RecipeId = 5 },
 
@@ -498,13 +504,15 @@ namespace PortableRecipes.Data
 
             new Meal_Recipe { MealId = 1, RecipeId = 11 },
 
-            new Meal_Recipe { MealId = 1, RecipeId = 12 },
-
             new Meal_Recipe { MealId = 2, RecipeId = 3 },
 
             new Meal_Recipe { MealId = 2, RecipeId = 13 },
 
             new Meal_Recipe { MealId = 2, RecipeId = 14 },
+
+            new Meal_Recipe { MealId = 3, RecipeId = 15 },
+
+            new Meal_Recipe { MealId = 2, RecipeId = 16 },
 
         };
         foreach (var x in _Meal_Recipe)
@@ -521,7 +529,7 @@ namespace PortableRecipes.Data
             
             new Categorie_Recipe { CategorieId = 1, RecipeId = 1 },
 
-            new Categorie_Recipe { CategorieId = 2, RecipeId = 8 },
+            new Categorie_Recipe { CategorieId = 3, RecipeId = 8 },
 
             new Categorie_Recipe { CategorieId = 2, RecipeId = 9 },
 
@@ -541,13 +549,15 @@ namespace PortableRecipes.Data
 
             new Categorie_Recipe { CategorieId = 1, RecipeId = 11 },
 
-            new Categorie_Recipe { CategorieId = 3, RecipeId = 12 },
-
             new Categorie_Recipe { CategorieId = 2, RecipeId = 3 },
 
-            new Categorie_Recipe { CategorieId = 2, RecipeId = 13 },
+            new Categorie_Recipe { CategorieId = 3, RecipeId = 13 },
 
             new Categorie_Recipe { CategorieId = 1, RecipeId = 14 },
+
+            new Categorie_Recipe { CategorieId = 2, RecipeId = 15 },
+
+            new Categorie_Recipe { CategorieId = 3, RecipeId = 16 },
 
         };
         foreach (var x in _Categorie_Recipe)

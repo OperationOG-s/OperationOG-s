@@ -218,7 +218,7 @@
                 "Description":"\"1. Trim the broccoli, cutting any larger broccoli stems in half lengthways, then place in a heatproof bowl and cover with boiling water. Add a good pinch of sea salt and leave for 10 minutes, then drain and put to one side. Half-fill a pan with water and bring to the boil. 2. Slice the steaks against the grain into finger-sized strips and season with sea salt and black pepper. 3. Pound the coriander seeds in a pestle and mortar, or bash with the base of a pan, until fine. Sprinkle over the steak so they stick to it and give it a lovely, fragrant flavour. 4. Drop the noodles into the pan of boiling salted water and cook until just tender. Drain, then toss with 2 teaspoons of sesame oil and return to the pan. Cover to keep warm. 5. Peel and finely slice the onion and garlic, then peel and finely chop the ginger. 6. Heat a splash of olive oil in a wok or large frying pan over a high heat, then add the onions, garlic and ginger. Fry for a couple of minutes, or until the onions have softened slightly. 7. Add the seasoned pieces of steak and stir-fry for 1 to 2 minutes, then add the broccoli and fry for a further 2 minutes, stirring constantly. 8. Pour in the soy sauce and 1 teaspoon of sesame oil, toss in the pan until everything is well coated, then serve with the egg noodles. 9. Cut the lime into wedges for squeezing over, and finely slice the chilli (deseed if you like), then sprinkle over the top./",
                  "Picture" : "\"\"",
                 "PreparationTime":25
-                // Asian Dinner
+      
             },
             {
                 "Id":2,
@@ -227,7 +227,7 @@
                 "Description": "\"1. Heat oven to 425°F. Line cookie sheet with sides or shallow baking pan with cooking parchment paper. 2. In large bowl, mix all Meatball ingredients except broccoli and oil until well combined. Shape meatballs using 1 heaping teaspoonful mixture for each; place in cookie sheet. Arrange broccoli in cookie sheet. Drizzle broccoli with oil. 3. Bake 25 to 30 minutes or until meatballs are thoroughly cooked and no longer pink in center, and broccoli is browned around edges. 4. While meatballs and broccoli are baking, mix Sauce ingredients. 5. Cook and drain capellini as directed on package. Toss capellini with sauce, meatballs and broccoli. /",
                 "Picture" : "\"\"",
                 "PreparationTime":35
-                // Asian Dinner/Lunch
+              
             },
             {
                 "Id":3,
@@ -236,7 +236,7 @@
                 "Description":"\" 1. Preheat broiler to high with oven rack 8 inches from the heat. 2. Combine paprika, pepper, and salt in a small bowl. Rub spice mixture evenly over fillets. 3. Heat oil in a large nonstick skillet over medium-high. Add fillets to pan; cook 3 to 4 minutes on each side. 4. Combine mayonnaise, relish, mustard, and ketchup in a bowl. Arrange rolls, cut sides up, on a baking sheet; broil 1 minute or until toasted. Spread mayonnaise mixture over cut sides of rolls. Top bottom halves of rolls with lettuce, tomato, fillets, and top halves of rolls./",
                 "Picture" : "\"\"",
                 "PreparationTime":30
-                // American Lunch
+          
             },
             {
                 "Id":4,
@@ -245,7 +245,7 @@
                 "Description": "In a large bowl, mix ground beef, onion powder, salt and pepper until just combined. Do not overmix, or your patties will be tough. Divide into six portions and form patties, without pressing too hard. They should be uniform in thickness. Smooth out any cracks using your fingers. Make these right before you grill them, so they stay at room temperature. Preheat your grill, grill pan or cast-iron skillet to high heat and add burger patties. If using a grill, cover with the lid.Cook until the crust that forms on the bottom of the burger releases it from the pan or grate — about 2 minutes. Gently test, but don't flip it until it gets to this point. When burgers lift up easily, flip, add two slices of cheese to each, close lid if using a grill, and cook on the other side for another 2-3 minutes for medium to medium rare. Remove burgers with a sturdy metal spatula and transfer to a plate. Allow to rest for several minutes, then transfer to buns.Garnish as desired and serve immediately. ",
                 "Picture" : "\"\"",
                 "PreparationTime": 60
-                // American Dinner
+               
 
             },
             {
@@ -255,7 +255,7 @@
                 "Description":" Saute peppers and onions in a small amount of oil. Add cilantro and parsley, season with salt and pepper. Cook until tender. Reserve. Combine eggs and milk. Mix well and reserve. Heat a non-stick omelette or egg pan over medium heat. Portion beaten egg into pan. Stir in sauteed pepper and onion. Cook until set. Flip omelette and cook until done. Add sliced avocado and top with cheese. Fold omelette and turn out onto warm serving plates. Top with additional cheese and garnish with fresh cilantro sprigs. Repeat process to create 4 servings",
                 "Picture" : "\"\"",
                 "PreparationTime":20
-                // American Breakfast
+          
             },
             {
                 "Id": 6,
@@ -264,7 +264,7 @@
                 "Description":"These pancakes tend to be way more moist than your average pancakes. Some people like that because you get a real sense of the applesauce in the recipe. Other say it's too 'gooey'. Personally, I like it for a change of pace from normal pancakes",
                 "Picture" : "\"\"",
                 "PreparationTime":60
-                // American Breakfast
+           
             },
             {
                 
@@ -274,7 +274,7 @@
                 "Description": "\"1. Use a small knife to cut the top out of the peppers, then scoop out the seeds. Sit the peppers on a plate, cut-side up, and cook in the microwave on High for 5-6 mins until they have wilted and softened. 2. While the peppers are cooking, mix the rice together with the pesto and olives and two-thirds of the cheese. Scoop the rice into the peppers, top with the remaining goat’s cheese and continue to cook for 8-10 mins\"",
                 "Picture" : "\"\"",
                 "PreparationTime": 15
-                // Medditarean Dinner
+              
             },
             {
                     "Id": 8,
@@ -283,7 +283,6 @@
                 "Description": "\"1. Put your frying pan on medium to high heat. Put the 2 tablespoons of olive oil and the diced vegetables in the frying pan. 2. Add the chillipowder, the grinded cumin, the cinnamon and a little salt and pepper. Cook for 7 minutes and stir the dish every 30 seconds until the vegetables are soft. 3. Add the chickpeas, kidneybeans, the finely sliced tomatoes and the high quality beef. Add about 600-800ml of water in the frying pan. 4. Add the finely diced coriander to the dish and add the 2 tablespoons balsamic vinegar.  After that cook the dish for an hour on low heat, while stirring it once 15-30 minutes. In the meanwhile cook the basmati rice with saltwater. 5. Share the dish with your family, friends or colleagues! \"",
                 "Picture" : "\"\"",
                 "PreparationTime": 70
-                // American Dinner
             },
             {
                 "Id": 9,
@@ -292,7 +291,7 @@
                 "Description": "\"1. Mix together the flour, salt, and pepper in a shallow bowl. 2. In another bowl, whisk beaten eggs, sugar, and Parmesan cheese until the mixture is thoroughly blended and the sugar has dissolved. 3. Heat olive oil in a large skillet over medium heat until the oil shimmers. 4. Dip the chicken breasts into the flour mixture, then into the egg mixture, and gently lay them into the skillet. 5. Pan-fry the chicken breasts until golden brown and no longer pink in the middle, about 6 minutes on each side. 6. Remove from the skillet and set aside. 7. In the same skillet over medium-low heat, melt the butter, and stir in garlic, sherry, lemon juice, and chicken base. 8. Bring the sauce to a simmer, and stir until smooth and slightly thickened, about 5 minutes. 9. Be sure to dissolve any brown flavor bits from the bottom of the skillet as you stir. 10. Return the chicken breasts to the sauce, and gently simmer until no longer pink in the center, about 15 minutes. 11. To serve, place a chicken breast on a plate, and top with sauce.\"",
                 "Picture" : "\"\"",
                 "PreparationTime": 30
-                // American Dinner
+              
             },
             {
                 "Id": 10,
@@ -301,7 +300,7 @@
                 "Description": "\"1. Turn oven to 180°C and boil the kettle 2. Fry bacon rashers until really crispy, allow to cool and then break into pieces 3. Put 4 ramekins in front of you. Divide the eggs, bacon, cream, cheese, chives and seasoning into each. 4. Place ramekins into a roasting tray and quarter to half fill with water. Place in oven for 10-15 min until baked through.\"",
                 "Picture" : "\"\"",
                 "PreparationTime": 15
-                // Asian breakfast
+     
             },
             {   "Id": 11,
                 "Name": "\"Asian Oatmeal Breakfast Bowl",
@@ -309,7 +308,6 @@
                 "Description": "\" Swirl the sesame seeds in a small nonstick skillet over medium heat until they begin to brown and toast, 3 to 4 minutes. Transfer to a small bowl; set aside. Stir together the cream cheese, hot-pepper paste and 1 tablespoon water with a rubber spatula in another small bowl until combined. Refrigerate until ready to use. Bring the chicken broth, oats, 1 cup water and a pinch of salt, if using, to a simmer in a small saucepan over medium-high heat and cook, stirring frequently, until the oats soften and breakdown and the mixture is the consistency of a loose porridge, 15 to 20 minutes. Pour into a cereal bowl, cover and keep warm. Generously spray the skillet with cooking spray, and set over medium-high heat. Crack the egg into a mug or small bowl, and carefully slide it into the hot skillet. Cook until the white is set and brown and crispy on the bottom and edges and the yolk is still runny, 2 to 3 minutes. Use a spatula to help slide the egg on top of the oatmeal. Then arrange neat piles of the cream cheese-pepper sauce, spring onions and nori on top of the oatmeal. Sprinkle with the toasted sesame seeds. Then take a photo!\"",
                 "Picture" : "\"\"",             
                 "PreparationTime": 30
-                // Asian Breakfast
             },
 
                 {"Id": 12,
@@ -318,7 +316,7 @@
                 "Description": "\" Combine milk and cinnamon stick in a large saucepan over medium-high heat; heat 3 minutes or until small bubbles form around inner edge of pot (about 180 degrees Fahrenheit.) Do not boil. Remove from heat; stir in couscous, apricots, currants, 4 teaspoons brown sugar, and salt. Cover the mixture, and let it stand 15 minutes. Remove and discard cinnamon stick. Divide couscous among each of 4 bowls, and top each with 1 teaspoon melted butter and ½ teaspoon brown sugar. Serve immediately.\"",
                 "Picture" : "\"\"",             
                 "PreparationTime": 20
-                // Mediterranean Breakfast
+            
                 },
 
                 {"Id": 13,
@@ -327,7 +325,7 @@
                 "Description": "\"  Combine potatoes, spinach, onion, ginger, curry powder, and salt in a large bowl. Heat oil in a large nonstick skillet over medium-high heat. Add the potato mixture and press into a layer. Cook, without stirring, until crispy and golden brown on the bottom, 3 to 5 minutes. Reduce heat to medium-low. Fold in chickpeas and zucchini, breaking up chunks of potato, until just combined. Press back into an even layer. Carve out 4 “wells” in the mixture. Break eggs, one at a time, into a cup and slip one into each indentation. Cover and continue cooking until the eggs are set, 4 to 5 minutes for soft-set yolks.\"",
                 "Picture" : "\"\"",              
                 "PreparationTime": 45
-                // Mediterranean Lunch
+              
                 },
                 
                 {"Id": 14,
@@ -336,25 +334,24 @@
                 "Description": "\"  Combine cabbage and rock salt together in a bowl. Let stand 15 minutes, stirring often. Rinse lightly and drain. Mix cabbage, carrot, vinegar, vegetable oil, sugar, sesame oil, sesame seeds, cayenne pepper, and salt together in a bowl. Refrigerate until chilled, at least 30 minutes.\"",  
                 "Picture" : "\"\"",              
                 "PreparationTime": 65
-                // Asian Lunch
+            
                 
                 },{
                 "Id": 15,
                 "Name": "\"Philly Cheesesteak",
-                "Ingerdients": "\"1 loaf Italian bread or 1 loaf French bread or 2 large hoagie rolls or 2 large sub rolls. 1⁄2 lb deli roast beef (very rare, sliced wafer thin, or you can use a frozen Rib-Eye roast shaved on an electric slicer). 1 white onion (thinly sliced). 1 green bell pepper (thinly sliced) (optional). 2 teaspoons garlic (minced). 1⁄2 lb provolone cheese (thinly sliced). extra virgin olive oil (for grilling).salt and pepper, for taste.marinara sauce (optional topping) or ketchup (optional topping)\"",
+                "Ingredients": "\"1 loaf Italian bread or 1 loaf French bread or 2 large hoagie rolls or 2 large sub rolls. 1⁄2 lb deli roast beef (very rare, sliced wafer thin, or you can use a frozen Rib-Eye roast shaved on an electric slicer). 1 white onion (thinly sliced). 1 green bell pepper (thinly sliced) (optional). 2 teaspoons garlic (minced). 1⁄2 lb provolone cheese (thinly sliced). extra virgin olive oil (for grilling).salt and pepper, for taste.marinara sauce (optional topping) or ketchup (optional topping)\"",
                 "Description": "\"Heat a griddle or a large saute pan over medium-high heat.When hot, cover bottom with olive oil.    Add the onions and bell pepper and cook, stirring, until carmelized, which will take about 6 to 8 minutes. Add the garlic, salt and pepper, and cook for about 30 seconds.Then, push the mixture off to one side of the griddle.Add the meat to the hot part of the griddle.Cook, continuously flipping the meat over and slightly chopping the meat into slightly smaller pieces with 2 spatulas, until the meat is not pink, which should take about 2 minutes. Mix the meat and the carmelized onions and bell pepper together. Divide into 2 portions, and top both portions with the cheese to melt.If using Italian or French bread, cut the bread in half, crosswise, and slice lengthwise to open for the 2 sandwiches.Hollow out some of the soft white bread part from inside and place face down on top of the meat and cheese. When the cheese is melted, and with 1 or 2 spatulas, flip the sandwiches over and add topping, such as marinara sauce or ketchup, if desired, and serve immediately.\"",
                 "Picture" : "\"\"",
                 "PreparationTime": 15
-                // "Cousine": "\"American\ Dinner""
+             
             },
             {"Id": 16,
                 "Name": "\"chicken with roasted vegetables",
-                "Ingerdients": "\"250g baby new potatoes (thinly sliced),1 large courgette (diagonally sliced),1 red onion (cut into wedges), 1 yellow pepper (seeded and cut into chunks),6 firm plum tomatoes (halved),12 black olives (pitted).2 skinless boneless chicken breast fillets (about 150g/5oz each),3 tbsp olive oil,1 rounded tbsp green pesto",
+                "Ingredients": "\"250g baby new potatoes (thinly sliced),1 large courgette (diagonally sliced),1 red onion (cut into wedges), 1 yellow pepper (seeded and cut into chunks),6 firm plum tomatoes (halved),12 black olives (pitted).2 skinless boneless chicken breast fillets (about 150g/5oz each),3 tbsp olive oil,1 rounded tbsp green pesto",
                 "Description": "\"1. Preheat the oven to 200C/ Gas 6/fan oven 180C. Spread the potatoes, courgette, onion, pepper and tomatoes in a shallow roasting tin and scatter over the olives. Season with salt and coarsely ground black pepper. Slash the flesh of each chicken breast 3-4 times using a sharp knife, then lay the chicken on top of the vegetables. 3. Mix the olive oil and pesto together until well blended and spoon evenly over the chicken. Cover the tin with foil and cook for 30 minutes.4. Remove the foil from the tin. Return to the oven and cook for a further 10 minutes until the vegetables are juicy and look tempting to eat and the chicken is cooked through (the juices should run clear when pierced with a skewer).",
                  "Picture" : "\"\"",
                 "PreparationTime": 105
-                // "Categories_Sort": "\"mediterranean\"",
-                // "Meal_Sort": "\"Dinner\""}
+           
             }
 
 
@@ -454,7 +451,6 @@
             { "RecipeId": 5,  "CategorieId": 2},
             { "RecipeId": 10, "CategorieId": 1},
             { "RecipeId": 11, "CategorieId": 1},
-            { "RecipeId": 12, "CategorieId": 3},
             { "RecipeId": 3,  "CategorieId": 2},
             { "RecipeId": 13, "CategorieId": 3},
             { "RecipeId": 14, "CategorieId": 1},
