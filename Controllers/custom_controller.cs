@@ -13,16 +13,16 @@ using PortableRecipes;
 using PortableRecipes.Models;
 using PortableRecipes.Filters;
 // olaa 
-// public class Tuple <T,U>
-// {
-//    public T Item1;
-//    public U Item2;
-//   public Tuple(T Item1, U Item2)
-//   {
-//     this.Item1 = Item1;
-//     this.Item2 = Item2;
-//   }
-// }
+public class MyTuple <T,U>
+{
+   public T Item1;
+   public U Item2;
+  public MyTuple(T Item1, U Item2)
+  {
+    this.Item1 = Item1;
+    this.Item2 = Item2;
+  }
+}
 
 [Route("api/v1/CustomController")]
 public class CustomController : Controller
@@ -55,7 +55,7 @@ public class CustomController : Controller
   {
     //var recipe = _context.Recipe.FirstOrDefault(elem => elem.Id == id);
     var findmeals = (from _findmeals in _context.Categorie_Meal
-                     where (_findmeals.CategorieId == idCategorie) //&& GGGG(_findmeals.MealId== idMeals) //(idMeals == 1)  && (idMeals == 2) && (idMeals == 3)
+                     where (_findmeals.CategorieId == idCategorie) 
                      from meal in _context.Meal
                      where meal.Id == _findmeals.MealId
                      select meal);
@@ -64,73 +64,71 @@ public class CustomController : Controller
     return findmeals.ToArray();
   }
 
-// [RestrictToUserType(new string[] {"*"})]
-//   [HttpGet("FindCorrectRecipe/{id}")]
-//   public Meal_Recipe[] FindCorrectRecipe(int id)
-//   {
-//     var findcorrectrecipe = (from _findcorrectrecipe in _context.Meal_Recipe
-//                      where (_findcorrectrecipe.Id == id)
-//                      from meal in _context.Meal
-//                      where meal.Id == _findcorrectrecipe.MealId
-//                      select _findcorrectrecipe);
-
-//   if(findcorrectrecipe  == null) throw new Exception("Correct Recipe not found");
-//     return findcorrectrecipe.ToArray();
-//   }
-  
-  
 [RestrictToUserType(new string[] {"*"})]
-  [HttpGet("FindCorrectRecipe/{id}/{idCategorie}/{idRecipe}")]
-  public Recipe[] FindCorrectRecipe(int id, int idCategorie, int idRecipe)
+  [HttpGet("FindCorrectRecipe/{idMeal}/{idCategorie}/{idRecipe}")]
+  public Recipe[] FindCorrectRecipe(int idMeal, int idCategorie, int idRecipe)
   {
-    var findcorrectrecipe = (from _findcorrectrecipe in _context.Meal_Recipe
-                     where (_findcorrectrecipe.Id == id)
-                     from category in _context.Categorie
-                     where category.Id == idCategorie
-                     from recipes in _context.Recipe
-                     where recipes.Id == idRecipe
-                     select recipes);
+    var findcorrectrecipe = (
+        	                    // Meal Recipe
+                              // Categorie Recipe
+                              // Categorie Meal
+                              from meal_recipe in _context.Meal_Recipe
+                              where (meal_recipe.MealId == idMeal) //&& (meal_recipe.RecipeId == idRecipe) 
+                              from categorie_meal in _context.Categorie_Meal
+                              where (categorie_meal.CategorieId == idCategorie) && (categorie_meal.MealId == idMeal) && (meal_recipe.MealId == categorie_meal.MealId)
+                              from categorie_recipe in _context.Categorie_Recipe
+                              where (categorie_recipe.CategorieId == categorie_meal.CategorieId) && (categorie_recipe.RecipeId == meal_recipe.RecipeId) 
+                              from recipe in _context.Recipe
+                              where categorie_recipe.RecipeId == recipe.Id
+                              select recipe);
+                            
+                            // from meal_recipe in _context.Meal_Recipe
+                            // where (meal_recipe.MealId == idMeal) && (meal_recipe.RecipeId == idRecipe)
+                            // from  categorie_recipe in _context.Categorie_Recipe
+                            // where (categorie_recipe.CategorieId == idCategorie) && (categorie_recipe.RecipeId == idRecipe)
+                            // from categorie_meal in _context.Categorie_Meal
+                            // where (categorie_meal.CategorieId == idRecipe) &&( categorie_meal.MealId == idMeal)
+                            // from recipe in _context.Recipe
+                            // where recipe.Id == meal_recipe.RecipeId
+                            // select recipe);
 
   if(findcorrectrecipe  == null) throw new Exception("Correct Recipe not found");
-    return findcorrectrecipe.ToArray();
+  return findcorrectrecipe.ToArray();
   }
 
-  // [RestrictToUserType(new string[] {"*"})]
-  // [HttpGet("GetRecommendedRecipes/{Userid}")]
+  [RestrictToUserType(new string[] {"*"})]
+  [HttpGet("GetRecommendedRecipes/{Userid}")]
 
-  // public Recipe[] GetRecommendedRecipes(int Userid)
-  // {
-  //   var user = _context.User.FirstOrDefault(_user => _user.Id == Userid);
-  //   if (user == null)
-  //     throw new Exception ("Cannot find User");
-  //   var recommendedrecipes = (from recipe_user in _context.User_Recipe
-  //                             where recipe_user.UserId == Userid 
-  //                             from recipe in _context.Recipe
-  //                             where recipe.Id == recipe_user.RecipeId
-  //                             from Recipe_Rating in _context.Recipe_Rating
-  //                             where Recipe_Rating.RecipeId == recipe.Id
-  //                             from Rating in _context.Rating 
-  //                             where Rating.Id == Recipe_Rating.Rating.Id
-  //                             select new Tuple <Rating, Recipe>(Rating,recipe)
-  //                             ).OrderByDescending(Item => Item.Item1.rating);
+  public Recipe[] GetRecommendedRecipes(int Userid)
+  {
+    var user = _context.User.FirstOrDefault(_user => _user.Id == Userid);
+    if (user == null)
+      throw new Exception ("Cannot find User");
+    var recommendedrecipes = (from recipe_user in _context.User_Recipe
+                              where recipe_user.UserId == Userid 
+                              from recipe in _context.Recipe
+                              where recipe.Id == recipe_user.RecipeId
+                              from Recipe_Rating in _context.Recipe_Rating
+                              where Recipe_Rating.RecipeId == recipe.Id
+                              from Rating in _context.Rating 
+                              where Rating.Id == Recipe_Rating.Rating.Id
+                              select new MyTuple <Rating, Recipe>(Rating,recipe)
+                              ).OrderByDescending(Item => Item.Item1.rating);
 
-  //   var itemstoreturn = new List<Recipe> ();
-  //     int count = 0;
-  //     foreach (var recipe in recommendedrecipes ){
-  //       count = count + 1;
-  //       if(count > 3){
-  //         break;
-  //       }
-  //       itemstoreturn.Add(recipe.Item2);
-  //     }
+    var itemstoreturn = new List<Recipe> ();
+      int count = 0;
+      foreach (var recipe in recommendedrecipes ){
+        count = count + 1;
+        if(count > 3){
+          break;
+        }
+        itemstoreturn.Add(recipe.Item2);
+      }
 
-  //   return itemstoreturn.ToArray();
-  // 
-
-
-  // }
+    return itemstoreturn.ToArray();
 
 
+  }
 
 
 

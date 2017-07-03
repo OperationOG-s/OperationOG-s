@@ -117,7 +117,7 @@
 }
 
 .authentication-menu__user-btn {
-  background: #464E54;
+  background: #bf746c;
   color: #fff;
   border: none;
   height: 100%;
@@ -138,7 +138,7 @@
   }
   &:hover {
     background: #fff;
-    color: #464E54;
+    color: #bf746c;
   }
   @include desktop {
     width: $topbar-height;

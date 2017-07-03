@@ -28038,15 +28038,24 @@ function get_all_remote_entities(get_page) {
     });
 }
 exports.get_all_remote_entities = get_all_remote_entities;
-function get_correctRecipe(id, idCategorie, idRecipe) {
+function get_correctRecipe(idMeal, idCategorie, idRecipe) {
     return __awaiter(this, void 0, void 0, function* () {
-        let res = yield fetch(`/api/v1/CustomController/FindCorrectRecipe/${id}/${idCategorie}/${idRecipe}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let res = yield fetch(`/api/v1/CustomController/FindCorrectRecipe/${idMeal}/${idCategorie}/${idRecipe}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
         let json = yield res.json();
         console.log("received correct recipes", json);
         return { recipes: Immutable.List(json) };
     });
 }
 exports.get_correctRecipe = get_correctRecipe;
+function get_findrating(idCategorie, idRecipe) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/CustomController/FindRating/${idCategorie}/${idRecipe}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let json = yield res.json();
+        console.log("received correct rating", json);
+        return { ratings: Immutable.List(json) };
+    });
+}
+exports.get_findrating = get_findrating;
 function get_recipe(id) {
     return __awaiter(this, void 0, void 0, function* () {
         let res = yield fetch(`/api/v1/CustomController/FindRecipe/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
@@ -28067,11 +28076,12 @@ exports.get_meals = get_meals;
 class CategoriesComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
-        this.state = { categories: Immutable.List() };
+        this.state = { categories: Immutable.List(), SearchedQuery: "" };
     }
     componentWillMount() {
         get_all_remote_entities((index, amount) => Api.get_Categories(index, amount)).then(categories => this.setState(Object.assign({}, this.state, { categories: categories.map(category => {
                 return {
+                    recipe: this.props.RecipeType,
                     category: category,
                     is_expanded: false
                 };
@@ -28079,10 +28089,12 @@ class CategoriesComponent extends React.Component {
     }
     render() {
         return React.createElement("div", null,
+            React.createElement("div", null, "Search here your recipe "),
+            React.createElement("input", { value: this.state.SearchedQuery, onChange: event => this.setState(Object.assign({}, this.state, { SearchedQuery: event.target.value })) }),
             React.createElement("header", null,
                 React.createElement("h2", null, "Recipes "),
                 "Find and share everyday cooking inspiration on OperationOG's. Discover recipes, cooks and how-tos based on the food you love and the friends you follow."),
-            this.state.categories.map(category => React.createElement(CategoryComponent, { is_expanded: category.is_expanded, category: category.category, update_me: value => {
+            this.state.categories.map(category => React.createElement(CategoryComponent, { is_expanded: category.is_expanded, category: category.category, recipe: category.recipe, RecipeType: category.recipe, update_me: value => {
                     this.setState(Object.assign({}, this.state, { categories: this.state.categories.map(category1 => {
                             if (category.category.Kind != category1.category.Kind) {
                                 return category1;
@@ -28106,6 +28118,8 @@ class CategoryComponent extends React.Component {
         get_meals(this.props.category.Id).then(meals => this.setState(Object.assign({}, this.state, { meals: meals.meals.map((_meal) => {
                 return {
                     meal: _meal,
+                    recipe: this.props.recipe,
+                    category: this.props.category,
                     is_expanded: false
                 };
             }).toList() })));
@@ -28123,7 +28137,7 @@ class CategoryComponent extends React.Component {
                     " back to ",
                     this.props.category.Kind,
                     " ")),
-            this.state.meals.map(meal => React.createElement(MealComponent, { is_expanded: meal.is_expanded, meal: meal.meal, update_me: value => {
+            this.state.meals.map(meal => React.createElement(MealComponent, { is_expanded: meal.is_expanded, meal: meal.meal, recipe: meal.recipe, category: meal.category, update_me: value => {
                     this.setState(Object.assign({}, this.state, { meals: this.state.meals.map(meal1 => {
                             console.log();
                             if (meal.meal.Kind != meal1.meal.Kind) {
@@ -28145,7 +28159,7 @@ class MealComponent extends React.Component {
     }
     componentWillMount() {
         console.log('right meal is loading');
-        get_correctRecipe(1, 1, 4).then(recipes => this.setState(Object.assign({}, this.state, { recipes: recipes.recipes.map((_recipe) => {
+        get_correctRecipe(this.props.meal.Id, this.props.category.Id, this.props.recipe.Id).then(recipes => this.setState(Object.assign({}, this.state, { recipes: recipes.recipes.map((_recipe) => {
                 return {
                     recipe: _recipe,
                     is_expanded: false,
@@ -28165,7 +28179,7 @@ class MealComponent extends React.Component {
                     this.props.meal.Kind),
                 " "),
             React.createElement("div", null, this.state.recipes.map(item => React.createElement(RecipeComponent, { recipe: item.recipe, is_expanded: item.is_expanded, update_me: value => this.setState(Object.assign({}, this.state, { recipes: this.state.recipes.map(item1 => {
-                        if (item.recipe.Id == item1.recipe.Id) {
+                        if (item.recipe.Name != item1.recipe.Name) {
                             return Object.assign({}, item1, { is_expanded: value });
                         }
                         else {
@@ -28175,6 +28189,8 @@ class MealComponent extends React.Component {
                     }).toList() })) }))),
             " ");
     }
+    //    Api.get_User_User_Recipes()
+    //     Api.link_User_User_Recipes()
     get_categories() {
         return __awaiter(this, void 0, void 0, function* () {
             let category_page = yield Api.get_Categories(0, 4);
@@ -28216,21 +28232,66 @@ exports.StarsComponent = StarsComponent;
 class RecipeComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
-        this.state = { recipes: Immutable.List() };
+        this.state = { recipes: Immutable.List(), rating: Immutable.List() };
     }
     componentWillMount() {
         console.log('right recipe is loading');
-        get_correctRecipe(1, 1, 4).then(recipes => this.setState(Object.assign({}, this.state, { recipes: recipes.recipes.map((_recipe) => {
-                return {
-                    recipe: _recipe,
-                    is_expanded: true
-                };
-            }).toList() })));
+        // get_findrating(1, 4).then(ratings => this.setState(
+        //     {
+        //         ...this.state,
+        //         ratings: ratings.ratings.map((_rating: Models.Rating) => {
+        //             return {
+        //                 rating: _rating,
+        //                 is_expanded: true
+        //             }
+        //         }).toList()
+        //     }))
     }
     render() {
         return React.createElement("div", null,
+            " OLAAA",
             React.createElement("div", null, this.props.recipe.Name),
+            React.createElement("div", null, this.props.recipe.Description),
+            React.createElement("div", null, this.props.recipe.Ingredients),
+            React.createElement("div", null, this.props.recipe.PreparationTime),
             React.createElement(StarsComponent, null));
+    }
+}
+class BookmarkComponent extends React.Component {
+    constructor(props, context) {
+        super(props, context);
+        this.state = { bookmarks: Immutable.List() };
+    }
+    // async get_bookmarks() {
+    //     let bookmark_page = await Api.get_User_User_Recipes(this.props.user,1,3,"")
+    //     let loaded_bookmark_page = Immutable.List<Models.User_Recipe>(bookmark_page.Items.map(r => r.Item))
+    //     for (let i = 1; i < bookmark_page.NumPages; i++) {
+    //         let bookmarks = await Api.get_User_User_Recipes(this.props.user, i, 100)
+    //         loaded_bookmark_page = loaded_bookmark_page.concat(Immutable.List<Models.User_Recipe>(bookmarks.Items.map(r => r.Item))).toList()
+    //     }
+    //     return Immutable.List<Models.User_Recipe>(loaded_bookmark_page)
+    // }
+    componentWillMount() {
+        get_all_remote_entities((index, amount) => Api.get_User_User_Recipes(this.props.logged_in_user, index, amount)).then(bookmarks => this.setState(Object.assign({}, this.state, { bookmarks: bookmarks.map(bookmark => {
+                return {
+                    bookmark: bookmark
+                };
+            }).toList() })));
+        console.log("Bookmark......");
+    }
+    render() {
+        return React.createElement("div", null,
+            "hee",
+            this.state.bookmarks.map(bookmark => this.setState(Object.assign({}, this.state, { bookmarks: this.state.bookmarks.map(bookmark1 => {
+                    if (bookmark.bookmark.Id != bookmark1.bookmark.Id) {
+                        console.log("Bookmarks ");
+                        return bookmark1;
+                    }
+                    else {
+                        console.log("Bookmarks are empty");
+                        return Object.assign({}, bookmark1);
+                    }
+                }).toList() }))));
     }
 }
 // class ItemComponent extends React.Component<{ title: string, info: string, is_expanded: boolean, update_me: (boolean) => void }, {}>
@@ -28251,10 +28312,13 @@ class RecipeComponent extends React.Component {
 exports.AppTest = (props) => {
     return React.createElement("div", null);
 };
-exports.BookmarksView = (props) => React.createElement("div", null);
+exports.BookmarksView = (props) => {
+    props.current_User;
+    return React.createElement(BookmarkComponent, { logged_in_user: props.current_User });
+};
 exports.CategoriesView = (props) => {
     props.current_User;
-    return React.createElement(CategoriesComponent, null);
+    return React.createElement(CategoriesComponent, { RecipeType: props.entity });
 };
 
 
