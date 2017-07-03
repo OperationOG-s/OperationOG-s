@@ -13,25 +13,29 @@ import * as ViewUtils from './generated_views/view_utils'
 //type IComponentProps = {props:ViewUtils.EntityComponentProps<Models.HomePage>}
 
 
-type RecipeType = {recipe: Models.Recipe}
-type CategoriesComponentProps = {RecipeType} //Empty prop in the parents class, this parent has no parents that's why it is empty lol xD 
-type CategoriesComponentState = { categories: Immutable.List<{ recipe : Models.Recipe, category: Models.Categorie, is_expanded: boolean }>, SearchedQuery: string }
+type CategoriesComponentProps = { reload:() => void, currentUser:Models.User } //Empty prop in the parents class, this parent has no parents that's why it is empty lol xD 
+type CategoriesComponentState = { categories: Immutable.List<{ category: Models.Categorie, is_expanded: boolean }>, SearchedQuery: string }
 
-type CategoryComponentProps = { RecipeType, recipe : Models.Recipe,category: Models.Categorie, update_me: (boolean) => void, is_expanded: boolean }
-type CategoryComponentState = { meals: Immutable.List<{category: Models.Categorie, recipe: Models.Recipe, meal: Models.Meal, is_expanded: boolean }> }
+type CategoryComponentProps = { reload:() => void, logged_in_user: Models.User, category: Models.Categorie, update_me: (boolean) => void, is_expanded: boolean }
+type CategoryComponentState = { meals: Immutable.List<{category: Models.Categorie, meal: Models.Meal, is_expanded: boolean }> }
 
-type MealComponentProps = { category: Models.Categorie, recipe: Models.Recipe ,meal: Models.Meal, update_me: (boolean) => void, is_expanded: boolean }
+type MealComponentProps = { reload:() => void, logged_in_user: Models.User, category: Models.Categorie ,meal: Models.Meal, update_me: (boolean) => void, is_expanded: boolean }
 type MealComponentState = { recipes: Immutable.List<{ recipe: Models.Recipe, is_expanded: boolean }> }
 
-type RecipeComponentProps = { recipe: Models.Recipe, update_me: (boolean) => void, is_expanded: boolean }
-type RecipeComponentState = { recipes: Immutable.List<{ recipe: Models.Recipe, is_expanded: boolean }>, rating: Immutable.List<{ recipe: Models.Rating }> }
+type RecipeComponentProps = { reload:() => void, logged_in_user: Models.User, recipe: Models.Recipe, update_me: (boolean) => void, is_expanded: boolean }
+type RecipeComponentState = {recipes: Immutable.List<{ recipe: Models.Recipe, is_expanded: boolean }>, rating: Immutable.List<{ recipe: Models.Rating }> }
 
 type Rate = { value: number, state: boolean }
 type StarsComponentProps = {}
 type StarsComponentState = { stars: Immutable.List<Rate> }
 
-type BookmarkComponentProps = { logged_in_user: Models.User }
-type BookmarkComponentState = { bookmarks: Immutable.List<{ bookmark: Models.Recipe }> }
+type Bookmark = {recipe : Models.Recipe}
+type ShowBookmarkComponentProps ={recipe : Models.Bookmarks}
+type ShowBookmarkComponentState = {recipes: Immutable.List<{recipe : Models.Recipe}>}
+
+type Bookmarks = {logged_in_user: Models.User, recipe : Models.Recipe }
+type BookmarkComponentProps = {reload:()=>void,logged_in_user: Models.User, recipe : Models.Recipe }
+type BookmarkComponentState = {is_bookmarked:boolean, bookmarks: Immutable.List<{ bookmark: Models.Recipe }> }
 
 
 
@@ -48,10 +52,16 @@ export async function get_all_remote_entities<T>(get_page: (index: number, amoun
     return elems_to_return
 }
 
-export async function get_correctRecipe(idMeal: number, idCategorie: number, idRecipe: number): Promise<{ recipes: Immutable.List<Models.Recipe> }> {
-    let res = await fetch(`/api/v1/CustomController/FindCorrectRecipe/${idMeal}/${idCategorie}/${idRecipe}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } })
+export async function get_correctRecipe(idMeal: number, idCategorie: number): Promise<{ recipes: Immutable.List<Models.Recipe> }> {
+    let res = await fetch(`/api/v1/CustomController/FindCorrectRecipe/${idMeal}/${idCategorie}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } })
     let json = await res.json()
     console.log("received correct recipes", json)
+    return { recipes: Immutable.List<Models.Recipe>(json) }
+}
+export async function get_bookmarked(idUser: number): Promise<{ recipes: Immutable.List<Models.Recipe> }> {
+    let res = await fetch(`/api/v1/CustomController/Bookmarked/${idUser}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } })
+    let json = await res.json()
+    console.log("received correct Bookmark Recipes", json)
     return { recipes: Immutable.List<Models.Recipe>(json) }
 }
 export async function get_findrating(idCategorie: number, idRecipe: number): Promise<{ ratings: Immutable.List<Models.Rating> }> {
@@ -75,18 +85,18 @@ export async function get_meals(id: number): Promise<{ meals: Immutable.List<Mod
 
 class CategoriesComponent extends React.Component<CategoriesComponentProps, CategoriesComponentState>
 {
-    constructor(props: CategoryComponentProps, context) {
+    constructor(props: CategoriesComponentProps, context) {
         super(props, context)
-        this.state = {  categories: Immutable.List<{  recipe : Models.Recipe ,category: Models.Categorie, is_expanded: boolean }>(), SearchedQuery: ""}
+        this.state = {  categories: Immutable.List<{  category: Models.Categorie, is_expanded: boolean }>(), SearchedQuery: ""}
     }
 
     componentWillMount() {
+       // get_all_remote_entities((index, amount) => Api.get_User_User_Recipes(this.props. index, amount))
         get_all_remote_entities((index, amount) => Api.get_Categories(index, amount)).then(categories =>
             this.setState({
                 ... this.state,
                 categories: categories.map(category => {
                     return {
-                        recipe : this.props.RecipeType,
                         category: category,
                         is_expanded: false
                     }
@@ -106,8 +116,8 @@ class CategoriesComponent extends React.Component<CategoriesComponentProps, Cate
 
             {this.state.categories.map(category => <CategoryComponent is_expanded={category.is_expanded}
                 category={category.category}
-                recipe = {category.recipe}
-                RecipeType = {category.recipe}
+                logged_in_user = {this.props.currentUser}
+                reload={this.props.reload}
                 update_me={value => {
                     this.setState(
                         {
@@ -129,7 +139,7 @@ class CategoryComponent extends React.Component<CategoryComponentProps, Category
 {
     constructor(props: CategoryComponentProps, context) {
         super(props, context)
-        this.state =  { meals: Immutable.List<{category: Models.Categorie, recipe: Models.Recipe, meal: Models.Meal, is_expanded: boolean }>() }
+        this.state =  { meals: Immutable.List<{category: Models.Categorie, meal: Models.Meal, is_expanded: boolean }>() }
     }
 
     componentWillMount() {
@@ -140,7 +150,6 @@ class CategoryComponent extends React.Component<CategoryComponentProps, Category
                 meals: meals.meals.map((_meal: Models.Meal) => {
                     return {
                         meal: _meal,
-                        recipe : this.props.recipe,
                         category : this.props.category ,
                         is_expanded: false
                     }
@@ -165,7 +174,9 @@ class CategoryComponent extends React.Component<CategoryComponentProps, Category
 
             {this.state.meals.map(meal => <MealComponent is_expanded={meal.is_expanded}
                 meal={meal.meal}
-                recipe= {meal.recipe}
+                logged_in_user = {this.props.logged_in_user}
+                reload={this.props.reload}
+
                 category= {meal.category}
                 update_me={value => {
                     this.setState(
@@ -196,7 +207,8 @@ class MealComponent extends React.Component<MealComponentProps, MealComponentSta
 
     componentWillMount() {
         console.log('right meal is loading')
-        get_correctRecipe(this.props.meal.Id, this.props.category.Id, this.props.recipe.Id).then(recipes => this.setState(
+        //get_all_remote_entities((index, amount) => Api.get_Meal_Meal_Recipes(this.props.meal, index, amount)).then(recipes => this.setState(
+        get_correctRecipe(this.props.meal.Id, this.props.category.Id).then(recipes => this.setState(
             {
                 ...this.state,
                 recipes: recipes.recipes.map((_recipe: Models.Recipe) => {
@@ -222,6 +234,8 @@ class MealComponent extends React.Component<MealComponentProps, MealComponentSta
                 {this.state.recipes.map(item => <RecipeComponent
                     recipe={item.recipe}
                     is_expanded={item.is_expanded}
+                    logged_in_user = {this.props.logged_in_user}
+                    reload={this.props.reload}
                     update_me={value =>
                         this.setState({ 
                             ...this.state,
@@ -290,7 +304,7 @@ class RecipeComponent extends React.Component<RecipeComponentProps, RecipeCompon
 {
     constructor(props: RecipeComponentProps, context) {
         super(props, context)
-        this.state = { recipes: Immutable.List<{ recipe: Models.Recipe, is_expanded: boolean }>(), rating: Immutable.List<{ recipe: Models.Rating }>() }
+        this.state = {recipes: Immutable.List<{ recipe: Models.Recipe, is_expanded: boolean }>(), rating: Immutable.List<{ recipe: Models.Rating }>() }
     }
 
     componentWillMount() {
@@ -310,90 +324,95 @@ class RecipeComponent extends React.Component<RecipeComponentProps, RecipeCompon
 
    
     render() {
-        return <div> OLAAA 
-            <div>{this.props.recipe.Name}</div>
-            <div>{this.props.recipe.Description}</div>
-            <div>{this.props.recipe.Ingredients}</div>
-            <div>{this.props.recipe.PreparationTime}</div>
-            {/*<div>{this.props.rating}</div>*/}
+        return <div>
+            <h2>Name:</h2> <h2>{this.props.recipe.Name}</h2>
+            
+           <h2>Description:</h2>  <div>{this.props.recipe.Description}/</div>
+            
+            <h2>Ingredients:</h2> <div>{this.props.recipe.Ingredients}</div> 
+         
+            <h2>PreparationTime:</h2> <div>{this.props.recipe.PreparationTime} </div>   
+                         {/*<div>{this.props.rating}</div>*/}
             <StarsComponent />
+            <BookmarkComponent 
+                reload={this.props.reload}
+                logged_in_user = {this.props.logged_in_user} 
+                recipe = {this.props.recipe}/>
+            {/*<BookmarkComponent logged_in_user ={props.current_User}/>*/}
         </div>
     }
 }
+
+class ShowBookmarkComponent extends React.Component<ShowBookmarkComponentProps, ShowBookmarkComponentState>
+{
+    constructor(props: ShowBookmarkComponentProps, context: any){
+        super(props, context)
+        this.state = {recipes: Immutable.List<{recipe : Models.Recipe}>()}
+    }
+
+    componentWillMount() {
+         get_bookmarked(1).then(bookmarks => this.setState(
+            {
+                ...this.state,
+                bookmark: bookmarks.recipes.map((_bookmark: Models.Recipe) => {
+                    console.log('Recipe is bookmarked')
+                              
+                return  _bookmark
+           
+                 
+                }).toList()
+            }))
+        
+    }
+
+     
+    render() {
+        return <div>
+          {this.props.recipe.Id}
+        </div>
+    }
+}
+
+
+
+
+
 
 
 class BookmarkComponent extends React.Component<BookmarkComponentProps, BookmarkComponentState>
 {
     constructor(props: BookmarkComponentProps, context) {
         super(props, context)
-        this.state = { bookmarks: Immutable.List<{ bookmark: Models.Recipe }>() }
+        console.log("props", props)
+        this.state = { is_bookmarked: false, bookmarks: Immutable.List<{ bookmark: Models.Recipe }>() }
     }
-    // async get_bookmarks() {
-    //     let bookmark_page = await Api.get_User_User_Recipes(this.props.user,1,3,"")
-    //     let loaded_bookmark_page = Immutable.List<Models.User_Recipe>(bookmark_page.Items.map(r => r.Item))
-    //     for (let i = 1; i < bookmark_page.NumPages; i++) {
-    //         let bookmarks = await Api.get_User_User_Recipes(this.props.user, i, 100)
-    //         loaded_bookmark_page = loaded_bookmark_page.concat(Immutable.List<Models.User_Recipe>(bookmarks.Items.map(r => r.Item))).toList()
-    //     }
-    //     return Immutable.List<Models.User_Recipe>(loaded_bookmark_page)
-    // }
 
     componentWillMount() {
-        get_all_remote_entities((index, amount) => Api.get_User_User_Recipes(this.props.logged_in_user, index, amount)).then(bookmarks =>
-            this.setState({
-                ... this.state,
-                bookmarks: bookmarks.map(bookmark => {
-                    return {
-                    
-                        bookmark: bookmark
-                    }
-                }).toList()
-                
-            }))
-             console.log("Bookmark......")
+
+          
+        get_all_remote_entities((index, amount) => Api.get_User_User_Recipes(this.props.logged_in_user, index, amount))
+            .then(recipes => this.setState({...this.state, is_bookmarked: recipes.find(elem => elem.Id==this.props.recipe.Id) != undefined }))
+
+       
     }
 
+
     render() {
-        return <div>hee
-            {
-                this.state.bookmarks.map(bookmark =>
-                    this.setState(
-                        {
-                            ... this.state, bookmarks: this.state.bookmarks.map(bookmark1 => {
-                                if (bookmark.bookmark.Id != bookmark1.bookmark.Id) {
-                                     console.log("Bookmarks ")
-                                    return bookmark1  
-                                }
-                                else {
-                                    console.log("Bookmarks are empty")
-                                    return { ...bookmark1 }
-                                }
-                            }).toList()
-                        })
-                )}
+
+          return <div>
+            {this.state.is_bookmarked ? 
+            <button onClick= {() => Api.unlink_User_User_Recipes(this.props.logged_in_user, this.props.recipe).then(_ =>this.setState({...this.state, is_bookmarked:false}))}>Un-bookmark</button> :
+            <button onClick= {() => Api.link_User_User_Recipes(this.props.logged_in_user, this.props.recipe).then(_ => this.setState({...this.state, is_bookmarked:true}))}>Bookmark</button>}
+            {/*{console.log(this.props.Bookmarks.Name)}*/}
         </div>
+      
 
     }
 
 }
 
 
-// class ItemComponent extends React.Component<{ title: string, info: string, is_expanded: boolean, update_me: (boolean) => void }, {}>
-// { 
-//     constructor(props: { title: string, info: string, is_expanded: boolean, update_me: (boolean) => void }, context) {
-//         super(props, context)
-//         this.state = {}
-//     }
 
-//     render() {
-//         return <div >
-//             <span>{this.props.title}</span>
-//             {this.props.is_expanded ? <div>{this.props.info}</div> : <span />}
-//             {!this.props.is_expanded ? <button onClick={() => this.props.update_me(true)}>+</button> :
-//                 <button onClick={() => this.props.update_me(false)}>-</button>}
-//         </div>
-//     }
-// }
 
 export let AppTest = (props: ViewUtils.EntityComponentProps<Models.HomePage>) => {
     return <div></div>
@@ -401,10 +420,13 @@ export let AppTest = (props: ViewUtils.EntityComponentProps<Models.HomePage>) =>
 
 export let BookmarksView = (props: ViewUtils.EntityComponentProps<Models.Bookmarks>) =>
 {   props.current_User
-    return <BookmarkComponent logged_in_user ={props.current_User}/> }
+    return <ShowBookmarkComponent recipe = {props.entity}/>
+                                
+     
+}
 
 
 export let CategoriesView = (props: ViewUtils.EntityComponentProps<Models.CategoryList>) => {
-    props.current_User
-   return <CategoriesComponent RecipeType = {props.entity}/>     
+    //props.current_User
+   return <CategoriesComponent currentUser={props.current_User} reload={props.force_reload} />     
 }

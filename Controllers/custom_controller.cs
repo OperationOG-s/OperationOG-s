@@ -65,8 +65,8 @@ public class CustomController : Controller
   }
 
 [RestrictToUserType(new string[] {"*"})]
-  [HttpGet("FindCorrectRecipe/{idMeal}/{idCategorie}/{idRecipe}")]
-  public Recipe[] FindCorrectRecipe(int idMeal, int idCategorie, int idRecipe)
+  [HttpGet("FindCorrectRecipe/{idMeal}/{idCategorie}")]
+  public Recipe[] FindCorrectRecipe(int idMeal, int idCategorie)
   {
     var findcorrectrecipe = (
         	                    // Meal Recipe
@@ -82,15 +82,6 @@ public class CustomController : Controller
                               where categorie_recipe.RecipeId == recipe.Id
                               select recipe);
                             
-                            // from meal_recipe in _context.Meal_Recipe
-                            // where (meal_recipe.MealId == idMeal) && (meal_recipe.RecipeId == idRecipe)
-                            // from  categorie_recipe in _context.Categorie_Recipe
-                            // where (categorie_recipe.CategorieId == idCategorie) && (categorie_recipe.RecipeId == idRecipe)
-                            // from categorie_meal in _context.Categorie_Meal
-                            // where (categorie_meal.CategorieId == idRecipe) &&( categorie_meal.MealId == idMeal)
-                            // from recipe in _context.Recipe
-                            // where recipe.Id == meal_recipe.RecipeId
-                            // select recipe);
 
   if(findcorrectrecipe  == null) throw new Exception("Correct Recipe not found");
   return findcorrectrecipe.ToArray();
@@ -129,6 +120,21 @@ public class CustomController : Controller
 
 
   }
+
+   [RestrictToUserType(new string[] {"*"})]
+  [HttpGet("Bookmarked/{idUser}")]
+  public Recipe[] Bookmarked(int idUser)
+  {
+    var bookmarked = (from User_Recipe in _context.User_Recipe
+                  where User_Recipe.UserId == idUser 
+                  from _recipe in _context.Recipe
+                  where  (User_Recipe.RecipeId == _recipe.Id )   
+                  select _recipe);
+
+ 
+    return bookmarked.ToArray();
+  }
+  
 
 
 
