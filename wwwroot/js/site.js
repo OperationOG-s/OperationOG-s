@@ -28249,7 +28249,7 @@ class CategoriesComponent extends React.Component {
             React.createElement("header", null,
                 React.createElement("h2", null, "Recipes "),
                 "Find and share everyday cooking inspiration on OperationOG's. Discover recipes, cooks and how-tos based on the food you love and the friends you follow."),
-            this.state.categories.map(category => React.createElement(CategoryComponent, { is_expanded: category.is_expanded, category: category.category, logged_in_user: this.props.currentUser, reload: this.props.reload, update_me: value => {
+            this.state.categories.map(category => React.createElement(CategoryComponent, { is_expanded: category.is_expanded, category: category.category, SearchedQuery: this.state.SearchedQuery, logged_in_user: this.props.currentUser, reload: this.props.reload, update_me: value => {
                     this.setState(Object.assign({}, this.state, { categories: this.state.categories.map(category1 => {
                             if (category.category.Kind != category1.category.Kind) {
                                 return category1;
@@ -28291,7 +28291,7 @@ class CategoryComponent extends React.Component {
                     " back to ",
                     this.props.category.Kind,
                     " ")),
-            this.state.meals.map(meal => React.createElement(MealComponent, { is_expanded: meal.is_expanded, meal: meal.meal, logged_in_user: this.props.logged_in_user, reload: this.props.reload, category: meal.category, update_me: value => {
+            this.state.meals.map(meal => React.createElement(MealComponent, { is_expanded: meal.is_expanded, meal: meal.meal, logged_in_user: this.props.logged_in_user, reload: this.props.reload, SearchedQuery: this.props.SearchedQuery, category: meal.category, update_me: value => {
                     this.setState(Object.assign({}, this.state, { meals: this.state.meals.map(meal1 => {
                             console.log();
                             if (meal.meal.Kind != meal1.meal.Kind) {
@@ -28333,7 +28333,7 @@ class MealComponent extends React.Component {
                     "back to ",
                     this.props.meal.Kind),
                 " "),
-            React.createElement("div", null, this.state.recipes.map(item => React.createElement(RecipeComponent, { recipe: item.recipe, is_expanded: item.is_expanded, logged_in_user: this.props.logged_in_user, reload: this.props.reload, update_me: value => this.setState(Object.assign({}, this.state, { recipes: this.state.recipes.map(item1 => {
+            React.createElement("div", null, this.state.recipes.filter(item => this.props.SearchedQuery == "" || item.recipe.Name.startsWith(this.props.SearchedQuery)).map(item => React.createElement(RecipeComponent, { recipe: item.recipe, is_expanded: item.is_expanded, logged_in_user: this.props.logged_in_user, reload: this.props.reload, update_me: value => this.setState(Object.assign({}, this.state, { recipes: this.state.recipes.map(item1 => {
                         if (item.recipe.Name != item1.recipe.Name) {
                             return Object.assign({}, item1, { is_expanded: value });
                         }

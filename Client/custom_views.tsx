@@ -16,10 +16,10 @@ import * as ViewUtils from './generated_views/view_utils'
 type CategoriesComponentProps = { reload:() => void, currentUser:Models.User } //Empty prop in the parents class, this parent has no parents that's why it is empty lol xD 
 type CategoriesComponentState = { categories: Immutable.List<{ category: Models.Categorie, is_expanded: boolean }>, SearchedQuery: string }
 
-type CategoryComponentProps = { reload:() => void, logged_in_user: Models.User, category: Models.Categorie, update_me: (boolean) => void, is_expanded: boolean }
+type CategoryComponentProps = { reload:() => void, logged_in_user: Models.User, category: Models.Categorie, update_me: (boolean) => void, is_expanded: boolean, SearchedQuery : string  }
 type CategoryComponentState = { meals: Immutable.List<{category: Models.Categorie, meal: Models.Meal, is_expanded: boolean }> }
 
-type MealComponentProps = { reload:() => void, logged_in_user: Models.User, category: Models.Categorie ,meal: Models.Meal, update_me: (boolean) => void, is_expanded: boolean }
+type MealComponentProps = { reload:() => void, logged_in_user: Models.User, category: Models.Categorie ,meal: Models.Meal, update_me: (boolean) => void, is_expanded: boolean, SearchedQuery : string  }
 type MealComponentState = { recipes: Immutable.List<{ recipe: Models.Recipe, is_expanded: boolean }> }
 
 type RecipeComponentProps = { reload:() => void, logged_in_user: Models.User, recipe: Models.Recipe, update_me: (boolean) => void, is_expanded: boolean }
@@ -122,6 +122,7 @@ class CategoriesComponent extends React.Component<CategoriesComponentProps, Cate
 
             {this.state.categories.map(category => <CategoryComponent is_expanded={category.is_expanded}
                 category={category.category}
+                SearchedQuery={this.state.SearchedQuery}
                 logged_in_user = {this.props.currentUser}
                 reload={this.props.reload}
                 update_me={value => {
@@ -182,7 +183,7 @@ class CategoryComponent extends React.Component<CategoryComponentProps, Category
                 meal={meal.meal}
                 logged_in_user = {this.props.logged_in_user}
                 reload={this.props.reload}
-
+                SearchedQuery={this.props.SearchedQuery}
                 category= {meal.category}
                 update_me={value => {
                     this.setState(
@@ -237,7 +238,7 @@ class MealComponent extends React.Component<MealComponentProps, MealComponentSta
             <h4> <button onClick={() => this.props.update_me(false)}>back to {this.props.meal.Kind}</button> </h4>
             <div>
 
-                {this.state.recipes.map(item => <RecipeComponent
+                {this.state.recipes.filter(item => this.props.SearchedQuery == "" || item.recipe.Name.startsWith(this.props.SearchedQuery)).map(item => <RecipeComponent
                     recipe={item.recipe}
                     is_expanded={item.is_expanded}
                     logged_in_user = {this.props.logged_in_user}
