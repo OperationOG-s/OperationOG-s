@@ -120,23 +120,53 @@ public class CustomController : Controller
 
 
   }
+[RestrictToUserType(new string[] {"*"})]
+  [HttpPost("UserRating/{rating}/{recipe_id}/{user_id}")]
+  public void UserRating(int rating,int recipe_id, int user_id)
+  {
+    var stored_rating = (from recipe_rating in _context.Recipe_Rating
+                          where(recipe_rating.RecipeId == recipe_id)
+                          from  user_rating in _context.User_Rating
+                          where (user_rating.UserId == user_id) && (recipe_rating.RatingId == user_rating.RatingId)
+                          from Rating in _context.Rating
+                          where (Rating.Id == user_rating.RatingId &&  Rating.Id == recipe_rating.RatingId)
+                          select Rating).FirstOrDefault();
+    if(stored_rating == null){
+      System.Console.WriteLine("did not found one!");
+      Rating newRating = new Rating(){ rating = rating, Id = _context.Rating.Max(elem => elem.Id) + 1 };
+      _context.Rating.Add(newRating);
+
+      User_Rating newUser_Rating = new User_Rating(){ UserId = user_id, RatingId = newRating.Id };
+      _context.User_Rating.Add(newUser_Rating);
+
+      Recipe_Rating newRecipe_Rating = new Recipe_Rating(){ RecipeId = recipe_id, RatingId = newRating.Id };
+      _context.Recipe_Rating.Add(newRecipe_Rating);
+    }
+    else{
+      System.Console.WriteLine("found one!");
+      stored_rating.rating = rating;
+    }
+
+
+    _context.SaveChanges();   
+     
+}
 
   [RestrictToUserType(new string[] {"*"})]
-  [HttpGet("SetRating/{rating}/{recipe_id}/{user_id}")]
-  public void SetRating(int rating,int recipe_id, int user_id)
+  [HttpGet("FindRating/{id}/{idRating}/{idRecipe}")]
+  public Rating[] FindRating(int id,int idRating, int idRecipe)
   {
-    var  set_rating = (from _getrecipe in _context.Recipe_Rating
-                     where(_getrecipe.RecipeId == recipe_id)
-                     from _getrate in _context.Recipe_Rating
-                     where (_getrate.Id == rating)
-                     from  userid in _context.User_Rating
-                     where (userid.UserId == user_id)
-                     select rating
+    var  find_rating = (from _findrating in _context.Recipe_Rating
+                     where(_findrating.Id == id) && (_findrating.RatingId == idRating) && (_findrating.RecipeId == idRecipe)
+                     from ratings in _context.Rating
+                     where (ratings.Id == idRating)
+                     select ratings
                        );
-    if(set_rating == null) throw new Exception("Rating not found");
-    set_rating.ToArray();
+    if(find_rating == null) throw new Exception("Rating not found");
+    return find_rating.ToArray();
     
  }
+
 
    [RestrictToUserType(new string[] {"*"})]
   [HttpGet("Bookmarked/{idUser}")]

@@ -26,7 +26,7 @@ type RecipeComponentProps = { reload:() => void, logged_in_user: Models.User, re
 type RecipeComponentState = {recipes: Immutable.List<{ recipe: Models.Recipe, is_expanded: boolean }>, rating: Immutable.List<{ recipe: Models.Rating }> }
 
 type Rate = { value: number, state: boolean }
-type StarsComponentProps = {recipe: Models.Recipe, logged_in_user: Models.User}
+type StarsComponentProps = {recipe: Models.Recipe, logged_in_user: Models.User }
 type StarsComponentState = { stars: Immutable.List<Rate> }
 
 type Bookmark = {recipe : Models.Recipe}
@@ -64,10 +64,16 @@ export async function get_bookmarked(idUser: number): Promise<{ recipes: Immutab
     console.log("received correct Bookmark Recipes", json)
     return { recipes: Immutable.List<Models.Recipe>(json) }
 }
-export async function get_findrating(idCategorie: number, idRecipe: number): Promise<{ ratings: Immutable.List<Models.Rating> }> {
-    let res = await fetch(`/api/v1/CustomController/FindRating/${idCategorie}/${idRecipe}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } })
+
+export async function set_rating(rating: number, recipe: number, user: number) {
+    let res = await fetch(`/api/v1/CustomController/UserRating/${rating}/${recipe}/${user}`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } })
+    console.log("set correct rating", rating)
+}
+export async function get_findrating(id: number,idRating: number, idRecipe: number): Promise<{ ratings: Immutable.List<Models.Rating> }> {
+    let res = await fetch(`/api/v1/CustomController/FindRating/${id}/${idRating}/${idRecipe}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } })
     let json = await res.json()
-    console.log("received correct rating", json)
+    console.log(idRating);
+    console.log("received correct rating" , json)
     return { ratings: Immutable.List<Models.Rating>(json) }
 }
 export async function get_recipe(id: number): Promise<{ recipe: Models.Recipe }> {
@@ -83,8 +89,8 @@ export async function get_meals(id: number): Promise<{ meals: Immutable.List<Mod
     return { meals: Immutable.List<Models.Meal>(json) }
 }
 
-export async function set_rating(rating: number, recipe_id:number, user_id:number)  {
-    await fetch(`/api/v1/CustomController/SetRating/${rating}/${recipe_id}/${user_id}`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } })
+export async function get_userrating(rating: number, recipe_id:number, user_id:number)  {
+    await fetch(`/api/v1/CustomController/UserRating/${rating}/${recipe_id}/${user_id}`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } })
 }
 
 
@@ -286,7 +292,15 @@ export class StarsComponent extends React.Component<StarsComponentProps, StarsCo
     constructor(props: StarsComponentProps, context: any) {
         super(props, context)
         this.state = { stars: Immutable.List<Rate>([{ value: 0, state: false }, { value: 1, state: false }, { value: 2, state: false }, { value: 3, state: false }, { value: 4, state: false }]) }
+
     }
+    CompnentWillMount(){
+    this.props.
+    //component: user * recipe => rating
+    //when rating received => for every star in stars: IF star.value <= rating THEN star.state:True ELSE star.state: False   
+    }
+    
+
     render() {
         return <div>{this.state.stars.map(star => <button onMouseOver={() => this.setState({ ...this.state, stars: this.state.stars.map(star1 => { if (star1.value <= star.value) return { ...star1, state: true }; else return { ...star1, state: false } }).toList() })}
             style={star.state ? {
@@ -302,7 +316,10 @@ export class StarsComponent extends React.Component<StarsComponentProps, StarsCo
                     borderRadius: 10,
                 }}
             onClick={() => set_rating(star.value, this.props.recipe.Id, this.props.logged_in_user.Id)}
+            //get_userrating(star.value, this.props.recipe.Id, this.props.logged_in_user.Id)
+            
             marginHeight={10} marginWidth={10} width={10} height={10}>{star.value}</button>)} </div>
+            
     }
 
 }
@@ -316,6 +333,7 @@ class RecipeComponent extends React.Component<RecipeComponentProps, RecipeCompon
 
     componentWillMount() {
         console.log('right recipe is loading')
+         get_findrating(1, 1, this.props.recipe.Id);
         
         // get_findrating(1, 4).then(ratings => this.setState(
         //     {
@@ -379,12 +397,6 @@ class ShowBookmarkComponent extends React.Component<ShowBookmarkComponentProps, 
         </div>
     }
 }
-
-
-
-
-
-
 
 class BookmarkComponent extends React.Component<BookmarkComponentProps, BookmarkComponentState>
 {
