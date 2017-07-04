@@ -16,3 +16,12 @@ C:\Users\Safia Aarouss\Documents\GitHub\OperationOG-s\obj\Debug\netcoreapp1.1\Us
 C:\Users\Safia Aarouss\Documents\GitHub\OperationOG-s\obj\Debug\netcoreapp1.1\PortableRecipes.AssemblyInfo.cs
 C:\Users\Safia Aarouss\Documents\GitHub\OperationOG-s\obj\Debug\netcoreapp1.1\PortableRecipes.dll
 C:\Users\Safia Aarouss\Documents\GitHub\OperationOG-s\obj\Debug\netcoreapp1.1\PortableRecipes.pdb
+C:\Users\Mediamarkt\Documents\GitHub\OperationOG-s\bin\Debug\netcoreapp1.1\PortableRecipes.deps.json
+C:\Users\Mediamarkt\Documents\GitHub\OperationOG-s\bin\Debug\netcoreapp1.1\PortableRecipes.runtimeconfig.json
+C:\Users\Mediamarkt\Documents\GitHub\OperationOG-s\bin\Debug\netcoreapp1.1\PortableRecipes.runtimeconfig.dev.json
+C:\Users\Mediamarkt\Documents\GitHub\OperationOG-s\bin\Debug\netcoreapp1.1\PortableRecipes.dll
+C:\Users\Mediamarkt\Documents\GitHub\OperationOG-s\bin\Debug\netcoreapp1.1\PortableRecipes.pdb
+C:\Users\Mediamarkt\Documents\GitHub\OperationOG-s\obj\Debug\netcoreapp1.1\UserSecretsAssemblyInfo.cs
+C:\Users\Mediamarkt\Documents\GitHub\OperationOG-s\obj\Debug\netcoreapp1.1\PortableRecipes.AssemblyInfo.cs
+C:\Users\Mediamarkt\Documents\GitHub\OperationOG-s\obj\Debug\netcoreapp1.1\PortableRecipes.dll
+C:\Users\Mediamarkt\Documents\GitHub\OperationOG-s\obj\Debug\netcoreapp1.1\PortableRecipes.pdb

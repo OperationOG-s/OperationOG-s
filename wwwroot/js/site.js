@@ -5108,7 +5108,7 @@ var _extends = _assign || function (target) { for (var i = 1; i < arguments.leng
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var BlockTree = __webpack_require__(224);
-var ContentState = __webpack_require__(158);
+var ContentState = __webpack_require__(160);
 var EditorBidiService = __webpack_require__(605);
 var Immutable = __webpack_require__(13);
 var SelectionState = __webpack_require__(97);
@@ -10920,7 +10920,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const Moment = __webpack_require__(0);
-__webpack_require__(187);
+__webpack_require__(189);
 exports.parse_date = (e) => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); };
 exports.make_page = (res, parse_other_args) => {
     return {
@@ -11389,6 +11389,74 @@ function unlink_User_User_Recipes(source, target) {
     });
 }
 exports.unlink_User_User_Recipes = unlink_User_User_Recipes;
+function get_User_User_Ratings(source, page_index, page_size, query_string = null) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/User/${source.Id}/User_Ratings?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return exports.make_page(json, e => { return Object.assign({}, e); });
+    });
+}
+exports.get_User_User_Ratings = get_User_User_Ratings;
+function get_User_User_Ratings_Rating(source, page_index, page_size, id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/User/${source.Id}/User_Ratings/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
+    });
+}
+exports.get_User_User_Ratings_Rating = get_User_User_Ratings_Rating;
+function get_User_User_Ratings_Rating_by_id(source, id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/User/${source.Id}/User_Ratings/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
+    });
+}
+exports.get_User_User_Ratings_Rating_by_id = get_User_User_Ratings_Rating_by_id;
+function get_unlinked_User_User_Ratings(source, page_index, page_size) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/User/${source.Id}/unlinked/User_Ratings?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return exports.make_page(json, e => { return Object.assign({}, e); });
+    });
+}
+exports.get_unlinked_User_User_Ratings = get_unlinked_User_User_Ratings;
+function create_linked_User_User_Ratings_Rating(source) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/User/${source.Id}/User_Ratings_Rating`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return json.map(e => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); });
+    });
+}
+exports.create_linked_User_User_Ratings_Rating = create_linked_User_User_Ratings_Rating;
+function link_User_User_Ratings(source, target) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/User/${source.Id}/User_Ratings/${target.Id}`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        return;
+    });
+}
+exports.link_User_User_Ratings = link_User_User_Ratings;
+function unlink_User_User_Ratings(source, target) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/User/${source.Id}/User_Ratings/${target.Id}`, { method: 'delete', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        return;
+    });
+}
+exports.unlink_User_User_Ratings = unlink_User_User_Ratings;
 function create_User() {
     return __awaiter(this, void 0, void 0, function* () {
         let res = yield fetch(`/api/v1/User/`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json',
@@ -12612,6 +12680,74 @@ function get_CategoryLists(page_index, page_size, search_query = null) {
     });
 }
 exports.get_CategoryLists = get_CategoryLists;
+function get_Rating_User_Ratings(source, page_index, page_size, query_string = null) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Rating/${source.Id}/User_Ratings?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return exports.make_page(json, e => { return Object.assign({}, e); });
+    });
+}
+exports.get_Rating_User_Ratings = get_Rating_User_Ratings;
+function get_Rating_User_Ratings_User(source, page_index, page_size, id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Rating/${source.Id}/User_Ratings/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
+    });
+}
+exports.get_Rating_User_Ratings_User = get_Rating_User_Ratings_User;
+function get_Rating_User_Ratings_User_by_id(source, id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Rating/${source.Id}/User_Ratings/${id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return Object.assign({}, json, { CreatedDate: Moment.utc(json.CreatedDate) });
+    });
+}
+exports.get_Rating_User_Ratings_User_by_id = get_Rating_User_Ratings_User_by_id;
+function get_unlinked_Rating_User_Ratings(source, page_index, page_size) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Rating/${source.Id}/unlinked/User_Ratings?page_index=${page_index}&page_size=${page_size}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return exports.make_page(json, e => { return Object.assign({}, e); });
+    });
+}
+exports.get_unlinked_Rating_User_Ratings = get_unlinked_Rating_User_Ratings;
+function create_linked_Rating_User_Ratings_User(source) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Rating/${source.Id}/User_Ratings_User`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        let json = yield res.json();
+        return json.map(e => { return Object.assign({}, e, { CreatedDate: Moment.utc(e.CreatedDate) }); });
+    });
+}
+exports.create_linked_Rating_User_Ratings_User = create_linked_Rating_User_Ratings_User;
+function link_Rating_User_Ratings(source, target) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Rating/${source.Id}/User_Ratings/${target.Id}`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        return;
+    });
+}
+exports.link_Rating_User_Ratings = link_Rating_User_Ratings;
+function unlink_Rating_User_Ratings(source, target) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/Rating/${source.Id}/User_Ratings/${target.Id}`, { method: 'delete', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        if (!res.ok)
+            throw Error(res.statusText);
+        return;
+    });
+}
+exports.unlink_Rating_User_Ratings = unlink_Rating_User_Ratings;
 function get_Rating_Recipe_Ratings(source, page_index, page_size, query_string = null) {
     return __awaiter(this, void 0, void 0, function* () {
         let res = yield fetch(`/api/v1/Rating/${source.Id}/Recipe_Ratings?page_index=${page_index}&page_size=${page_size}${(query_string != null ? "&search_query=" + query_string : "")}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
@@ -12899,7 +13035,7 @@ const Immutable = __webpack_require__(36);
 const Api = __webpack_require__(18);
 const KeepAliveApi = __webpack_require__(406);
 const i18next = __webpack_require__(21);
-__webpack_require__(187);
+__webpack_require__(189);
 exports.any_of = (predicates) => (current_User, current_Admin) => predicates.map(p => p(current_User, current_Admin)).some(p => p);
 class AuthenticationMenu extends React.Component {
     constructor(props, context) {
@@ -13423,6 +13559,10 @@ exports.can_view_User_Recipe = (current_User, current_Admin) => true;
 exports.can_create_User_Recipe = (current_User, current_Admin) => true;
 exports.can_edit_User_Recipe = (current_User, current_Admin) => true;
 exports.can_delete_User_Recipe = (current_User, current_Admin) => true;
+exports.can_view_User_Rating = (current_User, current_Admin) => true;
+exports.can_create_User_Rating = (current_User, current_Admin) => true;
+exports.can_edit_User_Rating = (current_User, current_Admin) => true;
+exports.can_delete_User_Rating = (current_User, current_Admin) => true;
 exports.can_view_Recipe_Rating = (current_User, current_Admin) => true;
 exports.can_create_Recipe_Rating = (current_User, current_Admin) => true;
 exports.can_edit_Recipe_Rating = (current_User, current_Admin) => true;
@@ -19882,7 +20022,7 @@ exports.f = __webpack_require__(15) ? gOPD : function getOwnPropertyDescriptor(O
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
 var has         = __webpack_require__(25)
   , toObject    = __webpack_require__(23)
-  , IE_PROTO    = __webpack_require__(147)('IE_PROTO')
+  , IE_PROTO    = __webpack_require__(149)('IE_PROTO')
   , ObjectProto = Object.prototype;
 
 module.exports = Object.getPrototypeOf || function(O){
@@ -21239,8 +21379,8 @@ const i18next = __webpack_require__(21);
 const HomePageViews = __webpack_require__(30);
 const CategoryListViews = __webpack_require__(29);
 const BookmarksViews = __webpack_require__(28);
-const UserViews = __webpack_require__(195);
-const RatingViews = __webpack_require__(194);
+const UserViews = __webpack_require__(133);
+const RatingViews = __webpack_require__(132);
 const MealViews = __webpack_require__(92);
 const CategorieViews = __webpack_require__(91);
 function Recipe_User_Recipe_can_create(self) {
@@ -22334,7 +22474,7 @@ if(__webpack_require__(15)){
     , fails               = __webpack_require__(7)
     , $export             = __webpack_require__(1)
     , $typed              = __webpack_require__(116)
-    , $buffer             = __webpack_require__(154)
+    , $buffer             = __webpack_require__(156)
     , ctx                 = __webpack_require__(59)
     , anInstance          = __webpack_require__(68)
     , propertyDesc        = __webpack_require__(64)
@@ -22349,21 +22489,21 @@ if(__webpack_require__(15)){
     , classof             = __webpack_require__(93)
     , isObject            = __webpack_require__(12)
     , toObject            = __webpack_require__(23)
-    , isArrayIter         = __webpack_require__(139)
+    , isArrayIter         = __webpack_require__(141)
     , create              = __webpack_require__(70)
     , getPrototypeOf      = __webpack_require__(39)
     , gOPN                = __webpack_require__(71).f
-    , getIterFn           = __webpack_require__(156)
+    , getIterFn           = __webpack_require__(158)
     , uid                 = __webpack_require__(76)
     , wks                 = __webpack_require__(14)
     , createArrayMethod   = __webpack_require__(48)
     , createArrayIncludes = __webpack_require__(106)
-    , speciesConstructor  = __webpack_require__(148)
-    , ArrayIterators      = __webpack_require__(157)
+    , speciesConstructor  = __webpack_require__(150)
+    , ArrayIterators      = __webpack_require__(159)
     , Iterators           = __webpack_require__(83)
     , $iterDetect         = __webpack_require__(112)
     , setSpecies          = __webpack_require__(74)
-    , arrayFill           = __webpack_require__(132)
+    , arrayFill           = __webpack_require__(134)
     , arrayCopyWithin     = __webpack_require__(197)
     , $DP                 = __webpack_require__(16)
     , $GOPD               = __webpack_require__(38)
@@ -23486,21 +23626,21 @@ module.exports = false;
 // 19.1.2.2 / 15.2.3.5 Object.create(O [, Properties])
 var anObject    = __webpack_require__(5)
   , dPs         = __webpack_require__(210)
-  , enumBugKeys = __webpack_require__(135)
-  , IE_PROTO    = __webpack_require__(147)('IE_PROTO')
+  , enumBugKeys = __webpack_require__(137)
+  , IE_PROTO    = __webpack_require__(149)('IE_PROTO')
   , Empty       = function(){ /* empty */ }
   , PROTOTYPE   = 'prototype';
 
 // Create object with fake `null` prototype: use iframe Object with cleared prototype
 var createDict = function(){
   // Thrash, waste and sodomy: IE GC bug
-  var iframe = __webpack_require__(134)('iframe')
+  var iframe = __webpack_require__(136)('iframe')
     , i      = enumBugKeys.length
     , lt     = '<'
     , gt     = '>'
     , iframeDocument;
   iframe.style.display = 'none';
-  __webpack_require__(137).appendChild(iframe);
+  __webpack_require__(139).appendChild(iframe);
   iframe.src = 'javascript:'; // eslint-disable-line no-script-url
   // createDict = iframe.contentWindow.Object;
   // html.removeChild(iframe);
@@ -23532,7 +23672,7 @@ module.exports = Object.create || function create(O, Properties){
 
 // 19.1.2.7 / 15.2.3.4 Object.getOwnPropertyNames(O)
 var $keys      = __webpack_require__(212)
-  , hiddenKeys = __webpack_require__(135).concat('length', 'prototype');
+  , hiddenKeys = __webpack_require__(137).concat('length', 'prototype');
 
 exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O){
   return $keys(O, hiddenKeys);
@@ -23544,7 +23684,7 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O){
 
 // 19.1.2.14 / 15.2.3.14 Object.keys(O)
 var $keys       = __webpack_require__(212)
-  , enumBugKeys = __webpack_require__(135);
+  , enumBugKeys = __webpack_require__(137);
 
 module.exports = Object.keys || function keys(O){
   return $keys(O, enumBugKeys);
@@ -24431,10 +24571,10 @@ module.exports = function(key){
 
 var ctx         = __webpack_require__(59)
   , call        = __webpack_require__(206)
-  , isArrayIter = __webpack_require__(139)
+  , isArrayIter = __webpack_require__(141)
   , anObject    = __webpack_require__(5)
   , toLength    = __webpack_require__(19)
-  , getIterFn   = __webpack_require__(156)
+  , getIterFn   = __webpack_require__(158)
   , BREAK       = {}
   , RETURN      = {};
 var exports = module.exports = function(iterable, entries, fn, that, ITERATOR){
@@ -24480,7 +24620,7 @@ module.exports = function(it, tag, stat){
 var $export = __webpack_require__(1)
   , defined = __webpack_require__(44)
   , fails   = __webpack_require__(7)
-  , spaces  = __webpack_require__(152)
+  , spaces  = __webpack_require__(154)
   , space   = '[' + spaces + ']'
   , non     = '\u200b\u0085'
   , ltrim   = RegExp('^' + space + space + '*')
@@ -24535,10 +24675,10 @@ module.exports = __webpack_require__(700);
 
 
 
-var DOMNamespaces = __webpack_require__(172);
+var DOMNamespaces = __webpack_require__(174);
 var setInnerHTML = __webpack_require__(129);
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(179);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(181);
 var setTextContent = __webpack_require__(394);
 
 var ELEMENT_NODE_TYPE = 1;
@@ -24847,7 +24987,7 @@ var createFactory = ReactElement.createFactory;
 var cloneElement = ReactElement.cloneElement;
 
 if (process.env.NODE_ENV !== 'production') {
-  var lowPriorityWarning = __webpack_require__(186);
+  var lowPriorityWarning = __webpack_require__(188);
   var canDefineProperty = __webpack_require__(130);
   var ReactElementValidator = __webpack_require__(398);
   var didWarnPropTypesDeprecated = false;
@@ -25005,9 +25145,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Api = __webpack_require__(18);
 const Permissions = __webpack_require__(24);
 const Utils = __webpack_require__(22);
-const AmericanViews = __webpack_require__(188);
-const AsianViews = __webpack_require__(189);
-const MediterraneanViews = __webpack_require__(193);
+const AmericanViews = __webpack_require__(190);
+const AsianViews = __webpack_require__(191);
+const MediterraneanViews = __webpack_require__(195);
 exports.Categorie = (props) => props.entity.Kind == "American" ?
     AmericanViews.American(Object.assign({}, props, { set_entity: (e, c) => props.set_entity(e, c), entity: props.entity }))
     : props.entity.Kind == "Asian" ?
@@ -25034,9 +25174,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Api = __webpack_require__(18);
 const Permissions = __webpack_require__(24);
 const Utils = __webpack_require__(22);
-const LunchViews = __webpack_require__(192);
-const DinnerViews = __webpack_require__(191);
-const BreakfastViews = __webpack_require__(190);
+const LunchViews = __webpack_require__(194);
+const DinnerViews = __webpack_require__(193);
+const BreakfastViews = __webpack_require__(192);
 exports.Meal = (props) => props.entity.Kind == "Lunch" ?
     LunchViews.Lunch(Object.assign({}, props, { set_entity: (e, c) => props.set_entity(e, c), entity: props.entity }))
     : props.entity.Kind == "Dinner" ?
@@ -25571,8 +25711,8 @@ function escape(data) {
 var _prodInvariant = __webpack_require__(8);
 
 var EventPluginRegistry = __webpack_require__(124);
-var EventPluginUtils = __webpack_require__(173);
-var ReactErrorUtils = __webpack_require__(177);
+var EventPluginUtils = __webpack_require__(175);
+var ReactErrorUtils = __webpack_require__(179);
 
 var accumulateInto = __webpack_require__(387);
 var forEachAccumulated = __webpack_require__(388);
@@ -25849,7 +25989,7 @@ module.exports = EventPluginHub;
 
 
 var EventPluginHub = __webpack_require__(102);
-var EventPluginUtils = __webpack_require__(173);
+var EventPluginUtils = __webpack_require__(175);
 
 var accumulateInto = __webpack_require__(387);
 var forEachAccumulated = __webpack_require__(388);
@@ -26041,7 +26181,7 @@ module.exports = ReactInstanceMap;
 
 var SyntheticEvent = __webpack_require__(62);
 
-var getEventTarget = __webpack_require__(182);
+var getEventTarget = __webpack_require__(184);
 
 /**
  * @interface UIEvent
@@ -26129,7 +26269,7 @@ var global            = __webpack_require__(6)
   , fails             = __webpack_require__(7)
   , $iterDetect       = __webpack_require__(112)
   , setToStringTag    = __webpack_require__(84)
-  , inheritIfRequired = __webpack_require__(138);
+  , inheritIfRequired = __webpack_require__(140);
 
 module.exports = function(NAME, wrapper, methods, common, IS_MAP, IS_WEAK){
   var Base  = global[NAME]
@@ -27128,7 +27268,7 @@ var ReactEventEmitterMixin = __webpack_require__(719);
 var ViewportMetrics = __webpack_require__(386);
 
 var getVendorPrefixedEventName = __webpack_require__(754);
-var isEventSupported = __webpack_require__(183);
+var isEventSupported = __webpack_require__(185);
 
 /**
  * Summary of `ReactBrowserEventEmitter` event handling:
@@ -27453,7 +27593,7 @@ module.exports = ReactBrowserEventEmitter;
 var SyntheticUIEvent = __webpack_require__(105);
 var ViewportMetrics = __webpack_require__(386);
 
-var getEventModifierState = __webpack_require__(181);
+var getEventModifierState = __webpack_require__(183);
 
 /**
  * @interface MouseEvent
@@ -27889,12 +28029,12 @@ module.exports = escapeTextContentForBrowser;
 
 
 var ExecutionEnvironment = __webpack_require__(20);
-var DOMNamespaces = __webpack_require__(172);
+var DOMNamespaces = __webpack_require__(174);
 
 var WHITESPACE_TEST = /^[ \r\n\t\f]/;
 var NONVISIBLE_TEST = /<(!--|link|noscript|meta|script|style)[ \r\n\t\f\/>]/;
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(179);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(181);
 
 // SVG temp container for IE lacking innerHTML
 var reusableSVGContainer;
@@ -28082,6 +28222,12 @@ function get_meals(id) {
     });
 }
 exports.get_meals = get_meals;
+function set_rating(rating, recipe_id, user_id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        yield fetch(`/api/v1/CustomController/SetRating/${rating}/${recipe_id}/${user_id}`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } });
+    });
+}
+exports.set_rating = set_rating;
 class CategoriesComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -28233,7 +28379,7 @@ class StarsComponent extends React.Component {
                         borderColor: '#000066',
                         borderWidth: 1,
                         borderRadius: 10,
-                    }, onClick: () => console.log("Sarah its okay"), marginHeight: 10, marginWidth: 10, width: 10, height: 10 }, star.value)),
+                    }, onClick: () => set_rating(star.value, this.props.recipe.Id, this.props.logged_in_user.Id), marginHeight: 10, marginWidth: 10, width: 10, height: 10 }, star.value)),
             " ");
     }
 }
@@ -28274,7 +28420,7 @@ class RecipeComponent extends React.Component {
             React.createElement("div", null,
                 this.props.recipe.PreparationTime,
                 " "),
-            React.createElement(StarsComponent, null),
+            React.createElement(StarsComponent, { logged_in_user: this.props.logged_in_user, recipe: this.props.recipe }),
             React.createElement(BookmarkComponent, { reload: this.props.reload, logged_in_user: this.props.logged_in_user, recipe: this.props.recipe }));
     }
 }
@@ -28327,6 +28473,1189 @@ exports.CategoriesView = (props) => {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(11);
+const Immutable = __webpack_require__(36);
+const Api = __webpack_require__(18);
+const List = __webpack_require__(56);
+const Components = __webpack_require__(42);
+const Buttons = __webpack_require__(47);
+const Permissions = __webpack_require__(24);
+const Utils = __webpack_require__(22);
+const i18next = __webpack_require__(21);
+const HomePageViews = __webpack_require__(30);
+const CategoryListViews = __webpack_require__(29);
+const BookmarksViews = __webpack_require__(28);
+const UserViews = __webpack_require__(133);
+const RecipeViews = __webpack_require__(57);
+function Rating_User_Rating_can_create(self) {
+    let state = self.state();
+    return state.User == "loading" ? false : state.User.CanCreate;
+}
+exports.Rating_User_Rating_can_create = Rating_User_Rating_can_create;
+function Rating_Recipe_Rating_can_create(self) {
+    let state = self.state();
+    return state.Recipe == "loading" ? false : state.Recipe.CanCreate;
+}
+exports.Rating_Recipe_Rating_can_create = Rating_Recipe_Rating_can_create;
+function Rating_User_Rating_can_delete(self) {
+    let state = self.state();
+    return state.User == "loading" ? false : state.User.CanDelete;
+}
+exports.Rating_User_Rating_can_delete = Rating_User_Rating_can_delete;
+function Rating_Recipe_Rating_can_delete(self) {
+    let state = self.state();
+    return state.Recipe == "loading" ? false : state.Recipe.CanDelete;
+}
+exports.Rating_Recipe_Rating_can_delete = Rating_Recipe_Rating_can_delete;
+function Rating_User_Rating_page_index(self) {
+    let state = self.state();
+    return state.User == "loading" ? 0 : state.User.PageIndex;
+}
+exports.Rating_User_Rating_page_index = Rating_User_Rating_page_index;
+function Rating_Recipe_Rating_page_index(self) {
+    let state = self.state();
+    return state.Recipe == "loading" ? 0 : state.Recipe.PageIndex;
+}
+exports.Rating_Recipe_Rating_page_index = Rating_Recipe_Rating_page_index;
+function Rating_User_Rating_page_size(self) {
+    let state = self.state();
+    return state.User == "loading" ? 25 : state.User.PageSize;
+}
+exports.Rating_User_Rating_page_size = Rating_User_Rating_page_size;
+function Rating_Recipe_Rating_page_size(self) {
+    let state = self.state();
+    return state.Recipe == "loading" ? 25 : state.Recipe.PageSize;
+}
+exports.Rating_Recipe_Rating_page_size = Rating_Recipe_Rating_page_size;
+function Rating_User_Rating_search_query(self) {
+    let state = self.state();
+    return state.User == "loading" ? null : state.User.SearchQuery;
+}
+exports.Rating_User_Rating_search_query = Rating_User_Rating_search_query;
+function Rating_Recipe_Rating_search_query(self) {
+    let state = self.state();
+    return state.Recipe == "loading" ? null : state.Recipe.SearchQuery;
+}
+exports.Rating_Recipe_Rating_search_query = Rating_Recipe_Rating_search_query;
+function Rating_User_Rating_num_pages(self) {
+    let state = self.state();
+    return state.User == "loading" ? 1 : state.User.NumPages;
+}
+exports.Rating_User_Rating_num_pages = Rating_User_Rating_num_pages;
+function Rating_Recipe_Rating_num_pages(self) {
+    let state = self.state();
+    return state.Recipe == "loading" ? 1 : state.Recipe.NumPages;
+}
+exports.Rating_Recipe_Rating_num_pages = Rating_Recipe_Rating_num_pages;
+function load_relation_Rating_User_Rating(self, force_first_page, current_User, current_Admin, callback) {
+    let state = self.state();
+    let prelude = force_first_page && state.User != "loading" ?
+        (c) => state.User != "loading" && self.setState(Object.assign({}, state, { User: Object.assign({}, state.User, { PageIndex: 0 }) }), c)
+        :
+            (c) => c();
+    Permissions.can_view_User(current_User, current_Admin) ?
+        prelude(() => Api.get_Rating_User_Ratings(self.props.entity, Rating_User_Rating_page_index(self), Rating_User_Rating_page_size(self), Rating_User_Rating_search_query(self)).then(Users => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, User: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+                let state = self.state();
+                return {
+                    element: i,
+                    size: state.User != "loading" ?
+                        (state.User.Items.has(i.Id) ?
+                            state.User.Items.get(i.Id).size
+                            :
+                                "preview" /* i_just_created ? "large" : "preview" */)
+                        :
+                            "preview" /* i_just_created ? "large" : "preview" */,
+                    shown_relation: "all"
+                };
+            }, Users) }), callback)))
+        :
+            prelude(() => callback && callback());
+}
+exports.load_relation_Rating_User_Rating = load_relation_Rating_User_Rating;
+function load_relation_Rating_Recipe_Rating(self, force_first_page, current_User, current_Admin, callback) {
+    let state = self.state();
+    let prelude = force_first_page && state.Recipe != "loading" ?
+        (c) => state.Recipe != "loading" && self.setState(Object.assign({}, state, { Recipe: Object.assign({}, state.Recipe, { PageIndex: 0 }) }), c)
+        :
+            (c) => c();
+    Permissions.can_view_Recipe(current_User, current_Admin) ?
+        prelude(() => Api.get_Rating_Recipe_Ratings(self.props.entity, Rating_Recipe_Rating_page_index(self), Rating_Recipe_Rating_page_size(self), Rating_Recipe_Rating_search_query(self)).then(Recipes => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipe: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+                let state = self.state();
+                return {
+                    element: i,
+                    size: state.Recipe != "loading" ?
+                        (state.Recipe.Items.has(i.Id) ?
+                            state.Recipe.Items.get(i.Id).size
+                            :
+                                "preview" /* i_just_created ? "large" : "preview" */)
+                        :
+                            "preview" /* i_just_created ? "large" : "preview" */,
+                    shown_relation: "all"
+                };
+            }, Recipes) }), callback)))
+        :
+            prelude(() => callback && callback());
+}
+exports.load_relation_Rating_Recipe_Rating = load_relation_Rating_Recipe_Rating;
+function load_relations_Rating(self, current_User, current_Admin, callback) {
+    load_relation_Rating_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_Rating_User_Rating(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback()));
+}
+exports.load_relations_Rating = load_relations_Rating;
+function set_size_Rating(self, new_size) {
+    self.props.set_size(new_size, () => {
+        if (new_size == "fullscreen")
+            self.props.push(exports.Rating_to_page(self.props.entity.Id));
+    });
+}
+exports.set_size_Rating = set_size_Rating;
+function render_Rating_rating_editable_minimised(self) {
+    if (!Permissions.can_edit_Rating(self.props.current_User, self.props.current_Admin))
+        return render_Rating_rating_minimised(self);
+    else
+        return !Permissions.can_view_Rating_rating(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute rating" },
+                React.createElement("label", { className: "attribute-label attribute-label-rating" }, i18next.t(`Rating:rating`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.Number(self.props.is_editable && Permissions.can_edit_Rating(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Rating_rating(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.rating, v => self.props.set_entity(Object.assign({}, self.props.entity, { rating: v })))));
+}
+exports.render_Rating_rating_editable_minimised = render_Rating_rating_editable_minimised;
+function render_Rating_rating_editable_maximised(self) {
+    if (!Permissions.can_edit_Rating(self.props.current_User, self.props.current_Admin))
+        return render_Rating_rating_maximised(self);
+    else
+        return !Permissions.can_view_Rating_rating(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute rating" },
+                React.createElement("label", { className: "attribute-label attribute-label-rating" }, i18next.t(`Rating:rating`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.Number(self.props.is_editable && Permissions.can_edit_Rating(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Rating_rating(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.rating, v => self.props.set_entity(Object.assign({}, self.props.entity, { rating: v })))));
+}
+exports.render_Rating_rating_editable_maximised = render_Rating_rating_editable_maximised;
+function render_editable_attributes_minimised_Rating(self) {
+    let attributes = (React.createElement("div", null, render_Rating_rating_editable_minimised(self)));
+    return attributes;
+}
+exports.render_editable_attributes_minimised_Rating = render_editable_attributes_minimised_Rating;
+function render_editable_attributes_maximised_Rating(self) {
+    let state = self.state();
+    let attributes = (React.createElement("div", null, render_Rating_rating_editable_maximised(self)));
+    return attributes;
+}
+exports.render_editable_attributes_maximised_Rating = render_editable_attributes_maximised_Rating;
+function render_breadcrumb_Rating(self) {
+    return React.createElement("div", { className: "breadcrumb-rating" }, "Rating");
+}
+exports.render_breadcrumb_Rating = render_breadcrumb_Rating;
+function render_menu_Rating(self) {
+    let state = self.state();
+    return React.createElement("div", { className: "menu" },
+        React.createElement("img", { className: "logo", src: "/images/logo.png", alt: "Logo" }),
+        React.createElement("div", { className: "pages" },
+            !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
+            !Permissions.can_view_CategoryList(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_CategoryLists(0, 1).then(e => e.Items.length > 0 && self.props.set_page(CategoryListViews.CategoryList_to_page(e.Items[0].Item.Id))) }, i18next.t('CategoryList'))),
+            !Permissions.can_view_Bookmarks(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_Bookmarkss(0, 1).then(e => e.Items.length > 0 && self.props.set_page(BookmarksViews.Bookmarks_to_page(e.Items[0].Item.Id))) }, i18next.t('Bookmarks'))),
+            React.createElement("div", { className: "menu_entries" },
+                React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
+}
+exports.render_menu_Rating = render_menu_Rating;
+function render_local_menu_Rating(self) {
+    let state = self.state();
+    return React.createElement("div", { className: "local-menu" },
+        React.createElement("div", { className: "local_menu_entries" },
+            React.createElement("div", { className: `local_menu_entry${self.props.shown_relation == "none" ? " local_menu_entry--active" : ""}` },
+                React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('About this Rating')))));
+}
+exports.render_local_menu_Rating = render_local_menu_Rating;
+function render_controls_Rating(self) {
+    return React.createElement("div", { className: "control" },
+        self.props.allow_maximisation && self.props.set_size ? React.createElement("a", { className: `"rating button button--toggle ${self.props.size != 'preview' ? 'button--toggle--open' : ''}`, onClick: () => {
+                set_size_Rating(self, self.props.size == "preview" ? "large" : "preview");
+            } }) : null,
+        self.props.allow_fullscreen && self.props.set_size ? React.createElement("a", { className: "rating button button--fullscreen", onClick: () => set_size_Rating(self, self.props.size == "fullscreen" ? "large" : "fullscreen") }) : null,
+        Permissions.can_delete_Rating(self.props.current_User, self.props.current_Admin) && self.props.size == "fullscreen" ? React.createElement("a", { className: "button button--delete", onClick: () => confirm(i18next.t('Are you sure?')) &&
+                Api.delete_Rating(self.props.entity).then(() => self.props.force_reload(() => self.props.pop())) }) : null,
+        self.props.size == "fullscreen" && self.props.pages_count > 0 ? React.createElement("a", { className: "rating button button--close", onClick: () => self.props.pop() }) : null,
+        self.props.unlink && self.props.mode != "view" ?
+            React.createElement("a", { className: "button button--unlink", onClick: () => self.props.unlink() })
+            :
+                null,
+        self.props.delete && self.props.mode != "view" ?
+            React.createElement("a", { className: "button button--delete", onClick: () => self.props.delete() })
+            :
+                null);
+}
+exports.render_controls_Rating = render_controls_Rating;
+function render_content_Rating(self) {
+    let actions = [
+        self.props.allow_maximisation && self.props.set_size && self.props.size == "preview" ?
+            () => set_size_Rating(self, self.props.size == "preview" ? "large" : "preview")
+            :
+                null, self.props.allow_fullscreen && self.props.set_size && self.props.size == "preview" ?
+            () => set_size_Rating(self, self.props.size == "fullscreen" ? "large" : "fullscreen")
+            :
+                null,
+    ].filter(a => a != null);
+    let content = Permissions.can_view_Rating(self.props.current_User, self.props.current_Admin) ?
+        self.props.size == "preview" ?
+            render_preview_Rating(self)
+            : self.props.size == "large" ?
+                render_large_Rating(self)
+                : self.props.size == "fullscreen" ?
+                    render_large_Rating(self)
+                    : "Error: unauthorised access to entity."
+        : "Error: unauthorised access to entity.";
+    if (self.props.mode == "view" && actions.length == 1 && !false)
+        return React.createElement("a", { onClick: () => actions[0]() },
+            React.createElement("div", { className: `${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}` }, content));
+    else
+        return React.createElement("div", { className: `${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}` }, content);
+}
+exports.render_content_Rating = render_content_Rating;
+function render_Rating_rating_minimised(self) {
+    return !Permissions.can_view_Rating_rating(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute rating" },
+        React.createElement("label", { className: "attribute-label attribute-label-rating" }, i18next.t(`Rating:rating`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.Number(self.props.is_editable && Permissions.can_edit_Rating(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Rating_rating(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.rating, v => self.props.set_entity(Object.assign({}, self.props.entity, { rating: v })))));
+}
+exports.render_Rating_rating_minimised = render_Rating_rating_minimised;
+function render_Rating_rating_maximised(self) {
+    return !Permissions.can_view_Rating_rating(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute rating" },
+        React.createElement("label", { className: "attribute-label attribute-label-rating" }, i18next.t(`Rating:rating`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.Number(self.props.is_editable && Permissions.can_edit_Rating(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Rating_rating(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.rating, v => self.props.set_entity(Object.assign({}, self.props.entity, { rating: v })))));
+}
+exports.render_Rating_rating_maximised = render_Rating_rating_maximised;
+function render_preview_Rating(self) {
+    let attributes = null;
+    if (self.props.mode == "view" || !Permissions.can_edit_Rating(self.props.current_User, self.props.current_Admin))
+        attributes = (React.createElement("div", { className: "model__attributes" }, render_Rating_rating_minimised(self)));
+    else
+        attributes = render_editable_attributes_minimised_Rating(self);
+    return (React.createElement("div", { className: "block" }, attributes));
+}
+exports.render_preview_Rating = render_preview_Rating;
+function render_large_Rating(self) {
+    let state = self.state();
+    let attributes = null;
+    if (self.props.mode == "view" || !Permissions.can_edit_Rating(self.props.current_User, self.props.current_Admin))
+        attributes = (React.createElement("div", { className: "model__attributes" }, render_Rating_rating_maximised(self)));
+    else
+        attributes = render_editable_attributes_maximised_Rating(self);
+    return (React.createElement("div", { className: "block" },
+        self.props.nesting_depth == 0 && self.props.shown_relation != "all" && self.props.shown_relation != "none" ? null : attributes,
+        render_relations_Rating(self)));
+}
+exports.render_large_Rating = render_large_Rating;
+function render_Rating_User_Rating(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "User_Rating") || !Permissions.can_view_User(self.props.current_User, self.props.current_Admin))
+        return null;
+    let state = self.state();
+    return React.createElement("div", null, List.render_relation("rating_user_rating", "Rating", "User", "Users", self.props.nesting_depth > 0, false, false, false)(state.User != "loading" ?
+        state.User.IdsInServerOrder.map(id => state.User != "loading" && state.User.Items.get(id)) :
+        state.User, Rating_User_Rating_page_index(self), Rating_User_Rating_num_pages(self), new_page_index => {
+        let state = self.state();
+        state.User != "loading" &&
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, User: Object.assign({}, state.User, { PageIndex: new_page_index }) }), () => load_relation_Rating_User_Rating(self, false, self.props.current_User, self.props.current_Admin));
+    }, (i, _) => {
+        let i_id = i.element.Id;
+        let state = self.state();
+        return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
+                        ${state.User != "loading" && state.User.JustCreated.has(i_id) && state.User.JustCreated.get(i_id) ? "newly-created" : ""}` },
+            React.createElement("div", { key: i_id }, UserViews.User(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_User_Rating(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_User_Rating(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_User_Rating(self.props.current_User, self.props.current_Admin)) ?
+                    self.props.mode : "view", is_editable: state.User != "loading" && state.User.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
+                    let state = self.state();
+                    state.User != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { User: Object.assign({}, state.User, { Items: state.User.Items.set(i_id, Object.assign({}, state.User.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
+                }, nested_entity_names: self.props.nested_entity_names.push("User"), set_size: (new_size, callback) => {
+                    let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
+                    let state = self.state();
+                    state.User != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { User: Object.assign({}, state.User, { Items: state.User.Items.set(i_id, Object.assign({}, state.User.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
+                }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
+                    let state = self.state();
+                    state.User != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { dirty_User: state.dirty_User.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, User: Object.assign({}, state.User, { Items: state.User.Items.set(i_id, Object.assign({}, state.User.Items.get(i_id), { element: new_entity })) }) }), callback);
+                }, delete: undefined, unlink: !Permissions.can_delete_User_Rating(self.props.current_User, self.props.current_Admin) ?
+                    null
+                    :
+                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_User_User_Ratings(i.element, self.props.entity).then(() => load_relation_Rating_User_Rating(self, false, self.props.current_User, self.props.current_Admin)) }))));
+    }, () => React.createElement("div", null,
+        Permissions.can_create_User(self.props.current_User, self.props.current_Admin) && Permissions.can_create_User_Rating(self.props.current_User, self.props.current_Admin) && Rating_User_Rating_can_create(self) ? render_new_Rating_User_Rating(self) : null,
+        Permissions.can_create_User_Rating(self.props.current_User, self.props.current_Admin) ? render_add_existing_Rating_User_Rating(self) : null)));
+}
+exports.render_Rating_User_Rating = render_Rating_User_Rating;
+function render_Rating_Recipe_Rating(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Recipe_Rating") || !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin))
+        return null;
+    let state = self.state();
+    return React.createElement("div", null, List.render_relation("rating_recipe_rating", "Rating", "Recipe", "Recipes", self.props.nesting_depth > 0, false, false, false)(state.Recipe != "loading" ?
+        state.Recipe.IdsInServerOrder.map(id => state.Recipe != "loading" && state.Recipe.Items.get(id)) :
+        state.Recipe, Rating_Recipe_Rating_page_index(self), Rating_Recipe_Rating_num_pages(self), new_page_index => {
+        let state = self.state();
+        state.Recipe != "loading" &&
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipe: Object.assign({}, state.Recipe, { PageIndex: new_page_index }) }), () => load_relation_Rating_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin));
+    }, (i, _) => {
+        let i_id = i.element.Id;
+        let state = self.state();
+        return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
+                        ${state.Recipe != "loading" && state.Recipe.JustCreated.has(i_id) && state.Recipe.JustCreated.get(i_id) ? "newly-created" : ""}` },
+            React.createElement("div", { key: i_id }, RecipeViews.Recipe(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Recipe_Rating(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_Recipe_Rating(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_Recipe_Rating(self.props.current_User, self.props.current_Admin)) ?
+                    self.props.mode : "view", is_editable: state.Recipe != "loading" && state.Recipe.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
+                    let state = self.state();
+                    state.Recipe != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
+                }, nested_entity_names: self.props.nested_entity_names.push("Recipe"), set_size: (new_size, callback) => {
+                    let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
+                    let state = self.state();
+                    state.Recipe != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
+                }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
+                    let state = self.state();
+                    state.Recipe != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { dirty_Recipe: state.dirty_Recipe.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { element: new_entity })) }) }), callback);
+                }, delete: undefined, unlink: !Permissions.can_delete_Recipe_Rating(self.props.current_User, self.props.current_Admin) ?
+                    null
+                    :
+                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Recipe_Recipe_Ratings(i.element, self.props.entity).then(() => load_relation_Rating_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin)) }))));
+    }, () => React.createElement("div", null,
+        Permissions.can_create_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Recipe_Rating(self.props.current_User, self.props.current_Admin) && Rating_Recipe_Rating_can_create(self) ? render_new_Rating_Recipe_Rating(self) : null,
+        Permissions.can_create_Recipe_Rating(self.props.current_User, self.props.current_Admin) ? render_add_existing_Rating_Recipe_Rating(self) : null)));
+}
+exports.render_Rating_Recipe_Rating = render_Rating_Recipe_Rating;
+function render_relations_Rating(self) {
+    return React.createElement("div", { className: "relations" });
+}
+exports.render_relations_Rating = render_relations_Rating;
+function render_add_existing_Rating_User_Rating(self) {
+    let state = self.state();
+    return self.props.mode == "edit" ?
+        React.createElement("div", { className: "button__actions" }, state.add_step_User != "open" ?
+            React.createElement(Buttons.Add, { disabled: state.User == "loading" ? true : state.User.TotalCount >= 1, onClick: () => self.setState(Object.assign({}, self.state(), { add_step_User: "open" })), target_name: "User" })
+            :
+                React.createElement(List.AddToRelation, {
+                    relation_name: "rating_user_rating",
+                    source_name: "Rating",
+                    target_name: "User",
+                    target_plural: "Users",
+                    page_size: 25,
+                    render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
+                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_User: "saving" }), () => Api.link_Rating_User_Ratings(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_User: "closed" }), () => load_relation_Rating_User_Rating(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
+                        React.createElement("div", { className: "group__title", disabled: true }, UserViews.User(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("User"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
+                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_User: "closed" })),
+                    get_items: [
+                        { name: "User", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Rating_User_Ratings(self.props.entity, i, s); }) },
+                    ]
+                }))
+        :
+            null;
+}
+exports.render_add_existing_Rating_User_Rating = render_add_existing_Rating_User_Rating;
+function render_add_existing_Rating_Recipe_Rating(self) {
+    let state = self.state();
+    return self.props.mode == "edit" ?
+        React.createElement("div", { className: "button__actions" }, state.add_step_Recipe != "open" ?
+            React.createElement(Buttons.Add, { disabled: state.Recipe == "loading" ? true : state.Recipe.TotalCount >= 1, onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "open" })), target_name: "Recipe" })
+            :
+                React.createElement(List.AddToRelation, {
+                    relation_name: "rating_recipe_rating",
+                    source_name: "Rating",
+                    target_name: "Recipe",
+                    target_plural: "Recipes",
+                    page_size: 25,
+                    render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
+                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "saving" }), () => Api.link_Rating_Recipe_Ratings(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" }), () => load_relation_Rating_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
+                        React.createElement("div", { className: "group__title", disabled: true }, RecipeViews.Recipe(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Recipe"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
+                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" })),
+                    get_items: [
+                        { name: "Recipe", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Rating_Recipe_Ratings(self.props.entity, i, s); }) },
+                    ]
+                }))
+        :
+            null;
+}
+exports.render_add_existing_Rating_Recipe_Rating = render_add_existing_Rating_Recipe_Rating;
+function render_new_Rating_User_Rating(self) {
+    let state = self.state();
+    return state.create_step_User != "none" ?
+        React.createElement("div", { className: "overlay__item overlay__item--new" },
+            React.createElement("label", null,
+                i18next.t('Username'),
+                React.createElement("input", { type: "text", value: state.create_step_User.username, onChange: (e) => state.create_step_User != "none" &&
+                        self.setState(Object.assign({}, self.state(), { create_step_User: Object.assign({}, state.create_step_User, { username: e.target.value }) })) })),
+            React.createElement("label", null,
+                i18next.t('Email'),
+                React.createElement("input", { type: "email", value: state.create_step_User.email, onChange: (e) => state.create_step_User != "none" &&
+                        self.setState(Object.assign({}, self.state(), { create_step_User: Object.assign({}, state.create_step_User, { email: e.target.value }) })) })),
+            React.createElement("label", null,
+                i18next.t('Email confirmation'),
+                React.createElement("input", { type: "email", value: state.create_step_User.email_confirmation, onChange: (e) => state.create_step_User != "none" &&
+                        self.setState(Object.assign({}, self.state(), { create_step_User: Object.assign({}, state.create_step_User, { email_confirmation: e.target.value }) })) })),
+            state.create_step_User.validation == "validating" ?
+                React.createElement("div", { className: "loading" }, i18next.t('Validating'))
+                :
+                    React.createElement(Buttons.Create, { onClick: () => state.create_step_User != "none" &&
+                            Api.validate_User(state.create_step_User.username, state.create_step_User.email, state.create_step_User.email_confirmation).then(is_valid => {
+                                if (state.create_step_User != "none" && is_valid) {
+                                    Api.register_User(state.create_step_User.username, state.create_step_User.email, state.create_step_User.email_confirmation).then(() => load_relation_Rating_User_Rating(self, false, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { create_step_User: "none" }))));
+                                }
+                                else {
+                                    state.create_step_User != "none" &&
+                                        self.setState(Object.assign({}, self.state(), { create_step_User: Object.assign({}, state.create_step_User, { validation: "invalid" }) }), () => alert(i18next.t('The username and email combination is invalid or it might already be in use. Please try a different combination.')));
+                                }
+                            }).catch(() => state.create_step_User != "none" &&
+                                self.setState(Object.assign({}, self.state(), { create_step_User: Object.assign({}, state.create_step_User, { validation: "invalid" }) }), () => alert(i18next.t('The username and email combination is invalid or it might already be in use. Please try a different combination.')))), target_name: "User" }),
+            React.createElement(Buttons.Cancel, { onClick: () => self.setState(Object.assign({}, self.state(), { create_step_User: "none" })) }))
+        : self.props.mode == "edit" ?
+            React.createElement("div", { className: "button__actions" },
+                React.createElement("div", { className: "new-user" },
+                    React.createElement("button", { disabled: state.User == "loading" ? true : state.User.TotalCount >= 1, className: "new-user button button--new", onClick: () => self.setState(Object.assign({}, self.state(), { create_step_User: { validation: "invalid", username: "", email: "", email_confirmation: "" } })) }, i18next.t('Create new User'))))
+            :
+                null;
+}
+exports.render_new_Rating_User_Rating = render_new_Rating_User_Rating;
+function render_new_Rating_Recipe_Rating(self) {
+    let state = self.state();
+    return self.props.mode == "edit" ?
+        React.createElement("div", { className: "button__actions" },
+            React.createElement("div", { className: "new-recipe" },
+                React.createElement("button", { disabled: state.Recipe == "loading" ? true : state.Recipe.TotalCount >= 1, className: "new-recipe button button--new", onClick: () => Api.create_linked_Rating_Recipe_Ratings_Recipe(self.props.entity).then(e => {
+                        e.length > 0 &&
+                            Api.update_Recipe(Object.assign({}, e[0], { Picture: "", Name: "", Ingredients: "", Description: "", PreparationTime: 0 })).then(() => load_relation_Rating_Recipe_Rating(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" }))));
+                    }) }, i18next.t('Create new Recipe'))))
+        :
+            null;
+}
+exports.render_new_Rating_Recipe_Rating = render_new_Rating_Recipe_Rating;
+function render_saving_animations_Rating(self) {
+    return self.state().dirty_User.count() > 0 ?
+        React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" }) :
+        self.state().dirty_Recipe.count() > 0 ?
+            React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" })
+            : React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "cornflowerblue" }, className: "saved" });
+}
+exports.render_saving_animations_Rating = render_saving_animations_Rating;
+class RatingComponent extends React.Component {
+    constructor(props, context) {
+        super(props, context);
+        this.thread = null;
+        this.state = { update_count: 0, add_step_User: "closed", create_step_User: "none", dirty_User: Immutable.Map(), User: "loading", add_step_Recipe: "closed", dirty_Recipe: Immutable.Map(), Recipe: "loading" };
+    }
+    get_self() {
+        return { state: () => this.state, props: this.props, setState: (ns, c) => this.setState(ns, c) };
+    }
+    componentWillReceiveProps(new_props) {
+        if (new_props.size == "breadcrumb")
+            return;
+        let current_logged_in_entity = this.props.current_User || this.props.current_Admin || null;
+        let new_logged_in_entity = new_props.current_User || new_props.current_Admin || null;
+        if (new_props.mode != this.props.mode || (new_props.size != this.props.size && (new_props.size == "large" || new_props.size == "fullscreen")) ||
+            new_props.logic_frame != this.props.logic_frame ||
+            (current_logged_in_entity && !new_logged_in_entity) ||
+            (!current_logged_in_entity && new_logged_in_entity) ||
+            (current_logged_in_entity && new_logged_in_entity && current_logged_in_entity.Id != new_logged_in_entity.Id)) {
+            load_relations_Rating(this.get_self(), new_props.current_User, new_props.current_Admin);
+        }
+    }
+    componentWillMount() {
+        if (this.props.size == "breadcrumb")
+            return;
+        if (this.props.size != "preview") {
+            load_relations_Rating(this.get_self(), this.props.current_User, this.props.current_Admin);
+        }
+        this.thread = setInterval(() => {
+            if (this.state.dirty_User.count() > 0) {
+                let first = this.state.dirty_User.first();
+                this.setState(Object.assign({}, this.state, { dirty_User: this.state.dirty_User.remove(first.Id) }), () => Api.update_User(first));
+            }
+            else if (this.state.dirty_Recipe.count() > 0) {
+                let first = this.state.dirty_Recipe.first();
+                this.setState(Object.assign({}, this.state, { dirty_Recipe: this.state.dirty_Recipe.remove(first.Id) }), () => Api.update_Recipe(first));
+            }
+        }, 500);
+    }
+    componentWillUnmount() {
+        clearInterval(this.thread);
+    }
+    render() {
+        if (this.props.size == "breadcrumb") {
+            return Permissions.can_view_Rating(this.props.current_User, this.props.current_Admin) ?
+                render_breadcrumb_Rating(this.get_self())
+                : null;
+        }
+        return React.createElement("div", { id: `Rating_${this.props.entity.Id.toString()}_${this.state.update_count}`, className: `model rating` },
+            render_saving_animations_Rating(this.get_self()),
+            this.props.nesting_depth == 0 ? render_menu_Rating(this.get_self()) : null,
+            React.createElement("div", { className: "content" },
+                this.props.nesting_depth == 0 && !!this.props.toggle_button ?
+                    React.createElement("div", { className: "topbar" },
+                        this.props.breadcrumbs(),
+                        React.createElement("div", { className: "topbar__buttons" },
+                            this.props.toggle_button ? this.props.toggle_button() : null,
+                            this.props.authentication_menu()))
+                    :
+                        null,
+                this.props.nesting_depth == 0 ? render_local_menu_Rating(this.get_self()) : null,
+                render_controls_Rating(this.get_self()),
+                render_content_Rating(this.get_self())));
+    }
+}
+exports.RatingComponent = RatingComponent;
+exports.Rating = (props) => React.createElement(RatingComponent, Object.assign({}, props));
+exports.Rating_to_page = (id) => {
+    let can_edit = Utils.any_of([Permissions.can_edit_Rating, Permissions.can_edit_User_Rating, Permissions.can_edit_Recipe_Rating, Permissions.can_edit_User, Permissions.can_edit_Recipe]);
+    return Utils.scene_to_page(can_edit, exports.Rating, Api.get_Rating(id), Api.update_Rating, "Rating", "Rating", `/Ratings/${id}`);
+};
+exports.Rating_to = (id, target_element_id, current_User, current_Admin) => {
+    Utils.render_page_manager(target_element_id, exports.Rating_to_page(id), current_User, current_Admin);
+};
+
+
+/***/ }),
+/* 133 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = __webpack_require__(11);
+const Immutable = __webpack_require__(36);
+const Api = __webpack_require__(18);
+const List = __webpack_require__(56);
+const Components = __webpack_require__(42);
+const Buttons = __webpack_require__(47);
+const Permissions = __webpack_require__(24);
+const Utils = __webpack_require__(22);
+const i18next = __webpack_require__(21);
+const Moment = __webpack_require__(0);
+const HomePageViews = __webpack_require__(30);
+const CategoryListViews = __webpack_require__(29);
+const BookmarksViews = __webpack_require__(28);
+const RecipeViews = __webpack_require__(57);
+const RatingViews = __webpack_require__(132);
+function User_User_Recipe_can_create(self) {
+    let state = self.state();
+    return state.Recipe == "loading" ? false : state.Recipe.CanCreate;
+}
+exports.User_User_Recipe_can_create = User_User_Recipe_can_create;
+function User_User_Rating_can_create(self) {
+    let state = self.state();
+    return state.Rating == "loading" ? false : state.Rating.CanCreate;
+}
+exports.User_User_Rating_can_create = User_User_Rating_can_create;
+function User_User_Recipe_can_delete(self) {
+    let state = self.state();
+    return state.Recipe == "loading" ? false : state.Recipe.CanDelete;
+}
+exports.User_User_Recipe_can_delete = User_User_Recipe_can_delete;
+function User_User_Rating_can_delete(self) {
+    let state = self.state();
+    return state.Rating == "loading" ? false : state.Rating.CanDelete;
+}
+exports.User_User_Rating_can_delete = User_User_Rating_can_delete;
+function User_User_Recipe_page_index(self) {
+    let state = self.state();
+    return state.Recipe == "loading" ? 0 : state.Recipe.PageIndex;
+}
+exports.User_User_Recipe_page_index = User_User_Recipe_page_index;
+function User_User_Rating_page_index(self) {
+    let state = self.state();
+    return state.Rating == "loading" ? 0 : state.Rating.PageIndex;
+}
+exports.User_User_Rating_page_index = User_User_Rating_page_index;
+function User_User_Recipe_page_size(self) {
+    let state = self.state();
+    return state.Recipe == "loading" ? 25 : state.Recipe.PageSize;
+}
+exports.User_User_Recipe_page_size = User_User_Recipe_page_size;
+function User_User_Rating_page_size(self) {
+    let state = self.state();
+    return state.Rating == "loading" ? 25 : state.Rating.PageSize;
+}
+exports.User_User_Rating_page_size = User_User_Rating_page_size;
+function User_User_Recipe_search_query(self) {
+    let state = self.state();
+    return state.Recipe == "loading" ? null : state.Recipe.SearchQuery;
+}
+exports.User_User_Recipe_search_query = User_User_Recipe_search_query;
+function User_User_Rating_search_query(self) {
+    let state = self.state();
+    return state.Rating == "loading" ? null : state.Rating.SearchQuery;
+}
+exports.User_User_Rating_search_query = User_User_Rating_search_query;
+function User_User_Recipe_num_pages(self) {
+    let state = self.state();
+    return state.Recipe == "loading" ? 1 : state.Recipe.NumPages;
+}
+exports.User_User_Recipe_num_pages = User_User_Recipe_num_pages;
+function User_User_Rating_num_pages(self) {
+    let state = self.state();
+    return state.Rating == "loading" ? 1 : state.Rating.NumPages;
+}
+exports.User_User_Rating_num_pages = User_User_Rating_num_pages;
+function load_relation_User_User_Recipe(self, force_first_page, current_User, current_Admin, callback) {
+    let state = self.state();
+    let prelude = force_first_page && state.Recipe != "loading" ?
+        (c) => state.Recipe != "loading" && self.setState(Object.assign({}, state, { Recipe: Object.assign({}, state.Recipe, { PageIndex: 0 }) }), c)
+        :
+            (c) => c();
+    Permissions.can_view_Recipe(current_User, current_Admin) ?
+        prelude(() => Api.get_User_User_Recipes(self.props.entity, User_User_Recipe_page_index(self), User_User_Recipe_page_size(self), User_User_Recipe_search_query(self)).then(Recipes => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipe: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+                let state = self.state();
+                return {
+                    element: i,
+                    size: state.Recipe != "loading" ?
+                        (state.Recipe.Items.has(i.Id) ?
+                            state.Recipe.Items.get(i.Id).size
+                            :
+                                "preview" /* i_just_created ? "large" : "preview" */)
+                        :
+                            "preview" /* i_just_created ? "large" : "preview" */,
+                    shown_relation: "all"
+                };
+            }, Recipes) }), callback)))
+        :
+            prelude(() => callback && callback());
+}
+exports.load_relation_User_User_Recipe = load_relation_User_User_Recipe;
+function load_relation_User_User_Rating(self, force_first_page, current_User, current_Admin, callback) {
+    let state = self.state();
+    let prelude = force_first_page && state.Rating != "loading" ?
+        (c) => state.Rating != "loading" && self.setState(Object.assign({}, state, { Rating: Object.assign({}, state.Rating, { PageIndex: 0 }) }), c)
+        :
+            (c) => c();
+    Permissions.can_view_Rating(current_User, current_Admin) ?
+        prelude(() => Api.get_User_User_Ratings(self.props.entity, User_User_Rating_page_index(self), User_User_Rating_page_size(self), User_User_Rating_search_query(self)).then(Ratings => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Rating: Utils.raw_page_to_paginated_items((i, i_just_created) => {
+                let state = self.state();
+                return {
+                    element: i,
+                    size: state.Rating != "loading" ?
+                        (state.Rating.Items.has(i.Id) ?
+                            state.Rating.Items.get(i.Id).size
+                            :
+                                "preview" /* i_just_created ? "large" : "preview" */)
+                        :
+                            "preview" /* i_just_created ? "large" : "preview" */,
+                    shown_relation: "all"
+                };
+            }, Ratings) }), callback)))
+        :
+            prelude(() => callback && callback());
+}
+exports.load_relation_User_User_Rating = load_relation_User_User_Rating;
+function load_relations_User(self, current_User, current_Admin, callback) {
+    load_relation_User_User_Rating(self, false, self.props.current_User, self.props.current_Admin, () => load_relation_User_User_Recipe(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback()));
+}
+exports.load_relations_User = load_relations_User;
+function set_size_User(self, new_size) {
+    self.props.set_size(new_size, () => {
+        if (new_size == "fullscreen")
+            self.props.push(exports.User_to_page(self.props.entity.Id));
+    });
+}
+exports.set_size_User = set_size_User;
+function render_User_Username_editable_minimised(self) {
+    if (!Permissions.can_edit_User(self.props.current_User, self.props.current_Admin))
+        return render_User_Username_minimised(self);
+    else
+        return !Permissions.can_view_User_Username(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute username" },
+                React.createElement("label", { className: "attribute-label attribute-label-username" }, i18next.t(`User:Username`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.String(false /* because username and email cannot be edited */, self.props.mode, () => self.props.entity.Username, v => self.props.set_entity(Object.assign({}, self.props.entity, { Username: v })))));
+}
+exports.render_User_Username_editable_minimised = render_User_Username_editable_minimised;
+function render_User_Language_editable_minimised(self) {
+    if (!Permissions.can_edit_User(self.props.current_User, self.props.current_Admin))
+        return render_User_Language_minimised(self);
+    else
+        return !Permissions.can_view_User_Language(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute language" },
+                React.createElement("label", { className: "attribute-label attribute-label-language" }, i18next.t(`User:Language`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.Union(self.props.is_editable && Permissions.can_edit_User(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_User_Language(self.props.current_User, self.props.current_Admin), self.props.mode, Immutable.List([{ value: "en", label: "en" }]), () => self.props.entity.Language, (v) => self.props.set_entity(Object.assign({}, self.props.entity, { Language: v })))));
+}
+exports.render_User_Language_editable_minimised = render_User_Language_editable_minimised;
+function render_User_Email_editable_minimised(self) {
+    if (!Permissions.can_edit_User(self.props.current_User, self.props.current_Admin))
+        return render_User_Email_minimised(self);
+    else
+        return !Permissions.can_view_User_Email(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            null;
+}
+exports.render_User_Email_editable_minimised = render_User_Email_editable_minimised;
+function render_User_Username_editable_maximised(self) {
+    if (!Permissions.can_edit_User(self.props.current_User, self.props.current_Admin))
+        return render_User_Username_maximised(self);
+    else
+        return !Permissions.can_view_User_Username(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute username" },
+                React.createElement("label", { className: "attribute-label attribute-label-username" }, i18next.t(`User:Username`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.String(false /* because username and email cannot be edited */, self.props.mode, () => self.props.entity.Username, v => self.props.set_entity(Object.assign({}, self.props.entity, { Username: v })))));
+}
+exports.render_User_Username_editable_maximised = render_User_Username_editable_maximised;
+function render_User_Language_editable_maximised(self) {
+    if (!Permissions.can_edit_User(self.props.current_User, self.props.current_Admin))
+        return render_User_Language_maximised(self);
+    else
+        return !Permissions.can_view_User_Language(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute language" },
+                React.createElement("label", { className: "attribute-label attribute-label-language" }, i18next.t(`User:Language`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.Union(self.props.is_editable && Permissions.can_edit_User(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_User_Language(self.props.current_User, self.props.current_Admin), self.props.mode, Immutable.List([{ value: "en", label: "en" }]), () => self.props.entity.Language, (v) => self.props.set_entity(Object.assign({}, self.props.entity, { Language: v })))));
+}
+exports.render_User_Language_editable_maximised = render_User_Language_editable_maximised;
+function render_User_Email_editable_maximised(self) {
+    if (!Permissions.can_edit_User(self.props.current_User, self.props.current_Admin))
+        return render_User_Email_maximised(self);
+    else
+        return !Permissions.can_view_User_Email(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
+            React.createElement("div", { className: "model__attribute email" },
+                React.createElement("label", { className: "attribute-label attribute-label-email" }, i18next.t(`User:Email`, { context: self.props.inline ? "inline" : "" })),
+                React.createElement("div", { className: "model__attribute-content" }, Components.Email(false, self.props.mode, () => self.props.entity.Email, v => self.props.set_entity(Object.assign({}, self.props.entity, { Email: v })))));
+}
+exports.render_User_Email_editable_maximised = render_User_Email_editable_maximised;
+function render_editable_attributes_minimised_User(self) {
+    let attributes = (React.createElement("div", null,
+        render_User_Username_editable_minimised(self),
+        render_User_Language_editable_minimised(self)));
+    return attributes;
+}
+exports.render_editable_attributes_minimised_User = render_editable_attributes_minimised_User;
+function render_editable_attributes_maximised_User(self) {
+    let state = self.state();
+    let attributes = (React.createElement("div", null,
+        render_User_Username_editable_maximised(self),
+        render_User_Language_editable_maximised(self),
+        render_User_Email_editable_maximised(self),
+        React.createElement("button", { onClick: () => Api.reset_User_password(self.props.entity.Username, self.props.entity.Email).then(() => location.reload()) }, self.props.entity.HasPassword ? i18next.t('common:Reset password') : i18next.t('common:Create password')),
+        React.createElement("button", { onClick: () => Api.delete_User_sessions().then(() => location.reload()) }, i18next.t('common:Delete sessions')),
+        state.active_sessions != "loading" ?
+            React.createElement("div", { className: "active-user-sessions" },
+                React.createElement("label", { className: "attribute-label attribute-label-active_sessions" }, i18next.t("Active sessions")),
+                state.active_sessions.map(s => React.createElement("div", null,
+                    s.Item1,
+                    " - ",
+                    Moment(s.Item2).format("DD/MM/YYYY"))))
+            :
+                React.createElement("div", { className: "loading" }, i18next.t("loading"))));
+    return attributes;
+}
+exports.render_editable_attributes_maximised_User = render_editable_attributes_maximised_User;
+function render_breadcrumb_User(self) {
+    return React.createElement("div", { className: "breadcrumb-user" }, "User");
+}
+exports.render_breadcrumb_User = render_breadcrumb_User;
+function render_menu_User(self) {
+    let state = self.state();
+    return React.createElement("div", { className: "menu" },
+        React.createElement("img", { className: "logo", src: "/images/logo.png", alt: "Logo" }),
+        React.createElement("div", { className: "pages" },
+            !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
+            !Permissions.can_view_CategoryList(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_CategoryLists(0, 1).then(e => e.Items.length > 0 && self.props.set_page(CategoryListViews.CategoryList_to_page(e.Items[0].Item.Id))) }, i18next.t('CategoryList'))),
+            !Permissions.can_view_Bookmarks(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { className: `menu_entry page_link` },
+                    React.createElement("a", { onClick: () => Api.get_Bookmarkss(0, 1).then(e => e.Items.length > 0 && self.props.set_page(BookmarksViews.Bookmarks_to_page(e.Items[0].Item.Id))) }, i18next.t('Bookmarks'))),
+            React.createElement("div", { className: "menu_entries" },
+                React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
+}
+exports.render_menu_User = render_menu_User;
+function render_local_menu_User(self) {
+    let state = self.state();
+    return React.createElement("div", { className: "local-menu" },
+        React.createElement("div", { className: "local_menu_entries" },
+            React.createElement("div", { className: `local_menu_entry${self.props.shown_relation == "none" ? " local_menu_entry--active" : ""}` },
+                React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('About this User'))),
+            !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { key: "User_Recipe", className: `local_menu_entry${self.props.shown_relation == "User_Recipe" ? " local_menu_entry--active" : ""}` },
+                    React.createElement("a", { onClick: () => load_relation_User_User_Recipe(self, false, self.props.current_User, self.props.current_Admin, () => self.props.set_shown_relation("User_Recipe")) }, i18next.t('User_Recipes'))),
+            !Permissions.can_view_Rating(self.props.current_User, self.props.current_Admin) ? null :
+                React.createElement("div", { key: "User_Rating", className: `local_menu_entry${self.props.shown_relation == "User_Rating" ? " local_menu_entry--active" : ""}` },
+                    React.createElement("a", { onClick: () => load_relation_User_User_Rating(self, false, self.props.current_User, self.props.current_Admin, () => self.props.set_shown_relation("User_Rating")) }, i18next.t('User_Ratings')))));
+}
+exports.render_local_menu_User = render_local_menu_User;
+function render_controls_User(self) {
+    return React.createElement("div", { className: "control" },
+        self.props.allow_fullscreen && self.props.set_size ? React.createElement("a", { className: "user button button--fullscreen", onClick: () => set_size_User(self, self.props.size == "fullscreen" ? "large" : "fullscreen") }) : null,
+        Permissions.can_delete_User(self.props.current_User, self.props.current_Admin) && self.props.size == "fullscreen" ? React.createElement("a", { className: "button button--delete", onClick: () => confirm(i18next.t('Are you sure?')) &&
+                Api.delete_User(self.props.entity).then(() => self.props.force_reload(() => self.props.pop())) }) : null,
+        self.props.size == "fullscreen" && self.props.pages_count > 0 ? React.createElement("a", { className: "user button button--close", onClick: () => self.props.pop() }) : null,
+        self.props.unlink && self.props.mode != "view" ?
+            React.createElement("a", { className: "button button--unlink", onClick: () => self.props.unlink() })
+            :
+                null,
+        self.props.delete && self.props.mode != "view" ?
+            React.createElement("a", { className: "button button--delete", onClick: () => self.props.delete() })
+            :
+                null);
+}
+exports.render_controls_User = render_controls_User;
+function render_content_User(self) {
+    let actions = [
+        self.props.allow_fullscreen && self.props.set_size && self.props.size == "preview" ?
+            () => set_size_User(self, self.props.size == "fullscreen" ? "large" : "fullscreen")
+            :
+                null,
+    ].filter(a => a != null);
+    let content = Permissions.can_view_User(self.props.current_User, self.props.current_Admin) ?
+        self.props.size == "preview" ?
+            render_preview_User(self)
+            : self.props.size == "large" ?
+                render_large_User(self)
+                : self.props.size == "fullscreen" ?
+                    render_large_User(self)
+                    : "Error: unauthorised access to entity."
+        : "Error: unauthorised access to entity.";
+    if (self.props.mode == "view" && actions.length == 1 && !false)
+        return React.createElement("a", { onClick: () => actions[0]() },
+            React.createElement("div", { className: `${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}` }, content));
+    else
+        return React.createElement("div", { className: `${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}` }, content);
+}
+exports.render_content_User = render_content_User;
+function render_User_Username_minimised(self) {
+    return !Permissions.can_view_User_Username(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute username" },
+        React.createElement("label", { className: "attribute-label attribute-label-username" }, i18next.t(`User:Username`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.String(false /* because username and email cannot be edited */, self.props.mode, () => self.props.entity.Username, v => self.props.set_entity(Object.assign({}, self.props.entity, { Username: v })))));
+}
+exports.render_User_Username_minimised = render_User_Username_minimised;
+function render_User_Language_minimised(self) {
+    return !Permissions.can_view_User_Language(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute language" },
+        React.createElement("label", { className: "attribute-label attribute-label-language" }, i18next.t(`User:Language`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.Union(self.props.is_editable && Permissions.can_edit_User(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_User_Language(self.props.current_User, self.props.current_Admin), self.props.mode, Immutable.List([{ value: "en", label: "en" }]), () => self.props.entity.Language, (v) => self.props.set_entity(Object.assign({}, self.props.entity, { Language: v })))));
+}
+exports.render_User_Language_minimised = render_User_Language_minimised;
+function render_User_Email_minimised(self) {
+    return null;
+}
+exports.render_User_Email_minimised = render_User_Email_minimised;
+function render_User_Username_maximised(self) {
+    return !Permissions.can_view_User_Username(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute username" },
+        React.createElement("label", { className: "attribute-label attribute-label-username" }, i18next.t(`User:Username`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.String(false /* because username and email cannot be edited */, self.props.mode, () => self.props.entity.Username, v => self.props.set_entity(Object.assign({}, self.props.entity, { Username: v })))));
+}
+exports.render_User_Username_maximised = render_User_Username_maximised;
+function render_User_Language_maximised(self) {
+    return !Permissions.can_view_User_Language(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute language" },
+        React.createElement("label", { className: "attribute-label attribute-label-language" }, i18next.t(`User:Language`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.Union(self.props.is_editable && Permissions.can_edit_User(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_User_Language(self.props.current_User, self.props.current_Admin), self.props.mode, Immutable.List([{ value: "en", label: "en" }]), () => self.props.entity.Language, (v) => self.props.set_entity(Object.assign({}, self.props.entity, { Language: v })))));
+}
+exports.render_User_Language_maximised = render_User_Language_maximised;
+function render_User_Email_maximised(self) {
+    return !Permissions.can_view_User_Email(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute email" },
+        React.createElement("label", { className: "attribute-label attribute-label-email" }, i18next.t(`User:Email`, { context: self.props.inline ? "inline" : "" })),
+        React.createElement("div", { className: "model__attribute-content" }, Components.Email(false, self.props.mode, () => self.props.entity.Email, v => self.props.set_entity(Object.assign({}, self.props.entity, { Email: v })))));
+}
+exports.render_User_Email_maximised = render_User_Email_maximised;
+function render_preview_User(self) {
+    let attributes = null;
+    if (self.props.mode == "view" || !Permissions.can_edit_User(self.props.current_User, self.props.current_Admin))
+        attributes = (React.createElement("div", { className: "model__attributes" },
+            render_User_Username_minimised(self),
+            render_User_Language_minimised(self),
+            render_User_Email_minimised(self)));
+    else
+        attributes = render_editable_attributes_minimised_User(self);
+    return (React.createElement("div", { className: "block" }, attributes));
+}
+exports.render_preview_User = render_preview_User;
+function render_large_User(self) {
+    let state = self.state();
+    let attributes = null;
+    if (self.props.mode == "view" || !Permissions.can_edit_User(self.props.current_User, self.props.current_Admin))
+        attributes = (React.createElement("div", { className: "model__attributes" },
+            render_User_Username_maximised(self),
+            render_User_Language_maximised(self),
+            render_User_Email_maximised(self),
+            state.active_sessions != "loading" ?
+                React.createElement("div", { className: "active-user-sessions" },
+                    React.createElement("label", { className: "attribute-label attribute-label-active_sessions" }, i18next.t("Active sessions")),
+                    state.active_sessions.map(s => React.createElement("div", null,
+                        s.Item1,
+                        " - ",
+                        Moment(s.Item2).format("DD/MM/YYYY"))))
+                :
+                    React.createElement("div", { className: "loading" }, i18next.t("loading"))));
+    else
+        attributes = render_editable_attributes_maximised_User(self);
+    return (React.createElement("div", { className: "block" },
+        self.props.nesting_depth == 0 && self.props.shown_relation != "all" && self.props.shown_relation != "none" ? null : attributes,
+        render_relations_User(self)));
+}
+exports.render_large_User = render_large_User;
+function render_User_User_Recipe(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "User_Recipe") || !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin))
+        return null;
+    let state = self.state();
+    return React.createElement("div", null, List.render_relation("user_user_recipe", "User", "Recipe", "Recipes", self.props.nesting_depth > 0, false, false, false)(state.Recipe != "loading" ?
+        state.Recipe.IdsInServerOrder.map(id => state.Recipe != "loading" && state.Recipe.Items.get(id)) :
+        state.Recipe, User_User_Recipe_page_index(self), User_User_Recipe_num_pages(self), new_page_index => {
+        let state = self.state();
+        state.Recipe != "loading" &&
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipe: Object.assign({}, state.Recipe, { PageIndex: new_page_index }) }), () => load_relation_User_User_Recipe(self, false, self.props.current_User, self.props.current_Admin));
+    }, (i, _) => {
+        let i_id = i.element.Id;
+        let state = self.state();
+        return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
+                        ${state.Recipe != "loading" && state.Recipe.JustCreated.has(i_id) && state.Recipe.JustCreated.get(i_id) ? "newly-created" : ""}` },
+            React.createElement("div", { key: i_id }, RecipeViews.Recipe(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_User_Recipe(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_User_Recipe(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_User_Recipe(self.props.current_User, self.props.current_Admin)) ?
+                    self.props.mode : "view", is_editable: state.Recipe != "loading" && state.Recipe.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
+                    let state = self.state();
+                    state.Recipe != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
+                }, nested_entity_names: self.props.nested_entity_names.push("Recipe"), set_size: (new_size, callback) => {
+                    let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
+                    let state = self.state();
+                    state.Recipe != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
+                }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
+                    let state = self.state();
+                    state.Recipe != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { dirty_Recipe: state.dirty_Recipe.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { element: new_entity })) }) }), callback);
+                }, delete: undefined, unlink: !Permissions.can_delete_User_Recipe(self.props.current_User, self.props.current_Admin) ?
+                    null
+                    :
+                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_User_User_Recipes(self.props.entity, i.element).then(() => load_relation_User_User_Recipe(self, false, self.props.current_User, self.props.current_Admin)) }))));
+    }, () => React.createElement("div", null,
+        Permissions.can_create_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_create_User_Recipe(self.props.current_User, self.props.current_Admin) && User_User_Recipe_can_create(self) ? render_new_User_User_Recipe(self) : null,
+        Permissions.can_create_User_Recipe(self.props.current_User, self.props.current_Admin) ? render_add_existing_User_User_Recipe(self) : null)));
+}
+exports.render_User_User_Recipe = render_User_User_Recipe;
+function render_User_User_Rating(self, context) {
+    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "User_Rating") || !Permissions.can_view_Rating(self.props.current_User, self.props.current_Admin))
+        return null;
+    let state = self.state();
+    return React.createElement("div", null, List.render_relation("user_user_rating", "User", "Rating", "Ratings", self.props.nesting_depth > 0, false, false, false)(state.Rating != "loading" ?
+        state.Rating.IdsInServerOrder.map(id => state.Rating != "loading" && state.Rating.Items.get(id)) :
+        state.Rating, User_User_Rating_page_index(self), User_User_Rating_num_pages(self), new_page_index => {
+        let state = self.state();
+        state.Rating != "loading" &&
+            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Rating: Object.assign({}, state.Rating, { PageIndex: new_page_index }) }), () => load_relation_User_User_Rating(self, false, self.props.current_User, self.props.current_Admin));
+    }, (i, _) => {
+        let i_id = i.element.Id;
+        let state = self.state();
+        return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
+                        ${state.Rating != "loading" && state.Rating.JustCreated.has(i_id) && state.Rating.JustCreated.get(i_id) ? "newly-created" : ""}` },
+            React.createElement("div", { key: i_id }, RatingViews.Rating(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_User_Rating(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_create_User_Rating(self.props.current_User, self.props.current_Admin)
+                    || Permissions.can_delete_User_Rating(self.props.current_User, self.props.current_Admin)) ?
+                    self.props.mode : "view", is_editable: state.Rating != "loading" && state.Rating.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
+                    let state = self.state();
+                    state.Rating != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Rating: Object.assign({}, state.Rating, { Items: state.Rating.Items.set(i_id, Object.assign({}, state.Rating.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
+                }, nested_entity_names: self.props.nested_entity_names.push("Rating"), set_size: (new_size, callback) => {
+                    let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
+                    let state = self.state();
+                    state.Rating != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { Rating: Object.assign({}, state.Rating, { Items: state.Rating.Items.set(i_id, Object.assign({}, state.Rating.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
+                }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
+                    let state = self.state();
+                    state.Rating != "loading" &&
+                        self.setState(Object.assign({}, self.state(), { dirty_Rating: state.dirty_Rating.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Rating: Object.assign({}, state.Rating, { Items: state.Rating.Items.set(i_id, Object.assign({}, state.Rating.Items.get(i_id), { element: new_entity })) }) }), callback);
+                }, delete: undefined, unlink: !Permissions.can_delete_User_Rating(self.props.current_User, self.props.current_Admin) ?
+                    null
+                    :
+                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_User_User_Ratings(self.props.entity, i.element).then(() => load_relation_User_User_Rating(self, false, self.props.current_User, self.props.current_Admin)) }))));
+    }, () => React.createElement("div", null,
+        Permissions.can_create_Rating(self.props.current_User, self.props.current_Admin) && Permissions.can_create_User_Rating(self.props.current_User, self.props.current_Admin) && User_User_Rating_can_create(self) ? render_new_User_User_Rating(self) : null,
+        Permissions.can_create_User_Rating(self.props.current_User, self.props.current_Admin) ? render_add_existing_User_User_Rating(self) : null)));
+}
+exports.render_User_User_Rating = render_User_User_Rating;
+function render_relations_User(self) {
+    return React.createElement("div", { className: "relations" },
+        render_User_User_Recipe(self, "default"),
+        render_User_User_Rating(self, "default"));
+}
+exports.render_relations_User = render_relations_User;
+function render_add_existing_User_User_Recipe(self) {
+    let state = self.state();
+    return self.props.mode == "edit" ?
+        React.createElement("div", { className: "button__actions" }, state.add_step_Recipe != "open" ?
+            React.createElement(Buttons.Add, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "open" })), target_name: "Recipe" })
+            :
+                React.createElement(List.AddToRelation, {
+                    relation_name: "user_user_recipe",
+                    source_name: "User",
+                    target_name: "Recipe",
+                    target_plural: "Recipes",
+                    page_size: 25,
+                    render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
+                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "saving" }), () => Api.link_User_User_Recipes(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" }), () => load_relation_User_User_Recipe(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
+                        React.createElement("div", { className: "group__title", disabled: true }, RecipeViews.Recipe(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Recipe"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
+                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" })),
+                    get_items: [
+                        { name: "Recipe", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_User_User_Recipes(self.props.entity, i, s); }) },
+                    ]
+                }))
+        :
+            null;
+}
+exports.render_add_existing_User_User_Recipe = render_add_existing_User_User_Recipe;
+function render_add_existing_User_User_Rating(self) {
+    let state = self.state();
+    return self.props.mode == "edit" ?
+        React.createElement("div", { className: "button__actions" }, state.add_step_Rating != "open" ?
+            React.createElement(Buttons.Add, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Rating: "open" })), target_name: "Rating" })
+            :
+                React.createElement(List.AddToRelation, {
+                    relation_name: "user_user_rating",
+                    source_name: "User",
+                    target_name: "Rating",
+                    target_plural: "Ratings",
+                    page_size: 25,
+                    render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
+                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Rating: "saving" }), () => Api.link_User_User_Ratings(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Rating: "closed" }), () => load_relation_User_User_Rating(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
+                        React.createElement("div", { className: "group__title", disabled: true }, RatingViews.Rating(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Rating"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
+                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Rating: "closed" })),
+                    get_items: [
+                        { name: "Rating", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_User_User_Ratings(self.props.entity, i, s); }) },
+                    ]
+                }))
+        :
+            null;
+}
+exports.render_add_existing_User_User_Rating = render_add_existing_User_User_Rating;
+function render_new_User_User_Recipe(self) {
+    let state = self.state();
+    return self.props.mode == "edit" ?
+        React.createElement("div", { className: "button__actions" },
+            React.createElement("div", { className: "new-recipe" },
+                React.createElement("button", { className: "new-recipe button button--new", onClick: () => Api.create_linked_User_User_Recipes_Recipe(self.props.entity).then(e => {
+                        e.length > 0 &&
+                            Api.update_Recipe(Object.assign({}, e[0], { Picture: "", Name: "", Ingredients: "", Description: "", PreparationTime: 0 })).then(() => load_relation_User_User_Recipe(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" }))));
+                    }) }, i18next.t('Create new Recipe'))))
+        :
+            null;
+}
+exports.render_new_User_User_Recipe = render_new_User_User_Recipe;
+function render_new_User_User_Rating(self) {
+    let state = self.state();
+    return self.props.mode == "edit" ?
+        React.createElement("div", { className: "button__actions" },
+            React.createElement("div", { className: "new-rating" },
+                React.createElement("button", { className: "new-rating button button--new", onClick: () => Api.create_linked_User_User_Ratings_Rating(self.props.entity).then(e => {
+                        e.length > 0 &&
+                            Api.update_Rating(Object.assign({}, e[0], { rating: 0 })).then(() => load_relation_User_User_Rating(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Rating: "closed" }))));
+                    }) }, i18next.t('Create new Rating'))))
+        :
+            null;
+}
+exports.render_new_User_User_Rating = render_new_User_User_Rating;
+function render_saving_animations_User(self) {
+    return self.state().dirty_Recipe.count() > 0 ?
+        React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" }) :
+        self.state().dirty_Rating.count() > 0 ?
+            React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" })
+            : React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "cornflowerblue" }, className: "saved" });
+}
+exports.render_saving_animations_User = render_saving_animations_User;
+class UserComponent extends React.Component {
+    constructor(props, context) {
+        super(props, context);
+        this.thread = null;
+        this.state = { update_count: 0, active_sessions: "loading", add_step_Recipe: "closed", dirty_Recipe: Immutable.Map(), Recipe: "loading", add_step_Rating: "closed", dirty_Rating: Immutable.Map(), Rating: "loading" };
+    }
+    get_self() {
+        return { state: () => this.state, props: this.props, setState: (ns, c) => this.setState(ns, c) };
+    }
+    componentWillReceiveProps(new_props) {
+        if (new_props.size == "breadcrumb")
+            return;
+        let current_logged_in_entity = this.props.current_User || this.props.current_Admin || null;
+        let new_logged_in_entity = new_props.current_User || new_props.current_Admin || null;
+        if (new_props.mode != this.props.mode || (new_props.size != this.props.size && (new_props.size == "large" || new_props.size == "fullscreen")) ||
+            new_props.logic_frame != this.props.logic_frame ||
+            (current_logged_in_entity && !new_logged_in_entity) ||
+            (!current_logged_in_entity && new_logged_in_entity) ||
+            (current_logged_in_entity && new_logged_in_entity && current_logged_in_entity.Id != new_logged_in_entity.Id)) {
+            load_relations_User(this.get_self(), new_props.current_User, new_props.current_Admin);
+        }
+    }
+    componentWillMount() {
+        if (this.props.size == "breadcrumb")
+            return;
+        if (this.props.size != "preview") {
+            Api.active_User_sessions().then(active_sessions => this.setState(Object.assign({}, this.state, { active_sessions: active_sessions })));
+            load_relations_User(this.get_self(), this.props.current_User, this.props.current_Admin);
+        }
+        this.thread = setInterval(() => {
+            if (this.state.dirty_Recipe.count() > 0) {
+                let first = this.state.dirty_Recipe.first();
+                this.setState(Object.assign({}, this.state, { dirty_Recipe: this.state.dirty_Recipe.remove(first.Id) }), () => Api.update_Recipe(first));
+            }
+            else if (this.state.dirty_Rating.count() > 0) {
+                let first = this.state.dirty_Rating.first();
+                this.setState(Object.assign({}, this.state, { dirty_Rating: this.state.dirty_Rating.remove(first.Id) }), () => Api.update_Rating(first));
+            }
+        }, 500);
+    }
+    componentWillUnmount() {
+        clearInterval(this.thread);
+    }
+    render() {
+        if (this.props.size == "breadcrumb") {
+            return Permissions.can_view_User(this.props.current_User, this.props.current_Admin) ?
+                render_breadcrumb_User(this.get_self())
+                : null;
+        }
+        return React.createElement("div", { id: `User_${this.props.entity.Id.toString()}_${this.state.update_count}`, className: `model user` },
+            render_saving_animations_User(this.get_self()),
+            this.props.nesting_depth == 0 ? render_menu_User(this.get_self()) : null,
+            React.createElement("div", { className: "content" },
+                this.props.nesting_depth == 0 && !!this.props.toggle_button ?
+                    React.createElement("div", { className: "topbar" },
+                        this.props.breadcrumbs(),
+                        React.createElement("div", { className: "topbar__buttons" },
+                            this.props.toggle_button ? this.props.toggle_button() : null,
+                            this.props.authentication_menu()))
+                    :
+                        null,
+                this.props.nesting_depth == 0 ? render_local_menu_User(this.get_self()) : null,
+                render_controls_User(this.get_self()),
+                render_content_User(this.get_self())));
+    }
+}
+exports.UserComponent = UserComponent;
+exports.User = (props) => React.createElement(UserComponent, Object.assign({}, props));
+exports.User_to_page = (id) => {
+    let can_edit = Utils.any_of([Permissions.can_edit_User, Permissions.can_edit_User_Recipe, Permissions.can_edit_User_Rating, Permissions.can_edit_Recipe, Permissions.can_edit_Rating]);
+    return Utils.scene_to_page(can_edit, exports.User, Api.get_User(id), Api.update_User, "User", "User", `/Users/${id}`);
+};
+exports.User_to = (id, target_element_id, current_User, current_Admin) => {
+    Utils.render_page_manager(target_element_id, exports.User_to_page(id), current_User, current_Admin);
+};
+
+
+/***/ }),
+/* 134 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 // 22.1.3.6 Array.prototype.fill(value, start = 0, end = this.length)
 
 var toObject = __webpack_require__(23)
@@ -28344,7 +29673,7 @@ module.exports = function fill(value /*, start = 0, end = @length */){
 };
 
 /***/ }),
-/* 133 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28358,7 +29687,7 @@ module.exports = function(object, index, value){
 };
 
 /***/ }),
-/* 134 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(12)
@@ -28370,7 +29699,7 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 135 */
+/* 137 */
 /***/ (function(module, exports) {
 
 // IE 8- don't enum bug keys
@@ -28379,7 +29708,7 @@ module.exports = (
 ).split(',');
 
 /***/ }),
-/* 136 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var MATCH = __webpack_require__(14)('match');
@@ -28396,17 +29725,17 @@ module.exports = function(KEY){
 };
 
 /***/ }),
-/* 137 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(6).document && document.documentElement;
 
 /***/ }),
-/* 138 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject       = __webpack_require__(12)
-  , setPrototypeOf = __webpack_require__(146).set;
+  , setPrototypeOf = __webpack_require__(148).set;
 module.exports = function(that, target, C){
   var P, S = target.constructor;
   if(S !== C && typeof S == 'function' && (P = S.prototype) !== C.prototype && isObject(P) && setPrototypeOf){
@@ -28415,7 +29744,7 @@ module.exports = function(that, target, C){
 };
 
 /***/ }),
-/* 139 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // check on default Array iterator
@@ -28428,7 +29757,7 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 140 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.2.2 IsArray(argument)
@@ -28438,7 +29767,7 @@ module.exports = Array.isArray || function isArray(arg){
 };
 
 /***/ }),
-/* 141 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28457,7 +29786,7 @@ module.exports = function(Constructor, NAME, next){
 };
 
 /***/ }),
-/* 142 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28468,7 +29797,7 @@ var LIBRARY        = __webpack_require__(69)
   , hide           = __webpack_require__(32)
   , has            = __webpack_require__(25)
   , Iterators      = __webpack_require__(83)
-  , $iterCreate    = __webpack_require__(141)
+  , $iterCreate    = __webpack_require__(143)
   , setToStringTag = __webpack_require__(84)
   , getPrototypeOf = __webpack_require__(39)
   , ITERATOR       = __webpack_require__(14)('iterator')
@@ -28533,7 +29862,7 @@ module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED
 };
 
 /***/ }),
-/* 143 */
+/* 145 */
 /***/ (function(module, exports) {
 
 // 20.2.2.14 Math.expm1(x)
@@ -28548,7 +29877,7 @@ module.exports = (!$expm1
 } : $expm1;
 
 /***/ }),
-/* 144 */
+/* 146 */
 /***/ (function(module, exports) {
 
 // 20.2.2.28 Math.sign(x)
@@ -28557,11 +29886,11 @@ module.exports = Math.sign || function sign(x){
 };
 
 /***/ }),
-/* 145 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global    = __webpack_require__(6)
-  , macrotask = __webpack_require__(153).set
+  , macrotask = __webpack_require__(155).set
   , Observer  = global.MutationObserver || global.WebKitMutationObserver
   , process   = global.process
   , Promise   = global.Promise
@@ -28630,7 +29959,7 @@ module.exports = function(){
 };
 
 /***/ }),
-/* 146 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // Works with __proto__ only. Old v8 can't work with null proto objects.
@@ -28660,7 +29989,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 147 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var shared = __webpack_require__(115)('keys')
@@ -28670,7 +29999,7 @@ module.exports = function(key){
 };
 
 /***/ }),
-/* 148 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.3.20 SpeciesConstructor(O, defaultConstructor)
@@ -28683,7 +30012,7 @@ module.exports = function(O, D){
 };
 
 /***/ }),
-/* 149 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var toInteger = __webpack_require__(65)
@@ -28705,7 +30034,7 @@ module.exports = function(TO_STRING){
 };
 
 /***/ }),
-/* 150 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // helper for String#{startsWith, endsWith, includes}
@@ -28718,7 +30047,7 @@ module.exports = function(that, searchString, NAME){
 };
 
 /***/ }),
-/* 151 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28736,20 +30065,20 @@ module.exports = function repeat(count){
 };
 
 /***/ }),
-/* 152 */
+/* 154 */
 /***/ (function(module, exports) {
 
 module.exports = '\x09\x0A\x0B\x0C\x0D\x20\xA0\u1680\u180E\u2000\u2001\u2002\u2003' +
   '\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF';
 
 /***/ }),
-/* 153 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var ctx                = __webpack_require__(59)
   , invoke             = __webpack_require__(110)
-  , html               = __webpack_require__(137)
-  , cel                = __webpack_require__(134)
+  , html               = __webpack_require__(139)
+  , cel                = __webpack_require__(136)
   , global             = __webpack_require__(6)
   , process            = global.process
   , setTask            = global.setImmediate
@@ -28823,7 +30152,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 154 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28840,7 +30169,7 @@ var global         = __webpack_require__(6)
   , toLength       = __webpack_require__(19)
   , gOPN           = __webpack_require__(71).f
   , dP             = __webpack_require__(16).f
-  , arrayFill      = __webpack_require__(132)
+  , arrayFill      = __webpack_require__(134)
   , setToStringTag = __webpack_require__(84)
   , ARRAY_BUFFER   = 'ArrayBuffer'
   , DATA_VIEW      = 'DataView'
@@ -29102,7 +30431,7 @@ exports[ARRAY_BUFFER] = $ArrayBuffer;
 exports[DATA_VIEW] = $DataView;
 
 /***/ }),
-/* 155 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var global         = __webpack_require__(6)
@@ -29116,7 +30445,7 @@ module.exports = function(name){
 };
 
 /***/ }),
-/* 156 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var classof   = __webpack_require__(93)
@@ -29129,7 +30458,7 @@ module.exports = __webpack_require__(58).getIteratorMethod = function(it){
 };
 
 /***/ }),
-/* 157 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29143,7 +30472,7 @@ var addToUnscopables = __webpack_require__(81)
 // 22.1.3.13 Array.prototype.keys()
 // 22.1.3.29 Array.prototype.values()
 // 22.1.3.30 Array.prototype[@@iterator]()
-module.exports = __webpack_require__(142)(Array, 'Array', function(iterated, kind){
+module.exports = __webpack_require__(144)(Array, 'Array', function(iterated, kind){
   this._t = toIObject(iterated); // target
   this._i = 0;                   // next index
   this._k = kind;                // kind
@@ -29169,7 +30498,7 @@ addToUnscopables('values');
 addToUnscopables('entries');
 
 /***/ }),
-/* 158 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29202,7 +30531,7 @@ var Immutable = __webpack_require__(13);
 var SelectionState = __webpack_require__(97);
 
 var generateRandomKey = __webpack_require__(51);
-var sanitizeDraftText = __webpack_require__(164);
+var sanitizeDraftText = __webpack_require__(166);
 
 var List = Immutable.List;
 var Record = Immutable.Record;
@@ -29367,7 +30696,7 @@ var ContentState = function (_ContentStateRecord) {
 module.exports = ContentState;
 
 /***/ }),
-/* 159 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29443,7 +30772,7 @@ var DefaultDraftBlockRenderMap = Map({
 module.exports = DefaultDraftBlockRenderMap;
 
 /***/ }),
-/* 160 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29488,7 +30817,7 @@ var KeyBindingUtil = {
 module.exports = KeyBindingUtil;
 
 /***/ }),
-/* 161 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29527,7 +30856,7 @@ function findAncestorOffsetKey(node) {
 module.exports = findAncestorOffsetKey;
 
 /***/ }),
-/* 162 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29588,7 +30917,7 @@ function filterKey(entityMap, entityKey) {
 module.exports = getEntityKeyForSelection;
 
 /***/ }),
-/* 163 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29646,7 +30975,7 @@ function moveSelectionBackward(editorState, maxDistance) {
 module.exports = moveSelectionBackward;
 
 /***/ }),
-/* 164 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29673,7 +31002,7 @@ function sanitizeDraftText(input) {
 module.exports = sanitizeDraftText;
 
 /***/ }),
-/* 165 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29715,7 +31044,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 166 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29785,7 +31114,7 @@ var Style = {
 module.exports = Style;
 
 /***/ }),
-/* 167 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29900,7 +31229,7 @@ module.exports = UnicodeBidiDirection;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 168 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29945,7 +31274,7 @@ function containsNode(outerNode, innerNode) {
 module.exports = containsNode;
 
 /***/ }),
-/* 169 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29998,7 +31327,7 @@ function getScrollPosition(scrollable) {
 module.exports = getScrollPosition;
 
 /***/ }),
-/* 170 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30071,7 +31400,7 @@ function shallowEqual(objA, objB) {
 module.exports = shallowEqual;
 
 /***/ }),
-/* 171 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30092,7 +31421,7 @@ var Danger = __webpack_require__(692);
 var ReactDOMComponentTree = __webpack_require__(17);
 var ReactInstrumentation = __webpack_require__(41);
 
-var createMicrosoftUnsafeLocalFunction = __webpack_require__(179);
+var createMicrosoftUnsafeLocalFunction = __webpack_require__(181);
 var setInnerHTML = __webpack_require__(129);
 var setTextContent = __webpack_require__(394);
 
@@ -30303,7 +31632,7 @@ module.exports = DOMChildrenOperations;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 172 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30328,7 +31657,7 @@ var DOMNamespaces = {
 module.exports = DOMNamespaces;
 
 /***/ }),
-/* 173 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30346,7 +31675,7 @@ module.exports = DOMNamespaces;
 
 var _prodInvariant = __webpack_require__(8);
 
-var ReactErrorUtils = __webpack_require__(177);
+var ReactErrorUtils = __webpack_require__(179);
 
 var invariant = __webpack_require__(3);
 var warning = __webpack_require__(4);
@@ -30560,7 +31889,7 @@ module.exports = EventPluginUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 174 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30624,7 +31953,7 @@ var KeyEscapeUtils = {
 module.exports = KeyEscapeUtils;
 
 /***/ }),
-/* 175 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30768,7 +32097,7 @@ module.exports = LinkedValueUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 176 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30818,7 +32147,7 @@ module.exports = ReactComponentEnvironment;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 177 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30900,7 +32229,7 @@ module.exports = ReactErrorUtils;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 178 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31140,7 +32469,7 @@ module.exports = ReactUpdateQueue;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 179 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31177,7 +32506,7 @@ var createMicrosoftUnsafeLocalFunction = function (func) {
 module.exports = createMicrosoftUnsafeLocalFunction;
 
 /***/ }),
-/* 180 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31232,7 +32561,7 @@ function getEventCharCode(nativeEvent) {
 module.exports = getEventCharCode;
 
 /***/ }),
-/* 181 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31280,7 +32609,7 @@ function getEventModifierState(nativeEvent) {
 module.exports = getEventModifierState;
 
 /***/ }),
-/* 182 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31320,7 +32649,7 @@ function getEventTarget(nativeEvent) {
 module.exports = getEventTarget;
 
 /***/ }),
-/* 183 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31385,7 +32714,7 @@ function isEventSupported(eventNameSuffix, capture) {
 module.exports = isEventSupported;
 
 /***/ }),
-/* 184 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31432,7 +32761,7 @@ function shouldUpdateReactComponent(prevElement, nextElement) {
 module.exports = shouldUpdateReactComponent;
 
 /***/ }),
-/* 185 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31809,7 +33138,7 @@ module.exports = validateDOMNesting;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 186 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31880,7 +33209,7 @@ module.exports = lowPriorityWarning;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 187 */
+/* 189 */
 /***/ (function(module, exports) {
 
 (function(self) {
@@ -32347,7 +33676,7 @@ module.exports = lowPriorityWarning;
 
 
 /***/ }),
-/* 188 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32904,7 +34233,7 @@ exports.American_to = (id, target_element_id, current_User, current_Admin) => {
 
 
 /***/ }),
-/* 189 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33461,7 +34790,7 @@ exports.Asian_to = (id, target_element_id, current_User, current_Admin) => {
 
 
 /***/ }),
-/* 190 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34013,7 +35342,7 @@ exports.Breakfast_to = (id, target_element_id, current_User, current_Admin) => {
 
 
 /***/ }),
-/* 191 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34565,7 +35894,7 @@ exports.Dinner_to = (id, target_element_id, current_User, current_Admin) => {
 
 
 /***/ }),
-/* 192 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35117,7 +36446,7 @@ exports.Lunch_to = (id, target_element_id, current_User, current_Admin) => {
 
 
 /***/ }),
-/* 193 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35674,880 +37003,6 @@ exports.Mediterranean_to = (id, target_element_id, current_User, current_Admin) 
 
 
 /***/ }),
-/* 194 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(11);
-const Immutable = __webpack_require__(36);
-const Api = __webpack_require__(18);
-const List = __webpack_require__(56);
-const Components = __webpack_require__(42);
-const Buttons = __webpack_require__(47);
-const Permissions = __webpack_require__(24);
-const Utils = __webpack_require__(22);
-const i18next = __webpack_require__(21);
-const HomePageViews = __webpack_require__(30);
-const CategoryListViews = __webpack_require__(29);
-const BookmarksViews = __webpack_require__(28);
-const RecipeViews = __webpack_require__(57);
-function Rating_Recipe_Rating_can_create(self) {
-    let state = self.state();
-    return state.Recipe == "loading" ? false : state.Recipe.CanCreate;
-}
-exports.Rating_Recipe_Rating_can_create = Rating_Recipe_Rating_can_create;
-function Rating_Recipe_Rating_can_delete(self) {
-    let state = self.state();
-    return state.Recipe == "loading" ? false : state.Recipe.CanDelete;
-}
-exports.Rating_Recipe_Rating_can_delete = Rating_Recipe_Rating_can_delete;
-function Rating_Recipe_Rating_page_index(self) {
-    let state = self.state();
-    return state.Recipe == "loading" ? 0 : state.Recipe.PageIndex;
-}
-exports.Rating_Recipe_Rating_page_index = Rating_Recipe_Rating_page_index;
-function Rating_Recipe_Rating_page_size(self) {
-    let state = self.state();
-    return state.Recipe == "loading" ? 25 : state.Recipe.PageSize;
-}
-exports.Rating_Recipe_Rating_page_size = Rating_Recipe_Rating_page_size;
-function Rating_Recipe_Rating_search_query(self) {
-    let state = self.state();
-    return state.Recipe == "loading" ? null : state.Recipe.SearchQuery;
-}
-exports.Rating_Recipe_Rating_search_query = Rating_Recipe_Rating_search_query;
-function Rating_Recipe_Rating_num_pages(self) {
-    let state = self.state();
-    return state.Recipe == "loading" ? 1 : state.Recipe.NumPages;
-}
-exports.Rating_Recipe_Rating_num_pages = Rating_Recipe_Rating_num_pages;
-function load_relation_Rating_Recipe_Rating(self, force_first_page, current_User, current_Admin, callback) {
-    let state = self.state();
-    let prelude = force_first_page && state.Recipe != "loading" ?
-        (c) => state.Recipe != "loading" && self.setState(Object.assign({}, state, { Recipe: Object.assign({}, state.Recipe, { PageIndex: 0 }) }), c)
-        :
-            (c) => c();
-    Permissions.can_view_Recipe(current_User, current_Admin) ?
-        prelude(() => Api.get_Rating_Recipe_Ratings(self.props.entity, Rating_Recipe_Rating_page_index(self), Rating_Recipe_Rating_page_size(self), Rating_Recipe_Rating_search_query(self)).then(Recipes => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipe: Utils.raw_page_to_paginated_items((i, i_just_created) => {
-                let state = self.state();
-                return {
-                    element: i,
-                    size: state.Recipe != "loading" ?
-                        (state.Recipe.Items.has(i.Id) ?
-                            state.Recipe.Items.get(i.Id).size
-                            :
-                                "preview" /* i_just_created ? "large" : "preview" */)
-                        :
-                            "preview" /* i_just_created ? "large" : "preview" */,
-                    shown_relation: "all"
-                };
-            }, Recipes) }), callback)))
-        :
-            prelude(() => callback && callback());
-}
-exports.load_relation_Rating_Recipe_Rating = load_relation_Rating_Recipe_Rating;
-function load_relations_Rating(self, current_User, current_Admin, callback) {
-    load_relation_Rating_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback());
-}
-exports.load_relations_Rating = load_relations_Rating;
-function set_size_Rating(self, new_size) {
-    self.props.set_size(new_size, () => {
-        if (new_size == "fullscreen")
-            self.props.push(exports.Rating_to_page(self.props.entity.Id));
-    });
-}
-exports.set_size_Rating = set_size_Rating;
-function render_Rating_rating_editable_minimised(self) {
-    if (!Permissions.can_edit_Rating(self.props.current_User, self.props.current_Admin))
-        return render_Rating_rating_minimised(self);
-    else
-        return !Permissions.can_view_Rating_rating(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
-            React.createElement("div", { className: "model__attribute rating" },
-                React.createElement("label", { className: "attribute-label attribute-label-rating" }, i18next.t(`Rating:rating`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.Number(self.props.is_editable && Permissions.can_edit_Rating(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Rating_rating(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.rating, v => self.props.set_entity(Object.assign({}, self.props.entity, { rating: v })))));
-}
-exports.render_Rating_rating_editable_minimised = render_Rating_rating_editable_minimised;
-function render_Rating_rating_editable_maximised(self) {
-    if (!Permissions.can_edit_Rating(self.props.current_User, self.props.current_Admin))
-        return render_Rating_rating_maximised(self);
-    else
-        return !Permissions.can_view_Rating_rating(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
-            React.createElement("div", { className: "model__attribute rating" },
-                React.createElement("label", { className: "attribute-label attribute-label-rating" }, i18next.t(`Rating:rating`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.Number(self.props.is_editable && Permissions.can_edit_Rating(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Rating_rating(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.rating, v => self.props.set_entity(Object.assign({}, self.props.entity, { rating: v })))));
-}
-exports.render_Rating_rating_editable_maximised = render_Rating_rating_editable_maximised;
-function render_editable_attributes_minimised_Rating(self) {
-    let attributes = (React.createElement("div", null, render_Rating_rating_editable_minimised(self)));
-    return attributes;
-}
-exports.render_editable_attributes_minimised_Rating = render_editable_attributes_minimised_Rating;
-function render_editable_attributes_maximised_Rating(self) {
-    let state = self.state();
-    let attributes = (React.createElement("div", null, render_Rating_rating_editable_maximised(self)));
-    return attributes;
-}
-exports.render_editable_attributes_maximised_Rating = render_editable_attributes_maximised_Rating;
-function render_breadcrumb_Rating(self) {
-    return React.createElement("div", { className: "breadcrumb-rating" }, "Rating");
-}
-exports.render_breadcrumb_Rating = render_breadcrumb_Rating;
-function render_menu_Rating(self) {
-    let state = self.state();
-    return React.createElement("div", { className: "menu" },
-        React.createElement("img", { className: "logo", src: "/images/logo.png", alt: "Logo" }),
-        React.createElement("div", { className: "pages" },
-            !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin) ? null :
-                React.createElement("div", { className: `menu_entry page_link` },
-                    React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
-            !Permissions.can_view_CategoryList(self.props.current_User, self.props.current_Admin) ? null :
-                React.createElement("div", { className: `menu_entry page_link` },
-                    React.createElement("a", { onClick: () => Api.get_CategoryLists(0, 1).then(e => e.Items.length > 0 && self.props.set_page(CategoryListViews.CategoryList_to_page(e.Items[0].Item.Id))) }, i18next.t('CategoryList'))),
-            !Permissions.can_view_Bookmarks(self.props.current_User, self.props.current_Admin) ? null :
-                React.createElement("div", { className: `menu_entry page_link` },
-                    React.createElement("a", { onClick: () => Api.get_Bookmarkss(0, 1).then(e => e.Items.length > 0 && self.props.set_page(BookmarksViews.Bookmarks_to_page(e.Items[0].Item.Id))) }, i18next.t('Bookmarks'))),
-            React.createElement("div", { className: "menu_entries" },
-                React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
-}
-exports.render_menu_Rating = render_menu_Rating;
-function render_local_menu_Rating(self) {
-    let state = self.state();
-    return React.createElement("div", { className: "local-menu" },
-        React.createElement("div", { className: "local_menu_entries" },
-            React.createElement("div", { className: `local_menu_entry${self.props.shown_relation == "none" ? " local_menu_entry--active" : ""}` },
-                React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('About this Rating')))));
-}
-exports.render_local_menu_Rating = render_local_menu_Rating;
-function render_controls_Rating(self) {
-    return React.createElement("div", { className: "control" },
-        self.props.allow_maximisation && self.props.set_size ? React.createElement("a", { className: `"rating button button--toggle ${self.props.size != 'preview' ? 'button--toggle--open' : ''}`, onClick: () => {
-                set_size_Rating(self, self.props.size == "preview" ? "large" : "preview");
-            } }) : null,
-        self.props.allow_fullscreen && self.props.set_size ? React.createElement("a", { className: "rating button button--fullscreen", onClick: () => set_size_Rating(self, self.props.size == "fullscreen" ? "large" : "fullscreen") }) : null,
-        Permissions.can_delete_Rating(self.props.current_User, self.props.current_Admin) && self.props.size == "fullscreen" ? React.createElement("a", { className: "button button--delete", onClick: () => confirm(i18next.t('Are you sure?')) &&
-                Api.delete_Rating(self.props.entity).then(() => self.props.force_reload(() => self.props.pop())) }) : null,
-        self.props.size == "fullscreen" && self.props.pages_count > 0 ? React.createElement("a", { className: "rating button button--close", onClick: () => self.props.pop() }) : null,
-        self.props.unlink && self.props.mode != "view" ?
-            React.createElement("a", { className: "button button--unlink", onClick: () => self.props.unlink() })
-            :
-                null,
-        self.props.delete && self.props.mode != "view" ?
-            React.createElement("a", { className: "button button--delete", onClick: () => self.props.delete() })
-            :
-                null);
-}
-exports.render_controls_Rating = render_controls_Rating;
-function render_content_Rating(self) {
-    let actions = [
-        self.props.allow_maximisation && self.props.set_size && self.props.size == "preview" ?
-            () => set_size_Rating(self, self.props.size == "preview" ? "large" : "preview")
-            :
-                null, self.props.allow_fullscreen && self.props.set_size && self.props.size == "preview" ?
-            () => set_size_Rating(self, self.props.size == "fullscreen" ? "large" : "fullscreen")
-            :
-                null,
-    ].filter(a => a != null);
-    let content = Permissions.can_view_Rating(self.props.current_User, self.props.current_Admin) ?
-        self.props.size == "preview" ?
-            render_preview_Rating(self)
-            : self.props.size == "large" ?
-                render_large_Rating(self)
-                : self.props.size == "fullscreen" ?
-                    render_large_Rating(self)
-                    : "Error: unauthorised access to entity."
-        : "Error: unauthorised access to entity.";
-    if (self.props.mode == "view" && actions.length == 1 && !false)
-        return React.createElement("a", { onClick: () => actions[0]() },
-            React.createElement("div", { className: `${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}` }, content));
-    else
-        return React.createElement("div", { className: `${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}` }, content);
-}
-exports.render_content_Rating = render_content_Rating;
-function render_Rating_rating_minimised(self) {
-    return !Permissions.can_view_Rating_rating(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute rating" },
-        React.createElement("label", { className: "attribute-label attribute-label-rating" }, i18next.t(`Rating:rating`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.Number(self.props.is_editable && Permissions.can_edit_Rating(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Rating_rating(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.rating, v => self.props.set_entity(Object.assign({}, self.props.entity, { rating: v })))));
-}
-exports.render_Rating_rating_minimised = render_Rating_rating_minimised;
-function render_Rating_rating_maximised(self) {
-    return !Permissions.can_view_Rating_rating(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute rating" },
-        React.createElement("label", { className: "attribute-label attribute-label-rating" }, i18next.t(`Rating:rating`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.Number(self.props.is_editable && Permissions.can_edit_Rating(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_Rating_rating(self.props.current_User, self.props.current_Admin), self.props.mode, () => self.props.entity.rating, v => self.props.set_entity(Object.assign({}, self.props.entity, { rating: v })))));
-}
-exports.render_Rating_rating_maximised = render_Rating_rating_maximised;
-function render_preview_Rating(self) {
-    let attributes = null;
-    if (self.props.mode == "view" || !Permissions.can_edit_Rating(self.props.current_User, self.props.current_Admin))
-        attributes = (React.createElement("div", { className: "model__attributes" }, render_Rating_rating_minimised(self)));
-    else
-        attributes = render_editable_attributes_minimised_Rating(self);
-    return (React.createElement("div", { className: "block" }, attributes));
-}
-exports.render_preview_Rating = render_preview_Rating;
-function render_large_Rating(self) {
-    let state = self.state();
-    let attributes = null;
-    if (self.props.mode == "view" || !Permissions.can_edit_Rating(self.props.current_User, self.props.current_Admin))
-        attributes = (React.createElement("div", { className: "model__attributes" }, render_Rating_rating_maximised(self)));
-    else
-        attributes = render_editable_attributes_maximised_Rating(self);
-    return (React.createElement("div", { className: "block" },
-        self.props.nesting_depth == 0 && self.props.shown_relation != "all" && self.props.shown_relation != "none" ? null : attributes,
-        render_relations_Rating(self)));
-}
-exports.render_large_Rating = render_large_Rating;
-function render_Rating_Recipe_Rating(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "Recipe_Rating") || !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin))
-        return null;
-    let state = self.state();
-    return React.createElement("div", null, List.render_relation("rating_recipe_rating", "Rating", "Recipe", "Recipes", self.props.nesting_depth > 0, false, false, false)(state.Recipe != "loading" ?
-        state.Recipe.IdsInServerOrder.map(id => state.Recipe != "loading" && state.Recipe.Items.get(id)) :
-        state.Recipe, Rating_Recipe_Rating_page_index(self), Rating_Recipe_Rating_num_pages(self), new_page_index => {
-        let state = self.state();
-        state.Recipe != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipe: Object.assign({}, state.Recipe, { PageIndex: new_page_index }) }), () => load_relation_Rating_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin));
-    }, (i, _) => {
-        let i_id = i.element.Id;
-        let state = self.state();
-        return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
-                        ${state.Recipe != "loading" && state.Recipe.JustCreated.has(i_id) && state.Recipe.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, RecipeViews.Recipe(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_Recipe_Rating(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_Recipe_Rating(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_Recipe_Rating(self.props.current_User, self.props.current_Admin)) ?
-                    self.props.mode : "view", is_editable: state.Recipe != "loading" && state.Recipe.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
-                    let state = self.state();
-                    state.Recipe != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
-                }, nested_entity_names: self.props.nested_entity_names.push("Recipe"), set_size: (new_size, callback) => {
-                    let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
-                    let state = self.state();
-                    state.Recipe != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
-                }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
-                    let state = self.state();
-                    state.Recipe != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { dirty_Recipe: state.dirty_Recipe.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, delete: undefined, unlink: !Permissions.can_delete_Recipe_Rating(self.props.current_User, self.props.current_Admin) ?
-                    null
-                    :
-                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_Recipe_Recipe_Ratings(i.element, self.props.entity).then(() => load_relation_Rating_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin)) }))));
-    }, () => React.createElement("div", null,
-        Permissions.can_create_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_create_Recipe_Rating(self.props.current_User, self.props.current_Admin) && Rating_Recipe_Rating_can_create(self) ? render_new_Rating_Recipe_Rating(self) : null,
-        Permissions.can_create_Recipe_Rating(self.props.current_User, self.props.current_Admin) ? render_add_existing_Rating_Recipe_Rating(self) : null)));
-}
-exports.render_Rating_Recipe_Rating = render_Rating_Recipe_Rating;
-function render_relations_Rating(self) {
-    return React.createElement("div", { className: "relations" });
-}
-exports.render_relations_Rating = render_relations_Rating;
-function render_add_existing_Rating_Recipe_Rating(self) {
-    let state = self.state();
-    return self.props.mode == "edit" ?
-        React.createElement("div", { className: "button__actions" }, state.add_step_Recipe != "open" ?
-            React.createElement(Buttons.Add, { disabled: state.Recipe == "loading" ? true : state.Recipe.TotalCount >= 1, onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "open" })), target_name: "Recipe" })
-            :
-                React.createElement(List.AddToRelation, {
-                    relation_name: "rating_recipe_rating",
-                    source_name: "Rating",
-                    target_name: "Recipe",
-                    target_plural: "Recipes",
-                    page_size: 25,
-                    render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
-                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "saving" }), () => Api.link_Rating_Recipe_Ratings(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" }), () => load_relation_Rating_Recipe_Rating(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
-                        React.createElement("div", { className: "group__title", disabled: true }, RecipeViews.Recipe(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Recipe"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
-                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" })),
-                    get_items: [
-                        { name: "Recipe", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_Rating_Recipe_Ratings(self.props.entity, i, s); }) },
-                    ]
-                }))
-        :
-            null;
-}
-exports.render_add_existing_Rating_Recipe_Rating = render_add_existing_Rating_Recipe_Rating;
-function render_new_Rating_Recipe_Rating(self) {
-    let state = self.state();
-    return self.props.mode == "edit" ?
-        React.createElement("div", { className: "button__actions" },
-            React.createElement("div", { className: "new-recipe" },
-                React.createElement("button", { disabled: state.Recipe == "loading" ? true : state.Recipe.TotalCount >= 1, className: "new-recipe button button--new", onClick: () => Api.create_linked_Rating_Recipe_Ratings_Recipe(self.props.entity).then(e => {
-                        e.length > 0 &&
-                            Api.update_Recipe(Object.assign({}, e[0], { Picture: "", Name: "", Ingredients: "", Description: "", PreparationTime: 0 })).then(() => load_relation_Rating_Recipe_Rating(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" }))));
-                    }) }, i18next.t('Create new Recipe'))))
-        :
-            null;
-}
-exports.render_new_Rating_Recipe_Rating = render_new_Rating_Recipe_Rating;
-function render_saving_animations_Rating(self) {
-    return self.state().dirty_Recipe.count() > 0 ?
-        React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" })
-        : React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "cornflowerblue" }, className: "saved" });
-}
-exports.render_saving_animations_Rating = render_saving_animations_Rating;
-class RatingComponent extends React.Component {
-    constructor(props, context) {
-        super(props, context);
-        this.thread = null;
-        this.state = { update_count: 0, add_step_Recipe: "closed", dirty_Recipe: Immutable.Map(), Recipe: "loading" };
-    }
-    get_self() {
-        return { state: () => this.state, props: this.props, setState: (ns, c) => this.setState(ns, c) };
-    }
-    componentWillReceiveProps(new_props) {
-        if (new_props.size == "breadcrumb")
-            return;
-        let current_logged_in_entity = this.props.current_User || this.props.current_Admin || null;
-        let new_logged_in_entity = new_props.current_User || new_props.current_Admin || null;
-        if (new_props.mode != this.props.mode || (new_props.size != this.props.size && (new_props.size == "large" || new_props.size == "fullscreen")) ||
-            new_props.logic_frame != this.props.logic_frame ||
-            (current_logged_in_entity && !new_logged_in_entity) ||
-            (!current_logged_in_entity && new_logged_in_entity) ||
-            (current_logged_in_entity && new_logged_in_entity && current_logged_in_entity.Id != new_logged_in_entity.Id)) {
-            load_relations_Rating(this.get_self(), new_props.current_User, new_props.current_Admin);
-        }
-    }
-    componentWillMount() {
-        if (this.props.size == "breadcrumb")
-            return;
-        if (this.props.size != "preview") {
-            load_relations_Rating(this.get_self(), this.props.current_User, this.props.current_Admin);
-        }
-        this.thread = setInterval(() => {
-            if (this.state.dirty_Recipe.count() > 0) {
-                let first = this.state.dirty_Recipe.first();
-                this.setState(Object.assign({}, this.state, { dirty_Recipe: this.state.dirty_Recipe.remove(first.Id) }), () => Api.update_Recipe(first));
-            }
-        }, 500);
-    }
-    componentWillUnmount() {
-        clearInterval(this.thread);
-    }
-    render() {
-        if (this.props.size == "breadcrumb") {
-            return Permissions.can_view_Rating(this.props.current_User, this.props.current_Admin) ?
-                render_breadcrumb_Rating(this.get_self())
-                : null;
-        }
-        return React.createElement("div", { id: `Rating_${this.props.entity.Id.toString()}_${this.state.update_count}`, className: `model rating` },
-            render_saving_animations_Rating(this.get_self()),
-            this.props.nesting_depth == 0 ? render_menu_Rating(this.get_self()) : null,
-            React.createElement("div", { className: "content" },
-                this.props.nesting_depth == 0 && !!this.props.toggle_button ?
-                    React.createElement("div", { className: "topbar" },
-                        this.props.breadcrumbs(),
-                        React.createElement("div", { className: "topbar__buttons" },
-                            this.props.toggle_button ? this.props.toggle_button() : null,
-                            this.props.authentication_menu()))
-                    :
-                        null,
-                this.props.nesting_depth == 0 ? render_local_menu_Rating(this.get_self()) : null,
-                render_controls_Rating(this.get_self()),
-                render_content_Rating(this.get_self())));
-    }
-}
-exports.RatingComponent = RatingComponent;
-exports.Rating = (props) => React.createElement(RatingComponent, Object.assign({}, props));
-exports.Rating_to_page = (id) => {
-    let can_edit = Utils.any_of([Permissions.can_edit_Rating, Permissions.can_edit_Recipe_Rating, Permissions.can_edit_Recipe]);
-    return Utils.scene_to_page(can_edit, exports.Rating, Api.get_Rating(id), Api.update_Rating, "Rating", "Rating", `/Ratings/${id}`);
-};
-exports.Rating_to = (id, target_element_id, current_User, current_Admin) => {
-    Utils.render_page_manager(target_element_id, exports.Rating_to_page(id), current_User, current_Admin);
-};
-
-
-/***/ }),
-/* 195 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = __webpack_require__(11);
-const Immutable = __webpack_require__(36);
-const Api = __webpack_require__(18);
-const List = __webpack_require__(56);
-const Components = __webpack_require__(42);
-const Buttons = __webpack_require__(47);
-const Permissions = __webpack_require__(24);
-const Utils = __webpack_require__(22);
-const i18next = __webpack_require__(21);
-const Moment = __webpack_require__(0);
-const HomePageViews = __webpack_require__(30);
-const CategoryListViews = __webpack_require__(29);
-const BookmarksViews = __webpack_require__(28);
-const RecipeViews = __webpack_require__(57);
-function User_User_Recipe_can_create(self) {
-    let state = self.state();
-    return state.Recipe == "loading" ? false : state.Recipe.CanCreate;
-}
-exports.User_User_Recipe_can_create = User_User_Recipe_can_create;
-function User_User_Recipe_can_delete(self) {
-    let state = self.state();
-    return state.Recipe == "loading" ? false : state.Recipe.CanDelete;
-}
-exports.User_User_Recipe_can_delete = User_User_Recipe_can_delete;
-function User_User_Recipe_page_index(self) {
-    let state = self.state();
-    return state.Recipe == "loading" ? 0 : state.Recipe.PageIndex;
-}
-exports.User_User_Recipe_page_index = User_User_Recipe_page_index;
-function User_User_Recipe_page_size(self) {
-    let state = self.state();
-    return state.Recipe == "loading" ? 25 : state.Recipe.PageSize;
-}
-exports.User_User_Recipe_page_size = User_User_Recipe_page_size;
-function User_User_Recipe_search_query(self) {
-    let state = self.state();
-    return state.Recipe == "loading" ? null : state.Recipe.SearchQuery;
-}
-exports.User_User_Recipe_search_query = User_User_Recipe_search_query;
-function User_User_Recipe_num_pages(self) {
-    let state = self.state();
-    return state.Recipe == "loading" ? 1 : state.Recipe.NumPages;
-}
-exports.User_User_Recipe_num_pages = User_User_Recipe_num_pages;
-function load_relation_User_User_Recipe(self, force_first_page, current_User, current_Admin, callback) {
-    let state = self.state();
-    let prelude = force_first_page && state.Recipe != "loading" ?
-        (c) => state.Recipe != "loading" && self.setState(Object.assign({}, state, { Recipe: Object.assign({}, state.Recipe, { PageIndex: 0 }) }), c)
-        :
-            (c) => c();
-    Permissions.can_view_Recipe(current_User, current_Admin) ?
-        prelude(() => Api.get_User_User_Recipes(self.props.entity, User_User_Recipe_page_index(self), User_User_Recipe_page_size(self), User_User_Recipe_search_query(self)).then(Recipes => self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipe: Utils.raw_page_to_paginated_items((i, i_just_created) => {
-                let state = self.state();
-                return {
-                    element: i,
-                    size: state.Recipe != "loading" ?
-                        (state.Recipe.Items.has(i.Id) ?
-                            state.Recipe.Items.get(i.Id).size
-                            :
-                                "preview" /* i_just_created ? "large" : "preview" */)
-                        :
-                            "preview" /* i_just_created ? "large" : "preview" */,
-                    shown_relation: "all"
-                };
-            }, Recipes) }), callback)))
-        :
-            prelude(() => callback && callback());
-}
-exports.load_relation_User_User_Recipe = load_relation_User_User_Recipe;
-function load_relations_User(self, current_User, current_Admin, callback) {
-    load_relation_User_User_Recipe(self, false, self.props.current_User, self.props.current_Admin, () => callback && callback());
-}
-exports.load_relations_User = load_relations_User;
-function set_size_User(self, new_size) {
-    self.props.set_size(new_size, () => {
-        if (new_size == "fullscreen")
-            self.props.push(exports.User_to_page(self.props.entity.Id));
-    });
-}
-exports.set_size_User = set_size_User;
-function render_User_Username_editable_minimised(self) {
-    if (!Permissions.can_edit_User(self.props.current_User, self.props.current_Admin))
-        return render_User_Username_minimised(self);
-    else
-        return !Permissions.can_view_User_Username(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
-            React.createElement("div", { className: "model__attribute username" },
-                React.createElement("label", { className: "attribute-label attribute-label-username" }, i18next.t(`User:Username`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.String(false /* because username and email cannot be edited */, self.props.mode, () => self.props.entity.Username, v => self.props.set_entity(Object.assign({}, self.props.entity, { Username: v })))));
-}
-exports.render_User_Username_editable_minimised = render_User_Username_editable_minimised;
-function render_User_Language_editable_minimised(self) {
-    if (!Permissions.can_edit_User(self.props.current_User, self.props.current_Admin))
-        return render_User_Language_minimised(self);
-    else
-        return !Permissions.can_view_User_Language(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
-            React.createElement("div", { className: "model__attribute language" },
-                React.createElement("label", { className: "attribute-label attribute-label-language" }, i18next.t(`User:Language`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.Union(self.props.is_editable && Permissions.can_edit_User(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_User_Language(self.props.current_User, self.props.current_Admin), self.props.mode, Immutable.List([{ value: "en", label: "en" }]), () => self.props.entity.Language, (v) => self.props.set_entity(Object.assign({}, self.props.entity, { Language: v })))));
-}
-exports.render_User_Language_editable_minimised = render_User_Language_editable_minimised;
-function render_User_Email_editable_minimised(self) {
-    if (!Permissions.can_edit_User(self.props.current_User, self.props.current_Admin))
-        return render_User_Email_minimised(self);
-    else
-        return !Permissions.can_view_User_Email(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
-            null;
-}
-exports.render_User_Email_editable_minimised = render_User_Email_editable_minimised;
-function render_User_Username_editable_maximised(self) {
-    if (!Permissions.can_edit_User(self.props.current_User, self.props.current_Admin))
-        return render_User_Username_maximised(self);
-    else
-        return !Permissions.can_view_User_Username(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
-            React.createElement("div", { className: "model__attribute username" },
-                React.createElement("label", { className: "attribute-label attribute-label-username" }, i18next.t(`User:Username`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.String(false /* because username and email cannot be edited */, self.props.mode, () => self.props.entity.Username, v => self.props.set_entity(Object.assign({}, self.props.entity, { Username: v })))));
-}
-exports.render_User_Username_editable_maximised = render_User_Username_editable_maximised;
-function render_User_Language_editable_maximised(self) {
-    if (!Permissions.can_edit_User(self.props.current_User, self.props.current_Admin))
-        return render_User_Language_maximised(self);
-    else
-        return !Permissions.can_view_User_Language(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
-            React.createElement("div", { className: "model__attribute language" },
-                React.createElement("label", { className: "attribute-label attribute-label-language" }, i18next.t(`User:Language`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.Union(self.props.is_editable && Permissions.can_edit_User(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_User_Language(self.props.current_User, self.props.current_Admin), self.props.mode, Immutable.List([{ value: "en", label: "en" }]), () => self.props.entity.Language, (v) => self.props.set_entity(Object.assign({}, self.props.entity, { Language: v })))));
-}
-exports.render_User_Language_editable_maximised = render_User_Language_editable_maximised;
-function render_User_Email_editable_maximised(self) {
-    if (!Permissions.can_edit_User(self.props.current_User, self.props.current_Admin))
-        return render_User_Email_maximised(self);
-    else
-        return !Permissions.can_view_User_Email(self.props.current_User, self.props.current_Admin) ? React.createElement("div", null) :
-            React.createElement("div", { className: "model__attribute email" },
-                React.createElement("label", { className: "attribute-label attribute-label-email" }, i18next.t(`User:Email`, { context: self.props.inline ? "inline" : "" })),
-                React.createElement("div", { className: "model__attribute-content" }, Components.Email(false, self.props.mode, () => self.props.entity.Email, v => self.props.set_entity(Object.assign({}, self.props.entity, { Email: v })))));
-}
-exports.render_User_Email_editable_maximised = render_User_Email_editable_maximised;
-function render_editable_attributes_minimised_User(self) {
-    let attributes = (React.createElement("div", null,
-        render_User_Username_editable_minimised(self),
-        render_User_Language_editable_minimised(self)));
-    return attributes;
-}
-exports.render_editable_attributes_minimised_User = render_editable_attributes_minimised_User;
-function render_editable_attributes_maximised_User(self) {
-    let state = self.state();
-    let attributes = (React.createElement("div", null,
-        render_User_Username_editable_maximised(self),
-        render_User_Language_editable_maximised(self),
-        render_User_Email_editable_maximised(self),
-        React.createElement("button", { onClick: () => Api.reset_User_password(self.props.entity.Username, self.props.entity.Email).then(() => location.reload()) }, self.props.entity.HasPassword ? i18next.t('common:Reset password') : i18next.t('common:Create password')),
-        React.createElement("button", { onClick: () => Api.delete_User_sessions().then(() => location.reload()) }, i18next.t('common:Delete sessions')),
-        state.active_sessions != "loading" ?
-            React.createElement("div", { className: "active-user-sessions" },
-                React.createElement("label", { className: "attribute-label attribute-label-active_sessions" }, i18next.t("Active sessions")),
-                state.active_sessions.map(s => React.createElement("div", null,
-                    s.Item1,
-                    " - ",
-                    Moment(s.Item2).format("DD/MM/YYYY"))))
-            :
-                React.createElement("div", { className: "loading" }, i18next.t("loading"))));
-    return attributes;
-}
-exports.render_editable_attributes_maximised_User = render_editable_attributes_maximised_User;
-function render_breadcrumb_User(self) {
-    return React.createElement("div", { className: "breadcrumb-user" }, "User");
-}
-exports.render_breadcrumb_User = render_breadcrumb_User;
-function render_menu_User(self) {
-    let state = self.state();
-    return React.createElement("div", { className: "menu" },
-        React.createElement("img", { className: "logo", src: "/images/logo.png", alt: "Logo" }),
-        React.createElement("div", { className: "pages" },
-            !Permissions.can_view_HomePage(self.props.current_User, self.props.current_Admin) ? null :
-                React.createElement("div", { className: `menu_entry page_link` },
-                    React.createElement("a", { onClick: () => Api.get_HomePages(0, 1).then(e => e.Items.length > 0 && self.props.set_page(HomePageViews.HomePage_to_page(e.Items[0].Item.Id))) }, i18next.t('HomePage'))),
-            !Permissions.can_view_CategoryList(self.props.current_User, self.props.current_Admin) ? null :
-                React.createElement("div", { className: `menu_entry page_link` },
-                    React.createElement("a", { onClick: () => Api.get_CategoryLists(0, 1).then(e => e.Items.length > 0 && self.props.set_page(CategoryListViews.CategoryList_to_page(e.Items[0].Item.Id))) }, i18next.t('CategoryList'))),
-            !Permissions.can_view_Bookmarks(self.props.current_User, self.props.current_Admin) ? null :
-                React.createElement("div", { className: `menu_entry page_link` },
-                    React.createElement("a", { onClick: () => Api.get_Bookmarkss(0, 1).then(e => e.Items.length > 0 && self.props.set_page(BookmarksViews.Bookmarks_to_page(e.Items[0].Item.Id))) }, i18next.t('Bookmarks'))),
-            React.createElement("div", { className: "menu_entries" },
-                React.createElement("div", { className: "menu_entry menu_entry--with-sub" }))));
-}
-exports.render_menu_User = render_menu_User;
-function render_local_menu_User(self) {
-    let state = self.state();
-    return React.createElement("div", { className: "local-menu" },
-        React.createElement("div", { className: "local_menu_entries" },
-            React.createElement("div", { className: `local_menu_entry${self.props.shown_relation == "none" ? " local_menu_entry--active" : ""}` },
-                React.createElement("a", { onClick: () => self.props.set_shown_relation("none") }, i18next.t('About this User'))),
-            !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin) ? null :
-                React.createElement("div", { key: "User_Recipe", className: `local_menu_entry${self.props.shown_relation == "User_Recipe" ? " local_menu_entry--active" : ""}` },
-                    React.createElement("a", { onClick: () => load_relation_User_User_Recipe(self, false, self.props.current_User, self.props.current_Admin, () => self.props.set_shown_relation("User_Recipe")) }, i18next.t('User_Recipes')))));
-}
-exports.render_local_menu_User = render_local_menu_User;
-function render_controls_User(self) {
-    return React.createElement("div", { className: "control" },
-        self.props.allow_fullscreen && self.props.set_size ? React.createElement("a", { className: "user button button--fullscreen", onClick: () => set_size_User(self, self.props.size == "fullscreen" ? "large" : "fullscreen") }) : null,
-        Permissions.can_delete_User(self.props.current_User, self.props.current_Admin) && self.props.size == "fullscreen" ? React.createElement("a", { className: "button button--delete", onClick: () => confirm(i18next.t('Are you sure?')) &&
-                Api.delete_User(self.props.entity).then(() => self.props.force_reload(() => self.props.pop())) }) : null,
-        self.props.size == "fullscreen" && self.props.pages_count > 0 ? React.createElement("a", { className: "user button button--close", onClick: () => self.props.pop() }) : null,
-        self.props.unlink && self.props.mode != "view" ?
-            React.createElement("a", { className: "button button--unlink", onClick: () => self.props.unlink() })
-            :
-                null,
-        self.props.delete && self.props.mode != "view" ?
-            React.createElement("a", { className: "button button--delete", onClick: () => self.props.delete() })
-            :
-                null);
-}
-exports.render_controls_User = render_controls_User;
-function render_content_User(self) {
-    let actions = [
-        self.props.allow_fullscreen && self.props.set_size && self.props.size == "preview" ?
-            () => set_size_User(self, self.props.size == "fullscreen" ? "large" : "fullscreen")
-            :
-                null,
-    ].filter(a => a != null);
-    let content = Permissions.can_view_User(self.props.current_User, self.props.current_Admin) ?
-        self.props.size == "preview" ?
-            render_preview_User(self)
-            : self.props.size == "large" ?
-                render_large_User(self)
-                : self.props.size == "fullscreen" ?
-                    render_large_User(self)
-                    : "Error: unauthorised access to entity."
-        : "Error: unauthorised access to entity.";
-    if (self.props.mode == "view" && actions.length == 1 && !false)
-        return React.createElement("a", { onClick: () => actions[0]() },
-            React.createElement("div", { className: `${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}` }, content));
-    else
-        return React.createElement("div", { className: `${self.props.inline != undefined && self.props.inline ? "" : "model-content"} ${self.props.size == 'preview' ? 'model-content--preview' : ''}` }, content);
-}
-exports.render_content_User = render_content_User;
-function render_User_Username_minimised(self) {
-    return !Permissions.can_view_User_Username(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute username" },
-        React.createElement("label", { className: "attribute-label attribute-label-username" }, i18next.t(`User:Username`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.String(false /* because username and email cannot be edited */, self.props.mode, () => self.props.entity.Username, v => self.props.set_entity(Object.assign({}, self.props.entity, { Username: v })))));
-}
-exports.render_User_Username_minimised = render_User_Username_minimised;
-function render_User_Language_minimised(self) {
-    return !Permissions.can_view_User_Language(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute language" },
-        React.createElement("label", { className: "attribute-label attribute-label-language" }, i18next.t(`User:Language`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.Union(self.props.is_editable && Permissions.can_edit_User(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_User_Language(self.props.current_User, self.props.current_Admin), self.props.mode, Immutable.List([{ value: "en", label: "en" }]), () => self.props.entity.Language, (v) => self.props.set_entity(Object.assign({}, self.props.entity, { Language: v })))));
-}
-exports.render_User_Language_minimised = render_User_Language_minimised;
-function render_User_Email_minimised(self) {
-    return null;
-}
-exports.render_User_Email_minimised = render_User_Email_minimised;
-function render_User_Username_maximised(self) {
-    return !Permissions.can_view_User_Username(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute username" },
-        React.createElement("label", { className: "attribute-label attribute-label-username" }, i18next.t(`User:Username`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.String(false /* because username and email cannot be edited */, self.props.mode, () => self.props.entity.Username, v => self.props.set_entity(Object.assign({}, self.props.entity, { Username: v })))));
-}
-exports.render_User_Username_maximised = render_User_Username_maximised;
-function render_User_Language_maximised(self) {
-    return !Permissions.can_view_User_Language(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute language" },
-        React.createElement("label", { className: "attribute-label attribute-label-language" }, i18next.t(`User:Language`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.Union(self.props.is_editable && Permissions.can_edit_User(self.props.current_User, self.props.current_Admin) && Permissions.can_edit_User_Language(self.props.current_User, self.props.current_Admin), self.props.mode, Immutable.List([{ value: "en", label: "en" }]), () => self.props.entity.Language, (v) => self.props.set_entity(Object.assign({}, self.props.entity, { Language: v })))));
-}
-exports.render_User_Language_maximised = render_User_Language_maximised;
-function render_User_Email_maximised(self) {
-    return !Permissions.can_view_User_Email(self.props.current_User, self.props.current_Admin) ? null : React.createElement("div", { className: "model__attribute email" },
-        React.createElement("label", { className: "attribute-label attribute-label-email" }, i18next.t(`User:Email`, { context: self.props.inline ? "inline" : "" })),
-        React.createElement("div", { className: "model__attribute-content" }, Components.Email(false, self.props.mode, () => self.props.entity.Email, v => self.props.set_entity(Object.assign({}, self.props.entity, { Email: v })))));
-}
-exports.render_User_Email_maximised = render_User_Email_maximised;
-function render_preview_User(self) {
-    let attributes = null;
-    if (self.props.mode == "view" || !Permissions.can_edit_User(self.props.current_User, self.props.current_Admin))
-        attributes = (React.createElement("div", { className: "model__attributes" },
-            render_User_Username_minimised(self),
-            render_User_Language_minimised(self),
-            render_User_Email_minimised(self)));
-    else
-        attributes = render_editable_attributes_minimised_User(self);
-    return (React.createElement("div", { className: "block" }, attributes));
-}
-exports.render_preview_User = render_preview_User;
-function render_large_User(self) {
-    let state = self.state();
-    let attributes = null;
-    if (self.props.mode == "view" || !Permissions.can_edit_User(self.props.current_User, self.props.current_Admin))
-        attributes = (React.createElement("div", { className: "model__attributes" },
-            render_User_Username_maximised(self),
-            render_User_Language_maximised(self),
-            render_User_Email_maximised(self),
-            state.active_sessions != "loading" ?
-                React.createElement("div", { className: "active-user-sessions" },
-                    React.createElement("label", { className: "attribute-label attribute-label-active_sessions" }, i18next.t("Active sessions")),
-                    state.active_sessions.map(s => React.createElement("div", null,
-                        s.Item1,
-                        " - ",
-                        Moment(s.Item2).format("DD/MM/YYYY"))))
-                :
-                    React.createElement("div", { className: "loading" }, i18next.t("loading"))));
-    else
-        attributes = render_editable_attributes_maximised_User(self);
-    return (React.createElement("div", { className: "block" },
-        self.props.nesting_depth == 0 && self.props.shown_relation != "all" && self.props.shown_relation != "none" ? null : attributes,
-        render_relations_User(self)));
-}
-exports.render_large_User = render_large_User;
-function render_User_User_Recipe(self, context) {
-    if ((context == "default" && self.props.shown_relation != "all" && self.props.shown_relation != "User_Recipe") || !Permissions.can_view_Recipe(self.props.current_User, self.props.current_Admin))
-        return null;
-    let state = self.state();
-    return React.createElement("div", null, List.render_relation("user_user_recipe", "User", "Recipe", "Recipes", self.props.nesting_depth > 0, false, false, false)(state.Recipe != "loading" ?
-        state.Recipe.IdsInServerOrder.map(id => state.Recipe != "loading" && state.Recipe.Items.get(id)) :
-        state.Recipe, User_User_Recipe_page_index(self), User_User_Recipe_num_pages(self), new_page_index => {
-        let state = self.state();
-        state.Recipe != "loading" &&
-            self.setState(Object.assign({}, self.state(), { update_count: self.state().update_count + 1, Recipe: Object.assign({}, state.Recipe, { PageIndex: new_page_index }) }), () => load_relation_User_User_Recipe(self, false, self.props.current_User, self.props.current_Admin));
-    }, (i, _) => {
-        let i_id = i.element.Id;
-        let state = self.state();
-        return React.createElement("div", { key: i_id, className: `model-nested__item ${i.size != "preview" ? "model-nested__item--open" : ""}
-                        ${state.Recipe != "loading" && state.Recipe.JustCreated.has(i_id) && state.Recipe.JustCreated.get(i_id) ? "newly-created" : ""}` },
-            React.createElement("div", { key: i_id }, RecipeViews.Recipe(Object.assign({}, self.props, { entity: i.element, inline: false, nesting_depth: self.props.nesting_depth + 1, size: i.size, allow_maximisation: true, allow_fullscreen: true, mode: self.props.mode == "edit" && (Permissions.can_edit_User_Recipe(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_create_User_Recipe(self.props.current_User, self.props.current_Admin)
-                    || Permissions.can_delete_User_Recipe(self.props.current_User, self.props.current_Admin)) ?
-                    self.props.mode : "view", is_editable: state.Recipe != "loading" && state.Recipe.Editable.get(i_id), shown_relation: i.shown_relation, set_shown_relation: (new_shown_relation, callback) => {
-                    let state = self.state();
-                    state.Recipe != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { shown_relation: new_shown_relation })) }) }), callback);
-                }, nested_entity_names: self.props.nested_entity_names.push("Recipe"), set_size: (new_size, callback) => {
-                    let new_shown_relation = new_size == "large" ? "all" : i.shown_relation;
-                    let state = self.state();
-                    state.Recipe != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { size: new_size, shown_relation: new_shown_relation })) }) }), callback);
-                }, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback, force_update_count_increment) => {
-                    let state = self.state();
-                    state.Recipe != "loading" &&
-                        self.setState(Object.assign({}, self.state(), { dirty_Recipe: state.dirty_Recipe.set(i_id, new_entity), update_count: force_update_count_increment ? self.state().update_count + 1 : state.update_count, Recipe: Object.assign({}, state.Recipe, { Items: state.Recipe.Items.set(i_id, Object.assign({}, state.Recipe.Items.get(i_id), { element: new_entity })) }) }), callback);
-                }, delete: undefined, unlink: !Permissions.can_delete_User_Recipe(self.props.current_User, self.props.current_Admin) ?
-                    null
-                    :
-                        () => confirm(i18next.t('Are you sure?')) && Api.unlink_User_User_Recipes(self.props.entity, i.element).then(() => load_relation_User_User_Recipe(self, false, self.props.current_User, self.props.current_Admin)) }))));
-    }, () => React.createElement("div", null,
-        Permissions.can_create_Recipe(self.props.current_User, self.props.current_Admin) && Permissions.can_create_User_Recipe(self.props.current_User, self.props.current_Admin) && User_User_Recipe_can_create(self) ? render_new_User_User_Recipe(self) : null,
-        Permissions.can_create_User_Recipe(self.props.current_User, self.props.current_Admin) ? render_add_existing_User_User_Recipe(self) : null)));
-}
-exports.render_User_User_Recipe = render_User_User_Recipe;
-function render_relations_User(self) {
-    return React.createElement("div", { className: "relations" }, render_User_User_Recipe(self, "default"));
-}
-exports.render_relations_User = render_relations_User;
-function render_add_existing_User_User_Recipe(self) {
-    let state = self.state();
-    return self.props.mode == "edit" ?
-        React.createElement("div", { className: "button__actions" }, state.add_step_Recipe != "open" ?
-            React.createElement(Buttons.Add, { onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "open" })), target_name: "Recipe" })
-            :
-                React.createElement(List.AddToRelation, {
-                    relation_name: "user_user_recipe",
-                    source_name: "User",
-                    target_name: "Recipe",
-                    target_plural: "Recipes",
-                    page_size: 25,
-                    render_target: (i, i_id) => React.createElement("div", { key: i_id, className: "group__item" },
-                        React.createElement("a", { className: "group__button button button--existing", onClick: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "saving" }), () => Api.link_User_User_Recipes(self.props.entity, i).then(() => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" }), () => load_relation_User_User_Recipe(self, false, self.props.current_User, self.props.current_Admin)))) }, "Add existing"),
-                        React.createElement("div", { className: "group__title", disabled: true }, RecipeViews.Recipe(Object.assign({}, self.props, { entity: i, nesting_depth: self.props.nesting_depth + 1, size: "preview", mode: "view", is_editable: false, nested_entity_names: self.props.nested_entity_names.push("Recipe"), set_size: undefined, toggle_button: undefined, set_mode: undefined, set_entity: (new_entity, callback) => { }, unlink: undefined, delete: undefined })))),
-                    cancel: () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" })),
-                    get_items: [
-                        { name: "Recipe", get: (i, s) => __awaiter(this, void 0, void 0, function* () { return Api.get_unlinked_User_User_Recipes(self.props.entity, i, s); }) },
-                    ]
-                }))
-        :
-            null;
-}
-exports.render_add_existing_User_User_Recipe = render_add_existing_User_User_Recipe;
-function render_new_User_User_Recipe(self) {
-    let state = self.state();
-    return self.props.mode == "edit" ?
-        React.createElement("div", { className: "button__actions" },
-            React.createElement("div", { className: "new-recipe" },
-                React.createElement("button", { className: "new-recipe button button--new", onClick: () => Api.create_linked_User_User_Recipes_Recipe(self.props.entity).then(e => {
-                        e.length > 0 &&
-                            Api.update_Recipe(Object.assign({}, e[0], { Picture: "", Name: "", Ingredients: "", Description: "", PreparationTime: 0 })).then(() => load_relation_User_User_Recipe(self, true, self.props.current_User, self.props.current_Admin, () => self.setState(Object.assign({}, self.state(), { add_step_Recipe: "closed" }))));
-                    }) }, i18next.t('Create new Recipe'))))
-        :
-            null;
-}
-exports.render_new_User_User_Recipe = render_new_User_User_Recipe;
-function render_saving_animations_User(self) {
-    return self.state().dirty_Recipe.count() > 0 ?
-        React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "red" }, className: "saving" })
-        : React.createElement("div", { style: { position: "fixed", zIndex: 10000, top: 0, left: 0, width: "20px", height: "20px", backgroundColor: "cornflowerblue" }, className: "saved" });
-}
-exports.render_saving_animations_User = render_saving_animations_User;
-class UserComponent extends React.Component {
-    constructor(props, context) {
-        super(props, context);
-        this.thread = null;
-        this.state = { update_count: 0, active_sessions: "loading", add_step_Recipe: "closed", dirty_Recipe: Immutable.Map(), Recipe: "loading" };
-    }
-    get_self() {
-        return { state: () => this.state, props: this.props, setState: (ns, c) => this.setState(ns, c) };
-    }
-    componentWillReceiveProps(new_props) {
-        if (new_props.size == "breadcrumb")
-            return;
-        let current_logged_in_entity = this.props.current_User || this.props.current_Admin || null;
-        let new_logged_in_entity = new_props.current_User || new_props.current_Admin || null;
-        if (new_props.mode != this.props.mode || (new_props.size != this.props.size && (new_props.size == "large" || new_props.size == "fullscreen")) ||
-            new_props.logic_frame != this.props.logic_frame ||
-            (current_logged_in_entity && !new_logged_in_entity) ||
-            (!current_logged_in_entity && new_logged_in_entity) ||
-            (current_logged_in_entity && new_logged_in_entity && current_logged_in_entity.Id != new_logged_in_entity.Id)) {
-            load_relations_User(this.get_self(), new_props.current_User, new_props.current_Admin);
-        }
-    }
-    componentWillMount() {
-        if (this.props.size == "breadcrumb")
-            return;
-        if (this.props.size != "preview") {
-            Api.active_User_sessions().then(active_sessions => this.setState(Object.assign({}, this.state, { active_sessions: active_sessions })));
-            load_relations_User(this.get_self(), this.props.current_User, this.props.current_Admin);
-        }
-        this.thread = setInterval(() => {
-            if (this.state.dirty_Recipe.count() > 0) {
-                let first = this.state.dirty_Recipe.first();
-                this.setState(Object.assign({}, this.state, { dirty_Recipe: this.state.dirty_Recipe.remove(first.Id) }), () => Api.update_Recipe(first));
-            }
-        }, 500);
-    }
-    componentWillUnmount() {
-        clearInterval(this.thread);
-    }
-    render() {
-        if (this.props.size == "breadcrumb") {
-            return Permissions.can_view_User(this.props.current_User, this.props.current_Admin) ?
-                render_breadcrumb_User(this.get_self())
-                : null;
-        }
-        return React.createElement("div", { id: `User_${this.props.entity.Id.toString()}_${this.state.update_count}`, className: `model user` },
-            render_saving_animations_User(this.get_self()),
-            this.props.nesting_depth == 0 ? render_menu_User(this.get_self()) : null,
-            React.createElement("div", { className: "content" },
-                this.props.nesting_depth == 0 && !!this.props.toggle_button ?
-                    React.createElement("div", { className: "topbar" },
-                        this.props.breadcrumbs(),
-                        React.createElement("div", { className: "topbar__buttons" },
-                            this.props.toggle_button ? this.props.toggle_button() : null,
-                            this.props.authentication_menu()))
-                    :
-                        null,
-                this.props.nesting_depth == 0 ? render_local_menu_User(this.get_self()) : null,
-                render_controls_User(this.get_self()),
-                render_content_User(this.get_self())));
-    }
-}
-exports.UserComponent = UserComponent;
-exports.User = (props) => React.createElement(UserComponent, Object.assign({}, props));
-exports.User_to_page = (id) => {
-    let can_edit = Utils.any_of([Permissions.can_edit_User, Permissions.can_edit_User_Recipe, Permissions.can_edit_Recipe]);
-    return Utils.scene_to_page(can_edit, exports.User, Api.get_User(id), Api.update_User, "User", "User", `/Users/${id}`);
-};
-exports.User_to = (id, target_element_id, current_User, current_Admin) => {
-    Utils.render_page_manager(target_element_id, exports.User_to_page(id), current_User, current_Admin);
-};
-
-
-/***/ }),
 /* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -36678,7 +37133,7 @@ var dP          = __webpack_require__(16).f
   , anInstance  = __webpack_require__(68)
   , defined     = __webpack_require__(44)
   , forOf       = __webpack_require__(82)
-  , $iterDefine = __webpack_require__(142)
+  , $iterDefine = __webpack_require__(144)
   , step        = __webpack_require__(207)
   , setSpecies  = __webpack_require__(74)
   , DESCRIPTORS = __webpack_require__(15)
@@ -36921,7 +37376,7 @@ module.exports = {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = !__webpack_require__(15) && !__webpack_require__(7)(function(){
-  return Object.defineProperty(__webpack_require__(134)('div'), 'a', {get: function(){ return 7; }}).a != 7;
+  return Object.defineProperty(__webpack_require__(136)('div'), 'a', {get: function(){ return 7; }}).a != 7;
 });
 
 /***/ }),
@@ -37058,7 +37513,7 @@ module.exports.f = function getOwnPropertyNames(it){
 var has          = __webpack_require__(25)
   , toIObject    = __webpack_require__(35)
   , arrayIndexOf = __webpack_require__(106)(false)
-  , IE_PROTO     = __webpack_require__(147)('IE_PROTO');
+  , IE_PROTO     = __webpack_require__(149)('IE_PROTO');
 
 module.exports = function(object, names){
   var O      = toIObject(object)
@@ -37116,7 +37571,7 @@ module.exports = Reflect && Reflect.ownKeys || function ownKeys(it){
 var $parseFloat = __webpack_require__(6).parseFloat
   , $trim       = __webpack_require__(85).trim;
 
-module.exports = 1 / $parseFloat(__webpack_require__(152) + '-0') !== -Infinity ? function parseFloat(str){
+module.exports = 1 / $parseFloat(__webpack_require__(154) + '-0') !== -Infinity ? function parseFloat(str){
   var string = $trim(String(str), 3)
     , result = $parseFloat(string);
   return result === 0 && string.charAt(0) == '-' ? -0 : result;
@@ -37128,7 +37583,7 @@ module.exports = 1 / $parseFloat(__webpack_require__(152) + '-0') !== -Infinity 
 
 var $parseInt = __webpack_require__(6).parseInt
   , $trim     = __webpack_require__(85).trim
-  , ws        = __webpack_require__(152)
+  , ws        = __webpack_require__(154)
   , hex       = /^[\-+]?0[xX]/;
 
 module.exports = $parseInt(ws + '08') !== 8 || $parseInt(ws + '0x16') !== 22 ? function parseInt(str, radix){
@@ -37151,7 +37606,7 @@ module.exports = Object.is || function is(x, y){
 
 // https://github.com/tc39/proposal-string-pad-start-end
 var toLength = __webpack_require__(19)
-  , repeat   = __webpack_require__(151)
+  , repeat   = __webpack_require__(153)
   , defined  = __webpack_require__(44);
 
 module.exports = function(that, maxLength, fillString, left){
@@ -37469,8 +37924,8 @@ var BlockMapBuilder = __webpack_require__(96);
 var CharacterMetadata = __webpack_require__(46);
 var CompositeDraftDecorator = __webpack_require__(592);
 var ContentBlock = __webpack_require__(77);
-var ContentState = __webpack_require__(158);
-var DefaultDraftBlockRenderMap = __webpack_require__(159);
+var ContentState = __webpack_require__(160);
+var DefaultDraftBlockRenderMap = __webpack_require__(161);
 var DefaultDraftInlineStyle = __webpack_require__(225);
 var DraftEditor = __webpack_require__(594);
 var DraftEditorBlock = __webpack_require__(227);
@@ -37478,7 +37933,7 @@ var DraftEntity = __webpack_require__(117);
 var DraftModifier = __webpack_require__(26);
 var DraftEntityInstance = __webpack_require__(228);
 var EditorState = __webpack_require__(10);
-var KeyBindingUtil = __webpack_require__(160);
+var KeyBindingUtil = __webpack_require__(162);
 var RichTextEditorUtil = __webpack_require__(606);
 var SelectionState = __webpack_require__(97);
 
@@ -37558,13 +38013,13 @@ var React = __webpack_require__(11);
 var ReactDOM = __webpack_require__(86);
 var Scroll = __webpack_require__(247);
 
-var Style = __webpack_require__(166);
+var Style = __webpack_require__(168);
 var UnicodeBidi = __webpack_require__(248);
-var UnicodeBidiDirection = __webpack_require__(167);
+var UnicodeBidiDirection = __webpack_require__(169);
 
 var cx = __webpack_require__(99);
 var getElementPosition = __webpack_require__(663);
-var getScrollPosition = __webpack_require__(169);
+var getScrollPosition = __webpack_require__(171);
 var getViewportDimensions = __webpack_require__(667);
 var invariant = __webpack_require__(3);
 var nullthrows = __webpack_require__(40);
@@ -37948,7 +38403,7 @@ module.exports = DraftStringKey;
 
 var CharacterMetadata = __webpack_require__(46);
 var ContentBlock = __webpack_require__(77);
-var DefaultDraftBlockRenderMap = __webpack_require__(159);
+var DefaultDraftBlockRenderMap = __webpack_require__(161);
 var DraftEntity = __webpack_require__(117);
 var Immutable = __webpack_require__(13);
 var URI = __webpack_require__(656);
@@ -37957,7 +38412,7 @@ var generateRandomKey = __webpack_require__(51);
 var getSafeBodyFromHTML = __webpack_require__(237);
 var invariant = __webpack_require__(3);
 var nullthrows = __webpack_require__(40);
-var sanitizeDraftText = __webpack_require__(164);
+var sanitizeDraftText = __webpack_require__(166);
 
 var _require = __webpack_require__(13);
 
@@ -38468,8 +38923,8 @@ module.exports = convertFromHTMLtoContentBlocks;
 
 
 
-var KeyBindingUtil = __webpack_require__(160);
-var Keys = __webpack_require__(165);
+var KeyBindingUtil = __webpack_require__(162);
+var Keys = __webpack_require__(167);
 var UserAgent = __webpack_require__(52);
 
 var isOSX = UserAgent.isPlatform('Mac OS X');
@@ -38598,7 +39053,7 @@ module.exports = getDefaultKeyBinding;
 
 
 
-var findAncestorOffsetKey = __webpack_require__(161);
+var findAncestorOffsetKey = __webpack_require__(163);
 var getSelectionOffsetKeyForNode = __webpack_require__(238);
 var getUpdatedSelectionState = __webpack_require__(240);
 var invariant = __webpack_require__(3);
@@ -39807,7 +40262,7 @@ module.exports = Scroll;
 
 
 
-var UnicodeBidiDirection = __webpack_require__(167);
+var UnicodeBidiDirection = __webpack_require__(169);
 
 var invariant = __webpack_require__(3);
 
@@ -52132,7 +52587,7 @@ module.exports = ReactDOMComponentFlags;
 
 var _assign = __webpack_require__(9);
 
-var LinkedValueUtils = __webpack_require__(175);
+var LinkedValueUtils = __webpack_require__(177);
 var ReactDOMComponentTree = __webpack_require__(17);
 var ReactUpdates = __webpack_require__(53);
 
@@ -52474,7 +52929,7 @@ module.exports = ReactHostComponent;
 
 var ReactDOMSelection = __webpack_require__(710);
 
-var containsNode = __webpack_require__(168);
+var containsNode = __webpack_require__(170);
 var focusNode = __webpack_require__(251);
 var getActiveElement = __webpack_require__(123);
 
@@ -52615,14 +53070,14 @@ var ReactInstanceMap = __webpack_require__(104);
 var ReactInstrumentation = __webpack_require__(41);
 var ReactMarkupChecksum = __webpack_require__(724);
 var ReactReconciler = __webpack_require__(88);
-var ReactUpdateQueue = __webpack_require__(178);
+var ReactUpdateQueue = __webpack_require__(180);
 var ReactUpdates = __webpack_require__(53);
 
 var emptyObject = __webpack_require__(122);
 var instantiateReactComponent = __webpack_require__(392);
 var invariant = __webpack_require__(3);
 var setInnerHTML = __webpack_require__(129);
-var shouldUpdateReactComponent = __webpack_require__(184);
+var shouldUpdateReactComponent = __webpack_require__(186);
 var warning = __webpack_require__(4);
 
 var ATTR_NAME = DOMProperty.ID_ATTRIBUTE_NAME;
@@ -53798,7 +54253,7 @@ var REACT_ELEMENT_TYPE = __webpack_require__(718);
 
 var getIteratorFn = __webpack_require__(752);
 var invariant = __webpack_require__(3);
-var KeyEscapeUtils = __webpack_require__(174);
+var KeyEscapeUtils = __webpack_require__(176);
 var warning = __webpack_require__(4);
 
 var SEPARATOR = '.';
@@ -53981,7 +54436,7 @@ var ReactNoopUpdateQueue = __webpack_require__(399);
 var canDefineProperty = __webpack_require__(130);
 var emptyObject = __webpack_require__(122);
 var invariant = __webpack_require__(3);
-var lowPriorityWarning = __webpack_require__(186);
+var lowPriorityWarning = __webpack_require__(188);
 
 /**
  * Base class helpers for the updating state of a component.
@@ -54163,7 +54618,7 @@ var checkReactTypeSpec = __webpack_require__(765);
 var canDefineProperty = __webpack_require__(130);
 var getIteratorFn = __webpack_require__(400);
 var warning = __webpack_require__(4);
-var lowPriorityWarning = __webpack_require__(186);
+var lowPriorityWarning = __webpack_require__(188);
 
 function getDeclarationErrorAddendum() {
   if (ReactCurrentOwner.current) {
@@ -54548,20 +55003,20 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(188));
+__export(__webpack_require__(190));
 __export(__webpack_require__(92));
-__export(__webpack_require__(189));
-__export(__webpack_require__(192));
-__export(__webpack_require__(195));
+__export(__webpack_require__(191));
+__export(__webpack_require__(194));
+__export(__webpack_require__(133));
 __export(__webpack_require__(30));
 __export(__webpack_require__(57));
 __export(__webpack_require__(407));
-__export(__webpack_require__(191));
-__export(__webpack_require__(91));
 __export(__webpack_require__(193));
-__export(__webpack_require__(190));
+__export(__webpack_require__(91));
+__export(__webpack_require__(195));
+__export(__webpack_require__(192));
 __export(__webpack_require__(29));
-__export(__webpack_require__(194));
+__export(__webpack_require__(132));
 __export(__webpack_require__(28));
 
 
@@ -54820,7 +55275,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-__webpack_require__(187);
+__webpack_require__(189);
 function ping() {
     return __awaiter(this, void 0, void 0, function* () {
         let res = yield fetch(`/api/v1/keep_alive/ping`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
@@ -55444,7 +55899,7 @@ module.exports = __webpack_require__(58).RegExp.escape;
 /***/ (function(module, exports, __webpack_require__) {
 
 var isObject = __webpack_require__(12)
-  , isArray  = __webpack_require__(140)
+  , isArray  = __webpack_require__(142)
   , SPECIES  = __webpack_require__(14)('species');
 
 module.exports = function(original){
@@ -55614,7 +56069,7 @@ $export($export.P + $export.F * !__webpack_require__(45)([].every, true), 'Array
 // 22.1.3.6 Array.prototype.fill(value, start = 0, end = this.length)
 var $export = __webpack_require__(1);
 
-$export($export.P, 'Array', {fill: __webpack_require__(132)});
+$export($export.P, 'Array', {fill: __webpack_require__(134)});
 
 __webpack_require__(81)('fill');
 
@@ -55701,10 +56156,10 @@ var ctx            = __webpack_require__(59)
   , $export        = __webpack_require__(1)
   , toObject       = __webpack_require__(23)
   , call           = __webpack_require__(206)
-  , isArrayIter    = __webpack_require__(139)
+  , isArrayIter    = __webpack_require__(141)
   , toLength       = __webpack_require__(19)
-  , createProperty = __webpack_require__(133)
-  , getIterFn      = __webpack_require__(156);
+  , createProperty = __webpack_require__(135)
+  , getIterFn      = __webpack_require__(158);
 
 $export($export.S + $export.F * !__webpack_require__(112)(function(iter){ Array.from(iter); }), 'Array', {
   // 22.1.2.1 Array.from(arrayLike, mapfn = undefined, thisArg = undefined)
@@ -55763,7 +56218,7 @@ $export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(45)($nati
 // 22.1.2.2 / 15.4.3.2 Array.isArray(arg)
 var $export = __webpack_require__(1);
 
-$export($export.S, 'Array', {isArray: __webpack_require__(140)});
+$export($export.S, 'Array', {isArray: __webpack_require__(142)});
 
 /***/ }),
 /* 429 */
@@ -55834,7 +56289,7 @@ $export($export.P + $export.F * !__webpack_require__(45)([].map, true), 'Array',
 "use strict";
 
 var $export        = __webpack_require__(1)
-  , createProperty = __webpack_require__(133);
+  , createProperty = __webpack_require__(135);
 
 // WebKit Array.of isn't generic
 $export($export.S + $export.F * __webpack_require__(7)(function(){
@@ -55891,7 +56346,7 @@ $export($export.P + $export.F * !__webpack_require__(45)([].reduce, true), 'Arra
 "use strict";
 
 var $export    = __webpack_require__(1)
-  , html       = __webpack_require__(137)
+  , html       = __webpack_require__(139)
   , cof        = __webpack_require__(43)
   , toIndex    = __webpack_require__(75)
   , toLength   = __webpack_require__(19)
@@ -56174,7 +56629,7 @@ $export($export.S + $export.F * !($atanh && 1 / $atanh(-0) < 0), 'Math', {
 
 // 20.2.2.9 Math.cbrt(x)
 var $export = __webpack_require__(1)
-  , sign    = __webpack_require__(144);
+  , sign    = __webpack_require__(146);
 
 $export($export.S, 'Math', {
   cbrt: function cbrt(x){
@@ -56215,7 +56670,7 @@ $export($export.S, 'Math', {
 
 // 20.2.2.14 Math.expm1(x)
 var $export = __webpack_require__(1)
-  , $expm1  = __webpack_require__(143);
+  , $expm1  = __webpack_require__(145);
 
 $export($export.S + $export.F * ($expm1 != Math.expm1), 'Math', {expm1: $expm1});
 
@@ -56225,7 +56680,7 @@ $export($export.S + $export.F * ($expm1 != Math.expm1), 'Math', {expm1: $expm1})
 
 // 20.2.2.16 Math.fround(x)
 var $export   = __webpack_require__(1)
-  , sign      = __webpack_require__(144)
+  , sign      = __webpack_require__(146)
   , pow       = Math.pow
   , EPSILON   = pow(2, -52)
   , EPSILON32 = pow(2, -23)
@@ -56344,7 +56799,7 @@ $export($export.S, 'Math', {
 // 20.2.2.28 Math.sign(x)
 var $export = __webpack_require__(1);
 
-$export($export.S, 'Math', {sign: __webpack_require__(144)});
+$export($export.S, 'Math', {sign: __webpack_require__(146)});
 
 /***/ }),
 /* 461 */
@@ -56352,7 +56807,7 @@ $export($export.S, 'Math', {sign: __webpack_require__(144)});
 
 // 20.2.2.30 Math.sinh(x)
 var $export = __webpack_require__(1)
-  , expm1   = __webpack_require__(143)
+  , expm1   = __webpack_require__(145)
   , exp     = Math.exp;
 
 // V8 near Chromium 38 has a problem with very small numbers
@@ -56372,7 +56827,7 @@ $export($export.S + $export.F * __webpack_require__(7)(function(){
 
 // 20.2.2.33 Math.tanh(x)
 var $export = __webpack_require__(1)
-  , expm1   = __webpack_require__(143)
+  , expm1   = __webpack_require__(145)
   , exp     = Math.exp;
 
 $export($export.S, 'Math', {
@@ -56405,7 +56860,7 @@ $export($export.S, 'Math', {
 var global            = __webpack_require__(6)
   , has               = __webpack_require__(25)
   , cof               = __webpack_require__(43)
-  , inheritIfRequired = __webpack_require__(138)
+  , inheritIfRequired = __webpack_require__(140)
   , toPrimitive       = __webpack_require__(50)
   , fails             = __webpack_require__(7)
   , gOPN              = __webpack_require__(71).f
@@ -56576,7 +57031,7 @@ $export($export.S + $export.F * (Number.parseInt != $parseInt), 'Number', {parse
 var $export      = __webpack_require__(1)
   , toInteger    = __webpack_require__(65)
   , aNumberValue = __webpack_require__(196)
-  , repeat       = __webpack_require__(151)
+  , repeat       = __webpack_require__(153)
   , $toFixed     = 1..toFixed
   , floor        = Math.floor
   , data         = [0, 0, 0, 0, 0, 0]
@@ -56889,7 +57344,7 @@ __webpack_require__(49)('seal', function($seal){
 
 // 19.1.3.19 Object.setPrototypeOf(O, proto)
 var $export = __webpack_require__(1);
-$export($export.S, 'Object', {setPrototypeOf: __webpack_require__(146).set});
+$export($export.S, 'Object', {setPrototypeOf: __webpack_require__(148).set});
 
 /***/ }),
 /* 492 */
@@ -56940,9 +57395,9 @@ var LIBRARY            = __webpack_require__(69)
   , aFunction          = __webpack_require__(31)
   , anInstance         = __webpack_require__(68)
   , forOf              = __webpack_require__(82)
-  , speciesConstructor = __webpack_require__(148)
-  , task               = __webpack_require__(153).set
-  , microtask          = __webpack_require__(145)()
+  , speciesConstructor = __webpack_require__(150)
+  , task               = __webpack_require__(155).set
+  , microtask          = __webpack_require__(147)()
   , PROMISE            = 'Promise'
   , TypeError          = global.TypeError
   , process            = global.process
@@ -57362,7 +57817,7 @@ var Enumerate = function(iterated){
     , key;
   for(key in iterated)keys.push(key);
 };
-__webpack_require__(141)(Enumerate, 'Object', function(){
+__webpack_require__(143)(Enumerate, 'Object', function(){
   var that = this
     , keys = that._k
     , key;
@@ -57499,7 +57954,7 @@ $export($export.S, 'Reflect', {
 
 // 26.1.14 Reflect.setPrototypeOf(target, proto)
 var $export  = __webpack_require__(1)
-  , setProto = __webpack_require__(146);
+  , setProto = __webpack_require__(148);
 
 if(setProto)$export($export.S, 'Reflect', {
   setPrototypeOf: function setPrototypeOf(target, proto){
@@ -57554,7 +58009,7 @@ $export($export.S, 'Reflect', {set: set});
 /***/ (function(module, exports, __webpack_require__) {
 
 var global            = __webpack_require__(6)
-  , inheritIfRequired = __webpack_require__(138)
+  , inheritIfRequired = __webpack_require__(140)
   , dP                = __webpack_require__(16).f
   , gOPN              = __webpack_require__(71).f
   , isRegExp          = __webpack_require__(111)
@@ -57809,7 +58264,7 @@ __webpack_require__(34)('bold', function(createHTML){
 "use strict";
 
 var $export = __webpack_require__(1)
-  , $at     = __webpack_require__(149)(false);
+  , $at     = __webpack_require__(151)(false);
 $export($export.P, 'String', {
   // 21.1.3.3 String.prototype.codePointAt(pos)
   codePointAt: function codePointAt(pos){
@@ -57826,11 +58281,11 @@ $export($export.P, 'String', {
 
 var $export   = __webpack_require__(1)
   , toLength  = __webpack_require__(19)
-  , context   = __webpack_require__(150)
+  , context   = __webpack_require__(152)
   , ENDS_WITH = 'endsWith'
   , $endsWith = ''[ENDS_WITH];
 
-$export($export.P + $export.F * __webpack_require__(136)(ENDS_WITH), 'String', {
+$export($export.P + $export.F * __webpack_require__(138)(ENDS_WITH), 'String', {
   endsWith: function endsWith(searchString /*, endPosition = @length */){
     var that = context(this, searchString, ENDS_WITH)
       , endPosition = arguments.length > 1 ? arguments[1] : undefined
@@ -57918,10 +58373,10 @@ $export($export.S + $export.F * (!!$fromCodePoint && $fromCodePoint.length != 1)
 // 21.1.3.7 String.prototype.includes(searchString, position = 0)
 
 var $export  = __webpack_require__(1)
-  , context  = __webpack_require__(150)
+  , context  = __webpack_require__(152)
   , INCLUDES = 'includes';
 
-$export($export.P + $export.F * __webpack_require__(136)(INCLUDES), 'String', {
+$export($export.P + $export.F * __webpack_require__(138)(INCLUDES), 'String', {
   includes: function includes(searchString /*, position = 0 */){
     return !!~context(this, searchString, INCLUDES)
       .indexOf(searchString, arguments.length > 1 ? arguments[1] : undefined);
@@ -57947,10 +58402,10 @@ __webpack_require__(34)('italics', function(createHTML){
 
 "use strict";
 
-var $at  = __webpack_require__(149)(true);
+var $at  = __webpack_require__(151)(true);
 
 // 21.1.3.27 String.prototype[@@iterator]()
-__webpack_require__(142)(String, 'String', function(iterated){
+__webpack_require__(144)(String, 'String', function(iterated){
   this._t = String(iterated); // target
   this._i = 0;                // next index
 // 21.1.5.2.1 %StringIteratorPrototype%.next()
@@ -58008,7 +58463,7 @@ var $export = __webpack_require__(1);
 
 $export($export.P, 'String', {
   // 21.1.3.13 String.prototype.repeat(count)
-  repeat: __webpack_require__(151)
+  repeat: __webpack_require__(153)
 });
 
 /***/ }),
@@ -58033,11 +58488,11 @@ __webpack_require__(34)('small', function(createHTML){
 
 var $export     = __webpack_require__(1)
   , toLength    = __webpack_require__(19)
-  , context     = __webpack_require__(150)
+  , context     = __webpack_require__(152)
   , STARTS_WITH = 'startsWith'
   , $startsWith = ''[STARTS_WITH];
 
-$export($export.P + $export.F * __webpack_require__(136)(STARTS_WITH), 'String', {
+$export($export.P + $export.F * __webpack_require__(138)(STARTS_WITH), 'String', {
   startsWith: function startsWith(searchString /*, position = 0 */){
     var that   = context(this, searchString, STARTS_WITH)
       , index  = toLength(Math.min(arguments.length > 1 ? arguments[1] : undefined, that.length))
@@ -58119,10 +58574,10 @@ var global         = __webpack_require__(6)
   , uid            = __webpack_require__(76)
   , wks            = __webpack_require__(14)
   , wksExt         = __webpack_require__(219)
-  , wksDefine      = __webpack_require__(155)
+  , wksDefine      = __webpack_require__(157)
   , keyOf          = __webpack_require__(414)
   , enumKeys       = __webpack_require__(413)
-  , isArray        = __webpack_require__(140)
+  , isArray        = __webpack_require__(142)
   , anObject       = __webpack_require__(5)
   , toIObject      = __webpack_require__(35)
   , toPrimitive    = __webpack_require__(50)
@@ -58349,13 +58804,13 @@ setToStringTag(global.JSON, 'JSON', true);
 
 var $export      = __webpack_require__(1)
   , $typed       = __webpack_require__(116)
-  , buffer       = __webpack_require__(154)
+  , buffer       = __webpack_require__(156)
   , anObject     = __webpack_require__(5)
   , toIndex      = __webpack_require__(75)
   , toLength     = __webpack_require__(19)
   , isObject     = __webpack_require__(12)
   , ArrayBuffer  = __webpack_require__(6).ArrayBuffer
-  , speciesConstructor = __webpack_require__(148)
+  , speciesConstructor = __webpack_require__(150)
   , $ArrayBuffer = buffer.ArrayBuffer
   , $DataView    = buffer.DataView
   , $isView      = $typed.ABV && ArrayBuffer.isView
@@ -58399,7 +58854,7 @@ __webpack_require__(74)(ARRAY_BUFFER);
 
 var $export = __webpack_require__(1);
 $export($export.G + $export.W + $export.F * !__webpack_require__(116).ABV, {
-  DataView: __webpack_require__(154).DataView
+  DataView: __webpack_require__(156).DataView
 });
 
 /***/ }),
@@ -58534,7 +58989,7 @@ __webpack_require__(81)('includes');
 
 // https://github.com/rwaldron/tc39-notes/blob/master/es6/2014-09/sept-25.md#510-globalasap-for-enqueuing-a-microtask
 var $export   = __webpack_require__(1)
-  , microtask = __webpack_require__(145)()
+  , microtask = __webpack_require__(147)()
   , process   = __webpack_require__(6).process
   , isNode    = __webpack_require__(43)(process) == 'process';
 
@@ -58701,7 +59156,7 @@ var $export        = __webpack_require__(1)
   , ownKeys        = __webpack_require__(214)
   , toIObject      = __webpack_require__(35)
   , gOPD           = __webpack_require__(38)
-  , createProperty = __webpack_require__(133);
+  , createProperty = __webpack_require__(135);
 
 $export($export.S, 'Object', {
   getOwnPropertyDescriptors: function getOwnPropertyDescriptors(object){
@@ -58788,7 +59243,7 @@ $export($export.S, 'Object', {
 var $export     = __webpack_require__(1)
   , global      = __webpack_require__(6)
   , core        = __webpack_require__(58)
-  , microtask   = __webpack_require__(145)()
+  , microtask   = __webpack_require__(147)()
   , OBSERVABLE  = __webpack_require__(14)('observable')
   , aFunction   = __webpack_require__(31)
   , anObject    = __webpack_require__(5)
@@ -59161,7 +59616,7 @@ $export($export.P + $export.R, 'Set', {toJSON: __webpack_require__(202)('Set')})
 
 // https://github.com/mathiasbynens/String.prototype.at
 var $export = __webpack_require__(1)
-  , $at     = __webpack_require__(149)(true);
+  , $at     = __webpack_require__(151)(true);
 
 $export($export.P, 'String', {
   at: function at(pos){
@@ -59188,7 +59643,7 @@ var $RegExpStringIterator = function(regexp, string){
   this._s = string;
 };
 
-__webpack_require__(141)($RegExpStringIterator, 'RegExp String', function next(){
+__webpack_require__(143)($RegExpStringIterator, 'RegExp String', function next(){
   var match = this._r.exec(this._s);
   return {value: match, done: match === null};
 });
@@ -59267,13 +59722,13 @@ __webpack_require__(85)('trimRight', function($trim){
 /* 583 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(155)('asyncIterator');
+__webpack_require__(157)('asyncIterator');
 
 /***/ }),
 /* 584 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(155)('observable');
+__webpack_require__(157)('observable');
 
 /***/ }),
 /* 585 */
@@ -59288,7 +59743,7 @@ $export($export.S, 'System', {global: __webpack_require__(6)});
 /* 586 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var $iterators    = __webpack_require__(157)
+var $iterators    = __webpack_require__(159)
   , redefine      = __webpack_require__(33)
   , global        = __webpack_require__(6)
   , hide          = __webpack_require__(32)
@@ -59316,7 +59771,7 @@ for(var collections = ['NodeList', 'DOMTokenList', 'MediaList', 'StyleSheetList'
 /***/ (function(module, exports, __webpack_require__) {
 
 var $export = __webpack_require__(1)
-  , $task   = __webpack_require__(153);
+  , $task   = __webpack_require__(155);
 $export($export.G + $export.B, {
   setImmediate:   $task.set,
   clearImmediate: $task.clear
@@ -59450,7 +59905,7 @@ __webpack_require__(421);
 __webpack_require__(424);
 __webpack_require__(423);
 __webpack_require__(438);
-__webpack_require__(157);
+__webpack_require__(159);
 __webpack_require__(510);
 __webpack_require__(515);
 __webpack_require__(221);
@@ -60754,7 +61209,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var DefaultDraftBlockRenderMap = __webpack_require__(159);
+var DefaultDraftBlockRenderMap = __webpack_require__(161);
 var DefaultDraftInlineStyle = __webpack_require__(225);
 var DraftEditorCompositionHandler = __webpack_require__(595);
 var DraftEditorContents = __webpack_require__(596);
@@ -60766,7 +61221,7 @@ var EditorState = __webpack_require__(10);
 var React = __webpack_require__(11);
 var ReactDOM = __webpack_require__(86);
 var Scroll = __webpack_require__(247);
-var Style = __webpack_require__(166);
+var Style = __webpack_require__(168);
 var UserAgent = __webpack_require__(52);
 
 var cx = __webpack_require__(99);
@@ -60774,7 +61229,7 @@ var emptyFunction = __webpack_require__(27);
 var generateRandomKey = __webpack_require__(51);
 var getDefaultKeyBinding = __webpack_require__(233);
 
-var getScrollPosition = __webpack_require__(169);
+var getScrollPosition = __webpack_require__(171);
 var invariant = __webpack_require__(3);
 var nullthrows = __webpack_require__(40);
 
@@ -61205,9 +61660,9 @@ module.exports = DraftEditor;
 
 var DraftModifier = __webpack_require__(26);
 var EditorState = __webpack_require__(10);
-var Keys = __webpack_require__(165);
+var Keys = __webpack_require__(167);
 
-var getEntityKeyForSelection = __webpack_require__(162);
+var getEntityKeyForSelection = __webpack_require__(164);
 var isSelectionAtLeafStart = __webpack_require__(242);
 
 /**
@@ -61634,7 +62089,7 @@ var DataTransfer = __webpack_require__(245);
 var DraftModifier = __webpack_require__(26);
 var EditorState = __webpack_require__(10);
 
-var findAncestorOffsetKey = __webpack_require__(161);
+var findAncestorOffsetKey = __webpack_require__(163);
 var getTextContentFromFiles = __webpack_require__(239);
 var getUpdatedSelectionState = __webpack_require__(240);
 var nullthrows = __webpack_require__(40);
@@ -62304,7 +62759,7 @@ var Immutable = __webpack_require__(13);
 var convertFromHTMLtoContentBlocks = __webpack_require__(232);
 var generateRandomKey = __webpack_require__(51);
 var getSafeBodyFromHTML = __webpack_require__(237);
-var sanitizeDraftText = __webpack_require__(164);
+var sanitizeDraftText = __webpack_require__(166);
 
 var List = Immutable.List;
 var Repeat = Immutable.Repeat;
@@ -62993,7 +63448,7 @@ var _assign = __webpack_require__(9);
 var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var ContentBlock = __webpack_require__(77);
-var ContentState = __webpack_require__(158);
+var ContentState = __webpack_require__(160);
 var DraftEntity = __webpack_require__(117);
 
 var createCharacterList = __webpack_require__(613);
@@ -63215,7 +63670,7 @@ var DraftModifier = __webpack_require__(26);
 var EditorState = __webpack_require__(10);
 var UserAgent = __webpack_require__(52);
 
-var getEntityKeyForSelection = __webpack_require__(162);
+var getEntityKeyForSelection = __webpack_require__(164);
 var isSelectionAtLeafStart = __webpack_require__(242);
 var nullthrows = __webpack_require__(40);
 var setImmediate = __webpack_require__(675);
@@ -63480,10 +63935,10 @@ module.exports = editOnCopy;
 
 var DraftModifier = __webpack_require__(26);
 var EditorState = __webpack_require__(10);
-var Style = __webpack_require__(166);
+var Style = __webpack_require__(168);
 
 var getFragmentFromSelection = __webpack_require__(235);
-var getScrollPosition = __webpack_require__(169);
+var getScrollPosition = __webpack_require__(171);
 
 /**
  * On `cut` events, native behavior is allowed to occur so that the system
@@ -63661,7 +64116,7 @@ var DraftOffsetKey = __webpack_require__(118);
 var EditorState = __webpack_require__(10);
 var UserAgent = __webpack_require__(52);
 
-var findAncestorOffsetKey = __webpack_require__(161);
+var findAncestorOffsetKey = __webpack_require__(163);
 var nullthrows = __webpack_require__(40);
 
 var isGecko = UserAgent.isEngine('Gecko');
@@ -63834,8 +64289,8 @@ module.exports = editOnInput;
 
 var DraftModifier = __webpack_require__(26);
 var EditorState = __webpack_require__(10);
-var KeyBindingUtil = __webpack_require__(160);
-var Keys = __webpack_require__(165);
+var KeyBindingUtil = __webpack_require__(162);
+var Keys = __webpack_require__(167);
 var SecondaryClipboard = __webpack_require__(607);
 var UserAgent = __webpack_require__(52);
 
@@ -63993,7 +64448,7 @@ var DraftModifier = __webpack_require__(26);
 var DraftPasteProcessor = __webpack_require__(604);
 var EditorState = __webpack_require__(10);
 
-var getEntityKeyForSelection = __webpack_require__(162);
+var getEntityKeyForSelection = __webpack_require__(164);
 var getTextContentFromFiles = __webpack_require__(239);
 var isEventHandled = __webpack_require__(121);
 var splitTextIntoTextBlocks = __webpack_require__(653);
@@ -65062,7 +65517,7 @@ var EditorState = __webpack_require__(10);
 
 var expandRangeToStartOfLine = __webpack_require__(630);
 var getDraftEditorSelectionWithNodes = __webpack_require__(234);
-var moveSelectionBackward = __webpack_require__(163);
+var moveSelectionBackward = __webpack_require__(165);
 var removeTextWithStrategy = __webpack_require__(98);
 
 function keyCommandBackspaceToStartOfLine(editorState) {
@@ -65111,7 +65566,7 @@ module.exports = keyCommandBackspaceToStartOfLine;
 var DraftRemovableWord = __webpack_require__(230);
 var EditorState = __webpack_require__(10);
 
-var moveSelectionBackward = __webpack_require__(163);
+var moveSelectionBackward = __webpack_require__(165);
 var removeTextWithStrategy = __webpack_require__(98);
 
 /**
@@ -65330,7 +65785,7 @@ module.exports = keyCommandMoveSelectionToStartOfBlock;
 var EditorState = __webpack_require__(10);
 var UnicodeUtils = __webpack_require__(78);
 
-var moveSelectionBackward = __webpack_require__(163);
+var moveSelectionBackward = __webpack_require__(165);
 var removeTextWithStrategy = __webpack_require__(98);
 
 /**
@@ -65774,7 +66229,7 @@ module.exports = removeRangeFromContentState;
 
 
 var DraftJsDebugLogging = __webpack_require__(603);
-var containsNode = __webpack_require__(168);
+var containsNode = __webpack_require__(170);
 var getActiveElement = __webpack_require__(123);
 var invariant = __webpack_require__(3);
 
@@ -66229,7 +66684,7 @@ module.exports = URI;
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var UnicodeBidi = __webpack_require__(248);
-var UnicodeBidiDirection = __webpack_require__(167);
+var UnicodeBidiDirection = __webpack_require__(169);
 
 var invariant = __webpack_require__(3);
 
@@ -66989,7 +67444,7 @@ module.exports = getElementPosition;
  * @typechecks
  */
 
-var containsNode = __webpack_require__(168);
+var containsNode = __webpack_require__(170);
 
 /**
  * Gets an element's bounding rect in pixels relative to the viewport.
@@ -70714,8 +71169,8 @@ var ReactUpdates = __webpack_require__(53);
 var SyntheticEvent = __webpack_require__(62);
 
 var inputValueTracking = __webpack_require__(391);
-var getEventTarget = __webpack_require__(182);
-var isEventSupported = __webpack_require__(183);
+var getEventTarget = __webpack_require__(184);
+var isEventSupported = __webpack_require__(185);
 var isTextInputElement = __webpack_require__(393);
 
 var eventTypes = {
@@ -71553,8 +72008,8 @@ module.exports = HTMLDOMPropertyConfig;
 var ReactReconciler = __webpack_require__(88);
 
 var instantiateReactComponent = __webpack_require__(392);
-var KeyEscapeUtils = __webpack_require__(174);
-var shouldUpdateReactComponent = __webpack_require__(184);
+var KeyEscapeUtils = __webpack_require__(176);
+var shouldUpdateReactComponent = __webpack_require__(186);
 var traverseAllChildren = __webpack_require__(395);
 var warning = __webpack_require__(4);
 
@@ -71709,7 +72164,7 @@ module.exports = ReactChildReconciler;
 
 
 
-var DOMChildrenOperations = __webpack_require__(171);
+var DOMChildrenOperations = __webpack_require__(173);
 var ReactDOMIDOperations = __webpack_require__(705);
 
 /**
@@ -71746,9 +72201,9 @@ var _prodInvariant = __webpack_require__(8),
     _assign = __webpack_require__(9);
 
 var React = __webpack_require__(89);
-var ReactComponentEnvironment = __webpack_require__(176);
+var ReactComponentEnvironment = __webpack_require__(178);
 var ReactCurrentOwner = __webpack_require__(54);
-var ReactErrorUtils = __webpack_require__(177);
+var ReactErrorUtils = __webpack_require__(179);
 var ReactInstanceMap = __webpack_require__(104);
 var ReactInstrumentation = __webpack_require__(41);
 var ReactNodeTypes = __webpack_require__(384);
@@ -71760,8 +72215,8 @@ if (process.env.NODE_ENV !== 'production') {
 
 var emptyObject = __webpack_require__(122);
 var invariant = __webpack_require__(3);
-var shallowEqual = __webpack_require__(170);
-var shouldUpdateReactComponent = __webpack_require__(184);
+var shallowEqual = __webpack_require__(172);
+var shouldUpdateReactComponent = __webpack_require__(186);
 var warning = __webpack_require__(4);
 
 var CompositeTypes = {
@@ -72773,7 +73228,7 @@ var _prodInvariant = __webpack_require__(8),
 var AutoFocusUtils = __webpack_require__(688);
 var CSSPropertyOperations = __webpack_require__(690);
 var DOMLazyTree = __webpack_require__(87);
-var DOMNamespaces = __webpack_require__(172);
+var DOMNamespaces = __webpack_require__(174);
 var DOMProperty = __webpack_require__(67);
 var DOMPropertyOperations = __webpack_require__(376);
 var EventPluginHub = __webpack_require__(102);
@@ -72792,10 +73247,10 @@ var ReactServerRenderingTransaction = __webpack_require__(730);
 var emptyFunction = __webpack_require__(27);
 var escapeTextContentForBrowser = __webpack_require__(128);
 var invariant = __webpack_require__(3);
-var isEventSupported = __webpack_require__(183);
-var shallowEqual = __webpack_require__(170);
+var isEventSupported = __webpack_require__(185);
+var shallowEqual = __webpack_require__(172);
 var inputValueTracking = __webpack_require__(391);
-var validateDOMNesting = __webpack_require__(185);
+var validateDOMNesting = __webpack_require__(187);
 var warning = __webpack_require__(4);
 
 var Flags = ReactDOMComponentFlags;
@@ -73781,7 +74236,7 @@ module.exports = ReactDOMComponent;
 
 
 
-var validateDOMNesting = __webpack_require__(185);
+var validateDOMNesting = __webpack_require__(187);
 
 var DOC_NODE_TYPE = 9;
 
@@ -73909,7 +74364,7 @@ module.exports = ReactDOMFeatureFlags;
 
 
 
-var DOMChildrenOperations = __webpack_require__(171);
+var DOMChildrenOperations = __webpack_require__(173);
 var ReactDOMComponentTree = __webpack_require__(17);
 
 /**
@@ -73951,7 +74406,7 @@ var _prodInvariant = __webpack_require__(8),
     _assign = __webpack_require__(9);
 
 var DOMPropertyOperations = __webpack_require__(376);
-var LinkedValueUtils = __webpack_require__(175);
+var LinkedValueUtils = __webpack_require__(177);
 var ReactDOMComponentTree = __webpack_require__(17);
 var ReactUpdates = __webpack_require__(53);
 
@@ -74736,13 +75191,13 @@ module.exports = ReactDOMSelection;
 var _prodInvariant = __webpack_require__(8),
     _assign = __webpack_require__(9);
 
-var DOMChildrenOperations = __webpack_require__(171);
+var DOMChildrenOperations = __webpack_require__(173);
 var DOMLazyTree = __webpack_require__(87);
 var ReactDOMComponentTree = __webpack_require__(17);
 
 var escapeTextContentForBrowser = __webpack_require__(128);
 var invariant = __webpack_require__(3);
-var validateDOMNesting = __webpack_require__(185);
+var validateDOMNesting = __webpack_require__(187);
 
 /**
  * Text nodes violate a couple assumptions that React makes about components:
@@ -74904,7 +75359,7 @@ module.exports = ReactDOMTextComponent;
 var _prodInvariant = __webpack_require__(8),
     _assign = __webpack_require__(9);
 
-var LinkedValueUtils = __webpack_require__(175);
+var LinkedValueUtils = __webpack_require__(177);
 var ReactDOMComponentTree = __webpack_require__(17);
 var ReactUpdates = __webpack_require__(53);
 
@@ -75928,7 +76383,7 @@ var PooledClass = __webpack_require__(79);
 var ReactDOMComponentTree = __webpack_require__(17);
 var ReactUpdates = __webpack_require__(53);
 
-var getEventTarget = __webpack_require__(182);
+var getEventTarget = __webpack_require__(184);
 var getUnboundedScrollPosition = __webpack_require__(252);
 
 /**
@@ -76121,8 +76576,8 @@ module.exports = ReactHostOperationHistoryHook;
 
 var DOMProperty = __webpack_require__(67);
 var EventPluginHub = __webpack_require__(102);
-var EventPluginUtils = __webpack_require__(173);
-var ReactComponentEnvironment = __webpack_require__(176);
+var EventPluginUtils = __webpack_require__(175);
+var ReactComponentEnvironment = __webpack_require__(178);
 var ReactEmptyComponent = __webpack_require__(379);
 var ReactBrowserEventEmitter = __webpack_require__(125);
 var ReactHostComponent = __webpack_require__(381);
@@ -76258,7 +76713,7 @@ module.exports = ReactMarkupChecksum;
 
 var _prodInvariant = __webpack_require__(8);
 
-var ReactComponentEnvironment = __webpack_require__(176);
+var ReactComponentEnvironment = __webpack_require__(178);
 var ReactInstanceMap = __webpack_require__(104);
 var ReactInstrumentation = __webpack_require__(41);
 
@@ -76846,7 +77301,7 @@ var ReactBrowserEventEmitter = __webpack_require__(125);
 var ReactInputSelection = __webpack_require__(382);
 var ReactInstrumentation = __webpack_require__(41);
 var Transaction = __webpack_require__(127);
-var ReactUpdateQueue = __webpack_require__(178);
+var ReactUpdateQueue = __webpack_require__(180);
 
 /**
  * Ensures that, when possible, the selection range (currently selected text
@@ -77215,7 +77670,7 @@ module.exports = ReactServerRenderingTransaction;
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var ReactUpdateQueue = __webpack_require__(178);
+var ReactUpdateQueue = __webpack_require__(180);
 
 var warning = __webpack_require__(4);
 
@@ -77691,7 +78146,7 @@ var SyntheticEvent = __webpack_require__(62);
 
 var getActiveElement = __webpack_require__(123);
 var isTextInputElement = __webpack_require__(393);
-var shallowEqual = __webpack_require__(170);
+var shallowEqual = __webpack_require__(172);
 
 var skipSelectionChangeEvent = ExecutionEnvironment.canUseDOM && 'documentMode' in document && document.documentMode <= 11;
 
@@ -77895,7 +78350,7 @@ var SyntheticUIEvent = __webpack_require__(105);
 var SyntheticWheelEvent = __webpack_require__(745);
 
 var emptyFunction = __webpack_require__(27);
-var getEventCharCode = __webpack_require__(180);
+var getEventCharCode = __webpack_require__(182);
 var invariant = __webpack_require__(3);
 
 /**
@@ -78362,9 +78817,9 @@ module.exports = SyntheticInputEvent;
 
 var SyntheticUIEvent = __webpack_require__(105);
 
-var getEventCharCode = __webpack_require__(180);
+var getEventCharCode = __webpack_require__(182);
 var getEventKey = __webpack_require__(751);
-var getEventModifierState = __webpack_require__(181);
+var getEventModifierState = __webpack_require__(183);
 
 /**
  * @interface KeyboardEvent
@@ -78451,7 +78906,7 @@ module.exports = SyntheticKeyboardEvent;
 
 var SyntheticUIEvent = __webpack_require__(105);
 
-var getEventModifierState = __webpack_require__(181);
+var getEventModifierState = __webpack_require__(183);
 
 /**
  * @interface TouchEvent
@@ -78893,7 +79348,7 @@ module.exports = findDOMNode;
 
 
 
-var KeyEscapeUtils = __webpack_require__(174);
+var KeyEscapeUtils = __webpack_require__(176);
 var traverseAllChildren = __webpack_require__(395);
 var warning = __webpack_require__(4);
 
@@ -78974,7 +79429,7 @@ module.exports = flattenChildren;
 
 
 
-var getEventCharCode = __webpack_require__(180);
+var getEventCharCode = __webpack_require__(182);
 
 /**
  * Normalization of deprecated HTML5 `key` values

@@ -26,7 +26,7 @@ type RecipeComponentProps = { reload:() => void, logged_in_user: Models.User, re
 type RecipeComponentState = {recipes: Immutable.List<{ recipe: Models.Recipe, is_expanded: boolean }>, rating: Immutable.List<{ recipe: Models.Rating }> }
 
 type Rate = { value: number, state: boolean }
-type StarsComponentProps = {}
+type StarsComponentProps = {recipe: Models.Recipe, logged_in_user: Models.User}
 type StarsComponentState = { stars: Immutable.List<Rate> }
 
 type Bookmark = {recipe : Models.Recipe}
@@ -83,6 +83,11 @@ export async function get_meals(id: number): Promise<{ meals: Immutable.List<Mod
     return { meals: Immutable.List<Models.Meal>(json) }
 }
 
+export async function set_rating(rating: number, recipe_id:number, user_id:number)  {
+    await fetch(`/api/v1/CustomController/SetRating/${rating}/${recipe_id}/${user_id}`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } })
+}
+
+
 class CategoriesComponent extends React.Component<CategoriesComponentProps, CategoriesComponentState>
 {
     constructor(props: CategoriesComponentProps, context) {
@@ -97,6 +102,7 @@ class CategoriesComponent extends React.Component<CategoriesComponentProps, Cate
                 ... this.state,
                 categories: categories.map(category => {
                     return {
+                        
                         category: category,
                         is_expanded: false
                     }
@@ -294,7 +300,7 @@ export class StarsComponent extends React.Component<StarsComponentProps, StarsCo
                     borderWidth: 1,
                     borderRadius: 10,
                 }}
-            onClick={() => console.log("Sarah its okay")}
+            onClick={() => set_rating(star.value, this.props.recipe.Id, this.props.logged_in_user.Id)}
             marginHeight={10} marginWidth={10} width={10} height={10}>{star.value}</button>)} </div>
     }
 
@@ -333,7 +339,7 @@ class RecipeComponent extends React.Component<RecipeComponentProps, RecipeCompon
          
             <h2>PreparationTime:</h2> <div>{this.props.recipe.PreparationTime} </div>   
                          {/*<div>{this.props.rating}</div>*/}
-            <StarsComponent />
+            <StarsComponent logged_in_user ={this.props.logged_in_user} recipe = {this.props.recipe} />
             <BookmarkComponent 
                 reload={this.props.reload}
                 logged_in_user = {this.props.logged_in_user} 

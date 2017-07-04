@@ -264,6 +264,15 @@ export let can_edit_User_Recipe = (current_User:Models.User, current_Admin:Model
 export let can_delete_User_Recipe = (current_User:Models.User, current_Admin:Models.Admin) => true
   
 
+export let can_view_User_Rating = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_create_User_Rating = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_edit_User_Rating = (current_User:Models.User, current_Admin:Models.Admin) => true
+
+export let can_delete_User_Rating = (current_User:Models.User, current_Admin:Models.Admin) => true
+  
+
 export let can_view_Recipe_Rating = (current_User:Models.User, current_Admin:Models.Admin) => true
 
 export let can_create_Recipe_Rating = (current_User:Models.User, current_Admin:Models.Admin) => true

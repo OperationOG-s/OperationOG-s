@@ -102,9 +102,11 @@ namespace PortableRecipes.Models
   public partial class User: IEntity {
     public User() {
       User_Recipes = new HashSet<User_Recipe>();
+      User_Ratings = new HashSet<User_Rating>();
     }
     public int Id {get;set;}
     [Newtonsoft.Json.JsonIgnore] public virtual ICollection<User_Recipe> User_Recipes {get;set;}
+    [Newtonsoft.Json.JsonIgnore] public virtual ICollection<User_Rating> User_Ratings {get;set;}
     [Newtonsoft.Json.JsonProperty(ItemConverterType = typeof(Newtonsoft.Json.Converters.JavaScriptDateTimeConverter))] public DateTime CreatedDate{ get; set; }
         public string Username {get;set;}
     public string Language {get;set;}
@@ -368,9 +370,11 @@ namespace PortableRecipes.Models
   
   public partial class Rating: IEntity {
     public Rating() {
+      User_Ratings = new HashSet<User_Rating>();
       Recipe_Ratings = new HashSet<Recipe_Rating>();
     }
     public int Id {get;set;}
+    [Newtonsoft.Json.JsonIgnore] public virtual ICollection<User_Rating> User_Ratings {get;set;}
     [Newtonsoft.Json.JsonIgnore] public virtual ICollection<Recipe_Rating> Recipe_Ratings {get;set;}
     [Newtonsoft.Json.JsonProperty(ItemConverterType = typeof(Newtonsoft.Json.Converters.JavaScriptDateTimeConverter))] public DateTime CreatedDate{ get; set; }
         public int rating {get;set;}
@@ -452,6 +456,30 @@ namespace PortableRecipes.Models
       return self => self;
     }
     static public Func<User_Recipe,User_Recipe> FilterViewableAttributesLocal(User current_User, Admin current_Admin) {
+      return self => self;
+    }
+    
+  }
+
+  
+  
+
+  public partial class User_Rating {
+    public User_Rating() {
+      
+    }
+    public int Id {get;set;}
+    
+    
+        [Newtonsoft.Json.JsonIgnore] public virtual User User {get;set;}
+    public int UserId {get;set;}
+    [Newtonsoft.Json.JsonIgnore] public virtual Rating Rating {get;set;}
+    public int RatingId {get;set;}
+    
+    static public Expression<Func<User_Rating,User_Rating>> FilterViewableAttributes(User current_User, Admin current_Admin) {
+      return self => self;
+    }
+    static public Func<User_Rating,User_Rating> FilterViewableAttributesLocal(User current_User, Admin current_Admin) {
       return self => self;
     }
     

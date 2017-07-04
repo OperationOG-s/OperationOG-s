@@ -135,6 +135,15 @@ export type User_Recipe = {
   }
   
 
+export type User_Rating = {
+    Id : number
+    CreatedDate:Moment.Moment
+    UserId : number
+  RatingId : number
+    
+  }
+  
+
 export type Recipe_Rating = {
     Id : number
     CreatedDate:Moment.Moment

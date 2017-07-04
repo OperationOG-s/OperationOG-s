@@ -36,6 +36,7 @@ namespace PortableRecipes.Models{
     
     public DbSet<Categorie_Meal> Categorie_Meal { get; set; }
     public DbSet<User_Recipe> User_Recipe { get; set; }
+    public DbSet<User_Rating> User_Rating { get; set; }
     public DbSet<Recipe_Rating> Recipe_Rating { get; set; }
     public DbSet<Meal_Recipe> Meal_Recipe { get; set; }
     public DbSet<Categorie_Recipe> Categorie_Recipe { get; set; }

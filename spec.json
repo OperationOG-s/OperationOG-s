@@ -403,6 +403,12 @@
         
       },
       {
+        "source":"User",
+        "target":"Rating",
+        "sort":"1-N",
+        "seeds":[]
+      },
+      {
         "source": "Recipe",
         "target": "Rating",
         "sort": "1-N",

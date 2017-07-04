@@ -272,6 +272,13 @@ static public bool can_view_User_Recipe(User current_User, Admin current_Admin) 
     static public bool can_edit_User_Recipe(User current_User, Admin current_Admin) { return true; }
 
     static public bool can_delete_User_Recipe(User current_User, Admin current_Admin) { return true; }
+static public bool can_view_User_Rating(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_create_User_Rating(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_edit_User_Rating(User current_User, Admin current_Admin) { return true; }
+
+    static public bool can_delete_User_Rating(User current_User, Admin current_Admin) { return true; }
 static public bool can_view_Recipe_Rating(User current_User, Admin current_Admin) { return true; }
 
     static public bool can_create_Recipe_Rating(User current_User, Admin current_Admin) { return true; }

@@ -464,6 +464,19 @@ namespace PortableRecipes.Data
         context.SaveChanges();
       }
       var User_Recipe = context.User_Recipe.ToArray();
+      if (!context.User_Rating.Any())
+      {
+        var _User_Rating = new User_Rating[]
+        {
+            
+        };
+        foreach (var x in _User_Rating)
+        {
+          context.User_Rating.Add(x);
+        }
+        context.SaveChanges();
+      }
+      var User_Rating = context.User_Rating.ToArray();
       if (!context.Recipe_Rating.Any())
       {
         var _Recipe_Rating = new Recipe_Rating[]

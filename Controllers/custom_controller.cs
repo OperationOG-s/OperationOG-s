@@ -121,6 +121,23 @@ public class CustomController : Controller
 
   }
 
+  [RestrictToUserType(new string[] {"*"})]
+  [HttpGet("SetRating/{rating}/{recipe_id}/{user_id}")]
+  public void SetRating(int rating,int recipe_id, int user_id)
+  {
+    var  set_rating = (from _getrecipe in _context.Recipe_Rating
+                     where(_getrecipe.RecipeId == recipe_id)
+                     from _getrate in _context.Recipe_Rating
+                     where (_getrate.Id == rating)
+                     from  userid in _context.User_Rating
+                     where (userid.UserId == user_id)
+                     select rating
+                       );
+    if(set_rating == null) throw new Exception("Rating not found");
+    set_rating.ToArray();
+    
+ }
+
    [RestrictToUserType(new string[] {"*"})]
   [HttpGet("Bookmarked/{idUser}")]
   public Recipe[] Bookmarked(int idUser)
