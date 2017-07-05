@@ -216,7 +216,6 @@ select _User) : _context.User);
       return Unauthorized();
     }
     [RestrictToUserType(new string[] {"Admin", "User"})]
-    [RestrictToUserType(new string[] {"User", "Admin"})]
     [HttpGet("{User_id}/User_Recipes")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
     public Page<Recipe> GetUser_Recipes(int User_id, [FromQuery] int page_index, [FromQuery] int page_size = 25 )
@@ -277,7 +276,6 @@ select _User) : _context.User);
     }
 
     [RestrictToUserType(new string[] {"Admin", "User"})]
-    [RestrictToUserType(new string[] {"User", "Admin"})]
     [HttpGet("{User_id}/unlinked/User_Recipes")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
     public Page<Recipe> GetUnlinkedUser_Recipes(int User_id, [FromQuery] int page_index, [FromQuery] int page_size = 25)
@@ -345,7 +343,6 @@ select _User) : _context.User);
     }
 
     [RestrictToUserType(new string[] {"Admin", "User"})]
-    [RestrictToUserType(new string[] {"User", "Admin"})]
     [HttpPost("{User_id}/User_Recipes/{Recipe_id}")]
     public IActionResult LinkWithUser_Recipe(int User_id, int Recipe_id)
     {
@@ -371,7 +368,6 @@ select _User) : _context.User);
       return Ok();
     }
     [RestrictToUserType(new string[] {"Admin", "User"})]
-    [RestrictToUserType(new string[] {"User", "Admin"})]
     [HttpDelete("{User_id}/User_Recipes/{Recipe_id}")]
     public IActionResult UnlinkFromUser_Recipe(int User_id, int Recipe_id)
     {

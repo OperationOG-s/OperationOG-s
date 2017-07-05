@@ -12,8 +12,7 @@ using SendGrid.Helpers.Mail;
 using PortableRecipes;
 using PortableRecipes.Models;
 using PortableRecipes.Filters;
-// olaa 
-public class MyTuple <T,U>
+public class MyTuple <T, U>
 {
    public T Item1;
    public U Item2;
@@ -23,7 +22,21 @@ public class MyTuple <T,U>
     this.Item2 = Item2;
   }
 }
+public static class RNG {
+    private static Random rng = new Random();  
 
+    public static void Shuffle<T>(this IList<T> list)  
+    {  
+      int n = list.Count;  
+      while (n > 1) {  
+        n--;  
+        int k = rng.Next(n + 1);  
+        T value = list[k];  
+        list[k] = list[n];  
+        list[n] = value;  
+    }  
+    }
+   }
 [Route("api/v1/CustomController")]
 public class CustomController : Controller
 {
@@ -83,40 +96,6 @@ public class CustomController : Controller
 
   if(findcorrectrecipe  == null) throw new Exception("Correct Recipe not found");
   return findcorrectrecipe.ToArray();
-  }
-
-  [RestrictToUserType(new string[] {"*"})]
-  [HttpGet("GetRecommendedRecipes/{Userid}")]
-
-  public Recipe[] GetRecommendedRecipes(int Userid)
-  {
-    var user = _context.User.FirstOrDefault(_user => _user.Id == Userid);
-    if (user == null)
-      throw new Exception ("Cannot find User");
-    var recommendedrecipes = (from recipe_user in _context.User_Recipe
-                              where recipe_user.UserId == Userid 
-                              from recipe in _context.Recipe
-                              where recipe.Id == recipe_user.RecipeId
-                              from Recipe_Rating in _context.Recipe_Rating
-                              where Recipe_Rating.RecipeId == recipe.Id
-                              from Rating in _context.Rating 
-                              where Rating.Id == Recipe_Rating.Rating.Id
-                              select new MyTuple <Rating, Recipe>(Rating,recipe)
-                              ).OrderByDescending(Item => Item.Item1.rating);
-
-    var itemstoreturn = new List<Recipe> ();
-      int count = 0;
-      foreach (var recipe in recommendedrecipes ){
-        count = count + 1;
-        if(count > 3){
-          break;
-        }
-        itemstoreturn.Add(recipe.Item2);
-      }
-
-    return itemstoreturn.ToArray();
-
-
   }
 
    [RestrictToUserType(new string[] {"*"})]
@@ -185,6 +164,38 @@ public class CustomController : Controller
     Console.WriteLine("Rating is found",found_rating);
     return found_rating;
   }
+    
+
+
+
+    [RestrictToUserType(new string[] {"*"})]
+  [HttpGet("GetRecommendedRecipes/{user_id}")]
+
+  public Recipe[] GetRecommendedRecipes(int user_id)
+  {
+
+    List<MyTuple<Recipe, int>> recipesrating = new List<MyTuple<Recipe, int>>(); // We instantiate a list with type MyTuple<T, U> and name the types Recipe and int.
+                    
+
+
+    foreach(var recipe in _context.Recipe){ // We create a for-loop that goes through the recipes and looks if the recipe has a rating.
+      var maybemaybenotrating = _context.Recipe_Rating.FirstOrDefault(elem => elem.RecipeId == recipe.Id);
+      if (maybemaybenotrating == null) { // If it's null, it adds (or instantiates) a rating to the MyTuple (and to the specific recipe IN the for-loop (I THINK... MAYBE... HOPEFULLY)).
+        recipesrating.Add(new MyTuple<Recipe, int>(recipe, 0));
+      }
+      else { // If it's NOT null, it will just assign the the rating it already has to the MyTuple that we are using (and to the specific recipe IN the for-loop (I THINK... MAYBE... HOPEFULLY)).
+        var yesrating = _context.Rating.FirstOrDefault(elem => elem.Id == maybemaybenotrating.RatingId);
+        recipesrating.Add(new MyTuple<Recipe, int>(recipe, yesrating.rating));
+      }
+          
+      }
+    recipesrating.OrderByDescending(elem => elem.Item2); //This orders the recipes that have low ratings to the top of the list.
+
+    
+    var topfifteen = recipesrating.Take(Math.Min(recipesrating.Count, 2)).ToList(); //Takes minimum of 2 recipes to showcase
+    topfifteen.Shuffle(); // Shuffle method is from a static class that shuffles the elements inside the given list (works like magic).
+    return topfifteen.Take(Math.Min(recipesrating.Count, 5)).Select(elem => elem.Item1).ToArray(); // returns the shuffled list.
+    }
     
 }
 

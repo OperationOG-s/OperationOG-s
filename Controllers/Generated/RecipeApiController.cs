@@ -34,7 +34,6 @@ using System.IO;
         HttpContext.Request.Headers["ApiToken"] == RestrictToUserTypeAttribute.ApiToken;
 
     
-    [RestrictToUserType(new string[] {"User", "Admin"})]
     [RestrictToUserType(new string[] {"Admin", "User"})]
     [HttpGet("{Recipe_id}/User_Recipes")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
@@ -96,7 +95,6 @@ select _User) : _context.User) : Enumerable.Empty<User>().AsQueryable());
       return Ok(UserViewData.FromUser(item));
     }
 
-    [RestrictToUserType(new string[] {"User", "Admin"})]
     [RestrictToUserType(new string[] {"Admin", "User"})]
     [HttpGet("{Recipe_id}/unlinked/User_Recipes")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
@@ -138,7 +136,6 @@ select _User) : _context.User) : Enumerable.Empty<User>().AsQueryable());
       return true;
     }
 
-    [RestrictToUserType(new string[] {"User", "Admin"})]
     [RestrictToUserType(new string[] {"Admin"})]
     [HttpPost("{Recipe_id}/User_Recipes_User")]
     public IActionResult /*IEnumerable<UserViewData>*/ CreateNewUser_Recipe_User(int Recipe_id)
@@ -165,7 +162,6 @@ select _User) : _context.User) : Enumerable.Empty<User>().AsQueryable());
       return Ok(new UserViewData[] { UserViewData.FromUser(new_target) });
     }
 
-    [RestrictToUserType(new string[] {"User", "Admin"})]
     [RestrictToUserType(new string[] {"Admin", "User"})]
     [HttpPost("{Recipe_id}/User_Recipes/{User_id}")]
     public IActionResult LinkWithUser_Recipe(int Recipe_id, int User_id)
@@ -191,7 +187,6 @@ select _User) : _context.User) : Enumerable.Empty<User>().AsQueryable());
       _context.SaveChanges();
       return Ok();
     }
-    [RestrictToUserType(new string[] {"User", "Admin"})]
     [RestrictToUserType(new string[] {"Admin", "User"})]
     [HttpDelete("{Recipe_id}/User_Recipes/{User_id}")]
     public IActionResult UnlinkFromUser_Recipe(int Recipe_id, int User_id)
@@ -321,7 +316,6 @@ select _User) : _context.User) : Enumerable.Empty<User>().AsQueryable());
            select source).Count() < 1;
     }
 
-    [RestrictToUserType(new string[] {"User", "Admin"})]
     [RestrictToUserType(new string[] {"Admin"})]
     [HttpPost("{Recipe_id}/Recipe_Ratings_Rating")]
     public IActionResult /*IEnumerable<Rating>*/ CreateNewRecipe_Rating_Rating(int Recipe_id)
@@ -592,7 +586,6 @@ select _User) : _context.User) : Enumerable.Empty<User>().AsQueryable());
       return true;
     }
 
-    [RestrictToUserType(new string[] {"User", "Admin"})]
     [RestrictToUserType(new string[] {"Admin"})]
     [HttpPost("{Recipe_id}/Meal_Recipes_Lunch")]
     public IActionResult /*IEnumerable<Lunch>*/ CreateNewMeal_Recipe_Lunch(int Recipe_id)
@@ -618,8 +611,7 @@ select _User) : _context.User) : Enumerable.Empty<User>().AsQueryable());
       _context.SaveChanges();
       return Ok(new Lunch[] { new_target });
     }
-[RestrictToUserType(new string[] {"User", "Admin"})]
-    [RestrictToUserType(new string[] {"Admin"})]
+[RestrictToUserType(new string[] {"Admin"})]
     [HttpPost("{Recipe_id}/Meal_Recipes_Dinner")]
     public IActionResult /*IEnumerable<Dinner>*/ CreateNewMeal_Recipe_Dinner(int Recipe_id)
     {
@@ -644,8 +636,7 @@ select _User) : _context.User) : Enumerable.Empty<User>().AsQueryable());
       _context.SaveChanges();
       return Ok(new Dinner[] { new_target });
     }
-[RestrictToUserType(new string[] {"User", "Admin"})]
-    [RestrictToUserType(new string[] {"Admin"})]
+[RestrictToUserType(new string[] {"Admin"})]
     [HttpPost("{Recipe_id}/Meal_Recipes_Breakfast")]
     public IActionResult /*IEnumerable<Breakfast>*/ CreateNewMeal_Recipe_Breakfast(int Recipe_id)
     {
@@ -717,7 +708,7 @@ select _User) : _context.User) : Enumerable.Empty<User>().AsQueryable());
       _context.SaveChanges();
       return Ok();
     }
-    [RestrictToUserType(new string[] {"User", "Admin"})]
+    [RestrictToUserType(new string[] {"*"})]
     [HttpGet("{Recipe_id}/Categorie_Recipes")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
     public Page<Categorie> GetCategorie_Recipes(int Recipe_id, [FromQuery] int page_index, [FromQuery] int page_size = 25 )
@@ -777,7 +768,7 @@ select _User) : _context.User) : Enumerable.Empty<User>().AsQueryable());
       return Ok(item);
     }
 
-    [RestrictToUserType(new string[] {"User", "Admin"})]
+    [RestrictToUserType(new string[] {"*"})]
     [HttpGet("{Recipe_id}/unlinked/Categorie_Recipes")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
     public Page<Categorie> GetUnlinkedCategorie_Recipes(int Recipe_id, [FromQuery] int page_index, [FromQuery] int page_size = 25)
@@ -808,7 +799,7 @@ select _User) : _context.User) : Enumerable.Empty<User>().AsQueryable());
               .Select(t => Tuple.Create(t, can_edit_by_token && editable_targets.Any(et => et.Id == t.Id)))
               .Paginate(can_create_by_token, can_delete_by_token, can_link_by_token, page_index, page_size, PortableRecipes.Models.Categorie.WithoutImages, item => item);
     }
-    [RestrictToUserType(new string[] {"User", "Admin"})]
+    [RestrictToUserType(new string[] {"*"})]
     [HttpGet("{Recipe_id}/unlinked/Categorie_Recipes/American")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
     public Page<American> GetUnlinkedCategorie_Recipes_American(int Recipe_id, [FromQuery] int page_index, [FromQuery] int page_size = 25)
@@ -841,7 +832,7 @@ select _User) : _context.User) : Enumerable.Empty<User>().AsQueryable());
     }
 
 
-    [RestrictToUserType(new string[] {"User", "Admin"})]
+    [RestrictToUserType(new string[] {"*"})]
     [HttpGet("{Recipe_id}/unlinked/Categorie_Recipes/Asian")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
     public Page<Asian> GetUnlinkedCategorie_Recipes_Asian(int Recipe_id, [FromQuery] int page_index, [FromQuery] int page_size = 25)
@@ -915,7 +906,6 @@ select _User) : _context.User) : Enumerable.Empty<User>().AsQueryable());
       return true;
     }
 
-    [RestrictToUserType(new string[] {"User", "Admin"})]
     [RestrictToUserType(new string[] {"Admin"})]
     [HttpPost("{Recipe_id}/Categorie_Recipes_American")]
     public IActionResult /*IEnumerable<American>*/ CreateNewCategorie_Recipe_American(int Recipe_id)
@@ -941,8 +931,7 @@ select _User) : _context.User) : Enumerable.Empty<User>().AsQueryable());
       _context.SaveChanges();
       return Ok(new American[] { new_target });
     }
-[RestrictToUserType(new string[] {"User", "Admin"})]
-    [RestrictToUserType(new string[] {"Admin"})]
+[RestrictToUserType(new string[] {"Admin"})]
     [HttpPost("{Recipe_id}/Categorie_Recipes_Asian")]
     public IActionResult /*IEnumerable<Asian>*/ CreateNewCategorie_Recipe_Asian(int Recipe_id)
     {
@@ -967,8 +956,7 @@ select _User) : _context.User) : Enumerable.Empty<User>().AsQueryable());
       _context.SaveChanges();
       return Ok(new Asian[] { new_target });
     }
-[RestrictToUserType(new string[] {"User", "Admin"})]
-    [RestrictToUserType(new string[] {"Admin"})]
+[RestrictToUserType(new string[] {"Admin"})]
     [HttpPost("{Recipe_id}/Categorie_Recipes_Mediterranean")]
     public IActionResult /*IEnumerable<Mediterranean>*/ CreateNewCategorie_Recipe_Mediterranean(int Recipe_id)
     {
@@ -994,7 +982,7 @@ select _User) : _context.User) : Enumerable.Empty<User>().AsQueryable());
       return Ok(new Mediterranean[] { new_target });
     }
 
-    [RestrictToUserType(new string[] {"User", "Admin"})]
+    [RestrictToUserType(new string[] {"*"})]
     [HttpPost("{Recipe_id}/Categorie_Recipes/{Categorie_id}")]
     public IActionResult LinkWithCategorie_Recipe(int Recipe_id, int Categorie_id)
     {
@@ -1019,7 +1007,7 @@ select _User) : _context.User) : Enumerable.Empty<User>().AsQueryable());
       _context.SaveChanges();
       return Ok();
     }
-    [RestrictToUserType(new string[] {"User", "Admin"})]
+    [RestrictToUserType(new string[] {"*"})]
     [HttpDelete("{Recipe_id}/Categorie_Recipes/{Categorie_id}")]
     public IActionResult UnlinkFromCategorie_Recipe(int Recipe_id, int Categorie_id)
     {
@@ -1040,7 +1028,7 @@ select _User) : _context.User) : Enumerable.Empty<User>().AsQueryable());
       _context.SaveChanges();
       return Ok();
     }
-    [RestrictToUserType(new string[] {"User", "Admin"})]
+    [RestrictToUserType(new string[] {"*"})]
     [HttpGet("{id}")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult /*ItemWithEditable<Recipe>*/ GetById(int id)
@@ -1059,7 +1047,7 @@ select _User) : _context.User) : Enumerable.Empty<User>().AsQueryable());
         Editable = editable_items.Any(e => e.Id == item.Id) });
     }
     
-    [RestrictToUserType(new string[] {"User", "Admin"})]
+    [RestrictToUserType(new string[] {"*"})]
     [HttpGet("{id}/Picture")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult /*Container<string>*/ GetPictureById(int id)
@@ -1163,7 +1151,7 @@ var session = HttpContext.Get<LoggableEntities>(_context);
     }
 
 
-    [RestrictToUserType(new string[] {"User", "Admin"})]
+    [RestrictToUserType(new string[] {"*"})]
     [HttpGet]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
     public Page<Recipe> GetAll([FromQuery] int page_index, [FromQuery] int page_size = 25 )

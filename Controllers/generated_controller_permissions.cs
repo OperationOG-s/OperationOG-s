@@ -17,7 +17,7 @@ using PortableRecipes.Filters;
 namespace PortableRecipes.Models
 {
   public static class Permissions {
-    static public bool can_view_American(User current_User, Admin current_Admin) { return current_User != null || current_Admin != null; }
+    static public bool can_view_American(User current_User, Admin current_Admin) { return true; }
 
     static public bool can_create_American(User current_User, Admin current_Admin) { return current_Admin != null; }
 
@@ -42,7 +42,7 @@ static public bool can_view_Meal(User current_User, Admin current_Admin) { retur
   
 
     
-static public bool can_view_Asian(User current_User, Admin current_Admin) { return current_User != null || current_Admin != null; }
+static public bool can_view_Asian(User current_User, Admin current_Admin) { return true; }
 
     static public bool can_create_Asian(User current_User, Admin current_Admin) { return current_Admin != null; }
 
@@ -110,7 +110,7 @@ static public bool can_view_HomePage(User current_User, Admin current_Admin) { r
     
 
     
-static public bool can_view_Recipe(User current_User, Admin current_Admin) { return current_User != null || current_Admin != null; }
+static public bool can_view_Recipe(User current_User, Admin current_Admin) { return true; }
 
     static public bool can_create_Recipe(User current_User, Admin current_Admin) { return current_Admin != null; }
 
@@ -176,7 +176,7 @@ static public bool can_view_Dinner(User current_User, Admin current_Admin) { ret
     
 
     
-static public bool can_view_Categorie(User current_User, Admin current_Admin) { return current_User != null || current_Admin != null; }
+static public bool can_view_Categorie(User current_User, Admin current_Admin) { return true; }
 
     static public bool can_create_Categorie(User current_User, Admin current_Admin) { return current_Admin != null; }
 

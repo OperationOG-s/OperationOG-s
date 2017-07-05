@@ -13447,7 +13447,7 @@ module.exports = function(it){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.can_view_American = (current_User, current_Admin) => current_User != null || current_Admin != null;
+exports.can_view_American = (current_User, current_Admin) => true;
 exports.can_create_American = (current_User, current_Admin) => current_Admin != null;
 exports.can_edit_American = (current_User, current_Admin) => current_Admin != null;
 exports.can_delete_American = (current_User, current_Admin) => current_Admin != null;
@@ -13457,7 +13457,7 @@ exports.can_view_Meal = (current_User, current_Admin) => current_User != null ||
 exports.can_create_Meal = (current_User, current_Admin) => current_Admin != null;
 exports.can_edit_Meal = (current_User, current_Admin) => current_Admin != null;
 exports.can_delete_Meal = (current_User, current_Admin) => current_Admin != null;
-exports.can_view_Asian = (current_User, current_Admin) => current_User != null || current_Admin != null;
+exports.can_view_Asian = (current_User, current_Admin) => true;
 exports.can_create_Asian = (current_User, current_Admin) => current_Admin != null;
 exports.can_edit_Asian = (current_User, current_Admin) => current_Admin != null;
 exports.can_delete_Asian = (current_User, current_Admin) => current_Admin != null;
@@ -13487,7 +13487,7 @@ exports.can_view_HomePage_AppTest = (current_User, current_Admin) => true;
 exports.can_edit_HomePage_AppTest = (current_User, current_Admin) => true;
 exports.can_view_HomePage_Test = (current_User, current_Admin) => true;
 exports.can_edit_HomePage_Test = (current_User, current_Admin) => true;
-exports.can_view_Recipe = (current_User, current_Admin) => current_User != null || current_Admin != null;
+exports.can_view_Recipe = (current_User, current_Admin) => true;
 exports.can_create_Recipe = (current_User, current_Admin) => current_Admin != null;
 exports.can_edit_Recipe = (current_User, current_Admin) => current_Admin != null;
 exports.can_delete_Recipe = (current_User, current_Admin) => current_Admin != null;
@@ -13517,7 +13517,7 @@ exports.can_edit_Dinner = (current_User, current_Admin) => current_Admin != null
 exports.can_delete_Dinner = (current_User, current_Admin) => current_Admin != null;
 exports.can_view_Dinner_Description = (current_User, current_Admin) => true;
 exports.can_edit_Dinner_Description = (current_User, current_Admin) => true;
-exports.can_view_Categorie = (current_User, current_Admin) => current_User != null || current_Admin != null;
+exports.can_view_Categorie = (current_User, current_Admin) => true;
 exports.can_create_Categorie = (current_User, current_Admin) => current_Admin != null;
 exports.can_edit_Categorie = (current_User, current_Admin) => current_Admin != null;
 exports.can_delete_Categorie = (current_User, current_Admin) => current_Admin != null;
@@ -28164,6 +28164,14 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(11);
 const Immutable = __webpack_require__(36);
 const Api = __webpack_require__(18);
+function get_recommendedrecipe(user_id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        let res = yield fetch(`/api/v1/CustomController/GetRecommendedRecipes/${user_id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
+        let json = yield res.json();
+        return Immutable.List(json);
+    });
+}
+exports.get_recommendedrecipe = get_recommendedrecipe;
 function get_all_remote_entities(get_page) {
     return __awaiter(this, void 0, void 0, function* () {
         let elems = yield get_page(0, 10);
@@ -28234,7 +28242,7 @@ class StarsComponent extends React.Component {
         super(props, context);
         this.state = { stars: Immutable.List([{ value: 1, state: false }, { value: 2, state: false }, { value: 3, state: false }, { value: 4, state: false }, { value: 5, state: false }]) };
     }
-    ComponentWillMount() {
+    componentWillMount() {
         console.log("rating is mounting");
         get_rating(this.props.recipe.Id, this.props.user.Id).then(rating => this.setState(Object.assign({}, this.state, { stars: this.state.stars.map(s => { {
                 console.log("The rating is downloading", rating);
@@ -28243,21 +28251,21 @@ class StarsComponent extends React.Component {
     //component: user * recipe => rating
     //when rating received => for every star in stars: IF star.value <= rating THEN star.state:True ELSE star.state: False   
     render() {
-        return React.createElement("div", null, this.state.stars.map(star => React.createElement("button", { onMouseOver: () => this.setState(Object.assign({}, this.state, { stars: this.state.stars.map(star1 => { if (star1.value <= star.value)
-                    return Object.assign({}, star1, { state: true });
-                else
-                    return Object.assign({}, star1, { state: false }); }).toList() })), style: star.state ? {
-                borderColor: '#000066',
-                backgroundColor: '#000066',
+        return React.createElement("div", null, this.state.stars.map(star => React.createElement("button", { style: star.state ? {
+                borderColor: '#ffffff',
+                backgroundColor: '#ffffff',
                 borderWidth: 1,
                 borderRadius: 10,
-                background: '#b3e3ef'
+                background: 'rgba(53, 32, 32, 0.35)'
             } :
                 {
-                    borderColor: '#000066',
+                    borderColor: '#ffffff',
                     borderWidth: 1,
                     borderRadius: 10,
-                }, onClick: () => set_rating(star.value, this.props.recipe.Id, this.props.user.Id), onDoubleClick: () => get_rating(this.props.recipe.Id, this.props.user.Id), marginHeight: 10, marginWidth: 10, width: 10, height: 10 }, star.value)));
+                }, onClick: () => this.setState(Object.assign({}, this.state, { stars: this.state.stars.map(star1 => { if (star1.value <= star.value)
+                    return Object.assign({}, star1, { state: true });
+                else
+                    return Object.assign({}, star1, { state: false }); }).toList() }), () => set_rating(star.value, this.props.recipe.Id, this.props.user.Id)), marginHeight: 10, marginWidth: 10, width: 10, height: 10 }, star.value)));
     }
 }
 exports.StarsComponent = StarsComponent;
@@ -28365,7 +28373,7 @@ class MealComponent extends React.Component {
                     "back to ",
                     this.props.meal.Kind),
                 " "),
-            React.createElement("div", null, this.state.recipes.filter(item => this.props.SearchedQuery == "" || item.recipe.Name.startsWith(this.props.SearchedQuery)).map(item => React.createElement(RecipeComponent, { recipe: item.recipe, is_expanded: item.is_expanded, logged_in_user: this.props.logged_in_user, reload: this.props.reload, update_me: value => this.setState(Object.assign({}, this.state, { recipes: this.state.recipes.map(item1 => {
+            React.createElement("div", null, this.state.recipes.filter(item => this.props.SearchedQuery == "" || item.recipe.Name.toLowerCase().includes(this.props.SearchedQuery.toLowerCase())).map(item => React.createElement(RecipeComponent, { recipe: item.recipe, is_expanded: item.is_expanded, logged_in_user: this.props.logged_in_user, reload: this.props.reload, update_me: value => this.setState(Object.assign({}, this.state, { recipes: this.state.recipes.map(item1 => {
                         if (item.recipe.Name != item1.recipe.Name) {
                             console.log('heei');
                             return Object.assign({}, item1, { is_expanded: value });
@@ -28398,7 +28406,13 @@ class RecipeComponent extends React.Component {
         console.log('right recipe is loading');
     }
     render() {
-        return React.createElement("div", null,
+        return React.createElement("div", { style: {
+                borderColor: '#000066 ',
+                backgroundColor: '#000066 ',
+                borderWidth: 5,
+                borderRadius: 10,
+                background: 'rgba(255, 240, 240, 0.55)'
+            } },
             console.log('Recipe'),
             React.createElement("h2", null, "Name:"),
             " ",
@@ -28416,8 +28430,9 @@ class RecipeComponent extends React.Component {
             React.createElement("div", null,
                 this.props.recipe.PreparationTime,
                 " minutes"),
-            React.createElement(StarsComponent, { recipe: this.props.recipe, user: this.props.logged_in_user }),
-            React.createElement(BookmarkComponent, { reload: this.props.reload, logged_in_user: this.props.logged_in_user, recipe: this.props.recipe }));
+            this.props.logged_in_user ? React.createElement(StarsComponent, { recipe: this.props.recipe, user: this.props.logged_in_user }) : React.createElement("div", null),
+            this.props.logged_in_user ?
+                React.createElement(BookmarkComponent, { reload: this.props.reload, logged_in_user: this.props.logged_in_user, recipe: this.props.recipe }) : React.createElement("div", null));
     }
 }
 class ShowBookmarkComponent extends React.Component {
@@ -28459,8 +28474,25 @@ class BookmarkComponent extends React.Component {
             React.createElement("button", { onClick: () => Api.link_User_User_Recipes(this.props.logged_in_user, this.props.recipe).then(_ => this.setState(Object.assign({}, this.state, { is_bookmarked: true }))) }, "Bookmark"));
     }
 }
+class RecommendedRandomRecipeComponent extends React.Component {
+    constructor(props, context) {
+        super(props, context);
+        this.state = { recommendedrecipes: Immutable.List() };
+    }
+    componentWillMount() {
+        get_recommendedrecipe(1).then(recommendedrecipes => this.setState(Object.assign({}, this.state, { recommendedrecipes: recommendedrecipes })));
+    }
+    render() {
+        console.log("rendering", this.state.recommendedrecipes);
+        return React.createElement("div", null,
+            React.createElement("h2", null, "Welcome to Portable Recipes! "),
+            React.createElement("p", null, "Check out our recipes at the 'Categories' tab!"),
+            React.createElement("p", null, "Here are the recommended recipe(s) of the day!"),
+            this.state.recommendedrecipes.map(item => React.createElement(RecipeComponent, { recipe: item, is_expanded: true, logged_in_user: this.props.user, reload: () => { }, update_me: value => { } })));
+    }
+}
 exports.AppTest = (props) => {
-    return React.createElement("div", null);
+    return React.createElement(RecommendedRandomRecipeComponent, { user: props.current_User });
 };
 exports.BookmarksView = (props) => {
     props.current_User;

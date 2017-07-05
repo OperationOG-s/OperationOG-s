@@ -100,7 +100,7 @@
         "allow_fullscreen": true,
         "attributes": [ ],
             "permissions": {
-            "view": ["User", "Admin"],
+            "view": ["*"],
             "edit": ["Admin"],
             "delete": ["Admin"],
             "create": ["Admin"] 
@@ -114,7 +114,7 @@
         "allow_fullscreen": true,
         "attributes": [{"type": "string", "name": "Description"}],
         "permissions": {
-            "view": ["User", "Admin"],
+            "view": ["*"],
             "edit": ["Admin"],
             "delete": ["Admin"],
             "create": ["Admin"] 
@@ -129,7 +129,7 @@
         "allow_fullscreen": true,
         "attributes": [{"type": "string", "name": "Description"}],
         "permissions": {
-            "view": ["User", "Admin"],
+            "view": ["*"],
             "edit": ["Admin"],
             "delete": ["Admin"],
             "create": ["Admin"] 
@@ -362,7 +362,7 @@
         ],
 
         "permissions": {
-            "view": ["User", "Admin"],
+            "view": ["*"],
             "edit": ["Admin"],
             "delete": ["Admin"],
             "create": ["Admin"]

@@ -34,7 +34,15 @@ type ShowBookmarkComponentState = {recipes: Immutable.List< Models.Recipe>}
 
 type BookmarkComponentProps = {reload:()=>void,logged_in_user: Models.User, recipe : Models.Recipe }
 type BookmarkComponentState = {is_bookmarked:boolean, bookmarks: Immutable.List<{ bookmark: Models.Recipe }> }
+type RecommendedRecipeProps = { user : Models.User }
+type RecommendedRecipeState = { recommendedrecipes: Immutable.List<Models.Recipe>}
 
+export async function get_recommendedrecipe(user_id: number): Promise<Immutable.List<Models.Recipe>> {
+    let res = await fetch(`/api/v1/CustomController/GetRecommendedRecipes/${user_id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } })
+    let json = await res.json()
+    return Immutable.List<Models.Recipe>(json)
+
+}
 
 
 export async function get_all_remote_entities<T>(get_page: (index: number, amount: number) => Promise<Api.RawPage<T>>): Promise<Immutable.List<T>> {
@@ -90,7 +98,7 @@ export class StarsComponent extends React.Component<StarsComponentProps, StarsCo
         this.state = { stars: Immutable.List<Rate>([{ value: 1, state: false }, { value: 2, state: false }, { value: 3, state: false }, { value: 4, state: false }, { value: 5, state: false }])}
 
     }
-    ComponentWillMount(){
+    componentWillMount(){
         console.log("rating is mounting")
         get_rating(this.props.recipe.Id, this.props.user.Id).then(rating => this.setState(
             {
@@ -106,21 +114,23 @@ export class StarsComponent extends React.Component<StarsComponentProps, StarsCo
     
 
     render() {
-        return <div>{this.state.stars.map(star => <button onMouseOver={() => this.setState({ ...this.state, stars: this.state.stars.map(star1 => { if (star1.value <= star.value) return { ...star1, state: true }; else return { ...star1, state: false } }).toList() })}
+        return <div>{this.state.stars.map(star => <button 
             style={star.state ? {
-                borderColor: '#000066',
-                backgroundColor: '#000066',
+                borderColor: '#ffffff',
+                backgroundColor: '#ffffff',
                 borderWidth: 1,
                 borderRadius: 10,
-                background: '#b3e3ef'
+                background: 'rgba(53, 32, 32, 0.35)'
             } :
                 {
-                    borderColor: '#000066',
+                    borderColor: '#ffffff',
                     borderWidth: 1,
                     borderRadius: 10,
                 }}
-            onClick={() => set_rating(star.value, this.props.recipe.Id, this.props.user.Id)}
-            onDoubleClick={() => get_rating(this.props.recipe.Id, this.props.user.Id)}            
+            onClick={() => 
+                this.setState({ ...this.state, stars: this.state.stars.map(star1 => { if (star1.value <= star.value) return { ...star1, state: true }; else return { ...star1, state: false } }).toList() }, 
+                    () => set_rating(star.value, this.props.recipe.Id, this.props.user.Id))}
+                 
             marginHeight={10} marginWidth={10} width={10} height={10}>{star.value}</button>)}
             
           
@@ -285,7 +295,7 @@ class MealComponent extends React.Component<MealComponentProps, MealComponentSta
             <h4> <button onClick={() => this.props.update_me(false)}>back to {this.props.meal.Kind}</button> </h4>
             <div>
 
-                {this.state.recipes.filter(item => this.props.SearchedQuery == "" || item.recipe.Name.startsWith(this.props.SearchedQuery)).map(item => <RecipeComponent
+                {this.state.recipes.filter(item => this.props.SearchedQuery == "" || item.recipe.Name.toLowerCase().includes(this.props.SearchedQuery.toLowerCase())).map(item => <RecipeComponent
                     recipe={item.recipe}
                     is_expanded={item.is_expanded}
                     logged_in_user = {this.props.logged_in_user}
@@ -338,7 +348,16 @@ class RecipeComponent extends React.Component<RecipeComponentProps, RecipeCompon
 
    
     render() {
-        return <div>
+        return <div style={{
+                               borderColor: '#000066 ',
+                               backgroundColor: '#000066 ',
+                               borderWidth: 5,
+                               borderRadius: 10,
+                               background: 'rgba(255, 240, 240, 0.55)'
+                               
+           
+                               
+                           } }>
             {console.log('Recipe')}
             <h2>Name:</h2> <h2>{this.props.recipe.Name}</h2>
             
@@ -347,11 +366,12 @@ class RecipeComponent extends React.Component<RecipeComponentProps, RecipeCompon
             <h2>Ingredients:</h2> <div>{this.props.recipe.Ingredients}</div> 
          
             <h2>PreparationTime:</h2> <div>{this.props.recipe.PreparationTime} minutes</div>   
-            <StarsComponent recipe= {this.props.recipe} user = {this.props.logged_in_user}/>
-            <BookmarkComponent 
-                reload={this.props.reload}
-                logged_in_user = {this.props.logged_in_user} 
-                recipe = {this.props.recipe}/>
+            {this.props.logged_in_user ? <StarsComponent recipe= {this.props.recipe} user = {this.props.logged_in_user}/> : <div/>}
+            {this.props.logged_in_user ?
+                <BookmarkComponent 
+                    reload={this.props.reload}
+                    logged_in_user = {this.props.logged_in_user} 
+                    recipe = {this.props.recipe}/> : <div/>}
         </div>
     }
 }
@@ -421,10 +441,50 @@ class BookmarkComponent extends React.Component<BookmarkComponentProps, Bookmark
     }
 
 }
+class RecommendedRandomRecipeComponent extends React.Component<RecommendedRecipeProps,  RecommendedRecipeState> 
+{
+    constructor(props: RecommendedRecipeProps, context ) {
+        super(props, context)
+        this.state = { recommendedrecipes: Immutable.List<Models.Recipe>() }
+    }
 
-export let AppTest = (props: ViewUtils.EntityComponentProps<Models.HomePage>) => {
-    return <div></div>
+    componentWillMount() {
+       
+        get_recommendedrecipe(1).then(recommendedrecipes => 
+        this.setState({
+                        ...this.state,
+                        recommendedrecipes: recommendedrecipes
+                } 
+                ) 
+        )}
+
+    
+    
+    render() {
+        
+                console.log("rendering", this.state.recommendedrecipes)
+                return <div>   
+                    
+                        <h2>Welcome to Portable Recipes! </h2>
+
+                        <p>Check out our recipes at the 'Categories' tab!</p>
+                        <p>Here are the recommended recipe(s) of the day!</p>    
+                    {this.state.recommendedrecipes.map(item => <RecipeComponent
+                    recipe={item}
+                    is_expanded={true}
+                    logged_in_user = {this.props.user}
+                    reload={() => {}}
+                    update_me={value => {}}/>)
+                        }
+                   </div>      
+    }
+
 }
+export let AppTest = (props: ViewUtils.EntityComponentProps<Models.HomePage>) => 
+{
+    return <RecommendedRandomRecipeComponent user={props.current_User}/>
+}
+
 
 export let BookmarksView = (props: ViewUtils.EntityComponentProps<Models.Bookmarks>) =>{ 
       props.current_User

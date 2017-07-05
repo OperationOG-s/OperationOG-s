@@ -252,7 +252,6 @@ using System.IO;
            select source).Count() < 1;
     }
 
-    [RestrictToUserType(new string[] {"User", "Admin"})]
     [RestrictToUserType(new string[] {"Admin"})]
     [HttpPost("{Categorie_id}/Categorie_Meals_Lunch")]
     public IActionResult /*IEnumerable<Lunch>*/ CreateNewCategorie_Meal_Lunch(int Categorie_id)
@@ -278,8 +277,7 @@ using System.IO;
       _context.SaveChanges();
       return Ok(new Lunch[] { new_target });
     }
-[RestrictToUserType(new string[] {"User", "Admin"})]
-    [RestrictToUserType(new string[] {"Admin"})]
+[RestrictToUserType(new string[] {"Admin"})]
     [HttpPost("{Categorie_id}/Categorie_Meals_Dinner")]
     public IActionResult /*IEnumerable<Dinner>*/ CreateNewCategorie_Meal_Dinner(int Categorie_id)
     {
@@ -304,8 +302,7 @@ using System.IO;
       _context.SaveChanges();
       return Ok(new Dinner[] { new_target });
     }
-[RestrictToUserType(new string[] {"User", "Admin"})]
-    [RestrictToUserType(new string[] {"Admin"})]
+[RestrictToUserType(new string[] {"Admin"})]
     [HttpPost("{Categorie_id}/Categorie_Meals_Breakfast")]
     public IActionResult /*IEnumerable<Breakfast>*/ CreateNewCategorie_Meal_Breakfast(int Categorie_id)
     {
@@ -377,7 +374,7 @@ using System.IO;
       _context.SaveChanges();
       return Ok();
     }
-    [RestrictToUserType(new string[] {"User", "Admin"})]
+    [RestrictToUserType(new string[] {"*"})]
     [HttpGet("{Categorie_id}/Categorie_Recipes")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
     public Page<Recipe> GetCategorie_Recipes(int Categorie_id, [FromQuery] int page_index, [FromQuery] int page_size = 25 )
@@ -437,7 +434,7 @@ using System.IO;
       return Ok(item);
     }
 
-    [RestrictToUserType(new string[] {"User", "Admin"})]
+    [RestrictToUserType(new string[] {"*"})]
     [HttpGet("{Categorie_id}/unlinked/Categorie_Recipes")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
     public Page<Recipe> GetUnlinkedCategorie_Recipes(int Categorie_id, [FromQuery] int page_index, [FromQuery] int page_size = 25)
@@ -477,7 +474,6 @@ using System.IO;
       return true;
     }
 
-    [RestrictToUserType(new string[] {"User", "Admin"})]
     [RestrictToUserType(new string[] {"Admin"})]
     [HttpPost("{Categorie_id}/Categorie_Recipes_Recipe")]
     public IActionResult /*IEnumerable<Recipe>*/ CreateNewCategorie_Recipe_Recipe(int Categorie_id)
@@ -504,7 +500,7 @@ using System.IO;
       return Ok(new Recipe[] { new_target });
     }
 
-    [RestrictToUserType(new string[] {"User", "Admin"})]
+    [RestrictToUserType(new string[] {"*"})]
     [HttpPost("{Categorie_id}/Categorie_Recipes/{Recipe_id}")]
     public IActionResult LinkWithCategorie_Recipe(int Categorie_id, int Recipe_id)
     {
@@ -529,7 +525,7 @@ using System.IO;
       _context.SaveChanges();
       return Ok();
     }
-    [RestrictToUserType(new string[] {"User", "Admin"})]
+    [RestrictToUserType(new string[] {"*"})]
     [HttpDelete("{Categorie_id}/Categorie_Recipes/{Recipe_id}")]
     public IActionResult UnlinkFromCategorie_Recipe(int Categorie_id, int Recipe_id)
     {
@@ -550,7 +546,7 @@ using System.IO;
       _context.SaveChanges();
       return Ok();
     }
-    [RestrictToUserType(new string[] {"User", "Admin"})]
+    [RestrictToUserType(new string[] {"*"})]
     [HttpGet("{id}")]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult /*ItemWithEditable<Categorie>*/ GetById(int id)
@@ -636,7 +632,7 @@ using System.IO;
     }
 
 
-    [RestrictToUserType(new string[] {"User", "Admin"})]
+    [RestrictToUserType(new string[] {"*"})]
     [HttpGet]
     [ResponseCache(Location = ResponseCacheLocation.None, NoStore = true)]
     public Page<Categorie> GetAll([FromQuery] int page_index, [FromQuery] int page_size = 25 )

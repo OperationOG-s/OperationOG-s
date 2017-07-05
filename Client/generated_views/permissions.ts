@@ -5,7 +5,7 @@ import * as Models from '../generated_models'
 import * as Api from '../generated_api'
 import * as List from '../containers/list'
 
-export let can_view_American = (current_User:Models.User, current_Admin:Models.Admin) => current_User != null || current_Admin != null
+export let can_view_American = (current_User:Models.User, current_Admin:Models.Admin) => true
 
 export let can_create_American = (current_User:Models.User, current_Admin:Models.Admin) => current_Admin != null
 
@@ -30,7 +30,7 @@ export let can_delete_Meal = (current_User:Models.User, current_Admin:Models.Adm
 
 
 
-export let can_view_Asian = (current_User:Models.User, current_Admin:Models.Admin) => current_User != null || current_Admin != null
+export let can_view_Asian = (current_User:Models.User, current_Admin:Models.Admin) => true
 
 export let can_create_Asian = (current_User:Models.User, current_Admin:Models.Admin) => current_Admin != null
 
@@ -98,7 +98,7 @@ export let can_edit_HomePage_Test = (current_User:Models.User, current_Admin:Mod
 
 
 
-export let can_view_Recipe = (current_User:Models.User, current_Admin:Models.Admin) => current_User != null || current_Admin != null
+export let can_view_Recipe = (current_User:Models.User, current_Admin:Models.Admin) => true
 
 export let can_create_Recipe = (current_User:Models.User, current_Admin:Models.Admin) => current_Admin != null
 
@@ -164,7 +164,7 @@ export let can_edit_Dinner_Description = (current_User:Models.User, current_Admi
 
 
 
-export let can_view_Categorie = (current_User:Models.User, current_Admin:Models.Admin) => current_User != null || current_Admin != null
+export let can_view_Categorie = (current_User:Models.User, current_Admin:Models.Admin) => true
 
 export let can_create_Categorie = (current_User:Models.User, current_Admin:Models.Admin) => current_Admin != null
 
