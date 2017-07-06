@@ -34,8 +34,10 @@ type ShowBookmarkComponentState = {recipes: Immutable.List< Models.Recipe>}
 
 type BookmarkComponentProps = {reload:()=>void,logged_in_user: Models.User, recipe : Models.Recipe }
 type BookmarkComponentState = {is_bookmarked:boolean, bookmarks: Immutable.List<{ bookmark: Models.Recipe }> }
+
 type RecommendedRecipeProps = { user : Models.User }
 type RecommendedRecipeState = { recommendedrecipes: Immutable.List<Models.Recipe>}
+
 
 export async function get_recommendedrecipe(user_id: number): Promise<Immutable.List<Models.Recipe>> {
     let res = await fetch(`/api/v1/CustomController/GetRecommendedRecipes/${user_id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } })

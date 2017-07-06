@@ -12,6 +12,7 @@ using SendGrid.Helpers.Mail;
 using PortableRecipes;
 using PortableRecipes.Models;
 using PortableRecipes.Filters;
+
 public class MyTuple <T, U>
 {
    public T Item1;
@@ -192,9 +193,9 @@ public class CustomController : Controller
     recipesrating.OrderByDescending(elem => elem.Item2); //This orders the recipes that have low ratings to the top of the list.
 
     
-    var topfifteen = recipesrating.Take(Math.Min(recipesrating.Count, 2)).ToList(); //Takes minimum of 2 recipes to showcase
+    var topfifteen = recipesrating.Take(Math.Min(recipesrating.Count, 15)).ToList(); //Takes minimum of 2 recipes to showcase
     topfifteen.Shuffle(); // Shuffle method is from a static class that shuffles the elements inside the given list (works like magic).
-    return topfifteen.Take(Math.Min(recipesrating.Count, 5)).Select(elem => elem.Item1).ToArray(); // returns the shuffled list.
+    return topfifteen.Take(Math.Min(recipesrating.Count, 2)).Select(elem => elem.Item1).ToArray(); // returns the shuffled list.
     }
     
 }
