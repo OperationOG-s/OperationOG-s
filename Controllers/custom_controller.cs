@@ -38,12 +38,14 @@ public static class RNG {
     }  
     }
    }
+
+// the class structure are all the same except the queries. 
 [Route("api/v1/CustomController")]
 public class CustomController : Controller
 {
   private readonly MailOptions _mailOptions;
   public readonly PortableRecipesContext _context;
-
+//context is the database
  public CustomController(PortableRecipesContext context, IOptions<MailOptions> mailOptionsAccessor)
   {
     _context = context;
@@ -51,15 +53,16 @@ public class CustomController : Controller
   }
 
  [RestrictToUserType(new string[] {"*"})]
-  [HttpGet("FindRecipe/{id}")]
-  public Recipe FindRecipe(int id)
+  [HttpGet("FindRecipe/{id}")] // this is the link to fetch in the costum_views
+  public Recipe FindRecipe(int id) //this is the method name
   {
-  
+  // The method contains the query's to select the correct recipes by their ID.
     var recipe = (from _recipe in _context.Recipe
                   where _recipe.Id == id
                   select _recipe).FirstOrDefault();
-
+//if it returns nothing, there is a new exception thrown
    if(recipe == null) throw new Exception("Recipe not found");
+   // returns the selected recipe
     return recipe;
   }
   

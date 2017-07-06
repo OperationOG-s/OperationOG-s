@@ -34,3 +34,12 @@ C:\Users\Admr\Documents\GitHub\OperationOG-s\obj\Debug\netcoreapp1.1\UserSecrets
 C:\Users\Admr\Documents\GitHub\OperationOG-s\obj\Debug\netcoreapp1.1\PortableRecipes.AssemblyInfo.cs
 C:\Users\Admr\Documents\GitHub\OperationOG-s\obj\Debug\netcoreapp1.1\PortableRecipes.dll
 C:\Users\Admr\Documents\GitHub\OperationOG-s\obj\Debug\netcoreapp1.1\PortableRecipes.pdb
+C:\Users\Sarah\Documents\GitHub\OperationOG-s\bin\Debug\netcoreapp1.1\PortableRecipes.deps.json
+C:\Users\Sarah\Documents\GitHub\OperationOG-s\bin\Debug\netcoreapp1.1\PortableRecipes.runtimeconfig.json
+C:\Users\Sarah\Documents\GitHub\OperationOG-s\bin\Debug\netcoreapp1.1\PortableRecipes.runtimeconfig.dev.json
+C:\Users\Sarah\Documents\GitHub\OperationOG-s\bin\Debug\netcoreapp1.1\PortableRecipes.dll
+C:\Users\Sarah\Documents\GitHub\OperationOG-s\bin\Debug\netcoreapp1.1\PortableRecipes.pdb
+C:\Users\Sarah\Documents\GitHub\OperationOG-s\obj\Debug\netcoreapp1.1\UserSecretsAssemblyInfo.cs
+C:\Users\Sarah\Documents\GitHub\OperationOG-s\obj\Debug\netcoreapp1.1\PortableRecipes.AssemblyInfo.cs
+C:\Users\Sarah\Documents\GitHub\OperationOG-s\obj\Debug\netcoreapp1.1\PortableRecipes.dll
+C:\Users\Sarah\Documents\GitHub\OperationOG-s\obj\Debug\netcoreapp1.1\PortableRecipes.pdb

@@ -6,18 +6,14 @@ import * as Models from './generated_models'
 import * as Api from './generated_api'
 import * as ViewUtils from './generated_views/view_utils'
 
-//The   use things from the parents that why it uses the models.Cat for example. And in the state you say what you are going to work with for example the list you will be working with.
-// Expanded is used to display the hidden information.
 
-//type IcomponentState = {i : number, j : number, z:number, recipes : Immutable.List<Models.Recipe>}
-//type IComponentProps = {props:ViewUtils.EntityComponentProps<Models.HomePage>}
-
-
-type CategoriesComponentProps = { reload:() => void, currentUser:Models.User } //Empty prop in the parents class, this parent has no parents that's why it is empty lol xD 
+// Props ask permission from their parents to update
+// State contains what you need to use in the following code
+type CategoriesComponentProps = { reload:() => void, currentUser:Models.User } 
 type CategoriesComponentState = { categories: Immutable.List<{ category: Models.Categorie, is_expanded: boolean }>, SearchedQuery: string }
 
 type CategoryComponentProps = { reload:() => void, logged_in_user: Models.User, category: Models.Categorie, update_me: (boolean) => void, is_expanded: boolean ,  SearchedQuery : string}
-type CategoryComponentState = { meals: Immutable.List<{category: Models.Categorie, meal: Models.Meal, is_expanded: boolean }> }
+type CategoryComponentState = { meals: Immutable.List<{category: Models.Categorie, meal: Models.Meal, is_expanded: boolean }> } 
 
 type MealComponentProps = { reload:() => void, logged_in_user: Models.User, category: Models.Categorie ,meal: Models.Meal, update_me: (boolean) => void, is_expanded: boolean, SearchedQuery : string }
 type MealComponentState = { recipes: Immutable.List<{ recipe: Models.Recipe, is_expanded: boolean }> }
@@ -34,11 +30,11 @@ type ShowBookmarkComponentState = {recipes: Immutable.List< Models.Recipe>}
 
 type BookmarkComponentProps = {reload:()=>void,logged_in_user: Models.User, recipe : Models.Recipe }
 type BookmarkComponentState = {is_bookmarked:boolean, bookmarks: Immutable.List<{ bookmark: Models.Recipe }> }
-
 type RecommendedRecipeProps = { user : Models.User }
 type RecommendedRecipeState = { recommendedrecipes: Immutable.List<Models.Recipe>}
 
 
+// export asyinc function gets the information out of the costum_controller
 export async function get_recommendedrecipe(user_id: number): Promise<Immutable.List<Models.Recipe>> {
     let res = await fetch(`/api/v1/CustomController/GetRecommendedRecipes/${user_id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } })
     let json = await res.json()
@@ -53,12 +49,11 @@ export async function get_all_remote_entities<T>(get_page: (index: number, amoun
     for (var index = 1; index < elems.NumPages; index++) {
         let elems = await get_page(index, 10)
         elems_to_return = elems_to_return.concat(elems.Items.map(e => e.Item)).toList()
-        // Api.get_User_User_Recipes()
-        // Api.link_User_User_Recipes()
-
+       
     }
     return elems_to_return
 }
+
 
 export async function set_rating(rating: number, recipe: number, user: number) {
     let res = await fetch(`/api/v1/CustomController/UserRating/${rating}/${recipe}/${user}`, { method: 'post', credentials: 'include', headers: { 'content-type': 'application/json' } })
@@ -94,27 +89,25 @@ export async function get_meals(id: number): Promise<{ meals: Immutable.List<Mod
     console.log("received meals", json)
     return { meals: Immutable.List<Models.Meal>(json) }
 }
-export class StarsComponent extends React.Component<StarsComponentProps, StarsComponentState> {
+//this class creates buttons for the rating. The rating is selected by the pressed buttons and it saves in the db
+export class StarsComponent extends React.Component<StarsComponentProps, StarsComponentState> { 
     constructor(props: StarsComponentProps, context: any) {
         super(props, context)
         this.state = { stars: Immutable.List<Rate>([{ value: 1, state: false }, { value: 2, state: false }, { value: 3, state: false }, { value: 4, state: false }, { value: 5, state: false }])}
 
     }
-    componentWillMount(){
+    componentWillMount(){ 
         console.log("rating is mounting")
         get_rating(this.props.recipe.Id, this.props.user.Id).then(rating => this.setState(
             {
+                //when rating received => for every star in stars: IF star.value <= rating THEN star.state:True ELSE star.state: False   
                 ...this.state, stars: this.state.stars.map(s =>{{console.log("The rating is downloading", rating)} return{value: s.value,  state : (s.value <= rating.rating) } }).toList()
                 
             }))
 
     }
 
-    //component: user * recipe => rating
-    //when rating received => for every star in stars: IF star.value <= rating THEN star.state:True ELSE star.state: False   
     
-    
-
     render() {
         return <div>{this.state.stars.map(star => <button 
             style={star.state ? {
@@ -134,21 +127,13 @@ export class StarsComponent extends React.Component<StarsComponentProps, StarsCo
                     () => set_rating(star.value, this.props.recipe.Id, this.props.user.Id))}
                  
             marginHeight={10} marginWidth={10} width={10} height={10}>{star.value}</button>)}
-            
-          
-                                           
-                                           
-            
-            
-            
-            
+    
              </div>
          
-                                                
-            
     }
 
 }
+//this class displays the categories on the screen (written in the ERD)
 class CategoriesComponent extends React.Component<CategoriesComponentProps, CategoriesComponentState>
 {
     constructor(props: CategoriesComponentProps, context) {
@@ -200,7 +185,7 @@ class CategoriesComponent extends React.Component<CategoriesComponentProps, Cate
                 }} />)} </div>
     }
 }
-
+//this class displays the meals (written in the ERD) when a certain category is selected. It uses Custem_controllers for selecting the right meals.
 class CategoryComponent extends React.Component<CategoryComponentProps, CategoryComponentState>
 {
     constructor(props: CategoryComponentProps, context) {
@@ -262,6 +247,7 @@ render() {
     }
 }
 
+//this class provides the correct recipes according the categories and meals.
 class MealComponent extends React.Component<MealComponentProps, MealComponentState>
 {
     constructor(props: MealComponentProps, context) {
@@ -336,7 +322,7 @@ class MealComponent extends React.Component<MealComponentProps, MealComponentSta
     }
 }
 
-
+//this class displays the recipes on the screen
 class RecipeComponent extends React.Component<RecipeComponentProps, RecipeComponentState>
 {
     constructor(props: RecipeComponentProps, context) {
@@ -378,6 +364,7 @@ class RecipeComponent extends React.Component<RecipeComponentProps, RecipeCompon
     }
 }
 
+//this class makes it possible to find the bookmarkes recipes back under "bookmarks" . 
 class ShowBookmarkComponent extends React.Component<ShowBookmarkComponentProps, ShowBookmarkComponentState>
 {
     constructor(props: ShowBookmarkComponentProps, context: any){
@@ -413,6 +400,7 @@ class ShowBookmarkComponent extends React.Component<ShowBookmarkComponentProps, 
     }
 }
 
+//this class displays a "bookmark" button for every recipe and saves the bookmarked recipes in the db.
 class BookmarkComponent extends React.Component<BookmarkComponentProps, BookmarkComponentState>
 {
     constructor(props: BookmarkComponentProps, context) {
@@ -443,6 +431,7 @@ class BookmarkComponent extends React.Component<BookmarkComponentProps, Bookmark
     }
 
 }
+//this class recommends random recipes to the user on the homepage.
 class RecommendedRandomRecipeComponent extends React.Component<RecommendedRecipeProps,  RecommendedRecipeState> 
 {
     constructor(props: RecommendedRecipeProps, context ) {

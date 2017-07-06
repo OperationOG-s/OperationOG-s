@@ -28164,6 +28164,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const React = __webpack_require__(11);
 const Immutable = __webpack_require__(36);
 const Api = __webpack_require__(18);
+// export asyinc function gets the information out of the costum_controller
 function get_recommendedrecipe(user_id) {
     return __awaiter(this, void 0, void 0, function* () {
         let res = yield fetch(`/api/v1/CustomController/GetRecommendedRecipes/${user_id}`, { method: 'get', credentials: 'include', headers: { 'content-type': 'application/json' } });
@@ -28179,8 +28180,6 @@ function get_all_remote_entities(get_page) {
         for (var index = 1; index < elems.NumPages; index++) {
             let elems = yield get_page(index, 10);
             elems_to_return = elems_to_return.concat(elems.Items.map(e => e.Item)).toList();
-            // Api.get_User_User_Recipes()
-            // Api.link_User_User_Recipes()
         }
         return elems_to_return;
     });
@@ -28237,6 +28236,7 @@ function get_meals(id) {
     });
 }
 exports.get_meals = get_meals;
+//this class creates buttons for the rating. The rating is selected by the pressed buttons and it saves in the db
 class StarsComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -28248,8 +28248,6 @@ class StarsComponent extends React.Component {
                 console.log("The rating is downloading", rating);
             } return { value: s.value, state: (s.value <= rating.rating) }; }).toList() })));
     }
-    //component: user * recipe => rating
-    //when rating received => for every star in stars: IF star.value <= rating THEN star.state:True ELSE star.state: False   
     render() {
         return React.createElement("div", null, this.state.stars.map(star => React.createElement("button", { style: star.state ? {
                 borderColor: '#ffffff',
@@ -28269,6 +28267,7 @@ class StarsComponent extends React.Component {
     }
 }
 exports.StarsComponent = StarsComponent;
+//this class displays the categories on the screen (written in the ERD)
 class CategoriesComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -28303,6 +28302,7 @@ class CategoriesComponent extends React.Component {
             " ");
     }
 }
+//this class displays the meals (written in the ERD) when a certain category is selected. It uses Custem_controllers for selecting the right meals.
 class CategoryComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -28346,6 +28346,7 @@ class CategoryComponent extends React.Component {
             " ");
     }
 }
+//this class provides the correct recipes according the categories and meals.
 class MealComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -28397,6 +28398,7 @@ class MealComponent extends React.Component {
         });
     }
 }
+//this class displays the recipes on the screen
 class RecipeComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -28435,6 +28437,7 @@ class RecipeComponent extends React.Component {
                 React.createElement(BookmarkComponent, { reload: this.props.reload, logged_in_user: this.props.logged_in_user, recipe: this.props.recipe }) : React.createElement("div", null));
     }
 }
+//this class makes it possible to find the bookmarkes recipes back under "bookmarks" . 
 class ShowBookmarkComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -28458,6 +28461,7 @@ class ShowBookmarkComponent extends React.Component {
         return React.createElement("div", null, this.state.recipes.map(recipes => React.createElement(RecipeComponent, { recipe: recipes, is_expanded: true, logged_in_user: this.props.user, reload: () => { }, update_me: value => { } })));
     }
 }
+//this class displays a "bookmark" button for every recipe and saves the bookmarked recipes in the db.
 class BookmarkComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
@@ -28474,6 +28478,7 @@ class BookmarkComponent extends React.Component {
             React.createElement("button", { onClick: () => Api.link_User_User_Recipes(this.props.logged_in_user, this.props.recipe).then(_ => this.setState(Object.assign({}, this.state, { is_bookmarked: true }))) }, "Bookmark"));
     }
 }
+//this class recommends random recipes to the user on the homepage.
 class RecommendedRandomRecipeComponent extends React.Component {
     constructor(props, context) {
         super(props, context);
